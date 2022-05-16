@@ -19,7 +19,7 @@ name: dep_of-playbook
 pswd: ""
 runas: DBotWeakRole
 runonce: false
-script: demisto.setContext("hello", "helo")
+script: demisto.setContext("hello", "hello")
 scripttarget: 0
 subtype: python3
 tags: []
