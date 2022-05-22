@@ -1,0 +1,354 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Case Management"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "This script changes the transition field of an issue. It gets the new Jira status and updates the Cortex XSOAR incident status.",
+				"name": "script-JiraChangeTransition",
+				"tags": [
+					"field-change-triggered"
+				]
+			},
+			{
+				"description": "Pretty print JIRA issue into the incident war room",
+				"name": "JIRAPrintIssue",
+				"tags": [
+					"jira"
+				]
+			},
+			{
+				"description": "This script lists all possible transitions for a given issue.",
+				"name": "script-JiraListTransition",
+				"tags": [
+					"field-display"
+				]
+			},
+			{
+				"description": "This script is used to simplify the process of creating a new Issue in Jira. You can add fields that you want in the record as script arguments and or in the code and have a newly created Issue easily.",
+				"name": "JiraCreateIssue-example",
+				"tags": [
+					"jira",
+					"example"
+				]
+			}
+		],
+		"classifier": [
+			{
+				"description": "Jira V2 mirror in classifier.",
+				"name": "classifier-mapper-incoming-JiraV2"
+			},
+			{
+				"description": "Jira V2 mirror out classifier.",
+				"name": "classifier-mapper-outgoing-Jira"
+			}
+		],
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Jira Transitions",
+				"type": "singleSelect"
+			},
+			{
+				"description": "The due date for the issue (in the format 2018-03-11)",
+				"name": "Jira Due Date",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Jira Issue Key",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Jira ID",
+				"type": "number"
+			},
+			{
+				"description": "The name of the status",
+				"name": "Jira Status",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Jira Reporter Name",
+				"type": "shortText"
+			},
+			{
+				"description": "The issue's summary",
+				"name": "Jira Summary",
+				"type": "shortText"
+			},
+			{
+				"description": "The issue's priority",
+				"name": "Jira Priority",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Jira Attachments",
+				"type": "attachments"
+			},
+			{
+				"description": "",
+				"name": "Created Time",
+				"type": "shortText"
+			},
+			{
+				"description": "This issue's description",
+				"name": "Jira Description",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Jira Labels",
+				"type": "tagsSelect"
+			},
+			{
+				"description": "",
+				"name": "Jira Reporter Email",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Jira Incident",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Jira Create Issue and Mirror",
+				"playbook": "Create Jira Issue",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Case Management",
+				"commands": [
+					{
+						"description": "Queries Jira issues.",
+						"name": "jira-issue-query"
+					},
+					{
+						"description": "Gets the account ID for a given user attribute.",
+						"name": "jira-get-id-by-attribute"
+					},
+					{
+						"description": "Fetches an issue from Jira.",
+						"name": "jira-get-issue"
+					},
+					{
+						"description": "Creates a new issue in Jira.",
+						"name": "jira-create-issue"
+					},
+					{
+						"description": "Uploads a file attachment to an issue.",
+						"name": "jira-issue-upload-file"
+					},
+					{
+						"description": "Adds a new comment to an existing Jira issue.",
+						"name": "jira-issue-add-comment"
+					},
+					{
+						"description": "Creates (or updates) an issue link.",
+						"name": "jira-issue-add-link"
+					},
+					{
+						"description": "Modifies an issue in Jira.",
+						"name": "jira-edit-issue"
+					},
+					{
+						"description": "Returns the comments added to a ticket.",
+						"name": "jira-get-comments"
+					},
+					{
+						"description": "Deletes an issue in Jira.",
+						"name": "jira-delete-issue"
+					},
+					{
+						"description": "Returns the ID offset. For example the first issue ID.",
+						"name": "jira-get-id-offset"
+					},
+					{
+						"description": "Gets remote data from a remote incident. This method is only used for debugging and does not update the current incident.",
+						"name": "get-remote-data"
+					},
+					{
+						"description": "Returns the fields to map. This method is only used for debugging.",
+						"name": "get-mapping-fields"
+					},
+					{
+						"description": "Gets incident changes. This method is only used for debugging and does not update the current incident.",
+						"name": "update-remote-system"
+					},
+					{
+						"description": "Lists all possible transitions for a given ticket.",
+						"name": "jira-list-transitions"
+					},
+					{
+						"description": "Available from Cortex XSOAR version 6.1.0. This command queries for incidents that were modified since the last update. This method is only used for debugging.",
+						"name": "get-modified-remote-data"
+					}
+				],
+				"description": "Use the Jira integration to manage issues and create Cortex XSOAR incidents from Jira projects. From Cortex XSOAR version 6.0 and above, the integration also mirrors issues to existing issue incidents in Cortex XSOAR.",
+				"name": "Atlassian Jira v2"
+			},
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Returns a list of audit records",
+						"name": "jira-get-events"
+					}
+				],
+				"description": "Jira logs event collector integration for XSIAM.",
+				"name": "Jira Event Collector"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Jira Incident Layout"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Use Jira Incident State Polling as a sub-playbook when required to pause the execution of a master playbook until the Jira ticket state is either resolved or closed.\nThis playbook implements polling by continuously running the jira-get-issue command until the state is either resolved or closed.",
+				"name": "Jira Ticket State Polling"
+			},
+			{
+				"description": "Mirror Jira Ticket is designed to serve as a sub-playbook, which enables ticket mirroring with Jira.",
+				"name": "Mirror Jira Ticket"
+			},
+			{
+				"description": "Create Jira issue allows you to open new issues.\nWhen creating the issue, you can decide to update based on on the issue's state, which will wait for the issue to resolve or close with StatePolling.\nAlternatively, you can select to mirror the Jira issue and incident fields.  To apply either of these options, set the SyncTicket value in the playbook inputs to one of the following options: \n1. StatePolling\n2. Mirror\n3. Leave Blank to use none\n\nWhen creating Jira issues through XSOAR, using the mirroring function, make sure that you exclude those issues when fetching incidents. To exclude these issues, tag the relevant issues with a dedicated label and exclude that label from the JQL query (Labels!=).",
+				"name": "Create Jira Issue"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-24T09:12:59Z",
+	"currentVersion": "2.0.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.1.21",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.33",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the Jira integration to manage issues and create Cortex XSOAR incidents from Jira projects.",
+	"downloads": 6643,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Jira",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Jira/jira-v2_image.png",
+			"name": "Atlassian Jira v2"
+		},
+		{
+			"imagePath": "content/packs/Jira/JiraEventCollector_image.png",
+			"name": "Jira Event Collector"
+		}
+	],
+	"itemVersion": "2.0.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "Atlassian Jira",
+	"packID": "Jira",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This pack enables you to manage issues in Jira and exchange information between Jira and Cortex XSOAR. \n\n## What does this pack do?\nThis pack enables you to\n- Create, edit, delete, and query Jira issues.\n- Add information to Jira issues in the form of links, comments, and attachments.\n- Create Cortex XSOAR incidents from Jira issues.\n- Mirror information from Jira to Cortex XSOAR and vice versa.\n\nThe pack includes the **Atlassian Jira v2** integration, the **Jira Incident** incident type, incident fields, an incident layout to display all of the Jira information, and 4 scripts:\n- **JiraCreateIssue-example**: Simplifies the process of creating a new issue in Jira.\n- **JIRAPrintIssue**: Prints a Jira issue in the War Room.\n- **script-JiraChangeTransition**: Gets the new Jira status and updates the Cortex XSOAR incident status.\n- **script-JiraListTransition**: Lists all possible transitions for a given issue.\n\n## How does this pack work?\n\nCreate an instance of the **Atlassian Jira v2** integration and start fetching and ingesting incidents.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Incident Mirroring"
+	],
+	"toServerVersion": "",
+	"updated": "2022-05-10T21:22:27Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
