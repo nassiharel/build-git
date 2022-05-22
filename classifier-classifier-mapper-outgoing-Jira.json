@@ -1,0 +1,59 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Jira V2 mirror out classifier.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "1a77d3a4-7a26-4223-82b1-ba0a5470899e",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.0.0",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"assignee": {
+					"simple": "assigneduser"
+				},
+				"description": {
+					"simple": "jiradescription"
+				},
+				"dueDate": {
+					"simple": "jiraduedate"
+				},
+				"labels": {
+					"simple": "jiralabels"
+				},
+				"priority": {
+					"simple": "jirapriority"
+				},
+				"status": {
+					"simple": "jirastatus"
+				},
+				"summary": {
+					"simple": "jirasummary"
+				}
+			}
+		}
+	},
+	"name": "classifier-mapper-outgoing-Jira",
+	"nameRaw": "classifier-mapper-outgoing-Jira",
+	"packID": "Jira",
+	"packName": "Atlassian Jira",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-outgoing",
+	"unclassifiedCases": null,
+	"version": -1
+}
