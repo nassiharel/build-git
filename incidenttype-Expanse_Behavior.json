@@ -1,0 +1,40 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#c403ff",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "5.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Expanse Behavior",
+	"itemVersion": "1.2.3",
+	"layout": "",
+	"locked": false,
+	"name": "Expanse Behavior",
+	"onChangeRepAlg": 1,
+	"packID": "Expanse",
+	"packName": "Expanse (Deprecated)",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Expanse Behavior Severity Update",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
