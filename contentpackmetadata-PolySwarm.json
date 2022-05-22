@@ -1,0 +1,188 @@
+{
+	"author": "PolySwarm",
+	"authorImage": "content/packs/PolySwarm/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Returns a report using the UUID.",
+						"name": "polyswarm-get-report"
+					},
+					{
+						"description": "Queries PolySwarm for file reputation information.",
+						"name": "file"
+					},
+					{
+						"description": "Queries PolySwarm for IP reputation information.",
+						"name": "ip"
+					},
+					{
+						"description": "Queries PolySwarm for URL reputation information.",
+						"name": "url"
+					},
+					{
+						"description": "Queries PolySwarm to retrieve domain reputation information.",
+						"name": "domain"
+					},
+					{
+						"description": "Uploads a URL to PolySwarm and retrieves the analysis results.",
+						"name": "url-scan"
+					},
+					{
+						"description": "Rescans the uploaded artifact by hash.",
+						"name": "file-rescan"
+					},
+					{
+						"description": "Downloads a file hash from PolySwarm.",
+						"name": "get-file"
+					},
+					{
+						"description": "Uploads a file to PolySwarm and retrieves the analysis results.",
+						"name": "file-scan"
+					}
+				],
+				"description": "Deprecated. Use PolySwarm V2 instead.",
+				"name": "PolySwarm (Deprecated) (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Returns a report using the UUID.",
+						"name": "polyswarm-get-report"
+					},
+					{
+						"description": "Queries PolySwarm for file reputation information.",
+						"name": "file"
+					},
+					{
+						"description": "Queries PolySwarm for IP reputation information.",
+						"name": "ip"
+					},
+					{
+						"description": "Queries PolySwarm for URL reputation information.",
+						"name": "url"
+					},
+					{
+						"description": "Queries PolySwarm to retrieve domain reputation information.",
+						"name": "domain"
+					},
+					{
+						"description": "Uploads a URL to PolySwarm and retrieves the analysis results.",
+						"name": "url-scan"
+					},
+					{
+						"description": "Rescans the uploaded artifact by hash.",
+						"name": "file-rescan"
+					},
+					{
+						"description": "Downloads a file hash from PolySwarm.",
+						"name": "get-file"
+					},
+					{
+						"description": "Uploads a file to PolySwarm and retrieves the analysis results.",
+						"name": "file-scan"
+					}
+				],
+				"description": "Real-time threat intelligence from a crowd-sourced network of security experts and antivirus companies.",
+				"name": "PolySwarm (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-23T17:52:32Z",
+	"currentVersion": "2.0.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Real-time threat intelligence from a crowdsourced network of security experts and antivirus companies.",
+	"downloads": 1462,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "PolySwarm",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/PolySwarm/PolySwarmV2_image.png",
+			"name": "PolySwarm"
+		},
+		{
+			"imagePath": "content/packs/PolySwarm/PolySwarm_image.png",
+			"name": "PolySwarm (Deprecated)"
+		}
+	],
+	"itemVersion": "2.0.2",
+	"keywords": [],
+	"legacy": true,
+	"name": "PolySwarm",
+	"packID": "PolySwarm",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@polyswarm.io",
+		"url": ""
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2021-12-21T22:23:27Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
