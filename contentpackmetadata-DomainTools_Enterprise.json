@@ -1,0 +1,138 @@
+{
+	"author": "DomainTools",
+	"authorImage": "content/packs/DomainTools/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Retrieve domain information.",
+						"name": "domain"
+					},
+					{
+						"description": "Search for domain based on the given parameters",
+						"name": "domainSearch"
+					},
+					{
+						"description": "Reverse loopkup of an IP address",
+						"name": "reverseIP"
+					},
+					{
+						"description": "Reverse nameserver lookup",
+						"name": "reverseNameServer"
+					},
+					{
+						"description": "Reverse lookup of whois information",
+						"name": "reverseWhois"
+					},
+					{
+						"description": "Provides registration details about a domain",
+						"name": "whois"
+					},
+					{
+						"description": "Display a history of whois for a given domain",
+						"name": "whoisHistory"
+					},
+					{
+						"description": "Display profile for a given domain",
+						"name": "domainProfile"
+					}
+				],
+				"description": "Domain name, DNS and Internet OSINT-based cyber threat intelligence and cybercrime forensics products and data",
+				"name": "DomainTools (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-25T01:48:27Z",
+	"currentVersion": "1.1.3",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Provides DomainTools market-leading Whois data including hosting history and parsed IP records within Cortex XSOAR. Requires a DomainTools Enterprise API key.",
+	"downloads": 1912,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "DomainTools",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/DomainTools/DomainTools_image.png",
+			"name": "DomainTools"
+		}
+	],
+	"itemVersion": "1.1.3",
+	"keywords": [],
+	"legacy": true,
+	"name": "DomainTools Enterprise",
+	"packID": "DomainTools",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Together, DomainTools and Cortex XSOAR automate and orchestrate the incident response processes with essential domain profile, web crawl, SSL, and infrastructure dat delivered by the DomainTools Iris Investigate API. SOCs can create custom, automated workflows to trigger Indicator of Compromise (IoC) investigations, block threats based on connected infrastructure, and identify potentially malicious incidents befor weaponization.\r\n\r\n**With the DomainTools Classic App for Cortex XSOAR, the DomainTools Enterprise APIs are available not only for ad-hoc War-Room investigations on specific incidents, but also for automated actions.**\r\n- Profile domains and receive reputation scores.\r\n- Find domains based off IP, Name Server, or whois using the `reverseIP`, `reverseNS`, and `reverseWhois` commands.\r\n- See whois data including parsed whois and whois history. \r\n\r\nThis app requires a DomainTools Enterprise Research API subscription. Please contact sales@domaintools.com for a trial.\r\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "memberservices@domaintools.com",
+		"url": "https://www.domaintools.com/support/"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-04-20T21:21:19Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
