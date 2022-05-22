@@ -1,0 +1,84 @@
+args:
+- default: true
+  description: Indicator Query
+  name: query
+  required: true
+- defaultValue: "50"
+  description: Number of indicators to return
+  name: size
+comment: Search for Indicators
+commonfields:
+  id: SixgillSearchIndicators
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.0.10
+    packID: Sixgill-Darkfeed
+    packName: Sixgill Darkfeed - Annual Subscription
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SixgillSearchIndicators
+outputs:
+- contextPath: FoundIndicators
+  description: Indicators Found
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('SixgillSearchIndicators', 'start', __line__())
+
+
+
+  DEFAULT_SIZE = 50
+
+
+  def search_indicators(args):
+
+      keys = ['id', 'value', 'CustomFields', 'type', 'score', 'firstSeen', 'lastSeen',
+              'expiration', 'expirationStatus', 'sourceBrands', 'sourceInstances']
+      query = args.get('query', None)
+      if not query:
+          raise ValueError('Query not set!')
+      size = int(args.get('size', DEFAULT_SIZE))
+
+      indicators = demisto.executeCommand("findIndicators", {"query": query, 'size': size})
+      outputs = list()
+      if not isinstance(indicators, list) or len(indicators) < 1 or 'Contents' not in indicators[0]:
+          raise ValueError('No content')
+      for i in indicators[0]['Contents']:
+          oi = dict()
+          for k in i.keys():
+              if k in keys:
+                  oi[k] = i[k]
+          outputs.append(oi)
+      return CommandResults(
+          outputs_prefix='FoundIndicators',
+          outputs_key_field='value',
+          outputs=outputs
+      )
+
+
+  def main(args):
+      try:
+          return_results(search_indicators(args))
+      except Exception as e:
+          return_error(f'Error : {str(e)}')
+
+
+  if __name__ in ('builtins', '__builtin__'):
+      main(demisto.args())
+
+  register_module_line('SixgillSearchIndicators', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags: []
+type: python
