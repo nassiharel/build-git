@@ -1,0 +1,125 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Checks the reputation of a URL.",
+						"name": "url"
+					},
+					{
+						"description": "Checks the reputation of a file hash.",
+						"name": "file"
+					},
+					{
+						"description": "Checks the reputation of an IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Checks the reputation of an email address.",
+						"name": "email"
+					},
+					{
+						"description": "Searches for extracted strings identified within malware campaigns.",
+						"name": "cofense-search"
+					}
+				],
+				"description": "Deprecated. Use Cofense Intelligence v2 instead. Use the Cofense Intelligence integration to check the reputation of URLs, IP addresses, file hashes, and email addresses.",
+				"name": "Cofense Intelligence (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:43:04Z",
+	"currentVersion": "1.0.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Deprecated. Use Cofense Intelligence v2 instead. Use the Cofense Intelligence integration to check the reputation of URLs, IP addresses, file hashes, and email addresses.",
+	"downloads": 1273,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Cofense-Intelligence",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Cofense-Intelligence/CofenseIntelligence_image.png",
+			"name": "Cofense Intelligence (Deprecated)"
+		}
+	],
+	"itemVersion": "1.0.2",
+	"keywords": [],
+	"legacy": true,
+	"name": "Cofense Intelligence",
+	"packID": "Cofense-Intelligence",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": -40,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2021-12-22T22:20:49Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
