@@ -1,0 +1,205 @@
+{
+	"author": "Analyst1",
+	"authorImage": "content/packs/illuminate/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Queries the Analyst1 REST API and enriches the given domain with Analyst1 Indicator data",
+						"name": "domain"
+					},
+					{
+						"description": "Queries the Analyst1 REST API and enriches the given email with Analyst1 indicator data.",
+						"name": "email"
+					},
+					{
+						"description": "Queries the Analyst1 REST API and enriches the given IP address with Analyst1 indicator data.",
+						"name": "ip"
+					},
+					{
+						"description": "Queries the Analyst1 REST API and enriches the given file with Analyst1 indicator data.",
+						"name": "file"
+					},
+					{
+						"description": "Queries the Analyst1 REST API and enriches the given string with Analyst1 indicator data",
+						"name": "analyst1-enrich-string"
+					},
+					{
+						"description": "Queries the Analyst1 REST API and enriches the given IP address with Analyst1 indicator data.",
+						"name": "analyst1-enrich-ipv6"
+					},
+					{
+						"description": "Queries the Analyst1 REST API and enriches the given mutex with Analyst1 indicator data.",
+						"name": "analyst1-enrich-mutex"
+					},
+					{
+						"description": "Queries the Analyst1 REST API and enriches the given HTTP request with Analyst1 indicator data.",
+						"name": "analyst1-enrich-http-request"
+					},
+					{
+						"description": "Queries the Analyst1 REST API and enriches the given URL with Analyst1 indicator data.",
+						"name": "url"
+					}
+				],
+				"description": "This integration utilizes Analyst1's system to enrich Demisto indicators with data provided by the Analyst1 REST API, such as actor and malware information, activity and reported dates, evidence and hit counts, and more.",
+				"name": "Analyst1 (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Queries the illuminate REST API and enriches the given domain with illuminate Indicator data",
+						"name": "domain"
+					},
+					{
+						"description": "Queries the illuminate REST API and enriches the given email with illuminate indicator data.",
+						"name": "email"
+					},
+					{
+						"description": "Queries the illuminate REST API and enriches the given IP address with illuminate indicator data.",
+						"name": "ip"
+					},
+					{
+						"description": "Queries the illuminate REST API and enriches the given file with illuminate indicator data.",
+						"name": "file"
+					},
+					{
+						"description": "Queries the illuminate REST API and enriches the given string with illuminate indicator data",
+						"name": "illuminate-enrich-string"
+					},
+					{
+						"description": "Queries the illuminate REST API and enriches the given IP address with illuminate indicator data.",
+						"name": "illuminate-enrich-ipv6"
+					},
+					{
+						"description": "Queries the illuminate REST API and enriches the given mutex with illuminate indicator data.",
+						"name": "illuminate-enrich-mutex"
+					},
+					{
+						"description": "Queries the illuminate REST API and enriches the given HTTP request with illuminate indicator data.",
+						"name": "illuminate-enrich-http-request"
+					},
+					{
+						"description": "Queries the illuminate REST API and enriches the given URL with illuminate indicator data.",
+						"name": "url"
+					}
+				],
+				"description": "Deprecated. Use Analyst1 integration instead.",
+				"name": "illuminate (Deprecated) (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Deprecated. No available replacement. A quick demonstration of the various illuminate enrichment commands.",
+				"name": "Illuminate Integration Demonstration"
+			},
+			{
+				"description": "A quick demonstration of the various Analyst1 enrichment commands.",
+				"name": "Analyst1 Integration Demonstration"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-06-30T20:31:10Z",
+	"currentVersion": "1.0.12",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "This integration utilizes Analyst1's system to enrich Demisto indicators with data provided by the illuminate REST API, such as actor and malware information, activity and reported dates, evidence and hit counts, and more.",
+	"downloads": 1991,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "illuminate",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/illuminate/Analyst1_image.png",
+			"name": "Analyst1"
+		},
+		{
+			"imagePath": "content/packs/illuminate/illuminate_image.png",
+			"name": "illuminate (Deprecated)"
+		}
+	],
+	"itemVersion": "1.0.12",
+	"keywords": [],
+	"legacy": true,
+	"name": "Analyst1",
+	"packID": "illuminate",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@analystplatform.com",
+		"url": ""
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2021-12-22T22:16:50Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
