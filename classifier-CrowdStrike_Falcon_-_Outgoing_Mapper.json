@@ -1,0 +1,52 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "CrowdStrike Falcon mirror out mapper.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "CrowdStrike Falcon - Outgoing Mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.7.4",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"CrowdStrike Falcon Detection": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"status": {
+					"simple": "state"
+				}
+			}
+		},
+		"CrowdStrike Falcon Incident": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"status": {
+					"simple": "sourcestatus"
+				},
+				"tag": {
+					"simple": "tags"
+				}
+			}
+		}
+	},
+	"name": "CrowdStrike Falcon - Outgoing Mapper",
+	"nameRaw": "CrowdStrike Falcon - Outgoing Mapper",
+	"packID": "CrowdStrikeFalcon",
+	"packName": "CrowdStrike Falcon",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-outgoing",
+	"unclassifiedCases": null,
+	"version": -1
+}
