@@ -1,0 +1,287 @@
+category: Analytics & SIEM
+commonfields:
+  id: Jira Event Collector
+  version: -1
+configuration:
+- defaultvalue: https://<your-domain>.atlassian.net/rest/api/3/auditing/record
+  display: Server URL
+  name: url
+  required: true
+  type: 0
+- additionalinfo: The user name (admin@example.com) and password
+  display: User name
+  name: credentials
+  required: true
+  type: 9
+- defaultvalue: 3 days
+  display: First fetch time (<number> <time unit>, e.g., 12 hours, 1 day, 3 months).
+    default is 3 days.
+  name: first_fetch
+  required: true
+  type: 0
+- defaultvalue: "100"
+  display: The maximum number of events per fetch. Default is 100.
+  name: max_fetch
+  required: true
+  type: 0
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- display: Fetch Events
+  name: isFetchEvents
+  required: false
+  type: 8
+- defaultvalue: "1"
+  display: Events Fetch Interval
+  name: eventFetchInterval
+  required: false
+  type: 19
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 2.0.0
+    packID: Jira
+    packName: Atlassian Jira
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Jira logs event collector integration for XSIAM.
+detaileddescription: '[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/jira-event-collector)'
+display: Jira Event Collector
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAyCAYAAACXpx/YAAAQkElEQVR4AezBMQEAAADCIPunNsU+YAAAAOTevlnHNd1vcfzYij4Gj00jJnbHxe7uwkIfu7s7SOm2iwZbH73Y3Qp2UaNFEOnYuefsx17iXjrHhN3ij/c24hfw2efU97v1V7DG6AD8u78PXhvqh+eH+ubDLw9f+d/v44mX+nvjzdcJ2IoA5SimSE76JAorN92PiWCFWNVJQJ2fpTj+4PuO33/9pzMi7EA0PomXCVCOYorsxNPP4QWwQGy0D7HBXuUobY84yAdfEqBKnr360GGng+dWC1fflUGvPhoQ8N9KkZ34wgccxQ7W36O8wGCHOPo4BhFQGBgvsaw0ZalVHeNFljWGztha+9zl+xUIyM+F649nqjUegeotx6Na45HYZvCi9OSU1FoE/DdSpCcf6Y/XYRei4f7/DIEHmWw2az1oIbYfuiTLoNtf6Hf2xhQC8jPsr21PyjcYjvx7zfvNQ62OU3DFrr0TCPhvpEhPHpmMhrWdMRfMhVDdUAmBx5DABBQGfYzXW9Uzmo6Ne83CGm0moNfJqyYE5GewyeagKs3GkMCLsPXAhahPv2+y0mYqAf+NFPkFwpOwSZejGA9miGoOiBquiFpu/JwHvTbYS+KrwMH9J2+0aNRztsSZmh0mo8/pa9MIyI/vmRsrQKu/xLkVKURr0O8lJCbrEvDfiMouZHMfN7U+hJGN92OyAbm52UESkZ7rksj196hG4H4kcONeeQJ3/LHAzD6vC0s6j1gWMnDqpuDbD1+OIOC/lQIfkJIpLpGdIwHkkZNLv0PkCACTmCYu/foTanJv+zEJ23/NFFf8kITN2xzCVHVH1TiYBZZ18P8ySh1kchY9Oh1F7OuN4RK8MLzH0dxwo8PZ4Z0OZIS3dU8Jb+mSLGrqlCRqaJsg0rGOi9S3io5obS160dkm7EFniw+3tda/ebM2IHI9AT28UKTmUPQ5uN+UYoEVYsZZPABbhD61pB09EyVsEMEyF8EsG2FbGsKmLwjrPyOsikNYFo2wSIQwLwRh1nuEaa/JUkEIxkGZD0IzOow5i88qOag2RGv8ROCDfhdLHvK7WOfkxdsaRwICNX1OX61BgCy+Z69X6z9lY2PjJRb1Jy+1Mug0YlkZAqScu/KgudPh08bzNzov9jp11ZiAnyGKjq949PjlPi5HzkwaMn3rjAWbnKd7nrw6/sb9YAMCpLgeO1va58y1ut6nr9b1OHlZ++zlu1UIkAc/FJiLITgarITcKRWjIQ806GtdFzFqOGZjddt0rGz1FcuZJiHsIKG3xCNsIKHXRiCsCEVY8A5h7kvceye117CTeFvdSQUOViBEz1nnqNZ/8oZ4ysHYrO9cnL7S5iEBslCeXsN5vOXABdhpxPJcErsuAaKouJYk+kuuvrU7TcXyDYdj55HLw1+8DilBgCx7Pf9e1Gvi2hSN9pMkhV3TPnOxQfeZWLPNRGzccxbOWmt/ITs7R4ug+9+g3XfS+pwuI5djh2FLcNpKa1sC5MEPSkGV8XuwFHpcWZG1XXKxjlRkCxaZ3Lw9AWEzuXkjibw6nBz9EWHpW9x3N635iBN4Us1BRQL/oooet8C0Yov+8xNZHG6Xhkzf8pQAWdyOnVtdtflYbNhDIkYOAWKxuA61YLllDIaQSH+hQdcZ+IfhaBwwdWMIAbKQUwNBd6BEzJYDFvAbSnIct3L16Fi9LiZYtv5QpDdbakpqetlt9p7lqreagDpdpknun1o6ewLkwQ9K8TgGe4Etz5CFHldWZD1XMWo65YlsmfLNyVvjBZGXh0lEDo1OqezyBNeAGZ+nCAVWsMiasny3GjkuoUnvOahJjho7z/QxAbLs8Ti/qkbrCRKBOw1fFnLjXnC3QdM2i0B7AFZrMVYibruhi5FdPmr2jlAC8jNzrf2Vcg2G0b3Mx1bUb6u3HId1ycUdhy/NIZfG95ywJlmXhKzSbDTyG2bmGrun1+4GtW7Zf340/w2NeszCMfN32REgD35QmkPBuBG2cx6WiisrMjs5SyJyJXJyGRZ5J4frOHJxFMKKcHzwIbnau8+oDzbkfHcV5OCeiguspYDA/HsUmr/Qmz4C/uyBRqNXxLkcPbvt76sPjd5+FOnEJiTpfwyPNhBFxpUkgLHee9wa6vTGVuTaJiQWR4IZq20fHA24PI5ErGOzx7+E75nrZV6+C++wweqwH99HCd1BOGWZ1UO6Vgwf05AFnrvLjgB58MNvYfcAN7U4hAjWxG5hmFHbVUCdXtdyEqOW07dwXZrD9Y4EhPVxRBR63PvSnIA5F/EM7OSQX4QCT1HAwcsEgQ37KCAwTcPYfc3ofKX0B+O4+Wavo2I/VSbgZ4SKYpvrdJ6GnKP5PjiEb9x9xI2An3Hx+uMhHLY5MrToLzi+kaoElnIgCEfMC8STI0/gIyMvfNzFA180P4jRTfZipqTwIpFr2GUI4ZpF3kwib4tHt5vJbQnIFqOOnjumcahuwmPNIs7BGoXhYBKYcyeH1r6TNkQgYgUC5LHN3sO+pN4gnodjhUbDcbudx14CfsWJC3cWUE3AAvM1lXfw9VBxrdvh4ka3wsV6t8KI0Fy92/T6WmiufuD7LP3rH9L1bn1I0734Ok3/RFB6/dPB6QZX3qZVIeCVKE3t8qvUhgfvprYNfJddi4CVV9ATrISczIUXi8zhGrYlYikK10fuf21LABOfho3/cRQTYBci2BCWiCMDMIiAwoCq0F86eCoJ3EXBHCwVmEea+70vbiTgV1AovlqNQjIVUSxW7qfPX7QIUISRs3YEU1rg0K68g2efQxueDbc6hNiaaLUf0XBPDtZ3yUJ9x3TUtkvBOruTsLplIlY2/YQldsQibI1CWBuGsPKDuPTKd2nll73KgUUvc6+9+tzCPRi3s1AccqWFF4sMu75iBcrJ/k/S2hIghaZdFdwe4/Jhfhhc3kESol8X2iRrCgs8q2BF1gLTxwTIssdTyMGcD7mgehT8thsB8nj24kMto1ErMjnc8ptii+2xYwQoykG/wHV/GI7CFixwTyWLrIPPcAE7rrIDYg1ngWr2iOVschCsMhHM0hC2JyNsSULY9ImEJYFXkcDLIhAWhSDMf48w5w1C70e49ECYufsL3MkCN8wLu/quQrguaZWO1Xan4MngjNYE/IibYai/6Rq2JaAwEEL0rEIN0dzWcA6OjE3QJUAeNx8878VvLEM6d3V6cxz/+/ZsAhTlzuOXvevTMifdm/IO/piA+p2PYBhY57UtecIYuCFqOedgHYcsrGaThpXyF0zS1oeHGCvDSOyPCOOf4/xjIlPbx7gNdudrowg9yslqNtlYyz4DjwdltCFAFfQvSJGlYJvETuowbGnWTgevWgTIg0L0VB3qr1kg7rNv3H/eiwBFCY2IaUL3z9f8vSra5yXOA1PejcGCyIqci7VJZHWbdKnI3/e360TkaBJ58muc7xW1zeMVTgRrmRaKnms6CNW1R5C4HQEqoGBVtPwQLRWYJ0/Uuy7LpvxemwB5jJ27azFX53zupvTsdOh0BwIUZemOPTrthizm43+/TfrrPAaCqXSt9sdOVmcnmycL/S07eQuLHENOJpFN3uMsz2jziGTU55m1jvv3LtZw5XOJ0f8ltiVAFXCIblQEfTA5OJvm0XUIkAdNr5Y26zsPWWTaCoQ0yWpHgKLQbhNNejOJDfvM/X2BE9NyK/TzxmCuaCs5Cq2L1H2cR3VI5NoOmVjNOlUYYuySihwnzJznhGAft9gjBEw8hbfB4vselxf6G9HzmTfYmgBV0GXUCgvOl4LAU9D71LVpBOSnoDnYkAUevjR7EglMgDzWmx+Ywzmbj+F585GAy10IUBTqoevxOJOnZyzwaBKYAHnwg1x230M7fXceYhDWhA1hS1gQVrmo6ZgpDdd5Ts6bVC2IwC6u8f4ExKRiMy7a1AjpOJIX+vn1qdfYhgBVsHirm2WdtsZSB7PAJr8lsOBgCtGKOfjGvaChtdsZSwSu224SXr8XPIEARbn/9E03zr9UuRfuoCMoFmuvu4o7jE/iJVoLfjT5FN6fdhqv9vbAdzUcuFgSnKzG4ZqdzAsLi6Ow197P/gQwB4NwC2zlN4ggrJab6gU2d/Ozr9RkJPefWL3VeLxw7dF4AvIjK7D8HCwN0Yo5+GHwW0Nu01gkbnccD54yJ0BRfM/eWFS1uTDsaKiKWfTVMBzJLZCGI4VraXVt/hVLscgr4nDo4SR/AqR4v0Djrh6YJLgfsYYTYsBLbEeAKlhneci7Mo0GuTCq320Gnrl0rwsB+ZEOOgwVdLAhO1hBgZnRc3a+qU3urU0rSCNn73hHgKJMW2F9X73FOCUmWUpyPQJHcdjW5Y10TkJOZpHZybA6Acd4JvsRkJ/4FHHpHbdwq9ExDO94BPH8W2xPQFGTkZlVrdvY1V+0O09FvX+YILk09dW7MHUC8vFtkiV/Fq2UgwlOE54VGo2QiMSjx7OX708j4FfQBgITdj2vPtGxSuRgJbjAC/+7hYV/fcmU6lvhBWu/4ESfr74E/Iyn0agekYTlCfhdsrJzSn9OTC5FwI9Yss3Ni/+hXL3yP2rWWodAAmQpaA42LKDAh/0Dl/LCBN8H5+FOtNZLOzrqEfAz6IMEGlQ3JPJGfHoWFht6qsDBJ9/gUC646u39Vl1zn8w5GTal4kTfVD8CVMGbj6I2g022xMxZ5+Bh7uyz/J83npj4nLkxdZXpPpvu41YnshjCSswCVCMHkSPGEiCLVGDDX+VgT+VCNDPIZNNzugcWV9i50Xt25l7P8/OiYxPKEiDlXYhIw9TJ25Fnz+UaDuOQHkKLGkl0TdU4+NIHbKyTt8dZugYsHUXCtnSc4J/pT4AqeBcS2ZzzU8UmI1kYXmOlf54xctWq0WGSZBM7Dwl4B0WH4UtEiFieAFmmyjh4HAlMgCzf5eDhBRP41ftwI15wqNV2Ig9JUIfSBp+r+7g1GRMXW9wbv9DsLBHUdvAiMf8dvImApnDhtx6+6EarUBHkXtUtF9IQ/y5YSsea3xYVYFc2TjmR40eAKnj5PqIF72viwT/nKGFZjRxLr3nfFK/elDEYin2M18VFRMU3I+BHsIPJWQk88eJ5Nf2NTwiQxZ0E/pMqcf49+qcXSGCG5sojuVXjsMv3yh+V4dqAwzZv1eGf8Y4O3tPFgiYkJTfe73OxJP2N4iZ5fTQVbPYEyIMffot/fsQxYCbsxmi4l5Cu5ZqLcfqZXF8CVEFMfKKW0ZiVabw2y07mBXUeCvDMl1sLXmTYbHP0IAHyIIGrkMAp1M5IBX7+E4HX5RMYSTRtAgrCvSevOtB0KoxF5cjDBSBPuThscyHGAlNEeUw1RAMCKDzXazt4MRV2s6UCOxa5wMziQDzNY8160tk1wW3QzLPoR4CqeBT0tkrA+Vv9aUPcCtqNuLvb2FWOCze7WPufuznnyu2nOgT8CtoRWWbsXNPho2bvnNhv0oYpi7e49iFAFq+T1xp1H7t6+qg5OydQ0TXaeLGFGgHK4HX62hD6LJffiFnbH1AF/5jaoRvrrQ4dPHHhthEBUuhnFSk9jKVrjqdPR85YtMWlFQHy4IdCYUwAXoFdvLzI4VoYaMw+j34E/PsoplBPZnoHnbVcJe6Vfjo/gID/IYo/4e/1HA3WXEHHTkfwxfZbuJmAfx/FFPSAYooFLqZY4GKKBS6mWOBiigUu5l9qVWFkEVNg3wAAAABJRU5ErkJggg==
+name: Jira Event Collector
+script:
+  commands:
+  - arguments:
+    - description: The maximum number of incidents per fetch. Default is 100.
+      isArray: true
+      name: max_fetch
+    - description: First fetch time (<number> <time unit>, e.g., 12 hours, 1 day,
+        3 months). default is 3 days.
+      isArray: true
+      name: first_fetch
+    description: Returns a list of audit records
+    name: jira-get-events
+  dockerimage: demisto/fastapi:1.0.0.29406
+  isfetchevents: true
+  runonce: false
+  script: |
+    register_module_line('Jira Event Collector', 'start', __line__())
+    from enum import Enum
+    import urllib3
+
+
+    from pydantic import BaseConfig, BaseModel, AnyUrl, Json, Field  # pylint: disable=no-name-in-module
+    import requests
+    from requests.auth import HTTPBasicAuth
+    import dateparser
+    from datetime import datetime
+
+    urllib3.disable_warnings()
+
+    DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
+
+
+    class Method(str, Enum):
+        GET = 'GET'
+        POST = 'POST'
+        PUT = 'PUT'
+        HEAD = 'HEAD'
+        PATCH = 'PATCH'
+        DELETE = 'DELETE'
+
+
+    class Args(BaseModel):
+        from_day = demisto.params().get('first_fetch', '3 days')
+        default_from_day = datetime.now() - timedelta(days=3)
+        from_: str = Field(
+            datetime.strftime(dateparser.parse(from_day, settings={'TIMEZONE': 'UTC'}) or default_from_day, DATETIME_FORMAT),
+            alias='from'
+        )
+        limit: int = 1000
+        offset: int = 0
+
+
+    class ReqParams(BaseModel):
+        from_day = demisto.params().get('first_fetch', '3 days')
+        default_from_day = datetime.now() - timedelta(days=3)
+        from_: str = Field(
+            datetime.strftime(dateparser.parse(from_day, settings={'TIMEZONE': 'UTC'}) or default_from_day, DATETIME_FORMAT),
+            alias='from'
+        )
+        limit: int = 1000
+        offset: int = 0
+
+
+    class Request(BaseModel):
+        method: Method = Method.GET
+        url: AnyUrl
+        headers: Union[Json, dict] = {}
+        params: ReqParams
+        insecure: bool = Field(not demisto.params().get('insecure', False), alias='verify')
+        proxy: bool = Field(demisto.params().get('proxy', False), alias='proxies')
+        data: Optional[str]
+        auth: Optional[HTTPBasicAuth] = Field(
+            HTTPBasicAuth(
+                demisto.params().get('credentials', {}).get('identifier'),
+                demisto.params().get('credentials', {}).get('password')
+            )
+        )
+
+        class Config(BaseConfig):
+            arbitrary_types_allowed = True
+
+
+    class Client:
+        def __init__(self, request: Request, session=requests.Session()):
+            self.request = request
+            self.session = session
+            self._set_proxy()
+            self._set_cert_verification()
+
+        def __del__(self):
+            try:
+                self.session.close()
+            except AttributeError as err:
+                demisto.debug(f'Ignore exceptions raised due to session not used by the client. {err}')
+
+        def call(self) -> requests.Response:
+            try:
+                response = self.session.request(**self.request.dict(by_alias=True))
+                response.raise_for_status()
+                return response
+            except Exception as exc:
+                msg = f'Something went wrong with the http call {exc}'
+                LOG(msg)
+                raise DemistoException(msg) from exc
+
+        def prepare_next_run(self, offset: int):
+            self.request.params.offset += offset
+
+        def _set_cert_verification(self):
+            if not self.request.insecure:
+                skip_cert_verification()
+
+        def _set_proxy(self):
+            if self.request.proxy:
+                ensure_proxy_has_http_prefix()
+            else:
+                skip_proxy()
+
+
+    class GetEvents:
+        def __init__(self, client: Client) -> None:
+            self.client = client
+
+        def call(self) -> list:
+            resp = self.client.call()
+            return resp.json().get('records', [])
+
+        def _iter_events(self):
+            events = self.call()
+
+            while events:
+                yield events
+
+                self.client.prepare_next_run(self.client.request.params.limit)
+                events = self.call()
+
+        def run(self, max_fetch: int = 100) -> List[dict]:
+            stored = []
+            last_run = demisto.getLastRun()
+
+            for logs in self._iter_events():
+                stored.extend(logs)
+
+                if len(stored) > max_fetch:
+                    last_run['offset'] = last_run.get('offset', 0) + max_fetch
+                    demisto.setLastRun(last_run)
+                    return stored[:max_fetch]
+
+            last_run['offset'] = 0
+            demisto.setLastRun(last_run)
+            return stored
+
+        @staticmethod
+        def set_next_run(log: dict) -> dict:
+            """
+                Handles and saves the values required for next fetch.
+
+                There are 3 values:
+                    * from: From which time to fetch
+                    * next_run: Time of creation of the last event fetched
+                    * offset: The size of the offset (how many events to skip)
+
+                Since the rest API returns the events in desc order (the last event returns first), We need to save the last
+                event time creation in some variable (next_run) for the next fetches, in addition we need to save in another
+                variable (offset) the number of how many events we already fetched to skip them in the next fetch to avoid
+                duplicates, in addition we need to save the time (from) from when to fetch if there is still some incident
+                to fetch with offset
+            """
+            last_run = demisto.getLastRun()
+
+            if not last_run.get('next_time'):
+                last_time = log.get('created', '').removesuffix('+0000')
+                next_time = last_time[:-1] + str(int(last_time[-1]) + 1)
+
+                if last_run.get('offset'):
+                    last_run['next_time'] = next_time
+                else:
+                    last_run['from'] = next_time
+
+            else:
+                if not last_run.get('offset'):
+                    last_run['from'] = last_run.pop('next_time')
+
+            return last_run
+
+
+    def main():
+        # Args is always stronger. Get last run even stronger
+        demisto_params = demisto.params() | demisto.args() | demisto.getLastRun()
+
+        demisto_params['params'] = ReqParams.parse_obj(demisto_params)
+
+        request = Request.parse_obj(demisto_params)
+        client = Client(request)
+        get_events = GetEvents(client)
+        command = demisto.command()
+
+        if command == 'test-module':
+            get_events.run(max_fetch=1)
+            demisto.results('ok')
+
+        elif command in ('fetch-events', 'jira-get-events'):
+            events = get_events.run(int(demisto_params.get('max_fetch', 100)))
+            send_events_to_xsiam(events, 'Jira', 'jira')
+
+            if events:
+                demisto.setLastRun(get_events.set_next_run(events[0]))
+                demisto.debug(f'Last run set to {demisto.getLastRun()}')
+                if command == 'jira-get-events':
+                    command_results = CommandResults(
+                        readable_output=tableToMarkdown('Jira Audit Records', events, removeNull=True,
+                                                        headerTransform=pascalToSpace),
+                        raw_response=events,
+                    )
+                    return_results(command_results)
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Jira Event Collector', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
