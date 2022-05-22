@@ -1,0 +1,388 @@
+{
+	"author": "Cybersixgill",
+	"authorImage": "content/packs/Sixgill-Darkfeed/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence",
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"indicatorfield",
+		"dashboard",
+		"playbook",
+		"widget"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Deprecated. Use the ***SixgillSearchIndicators*** script instead.",
+				"name": "SearchIndicators",
+				"tags": []
+			},
+			{
+				"description": "Search for Indicators",
+				"name": "SixgillSearchIndicators",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": [
+			{
+				"name": "Sixgill Darkfeed"
+			}
+		],
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": [
+			{
+				"description": "Mitre ATT\u0026CK Technique",
+				"name": "Sixgill Mitre ATT\u0026CK Technique",
+				"type": "shortText"
+			},
+			{
+				"description": "Actor of original post on dark web",
+				"name": "Sixgill Actor",
+				"type": "shortText"
+			},
+			{
+				"description": "Virus Total URL",
+				"name": "Sixgill Virus Total URL",
+				"type": "url"
+			},
+			{
+				"description": "Subfeed ID",
+				"name": "Sixgill Feed ID",
+				"type": "shortText"
+			},
+			{
+				"description": "Reference to Sixgill portal",
+				"name": "Sixgill Post Reference",
+				"type": "url"
+			},
+			{
+				"description": "Unique ID of IOC",
+				"name": "Sixgill Indicator ID",
+				"type": "shortText"
+			},
+			{
+				"description": "Language of original post in Sixgill portal",
+				"name": "Sixgill Language",
+				"type": "shortText"
+			},
+			{
+				"description": "Description of IOC",
+				"name": "Sixgill Description",
+				"type": "shortText"
+			},
+			{
+				"description": "Mitre ATT\u0026CK Tactic",
+				"name": "Sixgill Mitre ATT\u0026CK Tactic",
+				"type": "shortText"
+			},
+			{
+				"description": "Title of post in Sixgill portal",
+				"name": "Sixgill Post Title",
+				"type": "shortText"
+			},
+			{
+				"description": "Source of post in Sixgill portal",
+				"name": "Sixgill Source",
+				"type": "shortText"
+			},
+			{
+				"description": "Virus Total Detection Rate",
+				"name": "Sixgill Virus Total Detection Rate",
+				"type": "shortText"
+			},
+			{
+				"description": "Subfeed name",
+				"name": "Sixgill Feed Name",
+				"type": "shortText"
+			}
+		],
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Fetching Sixgill DarkFeed indicators",
+						"name": "sixgill-get-indicators"
+					}
+				],
+				"description": "Leverage the power of Sixgill to supercharge Cortex XSOAR with real-time Threat Intelligence indicators. Get IOCs such as domains, URLs, hashes, and IP addresses straight into the XSOAR platform.",
+				"name": "Sixgill DarkFeed Threat Intelligence (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Fetching Sixgill DVE Feed indicators",
+						"name": "cybersixgill-get-indicators"
+					}
+				],
+				"description": "Leverage the power of Sixgill to supercharge Cortex XSOAR with real-time Threat Intelligence indicators. Get CVE Feed straight into the XSOAR platform.",
+				"name": "Cybersixgill DVE Feed Threat Intelligence (Deprecated) (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Returns information and a reputation for each IP in the input list.",
+						"name": "ip"
+					},
+					{
+						"description": "Returns information and a reputation for each domain name in the input list.",
+						"name": "domain"
+					},
+					{
+						"description": "Returns information and a reputation for each URL in the input list.",
+						"name": "url"
+					},
+					{
+						"description": "Returns information and a reputation for each file hash in the input list.",
+						"name": "file"
+					},
+					{
+						"description": "Returns information and a reputation for each actor in the input list.",
+						"name": "sixgill-get-actor"
+					},
+					{
+						"description": "Returns information and a reputation for each post ID in the input list.",
+						"name": "sixgill-get-post-id"
+					}
+				],
+				"description": "Sixgill Darkfeed Enrichment – powered by the broadest automated collection from the deep and dark web – is the most comprehensive IOC enrichment solution on the market. By enriching Palo Alto Networks Cortex XSOAR IOCs with Darkfeed, customers gain unparalleled context and essential explanations in order to accelerate their incident prevention and response and stay ahead of the threat curve. Automatically enrich Cortex XSOAR IOCs (machine to machine) via Darkfeed. Block threats and enrich endpoint protection in real-time from the Cortex XSOAR dashboard, gain contextual and actionable insights with essential explanations of Cortex XSOAR IOCs.",
+				"name": "Sixgill DarkFeed Enrichment (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Automatically discover and enrich indicators with the same actor and source as the triggering IOC. Search for and isolate any compromised endpoints and proactively block IOCs from entering your network.",
+				"name": "Darkfeed Threat hunting-research"
+			},
+			{
+				"description": "Download malicious files from a Darkfeed IOC, detonate them in automated sandboxes, and extract and block any additional indicators and files.",
+				"name": "Darkfeed IOC detonation and proactive blocking"
+			},
+			{
+				"description": "Set this playbook as an automated job in order to automatically download malware from new Darkfeed IOCs and run them through the \"Darkfeed IOC detonation and proactive blocking\" playbook",
+				"name": "Darkfeed - malware download from feed"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": [
+			{
+				"name": "Sixgill Mitre ATT\u0026CK Techniques"
+			},
+			{
+				"name": "Sixgill Darkfeed - Mitre ATT\u0026CK Tactics"
+			},
+			{
+				"name": "Sixgill Darkfeed - Subfeed Composition"
+			},
+			{
+				"name": "Sixgill Darkfeed - Threads from the Underground"
+			},
+			{
+				"name": "Sixgill Darkfeed IOC detection rate by Virus Total"
+			},
+			{
+				"name": "Sixgill Darkfeed - Top 10 Threat Actors"
+			},
+			{
+				"name": "Sixgill Darkfeed - Collected IOCs"
+			},
+			{
+				"name": "Sixgill Darkfeed Indicators by Type"
+			}
+		],
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-23T16:33:44Z",
+	"currentVersion": "2.0.10",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.1.21",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.33",
+			"name": "Common Types"
+		},
+		"VirusTotal": {
+			"author": "VirusTotal",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.4.1",
+			"name": "VirusTotal"
+		},
+		"VirusTotal-Private_API": {
+			"author": "VirusTotal",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.15",
+			"name": "VirusTotal - Private API"
+		}
+	},
+	"deprecated": false,
+	"description": "This edition of Sixgill Darkfeed is intended for customers who have a direct annual subscription to Sixgill Darkfeed.\n\nGet contextual and actionable insights to proactively block underground threats in real-time with the most comprehensive, automated stream of IOCs \n\nFor organizations who are currently Darkfeed customers.",
+	"downloads": 4082,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Sixgill-Darkfeed",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Sixgill-Darkfeed/Sixgill_DVE_Feed_image.png",
+			"name": "Cybersixgill DVE Feed Threat Intelligence (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/Sixgill-Darkfeed/Sixgill_Darkfeed_Enrichment_image.png",
+			"name": "Sixgill DarkFeed Enrichment"
+		},
+		{
+			"imagePath": "content/packs/Sixgill-Darkfeed/Sixgill_Darkfeed_image.png",
+			"name": "Sixgill DarkFeed Threat Intelligence"
+		},
+		{
+			"imagePath": "content/packs/VirusTotal/VirusTotal_image.png",
+			"name": "VirusTotal"
+		},
+		{
+			"imagePath": "content/packs/VirusTotal/VirusTotal%28APIv3%29_image.png",
+			"name": "VirusTotal (API v3)"
+		},
+		{
+			"imagePath": "content/packs/VirusTotal/VirusTotal-Premium%28APIv3%29_image.png",
+			"name": "VirusTotal - Premium (API v3)"
+		},
+		{
+			"imagePath": "content/packs/VirusTotal/VirusTotalLivehuntFeed_image.png",
+			"name": "VirusTotal Livehunt Feed"
+		},
+		{
+			"imagePath": "content/packs/VirusTotal/VirusTotalRetrohuntFeed_image.png",
+			"name": "VirusTotal Retrohunt Feed"
+		},
+		{
+			"imagePath": "content/packs/VirusTotal-Private_API/VirusTotal-PrivateAPI_image.png",
+			"name": "VirusTotal - Private API"
+		}
+	],
+	"itemVersion": "2.0.10",
+	"keywords": [
+		"sixgill",
+		"darkfeed",
+		"feed",
+		"IOC",
+		"IOCs",
+		"indicators",
+		"threat intelligence",
+		"dark web",
+		"darkweb",
+		"darknet",
+		"dark net",
+		"deep web",
+		"cti",
+		"cyber threat intelligence",
+		"malware",
+		"compromised",
+		"rdp",
+		"Botnet",
+		"virus total",
+		"virustotal",
+		"emotet",
+		"trickbot",
+		"ursnif",
+		"recorded future",
+		"flashpoint",
+		"intel471",
+		"intsights",
+		"digital shadows",
+		"C2",
+		"command and control",
+		"DDoS"
+	],
+	"legacy": true,
+	"name": "Sixgill Darkfeed - Annual Subscription",
+	"packID": "Sixgill-Darkfeed",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "The Sixgill Darkfeed™ is a stream of malicious indicators of compromise, including domains, URLs, hashes, and IP addresses.\n \nIt relies on Sixgill’s vast collection of deep and dark web sources, and it provides unique and advanced warnings about new cyberthreats.\n \nIt is automated, meaning that IOCs are extracted and delivered in real-time, and it is actionable, meaning that its consumers will be able to receive and block items that threaten their organizations.\n\nDarkfeed™ and pre-built playbooks can automate your key SOC use cases such as Threat Hunting and Malware protection.\n\nThe Darkfeed content pack includes the stream of indicators, a customized dashboard and three playbooks that:\n\n- Automatically download malicious files from a Darkfeed IOC, detonate them in automated sandboxes, and extract and block any additional indicators and files.\n- Automatically discover and enrich indicators with the same actor and source as the triggering IOC. Search for and isolate any compromised endpoints and proactively block IOCs from entering your network.\n\n",
+	"searchRank": 20,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "sales@cybersixgill.com",
+		"url": ""
+	},
+	"tags": [
+		"Use Case",
+		"Featured",
+		"TIM",
+		"Threat Intelligence",
+		"Malware",
+		"Dark Web"
+	],
+	"toServerVersion": "",
+	"updated": "2022-05-02T09:26:26Z",
+	"useCases": [
+		"Threat Intelligence Management",
+		"Incident Response",
+		"Malware",
+		"Hunting"
+	],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
