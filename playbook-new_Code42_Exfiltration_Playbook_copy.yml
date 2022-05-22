@@ -43,7 +43,7 @@ inputs:
   required: false
   value:
     simple: https://example.com/
-name: Code42 Exfiltration Playbook_copy
+name: new Code42 Exfiltration Playbook_copy
 outputs: []
 sourceplaybookid: Code42 Exfiltration Playbook
 starttaskid: "0"
