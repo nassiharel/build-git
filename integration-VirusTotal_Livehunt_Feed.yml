@@ -1,0 +1,470 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: VirusTotal Livehunt Feed
+  version: -1
+configuration:
+- display: API Key (leave empty. Fill in the API key in the password field.)
+  displaypassword: API Key
+  hiddenusername: true
+  name: credentials
+  required: true
+  type: 9
+- additionalinfo: Exact name of the rule or ruleset you want to filter on. Leave empty
+    to receive all.
+  display: Filter
+  name: filter
+  required: false
+  type: 0
+- additionalinfo: Limit of indicators to fetch from livehunt notification. Max 40.
+  defaultvalue: "10"
+  display: Limit
+  name: limit
+  required: false
+  type: 0
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- additionalinfo: Indicators from this integration instance will be marked with this
+    reputation.
+  defaultvalue: feedInstanceReputationNotSet
+  display: Indicator Reputation
+  name: feedReputation
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  required: false
+  type: 18
+- additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: F - Reliability cannot be judged
+  display: Source Reliability
+  name: feedReliability
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- defaultvalue: indicatorType
+  display: ""
+  name: feedExpirationPolicy
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+  required: false
+  type: 17
+- defaultvalue: "20160"
+  display: ""
+  name: feedExpirationInterval
+  required: false
+  type: 1
+- defaultvalue: "240"
+  display: Feed Fetch Interval
+  name: feedFetchInterval
+  required: false
+  type: 19
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+- additionalinfo: Supports CSV values.
+  display: Tags
+  name: feedTags
+  required: false
+  type: 0
+- additionalinfo: The Traffic Light Protocol (TLP) designation to apply to indicators
+    fetched from the feed.
+  display: Traffic Light Protocol Color
+  name: tlp_color
+  options:
+  - RED
+  - AMBER
+  - GREEN
+  - WHITE
+  required: false
+  type: 15
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.4.2
+    packID: VirusTotal
+    packName: VirusTotal
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Use this feed integration to fetch VirusTotal Livehunt notifications
+  as indicators.
+detaileddescription: |-
+  ### Partner Contributed Integration
+  #### Integration Author: VirusTotal
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [contact@virustotal.com](mailto:contact@virustotal.com)
+  - **URL**: [https://www.virustotal.com](https://www.virustotal.com)
+  ***
+  ### Authorization:
+  Your API key can be found in your VirusTotal account user menu.
+  Your API key carries all your privileges, so keep it secure and don't share it with anyone.
+
+  ### Cortex XSOAR version 6.0.0 and below:
+  Fill anything in the "Username" fill box. Use you API key in the password fill box.
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/virus-total-livehunt-feed)
+display: VirusTotal Livehunt Feed (Partner Contribution)
+image: data:image/png;base64,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
+name: VirusTotal Livehunt Feed
+script:
+  commands:
+  - arguments:
+    - defaultValue: "10"
+      description: The maximum number of results to return. The default value is 10.
+        Max 40.
+      name: limit
+    - description: Exact name of the rule or ruleset you want to filter on. Leave
+        empty to receive all.
+      name: filter
+    description: Gets the indicators from VirusTotal Livehunt.
+    name: vt-livehunt-get-indicators
+  - arguments: []
+    description: This command will reset your fetch history.
+    name: vt-reset-fetch-indicators
+  dockerimage: demisto/python3:3.10.1.25933
+  feed: true
+  runonce: false
+  script: |
+    register_module_line('VirusTotal Livehunt Feed', 'start', __line__())
+    import urllib3
+
+
+
+
+    from datetime import datetime
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+
+    class DetectionRatio:
+        malicious = 0
+        total = 0
+
+        def __init__(self, last_analysis_stats: dict):
+            self.malicious = last_analysis_stats['malicious']
+            self.total = last_analysis_stats['harmless'] + \
+                last_analysis_stats['suspicious'] + \
+                last_analysis_stats['undetected'] + \
+                last_analysis_stats['malicious']
+
+        def __repr__(self):
+            return f'{self.malicious}/{self.total}'
+
+
+    class Client(BaseClient):
+        def get_api_indicators(self,
+                               query_filter: str = None,
+                               limit: int = 10):
+            return self._http_request(
+                'GET',
+                'intelligence/hunting_notification_files',
+                params=assign_params(
+                    filter=query_filter,
+                    limit=min(limit, 40),
+                )
+            )
+
+        def fetch_indicators(self,
+                             limit: int = 10,
+                             filter_tag: Optional[str] = None,
+                             fetch_command: bool = False) -> List:
+            """Retrieves all entries from the feed.
+            Returns:
+                A list of objects, containing the indicators.
+            """
+            result = []
+            query_filter = ''
+
+            if isinstance(filter_tag, str):
+                query_filter = f'tag:"{filter_tag}"'
+
+            if fetch_command:
+                if last_run := self.get_last_run():
+                    query_filter = f'{query_filter} {last_run}'
+
+            response = self.get_api_indicators(query_filter.strip(), limit)
+
+            try:
+                for indicator in response.get('data', []):
+                    result.append({
+                        'data': indicator,
+                        'type': 'file',
+                        'FeedURL': self._base_url
+                    })
+            except ValueError as err:
+                demisto.debug(str(err))
+                raise ValueError(f'Could not parse returned data as indicator. \n\nError message: {err}')
+
+            if fetch_command:
+                self.set_last_run()
+
+            return result
+
+        @staticmethod
+        def set_last_run():
+            """
+            Returns: Current timestamp
+            """
+            current_time = datetime.now()
+            current_timestamp = datetime.timestamp(current_time)
+            timestamp = str(int(current_timestamp))
+            demisto.setIntegrationContext({'last_run': timestamp})
+
+        @staticmethod
+        def get_last_run() -> str:
+            """ Gets last run time in timestamp
+            Returns:
+                last run in timestamp, or '' if no last run
+            """
+            if last_run := demisto.getIntegrationContext().get('last_run'):
+                demisto.info(f'get last_run: {last_run}')
+                params = f'date:{last_run}+'
+            else:
+                params = ''
+            return params
+
+
+    def test_module(client: Client, args: dict) -> str:
+        try:
+            client.fetch_indicators()
+        except Exception:
+            raise Exception("Could not fetch VT livehunt Feed\n"
+                            "\nCheck your API key and your connection to VirusTotal.")
+        return 'ok'
+
+
+    def fetch_indicators_command(client: Client,
+                                 tlp_color: Optional[str] = None,
+                                 feed_tags: List = [],
+                                 limit: int = 10,
+                                 filter_tag: Optional[str] = None,
+                                 fetch_command: bool = False) -> List[Dict]:
+        """Retrieves indicators from the feed
+        Args:
+            client (Client): Client object with request
+            tlp_color (str): Traffic Light Protocol color
+            feed_tags (list): tags to assign fetched indicators
+            limit (int): limit the results
+            filter_tag (string): filter response by ruleset name
+        Returns:
+            Indicators.
+        """
+        indicators = []
+
+        raw_indicators = client.fetch_indicators(limit, filter_tag,
+                                                 fetch_command=fetch_command)
+
+        # extract values from iterator
+        for item in raw_indicators:
+            value_ = item.get('data')
+            type_ = FeedIndicatorType.File
+            attributes = value_.get('attributes', {})
+            context_attributes = value_.get('context_attributes', {})
+            raw_data = {
+                'value': value_,
+                'type': type_,
+            }
+
+            detection_ratio = DetectionRatio(attributes.get('last_analysis_stats'))
+
+            # Create indicator object for each value.
+            # The object consists of a dictionary with required and optional keys
+            # and values, as described blow.
+            indicator_obj = {
+                # The indicator value.
+                'value': attributes['sha256'],
+                # The indicator type as defined in Cortex XSOAR.
+                # One can use the FeedIndicatorType class under CommonServerPython
+                # to populate this field.
+                'type': type_,
+                # The name of the service supplying this feed.
+                'service': 'VirusTotal',
+                # A dictionary that maps values to existing indicator fields defined
+                # in Cortex XSOAR.
+                # One can use this section in order to map custom indicator fields
+                # previously defined
+                # in Cortex XSOAR to their values.
+                'fields': {
+                    'md5': attributes.get('md5'),
+                    'sha1': attributes.get('sha1'),
+                    'sha256': attributes.get('sha256'),
+                    'ssdeep': attributes.get('ssdeep'),
+                    'fileextension': attributes.get('type_extension'),
+                    'filetype': attributes.get('type_tag'),
+                    'imphash': attributes.get('pe_info', {}).get('imphash'),
+                    'firstseenbysource': attributes.get('first_submission_date'),
+                    'lastseenbysource': attributes.get('last_submission_date'),
+                    'creationdate': attributes.get('creation_date'),
+                    'updateddate': attributes.get('last_modification_date'),
+                    'detectionengines': detection_ratio.total,
+                    'positivedetections': detection_ratio.malicious,
+                    'displayname': attributes.get('meaningful_name'),
+                    'name': attributes.get('meaningful_name'),
+                    'size': attributes.get('size'),
+                },
+                # A dictionary of the raw data returned from the feed source about
+                # the indicator.
+                'rawJSON': raw_data,
+                'sha256': attributes['sha256'],
+                'detections': str(detection_ratio),
+                'fileType': attributes.get('type_description'),
+                'rulesetName': context_attributes.get('ruleset_name'),
+                'ruleName': context_attributes.get('rule_name'),
+            }
+
+            if feed_tags:
+                indicator_obj['fields']['tags'] = feed_tags
+
+            if tlp_color:
+                indicator_obj['fields']['trafficlightprotocol'] = tlp_color
+
+            indicators.append(indicator_obj)
+
+        return indicators
+
+
+    def get_indicators_command(client: Client,
+                               params: Dict[str, str],
+                               args: Dict[str, str]
+                               ) -> CommandResults:
+        """Wrapper for retrieving indicators from the feed to the war-room.
+        Args:
+            client: Client object with request
+            params: demisto.params()
+            args: demisto.args()
+        Returns:
+            Outputs.
+        """
+        limit = int(args.get('limit', 10))
+        filter_tag = args.get('filter')
+        tlp_color = params.get('tlp_color')
+        feed_tags = argToList(params.get('feedTags', ''))
+        indicators = fetch_indicators_command(client, tlp_color,
+                                              feed_tags, limit, filter_tag)
+
+        human_readable = tableToMarkdown('Indicators from VirusTotal Livehunt Feed:',
+                                         indicators,
+                                         headers=['sha256',
+                                                  'detections',
+                                                  'fileType',
+                                                  'rulesetName',
+                                                  'ruleName'],
+                                         headerTransform=string_to_table_header,
+                                         removeNull=True)
+
+        return CommandResults(
+            readable_output=human_readable,
+            outputs_prefix='',
+            outputs_key_field='',
+            raw_response=indicators,
+            outputs={},
+        )
+
+
+    def reset_last_run():
+        """
+        Reset the last run from the integration context
+        """
+        demisto.setIntegrationContext({})
+        return CommandResults(readable_output='Fetch history deleted successfully')
+
+
+    def main():
+        """
+        main function, parses params and runs command functions
+        """
+
+        params = demisto.params()
+        feed_tags = argToList(params.get('feedTags'))
+        tlp_color = params.get('tlp_color')
+        limit = int(params.get('limit', 10))
+        filter_tag = params.get('filter')
+
+        # If your Client class inherits from BaseClient, SSL verification is
+        # handled out of the box by it, just pass ``verify_certificate`` to
+        # the Client constructor
+        insecure = not params.get('insecure', False)
+
+        # If your Client class inherits from BaseClient, system proxy is handled
+        # out of the box by it, just pass ``proxy`` to the Client constructor
+        proxy = params.get('proxy', False)
+
+        command = demisto.command()
+
+        demisto.debug(f'Command being called is {command}')
+
+        try:
+            client = Client(
+                base_url='https://www.virustotal.com/api/v3/',
+                verify=insecure,
+                proxy=proxy,
+                headers={
+                    'x-apikey': params['credentials']['password'],
+                    'x-tool': 'CortexVirusTotalLivehuntFeed',
+                }
+            )
+
+            if command == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                return_results(test_module(client, {}))
+
+            elif command == 'vt-livehunt-get-indicators':
+                # This is the command that fetches a limited number of indicators
+                # from the feed source and displays them in the war room.
+                return_results(get_indicators_command(client, params, demisto.args()))
+
+            elif command == "vt-reset-fetch-indicators":
+                return_results(reset_last_run())
+
+            elif command == 'fetch-indicators':
+                # This is the command that initiates a request to the feed endpoint
+                # and create new indicators objects from the data fetched. If the
+                # integration instance is configured to fetch indicators, then this
+                # is the command that will be executed at the specified feed fetch
+                # interval.
+                indicators = fetch_indicators_command(client,
+                                                      tlp_color,
+                                                      feed_tags,
+                                                      limit,
+                                                      filter_tag,
+                                                      fetch_command=True)
+                for iter_ in batch(indicators, batch_size=2000):
+                    demisto.createIndicators(iter_)
+
+            else:
+                raise NotImplementedError(f'Command {command} is not implemented.')
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # Print the traceback
+            return_error(f'Failed to execute {command} command.\nError:\n{str(e)}')
+
+
+    if __name__ in ['__main__', 'builtin', 'builtins']:
+        main()
+
+    register_module_line('VirusTotal Livehunt Feed', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
