@@ -1,0 +1,1013 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: Analyst1
+  version: -1
+configuration:
+- display: Analyst1 API Credentials (username/password)
+  name: credentials
+  required: true
+  type: 9
+- defaultvalue: analysis.cloud.analyst1.com
+  display: Domain of Analyst1 server to use (format - server.thatyouuse.com - No http/https)
+  name: server
+  required: true
+  type: 0
+- defaultvalue: "false"
+  display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- defaultvalue: "false"
+  display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.12
+    packID: illuminate
+    packName: Analyst1
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: This integration utilizes Analyst1's system to enrich Demisto indicators
+  with data provided by the Analyst1 REST API, such as actor and malware information,
+  activity and reported dates, evidence and hit counts, and more.
+detaileddescription: |-
+  ### Partner Contributed Integration
+  #### Integration Author: Analyst1
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [support@analystplatform.com](mailto:support@analystplatform.com)
+  ***
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/analyst1)
+display: Analyst1 (Partner Contribution)
+image: data:image/png;base64,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
+name: Analyst1
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: The domain for which to return information.
+      isArray: true
+      name: domain
+      required: true
+    description: Queries the Analyst1 REST API and enriches the given domain with
+      Analyst1 Indicator data
+    name: domain
+    outputs:
+    - contextPath: Domain.Name
+      description: The domain name, for example, "google.com".
+      type: string
+    - contextPath: Analyst1.Domain.ID
+      description: The indicator's unique ID in Analyst1.
+      type: number
+    - contextPath: Analyst1.Domain.EvidenceCount
+      description: The number of evidence reports of the given indicator in Analyst1.
+      type: number
+    - contextPath: Analyst1.Domain.Active
+      description: Whether the given indicator is noted as active in Analyst1.
+      type: boolean
+    - contextPath: Analyst1.Domain.ConfidenceLevel
+      description: The confidence level of the data in Analyst1.
+      type: string
+    - contextPath: Analyst1.Domain.FirstHit
+      description: The first date this indicator was seen in a source scanned by Analyst1.
+      type: date
+    - contextPath: Analyst1.Domain.LastHit
+      description: The most recent date this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.Domain.HitCount
+      description: The total number of times this indicator was seen in a source scanned
+        by Analyst1.
+      type: number
+    - contextPath: Analyst1.Domain.ReportedDates
+      description: The dates this indicator was reported on in Analyst1.
+      type: date
+    - contextPath: Analyst1.Domain.ActivityDates
+      description: The dates this indicator had reported activity in Analyst1.
+      type: date
+    - contextPath: Analyst1.Domain.Malwares.ID
+      description: Each matched malware unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Domain.Malwares.Name
+      description: Each matched malware name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Domain.Actors.ID
+      description: Each matched actor unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Domain.Actors.Name
+      description: Each matched actor name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Domain.Analyst1Link
+      description: The URL of the matched indicator in Analyst1.
+      type: string
+    - contextPath: Analyst1.Domain.IpResolution
+      description: The resolved IP address for this domain.
+      type: string
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Type
+      description: The type of indicator.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The AlienVault OTX vendor.
+      type: String
+  - arguments:
+    - default: true
+      description: The email for which to return information.
+      isArray: true
+      name: email
+      required: true
+    description: Queries the Analyst1 REST API and enriches the given email with Analyst1
+      indicator data.
+    name: email
+    outputs:
+    - contextPath: Email.From
+      description: The sender of the email.
+      type: string
+    - contextPath: Analyst1.Email.ID
+      description: The unique identifier of the given Indicator in Analyst1
+      type: number
+    - contextPath: Analyst1.Email.EvidenceCount
+      description: The number of evidence reports of the given indicator in Analyst1.
+      type: number
+    - contextPath: Analyst1.Email.Active
+      description: Whether the given indicator is noted as active in Analyst1.
+      type: boolean
+    - contextPath: Analyst1.Email.ConfidenceLevel
+      description: The confidence level of the data in Analyst1.
+      type: string
+    - contextPath: Analyst1.Email.FirstHit
+      description: The first date this indicator was seen in a source scanned by Analyst1.
+      type: date
+    - contextPath: Analyst1.Email.LastHit
+      description: The most recent date this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.Email.HitCount
+      description: The total number of times this indicator was seen in a source scanned
+        by Analyst1.
+      type: number
+    - contextPath: Analyst1.Email.ReportedDates
+      description: The dates this indicator was reported on in Analyst1.
+      type: date
+    - contextPath: Analyst1.Email.ActivityDates
+      description: The dates this indicator had reported activity in Analyst1.
+      type: date
+    - contextPath: Analyst1.Email.Malwares.ID
+      description: Each matched malware unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Email.Malwares.Name
+      description: Each matched malware name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Email.Actors.ID
+      description: Each matched actor unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Email.Actors.Name
+      description: Each matched actor name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Email.Analyst1Link
+      description: The URL of the matched indicator in Analyst1.
+      type: string
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The AlienVault OTX vendor.
+      type: String
+  - arguments:
+    - default: true
+      description: The IP address for which to return information.
+      isArray: true
+      name: ip
+      required: true
+    description: Queries the Analyst1 REST API and enriches the given IP address with
+      Analyst1 indicator data.
+    name: ip
+    outputs:
+    - contextPath: IP.Address
+      description: The IP address.
+      type: string
+    - contextPath: Analyst1.Ip.ID
+      description: The indicator's unique ID in Analyst1.
+      type: number
+    - contextPath: Analyst1.Ip.EvidenceCount
+      description: The number of evidence reports of the given indicator in Analyst1.
+      type: number
+    - contextPath: Analyst1.Ip.Active
+      description: Whether the given indicator is noted as active in Analyst1.
+      type: boolean
+    - contextPath: Analyst1.Ip.ConfidenceLevel
+      description: The confidence level of the data in Analyst1.
+      type: string
+    - contextPath: Analyst1.Ip.FirstHit
+      description: The first date this this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.Ip.LastHit
+      description: The most recent date this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.Ip.HitCount
+      description: The total number of times this indicator was seen in a source scanned
+        by Analyst1.
+      type: number
+    - contextPath: Analyst1.Ip.ReportedDates
+      description: The dates this indicator was reported on in Analyst1.
+      type: date
+    - contextPath: Analyst1.Ip.ActivityDates
+      description: The dates this indicator had reported activity in Analyst1.
+      type: date
+    - contextPath: Analyst1.Ip.Malwares.ID
+      description: Each matched malware unique identifier in Analyst1
+      type: number
+    - contextPath: Analyst1.Ip.Malwares.Name
+      description: Each matched malware name in Analyst1
+      type: string
+    - contextPath: Analyst1.Ip.Actors.ID
+      description: Each matched actor unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Ip.Actors.Name
+      description: Each matched actor name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Ip.Analyst1Link
+      description: The URL of the matched indicator in Analyst1.
+      type: string
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Type
+      description: The type of indicator.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The AlienVault OTX vendor.
+      type: String
+  - arguments:
+    - default: true
+      description: The file for which to return information.
+      isArray: true
+      name: file
+      required: true
+    description: Queries the Analyst1 REST API and enriches the given file with Analyst1
+      indicator data.
+    name: file
+    outputs:
+    - contextPath: File.MD5
+      description: The MD5 hash of the file.
+      type: String
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file.
+      type: String
+    - contextPath: Analyst1.File.ID
+      description: The indicator's unique ID in Analyst1.
+      type: number
+    - contextPath: Analyst1.File.EvidenceCount
+      description: The number of evidence reports of the given indicator in Analyst1.
+      type: number
+    - contextPath: Analyst1.File.Active
+      description: Whether the given indicator is noted as active in Analyst1.
+      type: boolean
+    - contextPath: Analyst1.File.ConfidenceLevel
+      description: The confidence level of the data in Analyst1.
+      type: string
+    - contextPath: Analyst1.File.FirstHit
+      description: The first date this this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.File.LastHit
+      description: The most recent date this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.File.HitCount
+      description: The total number of times this indicator was seen in a source scanned
+        by Analyst1.
+      type: number
+    - contextPath: Analyst1.File.ReportedDates
+      description: The dates this indicator was reported on in Analyst1.
+      type: date
+    - contextPath: Analyst1.File.ActivityDates
+      description: The dates this indicator had reported activity in Analyst1.
+      type: date
+    - contextPath: Analyst1.File.Malwares.ID
+      description: Each matched malware unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.File.Malwares.Name
+      description: Each matched malware name in Analyst1
+      type: string
+    - contextPath: Analyst1.File.Actors.ID
+      description: Each matched actor unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.File.Actors.Name
+      description: Each matched actor name in Analyst1.
+      type: string
+    - contextPath: Analyst1.File.Analyst1Link
+      description: The URL of the matched indicator in Analyst1.
+      type: string
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Type
+      description: The type of indicator.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The AlienVault OTX vendor.
+      type: String
+  - arguments:
+    - description: The string for which to return information.
+      isArray: true
+      name: string
+      required: true
+    description: Queries the Analyst1 REST API and enriches the given string with
+      Analyst1 indicator data
+    name: analyst1-enrich-string
+    outputs:
+    - contextPath: Analyst1.String.ID
+      description: The unique identifier of the given Indicator in Analyst1
+      type: number
+    - contextPath: Analyst1.String.EvidenceCount
+      description: The number of evidence reports of the given indicator in Analyst1.
+      type: number
+    - contextPath: Analyst1.String.Active
+      description: Whether the given indicator is noted as active in Analyst1.
+      type: boolean
+    - contextPath: Analyst1.String.ConfidenceLevel
+      description: The confidence level of the data in Analyst1.
+      type: string
+    - contextPath: Analyst1.String.FirstHit
+      description: The first date this indicator was seen in a source scanned by Analyst1.
+      type: date
+    - contextPath: Analyst1.String.LastHit
+      description: The most recent date this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.String.HitCount
+      description: The total number of times this indicator was seen in a source scanned
+        by Analyst1.
+      type: number
+    - contextPath: Analyst1.String.ReportedDates
+      description: The dates this indicator was reported on in Analyst1.
+      type: date
+    - contextPath: Analyst1.String.ActivityDates
+      description: The dates this indicator had reported activity in Analyst1.
+      type: date
+    - contextPath: Analyst1.String.Malwares.ID
+      description: Each matched malware unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.String.Malwares.Name
+      description: Each matched malware name in Analyst1
+      type: string
+    - contextPath: Analyst1.String.Actors.ID
+      description: Each matched actor unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.String.Actors.Name
+      description: Each matched actor name in Analyst1.
+      type: string
+    - contextPath: Analyst1.String.Analyst1Link
+      description: The URL of the matched indicator in Analyst1.
+      type: string
+  - arguments:
+    - description: The IP address for which to return information.
+      isArray: true
+      name: ip
+      required: true
+    description: Queries the Analyst1 REST API and enriches the given IP address with
+      Analyst1 indicator data.
+    name: analyst1-enrich-ipv6
+    outputs:
+    - contextPath: Analyst1.Ipv6.ID
+      description: The unique identifier of the given Indicator in Analyst1
+      type: number
+    - contextPath: Analyst1.Ipv6.EvidenceCount
+      description: The number of evidence reports of the given indicator in Analyst1.
+      type: number
+    - contextPath: Analyst1.Ipv6.Active
+      description: Whether the given indicator is noted as active in Analyst1.
+      type: boolean
+    - contextPath: Analyst1.Ipv6.ConfidenceLevel
+      description: The confidence level of the data in Analyst1.
+      type: string
+    - contextPath: Analyst1.Ipv6.FirstHit
+      description: The first date this indicator was seen in a source scanned by Analyst1.
+      type: date
+    - contextPath: Analyst1.Ipv6.LastHit
+      description: The most recent date this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.Ipv6.HitCount
+      description: The total number of times this indicator was seen in a source scanned
+        by Analyst1.
+      type: number
+    - contextPath: Analyst1.Ipv6.ReportedDates
+      description: The dates this indicator was reported on in Analyst1.
+      type: date
+    - contextPath: Analyst1.Ipv6.ActivityDates
+      description: The dates this indicator had reported activity in Analyst1.
+      type: date
+    - contextPath: Analyst1.Ipv6.Malwares.ID
+      description: Each matched malware unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Ipv6.Malwares.Name
+      description: Each matched malware name in Analyst1
+      type: string
+    - contextPath: Analyst1.Ipv6.Actors.ID
+      description: Each matched actor unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Ipv6.Actors.Name
+      description: Each matched actor name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Ipv6.Analyst1Link
+      description: The URL of the matched indicator in Analyst1.
+      type: string
+  - arguments:
+    - description: The mutex to query information for
+      isArray: true
+      name: mutex
+      required: true
+    description: Queries the Analyst1 REST API and enriches the given mutex with Analyst1
+      indicator data.
+    name: analyst1-enrich-mutex
+    outputs:
+    - contextPath: Analyst1.Mutex.ID
+      description: The unique identifier of the given Indicator in Analyst1
+      type: number
+    - contextPath: Analyst1.Mutex.EvidenceCount
+      description: The number of evidence reports of the given indicator in Analyst1.
+      type: number
+    - contextPath: Analyst1.Mutex.Active
+      description: Whether the given indicator is noted as active in Analyst1.
+      type: boolean
+    - contextPath: Analyst1.Mutex.ConfidenceLevel
+      description: The confidence level of the data in Analyst1.
+      type: string
+    - contextPath: Analyst1.Mutex.FirstHit
+      description: The first date this indicator was seen in a source scanned by Analyst1.
+      type: date
+    - contextPath: Analyst1.Mutex.LastHit
+      description: The most recent date this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.Mutex.HitCount
+      description: The total number of times this indicator was seen in a source scanned
+        by Analyst1.
+      type: number
+    - contextPath: Analyst1.Mutex.ReportedDates
+      description: The dates this indicator was reported on in Analyst1.
+      type: date
+    - contextPath: Analyst1.Mutex.ActivityDates
+      description: The dates this indicator had reported activity in Analyst1.
+      type: date
+    - contextPath: Analyst1.Mutex.Malwares.ID
+      description: Each matched malware unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Mutex.Malwares.Name
+      description: Each matched malware name in Analyst1
+      type: string
+    - contextPath: Analyst1.Mutex.Actors.ID
+      description: Each matched actor unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Mutex.Actors.Name
+      description: Each matched actor name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Mutex.Analyst1Link
+      description: The URL of the matched indicator in Analyst1.
+      type: string
+  - arguments:
+    - description: The HTTP request for which to return information.
+      isArray: true
+      name: http-request
+      required: true
+    description: Queries the Analyst1 REST API and enriches the given HTTP request
+      with Analyst1 indicator data.
+    name: analyst1-enrich-http-request
+    outputs:
+    - contextPath: Analyst1.Httprequest.ID
+      description: The unique identifier of the given Indicator in Analyst1
+      type: number
+    - contextPath: Analyst1.Httprequest.EvidenceCount
+      description: The number of evidence reports of the given indicator in Analyst1.
+      type: number
+    - contextPath: Analyst1.Httprequest.Active
+      description: Whether the given indicator is noted as active in Analyst1.
+      type: boolean
+    - contextPath: Analyst1.Httprequest.ConfidenceLevel
+      description: The confidence level of the data in Analyst1.
+      type: string
+    - contextPath: Analyst1.Httprequest.FirstHit
+      description: The first date this indicator was seen in a source scanned by Analyst1.
+      type: date
+    - contextPath: Analyst1.Httprequest.LastHit
+      description: The most recent date this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.Httprequest.HitCount
+      description: The total number of times this indicator was seen in a source scanned
+        by Analyst1.
+      type: number
+    - contextPath: Analyst1.Httprequest.ReportedDates
+      description: The dates this indicator was reported on in Analyst1.
+      type: date
+    - contextPath: Analyst1.Httprequest.ActivityDates
+      description: The dates this indicator had reported activity in Analyst1.
+      type: date
+    - contextPath: Analyst1.Httprequest.Malwares.ID
+      description: Each matched malware unique identifier in Analyst1
+      type: number
+    - contextPath: Analyst1.Httprequest.Malwares.Name
+      description: Each matched malware name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Httprequest.Actors.ID
+      description: Each matched actor unique identifier in Analyst1.
+      type: number
+    - contextPath: Analyst1.Httprequest.Actors.Name
+      description: Each matched actor name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Httprequest.Analyst1Link
+      description: The URL of the matched indicator in Analyst1.
+      type: string
+  - arguments:
+    - default: true
+      description: The URL for which to return information.
+      isArray: true
+      name: url
+      required: true
+    description: Queries the Analyst1 REST API and enriches the given URL with Analyst1
+      indicator data.
+    name: url
+    outputs:
+    - contextPath: URL.Data
+      description: The URL.
+      type: String
+    - contextPath: Analyst1.Url.ID
+      description: The unique identifier of the given Indicator in Analyst1
+      type: number
+    - contextPath: Analyst1.Url.EvidenceCount
+      description: The number of evidence reports of the given indicator in Analyst1.
+      type: number
+    - contextPath: Analyst1.Url.Active
+      description: Whether the given indicator is noted as active in Analyst1.
+      type: boolean
+    - contextPath: Analyst1.Url.ConfidenceLevel
+      description: The confidence level of the data in Analyst1.
+      type: string
+    - contextPath: Analyst1.Url.FirstHit
+      description: The first date this indicator was seen in a source scanned by Analyst1.
+      type: date
+    - contextPath: Analyst1.Url.LastHit
+      description: The most recent date this indicator was seen in a source scanned
+        by Analyst1.
+      type: date
+    - contextPath: Analyst1.Url.HitCount
+      description: The total number of this indicator was seen in a source scanned
+        by Analyst1.
+      type: number
+    - contextPath: Analyst1.Url.ReportedDates
+      description: The dates this indicator was reported on in Analyst1.
+      type: date
+    - contextPath: Analyst1.Url.ActivityDates
+      description: The dates this indicator had reported activity in Analyst1.
+      type: date
+    - contextPath: Analyst1.Url.Malwares.ID
+      description: Each matched malware unique identifier in Analyst1
+      type: number
+    - contextPath: Analyst1.Url.Malwares.Name
+      description: Each matched malware name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Url.Actors.ID
+      description: Each matched actor unique identifier in Analyst1
+      type: number
+    - contextPath: Analyst1.Url.Actors.Name
+      description: Each matched actor name in Analyst1.
+      type: string
+    - contextPath: Analyst1.Url.Analyst1Link
+      description: The URL of the matched indicator in Analyst1.
+      type: string
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Numbe
+    - contextPath: DBotScore.Type
+      description: The type of indicator.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The AlienVault OTX vendor.
+      type: String
+  dockerimage: demisto/python3:3.9.8.24399
+  runonce: false
+  script: |
+    register_module_line('Analyst1', 'start', __line__())
+
+
+
+
+    ''' IMPORTS '''
+    import requests
+    import traceback
+    from typing import Dict, Optional, List, Any, Callable, Collection
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()
+
+    ''' CONSTANTS '''
+    # Integration information
+    INTEGRATION_NAME = 'Analyst1'
+    INTEGRATION_CONTEXT_BRAND = 'Analyst1'
+    MALICIOUS_DATA: Dict[str, str] = {
+        'Vendor': 'Analyst1',
+        'Description': 'Analyst1 has determined that this indicator is malicious via internal analysis.'
+    }
+
+    ''' HELPER FUNCTIONS '''
+
+
+    class IdNamePair(object):
+        def __init__(self, unique_id: int, name: str):
+            self.id = unique_id
+            self.name = name
+
+        def __str__(self):
+            return f'id = {self.id}, name = {self.name}'
+
+
+    class EnrichmentOutput(object):
+        def __init__(self, analyst1_context_data: dict, raw_data: dict, indicator_type: str) -> None:
+            self.analyst1_context_data = analyst1_context_data
+            self.raw_data = raw_data
+            self.indicator_type = indicator_type
+            self.reputation_context: dict = {}
+
+        def get_human_readable_output(self) -> str:
+            human_readable_data = self.analyst1_context_data.copy()
+            human_readable_data['Actors'] = [IdNamePair(d['id'], d['name']) for d in human_readable_data['Actors']]
+            human_readable_data['Malwares'] = [IdNamePair(d['id'], d['name']) for d in human_readable_data['Malwares']]
+
+            return tableToMarkdown(
+                t=human_readable_data,
+                name=f'{INTEGRATION_NAME} {self.indicator_type.capitalize()} Information',
+                removeNull=True
+            )
+
+        def build_analyst1_context(self) -> dict:
+            return {
+                f'{INTEGRATION_CONTEXT_BRAND}.{self.indicator_type.capitalize()}(val.ID && val.ID === obj.ID)':
+                    self.analyst1_context_data
+            }
+
+        def generate_reputation_context(
+                self,
+                primary_key: str,
+                indicator_value: str,
+                indicator_type: str,
+                reputation_key: str,
+                extra_context: Optional[dict] = None
+        ):
+            if self.has_context_data():
+                reputation_context: Dict[str, Any] = {primary_key: indicator_value}
+
+                if extra_context is not None:
+                    reputation_context.update(extra_context)
+
+                malicious = Client.is_indicator_malicious(self.raw_data)
+                if malicious:
+                    reputation_context['Malicious'] = MALICIOUS_DATA
+
+                self.add_reputation_context(
+                    f'{reputation_key}(val.{primary_key} && val.{primary_key} === obj.{primary_key})',
+                    reputation_context
+                )
+
+                self.add_reputation_context('DBotScore', {
+                    'Indicator': indicator_value,
+                    'Score': 3 if malicious else 1,
+                    'Type': indicator_type,
+                    'Vendor': INTEGRATION_NAME
+                })
+
+        def build_all_context(self) -> dict:
+            all_context = {}
+            all_context.update(self.build_analyst1_context())
+            if len(self.reputation_context) > 0:
+                all_context.update(self.reputation_context)
+
+            return all_context
+
+        def return_outputs(self):
+            # We need to use the underlying demisto.results function call rather than using return_outputs because
+            # we need to add the IgnoreAutoExtract key to ensure that our analyst1 links are not marked as indicators
+            entry = {
+                "Type": entryTypes["note"],
+                "HumanReadable": self.get_human_readable_output(),
+                "ContentsFormat": formats["json"],
+                "Contents": self.raw_data,
+                "EntryContext": self.build_all_context(),
+                "IgnoreAutoExtract": True
+            }
+
+            demisto.results(entry)
+
+        def add_analyst1_context(self, key: str, data: Any):
+            self.analyst1_context_data[key] = data
+
+        def add_reputation_context(self, key: str, context: dict):
+            self.reputation_context[key] = context
+
+        def has_context_data(self):
+            return len(self.analyst1_context_data) > 0
+
+
+    class Client(BaseClient):
+        def __init__(self, server: str, username: str, password: str, insecure: bool, proxy: bool):
+            # NB: 404 is a valid response since that just means no entries, and we want the UI to respect that and show "No Entries"
+            super().__init__(
+                base_url=f'https://{server}/api/1_0/',
+                verify=not insecure,
+                proxy=proxy,
+                auth=(username, password),
+                ok_codes=(200, 404)
+            )
+
+        def indicator_search(self, indicator_type: str, indicator: str) -> dict:
+            params = {'type': indicator_type, 'value': indicator}
+            return self._http_request(method='GET', url_suffix='indicator/match', params=params)
+
+        def perform_test_request(self):
+            data: dict = self._http_request(method='GET', url_suffix='')
+            if data['links'] is None:
+                raise DemistoException('Invalid URL or Credentials. JSON structure not recognized')
+
+        def enrich_indicator(self, indicator: str, indicator_type: str) -> EnrichmentOutput:
+            raw_data: dict = self.indicator_search(indicator_type, indicator)
+            if raw_data is None:
+                return EnrichmentOutput({}, {}, indicator_type)
+
+            context_data = self.get_context_from_response(raw_data)
+            return EnrichmentOutput(context_data, raw_data, indicator_type)
+
+        @staticmethod
+        def get_data_key(data: dict, key: str) -> Optional[Any]:
+            return None if key not in data else data[key]
+
+        @staticmethod
+        def get_nested_data_key(data: dict, key: str, nested_key: str) -> Optional[Any]:
+            top_level = Client.get_data_key(data, key)
+            return None if top_level is None or nested_key not in top_level else top_level[nested_key]
+
+        @staticmethod
+        def get_data_key_as_date(data: dict, key: str, fmt: str) -> Optional[str]:
+            value = Client.get_data_key(data, key)
+            return None if value is None else datetime.fromtimestamp(value / 1000.0).strftime(fmt)
+
+        @staticmethod
+        def get_data_key_as_list(data: dict, key: str) -> List[Any]:
+            data_list = Client.get_data_key(data, key)
+            return [] if data_list is None or not isinstance(data[key], (list,)) else data_list
+
+        @staticmethod
+        def get_data_key_as_list_of_values(data: dict, key: str, value_key: str) -> List[Any]:
+            data_list = Client.get_data_key_as_list(data, key)
+            return [value_data[value_key] for value_data in data_list]
+
+        @staticmethod
+        def get_data_key_as_list_of_dicts(data: dict, key: str, dict_creator: Callable) -> Collection[Any]:
+            data_list = Client.get_data_key_as_list(data, key)
+            return {} if len(data_list) == 0 else [dict_creator(value_data) for value_data in data_list]
+
+        @staticmethod
+        def is_indicator_malicious(data: dict) -> bool:
+            benign = Client.get_nested_data_key(data, 'benign', 'value')
+            return False if benign is None or benign is True else True
+
+        @staticmethod
+        def get_context_from_response(data: dict) -> dict:
+            result_dict = {
+                'ID': Client.get_data_key(data, 'id'),
+                'Indicator': Client.get_nested_data_key(data, 'value', 'name'),
+                'EvidenceCount': Client.get_data_key(data, 'reportCount'),
+                'Active': Client.get_data_key(data, 'active'),
+                'HitCount': Client.get_data_key(data, 'hitCount'),
+                'ConfidenceLevel': Client.get_nested_data_key(data, 'confidenceLevel', 'value'),
+                'FirstHit': Client.get_data_key_as_date(data, 'firstHit', '%Y-%m-%d'),
+                'LastHit': Client.get_data_key_as_date(data, 'lastHit', '%Y-%m-%d'),
+                'ReportedDates': Client.get_data_key_as_list_of_values(data, 'reportedDates', 'date'),
+                'ActivityDates': Client.get_data_key_as_list_of_values(data, 'activityDates', 'date'),
+                'Malwares': Client.get_data_key_as_list_of_dicts(data, 'malwares', lambda d: {'id': d['id'], 'name': d['name']}),
+                'Actors': Client.get_data_key_as_list_of_dicts(data, 'actors', lambda d: {'id': d['id'], 'name': d['name']}),
+                'Benign': Client.get_nested_data_key(data, 'benign', 'value'),
+                'Analyst1Link': None
+            }
+
+            links_list = Client.get_data_key_as_list(data, 'links')
+            result_dict['Analyst1Link'] = next((
+                link['href'].replace("api/1_0/indicator/", "indicators/")
+                for link in links_list
+                if 'rel' in link and link['rel'] == 'self' and 'href' in link
+            ), None)
+
+            return result_dict
+
+
+    def build_client(demisto_params: dict) -> Client:
+        server: str = str(demisto_params.get('server'))
+        proxy: bool = demisto_params.get('proxy', False)
+        insecure: bool = demisto_params.get('insecure', False)
+        credentials: dict = demisto_params.get('credentials', {})
+        username: str = str(credentials.get('identifier'))
+        password: str = str(credentials.get('password'))
+
+        return Client(server, username, password, insecure, proxy)
+
+
+    ''' COMMAND EXECUTION '''
+
+
+    def perform_test_module(client: Client):
+        client.perform_test_request()
+
+
+    def domain_command(client: Client, args: dict) -> List[EnrichmentOutput]:
+        domains: List[str] = argToList(args.get('domain'))
+        enrichment_data_list: List[EnrichmentOutput] = []
+
+        for domain in domains:
+            enrichment_data: EnrichmentOutput = client.enrich_indicator(domain, 'domain')
+            if enrichment_data.has_context_data():
+                extra_context = {}
+
+                ip_resolution = Client.get_nested_data_key(enrichment_data.raw_data, 'ipResolution', 'name')
+                if ip_resolution is not None:
+                    enrichment_data.add_analyst1_context('IpResolution', ip_resolution)
+                    extra_context['DNS'] = ip_resolution
+
+                enrichment_data.generate_reputation_context('Name', domain, 'domain', 'Domain', extra_context)
+
+            enrichment_data_list.append(enrichment_data)
+
+        return enrichment_data_list
+
+
+    def email_command(client: Client, args: dict) -> List[EnrichmentOutput]:
+        emails: List[str] = argToList(args.get('email'))
+        enrichment_data_list: List[EnrichmentOutput] = []
+
+        for email in emails:
+            enrichment_data: EnrichmentOutput = client.enrich_indicator(email, 'email')
+
+            if enrichment_data.has_context_data():
+                enrichment_data.generate_reputation_context('From', email, 'email', 'Email')
+
+            enrichment_data_list.append(enrichment_data)
+
+        return enrichment_data_list
+
+
+    def ip_command(client: Client, args: dict) -> List[EnrichmentOutput]:
+        ips: List[str] = argToList(args.get('ip'))
+        enrichment_data_list: List[EnrichmentOutput] = []
+
+        for ip in ips:
+            enrichment_data: EnrichmentOutput = client.enrich_indicator(ip, 'ip')
+
+            if enrichment_data.has_context_data():
+                enrichment_data.generate_reputation_context('Address', ip, 'ip', 'IP')
+
+            enrichment_data_list.append(enrichment_data)
+
+        return enrichment_data_list
+
+
+    def file_command(client: Client, args: dict) -> List[EnrichmentOutput]:
+        files: List[str] = argToList(args.get('file'))
+        enrichment_data_list: List[EnrichmentOutput] = []
+
+        for file in files:
+            enrichment_data: EnrichmentOutput = client.enrich_indicator(file, 'file')
+
+            if enrichment_data.has_context_data():
+                hash_type = get_hash_type(file)
+                if hash_type != 'Unknown':
+                    enrichment_data.generate_reputation_context(hash_type.upper(), file, 'file', 'File')
+
+            enrichment_data_list.append(enrichment_data)
+
+        return enrichment_data_list
+
+
+    def analyst1_enrich_string_command(client: Client, args: dict) -> List[EnrichmentOutput]:
+        strings: List[str] = argToList(args.get('string'))
+        enrichment_data_list: List[EnrichmentOutput] = []
+
+        for string in strings:
+            enrichment_data_list.append(client.enrich_indicator(string, 'string'))
+
+        return enrichment_data_list
+
+
+    def analyst1_enrich_ipv6_command(client: Client, args: dict) -> List[EnrichmentOutput]:
+        ips: List[str] = argToList(args.get('ip'))
+        enrichment_data_list: List[EnrichmentOutput] = []
+
+        for ip in ips:
+            enrichment_data_list.append(client.enrich_indicator(ip, 'ipv6'))
+
+        return enrichment_data_list
+
+
+    def analyst1_enrich_mutex_command(client: Client, args: dict) -> List[EnrichmentOutput]:
+        mutexes: List[str] = argToList(args.get('mutex'))
+        enrichment_data_list: List[EnrichmentOutput] = []
+
+        for mutex in mutexes:
+            enrichment_data_list.append(client.enrich_indicator(mutex, 'mutex'))
+
+        return enrichment_data_list
+
+
+    def analyst1_enrich_http_request_command(client: Client, args: dict) -> List[EnrichmentOutput]:
+        http_requests: List[str] = argToList(args.get('http-request'))
+        enrichment_data_list: List[EnrichmentOutput] = []
+
+        for http_request in http_requests:
+            enrichment_data_list.append(client.enrich_indicator(http_request, 'httpRequest'))
+
+        return enrichment_data_list
+
+
+    def url_command(client: Client, args: dict) -> List[EnrichmentOutput]:
+        urls: List[str] = argToList(args.get('url'))
+        enrichment_data_list: List[EnrichmentOutput] = []
+
+        for url in urls:
+            enrichment_data: EnrichmentOutput = client.enrich_indicator(url, 'url')
+
+            if enrichment_data.has_context_data():
+                enrichment_data.generate_reputation_context('Data', url, 'url', 'URL')
+
+            enrichment_data_list.append(enrichment_data)
+
+        return enrichment_data_list
+
+
+    ''' EXECUTION '''
+
+
+    def main():
+        commands = {
+            'domain': domain_command,
+            'email': email_command,
+            'file': file_command,
+            'ip': ip_command,
+            'url': url_command,
+            'analyst1-enrich-string': analyst1_enrich_string_command,
+            'analyst1-enrich-ipv6': analyst1_enrich_ipv6_command,
+            'analyst1-enrich-mutex': analyst1_enrich_mutex_command,
+            'analyst1-enrich-http-request': analyst1_enrich_http_request_command
+        }
+
+        command: str = demisto.command()
+        LOG(f'command is {command}')
+
+        try:
+            client = build_client(demisto.params())
+
+            if command == 'test-module':
+                perform_test_module(client)
+                demisto.results('ok')
+            elif command in commands:
+                enrichment_outputs: List[EnrichmentOutput] = commands[command](client, demisto.args())
+                [e.return_outputs() for e in enrichment_outputs]
+        except Exception as e:
+            err_msg = f'Error in {INTEGRATION_NAME} Integration [{e}]\nTrace:\n{traceback.format_exc()}'
+            return_error(err_msg, error=e)
+
+
+    if __name__ in ['__main__', 'builtin', 'builtins']:
+        main()
+
+    register_module_line('Analyst1', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
