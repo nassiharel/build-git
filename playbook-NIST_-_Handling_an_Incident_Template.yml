@@ -1,0 +1,818 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.6
+    packID: NIST
+    packName: NIST
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook contains the phases to handling an incident as described in the 'Handling an Incident' section of NIST - Computer Security Incident Handling Guide.
+
+  Handling an incident - Computer Security Incident Handling Guide
+  https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf
+id: NIST - Handling an Incident Template
+inputs: []
+name: NIST - Handling an Incident Template
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e9bda0aa-0ae4-4474-8db5-7c7cac79a1bb
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: e9bda0aa-0ae4-4474-8db5-7c7cac79a1bb
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1cec196f-05f8-4658-8e1d-85a86f3ad3b1
+      iscommand: false
+      name: 3.1 - Preparation
+      type: title
+      version: -1
+    taskid: 1cec196f-05f8-4658-8e1d-85a86f3ad3b1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.1.1 Preparing to Handle Incidents:
+        Tools and resources available that may be of value during incident
+        handling.
+      id: 61506932-7e88-4cf1-82f0-5549604beb72
+      iscommand: false
+      name: Preparing to Handle Incidents
+      type: regular
+      version: -1
+    taskid: 61506932-7e88-4cf1-82f0-5549604beb72
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 340
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.1.2 - Preventing Incidents:
+        Keeping the number of incidents reasonably low is very important to protect the business processes of the organization. If security controls are insufficient, higher volumes of incidents may occur, overwhelming the incident response team.
+      id: dcce7e3b-6920-4b5e-8337-2357cb2cbdbb
+      iscommand: false
+      name: Preventing Incidents
+      type: regular
+      version: -1
+    taskid: dcce7e3b-6920-4b5e-8337-2357cb2cbdbb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 515
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 598ad10f-73cb-4e1a-82b9-7cf1398e5abc
+      iscommand: false
+      name: 3.2 - Detection and Analysis
+      type: title
+      version: -1
+    taskid: 598ad10f-73cb-4e1a-82b9-7cf1398e5abc
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 690
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "3.2.1 - Attack Vectors:\nOrganizations should be generally prepared
+        to handle any incident but should focus on\nbeing prepared to handle incidents
+        that use common attack vectors. Different types of incidents merit different
+        response strategies. "
+      id: f533a96c-9c67-4e51-80db-ca52feabd712
+      iscommand: false
+      name: Attack Vectors
+      type: regular
+      version: -1
+    taskid: f533a96c-9c67-4e51-80db-ca52feabd712
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 980
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.2.2 - Signs of an Incident:
+        For many organizations, the most challenging part of the incident response process is accurately detecting and assessing possible incidents—determining whether an incident has occurred and, if so, the type, extent, and magnitude of the problem.
+      id: a4ed411b-971b-4c50-8b85-44bc5840f612
+      iscommand: false
+      name: Signs of an Incident
+      type: regular
+      version: -1
+    taskid: a4ed411b-971b-4c50-8b85-44bc5840f612
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1155
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.2.3 - Sources of Precursors and Indicators:
+        Precursors and indicators are identified using many different sources, with the most common being computer security software alerts, logs, publicly available information, and people.
+      id: 513969b9-8d0f-47a9-8fac-89934de2b8f6
+      iscommand: false
+      name: Sources of Precursors and Indicators
+      type: regular
+      version: -1
+    taskid: 513969b9-8d0f-47a9-8fac-89934de2b8f6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1330
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.2.4 - Incident Analysis:
+        Finding the real security incidents that occurred out of all the indicators.
+        Determining whether a particular event is actually an incident is sometimes a matter of judgment. It may be necessary to collaborate with other technical and information security personnel to make a decision.
+      id: 4187122d-c371-47ed-8d06-a2be87ed6e39
+      iscommand: false
+      name: Incident Analysis
+      type: regular
+      version: -1
+    taskid: 4187122d-c371-47ed-8d06-a2be87ed6e39
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1650
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.2.5 - Incident Documentation:
+        An incident response team that suspects that an incident has occurred should immediately start recording all facts regarding the incident.
+      id: 2a4b7d40-ce08-474f-860b-e7001a528fd8
+      iscommand: false
+      name: Incident Documentation
+      type: regular
+      version: -1
+    taskid: 2a4b7d40-ce08-474f-860b-e7001a528fd8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1825
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.2.6 - Incident Prioritization:
+        Incidents should not be handled on a first-come, first-served basis as a result of resource
+        limitations. Instead, handling should be prioritized based on the relevant factors.
+      id: 22c64d68-8e3d-4693-86aa-aada1721dfff
+      iscommand: false
+      name: Incident Prioritization
+      type: regular
+      version: -1
+    taskid: 22c64d68-8e3d-4693-86aa-aada1721dfff
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2000
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.2.7 - Incident Notification:
+        When an incident is analyzed and prioritized, the incident response team needs to notify the appropriate individuals so that all who need to be involved can play their roles.
+      id: 4a6d159f-6746-4a01-870f-895186029e24
+      iscommand: false
+      name: Incident Notification
+      type: regular
+      version: -1
+    taskid: 4a6d159f-6746-4a01-870f-895186029e24
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2175
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: dc7aed94-ca3a-4d57-88b6-ea698cec6b6b
+      iscommand: false
+      name: Detection
+      type: title
+      version: -1
+    taskid: dc7aed94-ca3a-4d57-88b6-ea698cec6b6b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 835
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 950119bf-6c7e-4599-8268-1c6fe357147e
+      iscommand: false
+      name: Analysis
+      type: title
+      version: -1
+    taskid: 950119bf-6c7e-4599-8268-1c6fe357147e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1505
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d079d1d3-47ab-4791-8236-a02afe9c890b
+      iscommand: false
+      name: 3.3 - Containment, Eradication, and Recovery
+      type: title
+      version: -1
+    taskid: d079d1d3-47ab-4791-8236-a02afe9c890b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2350
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "3.3.1 - Choosing a Containment Strategy:\nContainment is important
+        before an incident overwhelms resources or increases damage. Most incidents
+        require containment, which is an important consideration early in the course
+        of handling each incident.\nContainment provides time for developing a tailored
+        remediation strategy. "
+      id: 2c997ae3-4bed-4b5e-88f0-7655d5b1bfc8
+      iscommand: false
+      name: Choosing a Containment Strategy
+      type: regular
+      version: -1
+    taskid: 2c997ae3-4bed-4b5e-88f0-7655d5b1bfc8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2495
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.3.2 - Evidence Gathering and Handling:
+        Although the primary reason for gathering evidence during an incident is to resolve the incident, it may also be needed for legal proceedings. In such cases, it is important to clearly document how all evidence, including compromised systems, has been preserved.
+
+        Evidence should be accounted for at all times; whenever evidence is transferred from person to person, chain of custody forms should detail the transfer and include each
+        party’s signature. A detailed log should be kept for all evidence.
+      id: 61baf6ab-ec5b-44ff-8e5e-8cc413c508ac
+      iscommand: false
+      name: Evidence Gathering and Handling
+      type: regular
+      version: -1
+    taskid: 61baf6ab-ec5b-44ff-8e5e-8cc413c508ac
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2670
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.3.3 - Identifying the Attacking Hosts:
+        During incident handling, system owners and others sometimes want to or need to identify the attacking host or hosts. Although this information can be important, incident handlers should generally stay focused on containment, eradication, and recovery. Identifying an attacking host can be a time-consuming and futile process that can prevent a team from achieving its primary goal—minimizing the business impact.
+      id: 4b57522d-b6d1-4045-8e69-83838a511932
+      iscommand: false
+      name: Identifying the Attacking Hosts
+      type: regular
+      version: -1
+    taskid: 4b57522d-b6d1-4045-8e69-83838a511932
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2845
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "3.3.4 - Eradication and Recovery:\nAfter an incident has been
+        contained, eradication may be necessary to eliminate components of the incident,
+        such as deleting malware and disabling breached user accounts, as well as
+        identifying and mitigating all vulnerabilities that were exploited. During
+        eradication, it is important to identify all affected hosts within the organization
+        so that they can be remediated.\n\nIn recovery, administrators restore systems
+        to normal operation, confirm that the systems are functioning normally, and
+        (if applicable) remediate vulnerabilities to prevent similar incidents. "
+      id: dd8d5ef5-c94a-4782-8080-f75d9aa7e9c1
+      iscommand: false
+      name: Eradication and Recovery
+      type: regular
+      version: -1
+    taskid: dd8d5ef5-c94a-4782-8080-f75d9aa7e9c1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 3020
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1bf6bc6d-bb3b-4ebe-81ba-5bae483ea51e
+      iscommand: false
+      name: 3.4 - Post-Incident Activity
+      type: title
+      version: -1
+    taskid: 1bf6bc6d-bb3b-4ebe-81ba-5bae483ea51e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 3195
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "3.4.2 - Using Collected Incident Data:\nOver time, the collected
+        incident data should be useful in several capacities. \nThe data, particularly
+        the total hours of involvement and the cost, may be used to justify additional
+        funding of the incident response team. \nA study of incident characteristics
+        may indicate systemic security weaknesses and threats, as well as changes
+        in incident trends. This data can be put back into the risk assessment process,
+        ultimately leading to the selection and implementation of additional controls.
+        \nAnother good use of the data is measuring the success of the incident response
+        team. "
+      id: f5fb83ae-6a42-4beb-8507-c4d763977912
+      iscommand: false
+      name: Using Collected Incident Data
+      type: regular
+      version: -1
+    taskid: f5fb83ae-6a42-4beb-8507-c4d763977912
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 3510
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        3.4.3 - Evidence Retention:
+        Organizations should establish policy for how long evidence from an incident should be retained.
+      id: d7532143-86dd-4d7c-895a-d313c553744e
+      iscommand: false
+      name: Evidence Retention
+      type: regular
+      version: -1
+    taskid: d7532143-86dd-4d7c-895a-d313c553744e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 3690
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7bed98b9-8919-48bd-8fa0-ada91be6743a
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 7bed98b9-8919-48bd-8fa0-ada91be6743a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 3865
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 107d10e7-3d1e-4e1a-82e4-92782c99c9fc
+      iscommand: false
+      name: NIST - Lessons Learned
+      playbookId: NIST - Lessons Learned2
+      type: playbook
+      version: -1
+    taskid: 107d10e7-3d1e-4e1a-82e4-92782c99c9fc
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 3340
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 3880,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
