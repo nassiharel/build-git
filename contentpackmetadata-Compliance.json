@@ -1,0 +1,377 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [],
+	"certification": "certified",
+	"contentItemTypes": [
+		"automation",
+		"incidentfield"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "",
+				"name": "BreachConfirmationHTML",
+				"tags": [
+					"dynamic-section"
+				]
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "PII Data Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Residents Email Address",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Company City",
+				"type": "shortText"
+			},
+			{
+				"description": "Is account information breached",
+				"name": "Account information breached",
+				"type": "shortText"
+			},
+			{
+				"description": "Is the DPO confirm the breach",
+				"name": "Breach Confirmation",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Data Encryption Status",
+				"type": "multiSelect"
+			},
+			{
+				"description": "Is Medical Information breached",
+				"name": "Medical Information breached",
+				"type": "shortText"
+			},
+			{
+				"description": "Is other PII data breached",
+				"name": "Other PII data breached",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Contact Telephone number",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Affected Individuals Contact Information",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Country where the breach took place",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Company Postal Code",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Telephone no.",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Is the Data Subject to DPIA ",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "DPO E-mail Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Consumer Reporting Agencies Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Contact Address",
+				"type": "shortText"
+			},
+			{
+				"description": "\"A data protection impact assessment (...) shall in particular be required in the case of: (a) a systematic and extensive evaluation of personal aspects relating to natural persons which is based on automated processing, including profiling, and on which decisions are based that produce legal effects concerning the natural person or similarly significantly affect the natural person; (b) processing on a large scale of special categories of data referred to in Article 9(1), or of personal data relating to criminal convictions and offences referred to in Article 10; or (c) a systematic monitoring of a publicly accessible area on a large scale. - GDPR Art. 35",
+				"name": "Likely Impact",
+				"type": "shortText"
+			},
+			{
+				"description": "\"In the case of a personal data breach, the controller shall without undue delay and, where feasible, not later than 72 hours after having become aware of it, notify the personal data breach to the supervisory authority competent in accordance with Article 55, unless the personal data breach is unlikely to result in a risk to the rights and freedoms of natural persons.\" - GDPR Art. 33",
+				"name": "GDPR Notify Authorities",
+				"type": "timer"
+			},
+			{
+				"description": "The status of the media notification",
+				"name": "Media Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "State CISO Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "State where the breach took place",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Possible Cause of the Breach",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Size - number of employees",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Approximate number of affected data subjects",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "E-mail Address",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Malicious Cause (If the cause is a malicious attack)",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Company Address",
+				"type": "shortText"
+			},
+			{
+				"description": "\"‘main establishment’ means: as regards a controller with establishments in more than one Member State, the place of its central administration in the Union, unless the decisions on the purposes and means of the processing of personal data are taken in another establishment of the controller in the Union and the latter establishment has the power to have such decisions implemented, in which case the establishment having taken such decisions is to be considered to be the main establishment; as regards a processor with establishments in more than one Member State, the place of its central administration in the Union, or, if the processor has no central administration in the Union, the establishment of the processor in the Union where the main processing activities in the context of the activities of an establishment of the processor take place to the extent that the processor is subject to specific obligations under this Regulation;\" - GDPR Art. 4",
+				"name": "Country where business has its main establishment",
+				"type": "shortText"
+			},
+			{
+				"description": "Is unique biometric data breached",
+				"name": "Unique biometric data breached",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Company has Insurance for the Breach",
+				"type": "shortText"
+			},
+			{
+				"description": "Is unique identification number breached",
+				"name": "Unique identification number breached",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Attorney General Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Sector of Affected Party",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Size - turnover",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Company Name",
+				"type": "shortText"
+			},
+			{
+				"description": "Is health insurance breached",
+				"name": "Health insurance breached",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Where is data hosted",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Secretary Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Date/time of the breach",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "Contact Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Individuals Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Contact Email address",
+				"type": "shortText"
+			},
+			{
+				"description": "Is financial information breached",
+				"name": "Financial information breached",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "DPO Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Management Notification",
+				"type": "singleSelect"
+			},
+			{
+				"description": "\" (d) describe the measures taken or proposed to be taken by the controller to address the personal data breach, including, where appropriate, measures to mitigate its possible adverse effects.\" - GDPR Art. 33",
+				"name": "Measures to Mitigate",
+				"type": "shortText"
+			},
+			{
+				"description": "\"‘personal data’ means any information relating to an identified or identifiable natural person (‘data subject’); an identifiable natural person is one who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, location data, an online identifier or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity of that natural person;\" - GDPR Art. 4",
+				"name": "Affected data",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Company Country",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Postal Code",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Affected Data Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Resident Notification Option",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-23T17:39:21Z",
+	"currentVersion": "1.0.11",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Compliance pack is the base pack for compliance-related packs, such as HIPAA, GDPR and US breach notification.",
+	"downloads": 4609,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Compliance",
+	"installMessage": "",
+	"integrations": [],
+	"itemVersion": "1.0.11",
+	"keywords": [
+		"Compliance",
+		"Breach",
+		"GDPR",
+		"US",
+		"Notification",
+		"Breach notification",
+		"Data breach"
+	],
+	"legacy": true,
+	"name": "Compliance",
+	"packID": "Compliance",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This Compliance content pack contains essential incidents fields that are used in the compliance-related packs.\nThe script in this pack is used for a dynamic field in the HIPAA Breach Notification Incident layout and the US Breach Notification layout to indicate if a breach was confirmed.\n\n\n_For more information, visit our [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs)_\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Breach",
+		"GDPR",
+		"Use Case",
+		"Getting Started",
+		"HIPAA"
+	],
+	"toServerVersion": "",
+	"updated": "2022-02-03T22:20:23Z",
+	"useCases": [
+		"Compliance"
+	],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
