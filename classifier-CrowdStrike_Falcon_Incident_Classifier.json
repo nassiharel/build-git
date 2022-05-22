@@ -1,0 +1,37 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "CrowdStrike Falcon Incident",
+	"definitionId": "",
+	"description": "CrowdStrike Falcon Incident Classifier",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "CrowdStrike Falcon",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.7.4",
+	"keyTypeMap": {
+		"detection": "CrowdStrike Falcon Detection",
+		"incident": "CrowdStrike Falcon Incident"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "CrowdStrike Falcon Incident Classifier",
+	"nameRaw": "CrowdStrike Falcon Incident Classifier",
+	"packID": "CrowdStrikeFalcon",
+	"packName": "CrowdStrike Falcon",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "incident_type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
