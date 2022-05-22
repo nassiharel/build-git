@@ -1,0 +1,247 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Case Management"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "Were any steps or actions taken that might have inhibited the recovery?",
+				"name": "Were any steps or actions taken that might have inhibited the recovery?",
+				"type": "shortText"
+			},
+			{
+				"description": "The NIST stage the investigation is currently at.",
+				"name": "NIST Stage",
+				"type": "shortText"
+			},
+			{
+				"description": "How could information sharing with other organizations have been improved?",
+				"name": "How could information sharing with other organizations have been improved?",
+				"type": "shortText"
+			},
+			{
+				"description": "How well did staff and management perform in dealing with the incident? Were the documented procedures followed? Were they adequate?",
+				"name": "How well did staff and management perform in dealing with the incident? Were the documented procedures followed? Were they adequate?",
+				"type": "shortText"
+			},
+			{
+				"description": "What precursors or indicators should be watched for in the future to detect similar incidents?",
+				"name": "What precursors or indicators should be watched for in the future to detect similar incidents?",
+				"type": "shortText"
+			},
+			{
+				"description": "What information was needed sooner?",
+				"name": "What information was needed sooner?",
+				"type": "shortText"
+			},
+			{
+				"description": "What additional tools or resources are needed to detect, analyze, and mitigate future incidents?",
+				"name": "What additional tools or resources are needed to detect, analyze, and mitigate future incidents?",
+				"type": "shortText"
+			},
+			{
+				"description": "What corrective actions can prevent similar incidents in the future?",
+				"name": "What corrective actions can prevent similar incidents in the future?",
+				"type": "shortText"
+			},
+			{
+				"description": "What would the staff and management do differently the next time a similar incident occurs?",
+				"name": "What would the staff and management do differently the next time a similar incident occurs?",
+				"type": "shortText"
+			},
+			{
+				"description": "Exactly what happened, and at what times?",
+				"name": "Exactly what happened, and at what times?",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "NIST",
+				"playbook": "NIST - Handling an Incident Template",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "NIST Incident"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "This playbook investigates an access incident by gathering user and IP information, and handling the incident based on the stages in \"Handling an incident - Computer Security Incident Handling Guide\" by NIST.\nhttps://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf\n\nUsed Sub-playbooks:\n- IP Enrichment - Generic v2\n- Account Enrichment - Generic v2.1\n- Block IP - Generic v2\n- NIST - Lessons Learned",
+				"name": "Access Investigation - Generic - NIST"
+			},
+			{
+				"description": "This playbook contains the phases to handling an incident as described in the 'Handling an Incident' section of NIST - Computer Security Incident Handling Guide.\n\nHandling an incident - Computer Security Incident Handling Guide\nhttps://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf",
+				"name": "NIST - Handling an Incident Template"
+			},
+			{
+				"description": "This playbook assists in processing an incident after it occurs and facilitates the lessons learned stage.",
+				"name": "NIST - Lessons Learned"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:51:05Z",
+	"currentVersion": "1.0.6",
+	"definitionId": "",
+	"dependencies": {
+		"Active_Directory_Query": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.4.10",
+			"name": "Active Directory Query"
+		},
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.1.21",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		},
+		"EWSMailSender": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.8",
+			"name": "EWS Mail Sender"
+		},
+		"Gmail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.16",
+			"name": "Gmail"
+		},
+		"GmailSingleUser": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.6",
+			"name": "Gmail Single User"
+		},
+		"MailSenderNew": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.6",
+			"name": "Mail Sender (New)"
+		},
+		"MicrosoftGraphListener": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.25",
+			"name": "Microsoft Graph Mail Single User"
+		},
+		"MicrosoftGraphMail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.15",
+			"name": "Microsoft Graph Mail"
+		}
+	},
+	"deprecated": false,
+	"description": "This Content Pack helps you follow the phases in handling an incident according to the NIST computer security incident handling guidelines.",
+	"downloads": 2261,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "NIST",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Active_Directory_Query/ActiveDirectoryQueryv2_image.png",
+			"name": "Active Directory Query v2"
+		}
+	],
+	"itemVersion": "1.0.6",
+	"keywords": [],
+	"legacy": true,
+	"name": "NIST",
+	"packID": "NIST",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "“Computer Security Incident Handling Guide” by NIST outlines the recommendations for handling a cyber security incident. The NIST Incident Response process contains four steps:\n- Preparation.\n- Detection and Analysis.\n- Containment, Eradication, and Recovery.\n- Post-Incident Activity.\nThis NIST content pack contains several playbooks to help streamline your incident response according to NIST guidelines. \n\n\n##### What does this pack do?\nThe playbooks included in this pack help you follow the phases in handling an incident as described in the ‘Handling an Incident’ section of NIST - Computer Security Incident Handling Guide.\nHandling an incident - Computer Security Incident Handling Guide\nhttps://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf\nThe “NIST - Handling an Incident Template” playbook helps analysts follow the stages in handling an incident according to NIST guidelines. The “NIST - Lessons Learned” playbook helps SOC teams process an incident after it occurs and facilitates the lessons learned, organized by NIST stages. \nThe “Access Investigation - Generic - NIST” playbook handles an access incident based on the stages described in the “Computer Security Incident Handling Guide”.\nThe playbook included in this pack helps you save time and automate repetitive tasks associated with Access incidents:\n- Handle the incident based on the stages in “Handling an incident - Computer Security Incident Handling Guide” by NIST.\n- Set the “NIST Stage” field to the different stages most relevant to the ongoing investigation.\n- Gather and enrich user and IP information.\n- Generate an investigation summary report.\n- Notify the relevant parties on the incident.\n- Interact with the suspected user about the activity.\n- Remediate the incident by blocking malicious indicators and disabling the account.\n- Run the “NIST - Lessons learned” sub-playbook to process the incident after the investigation and remediation is over.\n\nAs part of this pack, you will also get out-of-the-box “NIST” incident type views, with incident fields and a full layout. All of these are easily customizable to suit the needs of your organization.\n\n_For more information, visit our  [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/playbooks/nist---handling-an-incident-template)_\n\n![NIST_-_Handling_an_Incident_Template](https://github.com/demisto/content/raw/1971c1eed1a8e54f79bbcb3a276add4a14d796d5/Packs/NIST/doc_files/NIST_-_Handling_an_Incident_Template_2.png)\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Use Case",
+		"Incident Handling"
+	],
+	"toServerVersion": "",
+	"updated": "2021-12-21T22:30:28Z",
+	"useCases": [
+		"NIST"
+	],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
