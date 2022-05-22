@@ -1,0 +1,600 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.4
+    packID: McAfee-TIE
+    packName: McAfee Threat Intelligence Exchange
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  Hunt for sightings of MD5, SHA1 and/or SHA256 hashes on endpoints, using McAfee TIE (requires ePO as well).
+
+  Input:
+  * Hash (default, takes all deferent hashes from context)
+
+  Output:
+  * All agents that files with "Hash" has been executed on (TIE)
+  * Enrich Agents info from ePO
+id: search_endpoints_by_hash_-_tie
+inputs:
+- description: |-
+    The Hash to hunt (Could be MD5,SHA1,SHA256).
+    Default is set to all hashes
+  key: Hash
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${.=val.File.map(function(f) {return [f.MD5, f.SHA1, f.SHA256];}).reduce(function(a,
+      b){return a.concat(b);}, []).filter(function (val1) {return val1;})}
+name: Search Endpoints By Hash - TIE
+outputs:
+- contextPath: Endpoint.Hostname
+  description: Hostname
+  type: string
+- contextPath: Endpoint
+  description: The endpoint
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 80386f11-23d2-4ca7-8e8a-efc6c7d8b797
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 80386f11-23d2-4ca7-8e8a-efc6c7d8b797
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: McAfee Threat Intelligence Exchange
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is TIE enabled?
+      id: f96c54b2-b8fa-48b8-8a56-56555a749c10
+      iscommand: false
+      name: Is TIE enabled?
+      type: condition
+      version: -1
+    taskid: f96c54b2-b8fa-48b8-8a56-56555a749c10
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 340
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: epo
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: modules.brand
+              operator: isEqualString
+              right:
+                value:
+                  simple: epo
+          - - left:
+                iscontext: true
+                value:
+                  simple: modules.state
+              operator: isEqualString
+              right:
+                value:
+                  simple: active
+          root: modules
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is ePO enabled?
+      id: b098fed0-d1ae-418c-8a37-756e1ae0cb37
+      iscommand: false
+      name: Is ePO enabled?
+      type: condition
+      version: -1
+    taskid: b098fed0-d1ae-418c-8a37-756e1ae0cb37
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 470,
+          "y": 1638
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      file:
+        complex:
+          root: inputs.Hash
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: McAfee Threat Intelligence Exchange
+      description: Get Agent GUIDS for the given hashes
+      id: 26ba9604-ced2-4c35-8e13-075d3ed04042
+      iscommand: true
+      name: List all agents that the Hash has been executed on
+      script: McAfee Threat Intelligence Exchange|||tie-file-references
+      type: regular
+      version: -1
+    taskid: 26ba9604-ced2-4c35-8e13-075d3ed04042
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 430,
+          "y": 737
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b000dc4b-e71b-43dc-87d3-da7fbeae2d91
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: b000dc4b-e71b-43dc-87d3-da7fbeae2d91
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 178,
+          "y": 2143
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: References.AgentGuid
+                root: File
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: References.AgentGuid
+          root: File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Did we get any Agent GUIDS?
+      id: c7e628c9-cb07-408a-8667-8f4bb2c6d944
+      iscommand: false
+      name: Did we find any relevant agents?
+      type: condition
+      version: -1
+    taskid: c7e628c9-cb07-408a-8667-8f4bb2c6d944
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 430,
+          "y": 910
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      searchText:
+        complex:
+          accessor: References.AgentGuid
+          root: File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Get hostnames for the Agent GUIDS
+      id: 101e3e85-0246-4bd4-80be-2df713ee96e6
+      iscommand: false
+      name: Get Agent info from ePO
+      script: EPOFindSystem
+      type: regular
+      version: -1
+    taskid: 101e3e85-0246-4bd4-80be-2df713ee96e6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 470,
+          "y": 1937
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ef3c7391-412b-4976-8fc4-f66cbe2607c4
+      iscommand: false
+      name: Hunt HASH in TIE
+      type: title
+      version: -1
+    taskid: ef3c7391-412b-4976-8fc4-f66cbe2607c4
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 195
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4795a873-58e7-4312-83ae-bd7e29d8e8f1
+      iscommand: false
+      name: Enrich in ePO
+      type: title
+      version: -1
+    taskid: 4795a873-58e7-4312-83ae-bd7e29d8e8f1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 740,
+          "y": 1170
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.Hash
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "4"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Do we have any files to hunt?
+      id: c8baebe6-606d-4e83-88ab-09ac98b1be34
+      iscommand: false
+      name: Do we have any files to hunt?
+      type: condition
+      version: -1
+    taskid: c8baebe6-606d-4e83-88ab-09ac98b1be34
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 430,
+          "y": 507
+        }
+      }
+  "10":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: McAfee ePO v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: modules.brand
+              operator: isEqualString
+              right:
+                value:
+                  simple: epo
+          - - left:
+                iscontext: true
+                value:
+                  simple: modules.state
+              operator: isEqualString
+              right:
+                value:
+                  simple: active
+          root: modules
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is McAfee ePO v2 enabled?
+      id: 0719d6b3-9f7c-42ee-887a-afef3d4bd02f
+      iscommand: false
+      name: Is McAfee ePO v2 enabled?
+      type: condition
+      version: -1
+    taskid: 0719d6b3-9f7c-42ee-887a-afef3d4bd02f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 740,
+          "y": 1310
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      searchText:
+        complex:
+          accessor: AgentGuid
+          root: File.References
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: McAfee ePO v2
+      description: Finds systems in the McAfee ePO system tree.
+      id: 225bf1fd-60fa-451b-8637-f7b036af6945
+      iscommand: true
+      name: Get Agent info from ePO v2
+      script: McAfee ePO v2|||epo-find-system
+      type: regular
+      version: -1
+    taskid: 225bf1fd-60fa-451b-8637-f7b036af6945
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1010,
+          "y": 1630
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "10_11_yes": 0.48,
+      "10_2_#default#": 0.48,
+      "1_4_#default#": 0.1,
+      "2_4_#default#": 0.17,
+      "5_4_#default#": 0.11,
+      "9_4_#default#": 0.12
+    },
+    "paper": {
+      "dimensions": {
+        "height": 2158,
+        "width": 1227.5,
+        "x": 162.5,
+        "y": 50
+      }
+    }
+  }
