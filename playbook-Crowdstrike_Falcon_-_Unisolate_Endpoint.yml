@@ -1,0 +1,291 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.7.4
+    packID: CrowdStrikeFalcon
+    packName: CrowdStrike Falcon
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook unisolates devices according to the device ID that is provided
+  in the playbook input.
+id: Crowdstrike Falcon - Unisolate Endpoint
+inputs:
+- description: The endpoint ID/device ID that you want to unisolate.
+  key: Endpoint_id
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Crowdstrike Falcon - Unisolate Endpoint
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: acf803ed-f899-4175-8396-c5b48ac766df
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: acf803ed-f899-4175-8396-c5b48ac766df
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "2"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    results:
+    - brandInstances
+    scriptarguments:
+      brandname:
+        simple: CrowdstrikeFalcon
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'.
+      id: 2ae518e9-5ce5-4579-8497-0bc6fa4b0d62
+      iscommand: false
+      name: Is Crowdstrike Falcon enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 2ae518e9-5ce5-4579-8497-0bc6fa4b0d62
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 343486ae-6c5a-4d2c-8814-beb66bceb37a
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 343486ae-6c5a-4d2c-8814-beb66bceb37a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1500
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Endpoint_id
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bbc0e932-25e7-48ae-8cdd-eac85b847407
+      iscommand: false
+      name: Is there a device ID?
+      type: condition
+      version: -1
+    taskid: bbc0e932-25e7-48ae-8cdd-eac85b847407
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": 450
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ids:
+        simple: ${inputs.Endpoint_id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches for a device that matches the query.
+      id: d87e720f-21d2-4975-8179-49a048df4aa6
+      iscommand: true
+      name: Get device info
+      script: '|||cs-falcon-search-device'
+      type: regular
+      version: -1
+    taskid: d87e720f-21d2-4975-8179-49a048df4aa6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 960,
+          "y": 660
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: CrowdStrike.Device.Status
+          operator: isEqualString
+          right:
+            value:
+              simple: contained
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cc0b6958-1094-4533-8705-5e04dc490607
+      iscommand: false
+      name: 'Is device contained? '
+      type: condition
+      version: -1
+    taskid: cc0b6958-1094-4533-8705-5e04dc490607
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 960,
+          "y": 830
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ids:
+        simple: ${inputs.Endpoint_id}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Lifts containment on the host, which returns its network communications
+        to normal.
+      id: feb83b76-0bb2-4a6b-8470-a33026c399c0
+      iscommand: true
+      name: Unisolate device
+      script: '|||cs-falcon-lift-host-containment'
+      type: regular
+      version: -1
+    taskid: feb83b76-0bb2-4a6b-8470-a33026c399c0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1190,
+          "y": 1080
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "1_2_no": 0.52,
+      "5_2_#default#": 0.48
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1515,
+        "width": 1120,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
