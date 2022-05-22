@@ -1,0 +1,334 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps incoming EWS phishing email message fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "EWS v2-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.11.9",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Phishing": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Attachment Count": {
+					"complex": {
+						"filters": [],
+						"root": "attachments",
+						"transformers": [
+							{
+								"operator": "count"
+							}
+						]
+					}
+				},
+				"Attachment Extension": {
+					"complex": {
+						"accessor": "attachmentName",
+						"filters": [],
+						"root": "attachments",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							},
+							{
+								"args": {
+									"from": {
+										"value": {
+											"simple": "."
+										}
+									}
+								},
+								"operator": "substringFrom"
+							}
+						]
+					}
+				},
+				"Attachment ID": {
+					"complex": {
+						"accessor": "attachmentId",
+						"filters": [],
+						"root": "attachments",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Attachment Name": {
+					"complex": {
+						"accessor": "attachmentName",
+						"filters": [],
+						"root": "attachments",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Attachment size": {
+					"complex": {
+						"accessor": "attachmentSize",
+						"filters": [],
+						"root": "attachments",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Attachment type": {
+					"complex": {
+						"accessor": "attachmentType",
+						"filters": [],
+						"root": "attachments",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Email BCC": {
+					"simple": "bcc_recipients.email_address"
+				},
+				"Email Body": {
+					"simple": "text_body"
+				},
+				"Email CC": {
+					"complex": {
+						"accessor": "email_address",
+						"filters": [],
+						"root": "cc_recipients",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Email From": {
+					"simple": "sender.email_address"
+				},
+				"Email HTML": {
+					"simple": "body"
+				},
+				"Email Headers": {
+					"complex": {
+						"filters": [],
+						"root": " ",
+						"transformers": []
+					}
+				},
+				"Email Message ID": {
+					"simple": "message_id"
+				},
+				"Email Received": {
+					"simple": "received_representing.email_address"
+				},
+				"Email Reply To": {
+					"complex": {
+						"accessor": "value",
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "headers.name"
+										}
+									},
+									"operator": "isEqualString",
+									"right": {
+										"value": {
+											"simple": "In-Reply-To"
+										}
+									}
+								}
+							]
+						],
+						"root": "headers",
+						"transformers": [
+							{
+								"args": {
+									"chars": {
+										"value": {
+											"simple": "\u003c\u003e"
+										}
+									}
+								},
+								"operator": "StripChars"
+							}
+						]
+					}
+				},
+				"Email Return Path": {
+					"complex": {
+						"accessor": "value",
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "headers.name"
+										}
+									},
+									"operator": "isEqualString",
+									"right": {
+										"value": {
+											"simple": "Return-Path"
+										}
+									}
+								}
+							]
+						],
+						"root": "headers",
+						"transformers": []
+					}
+				},
+				"Email Sender IP": {
+					"complex": {
+						"accessor": "value",
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "headers.name"
+										}
+									},
+									"operator": "isEqualString",
+									"right": {
+										"value": {
+											"simple": "X-Originating-IP"
+										}
+									}
+								}
+							]
+						],
+						"root": "headers",
+						"transformers": [
+							{
+								"args": {
+									"chars": {
+										"value": {
+											"simple": "[]"
+										}
+									}
+								},
+								"operator": "StripChars"
+							}
+						]
+					}
+				},
+				"Email Size": {
+					"simple": "size"
+				},
+				"Email Subject": {
+					"simple": "subject"
+				},
+				"Email To": {
+					"complex": {
+						"accessor": "email_address",
+						"filters": [],
+						"root": "to_recipients",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"value": {
+											"simple": ","
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Email To Count": {
+					"complex": {
+						"filters": [],
+						"root": "to_recipients",
+						"transformers": [
+							{
+								"operator": "count"
+							}
+						]
+					}
+				},
+				"Phishing Reporter Email Headers": {
+					"simple": "headers"
+				}
+			}
+		}
+	},
+	"name": "EWS - Incoming Mapper",
+	"nameRaw": "EWS - Incoming Mapper",
+	"packID": "EWS",
+	"packName": "EWS",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
