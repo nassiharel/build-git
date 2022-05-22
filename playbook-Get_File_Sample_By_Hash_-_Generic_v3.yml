@@ -249,7 +249,7 @@ tasks:
       id: 9c2c0ffb-724a-40eb-8069-a8beb5de0775
       iscommand: false
       name: Code42 File Download
-      playbookName: Code42 File Download
+      playbookId: Code42 File Download
       type: playbook
       version: -1
     taskid: 9c2c0ffb-724a-40eb-8069-a8beb5de0775
