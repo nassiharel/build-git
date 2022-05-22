@@ -1,0 +1,218 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.11.9
+    packID: EWS
+    packName: EWS
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Get emails from specific folders and pre-process them using EWS.
+id: Get Mails By Folder Paths
+inputs:
+- description: "A comma-separated List of folder paths from the Inbox. \nFor example:
+    inbox,inbox\\\\folder"
+  key: foldersPathsGlobal
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: inbox,inbox\TESTATTACH
+- description: Name of the list in which mails will be saved.
+  key: listName
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: Maximum number of emails to fetch from each folder.
+  key: limit
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "10"
+name: Get Mails By Folder Paths
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c7b3e2c4-ce81-4d45-8caf-5ea2d9051225
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: c7b3e2c4-ce81-4d45-8caf-5ea2d9051225
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      foldersPaths:
+        simple: ${inputs.foldersPaths}${inputs.foldersPathsGlobal}
+      limit:
+        simple: ${inputs.limit}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves emails from specific folders using EWS
+      id: 9bdfffbb-4627-4356-8a25-fe115d066809
+      iscommand: false
+      name: Get Emails
+      script: GetEWSFolder
+      type: regular
+      version: -1
+    taskid: 9bdfffbb-4627-4356-8a25-fe115d066809
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryId:
+        simple: ${lastCompletedTaskEntries}
+      listName:
+        simple: ${inputs.listName}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Encode a file as base64 and store it in a Demisto list.
+      id: ce40f8b2-bcc9-44f0-8fd3-c00638b8fa34
+      iscommand: false
+      name: Save to Base64List
+      script: FileToBase64List
+      type: regular
+      version: -1
+    taskid: ce40f8b2-bcc9-44f0-8fd3-c00638b8fa34
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      input:
+        simple: ${lastCompletedTaskEntries}
+      textFields:
+        simple: subject,textBody|body
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Pre-process text data for the machine learning text classifier.
+      id: 20d3dd3f-7529-4bca-8698-b541466bf852
+      iscommand: false
+      name: Preprocess emails
+      script: DBotPreProcessTextData
+      type: regular
+      version: -1
+    taskid: 20d3dd3f-7529-4bca-8698-b541466bf852
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 287d3f66-c5ff-446a-8486-e41cf24f0879
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 287d3f66-c5ff-446a-8486-e41cf24f0879
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 720
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 735,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
