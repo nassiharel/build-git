@@ -1,0 +1,402 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.2
+    packID: SANS
+    packName: SANS
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook assists in post-processing an incident and facilitates the lessons learned stage, as presented by SANS Institute ‘Incident Handler’s Handbook’ by Patrick Kral.
+
+  https://www.sans.org/reading-room/whitepapers/incident/incident-handlers-handbook-33901
+
+  ***Disclaimer: This playbook does not ensure compliance to SANS regulations.
+id: SANS - Lessons Learned
+inputs:
+- description: Use a data collection task to answer lessons learned questions based
+    on SANS. Specify 'True' to automatically send the communication task, and 'False'  to
+    prevent it.
+  key: DataCollection
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Email address to which to send the questions.
+  key: Email
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: SANS - Lessons Learned
+outputs:
+- contextPath: SANS - Lessons Learned.Answers.0
+  description: When was the problem was first detected and by whom?
+  type: longText
+- contextPath: SANS - Lessons Learned.Answers.1
+  description: What was the scope of the incident?
+  type: longText
+- contextPath: SANS - Lessons Learned.Answers.2
+  description: How was the incident contained and eradicated?
+  type: longText
+- contextPath: SANS - Lessons Learned.Answers.3
+  description: What was the work performed during recovery?
+  type: longText
+- contextPath: SANS - Lessons Learned.Answers.4
+  description: What were the areas where the CIRT teams were effective?
+  type: longText
+- contextPath: SANS - Lessons Learned.Answers.5
+  description: What are the areas that need improvement?
+  type: longText
+- contextPath: SANS - Lessons Learned.Answers.6
+  description: Share ideas and information in order to improve team effectiveness
+    in future incidents.
+  type: longText
+- contextPath: SANS - Lessons Learned.Answers.name
+  description: Answered username or email address
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3615bd0a-9d41-4631-8b9d-e59f5bf49df6
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 3615bd0a-9d41-4631-8b9d-e59f5bf49df6
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.DataCollection
+                transformers:
+                - operator: toLowerCase
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 746f24a7-16d6-4c97-8ec3-7ec9bfdce6c1
+      iscommand: false
+      name: Send data collection task?
+      type: condition
+      version: -1
+    taskid: 746f24a7-16d6-4c97-8ec3-7ec9bfdce6c1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 340
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    form:
+      description: |-
+        “The purpose of this phase is to complete any documentation that was not done during the incident, as well as any additional documentation that may be beneficial in future incidents.
+        The document should also be written in a form of a report to provide a play-by-play review of the entire incident; this report should be able to answer the: Who, What, Where, Why, and How questions that may come up during the lessons learned meeting.
+        The overall goal is to learn from the incidents that occurred within an organization to improve the team’s performance and provide reference materials in the event of a
+        similar incident.
+        The lessons learned meeting should be performed as soon as possible”
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: When was the problem was first detected and by whom?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: longText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "1"
+        label: ""
+        labelarg:
+          simple: What was the scope of the incident?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: longText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "2"
+        label: ""
+        labelarg:
+          simple: How was the incident contained and eradicated?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: longText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "3"
+        label: ""
+        labelarg:
+          simple: What was the work performed during recovery?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: longText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "4"
+        label: ""
+        labelarg:
+          simple: What were the areas where the CIRT teams were effective?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: longText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "5"
+        label: ""
+        labelarg:
+          simple: What are the areas that need improvement?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: longText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "6"
+        label: ""
+        labelarg:
+          simple: |-
+            Suggestions and discussion between members of how to improve
+            the overall team:
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: Share ideas and information in order to improve team effectiveness
+          in future incidents.
+        type: longText
+      sender: ""
+      title: SANS - Lessons Learned
+      totalanswers: 0
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body: null
+      cc: null
+      format: ""
+      methods:
+      - email
+      subject:
+        simple: Please answer the attached survey questions as a part of your lessons
+          learned activity.
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        complex:
+          root: inputs.Email
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 746753a7-3e97-45aa-8ef2-8ee5561a766b
+      iscommand: false
+      name: Lessons Learned - Data Collection
+      type: collection
+      version: -1
+    taskid: 746753a7-3e97-45aa-8ef2-8ee5561a766b
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 515
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        1) Review the incident response process of the incident that had occurred with all
+        CIRT members.
+
+        2) Discuss any mistake or areas where the response process could have been handled better.
+      id: d2adb221-3709-4e5a-85d7-134c09a07afe
+      iscommand: false
+      name: Hold a “lessons learned” meeting with all involved parties
+      type: regular
+      version: -1
+    taskid: d2adb221-3709-4e5a-85d7-134c09a07afe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 685
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9f23d64b-71c4-4383-8fd9-944a4abb5d60
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 9f23d64b-71c4-4383-8fd9-944a4abb5d60
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 860
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9c82bb6d-6a40-444f-8c9b-74754e951268
+      iscommand: false
+      name: Lessons Learned
+      type: title
+      version: -1
+    taskid: 9c82bb6d-6a40-444f-8c9b-74754e951268
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 875,
+        "width": 595,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
