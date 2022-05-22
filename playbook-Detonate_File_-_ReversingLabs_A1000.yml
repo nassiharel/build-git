@@ -1,0 +1,257 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 2.0.3
+    packID: ReversingLabs_A1000
+    packName: ReversingLabs A1000
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Upload sample to ReversingLabs A1000 appliance and automatically retrieve
+  the analysis report.
+id: Detonate File - ReversingLabs A1000
+inputs:
+- description: The Entry ID.
+  key: EntryID
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${File.EntryID}
+name: Detonate File - ReversingLabs A1000
+outputs:
+- contextPath: File.SHA256
+  description: The SHA256 hash of the file.
+- contextPath: File.SHA1
+  description: The SHA1 hash of the file.
+- contextPath: File.SHA512
+  description: The SHA512 hash of the file.
+- contextPath: File.Name
+  description: The name of the file.
+- contextPath: File.EntryID
+  description: The Entry ID.
+- contextPath: File.Info
+  description: Information about the file.
+- contextPath: File.Type
+  description: The type of the file.
+- contextPath: File.MD5
+  description: MD5 hash of the file.
+- contextPath: DBotScore.Score
+  description: The actual score.
+- contextPath: DBotScore.Type
+  description: The indicator type.
+- contextPath: DBotScore.Indicator
+  description: The indicator that was tested.
+- contextPath: DBotScore.Vendor
+  description: The vendor used to calculate the score.
+- contextPath: ReversingLabs.a1000_report
+  description: A1000 report
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b5751cc5-b463-40c3-80dc-4c32d5ade525
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: b5751cc5-b463-40c3-80dc-4c32d5ade525
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: ReversingLabs A1000 v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f2710d7f-68af-447d-8f30-3222813663fc
+      iscommand: false
+      name: Is ReversingLabs A1000 v2 enabled?
+      type: condition
+      version: -1
+    taskid: f2710d7f-68af-447d-8f30-3222813663fc
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 194c115a-3e57-4d57-8400-3a486a4918fd
+      iscommand: false
+      name: done
+      type: title
+      version: -1
+    taskid: 194c115a-3e57-4d57-8400-3a486a4918fd
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 1170
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.EntryID
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1dde1975-6706-4af6-853d-852764d6a1d1
+      iscommand: false
+      name: Is there a file  to detonate?
+      type: condition
+      version: -1
+    taskid: 1dde1975-6706-4af6-853d-852764d6a1d1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 560
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryId:
+        simple: ${inputs.EntryID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ReversingLabs A1000 v2
+      description: Upload sample to A1000 and retrieve analysis results
+      id: 45461da5-9448-4dde-890c-6c242c08901d
+      iscommand: true
+      name: reversinglabs-a1000-upload-sample-and-get-results
+      script: ReversingLabs A1000 v2|||reversinglabs-a1000-upload-sample-and-get-results
+      type: regular
+      version: -1
+    taskid: 45461da5-9448-4dde-890c-6c242c08901d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 860
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1185,
+        "width": 760,
+        "x": 70,
+        "y": 50
+      }
+    }
+  }
