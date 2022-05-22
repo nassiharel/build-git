@@ -1,0 +1,532 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.12
+    packID: illuminate
+    packName: Analyst1
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+deprecated: true
+description: Deprecated. No available replacement. A quick demonstration of the various
+  illuminate enrichment commands.
+hidden: true
+id: Illuminate Integration Demonstration
+inputs: []
+name: Illuminate Integration Demonstration
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0681a9a8-796a-4039-8a83-3e6d2eec72b9
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 0681a9a8-796a-4039-8a83-3e6d2eec72b9
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 1770,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extend-context:
+        simple: IndicatorType=indicator_type
+      value:
+        simple: ${incident.details}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1d12c401-4190-40d0-803f-ea81d67a0144
+      iscommand: false
+      name: Parse Incident Details
+      script: ParseJSON
+      type: regular
+      version: -1
+    taskid: 1d12c401-4190-40d0-803f-ea81d67a0144
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1770,
+          "y": 195
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${IndicatorType}
+          operator: isEqualString
+          right:
+            value:
+              simple: Domain
+      label: domain
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${IndicatorType}
+          operator: isEqualString
+          right:
+            value:
+              simple: Email
+      label: email
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${IndicatorType}
+          operator: isEqualString
+          right:
+            value:
+              simple: URL
+      label: url
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${IndicatorType}
+          operator: inList
+          right:
+            value:
+              simple: File MD5,File SHA-1,File SHA-256
+      label: file
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${IndicatorType}
+          operator: isEqualString
+          right:
+            value:
+              simple: HTTP Request
+      label: HTTP Request
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${IndicatorType}
+          operator: isEqualString
+          right:
+            value:
+              simple: IP
+      - - left:
+            iscontext: true
+            value:
+              simple: ${incident.labels.Indicator}
+          operator: containsGeneral
+          right:
+            value:
+              simple: .
+      label: IPV4
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${IndicatorType}
+          operator: isEqualString
+          right:
+            value:
+              simple: IP
+      - - left:
+            iscontext: true
+            value:
+              simple: ${incident.labels.Indicator}
+          operator: containsGeneral
+          right:
+            value:
+              simple: ':'
+      label: IPV6
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${IndicatorType}
+          operator: isEqualString
+          right:
+            value:
+              simple: File
+      label: MUTEX
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: ${IndicatorType}
+          operator: isEqualString
+          right:
+            value:
+              simple: String
+      label: String
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      HTTP Request:
+      - "7"
+      IPV4:
+      - "12"
+      IPV6:
+      - "9"
+      MUTEX:
+      - "10"
+      String:
+      - "11"
+      domain:
+      - "3"
+      email:
+      - "4"
+      file:
+      - "6"
+      url:
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7533c791-824a-45ff-8e3e-8ff6301f380e
+      iscommand: false
+      name: Determine Indicator Type
+      type: condition
+      version: -1
+    taskid: 7533c791-824a-45ff-8e3e-8ff6301f380e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1770,
+          "y": 370
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      domain:
+        simple: ${incident.labels.Indicator}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: illuminate
+      id: 0b649084-5147-47e7-8ccb-558f7e912d33
+      iscommand: true
+      name: Enrich Domain with Illuminate Data
+      script: illuminate|||domain
+      type: regular
+      version: -1
+    taskid: 0b649084-5147-47e7-8ccb-558f7e912d33
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 60,
+          "y": 465
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      email:
+        simple: ${incident.labels.Indicator}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: illuminate
+      id: b817ed0c-6c42-47a8-8a63-e709ee15378f
+      iscommand: true
+      name: Enrich Email with Illuminate Data
+      script: illuminate|||email
+      type: regular
+      version: -1
+    taskid: b817ed0c-6c42-47a8-8a63-e709ee15378f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3060,
+          "y": 520
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      url:
+        simple: ${incident.labels.Indicator}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: illuminate
+      id: 695d2efb-66c8-4f6f-8cb0-bb41d2408384
+      iscommand: true
+      name: Enrich URL with illuminate Data
+      script: illuminate|||url
+      type: regular
+      version: -1
+    taskid: 695d2efb-66c8-4f6f-8cb0-bb41d2408384
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1340,
+          "y": 570
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      file:
+        simple: ${incident.labels.Indicator}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: illuminate
+      id: 36c02b8f-c105-4707-8f4b-725d341c0434
+      iscommand: true
+      name: Enrich File with illuminate Data
+      script: illuminate|||file
+      type: regular
+      version: -1
+    taskid: 36c02b8f-c105-4707-8f4b-725d341c0434
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2630,
+          "y": 545
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      http-request:
+        simple: ${incident.labels.Indicator}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: illuminate
+      id: 64e9b54f-371b-401d-80a6-a384b28db418
+      iscommand: true
+      name: Enrich HTTP Request with illuminate Data
+      script: illuminate|||illuminate-enrich-http-request
+      type: regular
+      version: -1
+    taskid: 64e9b54f-371b-401d-80a6-a384b28db418
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2200,
+          "y": 570
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        simple: ${incident.labels.Indicator}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3bff48e6-58a5-430b-8ff8-07848026d38b
+      iscommand: true
+      name: Enrich IPV6 with illuminate Data
+      script: '|||illuminate-enrich-ipv6'
+      type: regular
+      version: -1
+    taskid: 3bff48e6-58a5-430b-8ff8-07848026d38b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 545
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      mutex:
+        simple: ${incident.labels.Indicator}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: illuminate
+      id: d836bd2a-4711-4eca-8ebd-0f87199e8d8b
+      iscommand: true
+      name: Enrich MUTEX with illuminate Data
+      script: illuminate|||illuminate-enrich-mutex
+      type: regular
+      version: -1
+    taskid: d836bd2a-4711-4eca-8ebd-0f87199e8d8b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3480,
+          "y": 465
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      string:
+        simple: ${incident.labels.Indicator}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: illuminate
+      id: caa4eae5-208d-4b95-89f5-56afc12f04e4
+      iscommand: true
+      name: Enrich String with illuminate Data
+      script: illuminate|||illuminate-enrich-string
+      type: regular
+      version: -1
+    taskid: caa4eae5-208d-4b95-89f5-56afc12f04e4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1780,
+          "y": 615
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        simple: ${incident.labels.Indicator}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: illuminate
+      id: 454241c0-d230-4be0-87ed-ab11cb772071
+      iscommand: true
+      name: Enrich IPV4 with illuminate Data
+      script: illuminate|||ip
+      type: regular
+      version: -1
+    taskid: 454241c0-d230-4be0-87ed-ab11cb772071
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 520
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 660,
+        "width": 3800,
+        "x": 60,
+        "y": 50
+      }
+    }
+  }
