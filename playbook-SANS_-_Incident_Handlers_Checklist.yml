@@ -1,0 +1,1774 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.2
+    packID: SANS
+    packName: SANS
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook follows the "Incident Handler's Checklist" described in the SANS Institute ‘Incident Handler’s Handbook’ by Patrick Kral.
+
+  https://www.sans.org/reading-room/whitepapers/incident/incident-handlers-handbook-33901
+
+  ***Disclaimer: This playbook does not ensure compliance to SANS regulations.
+id: SANS - Incident Handlers Checklist
+inputs:
+- description: Use a data collection task to answer lessons learned questions based
+    on SANS. Specify 'True' to automatically send the communication task, and 'False'  to
+    prevent it.
+  key: DataCollection
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Email address to which to send the questions.
+  key: Email
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: SANS - Incident Handlers Checklist
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5451e8c1-4f7a-4ffa-8f38-77c0df0e3790
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 5451e8c1-4f7a-4ffa-8f38-77c0df0e3790
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5ee3f837-b026-4669-8094-5989439fb8e1
+      iscommand: false
+      name: Preparation
+      type: title
+      version: -1
+    taskid: 5ee3f837-b026-4669-8094-5989439fb8e1
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "Yes":
+      - "3"
+      "no":
+      - "49"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fa428108-2584-44c0-8eac-d0a5275779fa
+      iscommand: false
+      name: Are all members aware of the security policies of the organization?
+      type: condition
+      version: -1
+    taskid: fa428108-2584-44c0-8eac-d0a5275779fa
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 340
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "Yes":
+      - "4"
+      "no":
+      - "50"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b6e884aa-5733-4c22-8d59-6fbdd29c91bc
+      iscommand: false
+      name: Do all members of the Computer Incident Response Team know whom to contact?
+      type: condition
+      version: -1
+    taskid: b6e884aa-5733-4c22-8d59-6fbdd29c91bc
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 680
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "51"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8c1131e1-dea8-444a-80ff-ffd6d17be9cd
+      iscommand: false
+      name: Do all incident responders have access to journals and access to incident
+        response toolkits to perform the actual incident response process?
+      type: condition
+      version: -1
+    taskid: 8c1131e1-dea8-444a-80ff-ffd6d17be9cd
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1030
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "52"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8f0000e7-a16e-4208-8387-1f6682d072db
+      iscommand: false
+      name: Have all members participated in incident response drills to practice
+        the incident response process and to improve overall proficiency on a regularly
+        established basis?
+      type: condition
+      version: -1
+    taskid: 8f0000e7-a16e-4208-8387-1f6682d072db
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1380
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 64d4f4f1-5e6a-4021-84b8-52fb30a10b25
+      iscommand: false
+      name: Identification
+      type: title
+      version: -1
+    taskid: 64d4f4f1-5e6a-4021-84b8-52fb30a10b25
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1730
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1d9f6059-0e7a-401a-870f-af9c7b85f2a9
+      iscommand: false
+      name: Where did the incident occur?
+      type: regular
+      version: -1
+    taskid: 1d9f6059-0e7a-401a-870f-af9c7b85f2a9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 1875
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ced5dc59-7d4b-43b9-8924-0463220ed93b
+      iscommand: false
+      name: Who reported or discovered the incident?
+      type: regular
+      version: -1
+    taskid: ced5dc59-7d4b-43b9-8924-0463220ed93b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 2050
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: dab73859-ba1c-4635-8510-c5b0918567e1
+      iscommand: false
+      name: How was it discovered?
+      type: regular
+      version: -1
+    taskid: dab73859-ba1c-4635-8510-c5b0918567e1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 2225
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bada30d1-a80d-40f6-8108-6fd619fc6a35
+      iscommand: false
+      name: Are there any other areas that have been compromised by the incident?
+        If so what are they and when were they discovered?
+      type: regular
+      version: -1
+    taskid: bada30d1-a80d-40f6-8108-6fd619fc6a35
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 2400
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cd9bb50d-63eb-4410-81ac-5ca48ebd6746
+      iscommand: false
+      name: What is the scope of the impact?
+      type: regular
+      version: -1
+    taskid: cd9bb50d-63eb-4410-81ac-5ca48ebd6746
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 2575
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: eee5d3d8-4840-4354-8e56-078542b18f2b
+      iscommand: false
+      name: What is the business impact?
+      type: regular
+      version: -1
+    taskid: eee5d3d8-4840-4354-8e56-078542b18f2b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 2750
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0c057522-4ca9-43af-872f-a7fc047510d5
+      iscommand: false
+      name: Have the source(s) of the incident been located? If so, where, when, and
+        what are they?
+      type: regular
+      version: -1
+    taskid: 0c057522-4ca9-43af-872f-a7fc047510d5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 2925
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7c650b84-0548-46ae-8857-17af9bfddd55
+      iscommand: false
+      name: Containment
+      type: title
+      version: -1
+    taskid: 7c650b84-0548-46ae-8857-17af9bfddd55
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 3100
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5d9bc407-3bf1-4e2a-8c01-b744841110d6
+      iscommand: false
+      name: Short-term containment
+      type: title
+      version: -1
+    taskid: 5d9bc407-3bf1-4e2a-8c01-b744841110d6
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 3245
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "18"
+      "yes":
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8963d8e2-b69e-430b-8a0a-1d773b693b53
+      iscommand: false
+      name: Can the problem be isolated?
+      type: condition
+      version: -1
+    taskid: 8963d8e2-b69e-430b-8a0a-1d773b693b53
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 3390
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b37aaf7d-de92-4cf3-8775-5bf2f7deadfe
+      iscommand: false
+      name: Isolate the affected systems
+      type: regular
+      version: -1
+    taskid: b37aaf7d-de92-4cf3-8775-5bf2f7deadfe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -2.5,
+          "y": 3565
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4d6e4d0f-af6c-4abf-8ceb-f7efee5f22b2
+      iscommand: false
+      name: Work with system owners and/or managers to determine further action necessary
+        to contain the problem.
+      type: regular
+      version: -1
+    taskid: 4d6e4d0f-af6c-4abf-8ceb-f7efee5f22b2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 3565
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "20"
+      "yes":
+      - "21"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6ffff0f3-720a-442d-8900-09b02a9e018f
+      iscommand: false
+      name: Are all affected systems isolated from non-affected systems?
+      type: condition
+      version: -1
+    taskid: 6ffff0f3-720a-442d-8900-09b02a9e018f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 3740
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c97141ae-0223-42fd-8d95-822042705dd1
+      iscommand: false
+      name: Continue to isolate affected systems until short-term containment has
+        been accomplished to prevent the incident from escalating any further.
+      type: regular
+      version: -1
+    taskid: c97141ae-0223-42fd-8d95-822042705dd1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 3915
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f3326121-845f-49a1-8846-6bd2c2098738
+      iscommand: false
+      name: System-backup
+      type: title
+      version: -1
+    taskid: f3326121-845f-49a1-8846-6bd2c2098738
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 4090
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "53"
+      "yes":
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bfdee164-fe20-45c2-8576-427596872319
+      iscommand: false
+      name: Have forensic copies of affected systems been created for further analysis?
+      type: condition
+      version: -1
+    taskid: bfdee164-fe20-45c2-8576-427596872319
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 4235
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "Yes":
+      - "25"
+      "no":
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a7d3e23c-1f4c-48ba-8040-f7d8e88b023b
+      iscommand: false
+      name: Have all commands and other documentation since the incident has occurred
+        been kept up to date so far?
+      type: condition
+      version: -1
+    taskid: a7d3e23c-1f4c-48ba-8040-f7d8e88b023b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 4580
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b4c99e98-9adc-48fa-8052-cd4b262eb120
+      iscommand: false
+      name: Document all actions taken as soon as possible to ensure all evidence
+        are retained for either prosecution and/or lessons learned.
+      type: regular
+      version: -1
+    taskid: b4c99e98-9adc-48fa-8052-cd4b262eb120
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 4755
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "26"
+      "yes":
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0d0ce025-15ea-4984-8971-3effe9e77058
+      iscommand: false
+      name: Are the forensic copies stored in a secure location?
+      type: condition
+      version: -1
+    taskid: 0d0ce025-15ea-4984-8971-3effe9e77058
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 4930
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: defbcc2c-2db9-456a-8ac7-d00309df32d3
+      iscommand: false
+      name: place the forensic images into a secure location to prevent accidental
+        damage and/or tampering.
+      type: regular
+      version: -1
+    taskid: defbcc2c-2db9-456a-8ac7-d00309df32d3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 5100
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "28"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 66b87f6f-0d00-4c7b-8eda-83d56cf75668
+      iscommand: false
+      name: Long-term containment
+      type: title
+      version: -1
+    taskid: 66b87f6f-0d00-4c7b-8eda-83d56cf75668
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 5270
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "29"
+      "yes":
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 99644718-7022-44ff-8968-f1e8621c8fdf
+      iscommand: false
+      name: Can the system be taken offline?
+      type: condition
+      version: -1
+    taskid: 99644718-7022-44ff-8968-f1e8621c8fdf
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 5415
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9a15688e-4687-432e-8783-d8bb4480d641
+      iscommand: false
+      name: Remove all malware and other artifacts from affected systems
+      type: regular
+      version: -1
+    taskid: 9a15688e-4687-432e-8783-d8bb4480d641
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 5590
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "32"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7aa2777f-7d03-4e8b-8b6e-829b8e670ae0
+      iscommand: false
+      name: Harden the affected systems from further attacks until an ideal circumstance
+        will allow the affected systems to be reimaged.
+      type: regular
+      version: -1
+    taskid: 7aa2777f-7d03-4e8b-8b6e-829b8e670ae0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 5765
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "32"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3849dc78-4ab0-45dc-81cf-a70eea84de21
+      iscommand: false
+      name: Take the system offline
+      type: regular
+      version: -1
+    taskid: 3849dc78-4ab0-45dc-81cf-a70eea84de21
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -2.5,
+          "y": 5590
+        }
+      }
+  "32":
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 61df5e61-b0fc-4fd8-8f87-5d436328f336
+      iscommand: false
+      name: Eradication
+      type: title
+      version: -1
+    taskid: 61df5e61-b0fc-4fd8-8f87-5d436328f336
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 5940
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "34"
+      "yes":
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f994cff6-ed28-4b74-8b1e-655fd4fad1ca
+      iscommand: false
+      name: Can the system be reimaged and then hardened with patches and/or other
+        countermeasures to prevent or reduce the risk of attacks?
+      type: condition
+      version: -1
+    taskid: f994cff6-ed28-4b74-8b1e-655fd4fad1ca
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 6085
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 06dfbfea-8651-4101-8c97-8f28dc44b7b6
+      iscommand: false
+      name: State why.
+      type: regular
+      version: -1
+    taskid: 06dfbfea-8651-4101-8c97-8f28dc44b7b6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 6260
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "36"
+      "yes":
+      - "37"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bd27d868-a6a9-437f-8327-d55598233a24
+      iscommand: false
+      name: Have all malware and other artifacts left behind by the attackers been
+        removed and the affected systems hardened against further attacks?
+      type: condition
+      version: -1
+    taskid: bd27d868-a6a9-437f-8327-d55598233a24
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 6430
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 40978a2d-6895-4a0b-8e90-dd32b7a269d2
+      iscommand: false
+      name: Explain why.
+      type: regular
+      version: -1
+    taskid: 40978a2d-6895-4a0b-8e90-dd32b7a269d2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 6600
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "38"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c3f0a679-c551-4059-86f9-e15a5b4f15bc
+      iscommand: false
+      name: Recovery
+      type: title
+      version: -1
+    taskid: c3f0a679-c551-4059-86f9-e15a5b4f15bc
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 6775
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "54"
+      "yes":
+      - "39"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 142b4b34-4709-4516-83b5-e7f0a5dcb318
+      iscommand: false
+      name: Has the affected system(s) been patched and hardened against the recent
+        attack, as well as possible future ones?
+      type: condition
+      version: -1
+    taskid: 142b4b34-4709-4516-83b5-e7f0a5dcb318
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 6920
+        }
+      }
+  "39":
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "40"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ce74398f-0e03-4372-8689-cb4432cd8db9
+      iscommand: false
+      name: What day and time would be feasible to restore the affected systems back
+        into production?
+      type: regular
+      version: -1
+    taskid: ce74398f-0e03-4372-8689-cb4432cd8db9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 7265
+        }
+      }
+  "40":
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "41"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c6b5a36a-1dbc-4f8d-8f69-cf280d9214f0
+      iscommand: false
+      name: What tools are you going to use to test, monitor, and verify that the
+        systems being restored to productions are not compromised by the same methods
+        that cause the original incident?
+      type: regular
+      version: -1
+    taskid: c6b5a36a-1dbc-4f8d-8f69-cf280d9214f0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 7440
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "42"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 18205768-0d1d-446d-885b-20efab30a62a
+      iscommand: false
+      name: How long are you planning to monitor the restored systems and what are
+        you going to look for?
+      type: regular
+      version: -1
+    taskid: 18205768-0d1d-446d-885b-20efab30a62a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 7620
+        }
+      }
+  "42":
+    continueonerrortype: ""
+    id: "42"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "43"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: eb2a5811-a3c9-4e8f-894c-6ab334c04e85
+      iscommand: false
+      name: Are there any prior benchmarks that can be used as a baseline to compare
+        monitoring results of the restored systems against those of the baseline?
+      type: regular
+      version: -1
+    taskid: eb2a5811-a3c9-4e8f-894c-6ab334c04e85
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 7800
+        }
+      }
+  "43":
+    continueonerrortype: ""
+    id: "43"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "44"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fab9846f-aef6-4438-82e6-dd756ee7f993
+      iscommand: false
+      name: Lessons Learned
+      type: title
+      version: -1
+    taskid: fab9846f-aef6-4438-82e6-dd756ee7f993
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 7985
+        }
+      }
+  "44":
+    continueonerrortype: ""
+    id: "44"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "45"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      DataCollection:
+        complex:
+          root: inputs.DataCollection
+      Email:
+        complex:
+          root: inputs.Email
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 719492f3-eb85-4255-8a6f-bd2f52644244
+      iscommand: false
+      name: SANS - Lessons Learned
+      playbookId: SANS - Lessons Learned
+      type: playbook
+      version: -1
+    taskid: 719492f3-eb85-4255-8a6f-bd2f52644244
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 8140
+        }
+      }
+  "45":
+    continueonerrortype: ""
+    id: "45"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "47"
+      "yes":
+      - "46"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7a1dc076-bb8e-496d-834a-56bdc238cc8a
+      iscommand: false
+      name: Has all necessary documentation from the incident been written?
+      type: condition
+      version: -1
+    taskid: 7a1dc076-bb8e-496d-834a-56bdc238cc8a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 8325
+        }
+      }
+  "46":
+    continueonerrortype: ""
+    id: "46"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "48"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        A script to generate investigation summary report in an automated way
+        Can be used in post-processing flow as well.
+      id: 31d07ad1-824e-48f5-86ac-4cdd6436f7ea
+      iscommand: false
+      name: Generate the incident response report for the lessons learned meeting
+      script: GenerateInvestigationSummaryReport
+      type: regular
+      version: -1
+    taskid: 31d07ad1-824e-48f5-86ac-4cdd6436f7ea
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 8670
+        }
+      }
+  "47":
+    continueonerrortype: ""
+    id: "47"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "46"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: df7d4907-1f20-44fe-8537-66b6488559bf
+      iscommand: false
+      name: Have documentation written as soon as possible before anything is forgotten
+        and left out of the report.
+      type: regular
+      version: -1
+    taskid: df7d4907-1f20-44fe-8537-66b6488559bf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 8500
+        }
+      }
+  "48":
+    continueonerrortype: ""
+    id: "48"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e3d27e76-e8fa-47bd-8487-fa5d6bc12fd7
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: e3d27e76-e8fa-47bd-8487-fa5d6bc12fd7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 8850
+        }
+      }
+  "49":
+    continueonerrortype: ""
+    id: "49"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5c704902-915e-486a-8bed-56cb17ca193b
+      iscommand: false
+      name: Perform task
+      type: regular
+      version: -1
+    taskid: 5c704902-915e-486a-8bed-56cb17ca193b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 510
+        }
+      }
+  "50":
+    continueonerrortype: ""
+    id: "50"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 741f66ff-dd3b-453a-84d1-17e00837bf97
+      iscommand: false
+      name: Perform task
+      type: regular
+      version: -1
+    taskid: 741f66ff-dd3b-453a-84d1-17e00837bf97
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 855
+        }
+      }
+  "51":
+    continueonerrortype: ""
+    id: "51"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e0565d38-558a-4a60-825b-9513c9d08cb4
+      iscommand: false
+      name: Perform task
+      type: regular
+      version: -1
+    taskid: e0565d38-558a-4a60-825b-9513c9d08cb4
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 1205
+        }
+      }
+  "52":
+    continueonerrortype: ""
+    id: "52"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6b71d380-900a-484e-868a-0c6c4a89ff79
+      iscommand: false
+      name: Perform task
+      type: regular
+      version: -1
+    taskid: 6b71d380-900a-484e-868a-0c6c4a89ff79
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 1555
+        }
+      }
+  "53":
+    continueonerrortype: ""
+    id: "53"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: eb71ba7f-811b-4647-88e0-b4774674252c
+      iscommand: false
+      name: Perform task
+      type: regular
+      version: -1
+    taskid: eb71ba7f-811b-4647-88e0-b4774674252c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 4410
+        }
+      }
+  "54":
+    continueonerrortype: ""
+    id: "54"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "39"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 97ff296e-98f1-4bde-851a-1f18eb3a45d0
+      iscommand: false
+      name: Perform task
+      type: regular
+      version: -1
+    taskid: 97ff296e-98f1-4bde-851a-1f18eb3a45d0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 520,
+          "y": 7090
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "19_21_yes": 0.53,
+      "22_23_yes": 0.51,
+      "23_25_Yes": 0.44,
+      "25_27_yes": 0.52,
+      "2_3_Yes": 0.47,
+      "33_34_no": 0.54,
+      "33_35_yes": 0.49,
+      "35_37_yes": 0.46,
+      "38_39_yes": 0.44,
+      "3_4_Yes": 0.48,
+      "45_46_yes": 0.51,
+      "4_5_yes": 0.47,
+      "5_6_yes": 0.44
+    },
+    "paper": {
+      "dimensions": {
+        "height": 8865,
+        "width": 902.5,
+        "x": -2.5,
+        "y": 50
+      }
+    }
+  }
