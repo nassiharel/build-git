@@ -1,0 +1,456 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: PhishTank V2
+  version: -1
+configuration:
+- defaultvalue: "false"
+  display: Use HTTPS connection
+  name: use_https
+  required: false
+  type: 8
+- additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: C - Fairly reliable
+  display: Source Reliability
+  name: integrationReliability
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- defaultvalue: "1"
+  display: Database refresh interval (number of hours to wait between each loading)
+  name: fetchIntervalHours
+  required: false
+  type: 0
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.16
+    packID: PhishTank
+    packName: PhishTank
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: PhishTank is a free community site where anyone can submit, verify, track,
+  and share phishing data.
+detaileddescription: '[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/phish-tank-v2)'
+display: PhishTank v2
+image: data:image/png;base64,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
+name: PhishTank V2
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: A comma-separated list of URLs to check the reputation of.
+      isArray: true
+      name: url
+      required: true
+    description: Checks the reputation of the supplied URLs.
+    name: url
+    outputs:
+    - contextPath: URL.Data
+      description: A list of URLs with a bad reputation.
+      type: String
+    - contextPath: URL.Malicious.Vendor
+      description: For malicious URLs, the vendor that tagged the URL as malicious.
+      type: String
+    - contextPath: URL.Malicious.Description
+      description: For malicious URLs, the reason the vendor tagged the URL as malicious.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The URL tested.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Reliability
+      description: Reliability of the source providing the intelligence data.
+      type: String
+  - arguments: []
+    description: Reloads the PhishTank downloadable database. PhishTank database is
+      an up to date phishing detection file (updated hourly) .
+    name: phishtank-reload
+  - arguments: []
+    description: Shows the status (timestamp) of the last time that PhishTank database
+      was loaded.
+    name: phishtank-status
+  dockerimage: demisto/python3:3.10.4.29342
+  runonce: false
+  script: |
+    register_module_line('PhishTank V2', 'start', __line__())
+    import urllib3
+
+
+
+    RESPONSE_LINE_LENGTH = 8
+
+    urllib3.disable_warnings()
+
+    ''' CONSTANTS '''
+
+    BASE_URL = 'http://data.phishtank.com'
+    HTTPS_BASE_URL = 'https://data.phishtank.com'
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+    RELOAD_DATA_URL_SUFFIX = "data/online-valid.csv"
+
+    ''' CLIENT CLASS '''
+
+
+    def handle_error(res: requests.models.Response):
+        if res.status_code == 404 or res.status_code == 509:
+            err_msg = f'PhishTankV2 - Error in API call {res.status_code} - {res.reason}'
+            return_error(err_msg)
+
+
+    class Client(BaseClient):
+        """
+        Client to use in the PhisTankV2 integration. Overrides BaseClient.
+
+            Args:
+               proxy (bool): Whether the client should use proxies.
+               verify (bool): Whether to check for SSL certificate validity.
+               fetch_interval_hours (str) : Database refresh interval (hours)
+               use_https (bool): Whether to use HTTPS URL or HTTP URL.
+       """
+
+        def __init__(self, proxy: bool, verify: bool, fetch_interval_hours: str, use_https: str, reliability: str):
+            super().__init__(proxy=proxy, verify=verify, base_url=HTTPS_BASE_URL if use_https else BASE_URL)
+            self.fetch_interval_hours = fetch_interval_hours
+            if DBotScoreReliability.is_valid_type(reliability):
+                self.reliability = DBotScoreReliability.get_dbot_score_reliability_from_str(reliability)
+            else:
+                return_error("PhishTankV2 error: Please provide a valid value for the Source Reliability parameter.")
+
+        def get_http_request(self, url_suffix: str):
+            result = self._http_request(
+                method='GET',
+                url_suffix=url_suffix,
+                resp_type="text",
+                error_handler=handle_error
+            )
+            return result
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def test_module(client: Client) -> str:
+        """Tests API connectivity and authentication'
+        """
+        data = reload(client)
+        response_was_empty = len(data.keys()) == 0
+        if response_was_empty:
+            return_error("Error - could not fetch PhishTankV2 database, "
+                         "API returned an empty response")
+        return 'ok'
+
+
+    def was_phishtank_data_ever_reloaded(context: dict):
+        """
+        Checking if PhishTank data was ever reloaded by checking IntegrationContext. (IntegrationContext set during
+        the reload command).
+
+        Args:
+            context (dict) : IntegrationContext that is empty / contains PhishTank data.
+
+        Returns: True if context contains PhishTank data (from a previous reload). False otherwise.
+
+        """
+        was_phishtank_data_reloaded = context != dict()
+        if was_phishtank_data_reloaded:
+            return True
+        return False
+
+
+    def is_phishtank_data_outdated(client: Client, context: dict):
+        """
+        Checks if last last reload was in the last fetch_interval_hours or not.
+
+        Args:
+            client: Client to use in the PhisTankV2 integration.
+            context (dict):  IntegrationContext contains PhishTank data.
+
+        Returns:
+            True if last reload was much than fetch_interval_hours ago.
+            False otherwise.
+
+        """
+        current_time = datetime.now()
+        fetch_interval_seconds = timedelta(hours=float(client.fetch_interval_hours))
+        return context["timestamp"] < date_to_timestamp(current_time - fetch_interval_seconds)
+
+
+    def is_reload_needed(client: Client, context: dict) -> bool:
+        """
+
+        Args:
+            client: Client to use in the PhisTankV2 integration.
+            context: IntegrationContext .
+                    - "list" contains data from http response
+                    - "timestamp" datatime of the last response
+
+        Returns: True if DB can be loaded now. i.e DB was not loaded in the last fetch_interval hours.
+                False otherwise.
+        """
+        return not was_phishtank_data_ever_reloaded(context) or is_phishtank_data_outdated(client, context)
+
+
+    def get_url_data(client: Client, url: str):
+        url = remove_last_slash(url)
+        integration_context = get_integration_context()
+        current_data_url = None
+        if is_reload_needed(client, integration_context):
+            data = reload(client)
+            current_date = date_to_timestamp(datetime.now(), DATE_FORMAT)
+            context = {"list": data, "timestamp": current_date}
+            set_integration_context(context)
+            data_contains_url = url in data
+            if data_contains_url:
+                current_data_url = data[url]
+        else:
+            url_was_reloaded = url in integration_context["list"]
+            if url_was_reloaded:
+                current_data_url = integration_context["list"][url]
+        return current_data_url, url
+
+
+    def url_data_to_dbot_score(url_data: dict, url: str, reliability: DBotScoreReliability):
+        if url_data["verified"] == "yes":
+            dbot_score = 3
+        else:
+            dbot_score = 2
+        return Common.DBotScore(url, DBotScoreType.URL, "PhishTankV2", dbot_score,
+                                "Match found in PhishTankV2 database", reliability)
+
+
+    def create_verified_markdown(url_data: dict, url: str):
+        markdown = f'#### Found matches for URL {url} \n'
+        markdown += tableToMarkdown('', url_data)
+        phish_tank_url = f'http://www.phishtank.com/phish_detail.php?phish_id={url_data["phish_id"]}'
+        phish_tank_url = create_clickable_url(phish_tank_url)
+        markdown += f'Additional details at {phish_tank_url} \n'
+        return markdown
+
+
+    def url_command(client: Client, url_list: list) -> List[CommandResults]:
+        command_results: List[CommandResults] = []
+        for url in url_list:
+            markdown = "### PhishTankV2 Database - URL Query \n"
+            url_data, url = get_url_data(client, url)
+            url_data_is_valid = url_data and "verified" in url_data.keys()
+            if url_data_is_valid:
+                dbot = url_data_to_dbot_score(url_data, url, client.reliability)
+                markdown += create_verified_markdown(url_data, url)
+            else:
+                markdown += f'#### No matches for URL {url} \n'
+                dbot = Common.DBotScore(url, DBotScoreType.URL, "PhishTankV2", 0, "", client.reliability)
+            command_results.append(CommandResults(
+                indicator=Common.URL(url, dbot),
+                readable_output=markdown,
+            ))
+
+        return command_results
+
+
+    def phishtank_reload_command(client: Client):
+        """
+        Requests a csv file from PhishTank.
+        Sets the response in IntegrationContext.
+        Args:
+            client:  Client to use in the PhisTankV2 integration.
+
+        Returns: CommandResults:
+                - readable_output (str): number of urls that reloaded during that reload.
+
+        """
+        parsed_response = reload(client)  # gets a parsed response
+        current_date = date_to_timestamp(datetime.now(), DATE_FORMAT)
+        context = {"list": parsed_response, "timestamp": current_date}
+        set_integration_context(context)
+        readable_output = 'PhishTankV2 Database reloaded \n'
+        number_of_urls_loaded = len(parsed_response.keys())
+        readable_output += f'Total **{number_of_urls_loaded}** URLs loaded.\n'
+        last_load = datetime.utcfromtimestamp(context["timestamp"] / 1000.0).strftime("%a %b %d %Y %H:%M:%S (UTC)")
+        output_to_context = {"value": last_load}
+        return CommandResults(readable_output=readable_output, outputs=output_to_context,
+                              outputs_prefix="LastReloadTime(obj)")
+
+
+    def phishtank_status_command():
+        """
+        Checks in IntegrationContext if data was reloaded so far or not.
+        note : IntegrationContext updated in each reload command.
+
+        Returns: CommandResults:
+            - readable_output (str) : contains the number of urls that were reloaded in the last reload and the date
+                                    of the last reload.
+        """
+        data = get_integration_context()
+        status = "PhishTankV2 Database Status\n"
+        data_was_not_reloaded_yet = data == dict()
+        last_load = ""
+        if data_was_not_reloaded_yet:
+            status += "Database not loaded.\n"
+        else:
+            last_load = datetime.utcfromtimestamp(data["timestamp"] / 1000.0).strftime("%a %b %d %Y %H:%M:%S (UTC)")
+            number_of_urls_loaded = len(data["list"].keys())
+            status += f'Total **{number_of_urls_loaded}** URLs loaded.\n' \
+                      f'Last Load time **{last_load}**\n'
+        output_to_context = {"value": last_load}
+        return CommandResults(readable_output=status, outputs=output_to_context,
+                              outputs_prefix="LastReloadTime(obj)")
+
+
+    def reload(client: Client) -> dict:
+        """
+        This function is responsible for:
+         1. request a csv file from PhishTank API (calling to client.get_http_request)
+         2. parsing an API response and saving all relevant information into a dictionary
+
+        Args:
+            client:
+            (Client) : client to use in the PhisTankV2 integration.
+
+        Returns:
+            dictionary of parsed http response. Each url is a key and his values are:
+                "id,submission_time,verified,verification_time,online,target"
+        """
+        response = client.get_http_request(RELOAD_DATA_URL_SUFFIX)
+        response_is_empty = not response
+        if response_is_empty:
+            return dict()
+        response = response.splitlines()
+        parsed_response = {}
+        columns = response[0].strip().split(",")  # get csv headers
+        for index, line in list(enumerate(response))[1:]:
+            line = line.split(",")
+            line = parse_response_line(line, index, response)
+            invalid_parsed_line = line is None
+            if invalid_parsed_line:
+                continue
+            url = remove_last_slash(line[columns.index("url")])
+            if url:
+                parsed_response[url] = {
+                    "phish_id": line[columns.index("phish_id")].strip(),
+                    "submission_time": line[columns.index("submission_time")].strip(),
+                    "verified": line[columns.index("verified")].strip(),
+                    "verification_time": line[columns.index("verification_time")].strip(),
+                    "online": line[columns.index("online")].strip(),
+                    "target": line[columns.index("target")].strip(),
+                }
+        return parsed_response
+
+
+    def parse_response_line(current_line: list, index: int, response: list):
+        """
+        This function checks if current line is a valid line.
+        note: there is a specific line in PhishTank csv response that is broken into 2 following lines. In this case,
+                those 2 lines are concatenate into one complete line.
+        Args:
+            current_line (list): current response's line to be parsed
+            index (int) : current line's index
+            response (list) : list of PhishTank csv response
+
+        Returns: line (str): the parsed line
+
+        """
+        current_line_length = len(current_line)
+        # RESPONSE_LINE_LENGTH is the number of valid columns in csv
+        line_is_broken = current_line_length < RESPONSE_LINE_LENGTH
+        if line_is_broken:
+            next_line = response[index + 1].strip().split(",")
+            current_line_has_missing_columns = len(next_line) >= RESPONSE_LINE_LENGTH
+            if current_line_has_missing_columns:
+                # this next_line is not the second part of current_line.
+                # i.e current_line is not valid  - because next_line is not the continuation of current line
+                return None
+            else:
+                # this is the second part of broken line. i.e current_line + next_line should have been one complete line
+                return current_line + next_line
+        return current_line
+
+
+    def remove_last_slash(url: str) -> str:
+        url = url.strip()
+        if len(url) > 0 and url[-1] == os.sep:
+            return url[:-1]
+        return url
+
+
+    def is_number(fetch_interval_hours: str) -> bool:
+        try:
+            return float(fetch_interval_hours) > 0
+        except ValueError:
+            return False
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main() -> None:
+        params = demisto.params()
+        use_https = params.get('use_https', False)
+        proxy = params.get('proxy')
+        verify = not params.get('insecure')
+        fetch_interval_hours = params.get('fetchIntervalHours')
+        reliability = params.get('integrationReliability')
+
+        if not is_number(fetch_interval_hours):
+            return_error("PhishTankV2 error: Please provide a numeric value (and bigger than 0) for Database refresh "
+                         "interval (hours)")
+
+        # initialize a client
+        client = Client(proxy, verify, fetch_interval_hours, use_https, reliability)
+
+        command = demisto.command()
+        demisto.debug(f'PhishTankV2: command is {command}')
+
+        try:
+            if command == "test-module":
+                return_results(test_module(client))
+
+            elif command == 'url':
+                url = argToList(demisto.args().get("url"))
+                return_results(url_command(client, url))
+
+            elif command == 'phishtank-reload':
+                return_results(phishtank_reload_command(client))
+
+            elif command == 'phishtank-status':
+                return_results(phishtank_status_command())
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # print the traceback
+            return_error(f'Failed to execute {command} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('PhishTank V2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
