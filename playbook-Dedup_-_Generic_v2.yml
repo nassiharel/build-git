@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -186,9 +186,9 @@ tasks:
       brand: ""
       description: |-
         Select one of the following methods to identify duplicate incidents in Cortex XSOAR.
-        - ml: Machine learning model, which is trained mostly on phishing incidents.
-        -rules: Rules help identify duplicate incidents when the logic is well defined, for example, same label or custom fields.
-        -text: Statistics algorithm that compares text, which is generally useful for phishing incidents.
+        - ml: Machine learning model that is trained mostly on phishing incidents.
+        - rules: Rules help identify duplicate incidents when the logic is well defined, for example, same label or custom fields.
+        - text: Statistics algorithm that compares text, which is generally useful for phishing incidents.
       id: 48f0cedf-fad2-47db-81fd-348b062f41fe
       iscommand: false
       name: Select method to identify duplicates
@@ -410,7 +410,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Closes the investigation as a duplicate to one of the incidents
+      description: Closes the investigation as a duplicate to one of the incidents.
         identified.
       id: 821fea71-8442-4647-8281-52c916a04b43
       iscommand: false
