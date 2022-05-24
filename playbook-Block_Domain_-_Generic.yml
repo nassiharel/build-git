@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -177,7 +177,7 @@ tasks:
       id: 549d870d-c306-4283-8b5e-8e503693daf1
       iscommand: false
       name: Block Domain - Zscaler
-      playbookName: Block Domain - Zscaler
+      playbookId: Block Domain - Zscaler
       type: playbook
       version: -1
     taskid: 549d870d-c306-4283-8b5e-8e503693daf1
