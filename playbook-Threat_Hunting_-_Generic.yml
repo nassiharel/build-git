@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.2.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -352,7 +352,7 @@ tasks:
       id: 41273c47-6b21-49dd-869a-35e115202d0a
       iscommand: false
       name: Palo Alto Networks - Hunting And Threat Detection
-      playbookId: Palo Alto Networks - Hunting And Threat Detection
+      playbookName: Palo Alto Networks - Hunting And Threat Detection
       type: playbook
       version: -1
     taskid: 41273c47-6b21-49dd-869a-35e115202d0a
@@ -439,7 +439,7 @@ tasks:
       id: 6f545ba4-aeb9-4c82-87d0-4e3a1f0b5826
       iscommand: false
       name: QRadar Indicator Hunting V2
-      playbookId: QRadar Indicator Hunting V2
+      playbookName: QRadar Indicator Hunting V2
       type: playbook
       version: -1
     taskid: 6f545ba4-aeb9-4c82-87d0-4e3a1f0b5826
