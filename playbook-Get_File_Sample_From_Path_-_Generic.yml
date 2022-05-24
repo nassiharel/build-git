@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -184,7 +184,7 @@ tasks:
       id: 0245733c-b0c2-418e-8d68-a58a2c7ffe1a
       iscommand: false
       name: Get File Sample From Path - D2
-      playbookId: get_file_sample_from_path_-_d2
+      playbookName: Get File Sample From Path - D2
       type: playbook
       version: -1
     taskid: 0245733c-b0c2-418e-8d68-a58a2c7ffe1a
@@ -257,7 +257,7 @@ tasks:
       id: bad94136-3f5d-49d7-800d-e21389ae1baa
       iscommand: false
       name: Get File Sample From Path - Carbon Black Enterprise Response
-      playbookId: get_file_sample_from_path_-_carbon_black_enterprise_response
+      playbookName: Get File Sample From Path - Carbon Black Enterprise Response
       type: playbook
       version: -1
     taskid: bad94136-3f5d-49d7-800d-e21389ae1baa
