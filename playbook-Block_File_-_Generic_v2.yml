@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -103,7 +103,7 @@ tasks:
       id: 5a2f437e-234a-43ef-858d-28d07fd1c7c2
       iscommand: false
       name: Block File - Carbon Black Response
-      playbookId: block_file_-_carbon_black_response
+      playbookName: Block File - Carbon Black Response
       type: playbook
       version: -1
     taskid: 5a2f437e-234a-43ef-858d-28d07fd1c7c2
@@ -168,7 +168,7 @@ tasks:
       id: 2efe2a1a-1d31-438c-828f-b6ae50f3899d
       iscommand: false
       name: Block File - Cybereason
-      playbookId: Block File - Cybereason
+      playbookName: Block File - Cybereason
       type: playbook
       version: -1
     taskid: 2efe2a1a-1d31-438c-828f-b6ae50f3899d
@@ -206,7 +206,7 @@ tasks:
       id: a887370c-f94a-42f9-866f-2d80b7707f41
       iscommand: false
       name: Block File - Cylance Protect v2
-      playbookId: Block File - Cylance Protect v2
+      playbookName: Block File - Cylance Protect v2
       type: playbook
       version: -1
     taskid: a887370c-f94a-42f9-866f-2d80b7707f41
@@ -242,7 +242,7 @@ tasks:
       id: 4e936a4c-b781-40a1-831a-be0c62a727d6
       iscommand: false
       name: Traps Blacklist File
-      playbookId: Traps Blacklist File
+      playbookName: Traps Blacklist File
       type: playbook
       version: -1
     taskid: 4e936a4c-b781-40a1-831a-be0c62a727d6
@@ -284,7 +284,7 @@ tasks:
       id: de27dee3-4496-4589-8514-94db4642810f
       iscommand: false
       name: Traps Quarantine Event
-      playbookId: Traps Quarantine Event
+      playbookName: Traps Quarantine Event
       type: playbook
       version: -1
     taskid: de27dee3-4496-4589-8514-94db4642810f
@@ -477,7 +477,7 @@ tasks:
       id: cfefcb2a-3dcf-44a5-8aed-ef231d7fe00b
       iscommand: false
       name: Cortex XDR - Block File
-      playbookId: Cortex XDR - Block File
+      playbookName: Cortex XDR - Block File
       type: playbook
       version: -1
     taskid: cfefcb2a-3dcf-44a5-8aed-ef231d7fe00b
