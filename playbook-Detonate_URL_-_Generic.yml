@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -571,7 +571,7 @@ tasks:
       id: a6e1e56f-f5da-4648-8b0c-a7e8d6122535
       iscommand: false
       name: Detonate URL - CrowdStrike
-      playbookId: detonate_url_-_crowdstrike
+      playbookName: Detonate URL - CrowdStrike
       type: playbook
       version: -1
     taskid: a6e1e56f-f5da-4648-8b0c-a7e8d6122535
@@ -613,7 +613,7 @@ tasks:
       id: 481f79ec-f360-4b69-8881-98b67f23eedb
       iscommand: false
       name: Detonate URL - Lastline v2
-      playbookName: Detonate URL - Lastline v2
+      playbookId: Detonate URL - Lastline v2
       type: playbook
       version: -1
     taskid: 481f79ec-f360-4b69-8881-98b67f23eedb
@@ -655,7 +655,7 @@ tasks:
       id: 72dc0cac-36d3-49eb-8fb8-3e583202df61
       iscommand: false
       name: Detonate URL - Cuckoo
-      playbookId: Detonate URL - Cuckoo
+      playbookName: Detonate URL - Cuckoo
       type: playbook
       version: -1
     taskid: 72dc0cac-36d3-49eb-8fb8-3e583202df61
@@ -697,7 +697,7 @@ tasks:
       id: 527c7883-aab3-4641-87a1-296c5bc10806
       iscommand: false
       name: Detonate URL - ANYRUN
-      playbookId: Detonate URL - ANYRUN
+      playbookName: Detonate URL - ANYRUN
       type: playbook
       version: -1
     taskid: 527c7883-aab3-4641-87a1-296c5bc10806
