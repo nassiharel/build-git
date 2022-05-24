@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.6.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -1139,7 +1139,7 @@ tasks:
       id: 5ae3c4ec-83cb-4d65-855c-2a3e5d36dbab
       iscommand: false
       name: AWS IAM - User enrichment
-      playbookId: AWS IAM - User enrichment
+      playbookName: AWS IAM - User enrichment
       type: playbook
       version: -1
     taskid: 5ae3c4ec-83cb-4d65-855c-2a3e5d36dbab
