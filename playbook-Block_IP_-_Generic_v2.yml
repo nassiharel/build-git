@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -404,7 +404,7 @@ tasks:
       id: d8d7576b-c4e9-48a6-8046-68f589b27e2e
       iscommand: false
       name: Add Indicator to Miner - Palo Alto MineMeld
-      playbookId: add_indicator_to_miner_-_palo_alto_mineMeld
+      playbookName: Add Indicator to Miner - Palo Alto MineMeld
       type: playbook
       version: -1
     taskid: d8d7576b-c4e9-48a6-8046-68f589b27e2e
@@ -611,7 +611,7 @@ tasks:
       id: 9620e528-42f8-4c0d-8706-b46a73d188be
       iscommand: false
       name: PAN-OS - Block IP and URL - External Dynamic List
-      playbookId: PAN-OS - Block IP and URL - External Dynamic List
+      playbookName: PAN-OS - Block IP and URL - External Dynamic List
       type: playbook
       version: -1
     taskid: 9620e528-42f8-4c0d-8706-b46a73d188be
