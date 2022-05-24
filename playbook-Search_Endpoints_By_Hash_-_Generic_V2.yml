@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -115,7 +115,7 @@ tasks:
       id: c185447e-549c-476e-8477-98c461dadd16
       iscommand: false
       name: Search Endpoints By Hash - CrowdStrike
-      playbookId: search_endpoints_by_hash_-_crowdstrike
+      playbookName: Search Endpoints By Hash - CrowdStrike
       type: playbook
       version: -1
     taskid: c185447e-549c-476e-8477-98c461dadd16
@@ -158,7 +158,7 @@ tasks:
       id: d3865a5d-6516-4d22-8134-a4cfca96bd3c
       iscommand: false
       name: Search Endpoints By Hash - Carbon Black Protection
-      playbookId: search_endpoints_by_hash_-_carbon_black_protection
+      playbookName: Search Endpoints By Hash - Carbon Black Protection
       type: playbook
       version: -1
     taskid: d3865a5d-6516-4d22-8134-a4cfca96bd3c
@@ -414,7 +414,7 @@ tasks:
       id: 30440c37-3692-4f92-8974-dadc57ef392a
       iscommand: false
       name: Search Endpoints By Hash - Cybereason
-      playbookId: Search Endpoints By Hash - Cybereason
+      playbookName: Search Endpoints By Hash - Cybereason
       type: playbook
       version: -1
     taskid: 30440c37-3692-4f92-8974-dadc57ef392a
