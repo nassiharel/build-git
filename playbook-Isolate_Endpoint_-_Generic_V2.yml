@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -180,7 +180,7 @@ tasks:
       id: 31a268a0-3862-4dcb-8549-b55d0ad936a0
       iscommand: false
       name: Isolate Endpoint - Cybereason
-      playbookId: Isolate Endpoint - Cybereason
+      playbookName: Isolate Endpoint - Cybereason
       type: playbook
       version: -1
     taskid: 31a268a0-3862-4dcb-8549-b55d0ad936a0
@@ -225,7 +225,7 @@ tasks:
       id: 46562ad2-14ed-4064-8ce8-9adfb791d660
       iscommand: false
       name: Cortex XDR - Isolate Endpoint
-      playbookId: Cortex XDR - Isolate Endpoint
+      playbookName: Cortex XDR - Isolate Endpoint
       type: playbook
       version: -1
     taskid: 46562ad2-14ed-4064-8ce8-9adfb791d660
