@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -918,7 +918,7 @@ tasks:
       id: f1c56438-d1b6-4848-8608-c6292f3905b9
       iscommand: false
       name: CrowdStrike Falcon Sandbox - Detonate file
-      playbookId: CrowdStrike Falcon Sandbox - Detonate file
+      playbookName: CrowdStrike Falcon Sandbox - Detonate file
       type: playbook
       version: -1
     taskid: f1c56438-d1b6-4848-8608-c6292f3905b9
@@ -1015,7 +1015,7 @@ tasks:
       id: d8093197-7aa9-4b18-8774-563225e8c72b
       iscommand: false
       name: Detonate File - Lastline v2
-      playbookName: Detonate File - Lastline v2
+      playbookId: Detonate File - Lastline v2
       type: playbook
       version: -1
     taskid: d8093197-7aa9-4b18-8774-563225e8c72b
@@ -1060,7 +1060,7 @@ tasks:
       id: 0e879eba-0377-44bf-81c4-83468555fec4
       iscommand: false
       name: Detonate File - Cuckoo
-      playbookId: Detonate File - Cuckoo
+      playbookName: Detonate File - Cuckoo
       type: playbook
       version: -1
     taskid: 0e879eba-0377-44bf-81c4-83468555fec4
@@ -1205,7 +1205,7 @@ tasks:
       id: 11d549c4-31e9-4cd9-8983-9e1a1c7c4baf
       iscommand: false
       name: Detonate File - ANYRUN
-      playbookId: Detonate File - ANYRUN
+      playbookName: Detonate File - ANYRUN
       type: playbook
       version: -1
     taskid: 11d549c4-31e9-4cd9-8983-9e1a1c7c4baf
@@ -1302,7 +1302,7 @@ tasks:
       id: 77b7e144-a6a2-4e93-8e69-1160f9921573
       iscommand: false
       name: Detonate File - VMRay
-      playbookId: 79b5d8a6-2636-480c-8e1c-a3ab2e58ffb5
+      playbookName: Detonate File - VMRay
       type: playbook
       version: -1
     taskid: 77b7e144-a6a2-4e93-8e69-1160f9921573
