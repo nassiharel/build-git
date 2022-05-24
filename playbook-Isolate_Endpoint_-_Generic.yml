@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -175,7 +175,7 @@ tasks:
       id: 33a00cbb-bc23-47d0-8062-81dbcc134d25
       iscommand: false
       name: Traps Isolate Endpoint
-      playbookId: Traps Isolate Endpoint
+      playbookName: Traps Isolate Endpoint
       type: playbook
       version: -1
     taskid: 33a00cbb-bc23-47d0-8062-81dbcc134d25
@@ -218,7 +218,7 @@ tasks:
       id: 0342c5df-d2ff-448e-8ef1-3f4674c42bff
       iscommand: false
       name: Isolate Endpoint - Cybereason
-      playbookId: Isolate Endpoint - Cybereason
+      playbookName: Isolate Endpoint - Cybereason
       type: playbook
       version: -1
     taskid: 0342c5df-d2ff-448e-8ef1-3f4674c42bff
@@ -270,7 +270,7 @@ tasks:
       id: 8045389b-6e5f-406f-834d-98fc70d8421a
       iscommand: false
       name: Cortex XDR - Isolate Endpoint
-      playbookId: Cortex XDR - Isolate Endpoint
+      playbookName: Cortex XDR - Isolate Endpoint
       type: playbook
       version: -1
     taskid: 8045389b-6e5f-406f-834d-98fc70d8421a
@@ -310,7 +310,7 @@ tasks:
       id: ed275240-5110-4452-88ba-66244c7a914a
       iscommand: false
       name: Block Endpoint - Carbon Black Response
-      playbookId: block_endpoint_-_carbon_black_response
+      playbookName: Block Endpoint - Carbon Black Response
       type: playbook
       version: -1
     taskid: ed275240-5110-4452-88ba-66244c7a914a
