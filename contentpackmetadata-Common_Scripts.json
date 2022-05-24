@@ -1859,7 +1859,7 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-27T09:01:37Z",
-	"currentVersion": "1.6.63",
+	"currentVersion": "1.6.64",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -1956,7 +1956,7 @@
 	},
 	"deprecated": false,
 	"description": "Frequently used scripts pack.",
-	"downloads": 56649,
+	"downloads": 57054,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1993,7 +1993,7 @@
 			"name": "SumoLogic"
 		}
 	],
-	"itemVersion": "1.6.63",
+	"itemVersion": "1.6.64",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Scripts",
@@ -2017,13 +2017,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Filter",
-		"Transformer"
+		"Transformer",
+		"Filter"
 	],
 	"toServerVersion": "",
-	"updated": "2022-05-20T09:27:19Z",
+	"updated": "2022-05-22T21:22:37Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2953671",
+	"versionInfo": "2963854",
 	"videos": []
 }
