@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.22
+    itemVersion: 2.2.0
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -801,7 +801,7 @@ tasks:
       id: d973a016-35b6-4e7c-88a5-9f4c60190224
       iscommand: false
       name: Endpoint Enrichment - Cylance Protect v2
-      playbookId: Endpoint Enrichment - Cylance Protect v2
+      playbookName: Endpoint Enrichment - Cylance Protect v2
       type: playbook
       version: -1
     taskid: d973a016-35b6-4e7c-88a5-9f4c60190224
