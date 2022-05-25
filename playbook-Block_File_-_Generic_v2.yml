@@ -477,7 +477,7 @@ tasks:
       id: cfefcb2a-3dcf-44a5-8aed-ef231d7fe00b
       iscommand: false
       name: Cortex XDR - Block File
-      playbookName: Cortex XDR - Block File
+      playbookId: Cortex XDR - Block File
       type: playbook
       version: -1
     taskid: cfefcb2a-3dcf-44a5-8aed-ef231d7fe00b
