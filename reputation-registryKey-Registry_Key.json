@@ -122,6 +122,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "",
 	"reputationCommand": "",
 	"reputationScriptName": "",
