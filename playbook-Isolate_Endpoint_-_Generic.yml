@@ -270,7 +270,7 @@ tasks:
       id: 8045389b-6e5f-406f-834d-98fc70d8421a
       iscommand: false
       name: Cortex XDR - Isolate Endpoint
-      playbookName: Cortex XDR - Isolate Endpoint
+      playbookId: Cortex XDR - Isolate Endpoint
       type: playbook
       version: -1
     taskid: 8045389b-6e5f-406f-834d-98fc70d8421a
