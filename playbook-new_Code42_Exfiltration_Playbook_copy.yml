@@ -561,8 +561,6 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Takes an email address or a username of a user account in Active
-        Directory, and returns the email address of the user's manager.
       id: eccca7ff-aaa7-4864-8345-fc65108a2230
       iscommand: false
       name: Active Directory - Get User Manager Details
