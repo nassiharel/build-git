@@ -526,8 +526,6 @@ tasks:
       - "48"
     note: false
     quietmode: 0
-    results:
-    - AreValuesEqual
     scriptarguments:
       left:
         simple: ${inputs.auto-commit}
@@ -705,8 +703,6 @@ tasks:
       - "49"
     note: false
     quietmode: 0
-    results:
-    - AreValuesEqual
     scriptarguments:
       left:
         simple: ${inputs.auto-commit}
