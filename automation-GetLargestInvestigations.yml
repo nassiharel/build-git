@@ -1,0 +1,181 @@
+args:
+- description: The end date for fetching incidents in ISO format. Incidents will be
+    fetched until the last day of the specified month. For example, if you specify
+    2020-08-14, incidents created on the specified "from" date until  2020-08-31 will
+    be returned.
+  name: to
+- description: The start date for fetching incidents in ISO format. Incidents will
+    be fetched starting from the first day of the specified month. For example, if
+    you specify 2020-08-14, incidents created on 2020-08-01 will be returned.
+  name: from
+- auto: PREDEFINED
+  defaultValue: "false"
+  description: Change to true to return a result suitable for a table widget. By default
+    the return will be in Markdown.
+  name: table_result
+  predefined:
+  - "true"
+  - "false"
+- auto: PREDEFINED
+  defaultValue: "false"
+  description: 'WARNING: Setting this argument to true might result in CPU and RAM
+    issues. Set to true to allow the script to run even though it was deprecated.'
+  name: ignore_deprecated
+  predefined:
+  - "true"
+  - "false"
+comment: Deprecated. Use System Diagonstics page instead (available from version 6.2.0).
+  Returns all investigations larger than 1 MB from all Cortex XSOAR.
+commonfields:
+  id: GetLargestInvestigations
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.2.6
+    packID: CommonWidgets
+    packName: Common Widgets
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+deprecated: true
+dockerimage: demisto/python3:3.9.7.24076
+engineinfo: {}
+mainengineinfo: {}
+name: GetLargestInvestigations
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('GetLargestInvestigations', 'start', __line__())
+
+
+
+
+  import traceback
+  from typing import List, Dict
+  from operator import itemgetter
+  from dateutil.parser import parse
+  from dateutil.relativedelta import relativedelta
+
+
+  def get_investigations(raw_output, investigations):
+      # in case getDBStatistics fails to fetch information it will return a message like so:
+      # `Failed getting DB stats with filter [102020], minBytes [1000000]` - in this case there are no incidents to report
+      if isinstance(raw_output, str):
+          return
+      for db in raw_output:
+          buckets = db.get('buckets')
+          for entry in buckets.keys():
+              if entry.startswith('investigations-'):
+                  investigations[entry] = buckets.get(entry)
+                  investigations[entry].update({"Date": db.get('dbName')})
+
+
+  def parse_investigations_to_table(investigations, is_table_result):
+      data: List = []
+      widget_table = {"total": len(investigations)}
+      urls = demisto.demistoUrls()
+      server_url = urls.get('server', '')
+      for investigation in investigations.keys():
+          full_size = investigations[investigation].get('leafSize').split(' ')
+          db_name = investigations[investigation].get('Date')
+          size = float(full_size[0])
+          if size >= 1.0 and full_size[1] == 'MB':
+              if db_name.isdigit():
+                  inv_id = investigation.split('-')[1]
+                  inv_link = f"[{inv_id}]({os.path.join(server_url, '#', 'incident', inv_id)})"
+                  date = db_name[:2] + "-" + db_name[2:]
+              else:
+                  inv_id = "-".join(investigation.split('-')[1:])
+                  inv_link = f"[playground]({os.path.join(server_url, '#', 'WarRoom', 'playground')})"
+                  date = ""
+              inv_link = inv_id if is_table_result else inv_link
+              data.append({
+                  "IncidentID": inv_link,
+                  "Size(MB)": int(size) if size == int(size) else size,
+                  "AmountOfEntries": investigations[investigation].get('keyN'),
+                  "Date": date
+              })
+
+      widget_table['data'] = sorted(data, key=itemgetter('Size(MB)'), reverse=True)  # type: ignore
+
+      return widget_table
+
+
+  def get_month_db_from_date(date):
+      month = date.strftime('%m')
+      year = date.strftime('%Y')
+      return month + year
+
+
+  def get_time_object(timestring, empty_res_as_now=True):
+      empty_res = datetime.now() if empty_res_as_now else None
+      if timestring is None or timestring == '':
+          return empty_res
+
+      date_object = parse(timestring)
+      if date_object.year == 1:
+          return empty_res
+      else:
+          return date_object
+
+
+  def get_month_database_names():
+      db_names = set()
+      to_date = get_time_object(demisto.args().get('to'))
+      from_date = get_time_object(demisto.args().get('from'))
+      current = from_date
+      while current.timestamp() < to_date.timestamp():
+          db_names.add(get_month_db_from_date(current))
+          current = current + relativedelta(months=1)
+
+      db_names.add(get_month_db_from_date(to_date))
+      return db_names
+
+
+  def main():
+      try:
+          investigations: Dict = {}
+          args: Dict = demisto.args()
+          if is_demisto_version_ge("6.2.0"):
+              deprecate_msg = "Warning: This script has been deprecated. Please checkout the System Diagnostic page " \
+                              "for an alternative."
+              if not argToBoolean(args.get('ignore_deprecated')):
+                  raise DemistoException(deprecate_msg)
+              else:
+                  demisto.info(deprecate_msg)
+          from_date = args.get('from')
+          is_table_result = args.get('table_result') == 'true'
+          if not get_time_object(from_date, empty_res_as_now=False):
+              raw_output = demisto.executeCommand('getDBStatistics', args={})
+              get_investigations(raw_output[0].get('Contents', {}), investigations)
+          else:
+              for db_name in get_month_database_names():
+                  raw_output = demisto.executeCommand('getDBStatistics', args={"filter": db_name})
+                  get_investigations(raw_output[0].get('Contents', {}), investigations)
+          result = parse_investigations_to_table(investigations, is_table_result)
+          if not is_table_result:
+              # change result to MD
+              result = tableToMarkdown('Largest Incidents by Storage Size', result.get("data"),
+                                       headers=["IncidentID", "Size(MB)", "AmountOfEntries", "Date"])
+          if not result:
+              result = "No incidents found. Note: only incidents larger than 1MB are scanned."
+          demisto.results(result)
+      except Exception:
+          demisto.error(traceback.format_exc())  # print the traceback
+          return_error(f'Failed to execute GetLargestInvestigations. Error: {traceback.format_exc()}')
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('GetLargestInvestigations', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- widget
+type: python
