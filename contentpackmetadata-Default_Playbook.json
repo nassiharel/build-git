@@ -1,0 +1,116 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "This playbook executes when no other playbook is associated with an incident. It enriches indicators in an incident using one or more integrations.",
+				"name": "Default"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:42:40Z",
+	"currentVersion": "1.0.2",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.1.21",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Got a unique incident? This Content Pack helps you automate the core steps of enrichment and severity calculation for any kind of incident.",
+	"downloads": 602,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "DefaultPlaybook",
+	"installMessage": "",
+	"integrations": [],
+	"itemVersion": "1.0.2",
+	"keywords": [],
+	"legacy": true,
+	"name": "Default Playbook",
+	"packID": "DefaultPlaybook",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Sometimes you may have an incident, or just some data at hand, that does not fall into any specific category. When you simply create an incident from scratch or just want to get more information about an indicator without performing a full investigation, we recommend using our Default playbook.\r\n\r\nThis pack provides you with the Default playbook which automates the much-needed core steps of enrichment and severity calculation for any kind of incident.\r\n\r\n##### What does this pack do?\r\nExtracts indicators from any data within the incident.\r\nEnriches all indicators involved in the incident.\r\nCalculates severity for the incident, taking into account the initial incident severity, indicator reputation and any critical assets found as indicators\r\n\r\nThe playbook found in this pack provides a great out-of-the-box solution, yet it can be customized should you want to add additional logic to the default behavior.\r\n\r\n_For more information, visit our [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/playbooks/phishing-investigation---generic-v2)_\r\n\r\n![Default](https://raw.githubusercontent.com/demisto/content/fb32f760304f6430237fee965ce834c3c1adcbda/Packs/DefaultPlaybook/doc_files/Default.png)\r\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Use Case"
+	],
+	"toServerVersion": "",
+	"updated": "2021-12-21T22:22:38Z",
+	"useCases": [
+		"Default"
+	],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
