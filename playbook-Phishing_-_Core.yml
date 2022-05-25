@@ -91,7 +91,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Sends an email to the user reporting the phishing email, informing
+      description: Sends an email to the user who reported the phishing email, informing
         them that the email was received and is being investigated.
       id: 5f36e515-65e9-429d-8301-d92fa6213b44
       iscommand: true
@@ -212,7 +212,7 @@ tasks:
     task:
       brand: ""
       description: Checks whether URLs exist in context, whether the user opted to
-        get screenshots of URLs in the playbook's *GetURLScreenshots* input, and whether
+        get screenshots of URLs in the playbook's "GetURLScreenshots" input, and whether
         the Rasterize integration is enabled.
       id: 7035c9c1-4160-4192-8824-aa88c65b6f24
       iscommand: false
@@ -580,7 +580,7 @@ tasks:
     task:
       brand: ""
       description: Sends an email to the user who reported the phishing email informing
-        them the email is malicious.
+        them that the email is malicious.
       id: 3d5a299b-7128-4113-8fd2-702db6b0b2f9
       iscommand: true
       name: Update user that the email is malicious
@@ -629,7 +629,7 @@ tasks:
     task:
       brand: ""
       description: Sends an email to the user who reported the phishing email, informing
-        them the email is benign.
+        them that the email is benign.
       id: 37203136-b3d7-4ede-831f-b71660e02078
       iscommand: true
       name: Update user that the email is benign
