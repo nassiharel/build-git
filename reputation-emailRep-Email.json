@@ -64,6 +64,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "\\b[A-Za-z0-9.!#$%\u0026'*+/=?^_`{|}~\\p{L}-]{1,64}(@|\\[@\\])[A-Za-z0-9\\p{L}.-]{1,255}\\.[A-Za-z]{2,}\\b",
 	"reputationCommand": "email",
 	"reputationScriptName": "",
