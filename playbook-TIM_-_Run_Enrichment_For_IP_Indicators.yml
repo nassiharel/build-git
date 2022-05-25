@@ -266,12 +266,12 @@ tasks:
     separatecontext: false
     skipunavailable: false
     task:
-      brand: ""
-      description: Perform enrichment with enabled enrichment intergations
+      brand: Builtin
+      description: commands.local.cmd.enrich.indicators
       id: 47e8e525-a151-4912-86d1-d4a63ab11d22
       iscommand: true
       name: Enrich bad indicators
-      script: '|||ip'
+      script: Builtin|||enrichIndicators
       type: regular
       version: -1
     taskid: 47e8e525-a151-4912-86d1-d4a63ab11d22
@@ -424,12 +424,12 @@ tasks:
     separatecontext: false
     skipunavailable: false
     task:
-      brand: ""
-      description: Perform enrichment with enabled enrichment intergations
+      brand: Builtin
+      description: commands.local.cmd.enrich.indicators
       id: 229d0fbf-22f1-4ba0-8aee-de3424b2abfa
       iscommand: true
       name: Enrich good indicators
-      script: '|||ip'
+      script: Builtin|||enrichIndicators
       type: regular
       version: -1
     taskid: 229d0fbf-22f1-4ba0-8aee-de3424b2abfa
@@ -582,12 +582,12 @@ tasks:
     separatecontext: false
     skipunavailable: false
     task:
-      brand: ""
-      description: Perform enrichment with enabled enrichment intergations
+      brand: Builtin
+      description: commands.local.cmd.enrich.indicators
       id: e70d3750-5e4f-44dc-8101-8041943d8d97
       iscommand: true
       name: Enrich suspicious indicators
-      script: '|||ip'
+      script: Builtin|||enrichIndicators
       type: regular
       version: -1
     taskid: e70d3750-5e4f-44dc-8101-8041943d8d97
@@ -740,12 +740,12 @@ tasks:
     separatecontext: false
     skipunavailable: false
     task:
-      brand: ""
-      description: Perform enrichment with enabled enrichment intergations
+      brand: Builtin
+      description: commands.local.cmd.enrich.indicators
       id: c9883dac-c9d7-4810-86f2-4ce01eda1691
       iscommand: true
       name: Enrich unknown indicators
-      script: '|||ip'
+      script: Builtin|||enrichIndicators
       type: regular
       version: -1
     taskid: c9883dac-c9d7-4810-86f2-4ce01eda1691
