@@ -295,7 +295,7 @@ tasks:
       id: 0f8b61fe-bd84-439a-8acc-51a166db74b8
       iscommand: false
       name: PAN-OS - Block IP and URL - External Dynamic List
-      playbookId: PAN-OS - Block IP and URL - External Dynamic List
+      playbookName: PAN-OS - Block IP and URL - External Dynamic List
       type: playbook
       version: -1
     taskid: 0f8b61fe-bd84-439a-8acc-51a166db74b8
