@@ -1,0 +1,122 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps outgoing Cortex XDR incidents fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Cortex XDR - IR-out-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "4.4.0",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Cortex XDR Incident": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"assigned_user_mail": {
+					"simple": "xdrassigneduseremail"
+				},
+				"assigned_user_pretty_name": {
+					"simple": "xdrassigneduserprettyname"
+				},
+				"manual_severity": {
+					"complex": {
+						"filters": [],
+						"root": "severity",
+						"transformers": [
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "low"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "1"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "medium"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "2"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "high"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "3"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "high"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "4"
+										}
+									}
+								},
+								"operator": "replace"
+							}
+						]
+					}
+				},
+				"resolve_comment": {
+					"simple": "xdrresolvecomment"
+				},
+				"status": {
+					"simple": "xdrstatusv2"
+				}
+			}
+		}
+	},
+	"name": "Cortex XDR - Outgoing Mapper",
+	"nameRaw": "Cortex XDR - Outgoing Mapper",
+	"packID": "CortexXDR",
+	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-outgoing",
+	"unclassifiedCases": null,
+	"version": -1
+}
