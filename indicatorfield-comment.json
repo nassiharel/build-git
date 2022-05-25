@@ -30,6 +30,7 @@
 	"orgType": "longText",
 	"ownerOnly": false,
 	"packID": "",
+	"packName": "",
 	"placeholder": "",
 	"propagationLabels": [
 		"all"
