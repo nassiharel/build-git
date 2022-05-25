@@ -452,6 +452,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "(?:[._%+\\p{L}\\p{N}-]+|\\[\\.\\])+(?:\\[\\.\\]|\\.)[\\p{L}]{2,}|(?:https:\\/\\/\\w*|\\w*)\\.safelinks\\.protection\\.outlook\\.com\\/[^\\s]*|https:\\/\\/urldefense\\.(?:proofpoint\\.)?com\\/.*",
 	"reputationCommand": "domain",
 	"reputationScriptName": "",
