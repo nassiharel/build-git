@@ -202,6 +202,7 @@
 	"packPropagationLabels": [
 		"all"
 	],
+	"propagationLabels": [],
 	"regex": "(?:[a-fA-F0-9]{1,4}:{1,2}){3,7}[a-fA-F0-9]{1,4}",
 	"reputationCommand": "ipv6",
 	"reputationScriptName": "",
