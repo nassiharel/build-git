@@ -197,7 +197,7 @@ tasks:
       description: Submit URL for analysis.
       id: 2e2c891a-2cbf-4ebd-8164-4791a89c3310
       iscommand: true
-      name: Lastline Upload URL
+      name: Lastline v2 Upload URL
       script: '|||lastline-upload-url'
       type: regular
       version: -1
@@ -249,13 +249,13 @@ tasks:
     task:
       brand: ""
       description: |-
-        Use as a sub-playbook to block execution of the master playbook until a remote action is complete.
+        'Use as a sub-playbook to block execution of the master playbook until a remote action is complete.
         This playbook implements polling by continually running the command in Step #2 until the operation completes.
         The remote action should have the following structure:
 
         1. Initiate the operation.
         2. Poll to check if the operation completed.
-        3. (optional) Get the results of the operation.
+        3. (optional) Get the results of the operation.'
       id: 44d072d8-9786-4dd9-8bcb-630c89e2b8ee
       iscommand: false
       name: GenericPolling
@@ -334,7 +334,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Checks that there is a URL in the playbook’s input.
+      description: Checks if there is a URL in the playbook’s input.
       id: 9cf17ba9-0559-471e-8012-1abbd588a590
       iscommand: false
       name: Is there a URL to detonate?
