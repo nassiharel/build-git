@@ -1,0 +1,45 @@
+args:
+- default: true
+  description: The parent key to which we append all the other keys
+  name: parent
+  required: true
+- description: Comma separated list of keys
+  name: keys
+  required: true
+- description: Comma separated list of values
+  name: values
+  required: true
+comment: Set multiple keys/values to the context.
+commonfields:
+  id: SetMultipleValues
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.6.65
+    packID: CommonScripts
+    packName: Common Scripts
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python:2.7.18.24398
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SetMultipleValues
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  keys = [k.strip() for k in demisto.args()['keys'].split(',')]
+  values = [v.strip() for v in demisto.args()['values'].split(',')]
+  ec = {demisto.args()['parent']+'(true)': dict(zip(keys, values))}
+  demisto.results({'Type': entryTypes['note'], 'Contents': ec, 'ContentsFormat': formats['json'], 'HumanReadable': 'Keys ' + ','.join(keys) + ' set', 'EntryContext': ec})
+scripttarget: 0
+subtype: python2
+system: true
+tags:
+- Utility
+type: python
