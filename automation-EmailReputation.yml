@@ -1,0 +1,42 @@
+args:
+- default: true
+  description: Email address to look up
+  name: email
+  required: true
+comment: A context script for Email entities
+commonfields:
+  id: EmailReputation
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.6.65
+    packID: CommonScripts
+    packName: Common Scripts
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python:2.7.18.24398
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: EmailReputation
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  results = demisto.executeCommand('email', {'email': demisto.get(demisto.args(),'email')})
+
+  for item in results:
+      if isError(item):
+          item['Contents'] = item['Brand'] + ' returned an error.\n' + item['Contents']
+
+  demisto.results(results)
+scripttarget: 0
+subtype: python2
+system: true
+tags:
+- enhancement
+type: python
