@@ -1,0 +1,124 @@
+args:
+- description: entry id of json
+  isArray: true
+  name: entryid
+  required: true
+- default: true
+  defaultValue: '|'
+  description: CSV Delimiter.
+  name: delimiter
+- description: if provided will output CSV to file. Default output is to WarRoom.
+  name: filename
+comment: Convert a JSON warroom output via EntryID to a CSV file.
+commonfields:
+  id: JSONtoCSV
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.6.65
+    packID: CommonScripts
+    packName: Common Scripts
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python:2.7.18.27799
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: JSONtoCSV
+outputs:
+- contextPath: File.Name
+  description: Filename (only in case of report type=json)
+- contextPath: File.Type
+  description: File type e.g. "PE" (only in case of report type=json)
+- contextPath: File.Size
+  description: File size (only in case of report type=json)
+- contextPath: File.MD5
+  description: MD5 hash of the file (only in case of report type=json)
+- contextPath: File.SHA1
+  description: SHA1 hash of the file (only in case of report type=json)
+- contextPath: File.SHA256
+  description: SHA256 hash of the file (only in case of report type=json)
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('JSONtoCSV', 'start', __line__())
+
+
+
+  import io
+  import csv
+  import sys
+
+
+  def main():
+      entry_id = demisto.args()['entryid']
+      if isinstance(entry_id, list):
+          entry_id = entry_id[0]
+
+      json_ent = demisto.executeCommand('getEntry', {'id': entry_id})
+
+      dictlist = json_ent[0]['Contents']
+
+      csv_final = json_to_csv(dictlist)
+
+      if 'filename' in demisto.args():
+          # output cvs to file in warroom
+          demisto.results(fileResult(demisto.args()['filename'], csv_final.encode("utf-8")))
+      else:
+          # output cvs to warrrom
+          demisto.results(csv_final.encode("utf-8"))
+
+
+  def json_to_csv(data):
+      """
+      takes a list of dictionaries and parsing them into csv.
+      json should be only list which contains dictionaries.
+
+      json:
+          [
+              {
+                  "dn": "DC=demisto,DC=int",
+                  "provider": "activedir"
+              },
+              {
+                  "dn": "CN=Users,DC=demisto,DC=int",
+                  "provider": "activedir"
+              }
+          ]
+
+      csv:
+          "dn", "provider"
+          "DC=demisto,DC=int" , "activedir"
+          "CN=Users,DC=demisto, DC=int" ,"activedir"
+      """
+      si = io.BytesIO()
+      cw = csv.writer(si)
+      try:
+          keys = list(data[0].iterkeys())
+      except KeyError:
+          demisto.debug("The given JSON is not an iterable list.")
+          sys.exit(0)
+
+      cw.writerow(keys)
+      for d in data:
+          val_lst = []
+          for k in keys:
+              val_lst.append(d[k])
+          cw.writerow(val_lst)
+      return si.getvalue().strip('\r\n')
+
+
+  if __name__ == "__builtin__" or __name__ == "builtins":
+      main()
+
+  register_module_line('JSONtoCSV', 'end', __line__())
+scripttarget: 0
+subtype: python2
+system: true
+tags: []
+type: python
