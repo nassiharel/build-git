@@ -1,0 +1,94 @@
+args:
+- default: true
+  description: The URL to follow
+  name: url
+  required: true
+- auto: PREDEFINED
+  defaultValue: "true"
+  description: Should we use HEAD instead of GET. Safer but might not be the same
+    response.
+  name: useHead
+  predefined:
+  - "true"
+  - "false"
+- auto: PREDEFINED
+  defaultValue: "false"
+  description: Use system proxy settings
+  name: use_system_proxy
+  predefined:
+  - "true"
+  - "false"
+- auto: PREDEFINED
+  defaultValue: "false"
+  description: Trust any certificate (not secure)
+  name: trust_any_certificate
+  predefined:
+  - "true"
+  - "false"
+comment: List the redirects for a given URL
+commonfields:
+  id: HTTPListRedirects
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.6.65
+    packID: CommonScripts
+    packName: Common Scripts
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python:2.7.18.27799
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: HTTPListRedirects
+outputs:
+- contextPath: URL.Data
+  description: The URL redirects from the given URL
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('HTTPListRedirects', 'start', __line__())
+
+
+  import requests
+  import os
+
+  requests.packages.urllib3.disable_warnings()
+
+  if demisto.args().get('use_system_proxy') == 'false':
+      del os.environ['HTTP_PROXY']
+      del os.environ['HTTPS_PROXY']
+      del os.environ['http_proxy']
+      del os.environ['https_proxy']
+  verify_ssl = demisto.args().get('trust_any_certificate') != 'true'
+
+  u = demisto.args()['url']
+  if not u.lower().startswith('http'):
+      u = 'http://' + u
+  if demisto.args()['useHead'] == 'true':
+      response = requests.head(u, allow_redirects=True, verify=verify_ssl)
+  else:
+      requests.get(u, verify=verify_ssl)
+  urls = []
+  if response.history:
+      for resp in response.history:
+          urls.append({'Data': resp.url, 'Status': resp.status_code})
+  urls.append({'Data': response.url, 'Status': response.status_code})
+  ec = {'URL(val.Data == obj.Data)': [{'Data': url['Data']} for url in urls]}
+
+  demisto.results({'ContentsFormat': formats['json'], 'Type': entryTypes['note'], 'Contents': urls,
+                   'ReadableContentsFormat': formats['markdown'],
+                   'HumanReadable': tableToMarkdown('URLs', urls, ['Data', 'Status']), 'EntryContext': ec})
+
+  register_module_line('HTTPListRedirects', 'end', __line__())
+scripttarget: 0
+subtype: python2
+system: true
+tags:
+- Utility
+type: python
