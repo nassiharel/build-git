@@ -1,0 +1,82 @@
+args:
+- default: true
+  description: The Emails to process.
+  isArray: true
+  name: input
+comment: Verifies that an email address is valid and only returns the address if it
+  is valid.
+commonfields:
+  id: ExtractEmailV2
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.6.65
+    packID: CommonScripts
+    packName: Common Scripts
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.8.24399
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ExtractEmailV2
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('ExtractEmailV2', 'start', __line__())
+
+
+
+  import re
+
+  # Negative lookahead - Verify the pattern does not end with the listed file extensions. Separated by |
+  VALID_EXTENSION = r'(?!\S*\.(?:zip|jpg|jpeg|csv|png|gif|bmp|txt|pdf|ppt|pptx|xls|xlsx|doc|docx|eml|msg)(?:\s*$))'
+
+  """
+  First Group - [a-z0-9.!#$%&'*+-/=?^_`{|}~]+ :
+      any valid character in the valid local part (see in: https://datatracker.ietf.org/doc/html/rfc3696#section-3)
+      1 or more times up to 64 characters
+  Second Group - [a-z0-9.-]+ :
+      any character of: 'A-Z', '0-9','.', '-' 1 or more times up to 253 times
+  Third Group - [a-z]{2,} :
+      any character of: 'A-Z' 2 or more times.
+
+  The pattern will be: <First Group>@<Second Group>.<Third Group>
+  """
+  VALID_ADDRESS_FORMAT = r"[a-z0-9.!#$%&'*+-/=?^_`{|}~]{1,64}(\[@\]|@)[a-z0-9.-]{1,253}\.[a-z]{2,}"
+  VALID_ADDRESS_REGEX = VALID_EXTENSION + VALID_ADDRESS_FORMAT
+
+
+  def verify_is_email(email_address: str) -> bool:
+      try:
+          return re.match(VALID_ADDRESS_REGEX, email_address, re.IGNORECASE) is not None
+      except Exception:
+          return False
+
+
+  def main():
+      emails = argToList(demisto.args().get('input'))
+
+      list_results = [email_address.replace("[@]", "@") for email_address in emails if verify_is_email(email_address)]
+
+      if list_results:
+          return_results(list_results)
+      else:
+          return_results('')
+
+
+  if __name__ in ('__main__', 'builtin', 'builtins'):
+      main()
+
+  register_module_line('ExtractEmailV2', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- indicator-format
+type: python
