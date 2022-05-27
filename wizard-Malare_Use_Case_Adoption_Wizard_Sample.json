@@ -1,0 +1,142 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"description": "Welcome to the Deployment Wizard!  These steps will guide you through configuring your content pack so you'll have a working use case when the wizard finishes. Make sure to follow the steps in order, you can always continue the wizard where you left off. Learn more about this pack’s deployment.",
+	"detached": false,
+	"disabled": false,
+	"fromServerVersion": "6.8.0",
+	"id": "Malare Use Case Adoption Wizard Sample",
+	"itemVersion": "1.1.1",
+	"locked": false,
+	"name": "Malare Use Case Adoption Wizard Sample",
+	"packID": "MalwareInvestigationAndResponse",
+	"packName": "Malware Investigation and Response",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [],
+	"readonly": false,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"wizard": {
+		"fetching_integrations": [
+			{
+				"action": {
+					"existing": "Update your current instance to work with the new Malware incident type: \n1. Enable fetching. \n2. Set the Incident type field to Malware. \n3. Set the Mapper field to 'Microsoft Defender For Endpoint Mapper'.",
+					"new": "Set up new 'Microsoft Defender Advanced Threat Protection' instance to start fetching malware incidents: \n1. Enable fetching. \n2. Set the Incident type field to Malware. \n3. Set the Mapper field to 'Microsoft Defender For Endpoint Mapper'."
+				},
+				"description": "Set up the 'Microsoft Defender for Endpoint' integration to work with your Malware use case.",
+				"name": "Microsoft Defender Advanced Threat Protection",
+				"priority": 3
+			},
+			{
+				"action": {
+					"existing": "Update your current instance to work with the new Malware incident type: \n1. Enable fetching. \n2. Set the Incident type field to Malware. \n3. Set the Mapper field to 'CrowdStrike Falcon Mapper'.",
+					"new": "Set up new 'Crowdstrike Falcon' instance to start fetching malware incidents: \n1. Enable fetching. \n2. Set the Incident type field to Malware. \n3. Set the Mapper field to 'CrowdStrike Falcon Mapper'."
+				},
+				"description": "Set up the 'Crowdstrike Falcon' integration to work with your Malware use case.",
+				"name": "CrowdstrikeFalcon",
+				"priority": 2
+			},
+			{
+				"action": {
+					"existing": "Update your current instance to work with the new Malware incident type: \n1. Enable fetching. \n2. Set the 'XDR Incident handling' classifier \n3. Set the Incident type field to Malware. \n4. Set the Mapper field to 'Cortex XDR - IR something'",
+					"new": "Set up new 'Cortex XDR - IR' to work with the malware incident type: \n1. Turn on fetching. \n2. Choose the 'XDR Incident handling' classifier.\n3. Set the Incident type field to Malware. \n4. Set the Mapper field to 'Cortex XDR - IR something'."
+				},
+				"description": "Set up the 'Cortex XDR - IR' integration to work with your Malware use case.",
+				"name": "Cortex XDR - IR",
+				"priority": 1
+			}
+		],
+		"next": [
+			{
+				"action": {
+					"existing": "Enable the fetching integrations to start ingesting data and run the playbook.",
+					"new": "Enable the fetching integrations to start ingesting data and run the playbook."
+				},
+				"name": "Enable Your Use Case"
+			}
+		],
+		"set_playbook": [
+			{
+				"link_to_integration": "Cortex XDR - IR",
+				"name": "Malware - Investigation and Response Generic"
+			},
+			{
+				"link_to_integration": "CrowdstrikeFalcon",
+				"name": "Malware - Investigation and Response Generic"
+			},
+			{
+				"link_to_integration": "Microsoft Defender Advanced Threat Protection",
+				"name": "Malware - Investigation and Response Generic"
+			}
+		],
+		"supporting_integrations": [
+			{
+				"action": {
+					"existing": "Configure 'Wildfire' to enable file detonation to improve investigation.",
+					"new": "Configure 'Wildfire' to enable file detonation to improve investigation."
+				},
+				"description": "Configure Wildfire to enable file detonation to improve investigation.",
+				"name": "WildFire-v2"
+			},
+			{
+				"action": {
+					"existing": "Configure 'CrowdStrike Falcon Sandbox' to enable file detonation to improve investigation.",
+					"new": "Configure 'CrowdStrike Falcon Sandbox' to enable file detonation to improve investigation."
+				},
+				"description": "Configure 'CrowdStrike Falcon Sandbox' to enable file detonation to improve investigation.",
+				"name": "CrowdStrikeFalconSandbox"
+			},
+			{
+				"action": {
+					"existing": "Configure 'EWS Mail Sender' to enable email notifications.",
+					"new": "Configure EWS Mail Sender to enable email notifications."
+				},
+				"description": "Configure EWS Mail Sender to enable email notifications.",
+				"name": "EWS Mail Sender"
+			},
+			{
+				"action": {
+					"existing": "Configure 'ServiceNow v2' to open a ticket in case of a true positive incident.",
+					"new": "Configure 'ServiceNow v2' to open a ticket in case of a true positive incident."
+				},
+				"description": "Configure 'ServiceNow v2' to open a ticket in case of true positive incident.",
+				"name": "ServiceNow v2"
+			},
+			{
+				"action": {
+					"existing": "Configure 'jira-v2' to open a ticket in case of a true positive incident.",
+					"new": "Configure 'jira-v2' to open a ticket in case of a true positive incident."
+				},
+				"description": "Configure 'ServiceNow v2' to open a ticket in case of a true positive incident.",
+				"name": "jira-v2"
+			},
+			{
+				"action": {
+					"existing": "Configure 'Palo Alto Networks AutoFocus v2' to enrich IOC's as part of the investigation.",
+					"new": "Configure 'Palo Alto Networks AutoFocus v2' to enrich IOC's as part of the investigation."
+				},
+				"description": "Configure 'Palo Alto Networks AutoFocus v2' to enrich IOC's as part of the investigation.",
+				"name": "Palo Alto Networks AutoFocus v2"
+			},
+			{
+				"action": {
+					"existing": "Configure 'VirusTotal (API v3)' to enrich IOC's as part of the investigation.",
+					"new": "Configure 'VirusTotal (API v3)' to enrich IOC's as part of the investigation."
+				},
+				"description": "Configure 'VirusTotal (API v3)' to enrich IOC's as part of the investigation.",
+				"name": "VirusTotal (API v3)"
+			},
+			{
+				"action": {
+					"existing": "Configure 'MITRE ATT\u0026CK v2' to enrich IOC's as part of the investigation.",
+					"new": "Configure 'MITRE ATT\u0026CK v2' to enrich IOC's as part of the investigation."
+				},
+				"description": "Configure 'MITRE ATT\u0026CK v2' to enrich IOC's as part of the investigation.",
+				"name": "MITRE ATT\u0026CK v2"
+			}
+		]
+	}
+}
