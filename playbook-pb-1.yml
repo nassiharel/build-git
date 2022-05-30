@@ -1,0 +1,116 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: asddas
+id: 703f7af5-bc9e-40db-8004-721eb4426751
+inputs: []
+name: pb-1
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1fd872d2-7f09-45ad-841f-acedab94c2ee
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 1fd872d2-7f09-45ad-841f-acedab94c2ee
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 700,
+          "y": -80
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: abbbdd28-ceee-463d-8833-c1e1eb0852c3
+      iscommand: false
+      name: Untitled Task
+      type: regular
+      version: -1
+    taskid: abbbdd28-ceee-463d-8833-c1e1eb0852c3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 690,
+          "y": 80
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a661e54e-2ce6-47d1-86a4-b4bf9cd49762
+      iscommand: false
+      name: done
+      type: title
+      version: -1
+    taskid: a661e54e-2ce6-47d1-86a4-b4bf9cd49762
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 690,
+          "y": 280
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 425,
+        "width": 390,
+        "x": 690,
+        "y": -80
+      }
+    }
+  }
