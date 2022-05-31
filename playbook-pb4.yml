@@ -1,0 +1,56 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 28d18cd7-aa19-4da6-8775-162e08e52dc0
+inputs: []
+name: pb4
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6d1c88a6-1fe9-4dfc-8b59-684abfd09bdf
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 6d1c88a6-1fe9-4dfc-8b59-684abfd09bdf
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 65,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
