@@ -1,0 +1,393 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: Google Safe Browsing v2
+  version: -1
+configuration:
+- defaultvalue: https://safebrowsing.googleapis.com/v4/threatMatches:find
+  display: Your server URL
+  name: url
+  required: true
+  type: 0
+- display: The Client ID
+  name: client_id
+  required: false
+  type: 0
+- defaultvalue: "1.0"
+  display: The Client Version
+  name: client_version
+  required: false
+  type: 0
+- additionalinfo: The API Key to use for connection
+  display: API Key
+  name: api_key
+  required: true
+  type: 4
+- additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: B - Usually reliable
+  display: Source Reliability
+  name: integrationReliability
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.0.14
+    packID: GoogleSafeBrowsing
+    packName: Google Safe Browsing
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Search Safe Browsing, The Safe Browsing APIs (v4) let your client applications
+  check URLs against Google's constantly updated lists of unsafe web resources.
+detaileddescription: "The Safe Browsing APIs (v4) let your client applications check
+  URLs against Google's constantly updated lists of unsafe web resources. \nExamples
+  of unsafe web resources are social engineering sites (phishing and deceptive sites)
+  and sites that host malware or unwanted software. \nAny URL found on a Safe Browsing
+  list is considered unsafe. \nSet up instructions are available at Google API Console
+  [Help Center](https://developers.google.com/safe-browsing/v4/get-started)\n\n---\n[View
+  Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/google-safe-browsing-v2)"
+display: Google Safe Browsing v2
+image: data:image/png;base64,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
+name: Google Safe Browsing v2
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: url
+      isArray: true
+      name: url
+      required: true
+    description: Searches for the specified URL on lists.
+    name: url
+    outputs:
+    - contextPath: DBotScore.Indicator
+      description: The Indicator
+      type: string
+    - contextPath: DBotScore.Type
+      description: The Indicator Type
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The DBot score vendor
+      type: string
+    - contextPath: DBotScore.Score
+      description: The DBot score
+      type: number
+    - contextPath: DBotScore.Reliability
+      description: Reliability of the source providing the intelligence data.
+      type: String
+    - contextPath: URL.Malicious.Vendor
+      description: For malicious URLs, the vendor that made the decision
+      type: string
+    - contextPath: URL.Malicious.Description
+      description: For malicious URLs, the reason that the vendor made the decision
+      type: string
+    - contextPath: URL.Data
+      description: URL name
+      type: string
+    - contextPath: GoogleSafeBrowsing.URL.threatType
+      description: The URL threat type.
+      type: string
+    - contextPath: GoogleSafeBrowsing.URL.platformType
+      description: The URL platform type.
+      type: string
+    - contextPath: GoogleSafeBrowsing.URL.cacheDuration
+      description: The URL cache duration time.
+      type: string
+    - contextPath: GoogleSafeBrowsing.URL.threatEntryType
+      description: The URL threat entry type.
+      type: string
+  dockerimage: demisto/python3:3.10.4.29342
+  runonce: false
+  script: |
+    register_module_line('Google Safe Browsing v2', 'start', __line__())
+
+
+
+
+    import requests
+    import traceback
+    from typing import Dict, Any
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()
+
+    TYPES = {
+        'threatTypes': ["MALWARE", "SOCIAL_ENGINEERING", "POTENTIALLY_HARMFUL_APPLICATION", "UNWANTED_SOFTWARE"],
+        'platformTypes': ["ANY_PLATFORM", "WINDOWS", "LINUX", "ALL_PLATFORMS", "OSX", "CHROME", "IOS", "ANDROID"]
+    }
+
+    INTEGRATION_NAME = 'GoogleSafeBrowsing'
+    URL_OUTPUT_PREFIX = 'GoogleSafeBrowsing.URL'
+
+
+    class Client(BaseClient):
+        def __init__(self, proxy: bool, verify: bool, reliability: str, base_url: str, params: dict):
+            headers = {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+            super().__init__(proxy=proxy, verify=verify, base_url=base_url, headers=headers)
+
+            self.base_url = base_url
+            self.client_body = {
+                'clientId': params.get('client_id'),
+                'clientVersion': params.get('client_version'),
+            }
+
+            if DBotScoreReliability.is_valid_type(reliability):
+                self.reliability = DBotScoreReliability.get_dbot_score_reliability_from_str(reliability)
+            else:
+                raise Exception("Google Safe Browsing v2 error: "
+                                "Please provide a valid value for the Source Reliability parameter.")
+
+        def build_request_body(self, client_body: Dict, list_url: List) -> Dict:
+            """ build the request body according to the client body and the urls.
+
+            Args:
+                client_body: client body to add it in the request body
+                list_url: The urls list
+            Returns:
+                (dict) The request body, in the right format.
+            """
+            list_urls = []
+            for url in list_url:
+                list_urls.append({"url": url})
+
+            body: Dict = {
+                "client": client_body,
+                "threatInfo": {
+                    "threatTypes": TYPES.get('threatTypes'),
+                    "platformTypes": TYPES.get('platformTypes'),
+                    "threatEntryTypes": ["URL"],
+                    "threatEntries": list_urls
+                }
+            }
+            return body
+
+        def url_request(self, client_body, list_url) -> Dict:
+            """ send the url request.
+
+            Args:
+                client_body: client body to add it in the request body
+                list_url: The urls list
+            Returns:
+                (dict) The response from the request.
+            """
+            body = self.build_request_body(client_body, list_url)
+            result = self._http_request(
+                method='POST',
+                json_data=body,
+                full_url=self.base_url)
+            return result
+
+
+    def test_module(client: Client) -> str:
+        """
+        Performs basic get request to get sample URL details.
+        """
+        try:
+            # testing a known malicious URL to check if we get matches
+            test_url = "http://testsafebrowsing.appspot.com/apiv4/ANY_PLATFORM/MALWARE/URL/"
+            res = client.url_request(client.client_body, [test_url])
+            if res.get('matches'):  # matches - There is a match for the URL we were looking for
+                message = 'ok'
+            else:
+                message = 'Error querying Google Safe Browsing. Expected matching respons, but received none'
+        except DemistoException as e:
+            if 'Forbidden' in str(e) or 'Authorization' in str(e):
+                message = 'Authorization Error: please make sure the API Key is set correctly.'
+            else:
+                raise e
+        return message
+
+
+    def handle_errors(result: Dict) -> None:
+        """
+        Handle errors, raise Exception when there is errors in the response.
+        """
+
+        status_code = result.get('StatusCode', 0)
+        result_body = result.get('Body')
+
+        if result_body == '' and status_code == 204:
+            raise Exception('No content received. Possible API rate limit reached.')
+
+        if 200 < status_code < 299:
+            raise Exception(f'Failed to perform request, request status code: {status_code}.')
+
+        if result_body == '':
+            raise Exception('No content received. Maybe you tried a private API?.')
+
+        if result.get('error'):
+            error_massage = result.get('error', {}).get('message')
+            error_code = result.get('error', {}).get('code')
+            raise Exception(f'Failed accessing Google Safe Browsing APIs. Error: {error_massage}. Error code: {error_code}')
+
+
+    def arrange_results_to_urls(results: List, url_list: List) -> Dict:
+        """ Arrange and filter the URLs results according to the URLs list that we asked information on.
+        Args:
+            results: the API response.
+            url_list: The URLs list that we asked information on.
+        Returns:
+            (dict) The results according the urls.
+        """
+        urls_results: Dict[str, list] = {}
+        for url in url_list:
+            urls_results[url] = []
+
+        for result in results:
+            url = result.get('threat', {}).get('url')
+            urls_results[url].append(result)
+
+        return urls_results
+
+
+    def url_command(client: Client, args: Dict[str, Any]) -> Union[List[CommandResults], CommandResults]:
+        """
+        url command: Returns URL details for a list of URL
+        """
+
+        url = argToList(args.get('url'))
+
+        result = client.url_request(client.client_body, url)
+
+        if not result:
+            dbot_score = Common.DBotScore(
+                indicator=url,
+                indicator_type=DBotScoreType.URL,
+                integration_name=INTEGRATION_NAME,
+                score=0,
+                reliability=client.reliability
+            )
+            url_standard_context = Common.URL(
+                url=url,
+                dbot_score=dbot_score
+            )
+            return CommandResults(
+                readable_output=f'No information was found for url {url}',
+                outputs_prefix=URL_OUTPUT_PREFIX,
+                outputs_key_field='IndicatorValue',
+                outputs=result,
+                indicator=url_standard_context
+            )
+
+        if result.get('StatusCode'):
+            handle_errors(result)
+
+        urls_data = arrange_results_to_urls(result.get('matches'), url)  # type: ignore
+
+        url_data_list = []
+        for url_key, url_data in urls_data.items():
+            if url_data:
+                dbot_score = Common.DBotScore(
+                    indicator=url_key,
+                    indicator_type=DBotScoreType.URL,
+                    integration_name=INTEGRATION_NAME,
+                    score=3,
+                    reliability=client.reliability
+                )
+                url_standard_context = Common.URL(
+                    url=url_key,
+                    dbot_score=dbot_score
+                )
+                url_data_list.append(CommandResults(
+                    readable_output=tableToMarkdown(f'Google Safe Browsing APIs - URL Query: {url_key}', url_data),
+                    outputs_prefix=URL_OUTPUT_PREFIX,
+                    outputs_key_field='IndicatorValue',
+                    outputs=url_data,
+                    indicator=url_standard_context
+                ))
+            else:
+                dbot_score = Common.DBotScore(
+                    indicator=url_key,
+                    indicator_type=DBotScoreType.URL,
+                    integration_name=INTEGRATION_NAME,
+                    score=0,
+                    reliability=client.reliability
+                )
+                url_standard_context = Common.URL(
+                    url=url_key,
+                    dbot_score=dbot_score
+                )
+                url_data_list.append(CommandResults(
+                    readable_output=f'No matches for URL {url_key}',
+                    outputs_prefix=URL_OUTPUT_PREFIX,
+                    outputs_key_field='IndicatorValue',
+                    outputs=result,
+                    indicator=url_standard_context
+                ))
+
+        return url_data_list
+
+
+    def build_base_url(params: Dict) -> str:
+        api_key = params.get('api_key')
+        base_url = params.get('url', '')
+
+        if not base_url.endswith('/'):
+            base_url += '/'
+
+        return f"{base_url}?key={api_key}"
+
+
+    def main() -> None:
+        params = demisto.params()
+
+        verify_certificate = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+
+        base_url = build_base_url(params)
+
+        reliability = params.get('integrationReliability')
+        reliability = reliability if reliability else DBotScoreReliability.B
+
+        demisto.debug(f'Command being called is {demisto.command()}')
+        try:
+            client = Client(
+                params=params,
+                base_url=base_url,
+                verify=verify_certificate,
+                proxy=proxy,
+                reliability=reliability)
+
+            if demisto.command() == 'test-module':
+                result = test_module(client)
+                return_results(result)
+
+            elif demisto.command() == 'url':
+                return_results(url_command(client, demisto.args()))
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # print the traceback
+            return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Google Safe Browsing v2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
