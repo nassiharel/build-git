@@ -1,0 +1,303 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 4.4.0
+    packID: CortexXDR
+    packName: Palo Alto Networks Cortex XDR - Investigation and Response
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook unisolates endpoints according to the endpoint ID that
+  is provided in the playbook input.
+id: Cortex XDR - Unisolate Endpoint
+inputs:
+- description: The endpoint ID that you want to unisolate.
+  key: Endpoint_ID
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Cortex XDR - Unisolate Endpoint
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 41d05f94-51a2-44cf-828b-58ed003b2470
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 41d05f94-51a2-44cf-828b-58ed003b2470
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 1470,
+          "y": 100
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "5"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: Cortex XDR - IR
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'.
+      id: 1dc90b7b-6380-4a1b-89df-0ada079bf854
+      iscommand: false
+      name: 'Is cortex XDR available '
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 1dc90b7b-6380-4a1b-89df-0ada079bf854
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1470,
+          "y": 260
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.Endpoint_ID
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: dae916a1-0c84-43c8-84f7-29f9cb88cb56
+      iscommand: false
+      name: Is there an endpoint to unisolate?
+      type: condition
+      version: -1
+    taskid: dae916a1-0c84-43c8-84f7-29f9cb88cb56
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1750,
+          "y": 460
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1dd236f7-ea7b-447a-8374-f5b9149e6f04
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 1dd236f7-ea7b-447a-8374-f5b9149e6f04
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1470,
+          "y": 1430
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id:
+        simple: ${inputs.Endpoint_ID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Reverses the isolation of an endpoint.
+      id: a0bb8b7b-a3ce-4e95-82d7-668bf269932c
+      iscommand: true
+      name: Unisolate endpoint
+      script: '|||xdr-unisolate-endpoint'
+      type: regular
+      version: -1
+    taskid: a0bb8b7b-a3ce-4e95-82d7-668bf269932c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2020,
+          "y": 1090
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id_list:
+        simple: ${inputs.Endpoint_ID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a list of endpoints, according to the passed filters. If there
+        are no filters, all endpoints are returned. Filtering by multiple fields will
+        be concatenated using AND condition (OR is not supported). Maximum result
+        set size is 100. Offset is the zero-based number of endpoint from the start
+        of the result set (start by counting from 0).
+      id: f6a832c3-2230-4dce-8b8c-3626ce33ecea
+      iscommand: true
+      name: Get endpoint status
+      script: '|||xdr-get-endpoints'
+      type: regular
+      version: -1
+    taskid: f6a832c3-2230-4dce-8b8c-3626ce33ecea
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2020,
+          "y": 640
+        }
+      }
+  "8":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: PaloAltoNetworksXDR.Endpoint.is_isolated
+          operator: isEqualString
+          right:
+            value:
+              simple: AGENT_ISOLATED
+      - - left:
+            iscontext: true
+            value:
+              simple: Endpoint.ID
+          operator: isEqualString
+          right:
+            iscontext: true
+            value:
+              simple: inputs.Endpoint_ID
+      label: "yes"
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4025aba5-c38e-4201-8db4-2a66add00693
+      iscommand: false
+      name: Is the endpoint is isolated?
+      type: condition
+      version: -1
+    taskid: 4025aba5-c38e-4201-8db4-2a66add00693
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2020,
+          "y": 860
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "3_5_no": 0.81,
+      "4_5_#default#": 0.24,
+      "8_5_#default#": 0.44,
+      "8_6_yes": 0.55
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1395,
+        "width": 930,
+        "x": 1470,
+        "y": 100
+      }
+    }
+  }
