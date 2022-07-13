@@ -1,0 +1,313 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: Alexa Rank Indicator v2
+  version: -1
+configuration:
+- defaultvalue: https://awis.api.alexa.com/api
+  display: Base API URL
+  name: base_url
+  required: true
+  type: 0
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: credentials
+  required: true
+  type: 9
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- additionalinfo: If the domain's Alexa rank is over this threshold, the domain is
+    marked as suspicious. If the rank is between the threshold for suspicious domains
+    and top domains, the domain is marked as unknown.
+  display: Rank Threshold For Suspicious Domain
+  name: suspicious_domain_threshold
+  required: false
+  type: 0
+- additionalinfo: If the domain's Alexa rank is under this threshold, the domain is
+    considered trusted and marked as good. If the rank is between the threshold for
+    suspicious domains and top domains, the domain is marked as unknown.
+  defaultvalue: "1000"
+  display: Rank Threshold For Top Domains
+  name: top_domain_threshold
+  required: true
+  type: 0
+- additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: A - Completely reliable
+  display: Source Reliability
+  name: integrationReliability
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.0.11
+    packID: Alexa
+    packName: Alexa Rank Indicator
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Alexa provides website ranking information that can be useful when determining
+  if a domain has a strong web presence.
+detaileddescription: "*Rank threshold for suspicious domain* - anything above this
+  rank is considered *suspicious*. *Rank threshold for top domains* - anything below
+  this rank is considered *trusted*. Note - If a domain has a rank above the top domain
+  threshold and below the suspicious domain threshold, it will be classified as *unknown.*\n\n\nTo
+  get an API key, go to: [AWIS API](https://awis.alexa.com/)\n1. If you do not already
+  have an AWS account, create an account. \n2. Subscribe to Alexa Web Information
+  Service in the AWS marketplace. \n3. Register your Alexa API account or log in to
+  an existing Alexa API account.\n2. Log in to [Alexa Web Information Service](https://awis.alexa.com/)\n3.
+  Copy the API Key.\n\n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/alexa-rank-indicator-v2)"
+display: Alexa Rank Indicator v2
+image: data:image/png;base64,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
+name: Alexa Rank Indicator v2
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: Domain(s) to search.
+      isArray: true
+      name: domain
+      required: true
+    description: Provides an Alexa ranking of the domain.
+    name: domain
+    outputs:
+    - contextPath: Domain.Name
+      description: The domain being checked.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: number
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: Alexa.Domain.Indicator
+      description: The domain being checked.
+      type: String
+    - contextPath: Alexa.Domain.Name
+      description: The domain being checked.
+      type: String
+    - contextPath: Alexa.Domain.Rank
+      description: Alexa rank as determined by Amazon.
+      type: String
+  dockerimage: demisto/python3:3.10.4.29342
+  runonce: false
+  script: |
+    register_module_line('Alexa Rank Indicator v2', 'start', __line__())
+
+
+
+
+    import requests
+    import traceback
+    from typing import Dict
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()  # pylint: disable=no-member
+
+    ''' CONSTANTS '''
+
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'  # ISO8601 format with UTC, default in XSOAR
+
+    ''' CLIENT CLASS '''
+
+
+    class Client(BaseClient):
+        def __init__(self, api_key: str,
+                     base_url: str,
+                     proxy: bool,
+                     verify: bool,
+                     reliability: str,
+                     top_domain_threshold: int,
+                     suspicious_domain_threshold: Optional[int]):
+            super().__init__(base_url=base_url,
+                             verify=verify,
+                             proxy=proxy)
+            if DBotScoreReliability.is_valid_type(reliability):
+                self.reliability = DBotScoreReliability.get_dbot_score_reliability_from_str(reliability)
+            else:
+                raise DemistoException("AlexaV2 error: Please provide a valid"
+                                       " value for the Source Reliability parameter.")
+            self.top_domain_threshold = top_domain_threshold
+            self.suspicious_domain_threshold = suspicious_domain_threshold
+            self.api_key = api_key
+
+        def http_request(self, params: Dict):
+            return self._http_request(method='GET',
+                                      headers={'x-api-key': self.api_key},
+                                      params=params)
+
+        def alexa_rank(self, domain: str) -> Dict:
+            params = {'Action': 'UrlInfo',
+                      'ResponseGroup': 'Rank',
+                      'Url': domain,
+                      'Output': 'json'}
+            return self.http_request(params=params)
+
+
+    ''' HELPER FUNCTIONS '''
+
+
+    def rank_to_context(domain: str,
+                        rank: Optional[int],
+                        top_domain_threshold: int,
+                        suspicious_domain_threshold: Optional[int],
+                        reliability: DBotScoreReliability):
+        if rank is None:
+            score = Common.DBotScore.NONE
+        elif rank < 0:
+            raise DemistoException(f'AlexaV2 error: {rank} is invalid. Rank should be positive')
+        elif 0 < rank <= top_domain_threshold:
+            score = Common.DBotScore.GOOD
+        elif suspicious_domain_threshold and rank > suspicious_domain_threshold:
+            score = Common.DBotScore.SUSPICIOUS
+        else:  # alexa_rank < client.threshold:
+            score = Common.DBotScore.NONE
+        dbot_score = Common.DBotScore(
+            indicator=domain,
+            indicator_type=DBotScoreType.DOMAIN,
+            reliability=reliability,
+            score=score
+        )
+        domain_standard_context = Common.Domain(
+            domain=domain,
+            dbot_score=dbot_score
+        )
+        return domain_standard_context
+
+
+    ''' COMMAND FUNCTIONS '''
+
+
+    def test_module(client: Client) -> str:
+        """Tests API connectivity and authentication'
+
+        Returning 'ok' indicates that the integration works like it is supposed to.
+        Connection to the service is successful.
+        Raises exceptions if something goes wrong.
+
+        Args (Client): a client to use
+
+        Return: 'ok' if test passed, anything else will fail the test.
+        """
+
+        try:
+            client.alexa_rank('google.com')
+            return 'ok'
+        except DemistoException as e:
+            if 'Forbidden' in str(e):
+                return 'Authorization Error: make sure API Key is correctly set'
+            raise e
+
+
+    def alexa_domain(client: Client, domains: List[str]) -> List[CommandResults]:
+        if not domains:
+            raise ValueError('AlexaV2 error: domain doesn\'t exists')
+        command_results: List[CommandResults] = []
+        for domain in domains:
+            result = client.alexa_rank(domain)
+            domain_res = demisto.get(result,
+                                     'Awis.Results.Result.Alexa.TrafficData.DataUrl')
+            if not domain_res or domain_res == '404':  # Not found on alexa
+                raise DemistoException('AlexaV2 error: Domain cannot be found')
+            domain_res = domain_res[:-1] if domain_res[-1] == '/' else domain_res
+            rank = demisto.get(result,
+                               'Awis.Results.Result.Alexa.TrafficData.Rank')
+            domain_standard_context: Common.Domain = rank_to_context(domain=domain_res,
+                                                                     rank=arg_to_number(rank),
+                                                                     suspicious_domain_threshold=client.suspicious_domain_threshold,
+                                                                     top_domain_threshold=client.top_domain_threshold,
+                                                                     reliability=client.reliability)
+
+            rank: str = rank if rank else 'Unknown'
+            result = {'Name': domain_res,
+                      'Indicator': domain_res,
+                      'Rank': rank}
+            table = {'Domain': domain_res,
+                     'Alexa Rank': rank,
+                     'Reputation': domain_standard_context.dbot_score.to_readable()}
+            readable = tableToMarkdown(f'Alexa Rank for {domain_res}', table, headers=list(table.keys()))
+            command_results.append(CommandResults(
+                outputs_prefix='Alexa.Domain',
+                outputs_key_field='Name',
+                outputs=result,
+                readable_output=readable,
+                indicator=domain_standard_context
+            ))
+        return command_results
+
+
+    ''' MAIN FUNCTION '''
+
+
+    def main() -> None:
+        params = demisto.params()
+        api_key = demisto.get(params, 'credentials.password')
+        base_api = params.get('base_url')
+        reliability = params.get('integrationReliability')
+        verify_certificate = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+        demisto.debug(f'Command being called is {demisto.command()}')
+        try:
+            suspicious_domain_threshold = arg_to_number(params.get('suspicious_domain_threshold', None),
+                                                        required=False,
+                                                        arg_name='suspicious_domain_threshold')
+            top_domain_threshold = arg_to_number(params.get('top_domain_threshold'),
+                                                 required=True,
+                                                 arg_name='top_domain_threshold')
+            if (suspicious_domain_threshold and suspicious_domain_threshold < 0)\
+                    or top_domain_threshold < 0:  # type: ignore
+                raise DemistoException(f'AlexaV2 error: All threshold values should be greater than 0.'
+                                       f'Suspicious domain threshold is {suspicious_domain_threshold}. '
+                                       f'Top domain threshold is {top_domain_threshold}.')
+            client = Client(
+                base_url=base_api,
+                verify=verify_certificate,
+                proxy=proxy,
+                api_key=api_key,
+                suspicious_domain_threshold=suspicious_domain_threshold,  # type: ignore
+                top_domain_threshold=top_domain_threshold,  # type: ignore
+                reliability=reliability)
+            if demisto.command() == 'test-module':
+                return_results(test_module(client))
+            elif demisto.command() == 'domain':
+                domains = demisto.args().get('domain')
+                return_results(alexa_domain(client, argToList(domains)))
+            else:
+                raise NotImplementedError(f'Command {demisto.command()} is not implemented.')
+
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # print the traceback
+            return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
+
+
+    ''' ENTRY POINT '''
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Alexa Rank Indicator v2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
