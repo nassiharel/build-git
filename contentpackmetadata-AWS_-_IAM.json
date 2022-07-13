@@ -1,0 +1,311 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"IT Services"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "IT Services",
+				"commands": [
+					{
+						"description": "Creates a new IAM user for your AWS account.",
+						"name": "aws-iam-create-user"
+					},
+					{
+						"description": "Retrieves information about the specified IAM user, including the user's creation date, path, unique ID, and ARN.",
+						"name": "aws-iam-get-user"
+					},
+					{
+						"description": "Lists the IAM users, returns all users in the AWS account.",
+						"name": "aws-iam-list-users"
+					},
+					{
+						"description": "Updates the name and/or the path of the specified IAM user.",
+						"name": "aws-iam-update-user"
+					},
+					{
+						"description": "Deletes the specified IAM user. The user must not belong to any groups or have any access keys, signing certificates, or attached policies.",
+						"name": "aws-iam-delete-user"
+					},
+					{
+						"description": "Changes the password for the specified IAM user.",
+						"name": "aws-iam-update-login-profile"
+					},
+					{
+						"description": "Creates a new iam group.",
+						"name": "aws-iam-create-group"
+					},
+					{
+						"description": "Lists all the IAM groups in the AWS account",
+						"name": "aws-iam-list-groups"
+					},
+					{
+						"description": "Lists the IAM groups that the specified IAM user belongs to.",
+						"name": "aws-iam-list-groups-for-user"
+					},
+					{
+						"description": "Adds the specified user to the specified group.",
+						"name": "aws-iam-add-user-to-group"
+					},
+					{
+						"description": "Creates a new AWS secret access key and corresponding AWS access key ID for the specified user. The default status for new keys is Active .",
+						"name": "aws-iam-create-access-key"
+					},
+					{
+						"description": "Changes the status of the specified access key from Active to Inactive, or vice versa. This operation can be used to disable a user's key as part of a key rotation workflow.",
+						"name": "aws-iam-update-access-key"
+					},
+					{
+						"description": "Returns information about the access key IDs associated with the specified IAM user.",
+						"name": "aws-iam-list-access-keys-for-user"
+					},
+					{
+						"description": "Lists all the managed policies that are available in your AWS account, including your own customer-defined managed policies and all AWS managed policies.",
+						"name": "aws-iam-list-policies"
+					},
+					{
+						"description": "Lists all IAM roles",
+						"name": "aws-iam-list-roles"
+					},
+					{
+						"description": "Attaches the specified managed policy to the specified IAM Entity.",
+						"name": "aws-iam-attach-policy"
+					},
+					{
+						"description": "Removes the specified managed policy from the specified IAM Entity.",
+						"name": "aws-iam-detach-policy"
+					},
+					{
+						"description": "Deletes the password for the specified IAM user, which terminates the user's ability to access AWS services through the AWS Management Console.",
+						"name": "aws-iam-delete-login-profile"
+					},
+					{
+						"description": "Deletes the specified IAM group. The group must not contain any users or have any attached policies.",
+						"name": "aws-iam-delete-group"
+					},
+					{
+						"description": "Removes the specified user from the specified group.",
+						"name": "aws-iam-remove-user-from-group"
+					},
+					{
+						"description": "Creates a password for the specified user, giving the user the ability to access AWS services through the AWS Management Console.",
+						"name": "aws-iam-create-login-profile"
+					},
+					{
+						"description": "Deletes the access key pair associated with the specified IAM user.",
+						"name": "aws-iam-delete-access-key"
+					},
+					{
+						"description": "Creates a new instance profile.",
+						"name": "aws-iam-create-instance-profile"
+					},
+					{
+						"description": "Deletes the specified instance profile. The instance profile must not have an associated role.",
+						"name": "aws-iam-delete-instance-profile"
+					},
+					{
+						"description": "Lists all the instance profiles tin your AWS account.",
+						"name": "aws-iam-list-instance-profiles"
+					},
+					{
+						"description": "Adds the specified IAM role to the specified instance profile. An instance profile can contain only one role, and this limit cannot be increased. You can remove the existing role and then add a different role to an instance profile.",
+						"name": "aws-iam-add-role-to-instance-profile"
+					},
+					{
+						"description": "Removes the specified IAM role from the specified EC2 instance profile.",
+						"name": "aws-iam-remove-role-from-instance-profile"
+					},
+					{
+						"description": "Lists the instance profiles that have the specified associated IAM role.",
+						"name": "aws-iam-list-instance-profiles-for-role"
+					},
+					{
+						"description": "Retrieves information about the specified instance profile.",
+						"name": "aws-iam-get-instance-profile"
+					},
+					{
+						"description": "Retrieves information about the specified role.",
+						"name": "aws-iam-get-role"
+					},
+					{
+						"description": "Deletes the specified role. The role must not have any policies attached.",
+						"name": "aws-iam-delete-role"
+					},
+					{
+						"description": "Creates a new role for your AWS account.",
+						"name": "aws-iam-create-role"
+					},
+					{
+						"description": "Creates a new managed policy for your AWS account.  This operation creates a policy version with a version identifier of v1 and sets v1 as the policy's default version.",
+						"name": "aws-iam-create-policy"
+					},
+					{
+						"description": "Deletes the specified managed policy.  Before you can delete a managed policy, you must first detach the policy from all users, groups, and roles that it is attached to. In addition you must delete all the policy's versions.",
+						"name": "aws-iam-delete-policy"
+					},
+					{
+						"description": "Creates a new version of the specified managed policy. To update a managed policy, you create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must delete an existing version using DeletePolicyVersion before you create a new version.  Optionally, you can set the new version as the policy's default version. The default version is the version that is in effect for the IAM users, groups, and roles to which the policy is attached.",
+						"name": "aws-iam-create-policy-version"
+					},
+					{
+						"description": "Deletes the specified version from the specified managed policy.  You cannot delete the default version from a policy using this API. To delete the default version from a policy, use DeletePolicy . To find out which version of a policy is marked as the default version, use ListPolicyVersions .",
+						"name": "aws-iam-delete-policy-version"
+					},
+					{
+						"description": "Lists information about the versions of the specified managed policy, including the version that is currently set as the policy's default version.",
+						"name": "aws-iam-list-policy-versions"
+					},
+					{
+						"description": "Retrieves information about the specified version of the specified managed policy, including the policy document.",
+						"name": "aws-iam-get-policy-version"
+					},
+					{
+						"description": "Sets the specified version of the specified policy as the policy's default (operative) version.  This operation affects all users, groups, and roles that the policy is attached to.",
+						"name": "aws-iam-set-default-policy-version"
+					},
+					{
+						"description": "Creates an alias for your AWS account.",
+						"name": "aws-iam-create-account-alias"
+					},
+					{
+						"description": "Deletes the specified AWS account alias.",
+						"name": "aws-iam-delete-account-alias"
+					},
+					{
+						"description": "Get AWS account's password policy",
+						"name": "aws-iam-get-account-password-policy"
+					},
+					{
+						"description": "Create/update password policy",
+						"name": "aws-iam-update-account-password-policy"
+					},
+					{
+						"description": "Lists the names of the inline policies that are embedded in the specified IAM role.",
+						"name": "aws-iam-list-role-policies"
+					},
+					{
+						"description": "Retrieves the specified inline policy document that is embedded with the specified IAM role.",
+						"name": "aws-iam-get-role-policy"
+					},
+					{
+						"description": "Retrieves information about the specified managed policy, including the policy's default version and the total number of IAM users, groups, and roles to which the policy is attached.",
+						"name": "aws-iam-get-policy"
+					},
+					{
+						"description": "Lists the names of the inline policies embedded in the specified IAM user.",
+						"name": "aws-iam-list-user-policies"
+					},
+					{
+						"description": "Lists all managed policies that are attached to the specified IAM user.",
+						"name": "aws-iam-list-attached-user-policies"
+					},
+					{
+						"description": "Lists all managed policies that are attached to the specified IAM group.",
+						"name": "aws-iam-list-attached-group-policies"
+					},
+					{
+						"description": "Retrieves the user login profile information for AWS management consle",
+						"name": "aws-iam-get-user-login-profile"
+					}
+				],
+				"description": "Amazon Web Services Identity and Access Management (IAM)",
+				"name": "AWS - Identity and Access Management"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Enrich AWS IAM user information from AWS Identity and Access Management.\n- List user access keys\n- Get user information\n",
+				"name": "AWS IAM - User enrichment"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-23T17:51:48Z",
+	"currentVersion": "1.1.10",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Amazon Web Services Identity and Access Management (IAM)",
+	"downloads": 3818,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "AWS-IAM",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/AWS-IAM/AWS-IAM_image.png",
+			"name": "AWS - Identity and Access Management"
+		}
+	],
+	"itemVersion": "1.1.10",
+	"keywords": [],
+	"legacy": true,
+	"name": "AWS - IAM",
+	"packID": "AWS-IAM",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-02-08T10:15:49Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
