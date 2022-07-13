@@ -1,0 +1,56 @@
+commonfields:
+  id: BreachConfirmationHTML
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.11
+    packID: Compliance
+    packName: Compliance
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: BreachConfirmationHTML
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('BreachConfirmationHTML', 'start', __line__())
+
+
+
+  incident = demisto.incidents()
+  query = incident[0].get('CustomFields', {}).get('breachconfirmation', "Pending Confirmation")
+  Color = 'green'
+
+  if query == "Confirm":
+      color = 'red'
+      html = "<div style='color:red;'><h2>Confirmed</h2></div>"
+
+  elif query == "Not Confirm":
+      color = 'red'
+      html = "<div style='color:blue;'><h2>Not Confirmed</h2></div>"
+
+  else:
+      html = "<div style='color:green;'><h2>Pending Confirmation</h2></div>"
+
+
+  demisto.results({
+      'ContentsFormat': formats['html'],
+      'Type': entryTypes['note'],
+      'Contents': html
+  })
+
+  register_module_line('BreachConfirmationHTML', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- dynamic-section
+type: python
