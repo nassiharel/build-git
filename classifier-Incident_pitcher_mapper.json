@@ -1,0 +1,75 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "ec4f34cf-6090-45dc-8393-e27075b0c447",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Pitcher": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Alert Category": {
+					"simple": "rand_string1"
+				},
+				"Alert Name": {
+					"simple": " rand_string2"
+				},
+				"Destination IP": {
+					"complex": {
+						"accessor": "[1]",
+						"filters": [],
+						"root": "destination_ips",
+						"transformers": []
+					}
+				},
+				"Device Name": {
+					"simple": "agent_os"
+				},
+				"Device Username": {
+					"simple": "username"
+				},
+				"OS": {
+					"complex": {
+						"filters": [],
+						"root": "agent_os",
+						"transformers": []
+					}
+				},
+				"URLs": {
+					"simple": "url"
+				},
+				"details": {
+					"complex": {
+						"filters": [],
+						"root": "details",
+						"transformers": []
+					}
+				}
+			}
+		}
+	},
+	"name": "Incident pitcher mapper",
+	"nameRaw": "Incident pitcher mapper",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
