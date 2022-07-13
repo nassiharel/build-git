@@ -1,0 +1,459 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.5
+    packID: epo
+    packName: McAfee ePO
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Discover endpoints that are not using the latest McAfee AV signatures.
+id: McAfee ePO Endpoint Compliance Playbook v2
+inputs: []
+name: McAfee ePO Endpoint Compliance Playbook v2
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8cf2a521-26b3-421b-84c1-16f39c530e39
+      iscommand: false
+      name: start_task
+      type: start
+      version: -1
+    taskid: 8cf2a521-26b3-421b-84c1-16f39c530e39
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": -140,
+          "y": -97
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      repos:
+        simple: ${repo}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieve ePO's current DAT version from the local repository.
+      id: 224a05cb-0c21-4ec7-8cfc-2cd615e05475
+      iscommand: true
+      name: Retrieve ePO's current DAT version
+      script: '|||epo-get-current-dat'
+      type: regular
+      version: -1
+    taskid: 224a05cb-0c21-4ec7-8cfc-2cd615e05475
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 123,
+          "y": 50
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "No":
+      - "9"
+      "Yes":
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      repoversions:
+        simple: ${repoversions}
+      requireddatversion:
+        simple: "-1"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: A comma-separated list of systems on which an out-of-date DAT file
+        is in use.
+      id: e2011131-7697-4654-8f6e-1f18bdd71264
+      iscommand: false
+      name: Are any endpoints outdated and using an older DAT version?
+      type: condition
+      version: -1
+    taskid: e2011131-7697-4654-8f6e-1f18bdd71264
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -140,
+          "y": 229
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "No":
+      - "7"
+      "Yes":
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      data:
+        simple: ${faultyendpoints}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: A comma-separated list of systems on which an out-of-date DAT file
+        is in use.
+      id: d7153b32-ce01-4a70-862c-0dfdbb451f22
+      iscommand: false
+      name: Are any endpoints faulty and dangerously outdated?
+      type: condition
+      version: -1
+    taskid: d7153b32-ce01-4a70-862c-0dfdbb451f22
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 313,
+          "y": 553
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Isolate dangerous systems from the network.
+      id: 8e9daa5d-4914-45a9-8583-44f2f265e66d
+      iscommand: false
+      name: Isolate dangerous systems from network
+      type: regular
+      version: -1
+    taskid: 8e9daa5d-4914-45a9-8583-44f2f265e66d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 598,
+          "y": 890
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      description:
+        simple: Out of date ePO endpoints to handle
+      severity:
+        simple: "3"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ServiceNow
+      description: |-
+        This script is used to wrap the generic create-record command in ServiceNow.
+        You can add fields that you want to create the record with, as script arguments or in the
+        code and work with the records easily.
+      id: 4de68abd-5feb-4675-8d4e-65adf0088d12
+      iscommand: false
+      name: Open ServiceNow ticket for outdated Endpoints
+      script: ServiceNowCreateIncident
+      type: regular
+      version: -1
+    taskid: 4de68abd-5feb-4675-8d4e-65adf0088d12
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 598,
+          "y": 1063
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      systems:
+        simple: ${outdatedEndpoints}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Runs a client task to update the DAT file.
+      id: 449547fa-58e4-413b-8fda-4f3e132815bf
+      iscommand: true
+      name: Trigger signature update on outdated endpoints
+      script: '|||epo-update-client-dat'
+      type: regular
+      version: -1
+    taskid: 449547fa-58e4-413b-8fda-4f3e132815bf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 62,
+          "y": 723
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Close the incident.
+      id: 1e9e589b-27c5-4ef3-8e29-880608932aca
+      iscommand: true
+      name: Close the investigation
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 1e9e589b-27c5-4ef3-8e29-880608932aca
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -14,
+          "y": 1258
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks the latest DAT file version available in the public McAfee
+        repository.
+      id: 323cc036-914e-4480-8668-68824d9d8c38
+      iscommand: true
+      name: Get McAfee latest DAT Version
+      script: '|||epo-get-latest-dat'
+      type: regular
+      version: -1
+    taskid: 323cc036-914e-4480-8668-68824d9d8c38
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -394,
+          "y": 50
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      contextKey:
+        simple: outdatedEndpoints
+      entryId:
+        simple: ${lastCompletedTaskEntries.[0]}
+      listSeperator:
+        simple: ','
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Takes the comments of a given entry ID and stores them in the incident
+        context under a provided context key. For accessing the last executed task's
+        comments, provide ${lastCompletedTaskEntries.[0]} as the value for the entryId
+        input parameter.
+      id: 1aefb0d9-d070-4d01-83d8-6a31c9b4c7a0
+      iscommand: false
+      name: Store system names to context key outdatedEndpoints
+      script: commentsToContext
+      type: regular
+      version: -1
+    taskid: 1aefb0d9-d070-4d01-83d8-6a31c9b4c7a0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 313,
+          "y": 401
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      contextKey:
+        simple: endpointsToIsolate
+      entryId:
+        simple: ${lastCompletedTaskEntries.[0]}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Takes the comments of a given entry ID and stores them in the incident
+        context, under a provided context key. For accessing the last executed task's
+        comments, provide ${lastCompletedTaskEntries.[0]} as the value for the entryId
+        input parameter.
+      id: d5b513c3-5dbd-46cb-8f2b-f54baefcaca1
+      iscommand: false
+      name: Store system names to context key endpointsToIsolate
+      script: commentsToContext
+      type: regular
+      version: -1
+    taskid: d5b513c3-5dbd-46cb-8f2b-f54baefcaca1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 598,
+          "y": 723
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: High
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 84263b6b-c581-44a1-8a00-ad51cb016098
+      iscommand: true
+      name: Set incident severity to High
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 84263b6b-c581-44a1-8a00-ad51cb016098
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 598,
+          "y": 1258
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "3_11_Yes": 0.4,
+      "3_9_No": 0.12
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1450,
+        "width": 1372,
+        "x": -394,
+        "y": -97
+      }
+    }
+  }
