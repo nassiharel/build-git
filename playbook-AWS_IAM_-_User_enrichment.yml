@@ -1,0 +1,193 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 1.1.10
+    packID: AWS-IAM
+    packName: AWS - IAM
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |
+  Enrich AWS IAM user information from AWS Identity and Access Management.
+  - List user access keys
+  - Get user information
+id: AWS IAM - User enrichment
+inputs:
+- description: Name of the AWS IAM user to enrich.
+  key: username
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: AWS IAM - User enrichment
+outputs:
+- contextPath: AWS.IAM.Users.UserName
+  description: The friendly name identifying the user.
+- contextPath: AWS.IAM.Users.UserId
+  description: The stable and unique string identifying the user.
+- contextPath: AWS.IAM.Users.Arn
+  description: The Amazon Resource Name (ARN) that identifies the user.
+- contextPath: AWS.IAM.Users.CreateDate
+  description: The date and time when the user was created.
+- contextPath: AWS.IAM.Users.Path
+  description: The path to the user.
+- contextPath: AWS.IAM.Users.PasswordLastUsed
+  description: The date and time,  when the user's password was last used to sign
+    in to an AWS website.
+- contextPath: AWS.IAM.Users.AccessKeys.AccessKeyId
+  description: The ID for this access key.
+- contextPath: AWS.IAM.Users.AccessKeys.Status
+  description: The status of the access key. Active means the key is valid for API
+    calls; Inactive means it is not.
+- contextPath: AWS.IAM.Users.AccessKeys.CreateDate
+  description: The date when the access key was created.
+- contextPath: AWS.IAM.Users.AccessKeys.UserName
+  description: The name of the IAM user that the key is associated with.
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bf88e387-af78-4e87-8bb3-68cba5afb624
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: bf88e387-af78-4e87-8bb3-68cba5afb624
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 410,
+          "y": -20
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      userName:
+        complex:
+          root: inputs.username
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: AWS - IAM
+      description: Retrieves information about the specified IAM user, including the
+        user's creation date, path, unique ID, and ARN.
+      id: 6375c9c5-a24c-4469-8b62-21f382d3d5a5
+      iscommand: true
+      name: AWS IAM - Get user information
+      script: AWS - IAM|||aws-iam-get-user
+      type: regular
+      version: -1
+    taskid: 6375c9c5-a24c-4469-8b62-21f382d3d5a5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 640,
+          "y": 120
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      userName:
+        complex:
+          root: inputs.username
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: AWS - IAM
+      description: Returns information about the access key IDs associated with the
+        specified IAM user.
+      id: 05067a56-0350-4f75-8075-85ccd9c98f0c
+      iscommand: true
+      name: 'AWS IAM -  List user access keys   '
+      script: AWS - IAM|||aws-iam-list-access-keys-for-user
+      type: regular
+      version: -1
+    taskid: 05067a56-0350-4f75-8075-85ccd9c98f0c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 170,
+          "y": 120
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8841cc35-4eda-42cc-82a9-fb7806cb3642
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 8841cc35-4eda-42cc-82a9-fb7806cb3642
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 410,
+          "y": 290
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 375,
+        "width": 850,
+        "x": 170,
+        "y": -20
+      }
+    }
+  }
