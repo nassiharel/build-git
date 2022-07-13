@@ -1,0 +1,791 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.6.0
+    itemVersion: 2.2.1
+    packID: CommonPlaybooks
+    packName: Common Playbooks
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |
+  This playbook handles false positive alerts.
+  It creates an alert exclusion or alert exception, or adds a file to an allow list based on the alert fields and playbook inputs.
+id: Handle False Positive Alerts
+inputs:
+- description: Should we automatically close false positive alerts? Specify true/false.
+  key: ShouldCloseAutomatically
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The host IP from the alert.
+  key: sourceIP
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: hostip
+      root: alert
+- description: The username from the alert.
+  key: username
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: username
+      root: alert
+- description: The alert name.
+  key: alertName
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: name
+      root: alert
+- description: The file SHA256 from the alert.
+  key: FileSHA256
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: initiatorsha256
+      root: alert
+name: Handle False Positive Alerts
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cf2feb0d-c5f6-45ae-8dbc-e4a7cd7ccdae
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: cf2feb0d-c5f6-45ae-8dbc-e4a7cd7ccdae
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": -1330,
+          "y": 640
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      comment:
+        simple: Added by Cortex XSIAM.
+      filterObject:
+        simple: |2-
+              {"filter": {
+                  "AND": [
+                    {
+                      "SEARCH_FIELD": "action_local_ip",
+                      "SEARCH_TYPE": "CONTAINS",
+                      "SEARCH_VALUE": "${inputs.sourceIP}"
+                    },
+                    {
+                      "SEARCH_FIELD": "alert_name",
+                      "SEARCH_TYPE": "CONTAINS",
+                      "SEARCH_VALUE": "${inputs.alertName}"
+                    },
+                    {
+                      "SEARCH_FIELD": "alert_source",
+                      "SEARCH_TYPE": "CONTAINS",
+                      "SEARCH_VALUE": "FW"
+                    }
+                  ]
+                }
+          }
+      name:
+        complex:
+          accessor: name
+          root: alert
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add the source IP to Alert Exclusion list.
+      id: be9db9ac-960d-4191-8d6a-d11b21bb1b91
+      iscommand: true
+      name: Add the source IP to Alert Exclusion list
+      script: '|||core-add-exclusion'
+      type: regular
+      version: -1
+    taskid: be9db9ac-960d-4191-8d6a-d11b21bb1b91
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -2810,
+          "y": 1410
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      Manual Alert Exception:
+      - "4"
+      "Yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Should the playbook add the file to the allowed list automatically?
+      id: 3fdcb924-95fb-4c80-813a-3b5bf700c0d0
+      iscommand: false
+      name: Add the file to the allowed list automatically?
+      type: condition
+      version: -1
+    taskid: 3fdcb924-95fb-4c80-813a-3b5bf700c0d0
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -690,
+          "y": 1100
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Cortex XDR - IR
+      description: Create an alert exception for the alert coming from the XDR agent.
+      id: 49b07556-1ae6-477c-8833-dfed9369e9c7
+      iscommand: false
+      name: Manual - Create alert exception
+      type: regular
+      version: -1
+    taskid: 49b07556-1ae6-477c-8833-dfed9369e9c7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -400,
+          "y": 1270
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: alert.sourceBrand
+          operator: isEqualString
+          right:
+            value:
+              simple: ANALYTICS
+        - left:
+            iscontext: true
+            value:
+              simple: alert.sourceBrand
+          operator: isEqualString
+          right:
+            value:
+              simple: ANALYTICS_BIOC
+        - left:
+            iscontext: true
+            value:
+              simple: alert.sourceBrand
+          operator: isEqualString
+          right:
+            value:
+              simple: FW
+        - left:
+            iscontext: true
+            value:
+              simple: alert.sourceBrand
+          operator: isEqualString
+          right:
+            value:
+              simple: MAGNIFIER
+      label: Analytics
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: alert.sourceBrand
+          operator: isEqualString
+          right:
+            value:
+              simple: TRAPS
+      label: XDR Agent
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      Analytics:
+      - "12"
+      XDR Agent:
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check the alert source - XDR Analytics or XDR Agent alerts.
+      id: efcbcb8a-07f7-491d-8da6-d235296ff517
+      iscommand: false
+      name: Check the alert source
+      type: condition
+      version: -1
+    taskid: efcbcb8a-07f7-491d-8da6-d235296ff517
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -1330,
+          "y": 930
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Close the alert.
+      id: fb1c3fc8-9407-4586-8190-2593c65d77fe
+      iscommand: false
+      name: Alert Closing
+      type: title
+      version: -1
+    taskid: fb1c3fc8-9407-4586-8190-2593c65d77fe
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1620,
+          "y": 1580
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e6664a3d-c123-4599-8777-7d7a7b6bf75f
+      iscommand: false
+      name: 'Add Exception or Exclusion '
+      type: title
+      version: -1
+    taskid: e6664a3d-c123-4599-8777-7d7a7b6bf75f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1330,
+          "y": 790
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.ShouldCloseAutomatically
+                transformers:
+                - operator: toLowerCase
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "11"
+      "yes":
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Should close alert automatically?
+      id: fcaf7697-272b-44a2-818a-f162cd853de0
+      iscommand: false
+      name: Should close alert automatically?
+      type: condition
+      version: -1
+    taskid: fcaf7697-272b-44a2-818a-f162cd853de0
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -1620,
+          "y": 1740
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeNotes:
+        simple: Closed by XSIAM as False Positive.
+      closeReason:
+        simple: Resolved - False Positive
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Close the alert as false positive.
+      id: fc5dca23-a528-4f14-81bc-e4603a63a335
+      iscommand: true
+      name: Close alert as FP
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: fc5dca23-a528-4f14-81bc-e4603a63a335
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -1820,
+          "y": 1910
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d672a63d-6655-4cbf-803b-9ea8a548b351
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: d672a63d-6655-4cbf-803b-9ea8a548b351
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1330,
+          "y": 2080
+        }
+      }
+  "12":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: alert.sourceBrand
+          operator: isEqualString
+          right:
+            value:
+              simple: FW
+      label: FW
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: alert.sourceBrand
+          operator: isEqualString
+          right:
+            value:
+              simple: ANALYTICS_BIOC
+      - - left:
+            iscontext: true
+            value:
+              simple: alert.details
+          operator: containsString
+          right:
+            value:
+              simple: aws
+      label: AWS IAM
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "17"
+      AWS IAM:
+      - "15"
+      FW:
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check the alert's origin - FW, AWS, etc.
+      id: 96a66899-9dab-4e68-8ab2-debbc2318d3b
+      iscommand: false
+      name: Check alert origin
+      type: condition
+      version: -1
+    taskid: 96a66899-9dab-4e68-8ab2-debbc2318d3b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -2030,
+          "y": 1100
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9b761c81-0c80-4852-87db-9613a3225648
+      iscommand: false
+      name: NGFW Alerts
+      type: title
+      version: -1
+    taskid: 9b761c81-0c80-4852-87db-9613a3225648
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -2810,
+          "y": 1270
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      comment:
+        simple: Added by Cortex XSIAM.
+      hash_list:
+        complex:
+          root: inputs.FileSHA256
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Adds requested files to allow list if they are not already on block
+        list or allow list.
+      id: dd742739-f827-441e-8270-761550d10287
+      iscommand: true
+      name: Add file hash to allowed list
+      script: '|||core-allowlist-files'
+      type: regular
+      version: -1
+    taskid: dd742739-f827-441e-8270-761550d10287
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -1050,
+          "y": 1270
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d489f8e9-9873-410e-818a-551690ea114d
+      iscommand: false
+      name: AWS IAM Alerts
+      type: title
+      version: -1
+    taskid: d489f8e9-9873-410e-818a-551690ea114d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -2180,
+          "y": 1270
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      comment:
+        simple: Added by Cortex XSIAM.
+      filterObject:
+        simple: |-
+          {"filter": {
+                  "AND": [
+                    {
+                      "SEARCH_FIELD": "agent_ip_addresses",
+                      "SEARCH_TYPE": "CONTAINS",
+                      "SEARCH_VALUE": "${inputs.HostIP}"
+                    },
+                    {
+                      "SEARCH_FIELD": "actor_effective_username",
+                      "SEARCH_TYPE": "CONTAINS",
+                      "SEARCH_VALUE": "${inputs.username}"
+                    },
+                    {
+                      "SEARCH_FIELD": "alert_name",
+                      "SEARCH_TYPE": "CONTAINS",
+                      "SEARCH_VALUE": "${inputs.alertName}"
+                    }
+                  ]
+                }
+          }
+      name:
+        complex:
+          accessor: name
+          root: alert
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add the host IP and username to Alert Exclusion list.
+      id: 55f04aa2-8ca8-4069-8c10-fe377a4ff6a9
+      iscommand: true
+      name: Add the host IP and username to Alert Exclusion list
+      script: '|||core-add-exclusion'
+      type: regular
+      version: -1
+    taskid: 55f04aa2-8ca8-4069-8c10-fe377a4ff6a9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -2180,
+          "y": 1410
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 709a8173-a716-41ae-8ba5-f410b1097caa
+      iscommand: false
+      name: SHA256
+      type: title
+      version: -1
+    taskid: 709a8173-a716-41ae-8ba5-f410b1097caa
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1620,
+          "y": 1270
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      comment:
+        simple: Added by Cortex XSIAM.
+      filterObject:
+        simple: |-
+          {"filter": {
+                  "AND": [
+                    {
+                      "SEARCH_FIELD": "actor_process_image_sha256",
+                      "SEARCH_TYPE": "CONTAINS",
+                      "SEARCH_VALUE": "${inputs.FileSHA256}"
+                    },
+                    {
+                      "SEARCH_FIELD": "alert_name",
+                      "SEARCH_TYPE": "CONTAINS",
+                      "SEARCH_VALUE": "${inputs.alertName}"
+                    }
+                  ]
+                }
+              }
+      name:
+        complex:
+          accessor: name
+          root: alert
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Add the file SHA256 to Alert Exclusion list.
+      id: f16eee8e-e537-458e-8a5f-9e3afa34b0af
+      iscommand: true
+      name: Add the file SHA256 to Alert Exclusion list
+      script: '|||core-add-exclusion'
+      type: regular
+      version: -1
+    taskid: f16eee8e-e537-458e-8a5f-9e3afa34b0af
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -1620,
+          "y": 1400
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "5_11_#default#": 0.32,
+      "9_10_yes": 0.42,
+      "9_11_#default#": 0.48
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1505,
+        "width": 2790,
+        "x": -2810,
+        "y": 640
+      }
+    }
+  }
