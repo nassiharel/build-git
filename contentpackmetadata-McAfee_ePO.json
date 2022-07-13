@@ -1,0 +1,341 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Endpoint"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Deprecated. Use the \"McAfe ePO v2 integration command epo-find-system\" instead.\n\nReturn system info",
+				"name": "EPOFindSystem",
+				"tags": [
+					"epo"
+				]
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Displays help (information) for ePO commands. If no command argument is specified, returns all ePO commands.",
+						"name": "epo-help"
+					},
+					{
+						"description": "Checks the latest available DAT file version in the public McAfee repository.",
+						"name": "epo-get-latest-dat"
+					},
+					{
+						"description": "Checks the existing DAT file version in the ePO repository.",
+						"name": "epo-get-current-dat"
+					},
+					{
+						"description": "Executes the ePO command. Receives the mandatory 'command' argument, and other optional arguments. Run the 'epo-help' command to get a list of available commands. You can control the response format to be text instead of the default JSON format using resp_type=text. You can also specify the 'headers' argument to filter table headers. Example/:/ !epo-command command=system.find searchText=10.0.0.1 headers=EPOBranchNode.AutoID,EPOComputerProperties.ComputerName",
+						"name": "epo-command"
+					},
+					{
+						"description": "Runs a client task to update the DAT file on the given endpoints.",
+						"name": "epo-update-client-dat"
+					},
+					{
+						"description": "Triggers a server task in specific ePO servers to retrieve the latest signatures from the updated server.",
+						"name": "epo-update-repository"
+					},
+					{
+						"description": "Returns a system tree group.",
+						"name": "epo-get-system-tree-group"
+					},
+					{
+						"description": "Finds computers within a specified group in the McAfee ePO system tree.",
+						"name": "epo-find-systems"
+					},
+					{
+						"description": "Finds systems in the McAfee ePO system tree.",
+						"name": "epo-find-system"
+					},
+					{
+						"description": "Wakes up an agent.",
+						"name": "epo-wakeup-agent"
+					},
+					{
+						"description": "Applies a tag to the specified host names.",
+						"name": "epo-apply-tag"
+					},
+					{
+						"description": "Clears a tag from the specified host names.",
+						"name": "epo-clear-tag"
+					},
+					{
+						"description": "List tags that contain the searchText. If no searchText is specified, list all tags available in the ePO system.",
+						"name": "epo-list-tag"
+					},
+					{
+						"description": "Returns the ePO table of the table argument that is specified. If no table argument is specified, returns all ePO tables.",
+						"name": "epo-get-tables"
+					},
+					{
+						"description": "Queries an ePO table.",
+						"name": "epo-query-table"
+					},
+					{
+						"description": "Returns the ePO version.",
+						"name": "epo-get-version"
+					},
+					{
+						"description": "Moves a system to a different group in the McAfee ePO.",
+						"name": "epo-move-system"
+					},
+					{
+						"description": "Executes the ePO command. Run the 'epo-help' command to get a list of available commands. For example/:/  !epo-advanced-command command=clienttask.find commandArgs=searchText:On-Demand. You can also specify the 'headers' argument to filter table headers, for example/:/ !epo-command command=system.find searchText=10.0.0.1 headers=EPOBranchNode.AutoID,EPOComputerProperties.ComputerName.",
+						"name": "epo-advanced-command"
+					},
+					{
+						"description": "Finds client tasks.",
+						"name": "epo-find-client-task"
+					},
+					{
+						"description": "Finds policy.",
+						"name": "epo-find-policy"
+					},
+					{
+						"description": "Assigns a policy to the specified group or resets the group's inheritance for the specified policy",
+						"name": "epo-assign-policy-to-group"
+					},
+					{
+						"description": "Assigns a policy to a supplied list of systems or resets the systems' inheritance for the specified policy.",
+						"name": "epo-assign-policy-to-system"
+					},
+					{
+						"description": "List the issue for the ID that is specified. If no ID is specified, list all issues in the McAfee ePO system.",
+						"name": "epo-list-issues"
+					},
+					{
+						"description": "Delete an issue.",
+						"name": "epo-delete-issue"
+					},
+					{
+						"description": "Create an issue.",
+						"name": "epo-create-issue"
+					},
+					{
+						"description": "Update an issue.",
+						"name": "epo-update-issue"
+					}
+				],
+				"description": "McAfee ePolicy Orchestrator",
+				"name": "McAfee ePO v2"
+			},
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Prints help (information) for ePO commands. If no command argument is specified, returns all ePO commands.",
+						"name": "epo-help"
+					},
+					{
+						"description": "Checks the latest DAT file in the McAfee repository.",
+						"name": "epo-get-latest-dat"
+					},
+					{
+						"description": "Checks the existing DAT file version in ePO.",
+						"name": "epo-get-current-dat"
+					},
+					{
+						"description": "Runs a client task to update the DAT file.",
+						"name": "epo-update-client-dat"
+					},
+					{
+						"description": "Triggers a server task in specific ePO servers to retrieve the latest signatures from the update server.",
+						"name": "epo-update-repository"
+					},
+					{
+						"description": "Returns system tree groups.",
+						"name": "epo-get-system-tree-group"
+					},
+					{
+						"description": "Finds computers within a specified group in the ePO tree.",
+						"name": "epo-find-systems"
+					},
+					{
+						"description": "Executes the ePO command. Receives the mandatory ''command'' argument, and other optional arguments. Run the ''epo-help'' command to get a list of available commands. You can also specify the ''headers'' argument to filter table headers. Example/:/ !epo-command command=system.find searchText=10.0.0.1 headers=EPOBranchNode.AutoID,EPOComputerProperties.ComputerName",
+						"name": "epo-command"
+					},
+					{
+						"description": "Executes the ePO command. Run the ''epo-help'' command to get a list of available commands. For example/:/  !epo-advanced-command command=clienttask.find commandArgs=searchText:On-demand. You can also specify the ''headers'' argument to filter table headers, for example/:/ !epo-command command=system.find searchText=10.0.0.1 headers=EPOBranchNode.AutoID,EPOComputerProperties.ComputerName.",
+						"name": "epo-advanced-command"
+					},
+					{
+						"description": "Wakes up an agent.",
+						"name": "epo-wakeup-agent"
+					},
+					{
+						"description": "Applies a tag to hostnames.",
+						"name": "epo-apply-tag"
+					},
+					{
+						"description": "Clears a tag from hostnames.",
+						"name": "epo-clear-tag"
+					},
+					{
+						"description": "Queries an ePO table.",
+						"name": "epo-query-table"
+					},
+					{
+						"description": "Returns an ePO table.",
+						"name": "epo-get-tables"
+					},
+					{
+						"description": "Finds systems in the system tree.",
+						"name": "epo-find-system"
+					},
+					{
+						"description": "Gets the ePO version. This requires global admin permissions.",
+						"name": "epo-get-version"
+					},
+					{
+						"description": "Moves a system to a different group.",
+						"name": "epo-move-system"
+					}
+				],
+				"description": "Deprecated. Use McAfee ePO v2 instead.",
+				"name": "McAfee ePO (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Perform a check on ePO endpoints to see if any endpoints are unmanaged or lost connectivity with ePO and take steps to return to a valid state.",
+				"name": "McAfee ePO Endpoint Connectivity Diagnostics Playbook v2"
+			},
+			{
+				"description": "Discover endpoints that are not using the latest McAfee AV signatures.",
+				"name": "McAfee ePO Endpoint Compliance Playbook v2"
+			},
+			{
+				"description": "Ensures that ePO servers are updated to the latest McAfee published AV signatures (DAT file version).",
+				"name": "McAfee ePO Repository Compliance Playbook v2"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:41:05Z",
+	"currentVersion": "2.0.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		},
+		"ServiceNow": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.3.9",
+			"name": "ServiceNow"
+		}
+	},
+	"deprecated": false,
+	"description": "McAfee ePolicy Orchestrator",
+	"downloads": 2580,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "epo",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/epo/epo_image.png",
+			"name": "McAfee ePO (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/epo/McAfeeePOv2_image.png",
+			"name": "McAfee ePO v2"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNow_image.png",
+			"name": "ServiceNow (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowCMDB_image.png",
+			"name": "ServiceNow CMDB"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowIAM_image.png",
+			"name": "ServiceNow IAM"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowv2_image.png",
+			"name": "ServiceNow v2"
+		}
+	],
+	"itemVersion": "2.0.5",
+	"keywords": [],
+	"legacy": true,
+	"name": "McAfee ePO",
+	"packID": "epo",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-04-19T09:23:16Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
