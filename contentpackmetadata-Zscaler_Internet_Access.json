@@ -1,0 +1,215 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Network Security"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Network Security",
+				"commands": [
+					{
+						"description": "Adds the specified URLs to the block list.",
+						"name": "zscaler-blacklist-url"
+					},
+					{
+						"description": "Looks up the classification for the each of the specified URLs.",
+						"name": "url"
+					},
+					{
+						"description": "Looks up the classification for each of the specified IP addresses.",
+						"name": "ip"
+					},
+					{
+						"description": "Removes the specified URLs from the block list.",
+						"name": "zscaler-undo-blacklist-url"
+					},
+					{
+						"description": "Adds the specified URLs to the allow list.",
+						"name": "zscaler-whitelist-url"
+					},
+					{
+						"description": "Removes the specified URLs from the allow list.",
+						"name": "zscaler-undo-whitelist-url"
+					},
+					{
+						"description": "Removes the specified IP addresses from the allow list.",
+						"name": "zscaler-undo-whitelist-ip"
+					},
+					{
+						"description": "Adds the specified IP address to the allow list.",
+						"name": "zscaler-whitelist-ip"
+					},
+					{
+						"description": "Removes the specified IP addresses from the allow list.",
+						"name": "zscaler-undo-blacklist-ip"
+					},
+					{
+						"description": "Adds the specified IP addresses to the allow list.",
+						"name": "zscaler-blacklist-ip"
+					},
+					{
+						"description": "Adds URLs to the specified category.",
+						"name": "zscaler-category-add-url"
+					},
+					{
+						"description": "Adds IP address to the specified category.",
+						"name": "zscaler-category-add-ip"
+					},
+					{
+						"description": "Removes URLs from the specified category.",
+						"name": "zscaler-category-remove-url"
+					},
+					{
+						"description": "Removes IP address from the specified category.",
+						"name": "zscaler-category-remove-ip"
+					},
+					{
+						"description": "Retrieves a list of all categories.",
+						"name": "zscaler-get-categories"
+					},
+					{
+						"description": "Retrieves the Zscaler default block list.",
+						"name": "zscaler-get-blacklist"
+					},
+					{
+						"description": "Retrieves the Zscaler default allow list.",
+						"name": "zscaler-get-whitelist"
+					},
+					{
+						"description": "Retrieves a full or summary report of the file that was analyzed by Sandbox. The file is represented by the specified MD5 hash.",
+						"name": "zscaler-sandbox-report"
+					},
+					{
+						"description": "Manually create a Zscaler login session. This command will also try to log out of the previous session.",
+						"name": "zscaler-login"
+					},
+					{
+						"description": "Logs out of the current Zscaler session.",
+						"name": "zscaler-logout"
+					},
+					{
+						"description": "Activates the changes executed by other Zscaler commands in this session.",
+						"name": "zscaler-activate-changes"
+					},
+					{
+						"description": "Gets information on the number of unique URLs that are currently provisioned for your organization as well as how many URLs you can add before reaching that number.",
+						"name": "zscaler-url-quota"
+					},
+					{
+						"description": "Get Zscaler users",
+						"name": "zscaler-get-users"
+					},
+					{
+						"description": "Updates the user information for the specified ID.",
+						"name": "zscaler-update-user"
+					},
+					{
+						"description": "Get a list of departments. It can be searched by name.",
+						"name": "zscaler-get-departments"
+					},
+					{
+						"description": "Gets a list of groups",
+						"name": "zscaler-get-usergroups"
+					}
+				],
+				"description": "Zscaler is a cloud security solution built for performance and flexible scalability. This integration enables you to manage URL and IP address allow lists and block lists, manage and update categories, get Sandbox reports, and manually log in, log out, and activate changes in a Zscaler session.",
+				"name": "Zscaler Internet Access"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "This playbook blocks domains using Zscaler.\nThe playbook checks whether the Zscaler integration is enabled, whether the Domain input has been provided and if so, blocks the domain.",
+				"name": "Block Domain - Zscaler"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-15T10:54:12Z",
+	"currentVersion": "1.2.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Zscaler is a cloud security solution built for performance and flexible scalability.",
+	"downloads": 4066,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Zscaler",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Zscaler/Zscaler_image.png",
+			"name": "Zscaler Internet Access"
+		}
+	],
+	"itemVersion": "1.2.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "Zscaler Internet Access",
+	"packID": "Zscaler",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-05-08T21:25:23Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
