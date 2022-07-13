@@ -1,0 +1,478 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.3
+    packID: PaloAltoNetworks_PAN_OS_EDL_Management
+    packName: Palo Alto Networks PAN-OS EDL Management
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook parses a CSV file with IOCs and blocks them using Palo
+  Alto Networks External Dynamic Lists.
+id: Block IOCs from CSV - External Dynamic List
+inputs:
+- description: The column number that contains IPs. (First column is column 0).
+  key: IPColumn
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The column number that contains domains. (First column is column 0).
+  key: DomainColumn
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The column number that contains hashes. (First column is column 0).
+  key: FileColumn
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: IP address list from the instance context with which to override the
+    remote file.
+  key: IPListName
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Demisto Remediation - IP EDL
+- description: Domain list from the instance context with which to override the remote
+    file.
+  key: DomainListName
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Demisto Remediation - Domain EDL
+- description: EDL server IP address.
+  key: EDLServerIP
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Log Forwarding object name.
+  key: LogForwarding
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    This input establishes whether to commit the configuration automatically.
+    Yes - Commit automatically.
+    No - Commit manually.
+  key: AutoCommit
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "No"
+- description: Either pre-rulebase or post-rulebase,  according to the rule structure.
+  key: pre-post-rulebase
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: pre-rulebase
+- description: |-
+    The position of the rule in the ruleset. Valid values are:
+      * top
+      * bottom
+      * before
+      * after
+  key: rule-position
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: top
+name: Block IOCs from CSV - External Dynamic List
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: df8911f6-01d1-466a-8d01-d6196375945f
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: df8911f6-01d1-466a-8d01-d6196375945f
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    reputationcalc: 2
+    scriptarguments:
+      domains:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.DomainColumn
+              operator: isNotEmpty
+          root: inputs.DomainColumn
+      entryID:
+        complex:
+          accessor: EntryID
+          root: File
+      file:
+        complex:
+          accessor: Name
+          root: File
+      hashes:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.FileColumn
+              operator: isNotEmpty
+          root: inputs.FileColumn
+      ips:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: inputs.IPColumn
+              operator: isNotEmpty
+          root: inputs.IPColumn
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This script will parse a CSV file and place the unique IPs, Domains
+        and Hashes into the context.
+      id: 03ec5404-fb6f-48fc-879d-ae8411b5d753
+      iscommand: false
+      name: Parse indicators CSV
+      script: ParseCSV
+      type: regular
+      version: -1
+    taskid: 03ec5404-fb6f-48fc-879d-ae8411b5d753
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 360
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: File.Info
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: csv
+                root: File
+          operator: isExists
+        - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: File.Info
+                    operator: containsString
+                    right:
+                      value:
+                        simple: text/csv
+                root: File
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there is a CSV file to parse.
+      id: d6cc76f7-2d52-4258-8aa5-a53edf1d6c08
+      iscommand: false
+      name: Is there a CSV to parse?
+      type: condition
+      version: -1
+    taskid: d6cc76f7-2d52-4258-8aa5-a53edf1d6c08
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 190
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AutoCommit:
+        complex:
+          root: inputs.AutoCommit
+      EDLServerIP:
+        complex:
+          root: inputs.EDLServerIP
+      IP:
+        complex:
+          accessor: Address
+          root: IP
+      IPListName:
+        complex:
+          root: inputs.IPListName
+      LogForwarding:
+        complex:
+          root: inputs.LogForwarding
+      ip-pre-post-rulebase:
+        complex:
+          root: inputs.pre-post-rulebase
+      ip-rule-position:
+        complex:
+          root: inputs.rule-position
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0f8b61fe-bd84-439a-8acc-51a166db74b8
+      iscommand: false
+      name: PAN-OS - Block IP and URL - External Dynamic List
+      playbookName: PAN-OS - Block IP and URL - External Dynamic List
+      type: playbook
+      version: -1
+    taskid: 0f8b61fe-bd84-439a-8acc-51a166db74b8
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 690,
+          "y": 910
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: dc5e29d5-1804-4572-8cda-ae15cb80cf18
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: dc5e29d5-1804-4572-8cda-ae15cb80cf18
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1080
+        }
+      }
+  "10":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Address
+                root: IP
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Name
+                root: Domain
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: MD5
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: File.EntryID
+                    operator: isNotExists
+                root: File
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "6"
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there are indicators to block.
+      id: 8c250efa-29b1-4041-8494-26b5bff72aab
+      iscommand: false
+      name: Are there indicators to block?
+      type: condition
+      version: -1
+    taskid: 8c250efa-29b1-4041-8494-26b5bff72aab
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 530
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AutoCommit:
+        complex:
+          root: inputs.AutoCommit
+      Domain:
+        complex:
+          accessor: Name
+          root: Domain
+      DomainListName:
+        complex:
+          root: inputs.DomainListName
+      EDLServerIP:
+        complex:
+          root: inputs.EDLServerIP
+      LogForwarding:
+        complex:
+          root: inputs.LogForwarding
+      pre-post-rulebase:
+        complex:
+          root: inputs.pre-post-rulebase
+      rule-position:
+        complex:
+          root: inputs.rule-position
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e4adf03b-652b-462b-8eda-f925a74df230
+      iscommand: false
+      name: PAN-OS - Block Domain - External Dynamic List
+      playbookId: PAN-OS - Block Domain - External Dynamic List
+      type: playbook
+      version: -1
+    taskid: e4adf03b-652b-462b-8eda-f925a74df230
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1140,
+          "y": 910
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "10_5_yes": 0.59,
+      "10_7_#default#": 0.42,
+      "4_3_yes": 0.55,
+      "4_7_#default#": 0.27
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1095,
+        "width": 1070,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
