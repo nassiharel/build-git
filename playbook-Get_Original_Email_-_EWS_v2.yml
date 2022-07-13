@@ -1,0 +1,388 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.11.9
+    packID: EWS
+    packName: EWS
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This v2 playbook retrieves the original email in a thread as an EML file (and not an email object as in the previous version) by using the EWS v2 or EWSO365 integration.
+  It also reduces the number of tasks to perform the fetch action.
+  Note: You must have the necessary eDiscovery permissions in the EWS integration to execute a global search.
+id: Get Original Email - EWS v2
+inputs:
+- description: The target mailbox to retrieve the EML file from.
+  key: TargetMailbox
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The InReplyTo header in the forwarded email.
+  key: MessageID
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Get Original Email - EWS v2
+outputs:
+- contextPath: File
+  description: The original email as an EML file.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5607d1c6-85b0-4181-8b10-bb3a5b113c6f
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 5607d1c6-85b0-4181-8b10-bb3a5b113c6f
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 122.5,
+          "y": 90
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: EWS v2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if an integration brand is available.
+      id: 43203523-8fe7-4403-8c1b-ba175d568d59
+      iscommand: false
+      name: Is EWS v2 enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 43203523-8fe7-4403-8c1b-ba175d568d59
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -90,
+          "y": 390
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d2eca123-db35-4b27-88d8-a8b77ffd6784
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: d2eca123-db35-4b27-88d8-a8b77ffd6784
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 122.5,
+          "y": 1570
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.TargetMailbox
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.MessageID
+          operator: isExists
+      label: Inputs-Exist
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      Inputs-Exist:
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Verifies the required input values exist for retrieving the original
+        email.
+      id: 15ad973f-06c8-417d-8f63-9fcb9dfc7bef
+      iscommand: false
+      name: Verify required inputs
+      type: condition
+      version: -1
+    taskid: 15ad973f-06c8-417d-8f63-9fcb9dfc7bef
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 122.5,
+          "y": 640
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message-id:
+        complex:
+          root: inputs.MessageID
+      selected-fields:
+        simple: message_id
+      target-mailbox:
+        complex:
+          root: inputs.TargetMailbox
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches for items in the specified mailbox. Specific permissions
+        are needed to search in a target mailbox other than the default.
+      id: b069057c-c912-4f3c-874f-8427e1a5a131
+      iscommand: true
+      name: Search for messages by MessageID
+      script: '|||ews-search-mailbox'
+      type: regular
+      version: -1
+    taskid: b069057c-c912-4f3c-874f-8427e1a5a131
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 122.5,
+          "y": 885
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: itemId
+                root: EWS.Items
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Verifies that an email object with a message ID matching the InReplyTo
+        ID of the forwarded email was found.
+      id: 2c433705-840b-4ad0-8214-ed8db8588d35
+      iscommand: false
+      name: Was a matching email found?
+      type: condition
+      version: -1
+    taskid: 2c433705-840b-4ad0-8214-ed8db8588d35
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 122.5,
+          "y": 1090
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      item-id:
+        complex:
+          accessor: itemId
+          root: EWS.Items
+      target-mailbox:
+        complex:
+          root: inputs.TargetMailbox
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Retrieves an item by item ID and uploads its content as an EML
+        file.
+      id: eaaa6c31-f4f3-4c0e-8b72-e5bb226c3c5b
+      iscommand: true
+      name: Get original email as eml
+      script: '|||ews-get-items-as-eml'
+      type: regular
+      version: -1
+    taskid: eaaa6c31-f4f3-4c0e-8b72-e5bb226c3c5b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 122.5,
+          "y": 1360
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4bfdaffd-f35c-4305-8c60-1d734b46e014
+      iscommand: false
+      name: Check integrations
+      type: title
+      version: -1
+    taskid: 4bfdaffd-f35c-4305-8c60-1d734b46e014
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 122.5,
+          "y": 230
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: EWSO365
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if an integration brand is available.
+      id: b3af9bc1-18c4-4022-8ac7-4f41e030b055
+      iscommand: false
+      name: Is EWSO365 enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: b3af9bc1-18c4-4022-8ac7-4f41e030b055
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 350,
+          "y": 390
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "1_2_#default#": 0.25,
+      "9_2_#default#": 0.23
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1545,
+        "width": 820,
+        "x": -90,
+        "y": 90
+      }
+    }
+  }
