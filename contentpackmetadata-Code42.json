@@ -1,0 +1,318 @@
+{
+	"author": "Code42",
+	"authorImage": "content/packs/Code42/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Endpoint"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Code42 SecurityAlert State",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Code42 Alert Type",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Code42 Severity",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Code42 File Events",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Code42 SecurityAlert Description",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Code42 SecurityAlert Timestamp",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "Code42 Username",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Exfiltrated Files",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "Code42 SecurityAlert Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Code42 SecurityAlert ID",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Code42 Security Alert",
+				"playbook": "Code42 Exfiltration Playbook",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Endpoint",
+				"commands": [
+					{
+						"description": "Searches for file events by JSON query, hash, username, device hostname, exfiltration type, or a combination of parameters. At least one argument must be passed in the command. If a JSON argument is passed, it will be used to the exclusion of other parameters, otherwise parameters will be combined with an AND clause.",
+						"name": "code42-securitydata-search"
+					},
+					{
+						"description": "Retrieve alert details by alert ID",
+						"name": "code42-alert-get"
+					},
+					{
+						"description": "Resolves a Code42 Security alert.",
+						"name": "code42-alert-resolve"
+					},
+					{
+						"description": "Adds a user to the Departing Employee List.",
+						"name": "code42-departingemployee-add"
+					},
+					{
+						"description": "Removes a user from the Departing Employee List.",
+						"name": "code42-departingemployee-remove"
+					},
+					{
+						"description": "Get all employees on the Departing Employee List.",
+						"name": "code42-departingemployee-get-all"
+					},
+					{
+						"description": "Adds a user from the High Risk Employee List.",
+						"name": "code42-highriskemployee-add"
+					},
+					{
+						"description": "Removes a user from the High Risk Employee List.",
+						"name": "code42-highriskemployee-remove"
+					},
+					{
+						"description": "Get all employees on the High Risk Employee List.",
+						"name": "code42-highriskemployee-get-all"
+					},
+					{
+						"description": "Associates risk tags with the employee with the given username.",
+						"name": "code42-highriskemployee-add-risk-tags"
+					},
+					{
+						"description": "Disassociates risk tags from the user with the given username.",
+						"name": "code42-highriskemployee-remove-risk-tags"
+					},
+					{
+						"description": "Creates a Code42 user.",
+						"name": "code42-user-create"
+					},
+					{
+						"description": "Blocks a user in Code42.  A blocked user is not allowed to log in or restore files. Backups will continue if the user is still active.",
+						"name": "code42-user-block"
+					},
+					{
+						"description": "Deactivate a user in Code42; signing them out of their devices. Backups discontinue for a deactivated user, and their archives go to cold storage.",
+						"name": "code42-user-deactivate"
+					},
+					{
+						"description": "Removes a block, if one exists, on the user with the given user ID. Unblocked users are allowed to log in and restore.",
+						"name": "code42-user-unblock"
+					},
+					{
+						"description": "Reactivates the user with the given username.",
+						"name": "code42-user-reactivate"
+					},
+					{
+						"description": "Adds a Code42 user to a legal hold matter.",
+						"name": "code42-legalhold-add-user"
+					},
+					{
+						"description": "Removes a Code42 user from a legal hold matter.",
+						"name": "code42-legalhold-remove-user"
+					},
+					{
+						"description": "Downloads a file from Code42.",
+						"name": "code42-download-file"
+					},
+					{
+						"description": "Retrieve high risk employee details.",
+						"name": "code42-highriskemployee-get"
+					},
+					{
+						"description": "Retrieve departing employee details.",
+						"name": "code42-departingemployee-get"
+					}
+				],
+				"description": "Use the Code42 integration to identify potential data exfiltration from insider threats while speeding investigation and response by providing fast access to file events and metadata across physical and cloud environments.",
+				"name": "Code42 (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Code42 Security Alert"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "This playbook searches for files via Code42 security events by either MD5 or SHA256 hash. The data is output to the Code42.SecurityData context for use.",
+				"name": "Code42 File Search"
+			},
+			{
+				"description": "The Code42 Exfiltration playbook acts on Code42 Security Alerts, retrieves file event data, and allows security teams to remediate file exfiltration events by revoking access rights to cloud files or containing endpoints.",
+				"name": "Code42 Exfiltration Playbook"
+			},
+			{
+				"description": "This playbook downloads a file via Code42 by either MD5 or SHA256 hash.",
+				"name": "Code42 File Download"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-08-02T09:29:30Z",
+	"currentVersion": "2.0.13",
+	"definitionId": "",
+	"dependencies": {
+		"Active_Directory_Query": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.4.10",
+			"name": "Active Directory Query"
+		},
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.33",
+			"name": "Common Types"
+		},
+		"CrowdStrikeFalcon": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.7.4",
+			"name": "CrowdStrike Falcon"
+		},
+		"Jira": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.0",
+			"name": "Atlassian Jira"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the Code42 integration to identify potential data exfiltration from insider threats while speeding investigation and response by providing fast access to file events and metadata across physical and cloud environments.",
+	"downloads": 1200,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Code42",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Code42/Code42_image.png",
+			"name": "Code42"
+		},
+		{
+			"imagePath": "content/packs/Active_Directory_Query/ActiveDirectoryQueryv2_image.png",
+			"name": "Active Directory Query v2"
+		},
+		{
+			"imagePath": "content/packs/Jira/jira-v2_image.png",
+			"name": "Atlassian Jira v2"
+		},
+		{
+			"imagePath": "content/packs/Jira/JiraEventCollector_image.png",
+			"name": "Jira Event Collector"
+		},
+		{
+			"imagePath": "content/packs/CrowdStrikeFalcon/CrowdstrikeFalcon_image.png",
+			"name": "CrowdStrike Falcon"
+		}
+	],
+	"itemVersion": "2.0.13",
+	"keywords": [],
+	"legacy": true,
+	"name": "Code42",
+	"packID": "Code42",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Code42 integrates with Palo Alto Networks Cortex XSOAR (previously Demisto) to provide accelerated incident response and automated remediation to potential file exfiltration from insiders happening across endpoints, email, cloud and SaaS applications. The Code42 exfiltration playbook in Cortex XSOAR investigates potential file exfiltration and provides fast access to file events and metadata across physical and cloud environments.\r\n\r\nCode42 together with Cortex XSOAR enables security teams to scale, standardize and accelerate their overall incident response process for Insider Risk, so they can quickly detect and respond to data risk when employees or temporary workers leave your organization.\r\n- Identify potential data exfiltration and insider risk, while speeding investigation and response by providing fast access to file events and metadata across physical and cloud environments.\r\n- Accelerate and standardize incident escalation workflows for insider threats throughout the employee lifecycle.\r\n- Automate steps within the employee offboarding process by triggering a configurable lookback of an employee’s historic file movements for manager review.\r\n- Right-size response to insider risk at scale, whether that be through automated action, alerting the employee’s manager for corrective conversation, or placing a user on legal hold.\r\n- Remotely add employees to, or remove employees from, Code42 risk detection lenses for departing employees or high-risk users, or to legal hold from within Cortex XSOAR.\r\n- Leverage hundreds of Cortex XSOAR third-party product integrations to coordinate response across security functions based on insights from Code42.\r\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "",
+		"url": "https://support.code42.com/Administrator/Cloud/Monitoring_and_managing"
+	},
+	"tags": [
+		"Partner Spotlight"
+	],
+	"toServerVersion": "",
+	"updated": "2022-02-14T15:44:31Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
