@@ -1,0 +1,288 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.6.0
+    itemVersion: 2.2.1
+    packID: CommonPlaybooks
+    packName: Common Playbooks
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook handles all the recovery actions available with Cortex XSIAM, including the following tasks:
+  * Unisolate endpoint
+  * Restore quarantined file
+
+  Note: The playbook inputs enable manipulating the execution flow; read the input descriptions for details.
+id: Recovery Plan
+inputs:
+- description: Set to True to cancel the endpoint isolation.
+  key: unIsolateEndpoint
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "true"
+- description: Set to True to release the quarantined file.
+  key: releaseFile
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "false"
+- description: The endpoint ID.
+  key: endpointID
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The file hash.
+  key: FileHash
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Recovery Plan
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6664776c-7209-42a0-8272-5f7f66756511
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 6664776c-7209-42a0-8272-5f7f66756511
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 40
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.unIsolateEndpoint
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Whether to unisolate the endpoint.
+      id: 82bb4625-493c-4e79-8ba2-9ded7a609000
+      iscommand: false
+      name: Should unisolate the endpoint?
+      type: condition
+      version: -1
+    taskid: 82bb4625-493c-4e79-8ba2-9ded7a609000
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 170,
+          "y": 200
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id:
+        complex:
+          root: inputs.endpointID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Reverses the isolation of an endpoint.
+      id: f44d89fc-f4c3-4c8b-84f1-c219fe4544ad
+      iscommand: true
+      name: Unisolate endpoint
+      script: '|||core-unisolate-endpoint'
+      type: regular
+      version: -1
+    taskid: f44d89fc-f4c3-4c8b-84f1-c219fe4544ad
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 170,
+          "y": 400
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 10b17a6b-93a9-4d5a-8d84-7950f294732a
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 10b17a6b-93a9-4d5a-8d84-7950f294732a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 570
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.releaseFile
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Whether to restore the quarantined file.
+      id: 1f8e95ae-1cf7-44c0-896b-576fb895a635
+      iscommand: false
+      name: Should restore the quarantined file?
+      type: condition
+      version: -1
+    taskid: 1f8e95ae-1cf7-44c0-896b-576fb895a635
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 730,
+          "y": 200
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      endpoint_id:
+        complex:
+          root: inputs.endpointID
+      file_hash:
+        complex:
+          root: inputs.FileHash
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Restores a quarantined file on requested endpoints.
+      id: 80ff52ba-235e-49e9-8813-e4f79b1bd407
+      iscommand: true
+      name: Restore file
+      script: '|||core-restore-file'
+      type: regular
+      version: -1
+    taskid: 80ff52ba-235e-49e9-8813-e4f79b1bd407
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 730,
+          "y": 400
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "1_2_yes": 0.51,
+      "1_3_#default#": 0.54,
+      "4_3_#default#": 0.54,
+      "4_5_yes": 0.43
+    },
+    "paper": {
+      "dimensions": {
+        "height": 595,
+        "width": 940,
+        "x": 170,
+        "y": 40
+      }
+    }
+  }
