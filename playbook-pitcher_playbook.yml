@@ -1,0 +1,128 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 5eae129a-43e5-44e5-8177-70c529c72174
+inputs: []
+name: pitcher playbook
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cfefa974-4a19-4270-8cdf-10b6a504c927
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: cfefa974-4a19-4270-8cdf-10b6a504c927
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      the_string:
+        simple: hi there, I'm pitcher
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Sharon's Incident Pitcher
+      description: return string in language b
+      id: 691e2590-2c0b-4121-87ae-bd6372ed44bd
+      iscommand: true
+      name: language-b-me
+      script: Sharon's Incident Pitcher|||language-b-me
+      type: regular
+      version: -1
+    taskid: 691e2590-2c0b-4121-87ae-bd6372ed44bd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      file_name:
+        simple: palo rules!
+      url:
+        simple: http://www.paloaltonetworks.com
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Rasterize
+      description: Converts the contents of a URL to an image file or a PDF file.
+      id: 848555e5-4a8a-46ef-8102-f6d0475e9601
+      iscommand: true
+      name: rasterize
+      script: Rasterize|||rasterize
+      type: regular
+      version: -1
+    taskid: 848555e5-4a8a-46ef-8102-f6d0475e9601
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 410
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 455,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
