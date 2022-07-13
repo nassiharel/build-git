@@ -1,0 +1,212 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Copies a file from this incident to the specified incident. The file is recorded as an entry in the specified incident’s War Room.",
+				"name": "DemistoUploadFileV2",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Groups all tasks for a specific incident according to the task headers (titles).",
+				"name": "GetTasksWithSections",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Deprecated. Use DemistoUploadFileV2 instead.",
+				"name": "DemistoUploadFile",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Create a new list",
+				"name": "DemistoCreateList",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Leaves all investigations that the user is part of (clears out the incidents in the left pane). Incidents that the user owns will remain in the left pane. Requires Demisto REST API integration to be configured for the server.",
+				"name": "DemistoLeaveAllInvestigations",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Get all tasks for specific incident by the given state.",
+				"name": "DemistoGetIncidentTasksByState",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Send invitation to join Demisto",
+				"name": "DemistoSendInvite",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Creates markdown tables based on information from the GetTasksWithSection command.",
+				"name": "SetIRProceduresMarkdown",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Deprecated. Use the *DemistoUploadFileV2* script instead. Copies a file from this incident to the specified incident. The file is uploaded as an attachment to the specified incident’s Summary page, and recorded as an entry in the War Room.",
+				"name": "DemistoUploadFileToIncident",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Link two or more incidents",
+				"name": "DemistoLinkIncidents",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Gets Demisto Log Bundle to war room",
+				"name": "DemistoLogsBundle",
+				"tags": [
+					"DemistoAPI"
+				]
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "send HTTP POST request",
+						"name": "demisto-api-post"
+					},
+					{
+						"description": "send HTTP GET requests",
+						"name": "demisto-api-get"
+					},
+					{
+						"description": "send HTTP PUT request",
+						"name": "demisto-api-put"
+					},
+					{
+						"description": "send HTTP DELETE request",
+						"name": "demisto-api-delete"
+					},
+					{
+						"description": "Download files from Demisto server",
+						"name": "demisto-api-download"
+					},
+					{
+						"description": "Send HTTP Multipart request to upload files to Demisto server",
+						"name": "demisto-api-multipart"
+					},
+					{
+						"description": "Delete Demisto incidents",
+						"name": "demisto-delete-incidents"
+					}
+				],
+				"description": "Use Demisto REST APIs",
+				"name": "Demisto REST API"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-15T08:20:12Z",
+	"currentVersion": "1.3.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.5",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Use Demisto REST APIs",
+	"downloads": 17241,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "DemistoRESTAPI",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/DemistoRESTAPI/DemistoRESTAPI_image.png",
+			"name": "Demisto REST API"
+		}
+	],
+	"itemVersion": "1.3.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "Demisto REST API",
+	"packID": "DemistoRESTAPI",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-06-22T17:13:14Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3157401",
+	"videos": []
+}
