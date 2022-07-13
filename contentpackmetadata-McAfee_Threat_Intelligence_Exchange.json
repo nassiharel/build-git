@@ -1,0 +1,149 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Retrieves the reputations for the specified hash. Can be \"MD5\", \"SHA1\", or \"SHA256\".",
+						"name": "file"
+					},
+					{
+						"description": "Sets the “Enterprise” reputation (trust level) of a specified file. Permissions are required to invoke this method. See the 'How-to' in instance instruction.",
+						"name": "tie-set-file-reputation"
+					},
+					{
+						"description": "Retrieves the set of systems which have referenced (typically executed) the specified file.",
+						"name": "tie-file-references"
+					}
+				],
+				"description": "Connect to McAfee TIE using the McAfee DXL client.",
+				"name": "McAfee Threat Intelligence Exchange"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Hunt for sightings of MD5, SHA1 and/or SHA256 hashes on endpoints, using McAfee TIE (requires ePO as well).\n\nInput:\n* Hash (default, takes all deferent hashes from context)\n\nOutput:\n* All agents that files with \"Hash\" has been executed on (TIE)\n* Enrich Agents info from ePO",
+				"name": "Search Endpoints By Hash - TIE"
+			},
+			{
+				"description": "Hunt for sightings of MD5, SHA1 and/or SHA256 hashes on endpoints, using McAfee TIE (requires ePO as well).\n\nInput:\n* Hash (default, takes all deferent hashes from context)\n\nOutput:\n* All agents that files with \"Hash\" has been executed on (TIE)\n* Enrich Agents info from ePO",
+				"name": "TIE - IOC Hunt"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:42:30Z",
+	"currentVersion": "1.0.4",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		},
+		"epo": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.0.5",
+			"name": "McAfee ePO"
+		}
+	},
+	"deprecated": false,
+	"description": "Connect to McAfee TIE using the McAfee DXL client.",
+	"downloads": 1752,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "McAfee-TIE",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/McAfee-TIE/McAfeeThreatIntelligenceExchange_image.png",
+			"name": "McAfee Threat Intelligence Exchange"
+		},
+		{
+			"imagePath": "content/packs/epo/epo_image.png",
+			"name": "McAfee ePO (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/epo/McAfeeePOv2_image.png",
+			"name": "McAfee ePO v2"
+		}
+	],
+	"itemVersion": "1.0.4",
+	"keywords": [],
+	"legacy": true,
+	"name": "McAfee Threat Intelligence Exchange",
+	"packID": "McAfee-TIE",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-02-01T10:20:39Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
