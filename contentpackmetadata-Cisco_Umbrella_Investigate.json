@@ -1,0 +1,221 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Returns the category of a domain. e.g. domain=amazon.com returns Ecommerce/Shopping",
+						"name": "umbrella-domain-categorization"
+					},
+					{
+						"description": "Returns the category of a domain. e.g. domain=amazon.com returns Ecommerce/Shopping",
+						"name": "investigate-umbrella-domain-categorization"
+					},
+					{
+						"description": "Get a list of related domains back and returns a list of co-occurences for the specified domain. A co-occurrence is when two or more domains are being accessed by the same users within a small window of time. Being a co-occurrence isn't necessarily a bad thing, legitimate sites co-occur with each other as a part of normal web activity. However, unusual or suspicious co-occurence can provide additional information regarding attacks",
+						"name": "umbrella-domain-co-occurrences"
+					},
+					{
+						"description": "Get a list of related domains back and returns a list of co-occurences for the specified domain. A co-occurrence is when two or more domains are being accessed by the same users within a small window of time. Being a co-occurrence isn't necessarily a bad thing, legitimate sites co-occur with each other as a part of normal web activity. However, unusual or suspicious co-occurence can provide additional information regarding attacks",
+						"name": "investigate-umbrella-domain-co-occurrences"
+					},
+					{
+						"description": "This will return a list of domain names that have been frequently seen requested b around the same time (up to 60 seconds before or after) as the given domain name, but that are not frequently associated with other domain names.",
+						"name": "umbrella-domain-related"
+					},
+					{
+						"description": "This will return a list of domain names that have been frequently seen requested b around the same time (up to 60 seconds before or after) as the given domain name, but that are not frequently associated with other domain names.",
+						"name": "investigate-umbrella-domain-related"
+					},
+					{
+						"description": "This contains multiple scores or security features, each of which can be used to determine relevant datapoints to build insight on the reputation or security risk posed by the site. See security information about this specific domain at https://investigate-api.readme.io/docs/security-information-for-a-domain-1",
+						"name": "umbrella-domain-security"
+					},
+					{
+						"description": "This contains multiple scores or security features, each of which can be used to determine relevant datapoints to build insight on the reputation or security risk posed by the site. See security information about this specific domain at https://investigate-api.readme.io/docs/security-information-for-a-domain-1",
+						"name": "investigate-umbrella-domain-security"
+					},
+					{
+						"description": "The DNS database can be used to query the history that Umbrella has seen for a given domain. The most common use case is to obtain the RRs (Resource Record) history for a given domain, passing in the record query type as a parameter, to help build intelligence around an domain.",
+						"name": "umbrella-domain-dns-history"
+					},
+					{
+						"description": "The DNS database can be used to query the history that Umbrella has seen for a given domain. The most common use case is to obtain the RRs (Resource Record) history for a given domain, passing in the record query type as a parameter, to help build intelligence around an domain.",
+						"name": "investigate-umbrella-domain-dns-history"
+					},
+					{
+						"description": "The DNS database can be used to query the history that Umbrella has seen for a given IP address. The most common use case is to obtain the DNS Resource Record (RR) history for a given IP, passing in the record query type as a parameter, to help build intelligence around an IP or a range of IPs. The information provided is from within the last 90 days.",
+						"name": "umbrella-ip-dns-history"
+					},
+					{
+						"description": "The DNS database can be used to query the history that Umbrella has seen for a given IP address. The most common use case is to obtain the DNS Resource Record (RR) history for a given IP, passing in the record query type as a parameter, to help build intelligence around an IP or a range of IPs. The information provided is from within the last 90 days.",
+						"name": "investigate-umbrella-ip-dns-history"
+					},
+					{
+						"description": "This command  shows whether the IP address you’ve entered as input has any known malicious domains associated with it. The domains that appear when using this endpoint are those that currently exist in the Umbrella block list. This endpoint will return an array with a single domain name for each domain associated with the IP, along with an id number that can be ignored.",
+						"name": "investigate-umbrella-ip-malicious-domains"
+					},
+					{
+						"description": "This command  shows whether the IP address you’ve entered as input has any known malicious domains associated with it. The domains that appear when using this endpoint are those that currently exist in the Umbrella block list. This endpoint will return an array with a single domain name for each domain associated with the IP, along with an id number that can be ignored.",
+						"name": "umbrella-ip-malicious-domains"
+					},
+					{
+						"description": "This produces a list of matching domains based on a regular expression. You could use this for domain squatting. The pattern search functionality in Investigate uses regular expressions (RegEx) to search against the Investigate database. There are several excellent tools online such as http://regexr.com to help if you’re not familiar with building RegEx.",
+						"name": "umbrella-domain-search"
+					},
+					{
+						"description": "This produces a list of matching domains based on a regular expression. You could use this for domain squatting. The pattern search functionality in Investigate uses regular expressions (RegEx) to search against the Investigate database. There are several excellent tools online such as http://regexr.com to help if you’re not familiar with building RegEx.",
+						"name": "investigate-umbrella-domain-search"
+					},
+					{
+						"description": "Get Domain Reputation info using Cisco Umbrella Investigate. Domain reputation score is either true or false from the service and cannot be modified using a threshold.",
+						"name": "domain"
+					},
+					{
+						"description": "Get a list of domain names that have been frequently seen requested around the same time (up to 60 seconds before or after) as the given domain name. And also a list of co-occurences.",
+						"name": "umbrella-get-related-domains"
+					},
+					{
+						"description": "List all the classifiers used for a particular domain to assign a particular security categorization or threat type (indicators of compromise).",
+						"name": "umbrella-get-domain-classifiers"
+					},
+					{
+						"description": "The domain volume command shows the number of DNS queries made per hour to the specified domain by users of Umbrella's recursive DNS servers.",
+						"name": "umbrella-get-domain-queryvolume"
+					},
+					{
+						"description": "The security information API method contains multiple scores or security features, which can act as relevant datapoints to build insight on the reputation.",
+						"name": "umbrella-get-domain-details"
+					},
+					{
+						"description": "The command will return the domains associated with the email address or addresses of the registrar that are looked up.",
+						"name": "umbrella-get-domains-for-email-registrar"
+					},
+					{
+						"description": "The Nameserver command allows you to search a nameserver to find all domains registered by that nameserver. You can search against a single nameserver or multiple nameservers in a query.",
+						"name": "umbrella-get-domains-for-nameserver"
+					},
+					{
+						"description": "This command will provide a standard WHOIS response record for a single domain with all available WHOIS data returned.",
+						"name": "umbrella-get-whois-for-domain"
+					},
+					{
+						"description": "Test whether the IP address you’ve entered as input has any known malicious domains associated with it.",
+						"name": "umbrella-get-malicious-domains-for-ip"
+					},
+					{
+						"description": "Get the list of matching domains (Investigate Database) based on a regular expression.",
+						"name": "umbrella-get-domains-using-regex"
+					},
+					{
+						"description": "The timeline command shows when a domain was given attribution of a particular security categorization or threat type (indicators of compromise).",
+						"name": "umbrella-get-domain-timeline"
+					},
+					{
+						"description": "The timeline command shows when a IP was given attribution of a particular security categorization or threat type (indicators of compromise).",
+						"name": "umbrella-get-ip-timeline"
+					},
+					{
+						"description": "The timeline command shows when a URL was given attribution of a particular security categorization or threat type (indicators of compromise).",
+						"name": "umbrella-get-url-timeline"
+					}
+				],
+				"description": "Cisco Umbrella Investigate",
+				"name": "Cisco Umbrella Investigate"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-15T13:47:08Z",
+	"currentVersion": "1.0.11",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Cisco Umbrella Investigate",
+	"downloads": 2435,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Cisco-umbrella",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Cisco-umbrella/CiscoUmbrellaInvestigate_image.png",
+			"name": "Cisco Umbrella Investigate"
+		}
+	],
+	"itemVersion": "1.0.11",
+	"keywords": [],
+	"legacy": true,
+	"name": "Cisco Umbrella Investigate",
+	"packID": "Cisco-umbrella",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-04-12T21:26:27Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
