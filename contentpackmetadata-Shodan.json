@@ -1,0 +1,161 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Searches Shodan using facets to get summary information on properties.",
+						"name": "search"
+					},
+					{
+						"description": "Returns all services that have been found on the IP address of the searched host.",
+						"name": "ip"
+					},
+					{
+						"description": "Returns the total number of results that match only the specified query or facet settings. This command does not return host results. This command does not consume query credits.",
+						"name": "shodan-search-count"
+					},
+					{
+						"description": "Requests Shodan to crawl a network.",
+						"name": "shodan-scan-ip"
+					},
+					{
+						"description": "Requests for Shodan to perform a scan on the specified port and protocol.",
+						"name": "shodan-scan-internet"
+					},
+					{
+						"description": "Checks the progress of a previously submitted scan request on the specified port and protocol.",
+						"name": "shodan-scan-status"
+					},
+					{
+						"description": "Creates a network alert for a defined IP address or netblock used for subscribing to changes or events that are discovered within the netblock's range.",
+						"name": "shodan-create-network-alert"
+					},
+					{
+						"description": "Gets the details of a network alert.",
+						"name": "shodan-network-get-alert-by-id"
+					},
+					{
+						"description": "Gets a list of all created network alerts.",
+						"name": "shodan-network-get-alerts"
+					},
+					{
+						"description": "Removes the specified network alert.",
+						"name": "shodan-network-delete-alert"
+					},
+					{
+						"description": "Enables receiving notifications for network alerts that are set off by the specified triggers.",
+						"name": "shodan-network-alert-set-trigger"
+					},
+					{
+						"description": "Disables receiving notifications for network alerts that are set off by the specified triggers.",
+						"name": "shodan-network-alert-remove-trigger"
+					},
+					{
+						"description": "Ignores the specified services for network alerts that are set off by the specified triggers.",
+						"name": "shodan-network-alert-whitelist-service"
+					},
+					{
+						"description": "Resumes receiving notifications for network alerts that are set off by the specified triggers.",
+						"name": "shodan-network-alert-remove-service-from-whitelist"
+					}
+				],
+				"description": "A search engine used for searching Internet-connected devices",
+				"name": "Shodan v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:48:16Z",
+	"currentVersion": "1.1.1",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.7",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "A search engine used for searching Internet-connected devices",
+	"downloads": 2941,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Shodan",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Shodan/Shodan_v2_image.png",
+			"name": "Shodan v2"
+		}
+	],
+	"itemVersion": "1.1.1",
+	"keywords": [],
+	"legacy": true,
+	"name": "Shodan",
+	"packID": "Shodan",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-05-20T09:23:15Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2953671",
+	"videos": []
+}
