@@ -1,0 +1,960 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: Lastline v2
+  version: -1
+configuration:
+- defaultvalue: https://analysis.lastline.com
+  display: Server URL (e.g. https://analysis.lastline.com)
+  name: url
+  required: true
+  type: 0
+- display: API Key for accessing Lastline APIs
+  displaypassword: API Token for accessing Lastline APIs
+  name: creds_key_and_token
+  required: false
+  type: 9
+- additionalinfo: Note that when credentials are set, the integration uses account-based
+    authentication.
+  display: Email address
+  name: credentials
+  required: false
+  type: 9
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- defaultvalue: "false"
+  display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- defaultvalue: "70"
+  display: Threshold
+  name: threshold
+  required: false
+  type: 0
+- display: API Key for accessing Lastline APIs
+  hidden: true
+  name: api_key
+  required: false
+  type: 0
+- display: API Token for accessing Lastline APIs
+  hidden: true
+  name: api_token
+  required: false
+  type: 4
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.13
+    packID: Lastline
+    packName: Lastline
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Use the Lastline v2 integration to provide threat analysts and incident
+  response teams with the advanced malware isolation and inspection environment needed
+  to safely execute advanced malware samples, and understand their behavior.
+detaileddescription: "Provides threat analysts and incident response teams with the
+  advanced\nmalware isolation and inspection environment, needed to safely execute
+  advanced\nmalware samples and understand their behavior. \nAPI key and API token
+  are generate by Lastline and given at the subscription time.\n\n### How to use the
+  `threshold` parameter.\nBy default, the `threshold` parameter is set to 70. This
+  means that for every file with a severity of over 70\nthe Dbot score will be set
+  to *high*. This parameter is configurable.\n\n\n---\n[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/lastline-v2)"
+display: Lastline v2
+image: data:image/png;base64,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
+name: Lastline v2
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: A comma-separated list of file hashes to check. Supports MD5, SHA1,
+        and SHA256 hashes.
+      isArray: true
+      name: file
+      required: true
+    - defaultValue: "70"
+      description: The score threshold that determines if the file is malicious. The
+        default value is "70".
+      name: threshold
+    description: Checks the file reputation of the specified file hashes. Supports
+      MD5, SHA1, and SHA256 hashes.
+    name: file
+    outputs:
+    - contextPath: File.MD5
+      description: The MD5 hash of the file.
+      type: string
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: string
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file.
+      type: string
+    - contextPath: File.Type
+      description: The file type.
+      type: string
+    - contextPath: File.Malicious.Vendor
+      description: The vendor who determined that the file is malicious.
+      type: string
+    - contextPath: File.Malicious.Description
+      description: The reason that the vendor determined that the file is malicious.
+      type: string
+    - contextPath: File.Malicious.Score
+      description: The score that the vendor gave the malicious file.
+      type: number
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: string
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: string
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: number
+    - contextPath: Lastline.Submission.Status
+      description: The status of the submission.
+      type: string
+    - contextPath: Lastline.Submission.UUID
+      description: The task UUID.
+      type: string
+    - contextPath: Lastline.Submission.SubmissionTime
+      description: The timestamp in Lastline.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.name
+      description: Yara signature's name.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.score
+      description: The score according to the Yara signatures (0 to 100).
+      type: number
+    - contextPath: Lastline.Submission.YaraSignatures.internal
+      description: Whether the signature is for internal use only.
+      type: boolean
+    - contextPath: Lastline.Submission.DNSqueries
+      description: A list of DNS queries executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.NetworkConnections
+      description: A list of network connections executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.DownloadedFiles
+      description: A list of files that were downloaded using the Microsoft Windows
+        file-download API functions. Each element is a tuple of file-origin URL and
+        a File element.
+      type: string
+    - contextPath: Lastline.Submission.Process
+      description: Information on the Windows process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.arguments
+      description: The argument of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable
+      description: The executable of the process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.executable.abs_path
+      description: The absolute path of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.filename
+      description: The filename of the executable.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.yara_signature_hits
+      description: The Yara signature of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.ext_info
+      description: The executable information of the process.
+      type: unknown
+    - contextPath: Lastline.Submission.Process.process_id
+      description: The process ID.
+      type: string
+  - arguments:
+    - description: ' The URL to analyze. For example: https://www.demisto.com. '
+      name: url
+      required: true
+    - defaultValue: "70"
+      description: The score threshold that determines if the file is malicious. The
+        default value is "70".
+      name: threshold
+    description: Submits a URL for analysis.
+    name: lastline-upload-url
+    outputs:
+    - contextPath: URL.Data
+      description: A list of malicious URLs identified by the Lastline analysis.
+      type: string
+    - contextPath: URL.Malicious.Vendor
+      description: The vendor who determined that a URL is malicious.
+      type: string
+    - contextPath: URL.Malicious.Description
+      description: The reason that the vendor made the decision.
+      type: string
+    - contextPath: URL.Malicious.Score
+      description: The score that the malicious URL received from the vendor.
+      type: number
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: string
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: string
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: number
+    - contextPath: Lastline.Submission.Status
+      description: The status of the submission.
+      type: string
+    - contextPath: Lastline.Submission.UUID
+      description: The task UUID.
+      type: string
+    - contextPath: Lastline.Submission.SubmissionTime
+      description: The submission timestamp in Lastline.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.name
+      description: Yara signatures name.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.score
+      description: The score according to the Yara signatures (0 to 100).
+      type: number
+    - contextPath: Lastline.Submission.YaraSignatures.internal
+      description: Whether the signature is for internal usage only.
+      type: boolean
+    - contextPath: Lastline.Submission.DNSqueries
+      description: A list of DNS queries executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.NetworkConnections
+      description: A list of network connections executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.DownloadedFiles
+      description: A list of files that were downloaded using the Microsoft Windows
+        file-download API functions. Each element is a tuple of file-origin URL and
+        a File element.
+      type: string
+    - contextPath: Lastline.Submission.Process
+      description: Information on the Windows process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.arguments
+      description: The argument of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable
+      description: The executable of the process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.executable.abs_path
+      description: The absolute path of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.yara_signature_hits
+      description: The Yara signature of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.ext_info
+      description: The executable information of the process.
+      type: unknown
+    - contextPath: Lastline.Submission.Process.process_id
+      description: The process ID.
+      type: string
+  - arguments:
+    - description: The entry ID of the file to upload.
+      name: EntryID
+      required: true
+    - defaultValue: "70"
+      description: The score threshold that determines if the file is malicious. The
+        default value is "70".
+      name: threshold
+    description: Submits a file for analysis.
+    name: lastline-upload-file
+    outputs:
+    - contextPath: File.MD5
+      description: The MD5 hash of the file.
+      type: string
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: string
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file.
+      type: string
+    - contextPath: File.Type
+      description: The file type.
+      type: string
+    - contextPath: File.Malicious.Vendor
+      description: The vendor who determined that the file is malicious.
+      type: string
+    - contextPath: File.Malicious.Description
+      description: The reason that the vendor determined that the file is malicious.
+      type: string
+    - contextPath: File.Malicious.Score
+      description: The score the malicious file received from the vendor.
+      type: number
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: string
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: string
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: number
+    - contextPath: Lastline.Submission.Status
+      description: The status of the submission.
+      type: string
+    - contextPath: Lastline.Submission.UUID
+      description: The task UUID.
+      type: string
+    - contextPath: Lastline.Submission.SubmissionTime
+      description: The submission timestamp in Lastline.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.name
+      description: Yara signatures name.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.score
+      description: The score according to the Yara signatures (0 to 100).
+      type: number
+    - contextPath: Lastline.Submission.YaraSignatures.internal
+      description: Whether the signature is for internal use only.
+      type: boolean
+    - contextPath: Lastline.Submission.DNSqueries
+      description: A list of DNS queries executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.NetworkConnections
+      description: A list of network connections executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.DownloadedFiles
+      description: A list of files that were downloaded using the Microsoft Windows
+        file-download API functions. Each element is a tuple of file-origin URL and
+        a File element.
+      type: string
+    - contextPath: Lastline.Submission.Process
+      description: Information on the Windows process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.arguments
+      description: The argument of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable
+      description: The executable of the process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.executable.abs_path
+      description: The absolute path of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.filename
+      description: The filename of the executable.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.yara_signature_hits
+      description: The Yara signature of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.ext_info
+      description: The executable information of the process.
+      type: unknown
+    - contextPath: Lastline.Submission.Process.process_id
+      description: The process ID.
+      type: string
+  - arguments:
+    - description: The task UUID of the submitted Lastline analysis.
+      name: uuid
+      required: true
+    - description: The score threshold that determines if the file is malicious. The
+        default value is "70".
+      name: threshold
+    description: Returns an analysis report.
+    name: lastline-get-report
+    outputs:
+    - contextPath: URL.Data
+      description: A list of malicious URLs identified by the Lastline analysis.
+      type: string
+    - contextPath: URL.Malicious.Vendor
+      description: The vendor that determined a URL is malicious.
+      type: string
+    - contextPath: URL.Malicious.Description
+      description: The reason that the vendor determined that the URL is malicious.
+      type: string
+    - contextPath: URL.Malicious.Score
+      description: The score that the malicious URL received from the vendor.
+      type: number
+    - contextPath: File.MD5
+      description: The MD5 hash of the file.
+      type: string
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: string
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file.
+      type: string
+    - contextPath: File.Type
+      description: The file type.
+      type: string
+    - contextPath: File.Malicious.Vendor
+      description: The vendor that determined a file is malicious.
+      type: string
+    - contextPath: File.Malicious.Description
+      description: The reason that the vendor determined that the file is malicious.
+      type: string
+    - contextPath: File.Malicious.Score
+      description: The score that the malicious file received from the vendor.
+      type: number
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: string
+    - contextPath: DBotScore.Type
+      description: The type of indicator.
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: string
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: number
+    - contextPath: Lastline.Submission.Status
+      description: Status of the submission.
+      type: string
+    - contextPath: Lastline.Submission.UUID
+      description: The task UUID.
+      type: string
+    - contextPath: Lastline.Submission.SubmissionTime
+      description: The timestamp in Lastline.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.name
+      description: Yara signatures name.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.score
+      description: The score according to the Yara signatures (0 to 100).
+      type: number
+    - contextPath: Lastline.Submission.YaraSignatures.internal
+      description: Whether the signature is for internal use only.
+      type: boolean
+    - contextPath: Lastline.Submission.DNSqueries
+      description: A list of DNS queries executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.NetworkConnections
+      description: A list of network connections executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.DownloadedFiles
+      description: A list of files that were downloaded using the Microsoft Windows
+        file-download API functions. Each element is a tuple of file-origin URL and
+        a File element.
+      type: string
+    - contextPath: Lastline.Submission.Process
+      description: Information on the Windows process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.arguments
+      description: The argument of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable
+      description: The executable of the process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.executable.abs_path
+      description: The absolute path of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.filename
+      description: The filename of the executable.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.yara_signature_hits
+      description: The Yara signature of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.ext_info
+      description: The executable information of the process.
+      type: unknown
+    - contextPath: Lastline.Submission.Process.process_id
+      description: The process ID.
+      type: string
+  - arguments:
+    - description: Return tasks before this date (in UTC format %Y-%m-%dT%H:%M:%S).
+        For example, 2018-07-08T12:00:00.
+      name: before
+    - description: Return tasks after this date (in UTC format %Y-%m-%dT%H:%M:%S).
+        For example, 2018-07-10T12:00:00.
+      name: after
+      required: true
+    description: Returns a list of tasks.
+    name: lastline-get-task-list
+  - arguments:
+    - description: The task UUID of the submitted Lastline analysis.
+      isArray: true
+      name: uuid
+      required: true
+    description: Checks the status of a submission.
+    name: lastline-check-status
+    outputs:
+    - contextPath: URL.Data
+      description: A list of malicious URLs identified by the lastline analysis.
+      type: string
+    - contextPath: URL.Malicious.Vendor
+      description: The vendor that determined that a URL is malicious.
+      type: string
+    - contextPath: URL.Malicious.Description
+      description: The reason that the vendor determined that the URL is malicious.
+      type: string
+    - contextPath: URL.Malicious.Score
+      description: The score that the malicious URL received from the vendor.
+      type: number
+    - contextPath: File.MD5
+      description: The MD5 hash of the file.
+      type: string
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: string
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file.
+      type: string
+    - contextPath: File.Type
+      description: The file type.
+      type: string
+    - contextPath: File.Malicious.Vendor
+      description: The vendor that determined that the file is malicious.
+      type: string
+    - contextPath: File.Malicious.Description
+      description: The reason that the vendor determined that the file is malicious.
+      type: string
+    - contextPath: File.Malicious.Score
+      description: The score that the malicious file received from the vendor.
+      type: number
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: string
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: string
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: string
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: number
+    - contextPath: Lastline.Submission.Status
+      description: The status of the submission.
+      type: string
+    - contextPath: Lastline.Submission.UUID
+      description: The task UUID.
+      type: string
+    - contextPath: Lastline.Submission.SubmissionTime
+      description: The timestamp in Lastline.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.name
+      description: Yara signatures name.
+      type: string
+    - contextPath: Lastline.Submission.YaraSignatures.score
+      description: The score according to the Yara signatures (0 to 100).
+      type: number
+    - contextPath: Lastline.Submission.YaraSignatures.internal
+      description: Whether the signature is for internal use only.
+      type: boolean
+    - contextPath: Lastline.Submission.DNSqueries
+      description: List of DNS queries executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.NetworkConnections
+      description: A list of network connections executed by the analysis subject.
+      type: string
+    - contextPath: Lastline.Submission.DownloadedFiles
+      description: A list of files that were downloaded using the Microsoft Windows
+        file-download API functions. Each element is a tuple of file-origin URL and
+        a File element.
+      type: string
+    - contextPath: Lastline.Submission.Process
+      description: Information on athe Windows process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.arguments
+      description: The argument of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable
+      description: The executable of the process.
+      type: Unknown
+    - contextPath: Lastline.Submission.Process.executable.abs_path
+      description: The absolute path of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.filename
+      description: The filename of the executable.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.yara_signature_hits
+      description: The Yara signature of the executable of the process.
+      type: string
+    - contextPath: Lastline.Submission.Process.executable.ext_info
+      description: The executable information of the process.
+      type: unknown
+    - contextPath: Lastline.Submission.Process.process_id
+      description: The process ID.
+      type: string
+  dockerimage: demisto/python3:3.10.4.27798
+  runonce: false
+  script: |
+    register_module_line('Lastline v2', 'start', __line__())
+    import hashlib
+    from typing import Dict, List
+    from urllib3 import disable_warnings
+
+
+
+
+
+    INTEGRATION_COMMAND_NAME = "lastline"
+    INTEGRATION_NAME = "Lastline v2"
+
+    SUFFIX_TRANSFORMER = {'/analysis/submit/file': {'url': 'papi/analysis/submit_file', 'method': 'POST'},
+                          '/analysis/get': {'url': 'papi/analysis/get_result', 'method': 'GET'},
+                          '/analysis/get_completed': {'url': 'papi/analysis/get_history', 'method': 'GET'},
+                          '/analysis/submit/url': {'url': 'papi/analysis/submit_url', 'method': 'POST'}}
+
+    disable_warnings()
+
+
+    class Client(BaseClient):
+        MD5_LEN = 32
+        SHA1_LEN = 40
+        SHA256_LEN = 64
+        DEFAULT_THRESHOLD = 70
+
+        def __init__(self, base_url: str, api_params: Dict, verify=True, proxy=False,
+                     credentials: Dict = None, threshold=None):
+            self.command_params = api_params
+            self.threshold = threshold if threshold else Client.DEFAULT_THRESHOLD
+            if credentials:
+                self.credentials = {'username': credentials.get('identifier'), 'password': credentials.get('password')}
+            else:
+                self.credentials = {}
+
+            super(Client, self).__init__(base_url, verify, proxy)
+
+        def file(self):
+            human_readable = ''
+            context_entry: Dict = {
+                'Lastline': list(),
+                'File': list(),
+                'DBotScore': list()
+            }
+            result = list()
+            hash_arg = argToList(self.command_params.get('file'))
+            for arg in hash_arg:
+                hash_type = hash_type_checker(arg)
+                self.command_params[hash_type] = arg
+                temp_result = self.http_request('/analysis/submit/file')
+                temp_human_readable, temp_context_entry = report_generator(temp_result, self.threshold)
+                human_readable += f'\n{temp_human_readable}'
+                context_entry['Lastline'].append(temp_context_entry.get('Lastline'))
+                context_entry['File'].append(temp_context_entry.get('File'))
+                context_entry['DBotScore'].append(temp_context_entry.get('DBotScore'))
+                result.append(temp_result)
+                del self.command_params[hash_type]
+            return human_readable, context_entry, result
+
+        def check_status(self):
+            result = self.http_request('/analysis/get')
+            human_readable, context_entry = report_generator(result, self.threshold)
+            return human_readable, context_entry, result
+
+        def get_report(self):
+            result = self.http_request('/analysis/get')
+            if 'data' in result and 'score' not in result['data']:
+                uuid = self.command_params.get('uuid')
+                raise DemistoException(f'task {uuid} is not ready')
+            human_readable, context_entry = report_generator(result, self.threshold)
+            return human_readable, context_entry, result
+
+        def get_task_list(self):
+            for param in ('before', 'after'):
+                if param in self.command_params:
+                    self.command_params[param] = self.command_params[param].replace('T', ' ')
+            result = self.http_request('/analysis/get_completed')
+            if 'data' in result:
+                context_entry: List = []
+                if self.credentials:
+                    context_entry = self.get_status_and_time_from_get_history_response(argToList(result['data']))
+                else:
+                    context_entry = self.get_status_and_time(argToList(result['data'].get('tasks')))
+
+                for i in range(len(context_entry)):
+                    context_entry[i] = {
+                        'UUID': context_entry[i][0],
+                        'Time': context_entry[i][1],
+                        'Status': context_entry[i][2]
+                    }
+                human_readable = tableToMarkdown(name='tasks', t=context_entry, headers=['UUID', 'Time', 'Status'])
+                return human_readable, {}, result
+
+        def upload_file(self):
+            entry_id = self.command_params.get('EntryID')
+            self.command_params['push_to_portal'] = True
+            file_params = demisto.getFilePath(entry_id)
+            file_type = os.path.splitext(file_params['name'])[1]
+            self.command_params['md5'] = file_hash(file_params.get('path'))
+            # csv files requires different approach
+            if file_type == '.csv':
+                result = self.handle_csv(file_params)
+            else:
+                result = self.http_request('/analysis/submit/file',
+                                           file_to_upload=file_params.get('path'))
+
+            human_readable, context_entry = report_generator(result, self.threshold)
+            return human_readable, context_entry, result
+
+        def handle_csv(self, file_params):
+            self._session.post(self._base_url + '/papi/login', data=self.credentials, verify=self._verify)
+            with open(file_params['path'], 'rb') as file_:
+                result = self._session.post(self._base_url + '/papi/analysis/submit_file',
+                                            data={'filename': file_params['name']},
+                                            files={'file': (file_params.get('path'), file_.read())},
+                                            verify=self._verify).json()
+
+            lastline_exception_handler(result)
+            return result
+
+        def upload_url(self):
+            result = self.http_request('/analysis/submit/url')
+            human_readable, context_entry = report_generator(result, self.threshold)
+            return human_readable, context_entry, result
+
+        def test_module_command(self):
+            self.command_params.update({'after': datetime.now().strftime("%Y-%m-%dT%H:%M:%S")})
+            self.get_task_list()
+            return 'ok', {}, {}
+
+        def get_status_and_time(self, uuids) -> List:
+            task_list: List[List] = []
+            for uuid in uuids:
+                self.command_params['uuid'] = uuid
+                result = self.http_request('/analysis/get')
+                if 'data' in result:
+                    task_time = result['data'].get('submission')
+                    if 'score' in result['data']:
+                        status = 'Completed'
+                    else:
+                        status = 'Analyzing'
+                else:
+                    task_time = status = ''
+                task_list.append([uuid, task_time.replace(' ', 'T'), status])
+            return task_list
+
+        def get_status_and_time_from_get_history_response(self, tasks) -> List:
+            task_list: List[List] = []
+            filtered_tasks: List = []
+            uuid_set: set = set(map(lambda x: x.get('task_uuid'), tasks))
+
+            for uuid in uuid_set:
+                tasks_same_uuid = [x for x in tasks if x.get('task_uuid') == uuid]
+                latest_date = max(datetime.strptime(x.get('task_start_time'), '%Y-%m-%d %H:%M:%S') for x in tasks_same_uuid)
+                latest_date_str = latest_date.strftime('%Y-%m-%d %H:%M:%S')
+                task = [x for x in tasks_same_uuid if x.get('task_start_time') == latest_date_str][0]
+                filtered_tasks.append(task)
+
+            for task in filtered_tasks:
+                task_time = task.get('task_start_time')
+                if task.get('status'):
+                    status = task.get('status')
+                else:
+                    status = 'Analyzing'
+
+                task_list.append([task.get('task_uuid'), task_time.replace(' ', 'T'), status])
+            return task_list
+
+        def http_request(self, path: str, headers=None, file_to_upload=None) -> Dict:
+            if file_to_upload:
+                with open(file_to_upload, 'rb') as _file:
+                    file_to_upload = {'file': (file_to_upload, _file.read())}
+
+            result: Dict = {}
+            if self.credentials:
+                url_suffix = SUFFIX_TRANSFORMER[path]
+                result = self._http_request(url_suffix['method'], url_suffix['url'], data=self.credentials,
+                                            params=self.command_params, files=file_to_upload, timeout=2000)
+            else:
+                result = self._http_request('POST', path, params=self.command_params, headers=headers, files=file_to_upload)
+
+            lastline_exception_handler(result)
+            return result
+
+
+    def lastline_exception_handler(result: Dict):
+        if result.get("success") is not None:
+            if result.get("success") == 0:
+                error_msg = "error "
+                if 'error_code' in result:
+                    error_msg += "(" + str(result['error_code']) + ") "
+                if 'error' in result:
+                    error_msg += result['error']
+                raise DemistoException(error_msg)
+        else:
+            raise DemistoException('No response')
+
+
+    def hash_type_checker(hash_file: str) -> str:
+        hash_types = {
+            str(Client.MD5_LEN): 'md5',
+            str(Client.SHA1_LEN): 'sha1',
+            str(Client.SHA256_LEN): 'sha256',
+        }
+        hash_type = hash_types.get(str(len(hash_file)))
+        if hash_type is not None:
+            return hash_type
+        else:
+            raise DemistoException(f'{INTEGRATION_NAME} File command support md5/ sha1/ sha256 only.')
+
+
+    def report_generator(result: Dict, threshold=None):
+        context_entry: Dict = get_report_context(result, threshold)
+        if 'File' in context_entry:
+            key = 'File'
+        elif 'URL' in context_entry:
+            key = 'URL'
+        else:
+            key = ''
+        score = result['data'].get('score')
+        uuid = result['data'].get('task_uuid')
+        submission_time = result['data'].get('submission')
+        if key == 'File':
+            indicator = context_entry.get('DBotScore', [{}])[0].get('Indicator', 'None')
+        else:
+            indicator = context_entry.get('DBotScore', {}).get('Indicator', 'None')
+        if score is not None:
+            meta_data = f'**Score: {score}**\n\nTask UUID: {uuid}\nSubmission Time: {submission_time}'
+        else:
+            meta_data = '**Status: Analyzing**'
+        human_readable = tableToMarkdown(name=f'Lastline analysis for {key.lower()}: {indicator}',
+                                         metadata=meta_data,
+                                         t=context_entry.get(key))
+        return human_readable, context_entry
+
+
+    def get_report_context(result: Dict, threshold=None) -> Dict:
+        key = 'File'
+        context_entry: Dict = {}
+        if 'data' in result:
+            data: Dict = {}
+            dbotscore = {
+                'Vendor': 'Lastline',
+                'Score': 0
+            }
+            dbotscore_list = []
+            if 'score' in result['data']:
+                status = 'Completed'
+                if threshold is None:
+                    threshold = Client.DEFAULT_THRESHOLD
+                score = result['data']['score']
+                if score > threshold:
+                    dbotscore['Score'] = 3
+                    data['Malicious'] = {
+                        'Vendor': 'Lastline',
+                        'Score': score
+                    }
+                elif score > 30:
+                    dbotscore['Score'] = 2
+                else:
+                    dbotscore['Score'] = 1
+            else:
+                status = 'Analyzing'
+            lastline: Dict = {
+                'Submission': {
+                    'Status': status,
+                    'UUID': result['data'].get('task_uuid'),
+                    'SubmissionTime': result['data'].get('submission')
+                }
+            }
+            if 'analysis_subject' in result['data']:
+                analysis_subject: Dict = result['data']['analysis_subject']
+                temp_dict: Dict = {
+                    'YaraSignatures': analysis_subject.get('yara_signatures'),
+                    'DNSqueries': analysis_subject.get('dns_queries'),
+                    'NetworkConnections': analysis_subject.get('network_connections'),
+                    'DownloadedFiles': analysis_subject.get('downloaded_files'),
+                    'Process': analysis_subject.get('process'),
+                    'DomainDetections': analysis_subject.get('domain_detections'),
+                    'IPdetections': analysis_subject.get('ip_detections'),
+                    'URLdetections': analysis_subject.get('url_detections')
+                }
+                temp_dict = {keys: values for keys, values in temp_dict.items() if values}
+                lastline['Submission'].update(temp_dict)
+
+                if 'url' in analysis_subject:
+                    key = 'URL'
+                    dbotscore['Indicator'] = analysis_subject['url']
+                    data['Data'] = analysis_subject.get('url')
+                else:
+                    dbotscore['Indicator'] = analysis_subject.get('md5')
+                    data['MD5'] = analysis_subject.get('md5')
+                    data['SHA1'] = analysis_subject.get('sha1')
+                    data['SHA256'] = analysis_subject.get('sha256')
+                    data['Type'] = analysis_subject.get('mime_type')
+                dbotscore['Type'] = key
+                if key == 'File':
+                    dbotscore_copy = dbotscore.copy()
+                    dbotscore_copy['Type'] = 'file'
+                    dbotscore_list = [dbotscore, dbotscore_copy]
+                context_entry['Lastline'] = lastline
+                context_entry[key] = data
+
+            # in case of a file indicator
+            if dbotscore_list and dbotscore_list[0]['Score'] != 0:
+                context_entry['DBotScore'] = dbotscore_list
+
+            if key == 'URL' and dbotscore['Score'] != 0:
+                context_entry['DBotScore'] = dbotscore
+        return context_entry
+
+
+    def file_hash(path: str) -> str:
+        block_size = 65536
+        file_hasher = hashlib.md5()  # nosec
+        with open(path, 'rb') as file_obj:
+            buf = file_obj.read(block_size)
+            while len(buf) > 0:
+                file_hasher.update(buf)
+                buf = file_obj.read(block_size)
+        return file_hasher.hexdigest()
+
+
+    def main():
+        params = demisto.params()
+        base_url = params.get('url')
+        verify_ssl = not params.get('insecure', False)
+        proxy = params.get('proxy')
+        credentials = params.get('credentials')
+        api_params = {
+            'key': params.get('api_key') or params.get('creds_key_and_token').get('identifier', ''),
+            'api_token': params.get('api_token') or params.get('creds_key_and_token').get('password', '')
+        }
+        api_params.update(demisto.args())
+        threshold = int(api_params.get('threshold', params.get('threshold', 70)))
+
+        if not credentials or not credentials.get('identifier') or not credentials.get('password'):
+            credentials = {}
+
+        if not (api_params.get('key') or api_params.get('api_token')):
+            api_params = {}
+
+        if not (api_params or credentials):
+            raise DemistoException('Please fill the credentials in the integration params'
+                                   ' - api key and token or username and password')
+
+        client = Client(base_url, api_params, verify=verify_ssl, proxy=proxy, credentials=credentials, threshold=threshold)
+        command = demisto.command()
+        demisto.debug(f'Command being called is {command}')
+
+        # Switch case
+        commands = {
+            'test-module': Client.test_module_command,
+            'file': Client.file,
+            f'{INTEGRATION_COMMAND_NAME}-check-status': Client.check_status,
+            f'{INTEGRATION_COMMAND_NAME}-get-report': Client.get_report,
+            f'{INTEGRATION_COMMAND_NAME}-get-task-list': Client.get_task_list,
+            f'{INTEGRATION_COMMAND_NAME}-upload-file': Client.upload_file,
+            f'{INTEGRATION_COMMAND_NAME}-upload-url': Client.upload_url
+        }
+        try:
+            if command in commands:
+                readable_output, outputs, raw_response = commands[command](client)
+                return_outputs(readable_output, outputs, raw_response)
+            else:
+                raise DemistoException(f'{demisto.command()} is not a command')
+        # Log exceptions
+        except Exception as every_error:
+            err_msg = f'Error in {INTEGRATION_NAME} Integration [{every_error}]'
+            return_error(err_msg, error=every_error)
+
+
+    if __name__ in ("__builtin__", "builtins"):
+        main()
+
+    register_module_line('Lastline v2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
