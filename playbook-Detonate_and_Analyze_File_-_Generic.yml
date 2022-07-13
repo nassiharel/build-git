@@ -1,0 +1,438 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 2.2.9
+    packID: CommonPlaybooks
+    packName: Common Playbooks
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: 'This playbook uploads, detonates, and analyzes files for supported sandboxes.
+  Currently supported sandboxes are Falcon X and Wildfire. '
+id: Detonate and Analyze File - Generic
+inputs:
+- description: The details of the file to search for.
+  key: File
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Detonate and Analyze File - Generic
+outputs:
+- contextPath: csfalconx.resource.tags
+  description: The analysis tags.
+  type: string
+- contextPath: csfalconx.resource.sha256
+  description: The SHA256 hash of the scanned file.
+  type: string
+- contextPath: csfalconx.resource.file_name
+  description: 'The name of the uploaded file. '
+  type: string
+- contextPath: csfalconx.resource.sandbox
+  description: The Falcon X findings.
+  type: string
+- contextPath: csfalconx.resource.intel
+  description: The Falcon X intelligence results.
+  type: string
+- contextPath: WildFire.Report
+  description: The Wildfire findings.
+  type: string
+- contextPath: AttackPattern
+  description: The MITRE Attack pattern information.
+  type: unknown
+- contextPath: MITREATTACK
+  description: Full MITRE data for the attack pattern.
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 218725c8-5f2a-438c-8b00-39eb76656d1f
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 218725c8-5f2a-438c-8b00-39eb76656d1f
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AlertOS:
+        complex:
+          accessor: deviceosname
+          root: incident
+          transformers:
+          - args:
+              input_values:
+                value:
+                  simple: Windows,Linux,Android
+              mapped_values:
+                value:
+                  simple: '160: Windows 10,300: Linux Ubuntu 16.04,300: Linux Ubuntu
+                    16.04'
+            operator: MapValuesTransformer
+      File:
+        simple: ${inputs.File}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Env ID - return to transformer
+      id: 2d74acbf-eb10-4ede-8880-21e9afb7325a
+      iscommand: false
+      name: FalconX Detonate and Analyze File
+      playbookName: FalconX Detonate and Analyze File
+      type: playbook
+      version: -1
+    taskid: 2d74acbf-eb10-4ede-8880-21e9afb7325a
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 80,
+          "y": 550
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      File:
+        simple: ${inputs.File}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a10b7555-36b7-444e-874c-20c10a692311
+      iscommand: false
+      name: Wildfire Detonate and Analyze File
+      playbookName: Wildfire Detonate and Analyze File
+      type: playbook
+      version: -1
+    taskid: a10b7555-36b7-444e-874c-20c10a692311
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 820,
+          "y": 550
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bd46d172-dfb1-43e4-8904-643571582a5d
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: bd46d172-dfb1-43e4-8904-643571582a5d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1250
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "3"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    results:
+    - brandInstances
+    scriptarguments:
+      brandname:
+        simple: CrowdStrike Falcon X
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if the Falcon X integration is available.
+      id: 1e2efc1c-d878-46c7-835f-ea5c802dd878
+      iscommand: false
+      name: Is FalconX enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: 1e2efc1c-d878-46c7-835f-ea5c802dd878
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 230,
+          "y": 360
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.File
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "4"
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5257b87f-910c-4b92-814a-5a478d777ae8
+      iscommand: false
+      name: Is there a file?
+      type: condition
+      version: -1
+    taskid: 5257b87f-910c-4b92-814a-5a478d777ae8
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 190
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "3"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    results:
+    - brandInstances
+    scriptarguments:
+      brandname:
+        simple: WildFire-v2
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if the WildFire integration is available.
+      id: e64d0590-3e6c-4b99-8ded-da01909d2195
+      iscommand: false
+      name: Is Wildfire enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: e64d0590-3e6c-4b99-8ded-da01909d2195
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 670,
+          "y": 360
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: attack_id
+                root: csfalconx.resource.sandbox.mitre_attacks
+                transformers:
+                - args:
+                    item:
+                      iscontext: true
+                      value:
+                        simple: csfalconx.resource.sandbox.mitre_attacks.parent.attack_id
+                  operator: append
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 50b29f08-f3b1-4b2b-8722-20a7656c61ef
+      iscommand: false
+      name: Are there MITRE findings?
+      type: condition
+      version: -1
+    taskid: 50b29f08-f3b1-4b2b-8722-20a7656c61ef
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 80,
+          "y": 730
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      scriptArguments:
+        'TechniqueID ':
+          complex:
+            accessor: attack_id
+            root: csfalconx.resource.sandbox.mitre_attacks
+            transformers:
+            - args:
+                item:
+                  iscontext: true
+                  value:
+                    simple: csfalconx.resource.sandbox.mitre_attacks.parent.attack_id
+              operator: append
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      TechniqueID:
+        simple: ${csfalconx.resource.sandbox.mitre_attacks.attack_id}
+    separatecontext: true
+    skipunavailable: true
+    task:
+      brand: ""
+      description: |-
+        This playbook accepts as an input MITRE technique IDs.
+        It provides the MITRE technique name and all the technique data using the MITRE integration.
+        After extracting the MITRE data, the techniques are associated with the incident.
+      id: 9392e375-e991-4914-8db3-0bf4a52f77bc
+      iscommand: false
+      name: Mitre Attack - Extract Technique Information From ID
+      playbookId: Mitre Attack - Extract Technique Information From ID
+      type: playbook
+      version: -1
+    taskid: 9392e375-e991-4914-8db3-0bf4a52f77bc
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 80,
+          "y": 1080
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "5_3_#default#": 0.51
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1265,
+        "width": 1120,
+        "x": 80,
+        "y": 50
+      }
+    }
+  }
