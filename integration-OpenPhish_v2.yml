@@ -1,0 +1,307 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: OpenPhish_v2
+  version: -1
+configuration:
+- defaultvalue: "false"
+  display: Use HTTPS connection
+  name: https
+  required: false
+  type: 8
+- defaultvalue: "1"
+  display: Database refresh interval (hours)
+  name: fetchIntervalHours
+  required: false
+  type: 0
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.10
+    packID: OpenPhish
+    packName: OpenPhish
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: OpenPhish uses proprietary Artificial Intelligence algorithms to automatically
+  identify zero-day phishing sites and provide comprehensive, actionable, real-time
+  threat intelligence.
+detaileddescription: |-
+  To configure an integration instance, you only need to set the refresh interval. All of the URLs are stored in the integration context and are refreshed according to the refresh interval.
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/open-phish-v2)
+display: OpenPhish v2
+image: data:image/png;base64,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
+name: OpenPhish_v2
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: URL to check
+      isArray: true
+      name: url
+      required: true
+    description: Checks the reputation of a URL.
+    name: url
+    outputs:
+    - contextPath: URL.Data
+      description: The URL
+    - contextPath: URL.Malicious.Vendor
+      description: The vendor reporting the URL as malicious.
+    - contextPath: URL.Malicious.Description
+      description: A description of the malicious URL.
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+    - contextPath: DBotScore.Score
+      description: The actual score.
+  - arguments: []
+    description: Reload OpenPhish database
+    name: openphish-reload
+  - arguments: []
+    description: Show OpenPhish database status
+    name: openphish-status
+  dockerimage: demisto/python3:3.9.8.24399
+  runonce: false
+  script: |
+    register_module_line('OpenPhish_v2', 'start', __line__())
+
+
+
+    ''' IMPORTS '''
+
+    import requests
+    import traceback
+    from typing import Dict
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()
+
+    ''' CONSTANTS '''
+
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
+
+
+    class Error(Exception):
+        """Base class for exceptions in this module."""
+        pass
+
+
+    class NotFoundError(Error):
+        """Exception raised for 404 - Page Not Found errors.
+
+        Attributes:
+            message -- explanation of the error
+        """
+
+        def __init__(self, message):
+            self.message = message
+
+
+    class Client(BaseClient):
+
+        def __init__(self, url: str, use_ssl: bool, use_proxy: bool, fetch_interval_hours: float = 1):
+            super().__init__(url, verify=use_ssl, proxy=use_proxy)
+            self.fetch_interval_hours = fetch_interval_hours
+
+        def http_request(self, name, resp_type=None):
+            """
+            initiates a http request to openphish
+            """
+            data = self._http_request(
+                method='GET',
+                url_suffix=name,
+                resp_type=resp_type,
+            )
+            return data
+
+
+    def _save_urls_to_instance(client: Client):
+        """
+        gets urls from api and load it to instance's memory
+        raise NotFoundError if the http request to the api failed.
+
+        """
+        try:
+            # gets the urls from api and formats them
+            data = client.http_request('feed.txt', resp_type='text')
+            data = data.splitlines()
+            data = list(map(remove_backslash, data))
+
+            context = {"list": data,
+                       "timestamp": date_to_timestamp(datetime.now(), DATE_FORMAT)}
+            set_integration_context(context)
+
+        except NotFoundError as e:
+            raise Exception(f'Check server URL - {e.message}')
+
+
+    def _is_reload_needed(client: Client, data: Dict) -> bool:
+        """
+        Checks if there is a need to reload the data from api to instance's memory
+        Args:
+            data: a dictionary of the type {'list': <list of urls>, 'timestamp': <timestamp>}
+
+        Returns: True if the timestamp is older then required by the client.fetch_interval_hours
+        or if the memory is empty, Otherwise False.
+
+        """
+        if not data or not data.get('timestamp') or not data.get('list'):
+            return True
+        now = datetime.now()
+
+        if data.get('timestamp') <= date_to_timestamp(now - timedelta(hours=client.fetch_interval_hours)):
+            return True
+
+        return False
+
+
+    def test_module(client: Client) -> str:
+        """
+        Returning 'ok' indicates that the integration works like it is supposed to. Connection to the service is successful.
+
+        Args:
+            client: OpenPhish client
+
+        Returns:
+            'ok' if test passed, anything else will fail the test.
+        """
+
+        _save_urls_to_instance(client)
+        return "ok"
+
+
+    def remove_backslash(url: str) -> str:
+        """
+
+        Args:
+            url: a string representing a url
+
+        Returns: the string without last '/' if such exists.
+
+        """
+        url.strip()
+        if url.endswith('/'):
+            return url[:-1]
+        return url
+
+
+    def url_command(client: Client, **kwargs) -> List[CommandResults]:
+        data = get_integration_context()
+        if _is_reload_needed(client, data):
+            reload_command(client)
+            data = get_integration_context()
+
+        command_results: List[CommandResults] = []
+        if not data:
+            raise DemistoException("Data was not saved correctly to the integration context.")
+
+        url_list_from_user = argToList(kwargs.get('url'))
+        urls_in_db = data.get('list', [])
+        for url in url_list_from_user:
+            url_fixed = remove_backslash(url)
+            if url_fixed in urls_in_db:
+                dbotscore = Common.DBotScore.BAD
+                desc = 'Match found in OpenPhish database'
+                markdown = f"#### Found matches for given URL {url}\n"
+            else:
+                dbotscore = Common.DBotScore.NONE
+                desc = ""
+                markdown = f"#### No matches for URL {url}\n"
+
+            dbot = Common.DBotScore(url, DBotScoreType.URL, 'OpenPhish', dbotscore, desc)
+            url_object = Common.URL(url, dbot)
+            command_results.append(CommandResults(
+                indicator=url_object,
+                readable_output=markdown,
+            ))
+
+        return command_results
+
+
+    def reload_command(client: Client, **kwargs) -> CommandResults:
+        _save_urls_to_instance(client)
+        return CommandResults(readable_output='Database was updated successfully to the integration context.')
+
+
+    def status_command(client: Client, **kwargs) -> CommandResults:
+        data = get_integration_context()
+
+        md = "OpenPhish Database Status\n"
+        if data and data.get('list', None):
+            md += f"Total **{str(len(data.get('list')))}** URLs loaded.\n"
+            load_time = timestamp_to_datestring(data.get('timestamp'),
+                                                "%a %b %d %Y %H:%M:%S (UTC)",
+                                                is_utc=True)
+            md += f"Last load time **{load_time}**\n"
+        else:
+            md += "Database not loaded.\n"
+
+        return CommandResults(readable_output=md)
+
+
+    def main():
+        """
+            PARSE AND VALIDATE INTEGRATION PARAMS
+        """
+        demisto.debug(f'Command being called is {demisto.command()}')
+
+        # get the service API url
+        base_url = "http://openphish.com"
+        https_base_url = "https://openphish.com"
+
+        commands = {
+            'url': url_command,
+            'openphish-reload': reload_command,
+            'openphish-status': status_command,
+        }
+        user_params = demisto.params()
+        hours_to_refresh = user_params.get('fetchIntervalHours', '1')
+
+        try:
+            hours_to_refresh = float(hours_to_refresh)
+            use_ssl = not user_params.get('insecure', False)
+            use_proxy = user_params.get('proxy', False)
+            use_https = user_params.get('https', False)
+            client = Client(
+                url=https_base_url if use_https else base_url,
+                use_ssl=use_ssl,
+                use_proxy=use_proxy,
+                fetch_interval_hours=hours_to_refresh)
+
+            command = demisto.command()
+            if command == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                result = test_module(client)
+                return_results(result)
+            elif command in commands:
+                return_results(commands[command](client, **demisto.args()))
+
+        # Log exceptions
+        except ValueError:
+            return_error('Invalid parameter was given as database refresh interval.')
+        except Exception as e:
+            return_error(f'Failed to execute {demisto.command()} command. Error: {str(e)} \n '
+                         f'tracback: {traceback.format_exc()}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('OpenPhish_v2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
