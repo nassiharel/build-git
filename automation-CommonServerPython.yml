@@ -11222,7 +11222,6 @@ script: |
   register_module_line('CustomScriptIntegration', 'start', __line__())
 scripttarget: 0
 subtype: python2
-system: true
 tags:
 - infra
 - server
