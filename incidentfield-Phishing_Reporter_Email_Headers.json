@@ -37,7 +37,7 @@
 	"hidden": false,
 	"id": "incident_phishingreporteremailheaders",
 	"isReadOnly": false,
-	"itemVersion": "3.2.0",
+	"itemVersion": "3.2.9",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Phishing Reporter Email Headers",
