@@ -30,14 +30,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 3.2.0
+    itemVersion: 3.2.9
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.4.27798
+dockerimage: demisto/python3:3.10.4.30607
 engineinfo: {}
 mainengineinfo: {}
 name: DeleteReportedEmail
@@ -70,7 +70,6 @@ script: |
 
   from typing import Callable, Union
   import time
-  import traceback
   from urllib.parse import quote, unquote
 
   seconds = time.time()
@@ -429,7 +428,6 @@ script: |
       except DeletionFailed as e:
           result, deletion_failure_reason = 'Failed', f'Failed deleting email: {str(e)}'
       except Exception as e:
-          demisto.error(traceback.format_exc())
           return_error(f'Failed to execute DeleteEmail. Error: {str(e)}')
 
       finally:
