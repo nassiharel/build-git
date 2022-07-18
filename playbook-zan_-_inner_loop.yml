@@ -1,0 +1,97 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: f6af2e53-80d3-4d41-811b-d622a9e2ee6e
+inputs:
+- description: ""
+  key: Sleeptime
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "500"
+name: zan - inner loop
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 286e72f9-587b-472e-8ed5-4cd5525de545
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 286e72f9-587b-472e-8ed5-4cd5525de545
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    reputationcalc: 2
+    scriptarguments:
+      value:
+        simple: Entered loop 8.8.8.8
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: dccf29bc-c691-4121-8929-79a9c4afeaf6
+      iscommand: false
+      name: Print
+      script: Print
+      type: regular
+      version: -1
+    taskid: dccf29bc-c691-4121-8929-79a9c4afeaf6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 210
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 255,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
