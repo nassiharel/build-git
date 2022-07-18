@@ -21,7 +21,7 @@
 	"hidden": false,
 	"id": "incident_ostype",
 	"isReadOnly": false,
-	"itemVersion": "3.2.37",
+	"itemVersion": "3.2.40",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "OS Type",
