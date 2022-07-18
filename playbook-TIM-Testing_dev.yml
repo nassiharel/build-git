@@ -9,7 +9,27 @@ contentitemexportablefields:
     - all
     toServerVersion: ""
 id: 344982ce-2225-4600-8527-e3dbd3650135
-inputs: []
+inputs:
+- description: ""
+  key: ""
+  playbookInputQuery:
+    daterange:
+      fromdate: "0001-01-01T00:00:00Z"
+      fromdatelicenseval: "0001-01-01T00:00:00Z"
+      period:
+        by: ""
+        byfrom: ""
+        byto: ""
+        field: ""
+        fromvalue: null
+        tovalue: null
+      todate: "0001-01-01T00:00:00Z"
+    query: type:Domain
+    queryEntity: indicators
+    results: null
+    runFromLastJobTime: false
+  required: false
+  value: {}
 name: TIM-Testing_dev
 outputs: []
 quiet: true
@@ -108,24 +128,20 @@ tasks:
     scriptarguments:
       extend-context:
         simple: domain_indicators_list
-      limit:
-        simple: "5"
-      query:
-        simple: type:domain
+      text:
+        simple: okblrsp.wmsistseg.com.br
     separatecontext: false
     skipunavailable: false
     task:
-      brand: ""
-      description: Gets a list of indicator objects and the associated indicator outputs
-        that match the specified query and filters. The results are returned in a
-        structured data file.
-      id: 02940705-d8b9-4914-8218-2898e6f401d9
-      iscommand: false
+      brand: Builtin
+      description: commands.local.cmd.extract.indicators
+      id: 23d4a3fa-8763-4185-88f7-5ea13ceecd29
+      iscommand: true
       name: Start testing - Get 5 domain indicators
-      script: GetIndicatorsByQuery
+      script: Builtin|||extractIndicators
       type: regular
       version: -1
-    taskid: 02940705-d8b9-4914-8218-2898e6f401d9
+    taskid: 23d4a3fa-8763-4185-88f7-5ea13ceecd29
     timertriggers: []
     type: regular
     view: |-
@@ -147,12 +163,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 93451d30-6ed2-4515-87fc-be76099e9df0
+      id: ec7fd23f-ae1c-4f5f-852d-11733fa889e8
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: 93451d30-6ed2-4515-87fc-be76099e9df0
+    taskid: ec7fd23f-ae1c-4f5f-852d-11733fa889e8
     timertriggers: []
     type: title
     view: |-
@@ -168,22 +184,34 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
     nexttasks:
       '#none#':
       - "3"
     note: false
-    quietmode: 0
+    quietmode: 2
+    scriptarguments:
+      CheckForWhoisDomainAgeCreation:
+        simple: "True"
+      CheckForWhoisRegistrant:
+        simple: "True"
     separatecontext: true
     skipunavailable: false
     task:
       brand: ""
-      id: 2199560e-14d0-4529-8120-2e5cf94db5db
+      description: This playbook uses several sub playbooks to process and tag indicators
+        based on the results of the Whois tool.
+      id: 691bed2e-29ef-4e9c-835f-4361ebace363
       iscommand: false
       name: TIM - Process Domains With Whois
       playbookId: TIM - Process Domains With Whois
       type: playbook
       version: -1
-    taskid: 2199560e-14d0-4529-8120-2e5cf94db5db
+    taskid: 691bed2e-29ef-4e9c-835f-4361ebace363
     timertriggers: []
     type: playbook
     view: |-
