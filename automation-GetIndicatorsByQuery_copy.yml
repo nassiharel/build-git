@@ -19,6 +19,8 @@ args:
   description: A comma-separated list of fields in the object to poplulate. Defaults
     are id, score, and investigationIDs.
   name: populateFields
+- defaultValue: "false"
+  name: toContext
 comment: Gets a list of indicator objects and the associated indicator outputs that
   match the specified query and filters. The results are returned in a structured
   data file.
@@ -28,10 +30,10 @@ commonfields:
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
-    fromServerVersion: 5.5.0
-    itemVersion: 1.31.8
+    fromServerVersion: ""
+    itemVersion: ""
     packID: ""
-    packName: Base
+    packName: ""
     propagationLabels:
     - all
     toServerVersion: ""
@@ -161,6 +163,7 @@ script: |
       entry['ContentsFormat'] = formats['json']
       entry['HumanReadable'] = f'Fetched {len(indicators)} indicators successfully by the query: {query}'
 
+
       return entry
 
 
@@ -169,7 +172,6 @@ script: |
 
   register_module_line('GetIndicatorsByQuery', 'end', __line__())
 scripttarget: 0
-sourcescripid: GetIndicatorsByQuery
 subtype: python3
 tags:
 - ml
