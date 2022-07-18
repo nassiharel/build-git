@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 3.2.0
+    itemVersion: 3.2.9
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
@@ -177,6 +177,8 @@ tasks:
     note: false
     quietmode: 0
     reputationcalc: 1
+    results:
+    - reportedemailentryid
     scriptarguments:
       entryid:
         simple: ${inputs.File.EntryID}
@@ -258,6 +260,8 @@ tasks:
     note: false
     quietmode: 0
     reputationcalc: 2
+    results:
+    - AttachmentName
     scriptarguments:
       entryid:
         simple: ${reportedemailentryid}
