@@ -1,0 +1,3974 @@
+category: Email Gateway
+commonfields:
+  id: Gmail
+  version: -1
+configuration:
+- display: Email of user with admin privileges
+  displaypassword: The content of the Service Account file
+  name: adminEmail
+  required: true
+  type: 9
+- display: Immutable Google Apps Id
+  name: gappsID
+  required: false
+  type: 0
+- additionalinfo: Used for searching emails in the inbox. The query language follows
+    the Gmail query specification. For example - "from:example@demisto.com is:unread".
+  display: Events search query (e.g., "from:example@demisto.com")
+  name: query
+  required: false
+  type: 0
+- additionalinfo: Use this to specify the email account to search for messages with
+    the search query. By default, the integration uses the email address specified
+    in the credentials.
+  display: Events user key (e.g., example@demisto.com)
+  name: queryUserKey
+  required: false
+  type: 0
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- defaultvalue: 1 days
+  display: First fetch timestamp, in days.
+  name: fetch_time
+  required: false
+  type: 0
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.19
+    packID: Gmail
+    packName: Gmail
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Gmail API and user management (This integration replaces the Gmail functionality
+  in the GoogleApps API and G Suite integration).
+detaileddescription: |-
+  This API enables you to use the Google Admin API. In order to enable the API, you will need to create an account service private key JSON file and copy its content as the value for the **Password** parameter field.
+
+  Follow these steps to [create a private key and authorize the API](https://developers.google.com/admin-sdk/directory/v1/guides/delegation).
+
+  | Function | API to Authorize |
+  | -------- | ---------------- |
+  | Authorize the next APIs for the service account | [https://www.googleapis.com/auth/admin.directory.user.readonly](https://www.googleapis.com/auth/admin.directory.user.readonly) |
+  | Fetch user roles | [https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly](https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly) |
+  | Revoke user roles | [https://www.googleapis.com/auth/admin.directory.rolemanagement](https://www.googleapis.com/auth/admin.directory.rolemanagement) |
+  | Search user mailboxes | [https://www.googleapis.com/auth/gmail.readonly](https://www.googleapis.com/auth/gmail.readonly) |
+  | Delete emails from user mailbox | [https://mail.google.com](https://mail.google.com), [https://www.googleapis.com/auth/gmail.modify](https://www.googleapis.com/auth/gmail.modify) |
+  | Fetch user security tokens | [https://www.googleapis.com/auth/admin.directory.user.security](https://www.googleapis.com/auth/admin.directory.user.security) |
+  | Block email addresses | [https://www.googleapis.com/auth/gmail.settings.basic](https://www.googleapis.com/auth/gmail.settings.basic) |
+  | Get auto-replay messages from a user | [https://mail.google.com](https://mail.google.com), [https://www.googleapis.com/auth/gmail.modify](https://www.googleapis.com/auth/gmail.modify), [https://www.googleapis.com/auth/gmail.readonly](https://www.googleapis.com/auth/gmail.readonly) and [https://www.googleapis.com/auth/gmail.settings.basic](https://www.googleapis.com/auth/gmail.settings.basic) |
+  | Set auto-replay messages | [https://www.googleapis.com/auth/gmail.settings.basic](https://www.googleapis.com/auth/gmail.settings.basic) |
+  | Hide users from the global directory | [https://www.googleapis.com/auth/admin.directory.user](https://www.googleapis.com/auth/admin.directory.user) |
+  | Delegate a user to a mailbox or remove a delegated mail from a mailbox | [https://www.googleapis.com/auth/gmail.settings.sharing](https://www.googleapis.com/auth/gmail.settings.sharing) |
+  | Set a user's password | [https://www.googleapis.com/auth/admin.directory.user](https://www.googleapis.com/auth/admin.directory.user) |
+  | Send mails or reply to a mail | [https://www.googleapis.com/auth/gmail.compose](https://www.googleapis.com/auth/gmail.compose) and [https://www.googleapis.com/auth/gmail.send](https://www.googleapis.com/auth/gmail.send) |
+  | Add the send as email ID | [https://www.googleapis.com/auth/gmail.settings.sharing](https://www.googleapis.com/auth/gmail.settings.sharing)  |
+  | Add the forwarding address for the user | [https://www.googleapis.com/auth/gmail.settings.sharing](https://www.googleapis.com/auth/gmail.settings.sharing) |
+
+  For the email user parameter, select a user with admin permissions and make sure that you follow the steps to perform Google Apps Domain-Wide Delegation of Authority.
+  The required admin permissions are only used for user actions (i.e., creating users, getting user informations, deleting users):
+      - Organizational Units > Read
+      - Users
+      - Security > User Security Management
+      - Security > Security Settings
+  Mailbox actions do not require admin previleges.
+  If a non-admin user is the user for the integration's parameter, the test button will fail on a 403 error.
+  This may also cause the ***gmail-search-all-mailboxes*** command to fail.
+
+  ## Revoke/Fetch User Roles
+  In order to revoke/fetch user role, you will need the Immutable Google Apps ID param.
+  To get an Immutable Google Apps ID (or customerId):
+  1. Go to [https://admin.google.com](https://admin.google.com)
+  2. Select **Security -> Set up single sign-on (SSO)**.
+
+  There you will see URLs in the format:
+  [https://accounts.google.com/o/saml2/idp?idpid=Cxxxxxxxx](https://accounts.google.com/o/saml2/idp?idpid=Cxxxxxxxx)
+  Cxxxxxxxx is your Immutable Google Apps ID (customerId).
+
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/gmail)
+display: Gmail
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAAyCAYAAACXpx/YAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAhKSURBVHgB7ZttbFvVGcf/517bcRI3dtLSdGm6eFXRpkkTpR9A6iYgbP0Cg5ZMArFpxOtKWyq1DS/SuteGSnxcX6StlLC0zgQaA620k9jGpC3ZC9vEtA00plEEjUuLcNqkdhw7vvb1vYfnubEdJ2lCWpLKJ7q/6sbH5957TnP/5/+cx+c4gIuLi4uLi4uLi4vL1SGgIOcfiey20qkDvls3Buu+9g0h6uqwUEgpJ8vjGYy/+Jxt9L86rgeC+8LPv/xTKIaSAscevFdKy4Kkf9ryG9CwY6/tWbtOwwJQEth8+y059pMfw7p0kZ4R1Wmave43f9GhGB4oiGUVyiPTHr6I5FPf1+ru2mzXbrlfCN3ziQatzGZl5qXnRPa3pwUq3AzbXpABdL1R8j+dLhRg88MvCUCv46+c0hL79ojC0IcS14g5+K5M7NvN4qJSXJuKg1kDKqKkwMK2MZTLw6DXSpHt4UtIksjjp17EVUFxOXPyBTvxg8cpJA9NOZWmqeCtTAYpMwcVUVJgnebEZULiYt7E0IpmWZkYMSzw5ScegUXh++MoXHgfiR8+ITIvPa/BtsrhnYYOLjW3yDOUaGm2hYCS2YqiczBNjuCZdgUNz2z7Juv94WFPy+uvwZtOlR1tX7qIy9/Zg7qv3of6+x64YjvZ3/0amV/9ApIcWkk+sAypex9AgdoKvPs2fFTncQW+jhQNq5EAKxqb4PvcF/BBaxsa/vFnNJ3532TYNvMYf/mXyP3z7wg++j3oN6x0qikzxtgzR2D+/79OW6UIwD/HPn8TjE33oL65GbVn30Ge+9Em+1QNRQWueNpCoKmpCbqu43LjcqRXfxqfev2v8KRGy5dY589RGH4cdR0PQsgCufYFcm16SpN5Xw1Gv3IXPLd8EaH6etTW1sKsqYFOUwEPAOEKfP2YOudOlIPBIGktMLrhVsTb1iIw8HuE3jszeVV6DJmf96Bo2cpbMRZeB+PuDtS2rEYdLZr4/X5nwFjaRIrC4iqZrEBVB1dSoXVDQwOFUw1jHg+Mjq9jiEJz09/64c0ZMy8mTJ8fyS+1Q6Ojoehar9frtKEVxUVJXHcOrg4CgYDj5AwlTtbG2zBy42dR/8pJLLtwbuKConvHVrdh/J77ybUtjmtrOByTa6eIi0lx3RB9PZFzP+16cmNJZH1VC3KdO1HofxWB1/ohPF4kNrZD3PZlx7Ucjtm1LC7fUxKXyxOmlaqa12FJCsywK1mkbDY7MZ9uuhtjN9/CS47wNa+a4drp4pZenZKi7mWWrMAMz6kMi8yC+tbdSOvYliNq6XBEnO7cksAV3pWKqrwEkiw5xynphGAW1zRNRziPZ+JXLrl2VnGLryq7l1HzY9I8njqLyw5lF7NYhmEgn8+XRZxN3LKwV9lftaL0StYVTxUdzc71+XxT3rN4JSeXHMzMJW5Fw1CRJfExqXLhg0XikMwCTt+E4KSKz/M8PF9xVXYvo3ySVV5Hpld2bEnE2eBrCrSfzMe8xVXUvYyqc3CeFh58xTcOpZA8H3huZmz6yDRnWHban+igINVUWUmBh017e1AXT1GxxUdOrPV6nT3hXO7jN+UrdWKB+ZiNfKEgTf4iAUQyY8vvwsXFxcXFZeFQah09EtlPCVJKeL1Z573h98twKITu7m4sNtzH+fOjYs2aoOTyrl27nPqjR4+imlEiyeIHGo/HhWEM3WECmwumaON6mTfejGXjfZGursHo4cNYTGLxeJjSsa5YPMsdxcYMO+IRziZiH6oYJb6oEEskGrOmPCl1/EFI+RBJG+RDQO6RBZy1U8Z+LDJWHndQuNsrTTh9aQKdNmQEVU7VO5hDYSaT/yN93m0Tmv1YtLenbNVIpCsEj9ElxOxTTSl8V4bxK9VNv2f6Od02TtmaP6zZiEIhqn4O/ubWnRFyywlaOY6c6H16XuFw27bdohDQJe0uCHh9Ia7zZfVkS8sy6YT6Gr9T58lYydbW5bIkJoV6+MZtQZsSYfgR89n14HtKgl+4MCI0LSd7enrQ+e2d/XxPX++xdlQxVe9gTZN7IcXAdHHncp9pm2dlyuwjZ9+OnHE719MSSF/sw8wBWZAHYRqbuY7m83M0t95JxcHt27fDSBndOUH96SLIJ3PI9MXimQN8PhaLh6WGfgnRRe9PQxGqP8mSYj0tJj1ZWcUi0gP/zIxrQ/4E/UxSXApTaNpPx2EqPwmb2hDyEIm7hYbMIG03dEBqIafOFMfpnva8hS00IH5E0f4I3XOalq/CdP4gnQ9Tf+3UH8e7sLRFIxRCyaVKx0063ptWLWTK4IHQXXz7RrT36UeL5wY6t+3opHk8LCzZEY32xLjyoW/tWC802cnl8JqWU7FYcrnPZyeLIfpPdl6GNCEOUX0IiqJAFi2TJExoakg2kuS2OyuPGXdJOTWMSpF0RI8ei5XrhFPniBdLJBtt3TiUs3KXefBQtmxpQttc7M8VePHQ+tll5KJyaIxGo8noz44N8BFuXTWA4p8L65r8D64RO20cokY6aXfpiPBirdCsDbRr9SYUp+pDtNAKB6Stb5G6cZCy460+nyVXrpz4G6ORkRHnMzI57ji5fPBE7zPXnPzQmsVNUorTotDcHW4VTtupbF71/f7qd3D02WffoPWirVTsNKV5Np2TkVjsg5v5GB3Pd8l07t8Uj4PCnhmmrwrJyZekjHuoncM1tc3Z+14ojhIrWdHjx6LCwloqsgjHpa7/iw/KeA86dbbYMGVuvfK3tuQc9aDk6zESNMGrZTJtjAgS154YWHKWdmdrr6pQ7kv7kcjOME0sYVIkCbM+Fo0eTmIBiTz88HqnsAhtu7i4uLi4uLi4LBE+AmSPuemtXCzRAAAAAElFTkSuQmCC
+name: Gmail
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    description: Lists all labels in the user's mailbox.
+    name: gmail-list-labels
+    outputs:
+    - contextPath: GmailLabel.UserID
+      description: The UserID the label belongs to.
+      type: String
+    - contextPath: GmailLabel.Name
+      description: The name of the label.
+      type: String
+    - contextPath: GmailLabel.ID
+      description: The label ID.
+      type: String
+    - contextPath: GmailLabel.Type
+      description: The label type.
+      type: String
+    - contextPath: GmailLabel.MessageListVisibility
+      description: The label message list visibility.
+      type: String
+    - contextPath: GmailLabel.LabelListVisibility
+      description: The label list visbility.
+      type: String
+  - arguments:
+    - default: true
+      description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    description: Deletes a Gmail user.
+    name: gmail-delete-user
+  - arguments:
+    - default: true
+      description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    description: Lists all tokens associated with a specified user. applications.
+    name: gmail-get-tokens-for-user
+  - arguments:
+    - default: true
+      description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    - auto: PREDEFINED
+      defaultValue: basic
+      description: 'The subset of fields to fetch for the user. Can be: "basic": Do
+        not include any custom fields for the user (default), "custom": Includes custom
+        fields from schemas requested in custom-field-mask, "full": Includes all fields
+        associated with the user.'
+      name: projection
+      predefined:
+      - basic
+      - custom
+      - full
+    - auto: PREDEFINED
+      defaultValue: admin_view
+      description: Whether to fetch the administrator or public view of the user.
+        Can be admin_view (default), which includes both administrator and domain-public
+        fields; or "domain_public", which includes user fields that are publicly visible
+        to other users in the domain.
+      name: view-type-public-domain
+      predefined:
+      - admin_view
+      - domain_public
+    - description: A comma separated list of schema names. All fields from these schemas
+        are fetched. This should only be set when projection=custom.
+      name: custom-field-mask
+    description: Gets information for a specified user.
+    name: gmail-get-user
+    outputs:
+    - contextPath: Account.Type
+      description: The account type. For example, "AD", "LocalOS", "Google", "AppleID",
+        and so on.
+      type: String
+    - contextPath: Account.ID
+      description: The unique ID for the account (integration specific). For AD accounts
+        this is the Distinguished Name (DN).
+      type: String
+    - contextPath: Account.DisplayName
+      description: The display name.
+      type: string
+    - contextPath: Account.Gmail.Address
+      description: Email assigned with the current account.
+      type: string
+    - contextPath: Account.Email.Address
+      description: The email address of the account.
+      type: String
+    - contextPath: Account.Domain
+      description: The domain of the account.
+      type: String
+    - contextPath: Account.Username
+      description: The account username in the relevant system.
+      type: String
+    - contextPath: Account.OrganizationUnit
+      description: The Organization Unit (OU) of the account.
+      type: String
+    - contextPath: Account.Group
+      description: Groups to which the account belongs (integration specific). For
+        example, for AD, these are the groups in which the account is a member.
+      type: String
+    - contextPath: Account.VisibleInDirectory
+      description: Whether the account is visible in the directory.
+      type: Boolean
+    - contextPath: Account.CustomerId
+      description: The customer unique ID.
+      type: String
+  - arguments:
+    - default: true
+      description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    description: Retrieves a list of all Google roles for a specified user.
+    name: gmail-get-user-roles
+    outputs:
+    - contextPath: Gmail.Role.RoleAssignmentId
+      description: The unique ID of the role assignment.
+      type: String
+    - contextPath: Gmail.Role.ScopeType
+      description: The scope type of the role.
+      type: String
+    - contextPath: Gmail.Role.Kind
+      description: The kind of the Role.
+      type: String
+    - contextPath: Gmail.Role.OrgUnitId
+      description: Organization in which user was assigned.
+      type: String
+    - contextPath: Gmail.Role.ID
+      description: The inner role ID.
+      type: String
+    - contextPath: Gmail.Role.AssignedTo
+      description: User ID who was assigned to the role.
+      type: String
+  - arguments:
+    - description: The ID of the message to retrieve.
+      name: message-id
+      required: true
+    - description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    description: Retrieves attachments from a sent Gmail message.
+    name: gmail-get-attachments
+  - arguments:
+    - default: true
+      description: The user's email address. The special value me can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    - description: The ID of the message to retrieve.
+      name: message-id
+      required: true
+    - auto: PREDEFINED
+      defaultValue: full
+      description: 'The format in which to return the message. Can be: "full": Returns
+        the full email message data with body content parsed in the payload field;
+        the raw field is not used. (default) / "metadata": Returns only the email
+        message ID, labels, and email headers / "minimal": Returns only the email
+        message ID and labels; does not return the email headers, body, or payload
+        / "raw": Returns the full email message data with body content in the raw
+        field as a base64url encoded string; the payload field is not used.'
+      name: format
+      predefined:
+      - full
+      - metadata
+      - minimal
+      - raw
+    description: Retrieves the Gmail message sent to a specified user.
+    name: gmail-get-mail
+    outputs:
+    - contextPath: Gmail.ID
+      description: Inner ID of the Gmail message.
+      type: String
+    - contextPath: Gmail.ThreadId
+      description: The thread ID.
+      type: string
+    - contextPath: Gmail.Format
+      description: MIME type of email.
+      type: string
+    - contextPath: Gmail.Labels
+      description: Labels of the specific email.
+      type: string
+    - contextPath: Gmail.To
+      description: Email Address of the receiver.
+      type: String
+    - contextPath: Gmail.From
+      description: Email Address of the sender.
+      type: String
+    - contextPath: Gmail.Cc
+      description: Additional recipient email address (CC).
+      type: string
+    - contextPath: Gmail.Bcc
+      description: Additional recipient email address (BCC).
+      type: string
+    - contextPath: Gmail.Subject
+      description: Subject of the email.
+      type: string
+    - contextPath: Gmail.Body
+      description: The content of the email.
+      type: string
+    - contextPath: Gmail.Attachments
+      description: The attachments of the email. Attachments ID's are separated by
+        ','.
+      type: unknown
+    - contextPath: Gmail.Headers
+      description: All headers of the specific email (list).
+      type: unknown
+    - contextPath: Gmail.Mailbox
+      description: The email mailbox.
+      type: string
+    - contextPath: Email.To
+      description: The recipient of the email.
+      type: String
+    - contextPath: Email.From
+      description: The sender of the email.
+      type: String
+    - contextPath: Email.CC
+      description: Additional recipient email address (CC).
+      type: String
+    - contextPath: Email.BCC
+      description: Additional recipient email address (BCC).
+      type: String
+    - contextPath: Email.Format
+      description: The format of the email.
+      type: String
+    - contextPath: Email.Body/HTML
+      description: The HTML version of the email.
+      type: String
+    - contextPath: Email.Body/Text
+      description: The plain-text version of the email.
+      type: String
+    - contextPath: Email.Subject
+      description: The subject of the email.
+      type: String
+    - contextPath: Email.Headers
+      description: The headers of the email.
+      type: String
+    - contextPath: Email.Attachments.entryID
+      description: Attachments ids separated by ','.
+      type: Unknown
+    - contextPath: Email.Date
+      description: The date the email was received.
+      type: String
+  - arguments:
+    - default: true
+      description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    - description: 'Returns messages matching the specified query. Supports the same
+        query format as the Gmail search box. For example, "from:someuser@example.com
+        rfc822msgid: is:unread". For more syntax information see "https://support.google.com/mail/answer/7190?hl=en"'
+      name: query
+    - defaultValue: "100"
+      description: Maximum number of results to return. Default is 100. Maximum is
+        500. Can be 1 to 500, inclusive.
+      name: max-results
+    - description: Enables partial responses to be retrieved, separated by commas.
+        For more information, see https://developers.google.com/gdata/docs/2.0/basics#PartialResponse.
+      name: fields
+    - description: Only returns messages with labels that match all of the specified
+        label IDs in a comma separated list.
+      name: labels-ids
+    - description: Page token to retrieve a specific page of results in the list.
+      name: page-token
+    - auto: PREDEFINED
+      defaultValue: "False"
+      description: 'Include messages from SPAM and TRASH in the results. (Default:
+        false)'
+      name: include-spam-trash
+      predefined:
+      - "False"
+      - "True"
+    - description: Specify the sender. For example, "john"
+      name: from
+    - description: Specify the receiver. For example, "john"
+      name: to
+    - description: Words in the subject line. For example, "alert"
+      name: subject
+    - description: Attachments with a certain name or file type. For example, "pdf"
+        or "report.pdf"
+      name: filename
+    - description: 'Messages in any folder, including Spam and Trash. For example:
+        shopping'
+      name: in
+    - description: 'Search for messages sent after a certain time period. For example:
+        2018/05/06'
+      name: after
+    - description: 'Search for messages sent before a certain time period. for example:
+        2018/05/09'
+      name: before
+    - auto: PREDEFINED
+      description: Whether to search for messages sent with attachments (boolean value).
+      name: has-attachments
+      predefined:
+      - "True"
+      - "False"
+    description: Searches for Gmail records of a specified Google user.
+    name: gmail-search
+    outputs:
+    - contextPath: Gmail.ID
+      description: Inner ID of the Gmail message.
+      type: string
+    - contextPath: Gmail.ThreadId
+      description: The thread ID.
+      type: string
+    - contextPath: Gmail.Format
+      description: MIME type of email.
+      type: string
+    - contextPath: Gmail.Labels
+      description: Labels of the specific email.
+      type: string
+    - contextPath: Gmail.To
+      description: Email Address of the receiver.
+      type: string
+    - contextPath: Gmail.From
+      description: Email Address of the sender.
+      type: string
+    - contextPath: Gmail.Cc
+      description: Additional recipient email address (CC).
+      type: string
+    - contextPath: Gmail.Bcc
+      description: Additional recipient email address (BCC).
+      type: string
+    - contextPath: Gmail.Subject
+      description: Subject of the specific email.
+      type: string
+    - contextPath: Gmail.Body
+      description: The content of the email.
+      type: string
+    - contextPath: Gmail.Attachments
+      description: Attachment details. Attachments IDs are separated by ','
+      type: unknown
+    - contextPath: Gmail.Headers
+      description: All headers of a specific email (list).
+      type: unknown
+    - contextPath: Gmail.Mailbox
+      description: The email mailbox.
+      type: string
+    - contextPath: Email.To
+      description: The recipient of the email.
+      type: String
+    - contextPath: Email.From
+      description: The sender of the email.
+      type: String
+    - contextPath: Email.CC
+      description: Additional recipient email address (CC).
+      type: String
+    - contextPath: Email.BCC
+      description: Additional recipient email address (BCC).
+      type: String
+    - contextPath: Email.Format
+      description: The format of the email.
+      type: String
+    - contextPath: Email.Body/HTML
+      description: The HTML version of the email.
+      type: String
+    - contextPath: Email.Body/Text
+      description: The plain-text version of the email.
+      type: String
+    - contextPath: Email.Subject
+      description: The subject of the email.
+      type: String
+    - contextPath: Email.Headers
+      description: The headers of the email.
+      type: String
+    - contextPath: Email.Attachments.entryID
+      description: Email Attachment IDs. Separated by ','
+      type: Unknown
+    - contextPath: Email.Date
+      description: The date the email was received.
+      type: String
+  - arguments:
+    - description: 'Returns messages matching the specified query. Supports the same
+        query format as the Gmail search box. For example, "from:someuser@example.com
+        rfc822msgid: is:unread". For more syntax information,see "https://support.google.com/mail/answer/7190?hl=en"'
+      name: query
+    - defaultValue: "100"
+      description: Maximum number of results to return. Default is 100. Maximum is
+        500. Acceptable values are 1 to 500, inclusive.
+      name: max-results
+    - description: Enables partial responses to be retrieved in a comma separated
+        list. For more information, see https://developers.google.com/gdata/docs/2.0/basics#PartialResponse.
+      name: fields
+    - description: Only returns messages with labels that match all of the specified
+        label IDs in a comma separated list.
+      name: labels-ids
+    - description: Page token to retrieve a specific page of results in the list.
+      name: page-token
+    - auto: PREDEFINED
+      defaultValue: "False"
+      description: 'Includes messages from SPAM and TRASH in the results. (Default:
+        false)'
+      name: include-spam-trash
+      predefined:
+      - "False"
+      - "True"
+    - description: Specifies the sender. For example, "john"
+      name: from
+    - description: Specifies the receiver. For example, "john"
+      name: to
+    - description: Words in the subject line. For example, "alert"
+      name: subject
+    - description: Attachments with a certain name or file type. For example, "pdf"
+        or "report.pdf"
+      name: filename
+    - description: Messages in any folder, including Spam and Trash. For example,
+        shopping
+      name: in
+    - description: Search for messages sent after a certain time period. For example,
+        2018/05/06
+      name: after
+    - description: Search for messages sent before a certain time period. For example,
+        2018/05/09
+      name: before
+    - auto: PREDEFINED
+      description: Whether to search for messages sent with attachments.
+      name: has-attachments
+      predefined:
+      - "False"
+      - "True"
+    - auto: PREDEFINED
+      description: Whether to return only mailboxes which contain the email. Default
+        is "False".
+      name: show-only-mailboxes
+      predefined:
+      - "false"
+      - "true"
+    description: Searches the Gmail records for all Google users.
+    name: gmail-search-all-mailboxes
+    outputs:
+    - contextPath: Gmail.ID
+      description: Inner ID of the Gmail message.
+      type: string
+    - contextPath: Gmail.ThreadId
+      description: The thread ID.
+      type: string
+    - contextPath: Gmail.Format
+      description: MIME type of the email.
+      type: string
+    - contextPath: Gmail.Labels
+      description: Labels of a specific email.
+      type: string
+    - contextPath: Gmail.To
+      description: Email Address of the receiver.
+      type: string
+    - contextPath: Gmail.From
+      description: Email Address of the sender.
+      type: string
+    - contextPath: Gmail.Cc
+      description: Additional recipient email address (CC).
+      type: string
+    - contextPath: Gmail.Bcc
+      description: Additional recipient email address (BCC).
+      type: string
+    - contextPath: Gmail.Subject
+      description: Subject of the specific email.
+      type: string
+    - contextPath: Gmail.Body
+      description: The content of the email.
+      type: string
+    - contextPath: Gmail.Attachments
+      description: The attachments of the email. IDs are separated by ','.
+      type: unknown
+    - contextPath: Gmail.Headers
+      description: All headers of specific mail (list).
+      type: unknown
+    - contextPath: Gmail.Mailbox
+      description: The Gmail Mailbox.
+      type: string
+    - contextPath: Email.To
+      description: The recipient of the email.
+      type: String
+    - contextPath: Email.From
+      description: The sender of the email.
+      type: String
+    - contextPath: Email.CC
+      description: Additional recipient email address (CC).
+      type: String
+    - contextPath: Email.BCC
+      description: Additional recipient email address (BCC).
+      type: String
+    - contextPath: Email.Format
+      description: The format of the email.
+      type: String
+    - contextPath: Email.Body/HTML
+      description: The HTML version of the email.
+      type: String
+    - contextPath: Email.Body/Text
+      description: The plain-text version of the email.
+      type: String
+    - contextPath: Email.Subject
+      description: The subject of the email.
+      type: String
+    - contextPath: Email.Headers
+      description: The headers of the email.
+      type: String
+    - contextPath: Email.Attachments.entryID
+      description: Email Attachments. IDs are separated by ','.
+      type: Unknown
+    - contextPath: Email.Date
+      description: The date the email was received.
+      type: String
+  - arguments:
+    - auto: PREDEFINED
+      description: 'The subset of fields to fetch for the user. Can be "basic": Do
+        not include any custom fields for the user. (default), "custom": Include custom
+        fields from schemas requested in customFieldMask, "full": Include all fields
+        associated with this user.'
+      name: projection
+      predefined:
+      - basic
+      - custom
+      - full
+    - default: true
+      description: The domain name. Use this field to get fields from only one domain.
+        To return all domains for a customer account, use the customer query parameter.
+      name: domain
+    - description: The unique ID for the customers Google account. Default is the
+        value specified in the integration configuration. For a multi-domain account,
+        to fetch all groups for a customer, use this field instead of domain.
+      name: customer
+    - description: Maximum number of results to return. Default is 100. Maximum is
+        500. Can be 1 to 500, inclusive.
+      name: max-results
+    - description: A comma-separated list of schema names. All fields from these schemas
+        are fetched. Must be set when projection=custom.
+      name: custom-field-mask
+    - description: Query string search. Should be of the form "". Complete documentation
+        is at https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+      name: query
+    - auto: PREDEFINED
+      description: If true, retrieves the list of deleted users. Default is false.
+      name: show-deleted
+      predefined:
+      - "False"
+      - "True"
+    - auto: PREDEFINED
+      description: How to sort out results. Can be ASCENDING/DESCENDING
+      name: sort-order
+      predefined:
+      - ASCENDING
+      - DESCENDING
+    - description: Token to authorize and authenticate the action.
+      name: token
+    - auto: PREDEFINED
+      defaultValue: admin_view
+      description: Whether to fetch either the administrator or public view of the
+        user. Can be admin_view (default), which includes both administrator and domain-public
+        fields or "domain_public"(includes fields for the user that are publicly visible
+        to other users in the domain).
+      name: view-type-public-domain
+      predefined:
+      - admin_view
+      - domain_public
+    - description: Token to specify next page in the list
+      name: page-token
+    description: Lists all Google users in a domain.
+    name: gmail-list-users
+    outputs:
+    - contextPath: Account.Type
+      description: The account type. For example, "AD", "LocalOS", "Google", "AppleID",
+        and so on.
+      type: String
+    - contextPath: Account.ID
+      description: The unique ID for the account (integration specific). For AD accounts
+        this is the Distinguished Name (DN).
+      type: String
+    - contextPath: Account.DisplayName
+      description: The display name.
+      type: String
+    - contextPath: Account.Gmail.Address
+      description: Email assigned with the current account.
+      type: string
+    - contextPath: Account.Email.Adderss
+      description: The email address of the account.
+      type: String
+    - contextPath: Account.Groups
+      description: Groups to which the account belongs (integration specific). For
+        example, for AD these are the groups in which the account is member.
+      type: String
+    - contextPath: Account.Domain
+      description: The domain of the account.
+      type: String
+    - contextPath: Account.Username
+      description: The username of the account.
+      type: String
+    - contextPath: Account.OrganizationUnit
+      description: The Organization Unit (OU) of the account.
+      type: String
+  - arguments:
+    - description: The user's email address. The special value me can be used to indicate
+        the authenticated user.
+      name: user-id
+    - description: The immutable ID of the role assignment.
+      name: role-assignment-id
+      required: true
+    description: Revokes a role for a specified Google user.
+    name: gmail-revoke-user-role
+  - arguments:
+    - default: true
+      description: The user's primary email address. The primary email address must
+        be unique and cannot be an alias of another user.
+      name: email
+      required: true
+    - description: The user's first name.
+      name: first-name
+      required: true
+    - description: The user's last name.
+      name: family-name
+      required: true
+    - description: Stores the password for the user account. A password can contain
+        any combination of ASCII characters. A minimum of 8 characters is required.
+        The maximum length is 100 characters.
+      name: password
+      required: true
+    description: Creates a new Gmail user.
+    name: gmail-create-user
+    outputs:
+    - contextPath: Account.Type
+      description: The account type. For example, "AD", "LocalOS", "Google", "AppleID",
+        and so on.
+      type: String
+    - contextPath: Account.ID
+      description: The unique ID for the account (integration specific). For AD accounts
+        this is the Distinguished Name (DN).
+      type: String
+    - contextPath: Account.DisplayName
+      description: The display name.
+      type: string
+    - contextPath: Account.Gmail.Address
+      description: Email assigned with the current account.
+      type: string
+    - contextPath: Account.Email.Address
+      description: The email address of the account.
+      type: String
+    - contextPath: Account.Username
+      description: The username of the account.
+      type: String
+    - contextPath: Account.Groups
+      description: Groups to which the account belongs (integration specific). For
+        example, for AD these are groups in which the account is a member.
+      type: String
+    - contextPath: Account.Domain
+      description: The domain of the account.
+      type: String
+    - contextPath: Account.OrganizationUnit
+      description: The Organization Unit (OU) of the account.
+      type: String
+  - arguments:
+    - default: true
+      description: The user's email address. The special value me can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    - description: The ID of the message to delete.
+      name: message-id
+      required: true
+    - auto: PREDEFINED
+      description: Whether to delete the email permanently or move it to trash (default).
+      name: permanent
+      predefined:
+      - "False"
+      - "True"
+    description: Deletes an email in the user's mailbox.
+    name: gmail-delete-mail
+  - arguments:
+    - default: true
+      description: The user's email address. The special value me can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    - description: The ID of the thread to retrieve.
+      name: thread-id
+      required: true
+    - auto: PREDEFINED
+      defaultValue: full
+      description: 'The format in which to return the message. Can be: "full": Returns
+        the full email message data with body content parsed in the payload field;
+        the raw field is not used. (default) / "metadata": Returns only email message
+        ID, labels, and email headers / "minimal": Returns only email message ID and
+        labels; does not return the email headers, body, or payload / "raw": Returns
+        the full email message data with body content in the raw field as a base64url
+        encoded string; the payload field is not used'
+      name: format
+      predefined:
+      - full
+      - metadata
+      - minimal
+      - raw
+    description: Returns all messages in a thread.
+    name: gmail-get-thread
+    outputs:
+    - contextPath: Gmail.ID
+      description: Inner ID of the Gmail message.
+      type: string
+    - contextPath: Gmail.ThreadId
+      description: The thread ID.
+      type: string
+    - contextPath: Gmail.Format
+      description: MIME type of email.
+      type: string
+    - contextPath: Gmail.Labels
+      description: Labels of the specific email.
+      type: string
+    - contextPath: Gmail.To
+      description: Email Address of the receiver.
+      type: string
+    - contextPath: Gmail.From
+      description: Email Address of the sender.
+      type: string
+    - contextPath: Gmail.Cc
+      description: Additional recipient email address (CC).
+      type: string
+    - contextPath: Gmail.Bcc
+      description: Additional recipient email address (BCC).
+      type: string
+    - contextPath: Gmail.Subject
+      description: Subject of a specific email.
+      type: string
+    - contextPath: Gmail.Body
+      description: The content of the email.
+      type: string
+    - contextPath: Gmail.Attachments
+      description: The attachments of the email. IDs are separated by ','.
+      type: unknown
+    - contextPath: Gmail.Headers
+      description: All headers of the specific email (list).
+      type: unknown
+    - contextPath: Gmail.Mailbox
+      description: The Gmail Mailbox.
+      type: string
+    - contextPath: Email.To
+      description: The recipient of the email.
+      type: String
+    - contextPath: Email.From
+      description: The sender of the email.
+      type: String
+    - contextPath: Email.CC
+      description: Additional recipient email address (CC).
+      type: String
+    - contextPath: Email.BCC
+      description: Additional recipient email address (BCC).
+      type: String
+    - contextPath: Email.Format
+      description: The format of the email.
+      type: String
+    - contextPath: Email.Body/HTML
+      description: The HTML version of the email.
+      type: String
+    - contextPath: Email.Body/Text
+      description: The plain-text version of the email.
+      type: String
+    - contextPath: Email.Subject
+      description: The subject of the email.
+      type: String
+    - contextPath: Email.Headers
+      description: The headers of the email.
+      type: String
+    - contextPath: Email.Attachments.entryID
+      description: Email Attachments. IDs are separated by ','.
+      type: Unknown
+    - contextPath: Email.Date
+      description: The date the email was received.
+      type: String
+  - arguments:
+    - default: true
+      description: The user's email address. The special value me can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    - description: The ID of the message to retrieve.
+      name: message-id
+      required: true
+    - description: Comma-separated list of labels to add to the email.
+      isArray: true
+      name: add-labels
+    - description: Comma separated list of labels to remove from the email.
+      isArray: true
+      name: remove-labels
+    description: Moves an email to a different folder.
+    name: gmail-move-mail
+    outputs:
+    - contextPath: Gmail.ID
+      description: Inner ID of the Gmail message.
+      type: string
+    - contextPath: Gmail.ThreadId
+      description: The thread ID.
+      type: string
+    - contextPath: Gmail.Format
+      description: MIME type of email.
+      type: string
+    - contextPath: Gmail.Labels
+      description: Labels of the specific email.
+      type: string
+    - contextPath: Gmail.To
+      description: Gmail address of the receiver.
+      type: string
+    - contextPath: Gmail.From
+      description: Gmail address of the sender.
+      type: string
+    - contextPath: Gmail.Cc
+      description: Additional recipient email address (CC).
+      type: string
+    - contextPath: Gmail.Bcc
+      description: Additional recipient email address (BCC).
+      type: string
+    - contextPath: Gmail.Subject
+      description: Subject of the specific email.
+      type: string
+    - contextPath: Gmail.Body
+      description: The content of the email.
+      type: string
+    - contextPath: Gmail.Attachments
+      description: The attachments of the email. IDs are separated by ','.
+      type: unknown
+    - contextPath: Gmail.Headers
+      description: All headers of the specific email (list).
+      type: unknown
+    - contextPath: Gmail.Mailbox
+      description: The Gmail mailbox.
+      type: string
+    - contextPath: Email.To
+      description: The recipient of the email.
+      type: String
+    - contextPath: Email.From
+      description: The sender of the email.
+      type: String
+    - contextPath: Email.CC
+      description: Additional recipient email address (CC).
+      type: Unknown
+    - contextPath: Email.BCC
+      description: Additional recipient email address (BCC).
+      type: Unknown
+    - contextPath: Email.Format
+      description: The format of the email.
+      type: String
+    - contextPath: Email.Body/HTML
+      description: The HTML version of the email.
+      type: String
+    - contextPath: Email.Body/Text
+      description: The plain-text version of the email.
+      type: String
+    - contextPath: Email.Subject
+      description: The subject of the email.
+      type: String
+    - contextPath: Email.Headers
+      description: The headers of the email.
+      type: String
+    - contextPath: Email.Attachments.entryID
+      description: Email attachments. IDs are separated by ','.
+      type: Unknown
+    - contextPath: Email.Date
+      description: The date the email was received.
+      type: String
+  - arguments:
+    - default: true
+      description: The source user's email address. The special value me can be used
+        to indicate the authenticated user.
+      name: src-user-id
+      required: true
+    - description: The ID of the message to retrieve.
+      name: message-id
+      required: true
+    - description: The destination user's email address. The me special value can
+        be used to indicate the authenticated user.
+      name: dst-user-id
+      required: true
+    description: Moves an email to a different mailbox.
+    name: gmail-move-mail-to-mailbox
+    outputs:
+    - contextPath: Gmail.ID
+      description: Inner ID of the Gmail message.
+      type: string
+    - contextPath: Gmail.ThreadId
+      description: The thread ID.
+      type: string
+    - contextPath: Gmail.Format
+      description: MIME type of email.
+      type: string
+    - contextPath: Gmail.Labels
+      description: Labels of the specific email.
+      type: string
+    - contextPath: Gmail.To
+      description: Gmail address of the receiver.
+      type: string
+    - contextPath: Gmail.From
+      description: Gmail address of the sender.
+      type: string
+    - contextPath: Gmail.Cc
+      description: Additional recipient email address (CC).
+      type: string
+    - contextPath: Gmail.Bcc
+      description: Additional recipient email address (BCC).
+      type: string
+    - contextPath: Gmail.Subject
+      description: Subject of the specific email.
+      type: string
+    - contextPath: Gmail.Body
+      description: The content of the email.
+      type: string
+    - contextPath: Gmail.Attachments
+      description: The attachments of the email. IDs are separated by ','.
+      type: unknown
+    - contextPath: Gmail.Headers
+      description: All headers of specific the email (list).
+      type: unknown
+    - contextPath: Gmail.Mailbox
+      description: The Gmail mailbox.
+      type: string
+    - contextPath: Email.To
+      description: The recipient of the email.
+      type: String
+    - contextPath: Email.From
+      description: The sender of the email.
+      type: String
+    - contextPath: Email.CC
+      description: Additional recipient email address (CC).
+      type: String
+    - contextPath: Email.BCC
+      description: Additional recipient email address (BCC).
+      type: String
+    - contextPath: Email.Format
+      description: The format of the email.
+      type: String
+    - contextPath: Email.Body/HTML
+      description: The HTML version of the email.
+      type: String
+    - contextPath: Email.Body/Text
+      description: The plain-text version of the email.
+      type: String
+    - contextPath: Email.Subject
+      description: The subject of the email.
+      type: String
+    - contextPath: Email.Headers
+      description: The headers of the email.
+      type: String
+    - contextPath: Email.Attachments.entryID
+      description: Emails attachments. IDs are separated by ','.
+      type: Unknown
+    - contextPath: Email.Date
+      description: The date the email was received.
+      type: String
+  - arguments:
+    - default: true
+      description: The user's email address. The me special value can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    - description: Email address in which to block messages.
+      name: email-address
+      required: true
+    description: Adds a rule for email deletion by address.
+    name: gmail-add-delete-filter
+  - arguments:
+    - default: true
+      description: The user's email address. The me special value can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    - description: The sender's display name or email address.
+      name: from
+    - description: The recipient's display name or email address. Includes recipients
+        in the "to", "cc", and "bcc" header fields. You can use the local part of
+        the email address. For example, "example" and "example@" both match "example@gmail.com".
+        This field is case-insensitive.
+      name: to
+    - description: The email subject.
+      name: subject
+    - description: Returns messages matching the specified query. Supports the same
+        query format as the Gmail search box. For example, "from:someuser@example.com
+        is:unread".
+      name: query
+    - description: Whether the message has any attachments.
+      name: has-attachments
+    - description: The size of the entire RFC822 message in bytes, including all headers
+        and attachments.
+      name: size
+    - description: Comma-separated list of labels to add to the message.
+      name: add-labels
+    - description: Comma-separated list of labels to remove from the message.
+      name: remove-labels
+    - description: Email address that the message is to be forwarded. The email needs
+        to be configured as a forwarding address, see https://support.google.com/mail/answer/10957?hl=en#null.
+      name: forward
+    - auto: PREDEFINED
+      description: The message size in bytes compared to the size field.
+      name: size-comparison
+      predefined:
+      - larger
+      - smaller
+    description: Add a new filter.
+    name: gmail-add-filter
+    outputs:
+    - contextPath: Gmail.Filter.ID
+      description: Filter ID.
+      type: String
+    - contextPath: Gmail.Filter.Mailbox
+      description: Mailbox containing the filter.
+      type: String
+    - contextPath: Gmail.Filter.Criteria
+      description: Filter Criteria.
+      type: Unknown
+    - contextPath: Gmail.Filter.Action
+      description: Filter Action.
+      type: Unknown
+  - arguments:
+    - description: User's email address. The "me" special value can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    - description: Limit of the results list. Default is 100.
+      name: limit
+    - description: List filters associated with the email address.
+      name: address
+    description: List all filters in a user's mailbox.
+    name: gmail-list-filters
+    outputs:
+    - contextPath: Gmail.Filter.ID
+      description: Filter ID.
+      type: String
+    - contextPath: Gmail.Filter.Mailbox
+      description: Mailbox containing the filter.
+      type: String
+    - contextPath: Gmail.Filter.Criteria
+      description: Filter Criteria.
+      type: Unknown
+    - contextPath: Gmail.Filter.Action
+      description: Filter Action.
+      type: Unknown
+  - arguments:
+    - description: User's email address. The "me" special value can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    - description: Comma separated list of filter IDs (can be retrieve using `gmail-list-filters`
+        command)
+      isArray: true
+      name: filter_ids
+      required: true
+    description: Removes a Filter.
+    name: gmail-remove-filter
+  - arguments:
+    - description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: Whether to hide the user's visibility in the Global Directory.
+        Can be False to hide the user, True to show the user in the directory (default).
+      name: visible-globally
+      predefined:
+      - "true"
+      - "false"
+    description: Hide a user's contact information, such as email address, profile
+      information in the Global Directory.
+    name: gmail-hide-user-in-directory
+    outputs:
+    - contextPath: Account.Type
+      description: The account type. For example, "AD", "LocalOS", "Google", "AppleID",
+        and so on.
+      type: String
+    - contextPath: Account.ID
+      description: The unique ID for the account (integration specific). For AD accounts
+        this is the Distinguished Name (DN).
+      type: String
+    - contextPath: Account.DisplayName
+      description: The display name.
+      type: String
+    - contextPath: Account.Email.Address
+      description: The email address of the account.
+      type: String
+    - contextPath: Account.Gmail.Address
+      description: Email assigned with current account.
+      type: Unknown
+    - contextPath: Account.Domain
+      description: The domain of the account.
+      type: String
+    - contextPath: Account.Username
+      description: The username of the account.
+      type: String
+    - contextPath: Account.OrganizationUnit
+      description: The Organization Unit (OU) of the account.
+      type: String
+    - contextPath: Account.VisibleInDirectory
+      description: Is the Account visible in the Global Directory.
+      type: Boolean
+    - contextPath: Account.Groups
+      description: Groups in which the account belongs (integration specific). For
+        example, for AD these are groups of which the account is memberOf.
+      type: String
+  - arguments:
+    - description: The user's email address. The special value me can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    - description: String formatted password for the user. Depends on the Password
+        Policy of the Organization
+      name: password
+      required: true
+    description: Sets the password for the user.
+    name: gmail-set-password
+  - arguments:
+    - description: The user's email address. The special value me can be used to indicate
+        the authenticated user.
+      name: user-id
+      required: true
+    description: Returns the auto-reply message set for the user-account.
+    name: gmail-get-autoreply
+    outputs:
+    - contextPath: Account.Gmail.AutoReply.EnableAutoReply
+      description: Flag that controls whether Gmail automatically replies to messages.
+      type: Boolean
+    - contextPath: Account.Gmail.AutoReply.ResponseBody
+      description: Response body in plain text format.
+      type: String
+    - contextPath: Account.Gmail.AutoReply.ResponseSubject
+      description: Optional text to add to the subject line in vacation responses.
+        To enable auto-replies, the response subject or the response body must not
+        be empty.
+      type: String
+    - contextPath: Account.Gmail.AutoReply.RestrictToContact
+      description: Flag that determines whether responses are sent to recipients who
+        are not in the user's list of contacts.
+      type: String
+    - contextPath: Account.Gmail.AutoReply.RestrictToDomain
+      description: Flag that determines whether responses are sent to recipients who
+        are outside of the user's domain. This feature is only available for G Suite
+        users.
+      type: String
+    - contextPath: Account.Gmail.Address
+      description: Email assigned with the current account.
+      type: String
+  - arguments:
+    - description: The user's email address. The "me" special value me can be used
+        to indicate the authenticated user.
+      name: user-id
+      required: true
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: Whether Gmail automatically replies to messages. Boolean. Set to
+        true to automatically reply (default).
+      name: enable-autoReply
+      predefined:
+      - "true"
+      - "false"
+    - description: Optional text to add to the subject line in vacation responses.
+        To enable auto-replies, either the response subject or the response body must
+        not be empty.
+      name: response-subject
+    - description: Response body in plain text format.
+      name: response-body
+    - description: Set the away/vacation message by passing a War Room entryID of
+        the file for the given user.
+      name: response-body-entry-id
+    - description: Set a start date for the vacation message to be enabled for the
+        given user. The valid format is YYYY-MM-DD or Epoch time in milliseconds.
+      name: start-time
+    - description: Set an end date for the vacation message to be enabled for the
+        given user. The valid format is YYYY-MM-DD or Epoch time in milliseconds.
+      name: end-time
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether to send away/vacation messages to users in the contact
+        list when set to true. Default is "false".
+      name: contacts-only
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether to prevent sending away/vacation messages to recipients
+        who are outside of the user's domain when set to true. Default is "false".
+      name: domain-only
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      defaultValue: Text
+      description: Whether message response body type is text or HTML. Default is
+        "Text".
+      name: response-body-type
+      predefined:
+      - HTML
+      - Text
+    description: 'Sets the auto-reply for the user. Note: If the body is not set,
+      the current body will be deleted.'
+    name: gmail-set-autoreply
+    outputs:
+    - contextPath: Account.Gmail.AutoReply.EnableAutoReply
+      description: Flag that controls whether Gmail automatically replies to messages.
+      type: Boolean
+    - contextPath: Account.Gmail.AutoReply.ResponseBody
+      description: Response body in plain text format.
+      type: String
+    - contextPath: Account.Gmail.AutoReply.ResponseSubject
+      description: Optional text to add to the subject line in vacation responses.
+        To enable auto-replies, either the response subject or the response body must
+        not be empty.
+      type: String
+    - contextPath: Account.Gmail.AutoReply.RestrictToContact
+      description: Determines whether responses are sent to recipients who are not
+        in the user's list of contacts.
+      type: String
+    - contextPath: Account.Gmail.AutoReply.RestrictToDomain
+      description: Determines whether responses are sent to recipients who are outside
+        of the user's domain. This feature is only available for G Suite users.
+      type: String
+    - contextPath: Account.Gmail.Address
+      description: Email assigned with the current account.
+      type: String
+    - contextPath: Account.Gmail.AutoReply.ResponseBodyHtml
+      description: Response body in HTML format.
+      type: String
+    - contextPath: Account.Gmail.AutoReply.StartTime
+      description: Start time for sending auto-replies.
+      type: Number
+    - contextPath: Account.Gmail.AutoReply.EndTime
+      description: End time for sending auto-replies.
+      type: Number
+  - arguments:
+    - description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    - description: The email address of the delegate.
+      name: delegate-email
+      required: true
+    description: Adds a delegate to the mailbox, without sending any verification
+      email. The delegate user must be a member of the same G Suite organization as
+      the delegator user and must be added using their primary email address, and
+      not an email alias.
+    name: gmail-delegate-user-mailbox
+  - arguments:
+    - description: Email addresses of the receiver.
+      isArray: true
+      name: to
+      required: true
+    - description: Email address of the sender.
+      name: from
+    - description: The contents (body) of the email to be sent in plain text.
+      name: body
+    - description: Subject for the email to be sent.
+      name: subject
+      required: true
+    - description: A comma-separated list of IDs of War Room entries that contain
+        the files that need be attached to the email.
+      isArray: true
+      name: attachIDs
+    - description: Additional recipient email address (CC).
+      isArray: true
+      name: cc
+    - description: Additional recipient email address (BCC).
+      isArray: true
+      name: bcc
+    - description: The contents (body) of the email to be sent in HTML format.
+      name: htmlBody
+    - description: Address that needs to be used to reply to the message.
+      name: replyTo
+    - description: |-
+        A comma-separated list of new names to rename attachments corresponding to the order that they were attached to the email.
+                Examples - To rename first and third file attachNames=new_fileName1,,new_fileName3
+                To rename second and fifth files attachNames=,new_fileName2,,,new_fileName5
+      isArray: true
+      name: attachNames
+    - description: A comma-separated list of CID images to embed attachments inside
+        the email.
+      isArray: true
+      name: attachCIDs
+    - description: |-
+        Textual name for an attached file. Multiple files are supported as a
+                comma-separated list. For example, transientFile="t1.txt,temp.txt,t3.txt" transientFileContent="test
+                2,temporary file content,third file content" transientFileCID="t1.txt@xxx.yyy,t2.txt@xxx.zzz")
+      isArray: true
+      name: transientFile
+    - description: |-
+        Content for the attached file. Multiple files are supported as a comma-separated
+                list. For example, transientFile="t1.txt,temp.txt,t3.txt" transientFileContent="test
+                2,temporary file content,third file content" transientFileCID="t1.txt@xxx.yyy,t2.txt@xxx.zzz")
+      isArray: true
+      name: transientFileContent
+    - description: |-
+        CID image for an attached file to include within the email body. Multiple files are
+                supported as comma-separated list. (e.g. transientFile="t1.txt,temp.txt,t3.txt"
+                transientFileContent="test 2,temporary file content,third file content" transientFileCID="t1.txt@xxx.yyy,t2.txt@xxx.zzz")
+      isArray: true
+      name: transientFileCID
+    - description: 'A CSV list of additional headers in the format: headerName=headerValue.
+        For example: "headerName1=headerValue1,headerName2=headerValue2".'
+      isArray: true
+      name: additionalHeader
+    - description: |-
+        'Replaces {varname} variables with values from this parameter. Expected
+               values are in the form of a JSON document. For example, {"varname" :{"value" "some
+               value", "key": "context key"}}. Each var name can either be provided with
+               the value or a context key to retrieve the value.
+               Note that only context data is accessible for this argument, while incident fields are not.'
+      name: templateParams
+    description: Sends mail using Gmail.
+    name: send-mail
+    outputs:
+    - contextPath: Gmail.SentMail.ID
+      description: The immutable ID of the message.
+      type: String
+    - contextPath: Gmail.SentMail.Labels
+      description: List of IDs of labels applied to this message.
+      type: String
+    - contextPath: Gmail.SentMail.ThreadId
+      description: The ID of the thread in which the message belongs.
+      type: String
+    - contextPath: Gmail.SentMail.To
+      description: The recipient of the email.
+      type: String
+    - contextPath: Gmail.SentMail.From
+      description: The sender of the email.
+      type: Unknown
+    - contextPath: Gmail.SentMail.Cc
+      description: Additional recipient email address (CC).
+      type: String
+    - contextPath: Gmail.SentMail.Bcc
+      description: Additional recipient email address (BCC).
+      type: String
+    - contextPath: Gmail.SentMail.Subject
+      description: The subject of the email.
+      type: String
+    - contextPath: Gmail.SentMail.Body
+      description: The plain-text version of the email.
+      type: Unknown
+    - contextPath: Gmail.SentMail.MailBox
+      description: The mailbox from which the mail was sent.
+      type: String
+  - arguments:
+    - description: Email addresses of the recipients.
+      isArray: true
+      name: to
+      required: true
+    - description: Email address of the sender.
+      name: from
+    - description: The contents (body) of the email to be sent in plain text.
+      name: body
+    - description: Subject of the email to be sent. Should be the same as the subject
+        of the email you are replying to in order for the reply to be a part of the
+        same conversation.
+      name: subject
+      required: true
+    - description: A comma-separated list of message IDs to reply to.
+      isArray: true
+      name: inReplyTo
+      required: true
+    - description: A comma-separated list of message IDs to refer to.
+      isArray: true
+      name: references
+    - description: A comma-separated list of IDs of War Room entries that contain
+        the files that need to be attached to the email.
+      isArray: true
+      name: attachIDs
+    - description: Additional recipient email addresses (CC).
+      isArray: true
+      name: cc
+    - description: Additional recipient email addresses (BCC).
+      isArray: true
+      name: bcc
+    - description: The contents (body) of the email to be sent in HTML format.
+      name: htmlBody
+    - description: Address that needs to be used to reply to the message.
+      name: replyTo
+    - description: |-
+        A comma-separated list of new names used to rename attachments corresponding to the order in which they were attached to the email.
+                Examples - To rename the first and third file: attachNames=new_fileName1,,new_fileName3
+                To rename the second and fifth files: attachNames=,new_fileName2,,,new_fileName5
+      isArray: true
+      name: attachNames
+    - description: A comma-separated list of CID images to embed as attachments inside
+        the email.
+      isArray: true
+      name: attachCIDs
+    - description: Textual name for an attached file. Multiple files are supported
+        as a comma-separated list. For example, transientFile="t1.txt,temp.txt,t3.txt"
+        transientFileContent="test2,temporary file content,third file content" transientFileCID="t1.txt@xxx.yyy,t2.txt@xxx.zzz")
+      isArray: true
+      name: transientFile
+    - description: Content for the attached file. Multiple files are supported as
+        a comma-separated list. For example, transientFile="t1.txt,temp.txt,t3.txt"
+        transientFileContent="test2,temporary file content,third file content" transientFileCID="t1.txt@xxx.yyy,t2.txt@xxx.zzz")
+      isArray: true
+      name: transientFileContent
+    - description: CID image for an attached file to include within the email body.
+        Multiple files are supported as a comma-separated list. (e.g. transientFile="t1.txt,temp.txt,t3.txt"
+        transientFileContent="test 2,temporary file content,third file content" transientFileCID="t1.txt@xxx.yyy,t2.txt@xxx.zzz")
+      isArray: true
+      name: transientFileCID
+    - description: 'A comma-separated list of additional headers in the format: headerName=headerValue.
+        For example: "headerName1=headerValue1,headerName2=headerValue2".'
+      isArray: true
+      name: additionalHeader
+    - description: '''Replaces {varname} variables with values from this parameter.
+        Expected values are in the form of a JSON document. For example, {"varname"
+        :{"value" "some value", "key": "context key"}}. Each var name can either be
+        provided with the value or a context key to retrieve the value. Note that
+        only context data is accessible for this argument, while incident fields are
+        not.'''
+      name: templateParams
+    description: Replies to a mail using Gmail.
+    name: reply-mail
+    outputs:
+    - contextPath: Gmail.SentMail.ID
+      description: The immutable ID of the message.
+      type: String
+    - contextPath: Gmail.SentMail.Labels
+      description: List of IDs of the labels applied to this message.
+      type: String
+    - contextPath: Gmail.SentMail.ThreadId
+      description: The ID of the thread in which the message belongs.
+      type: String
+    - contextPath: Gmail.SentMail.To
+      description: The recipients of the email.
+      type: String
+    - contextPath: Gmail.SentMail.From
+      description: The sender of the email.
+      type: Unknown
+    - contextPath: Gmail.SentMail.Cc
+      description: Additional recipient email addresses (CC).
+      type: String
+    - contextPath: Gmail.SentMail.Bcc
+      description: Additional recipient email addresses (BCC).
+      type: String
+    - contextPath: Gmail.SentMail.Subject
+      description: The subject of the email.
+      type: String
+    - contextPath: Gmail.SentMail.Body
+      description: The plain-text version of the email.
+      type: Unknown
+    - contextPath: Gmail.SentMail.MailBox
+      description: The mailbox from which the mail was sent.
+      type: String
+  - arguments:
+    - description: The user's email address. The "me" special value can be used to
+        indicate the authenticated user.
+      name: user-id
+      required: true
+    - description: The email address to remove from delegation.
+      name: removed-mail
+      required: true
+    description: Removes a delegate from the mailbox, without sending any verification
+      email. The delegate user must be a member of the same G Suite organization as
+      the delegator user using their primary email address, and not an email alias.
+    name: gmail-remove-delegated-mailbox
+  - arguments:
+    - description: The ID of the role. Can be retrieved using the get-user-roles command.
+      name: role-id
+      required: true
+    - description: Immutable Google Apps ID.
+      name: customer-id
+    description: Get details of a specific role.
+    name: gmail-get-role
+    outputs:
+    - contextPath: Gmail.Role.ETag
+      description: The ETag of the resource.
+      type: String
+    - contextPath: Gmail.Role.IsSuperAdminRole
+      description: Indicates whether the role is a super admin role or not.
+      type: Boolean
+    - contextPath: Gmail.Role.IsSystemRole
+      description: Indicates whether the role is a pre-defined system role or not.
+      type: Boolean
+    - contextPath: Gmail.Role.Kind
+      description: The kind of the Role.
+      type: String
+    - contextPath: Gmail.Role.Description
+      description: The description of the role.
+      type: String
+    - contextPath: Gmail.Role.ID
+      description: The ID of the role.
+      type: String
+    - contextPath: Gmail.Role.Name
+      description: The name of the role.
+      type: String
+    - contextPath: Gmail.Role.Privilege.ServiceID
+      description: The ID of the service this privilege is for.
+      type: String
+    - contextPath: Gmail.Role.Privilege.Name
+      description: The name of the privilege.
+      type: String
+  - arguments:
+    - description: An email address to which messages can be forwarded.
+      name: forwarding_email
+      required: true
+    - description: User's email address.
+      name: user_id
+      required: true
+    description: Creates a forwarding address. If ownership verification is required,
+      a message will be sent to the recipient and the resource's verification status
+      will be set to pending; otherwise, the resource will be created with verification
+      status set to accepted. This method is only available to service account clients
+      that have been delegated domain-wide authority.
+    name: gmail-forwarding-address-add
+    outputs:
+    - contextPath: Gmail.ForwardingAddress.forwardingEmail
+      description: An email address to which messages can be forwarded.
+      type: String
+    - contextPath: Gmail.ForwardingAddress.userId
+      description: The user's email address.
+      type: String
+    - contextPath: Gmail.ForwardingAddress.verificationStatus
+      description: Indicates whether this address has been verified and is usable
+        for forwarding.
+      type: String
+  - arguments:
+    - description: The user's email address.
+      name: user_id
+      required: true
+    - description: The email address that appears in the "From:" header for email
+        sent using this alias.
+      name: send_as_email
+      required: true
+    - description: A name that appears in the "From:" header for mail sent using this
+        alias. For custom "from" addresses, when this is empty, Gmail will populate
+        the "From:" header with the name that is used for the primary address associated
+        with the account. If the admin disabled the ability for users to update their
+        name format, requests to update this field for the primary login will silently
+        fail.
+      name: display_name
+    - description: An optional HTML signature that is included in messages composed
+        with this alias in the Gmail web UI.
+      name: signature
+    - description: An optional email address that is included in a "Reply-To:" header
+        for email sent using this alias. If this is empty, Gmail will not generate
+        a "Reply-To:" header.
+      name: reply_to_address
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether this address is selected as the default "From:" address
+        in situations such as composing a new message or sending a vacation auto-reply.
+        Every Gmail account has exactly one default send-as address, so the only legal
+        value that clients may write to this field is true. Changing this from false
+        to true for an address will result in this field becoming false for the other
+        previous default address. Default is "false".
+      name: is_default
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Whether Gmail should treat this address as an alias for the user's
+        primary email address. This setting only applies to custom "from" aliases.
+        Default is "false".
+      name: treat_as_alias
+      predefined:
+      - "true"
+      - "false"
+    - description: The hostname of the SMTP service. Required for SMTP configuration.
+      name: smtp_host
+    - description: The port of the SMTP service. Required for SMTP configuration.
+      name: smtp_port
+    - description: The username that will be used for authentication with the SMTP
+        service. This is a write-only field that can be specified in requests to create
+        or update SendAs settings.
+      name: smtp_username
+    - description: The password that will be used for authentication with the SMTP
+        service. This is a write-only field that can be specified in requests to create
+        or update SendAs settings.
+      name: smtp_password
+    - auto: PREDEFINED
+      description: |-
+        The protocol that will be used to secure communication with the SMTP service. Required for SMTP configuration.
+
+        Available Options:
+        SECURITY_MODE_UNSPECIFIED - Unspecified security mode.
+
+        NONE - Communication with the remote SMTP service is unsecured. Requires port 25.
+
+        SSL - Communication with the remote SMTP service is secured using SSL.
+
+        STARTTLS - Communication with the remote SMTP service is secured using STARTTLS.
+      name: smtp_securitymode
+      predefined:
+      - SECURITY_MODE_UNSPECIFIED
+      - NONE
+      - SSL
+      - STARTTLS
+    description: |-
+      Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to pending; otherwise, the resource will be created with verification status set to accepted. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias.
+
+      This command is only available to service account clients who have been delegated domain-wide authority.
+    name: gmail-send-as-add
+    outputs:
+    - contextPath: Gmail.SendAs.userId
+      description: The user's email address.
+      type: String
+    - contextPath: Gmail.SendAs.sendAsEmail
+      description: The updated send-as alias.
+      type: String
+    - contextPath: Gmail.SendAs.signature
+      description: An optional HTML signature that is included in messages composed
+        with this alias in the Gmail web UI.
+      type: String
+    - contextPath: Gmail.SendAs.isPrimary
+      description: Whether this address is the primary address used to login to the
+        account.
+      type: Boolean
+    - contextPath: Gmail.SendAs.isDefault
+      description: Whether this address is selected as the default "From:" address
+        in situations.
+      type: Boolean
+    - contextPath: Gmail.SendAs.treatAsAlias
+      description: Whether Gmail should treat this address as an alias for the user's
+        primary email address.
+      type: Boolean
+    - contextPath: Gmail.SendAs.smtpMsaHost
+      description: The hostname of the SMTP service.
+      type: String
+    - contextPath: Gmail.SendAs.smtpMsaPort
+      description: The port of the SMTP service.
+      type: String
+    - contextPath: Gmail.SendAs.smtpMsaSecurityMode
+      description: The protocol that will be used to secure communication with the
+        SMTP service.
+      type: String
+    - contextPath: Gmail.SendAs.verificationStatus
+      description: Indicates whether this address has been verified for use as a send-as
+        alias.
+      type: String
+    - contextPath: Gmail.SendAs.replyToAddress
+      description: A name that appears in the "From:" header for email sent using
+        this alias.
+      type: String
+  dockerimage: demisto/google-api:1.0.0.27615
+  isfetch: true
+  runonce: false
+  script: |
+    register_module_line('Gmail', 'start', __line__())
+
+
+
+
+    ''' IMPORTS '''
+    import re
+    import json
+    import base64
+    from datetime import datetime, timedelta
+    from typing import *
+    import httplib2
+    import urlparse
+    from distutils.util import strtobool
+    import sys
+    from HTMLParser import HTMLParser, HTMLParseError
+    from htmlentitydefs import name2codepoint
+    from email.mime.audio import MIMEAudio
+    from email.mime.base import MIMEBase
+    from email.mime.image import MIMEImage
+    from email.mime.application import MIMEApplication
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    from email.header import Header
+    import mimetypes
+    import random
+    import string
+    from apiclient import discovery
+    from oauth2client import service_account
+    import itertools as it
+    import concurrent.futures
+
+    ''' GLOBAL VARS '''
+    ADMIN_EMAIL = None
+    PRIVATE_KEY_CONTENT = None
+    GAPPS_ID = None
+    SCOPES = ['https://www.googleapis.com/auth/admin.directory.user.readonly']
+    PROXY = demisto.params().get('proxy')
+    DISABLE_SSL = demisto.params().get('insecure', False)
+    FETCH_TIME = demisto.params().get('fetch_time', '1 days')
+
+    SEND_AS_SMTP_FIELDS = ['host', 'port', 'username', 'password', 'securitymode']
+    DATE_FORMAT = '%Y-%m-%d'  # sample - 2020-08-23
+
+    ''' HELPER FUNCTIONS '''
+
+
+    class TextExtractHtmlParser(HTMLParser):
+        def __init__(self):
+            HTMLParser.__init__(self)
+            self._texts = []  # type: list
+            self._ignore = False
+
+        def handle_starttag(self, tag, attrs):  # noqa: F841
+            if tag in ('p', 'br') and not self._ignore:  # ignore
+                self._texts.append('\n')
+            elif tag in ('script', 'style'):
+                self._ignore = True
+
+        def handle_startendtag(self, tag, attrs):  # noqa: F841
+            if tag in ('br', 'tr') and not self._ignore:
+                self._texts.append('\n')
+
+        def handle_endtag(self, tag):
+            if tag in ('p', 'tr'):
+                self._texts.append('\n')
+            elif tag in ('script', 'style'):
+                self._ignore = False
+
+        def handle_data(self, data):
+            if data and not self._ignore:
+                stripped = data.strip()
+                if stripped:
+                    self._texts.append(re.sub(r'\s+', ' ', stripped))  # pylint: disable=E1101
+
+        def handle_entityref(self, name):
+            if not self._ignore and name in name2codepoint:
+                self._texts.append(unichr(name2codepoint[name]))
+
+        def handle_charref(self, name):
+            if not self._ignore:
+                if name.startswith('x'):
+                    c = unichr(int(name[1:], 16))
+                else:
+                    c = unichr(int(name))
+                self._texts.append(c)
+
+        def get_text(self):
+            return "".join(self._texts)
+
+
+    def html_to_text(html):
+        parser = TextExtractHtmlParser()
+        try:
+            parser.feed(html)
+            parser.close()
+        except HTMLParseError:
+            pass
+        return parser.get_text()
+
+
+    # disable-secrets-detection-start
+    def get_http_client_with_proxy(proxies):
+        proxy_info = None
+        if PROXY:
+            if not proxies or not proxies['https']:
+                raise Exception('https proxy value is empty. Check Demisto server configuration')
+            https_proxy = proxies['https']
+            if not https_proxy.startswith('https') and not https_proxy.startswith('http'):
+                https_proxy = 'https://' + https_proxy
+            parsed_proxy = urlparse.urlparse(https_proxy)
+            proxy_info = httplib2.ProxyInfo(
+                proxy_type=httplib2.socks.PROXY_TYPE_HTTP,  # disable-secrets-detection
+                proxy_host=parsed_proxy.hostname,
+                proxy_port=parsed_proxy.port,
+                proxy_user=parsed_proxy.username,
+                proxy_pass=parsed_proxy.password)
+        return httplib2.Http(proxy_info=proxy_info, disable_ssl_certificate_validation=DISABLE_SSL)
+
+
+    # disable-secrets-detection-end
+
+
+    def get_credentials(additional_scopes=None, delegated_user=None):
+        """Gets valid user credentials from storage.
+
+        If nothing has been stored, or if the stored credentials are invalid,
+        the OAuth2 flow is completed to obtain the new credentials.
+
+        Returns:
+            Credentials, the obtained credential.
+        """
+        if not delegated_user or delegated_user == 'me':
+            delegated_user = ADMIN_EMAIL
+        scopes = SCOPES
+        if additional_scopes is not None:
+            scopes += additional_scopes
+
+        cred = service_account.ServiceAccountCredentials. \
+            from_json_keyfile_dict(json.loads(PRIVATE_KEY_CONTENT), scopes=scopes)  # type: ignore
+
+        return cred.create_delegated(delegated_user)
+
+
+    def get_service(serviceName, version, additional_scopes=None, delegated_user=None):
+        credentials = get_credentials(additional_scopes=additional_scopes, delegated_user=delegated_user)
+        proxies = handle_proxy()
+        if PROXY or DISABLE_SSL:
+            http_client = credentials.authorize(get_http_client_with_proxy(proxies))
+            return discovery.build(serviceName, version, cache_discovery=False, http=http_client)
+        return discovery.build(serviceName, version, cache_discovery=False, credentials=credentials)
+
+
+    def parse_mail_parts(parts):
+        body = u''
+        html = u''
+        attachments = []  # type: list
+        for part in parts:
+            if 'multipart' in part['mimeType']:
+                part_body, part_html, part_attachments = parse_mail_parts(
+                    part['parts'])
+                body += part_body
+                html += part_html
+                attachments.extend(part_attachments)
+            elif len(part['filename']) == 0:
+                text = unicode(base64.urlsafe_b64decode(
+                    part['body'].get('data', '').encode('ascii')), 'utf-8')
+                if 'text/html' in part['mimeType']:
+                    html += text
+                else:
+                    body += text
+
+            else:
+                if part['body'].get('attachmentId') is not None:
+                    attachments.append({
+                        'ID': part['body']['attachmentId'],
+                        'Name': part['filename']
+                    })
+
+        return body, html, attachments
+
+
+    def parse_privileges(raw_privileges):
+        privileges = []
+        for p in raw_privileges:
+            privilege = assign_params(**{'ServiceID': p.get('serviceId'), 'Name': p.get('privilegeName')})
+            if privilege:
+                privileges.append(privilege)
+        return privileges
+
+
+    def localization_extract(time_from_mail):
+        if time_from_mail is None or len(time_from_mail) < 5:
+            return '-0000', 0
+
+        utc = time_from_mail[-5:]
+        if utc[0] != '-' and utc[0] != '+':
+            return '-0000', 0
+
+        for ch in utc[1:]:
+            if not ch.isdigit():
+                return '-0000', 0
+
+        delta_in_seconds = int(utc[0] + utc[1:3]) * 3600 + int(utc[0] + utc[3:]) * 60
+        return utc, delta_in_seconds
+
+
+    def create_base_time(internal_date_timestamp, header_date):
+        """
+        Args:
+            internal_date_timestamp: The timestamp from the Gmail API response.
+            header_date: The date string from the email payload.
+
+        Returns: A date string in the senders local time in the format of "Mon, 26 Aug 2019 14:40:04 +0300"
+
+        """
+        # intenalDate timestamp has 13 digits, but epoch-timestamp counts the seconds since Jan 1st 1970
+        # (which is currently less than 13 digits) thus a need to cut the timestamp down to size.
+        timestamp_len = len(str(int(time.time())))
+        if len(str(internal_date_timestamp)) > timestamp_len:
+            internal_date_timestamp = int(str(internal_date_timestamp)[:timestamp_len])
+
+        utc, delta_in_seconds = localization_extract(header_date)
+        base_time = datetime.utcfromtimestamp(internal_date_timestamp) + timedelta(seconds=delta_in_seconds)
+        base_time = str(base_time.strftime('%a, %d %b %Y %H:%M:%S')) + " " + utc
+        return base_time
+
+
+    def get_email_context(email_data, mailbox):
+        context_headers = email_data.get('payload', {}).get('headers', [])
+        context_headers = [{'Name': v['name'], 'Value': v['value']}
+                           for v in context_headers]
+        headers = dict([(h['Name'].lower(), h['Value']) for h in context_headers])
+        body = demisto.get(email_data, 'payload.body.data')
+        body = body.encode('ascii') if body is not None else ''
+        parsed_body = base64.urlsafe_b64decode(body)
+        if email_data.get('internalDate') is not None:
+            base_time = create_base_time(email_data.get('internalDate'), str(headers.get('date', '')))
+
+        else:
+            # in case no internalDate field exists will revert to extracting the date from the email payload itself
+            # Note: this should not happen in any command other than other than gmail-move-mail which doesn't return the
+            # email payload nor internalDate
+            demisto.info(
+                "No InternalDate timestamp found - getting Date from mail payload - msg ID:" + str(email_data['id']))
+            base_time = str(headers.get('date', ''))
+
+        context_gmail = {
+            'Type': 'Gmail',
+            'Mailbox': ADMIN_EMAIL if mailbox == 'me' else mailbox,
+            'ID': email_data.get('id'),
+            'ThreadId': email_data.get('threadId'),
+            'Labels': ', '.join(email_data.get('labelIds', [])),
+            'Headers': context_headers,
+            'Attachments': email_data.get('payload', {}).get('filename', ''),
+            # only for format 'raw'
+            'RawData': email_data.get('raw'),
+            # only for format 'full' and 'metadata'
+            'Format': headers.get('content-type', '').split(';')[0],
+            'Subject': headers.get('subject'),
+            'From': headers.get('from'),
+            'To': headers.get('to'),
+            # only for format 'full'
+            'Body': unicode(parsed_body, 'utf-8'),
+
+            # only for incident
+            'Cc': headers.get('cc', []),
+            'Bcc': headers.get('bcc', []),
+            'Date': base_time,
+            'Html': None,
+        }
+
+        context_email = {
+            'ID': email_data.get('id'),
+            'Headers': context_headers,
+            'Attachments': {'entryID': email_data.get('payload', {}).get('filename', '')},
+            # only for format 'raw'
+            'RawData': email_data.get('raw'),
+            # only for format 'full' and 'metadata'
+            'Format': headers.get('content-type', '').split(';')[0],
+            'Subject': headers.get('subject'),
+            'From': headers.get('from'),
+            'To': headers.get('to'),
+            # only for format 'full'
+            'Body/Text': unicode(parsed_body, 'utf-8'),
+
+            'CC': headers.get('cc', []),
+            'BCC': headers.get('bcc', []),
+            'Date': base_time,
+            'Body/HTML': None,
+        }
+
+        if 'text/html' in context_gmail['Format']:  # type: ignore
+            context_gmail['Html'] = context_gmail['Body']
+            context_gmail['Body'] = html_to_text(context_gmail['Body'])
+            context_email['Body/HTML'] = context_gmail['Html']
+            context_email['Body/Text'] = context_gmail['Body']
+
+        if 'multipart' in context_gmail['Format']:  # type: ignore
+            context_gmail['Body'], context_gmail['Html'], context_gmail['Attachments'] = parse_mail_parts(
+                email_data.get('payload', {}).get('parts', []))
+            context_gmail['Attachment Names'] = ', '.join(
+                [attachment['Name'] for attachment in context_gmail['Attachments']])  # type: ignore
+            context_email['Body/Text'], context_email['Body/HTML'], context_email['Attachments'] = parse_mail_parts(
+                email_data.get('payload', {}).get('parts', []))
+            context_email['Attachment Names'] = ', '.join(
+                [attachment['Name'] for attachment in context_email['Attachments']])  # type: ignore
+
+        return context_gmail, headers, context_email
+
+
+    TIME_REGEX = re.compile(r'^([\w,\d: ]*) (([+-]{1})(\d{2}):?(\d{2}))?[\s\w\(\)]*$')  # pylint: disable=E1101
+
+
+    def move_to_gmt(t):
+        # there is only one time refernce is the string
+        base_time, _, sign, hours, minutes = TIME_REGEX.findall(t)[0]
+        if all([sign, hours, minutes]):
+            seconds = -1 * (int(sign + hours) * 3600 + int(sign + minutes) * 60)
+            parsed_time = datetime.strptime(
+                base_time, '%a, %d %b %Y %H:%M:%S') + timedelta(seconds=seconds)
+            return parsed_time.isoformat() + 'Z'
+        else:
+            return datetime.strptime(base_time, '%a, %d %b %Y %H:%M:%S').isoformat() + 'Z'
+
+
+    def create_incident_labels(parsed_msg, headers):
+        labels = [
+            {'type': 'Email/ID', 'value': parsed_msg['ID']},
+            {'type': 'Email/subject', 'value': parsed_msg['Subject']},
+            {'type': 'Email/text', 'value': parsed_msg['Body']},
+            {'type': 'Email/from', 'value': parsed_msg['From']},
+            {'type': 'Email/html', 'value': parsed_msg['Html']},
+        ]
+        labels.extend([{'type': 'Email/to', 'value': to}
+                       for to in headers.get('To', '').split(',')])
+        labels.extend([{'type': 'Email/cc', 'value': cc}
+                       for cc in headers.get('Cc', '').split(',')])
+        labels.extend([{'type': 'Email/bcc', 'value': bcc}
+                       for bcc in headers.get('Bcc', '').split(',')])
+        for key, val in headers.items():
+            labels.append({'type': 'Email/Header/' + key, 'value': val})
+
+        return labels
+
+
+    def mailboxes_to_entry(mailboxes):
+        query = "Query: {}".format(mailboxes[0].get('q') if mailboxes else '')
+        result = [{"Mailbox": user['Mailbox']} for user in mailboxes if user.get('Mailbox')]
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': mailboxes,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': tableToMarkdown(query, result, headers=['Mailbox'], removeNull=True),
+            'EntryContext': {
+                'Gmail(val.ID && val.ID == obj.ID)': result,
+                'Email(val.ID && val.ID == obj.ID)': result
+            }
+        }
+
+
+    def emails_to_entry(title, raw_emails, format_data, mailbox):
+        gmail_emails = []
+        emails = []
+        for email_data in raw_emails:
+            context_gmail, _, context_email = get_email_context(email_data, mailbox)
+            gmail_emails.append(context_gmail)
+            emails.append(context_email)
+
+        headers = {
+            'minimal': ['Mailbox', 'ID', 'Labels', 'Attachment Names', ],
+            'raw': ['MailBox', 'ID', 'Labels', 'Attachment Names', 'RawData'],
+            'metadata': ['MailBox', 'ID', 'Subject', 'From', 'To', 'Labels', 'Attachment Names', 'Format'],
+            'full': ['Mailbox', 'ID', 'Subject', 'From', 'To', 'Labels', 'Attachment Names', 'Format', 'Body'],
+        }
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': raw_emails,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': tableToMarkdown(title, gmail_emails, headers[format_data], removeNull=True),
+            'EntryContext': {
+                'Gmail(val.ID && val.ID == obj.ID)': gmail_emails,
+                'Email(val.ID && val.ID == obj.ID)': emails
+            }
+        }
+
+
+    def mail_to_incident(msg, service, user_key):
+        parsed_msg, headers, _ = get_email_context(msg, user_key)
+
+        file_names = []
+        command_args = {
+            'messageId': parsed_msg['ID'],
+            'userId': user_key,
+        }
+
+        for attachment in parsed_msg['Attachments']:
+            command_args['id'] = attachment['ID']
+            result = service.users().messages().attachments().get(**command_args).execute()
+            file_data = base64.urlsafe_b64decode(result['data'].encode('ascii'))
+
+            # save the attachment
+            file_result = fileResult(attachment['Name'], file_data)
+
+            # check for error
+            if file_result['Type'] == entryTypes['error']:
+                demisto.error(file_result['Contents'])
+                raise Exception(file_result['Contents'])
+
+            file_names.append({
+                'path': file_result['FileID'],
+                'name': attachment['Name'],
+            })
+        # date in the incident itself is set to GMT time, the correction to local time is done in Demisto
+        gmt_time = move_to_gmt(parsed_msg['Date'])
+
+        incident = {
+            'type': 'Gmail',
+            'name': parsed_msg['Subject'],
+            'details': parsed_msg['Body'],
+            'labels': create_incident_labels(parsed_msg, headers),
+            'occurred': gmt_time,
+            'attachment': file_names,
+            'rawJSON': json.dumps(parsed_msg),
+        }
+        return incident
+
+
+    def organization_format(org_list):
+        if org_list:
+            return ','.join(str(org.get('name')) for org in org_list if org.get('name'))
+        else:
+            return None
+
+
+    def users_to_entry(title, response, next_page_token=None):
+        context = []
+
+        for user_data in response:
+            username = dict_safe_get(user_data, ['name', 'givenName'])
+            display = dict_safe_get(user_data, ['name', 'fullName'])
+            context.append({
+                'Type': 'Google',
+                'ID': user_data.get('id'),
+                'UserName': username,
+                'Username': username,  # adding to fit the new context standard
+                'DisplayName': display,
+                'Email': {'Address': user_data.get('primaryEmail')},
+                'Gmail': {'Address': user_data.get('primaryEmail')},
+                'Group': user_data.get('kind'),
+                'Groups': user_data.get('kind'),  # adding to fit the new context standard
+                'CustomerId': user_data.get('customerId'),
+                'Domain': user_data.get('primaryEmail').split('@')[1],
+                'VisibleInDirectory': user_data.get('includeInGlobalAddressList'),
+
+            })
+        headers = ['Type', 'ID', 'Username',
+                   'DisplayName', 'Groups', 'CustomerId', 'Domain', 'OrganizationUnit', 'Email', 'VisibleInDirectory']
+
+        human_readable = tableToMarkdown(title, context, headers, removeNull=True)
+
+        if next_page_token:
+            human_readable += "\nTo get further results, rerun the command with this page-token:\n" + next_page_token
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': response,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': human_readable,
+            'EntryContext': {'Account(val.ID && val.Type && val.ID == obj.ID && val.Type == obj.Type)': context}
+        }
+
+
+    def labels_to_entry(title, response, user_key):
+        context = []
+
+        for label in response:
+            context.append({
+                'UserID': user_key,
+                'Name': label.get('name'),
+                'ID': label.get('id'),
+                "Type": label.get('type'),
+                "MessageListVisibility": label.get('messageListVisibility'),
+                "LabelListVisibility": label.get('labelListVisibility')
+            })
+        headers = ['Name', 'ID', 'Type', 'MessageListVisibility', 'LabelListVisibility']
+        human_readable = tableToMarkdown(title, context, headers, removeNull=True)
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': response,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': human_readable,
+            'EntryContext': {'GmailLabel(val.ID == obj.ID && val.Name == obj.Name && val.UserID == obj.UserID)': context}
+        }
+
+
+    def autoreply_to_entry(title, response, user_id):
+        autoreply_context = []
+        for autoreply_data in response:
+            autoreply_context.append({
+                'EnableAutoReply': autoreply_data.get('enableAutoReply'),
+                'ResponseBody': autoreply_data.get('responseBodyPlainText'),
+                'ResponseSubject': autoreply_data.get('responseSubject'),
+                'RestrictToContact': autoreply_data.get('restrictToContacts'),
+                'RestrictToDomain': autoreply_data.get('restrictToDomain'),
+                'StartTime': autoreply_data.get('startTime'),
+                'EndTime': autoreply_data.get('endTime'),
+                'ResponseBodyHtml': autoreply_data.get('responseBodyHtml')
+            })
+        headers = ['EnableAutoReply', 'ResponseBody', 'ResponseBodyHtml',
+                   'ResponseSubject', 'RestrictToContact', 'RestrictToDomain',
+                   'EnableAutoReply', 'StartTime', 'EndTime']
+
+        account_context = {
+            "Address": user_id,
+            "AutoReply": autoreply_context
+        }
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': autoreply_context,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': tableToMarkdown(title, autoreply_context, headers, removeNull=True),
+            'EntryContext': {
+                'Account.Gmail(val.Address == obj.Address)': account_context
+            }
+        }
+
+
+    def sent_mail_to_entry(title, response, to, emailfrom, cc, bcc, body, subject):
+        gmail_context = []
+        for mail_results_data in response:
+            gmail_context.append({
+                'Type': "Gmail",
+                'ID': mail_results_data.get('id'),
+                'Labels': mail_results_data.get('labelIds', []),
+                'ThreadId': mail_results_data.get('threadId'),
+                'To': ','.join(to),
+                'From': emailfrom,
+                'Cc': ','.join(cc) if len(cc) > 0 else None,
+                'Bcc': ','.join(bcc) if len(bcc) > 0 else None,
+                'Subject': subject,
+                'Body': body,
+                'Mailbox': ','.join(to)
+            })
+
+        headers = ['Type', 'ID', 'To', 'From', 'Cc', 'Bcc', 'Subject', 'Body', 'Labels',
+                   'ThreadId']
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': response,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': tableToMarkdown(title, gmail_context, headers, removeNull=True),
+            'EntryContext': {
+                'Gmail.SentMail(val.ID && val.Type && val.ID == obj.ID && val.Type == obj.Type)': gmail_context}
+        }
+
+
+    def user_roles_to_entry(title, response):
+        context = []
+        for role_data in response:
+            context.append({
+                'ID': role_data['roleId'],
+                'AssignedTo': role_data['assignedTo'],
+                'RoleAssignmentId': role_data['roleAssignmentId'],
+                'ScopeType': role_data['scopeType'],
+                'Kind': role_data['kind'],
+                'OrgUnitId': role_data.get('orgUnitId', ''),
+            })
+        headers = ['ID', 'RoleAssignmentId',
+                   'ScopeType', 'Kind', 'OrgUnitId']
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': context,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': tableToMarkdown(title, context, headers, removeNull=True),
+            'EntryContext': {'Gmail.Role(val.ID && val.ID == obj.ID)': context}
+        }
+
+
+    def tokens_to_entry(title, response):
+        context = []
+        for token_data in response:
+            context.append({
+                'DisplayText': token_data.get('displayText'),
+                'ClientId': token_data.get('clientId'),
+                'Kind': token_data.get('kind'),
+                'Scopes': token_data.get('scopes', []),
+                'UserKey': token_data.get('userKey'),
+            })
+
+        headers = ['DisplayText', 'ClientId', 'Kind', 'Scopes', 'UserKey']
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': context,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': tableToMarkdown(title, context, headers, removeNull=True),
+            'EntryContext': {'Tokens(val.ClientId && val.ClientId == obj.ClientId)': context}
+        }
+
+
+    def filters_to_entry(title, mailbox, response):
+        context = []
+        for filter_data in response:
+            context.append({
+                'ID': filter_data.get('id'),
+                'Mailbox': mailbox,
+                'Criteria': filter_data.get('criteria'),
+                'Action': filter_data.get('action'),
+            })
+
+        headers = ['ID', 'Criteria', 'Action', ]
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': context,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': tableToMarkdown(title, context, headers, removeNull=True),
+            'EntryContext': {'GmailFilter(val.ID && val.ID == obj.ID)': context,
+                             'Gmail.Filter(val.ID && val.ID == obj.ID)': context}
+        }
+
+
+    def role_to_entry(title, role):
+        context = {
+            'ETag': role.get('etag').strip('"'),
+            'IsSuperAdminRole': bool(role.get('isSuperAdminRole')) if role.get('isSuperAdminRole') else False,
+            'IsSystemRole': bool(role.get('isSystemRole')) if role.get('isSystemRole') else False,
+            'Kind': role.get('kind'),
+            'Description': role.get('roleDescription'),
+            'ID': role.get('roleId'),
+            'Name': role.get('roleName'),
+            'Privilege': parse_privileges(role.get('rolePrivileges', []))
+        }
+
+        headers = ['ETag', 'IsSuperAdminRole', 'IsSystemRole', 'Kind', 'Description',
+                   'ID', 'Name']
+        details_hr = tableToMarkdown(title, context, headers, removeNull=True)
+
+        privileges = context.get('Privilege', [])
+        privileges_headers = ['ServiceID', 'Name']
+        privileges_title = 'Role {} privileges:'.format(context.get('ID'))
+        privileges_hr = tableToMarkdown(privileges_title, privileges, privileges_headers, removeNull=True)
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': context,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': details_hr + privileges_hr,
+            'EntryContext': {'Gmail.Role(val.ID && val.ID == obj.ID)': context}
+        }
+
+
+    def dict_keys_snake_to_camelcase(dictionary):
+        """
+        Converts all dictionary keys from snake case (dict_key) to lower camel case(dictKey).
+        :param dictionary: Dictionary which may contain keys in snake_case
+        :return: Dictionary with snake_case keys converted to lowerCamelCase
+        """
+        underscore_pattern = re.compile(r'_([a-z])')  # pylint: disable=E1101
+        return {underscore_pattern.sub(lambda i: i.group(1).upper(), key.lower()): value for (key, value) in
+                dictionary.items()}
+
+
+    def get_millis_from_date(date, arg_name):
+        """
+        Convert a date string into epoch milliseconds or return epoch milliseconds as int.
+
+        :param date: Date string in expected format.
+        :param arg_name: field_name for setting proper error message.
+        :return: Epoch milliseconds.
+        """
+        try:
+            return date_to_timestamp(date, DATE_FORMAT)
+        except ValueError:
+            try:
+                return int(date)
+            except ValueError:
+                raise ValueError('{} argument is not in expected format.'.format(arg_name))
+
+
+    ''' FUNCTIONS '''
+
+
+    def list_users_command():
+        args = demisto.args()
+        domain = args.get('domain', ADMIN_EMAIL.split('@')[1])  # type: ignore
+        customer = args.get('customer')
+        view_type = args.get('view-type-public-domain', 'admin_view')
+        query = args.get('query')
+        sort_order = args.get('sort-order')
+        max_results = args.get('max-results', 100)
+        show_deleted = bool(strtobool(args.get('show-deleted', 'false')))
+        projection = args.get('projection', 'basic')
+        custom_field_mask = args.get(
+            'custom_field_mask') if projection == 'custom' else None
+        page_token = args.get('page-token')
+
+        users, next_page_token = list_users(domain, customer, query, sort_order, view_type,
+                                            show_deleted, max_results, projection, custom_field_mask, page_token)
+        return users_to_entry('Users:', users, next_page_token)
+
+
+    def list_labels_command():
+        args = demisto.args()
+        user_key = args.get('user-id')
+        labels = list_labels(user_key)
+        return labels_to_entry('Labels for UserID {}:'.format(user_key), labels, user_key)
+
+
+    def list_users(domain, customer=None, query=None, sort_order=None, view_type='admin_view',
+                   show_deleted=False, max_results=100, projection='basic', custom_field_mask=None, page_token=None):
+        command_args = {
+            'domain': domain,
+            'customer': customer,
+            'viewType': view_type,
+            'query': query,
+            'sortOrder': sort_order,
+            'projection': projection,
+            'showDeleted': show_deleted,
+            'maxResults': max_results,
+            'pageToken': page_token
+        }
+        if projection == 'custom':
+            command_args['customFieldMask'] = custom_field_mask
+
+        service = get_service('admin', 'directory_v1')
+        result = service.users().list(**command_args).execute()
+
+        return result['users'], result.get('nextPageToken')
+
+
+    def get_user_command():
+        args = demisto.args()
+        user_key = args.get('user-id')
+        view_type = args.get('view-type-public-domain')
+        projection = args.get('projection')
+        customer_field_mask = args.get('customer-field-mask')
+
+        result = get_user(user_key, view_type, projection, customer_field_mask)
+        return users_to_entry('User {}:'.format(user_key), [result])
+
+
+    def get_user(user_key, view_type, projection, customer_field_mask=None):
+        command_args = {
+            'userKey': user_key if user_key != 'me' else ADMIN_EMAIL,
+            'projection': projection,
+            'viewType': view_type,
+        }
+        if projection == 'custom':
+            command_args['customFieldMask'] = customer_field_mask
+
+        service = get_service('admin', 'directory_v1')
+        result = service.users().get(**command_args).execute()
+
+        return result
+
+
+    def hide_user_command():
+        args = demisto.args()
+        user_key = args.get('user-id')
+        hide_value = args.get('visible-globally')
+        result = hide_user(user_key, hide_value)
+
+        return users_to_entry('User {}:'.format(user_key, ), [result])
+
+
+    def hide_user(user_key, hide_value):
+        command_args = {
+            'userKey': user_key if user_key != 'me' else ADMIN_EMAIL,
+            'body': {
+                'includeInGlobalAddressList': hide_value,
+            }}
+
+        service = get_service('admin', 'directory_v1',
+                              additional_scopes=['https://www.googleapis.com/auth/admin.directory.user'])
+        result = service.users().update(**command_args).execute()
+
+        return result
+
+
+    def set_user_password_command():
+        args = demisto.args()
+        user_key = args.get('user-id')
+        password = args.get('password')
+        result = set_user_password(user_key, password)
+        return result
+
+
+    def set_user_password(user_key, password):
+        command_args = {
+            'userKey': user_key if user_key != 'me' else ADMIN_EMAIL,
+            'body': {
+                'password': password,
+            }}
+
+        service = get_service('admin', 'directory_v1',
+                              additional_scopes=['https://www.googleapis.com/auth/admin.directory.user'])
+        service.users().update(**command_args).execute()
+
+        return 'User {} password has been set.'.format(command_args['userKey'])
+
+
+    def get_autoreply_command():
+        args = demisto.args()
+        user_id = args.get('user-id', ADMIN_EMAIL)
+
+        autoreply_message = get_autoreply(user_id)
+
+        return autoreply_to_entry('User {}:'.format(user_id), [autoreply_message], user_id)
+
+
+    def get_autoreply(user_id):
+        command_args = {
+            'userId': user_id
+        }
+
+        service = get_service('gmail', 'v1',
+                              additional_scopes=['https://mail.google.com', 'https://www.googleapis.com/auth/gmail.modify',
+                                                 'https://www.googleapis.com/auth/gmail.readonly',
+                                                 'https://www.googleapis.com/auth/gmail.settings.basic'],
+                              delegated_user=user_id)
+        result = service.users().settings().getVacation(**command_args).execute()
+
+        return result
+
+
+    def set_autoreply_command():
+        args = demisto.args()
+
+        user_id = args.get('user-id')
+        enable_autoreply = args.get('enable-autoReply')
+        response_subject = args.get('response-subject')
+        response_body_entry_id = args.get('response-body-entry-id')
+        file_content = ''
+        if response_body_entry_id and not args.get('response-body'):
+            file_entry = demisto.getFilePath(response_body_entry_id)
+            with open(file_entry['path'], 'r') as f:
+                file_content = str(f.read())
+        response_body_plain_text = file_content if file_content else args.get('response-body')
+        response_body_type = args.get('response-body-type')
+        domain_only = args.get('domain-only')
+        contacts_only = args.get('contacts-only')
+        start_time = get_millis_from_date(args.get('start-time'), 'start-time') if args.get('start-time') else None
+        end_time = get_millis_from_date(args.get('end-time'), 'end-time') if args.get('end-time') else None
+
+        autoreply_message = set_autoreply(user_id, enable_autoreply, response_subject, response_body_plain_text,
+                                          domain_only, contacts_only, start_time, end_time, response_body_type)
+
+        return autoreply_to_entry('User {}:'.format(user_id), [autoreply_message], user_id)
+
+
+    def set_autoreply(user_id, enable_autoreply, response_subject, response_body_plain_text, domain_only, contacts_only,
+                      start_time, end_time, response_body_type='text'):
+        command_args = remove_empty_elements({
+            'userId': user_id if user_id != 'me' else ADMIN_EMAIL,
+            'body': {
+                'enableAutoReply': enable_autoreply,
+                'responseSubject': response_subject,
+                'responseBodyPlainText': response_body_plain_text,
+                'restrictToContacts': contacts_only,
+                'restrictToDomain': domain_only,
+                'startTime': start_time,
+                'endTime': end_time
+            }})
+        if response_body_type.lower() == 'html':
+            command_args['body']['responseBodyHtml'] = response_body_plain_text
+
+        service = get_service('gmail', 'v1', additional_scopes=['https://www.googleapis.com/auth/gmail.settings.basic'],
+                              delegated_user=user_id)
+        result = service.users().settings().updateVacation(**command_args).execute()
+        return result
+
+
+    def remove_delegate_user_mailbox_command():
+        args = demisto.args()
+        user_id = args.get('user-id')
+        delegate_email = args.get('removed-mail')
+        return delegate_user_mailbox(user_id, delegate_email, False)
+
+
+    def delegate_user_mailbox_command():
+        args = demisto.args()
+        user_id = args.get('user-id')
+        delegate_email = args.get('delegate-email')
+        return delegate_user_mailbox(user_id, delegate_email, True)
+
+
+    def delegate_user_mailbox(user_id, delegate_email, delegate_token):
+        service = get_service('gmail', 'v1', additional_scopes=['https://www.googleapis.com/auth/gmail.settings.sharing'],
+                              delegated_user=user_id)
+        if delegate_token:  # guardrails-disable-line
+            command_args = {
+                'userId': user_id if user_id != 'me' else ADMIN_EMAIL,
+                'body': {
+                    'delegateEmail': delegate_email,
+                }
+            }
+
+            service.users().settings().delegates().create(**command_args).execute()
+            return 'Email {} has been delegated'.format(delegate_email)
+
+        else:
+            command_args = {
+                'userId': user_id if user_id != 'me' else ADMIN_EMAIL,
+                'delegateEmail': delegate_email
+            }
+
+            service.users().settings().delegates().delete(**command_args).execute()
+            return 'Email {} has been removed from delegation'.format(delegate_email)
+
+
+    def create_user_command():
+        args = demisto.args()
+        primary_email = args['email']
+        first_name = args['first-name']
+        family_name = args['family-name']
+        password = args.get('password', '')
+
+        if len(password) > 100 or len(password) < 8:
+            raise ValueError('password must be over between 8 and 100 characters')
+
+        result = create_user(primary_email, first_name, family_name, password)
+        return users_to_entry('New User:', [result])
+
+
+    def create_user(primary_email, first_name, family_name, password):
+        command_args = {
+            'primaryEmail': primary_email,
+            'name': {
+                'givenName': first_name,
+                'familyName': family_name,
+                'fullName': '%s %s' % (first_name, family_name,),
+            },
+            'password': password
+        }
+
+        service = get_service(
+            'admin',
+            'directory_v1',
+            ['https://www.googleapis.com/auth/admin.directory.user'])
+        result = service.users().insert(body=command_args).execute()
+
+        return result
+
+
+    def delete_user_command():
+        args = demisto.args()
+        user_key = args.get('user-id')
+
+        return delete_user(user_key)
+
+
+    def delete_user(user_key):
+        command_args = {
+            'userKey': user_key,
+        }
+
+        service = get_service(
+            'admin',
+            'directory_v1',
+            ['https://www.googleapis.com/auth/admin.directory.user'])
+        service.users().delete(**command_args).execute()
+
+        return 'User {} have been deleted.'.format(command_args['userKey'])
+
+
+    def list_labels(user_key):
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.readonly'])
+        results = service.users().labels().list(userId=user_key).execute()
+        labels = results.get('labels', [])
+        return labels
+
+
+    def get_user_role_command():
+        args = demisto.args()
+        user_key = args['user-id']
+        user_key = ADMIN_EMAIL if user_key == 'me' else user_key
+
+        if GAPPS_ID is None:
+            raise ValueError('Must provide Immutable GoogleApps Id')
+
+        roles = get_user_role(user_key, GAPPS_ID)
+        return user_roles_to_entry('User Roles of %s:' % (user_key,), roles)
+
+
+    def get_user_role(user_key, customer):
+        command_args = {
+            'customer': customer,
+            'maxResults': 100,
+        }
+
+        service = get_service(
+            'admin',
+            'directory_v1',
+            ['https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly',
+             'https://www.googleapis.com/auth/admin.directory.rolemanagement'])
+        result = service.roleAssignments().list(**command_args).execute()
+
+        user_data = service.users().get(userKey=user_key).execute()
+
+        return [role for role in result['items'] if role['assignedTo'] == user_data['id']]
+
+
+    def get_role(role_identity, customer):
+        command_args = {
+            'customer': customer,
+            'roleId': role_identity
+        }
+
+        service = get_service(
+            'admin',
+            'directory_v1',
+            ['https://www.googleapis.com/auth/admin.directory.rolemanagement.readonly',
+             'https://www.googleapis.com/auth/admin.directory.rolemanagement'])
+
+        return service.roles().get(**command_args).execute()
+
+
+    def get_role_command():
+        args = demisto.args()
+        role_id = args['role-id']
+        customer = args['customer-id'] if args.get('customer-id') else GAPPS_ID
+
+        if not customer:
+            raise ValueError('Must provide Immutable GoogleApps Id')
+
+        role = get_role(role_id, customer)
+        return role_to_entry('Role {} details:'.format(role_id), role)
+
+
+    def revoke_user_roles_command():
+        args = demisto.args()
+
+        user_key = args.get('user-id')
+        role_assignment_id = args['role-assignment-id']
+
+        revoke_user_roles(user_key, role_assignment_id)
+        return 'Role has been deleted.'
+
+
+    def revoke_user_roles(user_id, role_assignment_id):
+        command_args = {
+            'customer': GAPPS_ID,
+            'roleAssignmentId': role_assignment_id,
+        }
+
+        if GAPPS_ID is None:
+            raise ValueError('Must provide Immutable GoogleApps Id')
+
+        service = get_service(
+            'admin',
+            'directory_v1',
+            ['https://www.googleapis.com/auth/admin.directory.rolemanagement'])
+        return service.roleAssignments().delete(**command_args).execute()
+
+
+    def get_user_tokens_command():
+        args = demisto.args()
+        user_id = args.get('user-id')
+        user_id = ADMIN_EMAIL if user_id == 'me' else user_id
+
+        tokens = get_user_tokens(user_id)
+
+        return tokens_to_entry('Tokens:', tokens)
+
+
+    def get_user_tokens(user_id):
+        command_args = {
+            'userKey': user_id,
+        }
+
+        service = get_service(
+            'admin',
+            'directory_v1',
+            ['https://www.googleapis.com/auth/admin.directory.user.security'])
+        result = service.tokens().list(**command_args).execute()
+
+        return result.get('items', [])
+
+
+    def search_all_mailboxes(receive_only_accounts):
+        users_next_page_token = None
+        service = get_service('admin', 'directory_v1')
+        while True:
+            command_args = {
+                'maxResults': 100,
+                'domain': ADMIN_EMAIL.split('@')[1],  # type: ignore
+                'pageToken': users_next_page_token
+            }
+
+            result = service.users().list(**command_args).execute()
+            users_count = len(result['users'])
+            users_next_page_token = result.get('nextPageToken')
+
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                accounts_counter = 0
+                futures = []
+                entries = []
+                for user in result['users']:
+                    futures.append(executor.submit(search_command, mailbox=user['primaryEmail']))
+                for future in concurrent.futures.as_completed(futures):
+                    accounts_counter += 1
+                    entries.append(future.result())
+                    if accounts_counter % 100 == 0:
+                        demisto.info(
+                            'Still searching. Searched {}% of total accounts ({} / {}), and found {} results so far'.format(
+                                int((accounts_counter / users_count) * 100),
+                                accounts_counter,
+                                users_count,
+                                len(entries)),
+                        )
+
+            if receive_only_accounts:
+                entries = [mailboxes_to_entry(entries)]
+
+            # if these are the final result push - return them
+            if users_next_page_token is None:
+                entries.append("Search completed")
+                return entries
+
+            # return midway results
+            demisto.results(entries)
+
+
+    def search_command(mailbox=None):
+        """
+        Searches for Gmail records of a specified Google user.
+        """
+        args = demisto.args()
+
+        user_id = args.get('user-id') if mailbox is None else mailbox
+        mailbox = ADMIN_EMAIL if user_id == 'me' else user_id
+        subject = args.get('subject', '')
+        _from = args.get('from', '')
+        to = args.get('to', '')
+        before = args.get('before', '')
+        after = args.get('after', '')
+        filename = args.get('filename', '')
+        _in = args.get('in', '')
+
+        query = args.get('query', '')
+        fields = args.get('fields')  # TODO
+        label_ids = [lbl for lbl in args.get('labels-ids', '').split(',') if lbl != '']
+        max_results = int(args.get('max-results', 100))
+        page_token = args.get('page-token')
+        include_spam_trash = args.get('include-spam-trash', False)
+        has_attachments = args.get('has-attachments')
+        has_attachments = None if has_attachments is None else bool(
+            strtobool(has_attachments))
+        receive_only_accounts = argToBoolean(args.get('show-only-mailboxes', 'false'))
+
+        if max_results > 500:
+            raise ValueError(
+                'maxResults must be lower than 500, got %s' % (max_results,))
+
+        mails, q = search(user_id, subject, _from, to,
+                          before, after, filename, _in, query,
+                          fields, label_ids, max_results, page_token,
+                          include_spam_trash, has_attachments, receive_only_accounts,
+                          )
+
+        # In case the user wants only account list without content.
+        if receive_only_accounts:
+            if mails:
+                return {'Mailbox': mailbox, 'q': q}
+            return {'Mailbox': None, 'q': q}
+
+        res = emails_to_entry('Search in {}:\nquery: "{}"'.format(mailbox, q), mails, 'full', mailbox)
+        return res
+
+
+    def search(user_id, subject='', _from='', to='', before='', after='', filename='', _in='', query='',
+               fields=None, label_ids=None, max_results=100, page_token=None, include_spam_trash=False,
+               has_attachments=None, receive_only_accounts=None):
+        query_values = {
+            'subject': subject,
+            'from': _from,
+            'to': to,
+            'before': before,
+            'after': after,
+            'filename': filename,
+            'in': _in,
+            'has': 'attachment' if has_attachments else ''
+        }
+        q = ' '.join('%s:%s ' % (name, value,)
+                     for name, value in query_values.iteritems() if value != '')
+        q = ('%s %s' % (q, query,)).strip()
+
+        command_args = {
+            'userId': user_id,
+            'q': q,
+            'maxResults': max_results,
+            'fields': fields,
+            'labelIds': label_ids,
+            'pageToken': page_token,
+            'includeSpamTrash': include_spam_trash,
+        }
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.readonly'],
+            command_args['userId'])
+
+        try:
+            result = service.users().messages().list(**command_args).execute()
+        except Exception as e:
+            if "Mail service not enabled" in str(e):
+                result = {}
+            else:
+                raise
+
+        # In case the user wants only account list without content.
+        if receive_only_accounts and result.get('sizeEstimate') > 0:
+            return True, q
+
+        entries = [get_mail(user_id=user_id,
+                            _id=mail['id'],
+                            _format='full',
+                            service=service) for mail in result.get('messages', [])]
+
+        return entries, q
+
+
+    def get_mail_command():
+        args = demisto.args()
+        user_id = args.get('user-id', ADMIN_EMAIL)
+        _id = args.get('message-id')
+        _format = args.get('format')
+
+        mail = get_mail(user_id, _id, _format)
+        return emails_to_entry('Email:', [mail], _format, user_id)
+
+
+    def get_mail(user_id, _id, _format, service=None):
+        command_args = {
+            'userId': user_id,
+            'id': _id,
+            'format': _format,
+        }
+        if not service:
+            service = get_service(
+                'gmail',
+                'v1',
+                ['https://www.googleapis.com/auth/gmail.readonly'],
+                delegated_user=command_args['userId'])
+        result = service.users().messages().get(**command_args).execute()
+
+        return result
+
+
+    def get_attachments_command():
+        args = demisto.args()
+        user_id = args.get('user-id')
+        _id = args.get('message-id')
+
+        attachments = get_attachments(user_id, _id)
+
+        return [fileResult(name, data) for name, data in attachments]
+
+
+    def get_attachments(user_id, _id):
+        mail_args = {
+            'userId': user_id,
+            'id': _id,
+            'format': 'full',
+        }
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.readonly'],
+            delegated_user=mail_args['userId'])
+        result = service.users().messages().get(**mail_args).execute()
+        result = get_email_context(result, user_id)[0]
+
+        command_args = {
+            'userId': user_id,
+            'messageId': _id,
+        }
+        files = []
+        for attachment in result['Attachments']:
+            command_args['id'] = attachment['ID']
+            result = service.users().messages().attachments().get(**command_args).execute()
+            file_data = base64.urlsafe_b64decode(result['data'].encode('ascii'))
+            files.append((attachment['Name'], file_data))
+
+        return files
+
+
+    def move_mail_command():
+        args = demisto.args()
+        user_id = args.get('user-id')
+        _id = args.get('message-id')
+        add_labels = [lbl for lbl in args.get('add-labels', '').split(',') if lbl != '']
+        remove_labels = [lbl for lbl in args.get(
+            'remove-labels', '').split(',') if lbl != '']
+
+        mail = move_mail(user_id, _id, add_labels, remove_labels)
+        return emails_to_entry('Email:', [mail], 'full', user_id)
+
+
+    def move_mail(user_id, _id, add_labels, remove_labels):
+        command_args = {
+            'userId': user_id,
+            'id': _id,
+            'body': {
+                'addLabelIds': add_labels,
+                'removeLabelIds': remove_labels,
+            }
+
+        }
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.modify'],
+            delegated_user=user_id)
+        result = service.users().messages().modify(**command_args).execute()
+
+        return result
+
+
+    def move_mail_to_mailbox_command():
+        args = demisto.args()
+        src_user_id = args.get('src-user-id')
+        message_id = args.get('message-id')
+        dst_user_id = args.get('dst-user-id')
+
+        new_mail_id = move_mail_to_mailbox(src_user_id, message_id, dst_user_id)
+
+        mail = get_mail(dst_user_id, new_mail_id, 'full')
+        return emails_to_entry('Email:', [mail], 'full', dst_user_id)
+
+
+    def move_mail_to_mailbox(src_mailbox, message_id, dst_mailbox):
+        # get the original mail
+        mail = get_mail(src_mailbox, message_id, 'raw')
+
+        # import the mail to the destination mailbox
+        command_args = {
+            'userId': dst_mailbox,
+            'body': {
+                'raw': mail['raw'],
+            }
+        }
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.modify'],
+            delegated_user=dst_mailbox)
+        result = service.users().messages().import_(**command_args).execute()
+
+        # delete the original mail
+        delete_mail(src_mailbox, message_id, True)
+
+        return result['id']
+
+
+    def delete_mail_command():
+        args = demisto.args()
+        user_id = args['user-id']
+        _id = args['message-id']
+        permanent = bool(strtobool(args.get('permanent', 'false')))
+
+        return delete_mail(user_id, _id, permanent)
+
+
+    def delete_mail(user_id, _id, permanent):
+        command_args = {
+            'userId': user_id,
+            'id': _id,
+        }
+
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://mail.google.com',
+             'https://www.googleapis.com/auth/gmail.modify'],
+            delegated_user=command_args['userId'])
+        if permanent:
+            service.users().messages().delete(**command_args).execute()
+            return 'Email has been successfully deleted.'
+        else:
+            service.users().messages().trash(**command_args).execute()
+            return 'Email has been successfully moved to trash.'
+
+
+    def get_thread_command():
+        args = demisto.args()
+
+        user_id = args.get('user-id', ADMIN_EMAIL)
+        _id = args.get('thread-id')
+        _format = args.get('format')
+
+        messages = get_thread(user_id, _id, _format)
+
+        return emails_to_entry('Emails of Thread:', messages, _format, user_id)
+
+
+    def get_thread(user_id, _id, _format):
+        command_args = {
+            'userId': user_id,
+            'id': _id,
+            'format': _format
+        }
+
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.readonly'],
+            delegated_user=user_id)
+        result = service.users().threads().get(**command_args).execute()
+
+        return result['messages']
+
+
+    def add_delete_filter_command():
+        args = demisto.args()
+
+        user_id = args.get('user-id', ADMIN_EMAIL)
+        user_id = user_id if user_id.lower() != 'me' else ADMIN_EMAIL
+        _from = args.get('email-address')
+
+        _filter = add_filter(user_id, _from=_from, add_labels=['TRASH', ])
+
+        return filters_to_entry('New filter:', user_id, [_filter])
+
+
+    def add_filter_command():
+        args = demisto.args()
+
+        user_id = args.get('user-id', ADMIN_EMAIL)
+        user_id = user_id if user_id.lower() != 'me' else ADMIN_EMAIL
+        _from = args.get('from')
+        to = args.get('to')
+        subject = args.get('subject')
+        query = args.get('query')
+        has_attachments = args.get('has-attachments')
+        size = args.get('size')
+        size_comparison = args.get('size-comparison')
+        forward = args.get('forward')
+        add_labels = args.get('add-labels', '').split(',')
+        add_labels = add_labels if any(add_labels) else None
+        remove_labels = args.get('remove-labels', '').split(',')
+        remove_labels = remove_labels if any(remove_labels) else None
+
+        _filter = add_filter(user_id,
+                             _from=_from,
+                             to=to,
+                             subject=subject,
+                             query=query,
+                             has_attachments=has_attachments,
+                             size=size,
+                             size_comparison=size_comparison,
+                             forward=forward,
+                             add_labels=add_labels,
+                             remove_labels=remove_labels,
+                             )
+
+        return filters_to_entry('New filter:', user_id, [_filter])
+
+
+    def add_filter(user_id, _from=None, to=None, subject=None, query=None, has_attachments=None, size=None,
+                   size_comparison=None, forward=None, add_labels=None, remove_labels=None):
+        command_args = {
+            'userId': user_id,
+            'body': {
+                'criteria': {},
+                'action': {},
+            }
+        }
+
+        if _from is not None:
+            command_args['body']['criteria']['from'] = _from
+        if to is not None:
+            command_args['body']['criteria']['to'] = to
+        if subject is not None:
+            command_args['body']['criteria']['subject'] = subject
+        if query is not None:
+            command_args['body']['criteria']['query'] = query
+        if has_attachments is not None:
+            command_args['body']['criteria']['hasAttachment'] = has_attachments
+        if size is not None:
+            command_args['body']['criteria']['size'] = size
+        if size_comparison is not None:
+            command_args['body']['criteria']['size_comparison'] = size_comparison
+        if add_labels is not None:
+            command_args['body']['action']['addLabelIds'] = add_labels
+        if remove_labels is not None:
+            command_args['body']['action']['removeLabelIds'] = remove_labels
+        if forward is not None:
+            command_args['body']['action']['forward'] = forward
+
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.settings.basic'],
+            delegated_user=user_id)
+        result = service.users().settings().filters().create(**command_args).execute()
+
+        return result
+
+
+    def list_filters_command():
+        args = demisto.args()
+
+        user_id = args.get('user-id', ADMIN_EMAIL)
+        user_id = user_id if user_id.lower() != 'me' else ADMIN_EMAIL
+        address = args.get('address')
+        limit = int(args.get('limit', 100))
+
+        filters = list_filters(
+            user_id,
+            address=address,
+            limit=limit)
+
+        return filters_to_entry('filters:', user_id, filters)
+
+
+    def list_filters(user_id, address=None, limit=100):
+        command_args = {
+            'userId': user_id,
+        }
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.settings.basic'],
+            delegated_user=user_id)
+        result = service.users().settings().filters().list(**command_args).execute()
+        filters = result.get('filter', [])
+        if address is not None:
+            filters = [f for f in filters if address in {f['criteria'].get('from'), f['criteria'].get('to')}]
+
+        return filters[:limit]
+
+
+    def remove_filter_command():
+        args = demisto.args()
+
+        user_id = args.get('user-id', ADMIN_EMAIL)
+        ids = args.get('filter_ids', '')
+        if isinstance(ids, STRING_TYPES):  # alternativly it could be an array
+            ids = ids.split(',')
+
+        for _id in ids:
+            remove_filter(user_id, _id)
+
+        return 'filters were removed successfully.'
+
+
+    def remove_filter(user_id, _id):
+        command_args = {
+            'userId': user_id,
+            'id': _id
+        }
+
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.settings.basic'],
+            delegated_user=user_id)
+        result = service.users().settings().filters().delete(**command_args).execute()
+
+        return result
+
+
+    '''MAIL SENDER FUNCTIONS'''
+
+
+    def randomword(length):
+        """
+        Generate a random string of given length
+        """
+        letters = string.ascii_lowercase
+        return ''.join(random.choice(letters) for i in range(length))  # NOSONAR
+
+
+    def header(s):
+        if not s:
+            return None
+
+        s_no_newlines = ' '.join(s.splitlines())
+        return Header(s_no_newlines, 'utf-8')
+
+
+    def template_params(paramsStr):
+        """
+        Translate the template params if they exist from the context
+        """
+        actualParams = {}
+        if paramsStr:
+            try:
+                params = json.loads(paramsStr)
+
+            except ValueError as e:
+                return_error('Unable to parse templateParams: {}'.format(str(e)))
+            # Build a simple key/value
+
+            for p in params:
+                if params[p].get('value'):
+                    actualParams[p] = params[p]['value']
+
+                elif params[p].get('key'):
+                    actualParams[p] = demisto.dt(demisto.context(), params[p]['key'])
+
+            return actualParams
+
+        else:
+            return None
+
+
+    def transient_attachments(transientFile, transientFileContent, transientFileCID):
+        if transientFile is None or len(transientFile) == 0:
+            return []
+
+        if transientFileContent is None:
+            transientFileContent = []
+
+        if transientFileCID is None:
+            transientFileCID = []
+
+        attachments = []
+        for file_name, file_data, file_cid in it.izip_longest(transientFile, transientFileContent, transientFileCID):
+            if file_name is None:
+                break
+
+            content_type, encoding = mimetypes.guess_type(file_name)
+            if content_type is None or encoding is not None:
+                content_type = 'application/octet-stream'
+
+            main_type, sub_type = content_type.split('/', 1)
+
+            attachments.append({
+                'name': file_name,
+                'maintype': main_type,
+                'subtype': sub_type,
+                'data': file_data,
+                'cid': file_cid
+            })
+
+        return attachments
+
+
+    def handle_html(htmlBody):
+        """
+        Extract all data-url content from within the html and return as separate attachments.
+        Due to security implications, we support only images here
+        We might not have Beautiful Soup so just do regex search
+        """
+        attachments = []
+        cleanBody = ''
+        lastIndex = 0
+        for i, m in enumerate(
+            re.finditer(  # pylint: disable=E1101
+                r'<img.+?src=\"(data:(image\/.+?);base64,([a-zA-Z0-9+/=\r\n]+?))\"',
+                htmlBody,
+                re.I  # pylint: disable=E1101
+            )
+        ):
+            maintype, subtype = m.group(2).split('/', 1)
+            att = {
+                'maintype': maintype,
+                'subtype': subtype,
+                'data': base64.b64decode(m.group(3)),
+                'name': 'image%d.%s' % (i, subtype)
+            }
+            att['cid'] = '%s@%s.%s' % (att['name'], randomword(8), randomword(8))
+            attachments.append(att)
+            cleanBody += htmlBody[lastIndex:m.start(1)] + 'cid:' + att['cid']
+            lastIndex = m.end() - 1
+
+        cleanBody += htmlBody[lastIndex:]
+        return cleanBody, attachments
+
+
+    def collect_inline_attachments(attach_cids):
+        """
+        collects all attachments which are inline - only used in html bodied emails
+        """
+        inline_attachment = []
+        if attach_cids is not None and len(attach_cids) > 0:
+            for cid in attach_cids:
+                file = demisto.getFilePath(cid)
+                file_path = file['path']
+
+                content_type, encoding = mimetypes.guess_type(file_path)
+                if content_type is None or encoding is not None:
+                    content_type = 'application/octet-stream'
+                main_type, sub_type = content_type.split('/', 1)
+
+                fp = open(file_path, 'rb')
+                data = fp.read()
+                fp.close()
+
+                inline_attachment.append({
+                    'ID': cid,
+                    'name': file['name'],
+                    'maintype': main_type,
+                    'subtype': sub_type,
+                    'data': data,
+                    'cid': cid
+                })
+
+            return inline_attachment
+
+
+    def collect_manual_attachments():
+        attachments = []
+        for attachment in demisto.getArg('manualAttachObj') or []:
+            res = demisto.getFilePath(os.path.basename(attachment['RealFileName']))
+
+            path = res['path']
+            content_type, encoding = mimetypes.guess_type(path)
+            if content_type is None or encoding is not None:
+                content_type = 'application/octet-stream'
+            maintype, subtype = content_type.split('/', 1)
+
+            if maintype == 'text':
+                with open(path) as fp:
+                    data = fp.read()
+            else:
+                with open(path, 'rb') as fp:
+                    data = fp.read()
+            attachments.append({
+                'name': attachment['FileName'],
+                'maintype': maintype,
+                'subtype': subtype,
+                'data': data,
+                'cid': None
+            })
+
+        return attachments
+
+
+    def collect_attachments(entry_ids, file_names):
+        """
+        Creates a dictionary containing all the info about all attachments
+        """
+        attachments = []
+        entry_number = 0
+        if entry_ids is not None and len(entry_ids) > 0:
+            for entry_id in entry_ids:
+                file = demisto.getFilePath(entry_id)
+                file_path = file['path']
+                if file_names is not None and len(file_names) > entry_number and file_names[entry_number] is not None:
+                    file_name = file_names[entry_number]
+
+                else:
+                    file_name = file['name']
+
+                content_type, encoding = mimetypes.guess_type(file_name)
+                if content_type is None or encoding is not None:
+                    content_type = 'application/octet-stream'
+
+                main_type, sub_type = content_type.split('/', 1)
+
+                fp = open(file_path, 'rb')
+                data = fp.read()
+                fp.close()
+                attachments.append({
+                    'ID': entry_id,
+                    'name': file_name,
+                    'maintype': main_type,
+                    'subtype': sub_type,
+                    'data': data,
+                    'cid': None
+                })
+                entry_number += 1
+        return attachments
+
+
+    def attachment_handler(message, attachments):
+        """
+        Adds the attachments to the email message
+        """
+        for att in attachments:
+            if att['maintype'] == 'text':
+                msg_txt = MIMEText(att['data'], att['subtype'], 'utf-8')
+                if att['cid'] is not None:
+                    msg_txt.add_header('Content-Disposition', 'inline', filename=att['name'])
+                    msg_txt.add_header('Content-ID', '<' + att['name'] + '>')
+
+                else:
+                    msg_txt.add_header('Content-Disposition', 'attachment', filename=att['name'])
+                message.attach(msg_txt)
+
+            elif att['maintype'] == 'image':
+                msg_img = MIMEImage(att['data'], att['subtype'])
+                if att['cid'] is not None:
+                    msg_img.add_header('Content-Disposition', 'inline', filename=att['name'])
+                    msg_img.add_header('Content-ID', '<' + att['name'] + '>')
+
+                else:
+                    msg_img.add_header('Content-Disposition', 'attachment', filename=att['name'])
+                message.attach(msg_img)
+
+            elif att['maintype'] == 'audio':
+                msg_aud = MIMEAudio(att['data'], att['subtype'])
+                if att['cid'] is not None:
+                    msg_aud.add_header('Content-Disposition', 'inline', filename=att['name'])
+                    msg_aud.add_header('Content-ID', '<' + att['name'] + '>')
+
+                else:
+                    msg_aud.add_header('Content-Disposition', 'attachment', filename=att['name'])
+                message.attach(msg_aud)
+
+            elif att['maintype'] == 'application':
+                msg_app = MIMEApplication(att['data'], att['subtype'])
+                if att['cid'] is not None:
+                    msg_app.add_header('Content-Disposition', 'inline', filename=att['name'])
+                    msg_app.add_header('Content-ID', '<' + att['name'] + '>')
+                else:
+                    msg_app.add_header('Content-Disposition', 'attachment', filename=att['name'])
+                message.attach(msg_app)
+
+            else:
+                msg_base = MIMEBase(att['maintype'], att['subtype'])
+                msg_base.set_payload(att['data'])
+                if att['cid'] is not None:
+                    msg_base.add_header('Content-Disposition', 'inline', filename=att['name'])
+                    msg_base.add_header('Content-ID', '<' + att['name'] + '>')
+
+                else:
+                    msg_base.add_header('Content-Disposition', 'attachment', filename=att['name'])
+                message.attach(msg_base)
+
+
+    def send_mail(emailto, emailfrom, subject, body, entry_ids, cc, bcc, htmlBody, replyTo, file_names, attach_cid,
+                  transientFile, transientFileContent, transientFileCID, manualAttachObj, additional_headers,
+                  templateParams, inReplyTo=None, references=None):
+        if templateParams:
+            templateParams = template_params(templateParams)
+            if body:
+                body = body.format(**templateParams)
+            if htmlBody:
+                htmlBody = htmlBody.format(**templateParams)
+
+        attach_body_to = None
+        if htmlBody and not any([entry_ids, file_names, attach_cid, manualAttachObj, body]):
+            # if there is only htmlbody and no attachments to the mail , we would like to send it without attaching the body
+            message = MIMEText(htmlBody, 'html')  # type: ignore
+        elif body and not any([entry_ids, file_names, attach_cid, manualAttachObj, htmlBody]):
+            # if there is only body and no attachments to the mail , we would like to send it without attaching every part
+            message = MIMEText(body, 'plain', 'utf-8')  # type: ignore
+        elif htmlBody and body and any([entry_ids, file_names, attach_cid, manualAttachObj]):
+            # if all these exist - htmlBody, body and one of the attachment's items, the message object will be:
+            # a MimeMultipart object of type 'mixed' which contains
+            # a MIMEMultipart object of type `alternative` which contains
+            # the 2 MIMEText objects for each body part and the relevant Mime<type> object for the attachments.
+            message = MIMEMultipart('mixed')  # type: ignore
+            alt = MIMEMultipart('alternative')
+            message.attach(alt)
+            attach_body_to = alt
+        else:
+            message = MIMEMultipart('alternative') if body and htmlBody else MIMEMultipart()  # type: ignore
+
+        if not attach_body_to:
+            attach_body_to = message  # type: ignore
+
+        message['to'] = header(','.join(emailto))
+        message['cc'] = header(','.join(cc))
+        message['bcc'] = header(','.join(bcc))
+        message['from'] = header(emailfrom)
+        message['subject'] = header(subject)
+        message['reply-to'] = header(replyTo)
+
+        # The following headers are being used for the reply-mail command.
+        if inReplyTo:
+            message['In-Reply-To'] = header(' '.join(inReplyTo))
+        if references:
+            message['References'] = header(' '.join(references))
+
+        # if there are any attachments to the mail or both body and htmlBody were given
+        if entry_ids or file_names or attach_cid or manualAttachObj or (body and htmlBody):
+            msg = MIMEText(body, 'plain', 'utf-8')
+            attach_body_to.attach(msg)  # type: ignore
+            htmlAttachments = []  # type: list
+            inlineAttachments = []  # type: list
+
+            if htmlBody:
+                htmlBody, htmlAttachments = handle_html(htmlBody)
+                msg = MIMEText(htmlBody, 'html', 'utf-8')
+                attach_body_to.attach(msg)  # type: ignore
+                if attach_cid:
+                    inlineAttachments = collect_inline_attachments(attach_cid)
+
+            else:
+                # if not html body, cannot attach cids in message
+                transientFileCID = None
+
+            attachments = collect_attachments(entry_ids, file_names)
+            manual_attachments = collect_manual_attachments()
+            transientAttachments = transient_attachments(transientFile, transientFileContent, transientFileCID)
+
+            attachments = attachments + htmlAttachments + transientAttachments + inlineAttachments + manual_attachments
+            attachment_handler(message, attachments)
+
+        if additional_headers:
+            for h in additional_headers:
+                header_name, header_value = h.split('=')
+                message[header_name] = header(header_value)
+
+        encoded_message = base64.urlsafe_b64encode(message.as_string())
+        command_args = {
+            'userId': emailfrom,
+            'body': {
+                'raw': encoded_message,
+            }
+        }
+        service = get_service('gmail', 'v1', additional_scopes=['https://www.googleapis.com/auth/gmail.compose',
+                                                                'https://www.googleapis.com/auth/gmail.send'],
+                              delegated_user=emailfrom)
+        result = service.users().messages().send(**command_args).execute()
+        return result
+
+
+    def send_mail_command():
+        args = demisto.args()
+        emailto = argToList(args.get('to'))
+        emailfrom = args.get('from')
+        body = args.get('body')
+        subject = args.get('subject')
+        entry_ids = argToList(args.get('attachIDs'))
+        cc = argToList(args.get('cc'))
+        bcc = argToList(args.get('bcc'))
+        htmlBody = args.get('htmlBody')
+        replyTo = args.get('replyTo')
+        file_names = argToList(args.get('attachNames'))
+        attchCID = argToList(args.get('attachCIDs'))
+        transientFile = argToList(args.get('transientFile'))
+        transientFileContent = argToList(args.get('transientFileContent'))
+        transientFileCID = argToList(args.get('transientFileCID'))
+        manualAttachObj = argToList(args.get('manualAttachObj'))  # when send-mail called from within XSOAR (like reports)
+        additional_headers = argToList(args.get('additionalHeader'))
+        template_param = args.get('templateParams')
+
+        if emailfrom is None:
+            emailfrom = ADMIN_EMAIL
+
+        result = send_mail(emailto, emailfrom, subject, body, entry_ids, cc, bcc, htmlBody,
+                           replyTo, file_names, attchCID, transientFile, transientFileContent,
+                           transientFileCID, manualAttachObj, additional_headers, template_param)
+        return sent_mail_to_entry('Email sent:', [result], emailto, emailfrom, cc, bcc, body, subject)
+
+
+    def reply_mail_command():
+        args = demisto.args()
+        emailto = argToList(args.get('to'))
+        emailfrom = args.get('from')
+        inReplyTo = argToList(args.get('inReplyTo'))
+        references = argToList(args.get('references'))
+        body = args.get('body')
+        subject = 'Re: ' + args.get('subject')
+        entry_ids = argToList(args.get('attachIDs'))
+        cc = argToList(args.get('cc'))
+        bcc = argToList(args.get('bcc'))
+        htmlBody = args.get('htmlBody')
+        replyTo = args.get('replyTo')
+        file_names = argToList(args.get('attachNames'))
+        attchCID = argToList(args.get('attachCIDs'))
+        transientFile = argToList(args.get('transientFile'))
+        transientFileContent = argToList(args.get('transientFileContent'))
+        transientFileCID = argToList(args.get('transientFileCID'))
+        manualAttachObj = argToList(args.get('manualAttachObj'))  # when send-mail called from within XSOAR (like reports)
+        additional_headers = argToList(args.get('additionalHeader'))
+        template_param = args.get('templateParams')
+
+        if emailfrom is None:
+            emailfrom = ADMIN_EMAIL
+
+        result = send_mail(emailto, emailfrom, subject, body, entry_ids, cc, bcc, htmlBody,
+                           replyTo, file_names, attchCID, transientFile, transientFileContent,
+                           transientFileCID, manualAttachObj, additional_headers, template_param, inReplyTo, references)
+        return sent_mail_to_entry('Email sent:', [result], emailto, emailfrom, cc, bcc, body, subject)
+
+
+    def forwarding_address_add_command():
+        """
+        Creates a forwarding address.
+        """
+
+        args = demisto.args()
+        forwarding_email = args.get('forwarding_email', '')
+        user_id = args.get('user_id', '')
+        request_body = {'forwardingEmail': forwarding_email}
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+            delegated_user=user_id)
+        result = service.users().settings().forwardingAddresses().create(userId=user_id, body=request_body).execute()
+        readable_output = "Added forwarding address {0} for {1} with status {2}.".format(forwarding_email, user_id,
+                                                                                         result.get('verificationStatus',
+                                                                                                    ''))
+        context = dict(result)
+        context['userId'] = user_id
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': result,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': readable_output,
+            'EntryContext': {
+                'Gmail.ForwardingAddress((val.forwardingEmail && val.forwardingEmail '
+                '== obj.forwardingEmail) && (val.userId && val.userId == obj.userId))': context,
+            }
+        }
+
+
+    def send_as_add_command():
+        """
+        Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP
+        service to validate the configuration before creating the alias. If ownership verification is required for the
+        alias, a message will be sent to the email address and the resource's verification status will be set to pending;
+        otherwise, the resource will be created with verification status set to accepted. If a signature is provided,
+        Gmail will sanitize the HTML before saving it with the alias.
+
+        This method is only available to service account clients that have been delegated domain-wide authority.
+        """
+        args = demisto.args()
+        user_id = args.pop('user_id', '')
+
+        smtp_msa_object = {key.replace('smtp_', ''): value for (key, value) in args.items() if
+                           key.startswith('smtp_')}
+
+        args = {key: value for (key, value) in args.items() if not key.startswith('smtp_')}
+
+        send_as_settings = dict_keys_snake_to_camelcase(args)
+
+        if smtp_msa_object:
+            if any(field not in smtp_msa_object.keys() for field in SEND_AS_SMTP_FIELDS):
+                raise ValueError('SMTP configuration missing. Please provide all the SMTP field values.')
+            smtp_msa_object['securityMode'] = smtp_msa_object.pop('securitymode', '')
+            send_as_settings['smtpMsa'] = smtp_msa_object
+
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.settings.sharing'],
+            delegated_user=user_id)
+        result = service.users().settings().sendAs().create(userId='me', body=send_as_settings).execute()
+        context = result.copy()
+        context['userId'] = user_id
+
+        for (key, value) in context.pop('smtpMsa', {}).items():
+            context['smtpMsa' + (key[0].upper() + key[1:])] = value
+
+        hr_fields = ['sendAsEmail', 'displayName', 'replyToAddress', 'isPrimary', 'treatAsAlias']
+
+        readable_output = tableToMarkdown(
+            'A custom "{}" send-as alias created for "{}".'.format(result.get('sendAsEmail', ''), user_id),
+            context, headerTransform=pascalToSpace, removeNull=True,
+            headers=hr_fields)
+
+        return {
+            'ContentsFormat': formats['json'],
+            'Type': entryTypes['note'],
+            'Contents': result,
+            'ReadableContentsFormat': formats['markdown'],
+            'HumanReadable': readable_output,
+            'EntryContext': {
+                'Gmail.SendAs((val.sendAsEmail && val.sendAsEmail '
+                '== obj.sendAsEmail) && (val.userId && val.userId == obj.userId))': context,
+            }
+        }
+
+
+    '''FETCH INCIDENTS'''
+
+
+    def fetch_incidents():
+        params = demisto.params()
+        user_key = params.get('queryUserKey')
+        user_key = user_key if user_key else ADMIN_EMAIL
+        query = '' if params['query'] is None else params['query']
+        last_run = demisto.getLastRun()
+        last_fetch = last_run.get('gmt_time')
+        # handle first time fetch - gets current GMT time -1 day
+        if last_fetch is None:
+            last_fetch, _ = parse_date_range(date_range=FETCH_TIME, utc=True, to_timestamp=False)
+            last_fetch = str(last_fetch.isoformat()).split('.')[0] + 'Z'
+
+        last_fetch = datetime.strptime(last_fetch, '%Y-%m-%dT%H:%M:%SZ')
+        current_fetch = last_fetch
+        service = get_service(
+            'gmail',
+            'v1',
+            ['https://www.googleapis.com/auth/gmail.readonly'],
+            user_key)
+
+        query += last_fetch.strftime(' after:%Y/%m/%d')
+        LOG('GMAIL: fetch parameters:\nuser: %s\nquery=%s\nfetch time: %s' %
+            (user_key, query, last_fetch,))
+
+        result = service.users().messages().list(
+            userId=user_key, maxResults=100, q=query).execute()
+
+        incidents = []
+        # so far, so good
+        LOG('GMAIL: possible new incidents are %s' % (result,))
+        for msg in result.get('messages', []):
+            msg_result = service.users().messages().get(
+                id=msg['id'], userId=user_key).execute()
+            incident = mail_to_incident(msg_result, service, user_key)
+            temp_date = datetime.strptime(
+                incident['occurred'], '%Y-%m-%dT%H:%M:%SZ')
+            # update last run
+            if temp_date > last_fetch:
+                last_fetch = temp_date + timedelta(seconds=1)
+
+            # avoid duplication due to weak time query
+            if temp_date > current_fetch:
+                incidents.append(incident)
+
+        demisto.info('extract {} incidents'.format(len(incidents)))
+        demisto.setLastRun({'gmt_time': last_fetch.isoformat().split('.')[0] + 'Z'})
+        return incidents
+
+
+    def main():
+        global ADMIN_EMAIL, PRIVATE_KEY_CONTENT, GAPPS_ID
+        ADMIN_EMAIL = demisto.params()['adminEmail'].get('identifier', '')
+        PRIVATE_KEY_CONTENT = demisto.params()['adminEmail'].get('password', '{}')
+        GAPPS_ID = demisto.params().get('gappsID')
+        ''' EXECUTION CODE '''
+        COMMANDS = {
+            'gmail-list-users': list_users_command,
+            'gmail-list-labels': list_labels_command,
+            'gmail-get-user': get_user_command,
+            'gmail-create-user': create_user_command,
+            'gmail-delete-user': delete_user_command,
+            'gmail-get-user-roles': get_user_role_command,
+            'gmail-revoke-user-role': revoke_user_roles_command,
+            'gmail-get-tokens-for-user': get_user_tokens_command,
+            'gmail-search-all-mailboxes': search_all_mailboxes,
+            'gmail-search': search_command,
+            'gmail-get-mail': get_mail_command,
+            'gmail-get-attachments': get_attachments_command,
+            'gmail-move-mail': move_mail_command,
+            'gmail-move-mail-to-mailbox': move_mail_to_mailbox_command,
+            'gmail-delete-mail': delete_mail_command,
+            'gmail-get-thread': get_thread_command,
+            'gmail-add-filter': add_filter_command,
+            'gmail-add-delete-filter': add_delete_filter_command,
+            'gmail-list-filters': list_filters_command,
+            'gmail-remove-filter': remove_filter_command,
+            'gmail-hide-user-in-directory': hide_user_command,
+            'gmail-set-password': set_user_password_command,
+            'gmail-get-autoreply': get_autoreply_command,
+            'gmail-set-autoreply': set_autoreply_command,
+            'gmail-delegate-user-mailbox': delegate_user_mailbox_command,
+            'gmail-remove-delegated-mailbox': remove_delegate_user_mailbox_command,
+            'send-mail': send_mail_command,
+            'reply-mail': reply_mail_command,
+            'gmail-get-role': get_role_command,
+            'gmail-forwarding-address-add': forwarding_address_add_command,
+            'gmail-send-as-add': send_as_add_command,
+        }
+        command = demisto.command()
+        LOG('GMAIL: command is %s' % (command,))
+        try:
+            if command == 'test-module':
+                list_users(ADMIN_EMAIL.split('@')[1])
+                demisto.results('ok')
+                sys.exit(0)
+
+            if command == 'fetch-incidents':
+                demisto.incidents(fetch_incidents())
+                sys.exit(0)
+
+            cmd_func = COMMANDS.get(command)
+            if cmd_func is None:
+                raise NotImplementedError(
+                    'Command "{}" is not implemented.'.format(command))
+
+            else:
+                if command == 'gmail-search-all-mailboxes':
+                    receive_only_accounts = argToBoolean(demisto.args().get('show-only-mailboxes', 'false'))
+                    demisto.results(cmd_func(receive_only_accounts))  # type: ignore
+                else:
+                    demisto.results(cmd_func())  # type: ignore
+
+        except Exception as e:
+            import traceback
+            if command == 'fetch-incidents':
+                LOG(traceback.format_exc())
+                LOG.print_log()
+                raise
+
+            else:
+                return_error('GMAIL: {}'.format(str(e)), traceback.format_exc())
+
+
+    # python2 uses __builtin__ python3 uses builtins
+    if __name__ in ("__builtin__", "builtins"):
+        main()
+
+    register_module_line('Gmail', 'end', __line__())
+  subtype: python2
+  type: python
+system: true
