@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 3.2.0
+    itemVersion: 3.2.9
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
@@ -257,6 +257,8 @@ tasks:
     note: false
     quietmode: 0
     reputationcalc: 1
+    results:
+    - reportedemailentryid
     scriptarguments:
       entryid:
         simple: ${inputs.File.EntryID}
@@ -335,8 +337,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -140,
-          "y": 2950
+          "x": -470,
+          "y": 2960
         }
       }
   "3":
@@ -351,6 +353,8 @@ tasks:
     note: false
     quietmode: 0
     reputationcalc: 2
+    results:
+    - AttachmentName
     scriptarguments:
       entryid:
         simple: ${reportedemailentryid}
@@ -451,8 +455,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 310,
-          "y": 3440
+          "x": 290,
+          "y": 3500
         }
       }
   "5":
@@ -493,8 +497,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 70,
-          "y": 3660
+          "x": 50,
+          "y": 3720
         }
       }
   "6":
@@ -520,8 +524,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 310,
-          "y": 3890
+          "x": 290,
+          "y": 3950
         }
       }
   "11":
@@ -550,8 +554,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 310,
-          "y": 3310
+          "x": 290,
+          "y": 3370
         }
       }
   "16":
@@ -671,6 +675,7 @@ tasks:
     nexttasks:
       '#none#':
       - "11"
+      - "57"
     note: false
     quietmode: 0
     scriptarguments:
@@ -919,8 +924,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1250,
-          "y": 3140
+          "x": 920,
+          "y": 3200
         }
       }
   "20":
@@ -967,8 +972,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 310,
-          "y": 2950
+          "x": -20,
+          "y": 2960
         }
       }
   "21":
@@ -1020,8 +1025,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 630,
-          "y": 2590
+          "x": 300,
+          "y": 2600
         }
       }
   "22":
@@ -1170,8 +1175,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 2340,
-          "y": 2590
+          "x": 2010,
+          "y": 2600
         }
       }
   "26":
@@ -1226,8 +1231,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1730,
-          "y": 2790
+          "x": 1320,
+          "y": 2800
         }
       }
   "27":
@@ -1287,8 +1292,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 1330,
-          "y": 2790
+          "x": 920,
+          "y": 2800
         }
       }
   "28":
@@ -1348,8 +1353,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 2137.5,
-          "y": 2790
+          "x": 1727.5,
+          "y": 2800
         }
       }
   "29":
@@ -1409,8 +1414,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 2950,
-          "y": 2790
+          "x": 2540,
+          "y": 2800
         }
       }
   "30":
@@ -1470,8 +1475,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 2550,
-          "y": 2790
+          "x": 2140,
+          "y": 2800
         }
       }
   "31":
@@ -1531,8 +1536,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 3360,
-          "y": 2790
+          "x": 2950,
+          "y": 2800
         }
       }
   "32":
@@ -1699,6 +1704,8 @@ tasks:
     note: false
     quietmode: 0
     reputationcalc: 1
+    results:
+    - reportedemailentryid
     scriptarguments:
       entryid:
         simple: ${File.EntryID}
@@ -1771,8 +1778,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 760,
-          "y": 2950
+          "x": 430,
+          "y": 2960
         }
       }
   "38":
@@ -1942,8 +1949,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 760,
-          "y": 2790
+          "x": 430,
+          "y": 2800
         }
       }
   "41":
@@ -2383,6 +2390,156 @@ tasks:
           "y": 410
         }
       }
+  "55":
+    continueonerrortype: ""
+    id: "55"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryID:
+        complex:
+          accessor: EntryID
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: File.MD5
+              operator: notIn
+              right:
+                iscontext: true
+                value:
+                  simple: IncidentFiles.MD5
+          - - left:
+                iscontext: true
+                value:
+                  simple: File.MD5
+              operator: isNotEmpty
+          root: File
+          transformers:
+          - operator: uniq
+      incidentID:
+        complex:
+          accessor: id
+          root: incident
+      target:
+        simple: incident attachment
+    separatecontext: false
+    skipunavailable: true
+    task:
+      brand: ""
+      description: Copies a file from this incident to the specified incident. The
+        file is recorded as an entry in the specified incident’s War Room.
+      id: d92b905f-b6f6-408c-896b-6910ed0f9251
+      iscommand: false
+      name: Set incident attachments
+      script: DemistoUploadFileV2
+      type: regular
+      version: -1
+    taskid: d92b905f-b6f6-408c-896b-6910ed0f9251
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1400,
+          "y": 3700
+        }
+      }
+  "56":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: EntryID
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: File.MD5
+                    operator: notIn
+                    right:
+                      iscontext: true
+                      value:
+                        simple: IncidentFiles.MD5
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: File.MD5
+                    operator: isNotEmpty
+                root: File
+          operator: isNotEmpty
+          right:
+            value: {}
+      label: "yes"
+    continueonerrortype: ""
+    id: "56"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "55"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6ed6697b-5d7a-4700-8b04-41bf375be00f
+      iscommand: false
+      name: Check Whether to add attachments
+      type: condition
+      version: -1
+    taskid: 6ed6697b-5d7a-4700-8b04-41bf375be00f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1400,
+          "y": 3520
+        }
+      }
+  "57":
+    continueonerrortype: ""
+    id: "57"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "56"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6c2b45b8-9f84-49ed-81d4-75205b0d5aff
+      iscommand: false
+      name: Add email files and attachments to the layout
+      type: title
+      version: -1
+    taskid: 6c2b45b8-9f84-49ed-81d4-75205b0d5aff
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1400,
+          "y": 3370
+        }
+      }
 version: -1
 view: |-
   {
@@ -2391,12 +2548,13 @@ view: |-
       "39_22_yes": 0.31,
       "41_3_#default#": 0.35,
       "41_42_yes": 0.5,
-      "4_5_yes": 0.57
+      "4_5_yes": 0.57,
+      "56_55_yes": 0.46
     },
     "paper": {
       "dimensions": {
-        "height": 4465,
-        "width": 4210,
+        "height": 4525,
+        "width": 3800,
         "x": -470,
         "y": -510
       }
