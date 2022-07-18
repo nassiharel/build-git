@@ -1,0 +1,167 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: c75141cb-3a40-4a00-8d3a-eff9b5d8e88d
+inputs: []
+name: Outer Loop
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 70f34895-f995-48f4-801e-4c97d08ec644
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 70f34895-f995-48f4-801e-4c97d08ec644
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      builtincondition:
+      - - left:
+            iscontext: true
+            value:
+              simple: counter
+          operator: isEqualString
+          right:
+            value:
+              simple: "9"
+      exitCondition: ""
+      iscommand: false
+      max: 10000
+      wait: 200
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: df67ac7d-9859-4739-8d12-4d033393b0ef
+      iscommand: false
+      name: Inner Loop
+      playbookId: dec60c8a-04f0-4e91-8206-88dcd94ed5fe
+      type: playbook
+      version: -1
+    taskid: df67ac7d-9859-4739-8d12-4d033393b0ef
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 350
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c328e378-dc33-407c-8423-3a5068962e9c
+      iscommand: false
+      name: Done. Proceed?
+      type: regular
+      version: -1
+    taskid: c328e378-dc33-407c-8423-3a5068962e9c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 520
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: counter
+      value:
+        simple: "0"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 497f5673-feb2-4a95-8680-d42625304ac6
+      iscommand: false
+      name: Set counter
+      script: Set
+      type: regular
+      version: -1
+    taskid: 497f5673-feb2-4a95-8680-d42625304ac6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 180
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 565,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
