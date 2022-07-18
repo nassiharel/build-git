@@ -11,65 +11,41 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "This function generates a password and allows various parameters to customize the properties of the password depending on the use case (e.g. password complexity requirements).  The default behavior is to generate a password of  *random length* including all four character classes (upper, lower, digits, symbols) with at least five and at most ten characters per class. \n\nThe min_* values all default to 0. This means that if the command is executed in this way:\n!GeneratePassword max_lcase=10\nIt is possible that a password of length zero could be generated. It is therefore recommended to always include a min_* parameter that matches. \n\nThe debug parameter will print certain properties of the command into the WarRoom for easy diagnostics.",
-				"name": "GeneratePassword",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Checks whether the given value is within the specified time (hour) range.",
-				"name": "BetweenHours",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
-				"description": "Deprecated. Use FileCreateAndUploadV2 instead. Will create a file (using the given data input or entry ID) and upload it to current investigation war room.\n",
-				"name": "FileCreateAndUpload",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Checks whether the specified item is in a list. The default list is the Demisto Indicators Whitelist.",
-				"name": "FilterByList",
-				"tags": [
-					"whitelist"
-				]
-			},
-			{
-				"description": "Generates random string",
-				"name": "GenerateRandomString",
+				"description": "Converts HTML to Markdown.",
+				"name": "HTMLtoMD",
 				"tags": []
-			},
-			{
-				"description": "Extracts FQDNs from URLs and emails.",
-				"name": "ExtractFQDNFromUrlAndEmail",
-				"tags": [
-					"indicator-format"
-				]
-			},
-			{
-				"description": "Pretty-print the contents of the playbook context",
-				"name": "PrintContext",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "This script accepts multiple values for both arguments and will iterate through each of the domains to check if the specified subdomains are located in at least one of the specified main domains. If the tested subdomain is in one of the main domains, the result will be true. For example, if the domain_to_check values are apps.paloaltonetworks.com and apps.paloaltonetworks.bla and the domains_to_compare values are paloaltonetworks.com and demisto.com, the result for apps.paloaltonetworks.com will be true since it is a part of the paloaltonetworks.com domain. The result for apps.paloaltonetworks.bla will be false since it is not a part of the paloaltonetworks.com or demisto.com domain.",
-				"name": "IsInternalDomainName",
-				"tags": [
-					"Utility"
-				]
 			},
 			{
 				"description": "Converts\nhttps:%2F%2Fexample.com\ninto\nhttps://example.com",
 				"name": "URLDecode",
 				"tags": [
 					"transformer"
+				]
+			},
+			{
+				"description": "Calculates average score for each indicator from context",
+				"name": "DBotAverageScore",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Gets a value from the specified incident's context.",
+				"name": "GetByIncidentId",
+				"tags": []
+			},
+			{
+				"description": "Checks whether a given domain is a subdomain of one of the listed domains.",
+				"name": "CheckIfSubdomain",
+				"tags": [
+					"filter"
+				]
+			},
+			{
+				"description": "Execute a command on a remote machine (without installing a D2 agent)",
+				"name": "RemoteExec",
+				"tags": [
+					"endpoint"
 				]
 			},
 			{
@@ -81,668 +57,10 @@
 				]
 			},
 			{
-				"description": "Sends a HTTP request with advanced capabilities",
-				"name": "HttpV2",
-				"tags": [
-					"basescript"
-				]
-			},
-			{
-				"description": "Tokenize the words in a input text.",
-				"name": "WordTokenizer",
-				"tags": [
-					"phishing",
-					"ml"
-				]
-			},
-			{
-				"description": "Verify URL SSL certificate",
-				"name": "URLSSLVerification",
-				"tags": [
-					"url",
-					"Enrichment"
-				]
-			},
-			{
-				"description": "Checks if the supplied hostnames match either the organization's internal naming convention or the domain suffix.",
-				"name": "IsInternalHostName",
+				"description": "Will encode an input using Base64 format.",
+				"name": "Base64Encode",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Compare  two lists and put the differences in context.",
-				"name": "CompareLists",
-				"tags": []
-			},
-			{
-				"description": "Runs a specified polling command one time. This is useful for initiating a local playbook context before running a polling scheduled task.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "RunPollingCommand",
-				"tags": []
-			},
-			{
-				"description": "Extract indicators from a text-based file.\nIndicators that can be extracted:\n* IP\n* Domain\n* URL\n* File Hash\n* Email Address\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "ExtractIndicatorsFromTextFile",
-				"tags": []
-			},
-			{
-				"description": "Prints a raw representation of a string or object, visualising things likes tabs and newlines.  For instance, '\\n' will be displayed instead of a newline character, or a Windows CR will be displayed as '\\r\\n'.  This is useful for debugging issues where things aren't behaving as expected, such as when parsing a string with a regular expression.",
-				"name": "PrintRaw",
-				"tags": []
-			},
-			{
-				"description": "This script checks that a context key exists (and contains data), and optionally checks the value of the context key for a match against an input value. If a regex is not supplied, the script checks that the key is not empty. This script can be used with the \"GenericPolling\" playbook to poll for field population or that a field contains a specific value. This scripts does not support a context key which holds a list of values.",
-				"name": "CheckContextValue",
-				"tags": [
-					"evaluation",
-					"polling"
-				]
-			},
-			{
-				"description": "A context script for Domain entities",
-				"name": "DomainReputation",
-				"tags": [
-					"enhancement"
-				]
-			},
-			{
-				"description": "Take a list of devices and pull a specific file (given by path) from each using SCP",
-				"name": "SCPPullFiles",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Converts Base64 file in a list to a binary file and upload to warroom",
-				"name": "Base64ListToFile",
-				"tags": [
-					"list",
-					"Utility"
-				]
-			},
-			{
-				"description": "Pretty-print data using Python's pprint library.  This is useful for seeing the structure of incident and context data.  Here's how to use it:\n\n!PrettyPrint value=${incident}",
-				"name": "PrettyPrint",
-				"tags": []
-			},
-			{
-				"description": "Mark entries as notes if they are tagged with given tag",
-				"name": "MarkAsNoteByTag",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Transformer that returns a filtered list of IPv4 addresses, based on whether they do not match a comma-separated list of IPv4 ranges.  Useful for filtering out internal IP address space.",
-				"name": "IPv4Blacklist",
-				"tags": [
-					"transformer",
-					"entirelist"
-				]
-			},
-			{
-				"description": "Copy all entries marked as notes from current incident to another incident.",
-				"name": "CopyNotesToIncident",
-				"tags": []
-			},
-			{
-				"description": "Returns the last element of an array. If the value passed is not an array, it returns the original value that was passed.",
-				"name": "LastArrayElement",
-				"tags": [
-					"general",
-					"transformer",
-					"entirelist"
-				]
-			},
-			{
-				"description": "A context script for hash entities",
-				"name": "FileReputation",
-				"tags": [
-					"enhancement"
-				]
-			},
-			{
-				"description": "Converts a custom-formatted timestamp to UNIX epoch time. Use it to convert custom time stamps to a Demisto date field. If you pass formatter argument, we will use it to transform. If not, we will use dateparser.parse for transforming. For more info, see: https://docs.python.org/3.7/library/datetime.html#strftime-and-strptime-behavior",
-				"name": "FormattedDateToEpoch",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
-				"description": "Searches Demisto incidents.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "SearchIncidentsV2",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "This script allows sending an HTML email, using a template stored as a list item under Lists (Settings -\u003e Advanced -\u003e Lists).\nPlaceholders are marked in DT format (i.e. ${incident.id} for incident ID).\nAvailable placeholders for example:\n- ${incident.labels.Email/from}\n- ${incident.name}\n- ${object.value}\nSee incident Context Data menu for available placeholders\n\nNote: Sending emails require an active  Mail Sender integration instance.",
-				"name": "CreateEmailHtmlBody",
-				"tags": [
-					"email",
-					"communication"
-				]
-			},
-			{
-				"description": "Converts a date from a different timezone to UTC timezone.",
-				"name": "ConvertDatetoUTC",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Takes an input docx file (entryID) as an input and saves an output text file (file entry) with the original file's contents.",
-				"name": "ParseWordDoc",
-				"tags": [
-					"word",
-					"docx",
-					"doc",
-					"parser"
-				]
-			},
-			{
-				"description": "Sends an email informing the user of an SLA breach. The email is sent to the user who is assigned to the incident. It includes the incident name, ID, name of the SLA field that was breached, duration of that SLA field, and the date and time when that SLA was started.\nIn order to run successfully, the script should be configured to trigger on SLA breach, through field edit mode.",
-				"name": "SendEmailOnSLABreach",
-				"tags": [
-					"sla",
-					"example"
-				]
-			},
-			{
-				"description": "Schedule a command to run inside the war room at a future time (once or reoccurring)",
-				"name": "ScheduleCommand",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Gets hashes (MD5,SHA1,SHA256) from context.",
-				"name": "ContextGetHashes",
-				"tags": []
-			},
-			{
-				"description": "Check if number of availble addresses in IPv4 CIDR is lower than given number.",
-				"name": "LowerCidrNumAddresses",
-				"tags": [
-					"filter"
-				]
-			},
-			{
-				"description": "Checks whether a port was open on given host.",
-				"name": "PortListenCheck",
-				"tags": []
-			},
-			{
-				"description": "Will create an array object in context from given string input ",
-				"name": "CreateArray",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Generate report summaries for the passed incidents.",
-				"name": "GenerateSummaryReports",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Sums a List\ne.g. [\"25\", \"10\", \"25\"] =\u003e  \"60\"\n\nThis is an example for number transformer.\n ",
-				"name": "SumList",
-				"tags": [
-					"transformer",
-					"number",
-					"entirelist"
-				]
-			},
-			{
-				"description": "Check if a given value is true. Will return 'no' otherwise",
-				"name": "IsTrue",
-				"tags": [
-					"Utility",
-					"Condition"
-				]
-			},
-			{
-				"description": "Copy a context key to an incident field of multiple incidents, based on an incident query.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "CopyContextToField",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Shows a bar chart of the number of incident the 'To' and 'From' email addresses.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "NumberOfPhishingAttemptPerUser",
-				"tags": [
-					"dynamic-section"
-				]
-			},
-			{
-				"description": "List all Docker images that are in use by the installed integrations and automations.",
-				"name": "ListUsedDockerImages",
-				"tags": [
-					"Utility",
-					"Dockers",
-					"General"
-				]
-			},
-			{
-				"description": "Deprecated. No available replacement. Search for a binary on an endpoint using Carbon Black",
-				"name": "BinarySearchPy",
-				"tags": [
-					"hash",
-					"server",
-					"endpoint",
-					"carbon-black"
-				]
-			},
-			{
-				"description": "Extract user's response from EmailAskUser reply. Returns the first textual response line of the provided entry that contains the reply body. Use ${lastCompletedTaskEntries} to analyze the previous playbook task containing the user's reply.",
-				"name": "EmailAskUserResponse",
-				"tags": [
-					"Condition"
-				]
-			},
-			{
-				"description": "Parse CEF data into the context. Please notice that outputs will display only the 7 mandatory fields even if the CEF event includes many other custom or extended fields.",
-				"name": "CEFParser",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Compares a single timestamp to a list of timestamps.",
-				"name": "TimeStampCompare",
-				"tags": []
-			},
-			{
-				"description": "Use this script to avoid DB version errors when simultaneously running multiple linked incidents.",
-				"name": "LinkIncidentsWithRetry",
-				"tags": []
-			},
-			{
-				"description": "A context script for URL entities",
-				"name": "URLReputation",
-				"tags": [
-					"enhancement"
-				]
-			},
-			{
-				"description": "Converting time in Ticks to readable time. Ticks are used to represent time by some vendors, most commonly by Microsoft. ",
-				"name": "ticksToTime",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Converts a file from one format to a different format by using the convert-to function of Libre Office. For a list of supported input/output formats see:  https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0",
-				"name": "ConvertFile",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Removes a key in key/value store backed by an XSOAR list.",
-				"name": "RemoveKeyFromList",
-				"tags": []
-			},
-			{
-				"description": "Returns a map entry with a marker on the given coordinates (lat,lng), or address (requires a configured GoogleMaps instance).",
-				"name": "ShowOnMap",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Extract URLs redirected by security tools like Proofpoint.\nChanges https://urldefense.proofpoint.com/v2/url?u=https-3A__example.com_something.html -\u003e https://example.com/something.html\nAlso, un-escape URLs that are escaped for safety with formats like hxxps://www[.]demisto[.]com",
-				"name": "UnEscapeURLs",
-				"tags": [
-					"indicator-format"
-				]
-			},
-			{
-				"description": "Data output script for populating dashboard pie graph widget with the percentage of incidents closed by DBot vs. incidents closed by analysts",
-				"name": "DBotClosedIncidentsPercentage",
-				"tags": [
-					"widget"
-				]
-			},
-			{
-				"description": "Searches for string in a path in context. If path is null, string will be searched in full context.\n",
-				"name": "ContextSearchForString",
-				"tags": []
-			},
-			{
-				"description": "Checks whether an IPv4 address is not contained in one or more comma-delimited CIDR ranges.",
-				"name": "IsNotInCidrRanges",
-				"tags": [
-					"filter"
-				]
-			},
-			{
-				"description": "Remove escaping chars from IP\n127[.]0[.]0[.]1 -\u003e 127.0.0.1",
-				"name": "UnEscapeIPs",
-				"tags": [
-					"indicator-format"
-				]
-			},
-			{
-				"description": "Takes the comments of a given entry ID and stores them in the incident context, under a provided context key. \nFor accessing the last executed task's comments, provide ${lastCompletedTaskEntries.[0]} as the value for the entryId input parameter.",
-				"name": "commentsToContext",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Checks the given datetime has occured after the provided relative time.",
-				"name": "AfterRelativeDate",
-				"tags": [
-					"date",
-					"filter",
-					"Condition"
-				]
-			},
-			{
-				"description": "This script converts the input value into another value using two lists. The input value is searched in the first list (input_values). \nIf it exists, the value from the second list (mapped_values) at the same index is retutrned. If there is no match, the original value is returned.\nIf the original input is a dictionary, then the script will look for a \"stringified\" version of the key/:/value pair in the input_values and then map the result in the output_values into the original \"value\".\n\nExample 1:\n\ninput_values = \"1,2,3,4\"\nmapper_values = \"4,3,2,1\"\nvalue = 3\n\nOutput would be \"2\"\n\nExample 2:\n\ninput_values =\"firstkey: datahere,secondkey: datathere\"\nmapper_values = \"datathere,datahere\"\nvalue(dict)= {\n                                \"firstkey\": \"datahere\"\n                          }\n\nOutput would be:\n                          {\n                                \"firstkey\": \"datathere\"\n                           }\n\nThe reason for matching the key AND value pair in a dictionary is to allow the mappig of values that have a specific key name. In most cases, dictionaries will continan key-value pairs in which the values are the same. You might want to change the value of KeyA, but not the value of KeyB. This method gives control over which key is changed.\n\nWhen the input is a dict, str , int, or list, the output is ALWAYS returned as a string.",
-				"name": "MapValuesTransformer",
-				"tags": [
-					"transformer",
-					"string"
-				]
-			},
-			{
-				"description": "Calculates average score for each indicator from context",
-				"name": "DBotAverageScore",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Finds which integrations implement a specific Demisto command.  The results will be returned as comma-separated values (CSV).  The \"Demisto REST API\" integration must first be enabled.",
-				"name": "ProvidesCommand",
-				"tags": [
-					"general"
-				]
-			},
-			{
-				"description": "Fill the current time in a custom incident field",
-				"name": "SetTime",
-				"tags": []
-			},
-			{
-				"description": "Returns the first element of an array.  If the value passed is not an array, it returns the original value that was passed.",
-				"name": "FirstArrayElement",
-				"tags": [
-					"general",
-					"transformer",
-					"entirelist"
-				]
-			},
-			{
-				"description": "This script finds similar files that can be related to each other by fuzzy hash (SSDeep).",
-				"name": "SSDeepSimilarity",
-				"tags": []
-			},
-			{
-				"description": "Display HTML in the War Room.",
-				"name": "DisplayHTML",
-				"tags": []
-			},
-			{
-				"description": "Optionally increases the incident severity to the new value if it is greater than the existing severity.",
-				"name": "IncreaseIncidentSeverity",
-				"tags": []
-			},
-			{
-				"description": "Returns a dict of all incident fields that exist in the system.",
-				"name": "IncidentFields",
-				"tags": []
-			},
-			{
-				"description": "The automation takes Excel file (entryID) as an input and parses its content to the war room and context",
-				"name": "ParseExcel",
-				"tags": []
-			},
-			{
-				"description": "Accepts an array of domains as a block list, and a list of email addresses. The script then filters out any email address whose domain is in the block list.  The filtered list will be returned as an array.",
-				"name": "EmailDomainBlacklist",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
-				]
-			},
-			{
-				"description": "Extract regular text from the given HTML",
-				"name": "TextFromHTML",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Generates a random UUID (UUID 4).",
-				"name": "GenerateRandomUUID",
-				"tags": []
-			},
-			{
-				"description": "Gets a value and return it. This is to be used in playbook conditional tasks - get a value from incident field, label or context, and act accordingly. \nIf an array is returned. the first value will be the decision making value.",
-				"name": "checkValue",
-				"tags": [
-					"Utility",
-					"Condition"
-				]
-			},
-			{
-				"description": "Check if a given value exists in the context. Will return 'no' for empty empty arrays. To be used mostly with DQ and selectors.",
-				"name": "Exists",
-				"tags": [
-					"Utility",
-					"Condition"
-				]
-			},
-			{
-				"description": "Whether value is within a date range.",
-				"name": "BetweenDates",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
-				"description": "This stops the scheduled task whose ID is given in the taskID argument.",
-				"name": "StopScheduledTask",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Checks whether a given domain is a subdomain of one of the listed domains.",
-				"name": "CheckIfSubdomain",
-				"tags": [
-					"filter"
-				]
-			},
-			{
-				"description": "A script to generate investigation summary report in an automated way\nCan be used in post-processing flow as well.",
-				"name": "GenerateInvestigationSummaryReport",
-				"tags": [
-					"post-processing"
-				]
-			},
-			{
-				"description": "A context script for Email entities",
-				"name": "EmailReputation",
-				"tags": [
-					"enhancement"
-				]
-			},
-			{
-				"description": "Load a PDF file's content and metadata into context.",
-				"name": "ReadPDFFileV2",
-				"tags": [
-					"Utility",
-					"ingestion"
-				]
-			},
-			{
-				"description": "Convert an array to a nice table display. Usually, from the context.",
-				"name": "ToTable",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Return indicators appears in resolved incidents, and resolved incident ids.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "IndicatorMaliciousRatioCalculation",
-				"tags": [
-					"ml"
-				]
-			},
-			{
-				"description": "Converts XML file entry to JSON format",
-				"name": "ConvertXmlFileToJson",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Cut a string by delimiter and return specific fields.\nExample\n=================\ninput: \"A-B-C-D-E\"\ndelimiter: \"-\"\nfields: \"1,5\"\n\nreturn: \"A-E\"\n",
-				"name": "Cut",
-				"tags": [
-					"transformer",
-					"string"
-				]
-			},
-			{
-				"description": "Parses a CSV and looks for a specific value in a specific column, returning a dict of the entire matching row. If no column value is specified, the entire CSV is read into the context.",
-				"name": "LookupCSV",
-				"tags": [
-					"file",
-					"csv",
-					"Utility"
-				]
-			},
-			{
-				"description": "Transformer that returns a filtered list of IPv4 addresses, based on whether they match a comma-separated list of IPv4 ranges.  Useful for filtering in internal IP address space.",
-				"name": "IPv4Whitelist",
-				"tags": [
-					"transformer",
-					"entirelist"
-				]
-			},
-			{
-				"description": "Gets a list of indicators from the indicators argument, and generates a JSON file in STIX 2.0 format.",
-				"name": "StixCreator",
-				"tags": []
-			},
-			{
-				"description": "Marks given incidents as related to current incident.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "MarkRelatedIncidents",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Prints an error entry with a given message",
-				"name": "PrintErrorEntry",
-				"tags": []
-			},
-			{
-				"description": "Changes the remediation SLA once a change in incident severity occurs.\nThis is done automatically and the changes can be configured to your needs.",
-				"name": "ChangeRemediationSLAOnSevChange",
-				"tags": [
-					"field-change-triggered",
-					"example"
-				]
-			},
-			{
-				"description": "Load the contents of a file into context.",
-				"name": "ReadFile",
-				"tags": [
-					"Utility",
-					"ingestion"
-				]
-			},
-			{
-				"description": "Resolve the original URL from the given shortened URL and place it in both as output and in the context of a playbook. (https://unshorten.me/api)",
-				"name": "ResolveShortenedURL",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Checks if the investigation found any malicious indicators (file, URL, IP address, domain, or email). Returns \"yes\" if at least one malicious indicator is found.",
-				"name": "IsMaliciousIndicatorFound",
-				"tags": [
-					"Utility",
-					"Condition"
-				]
-			},
-			{
-				"description": "Checks if one percentage is less than another\nReturns less: if firstPercentage \u003c secondPercentage\nReturns more: if firstPercentage \u003e= secondPercentage\nReturns exception if one of the inputs is not a float",
-				"name": "LessThanPercentage",
-				"tags": [
-					"Utility",
-					"Condition"
-				]
-			},
-			{
-				"description": "Set a value in context under the key you entered.",
-				"name": "Set",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Accepts an array of domains as an allow list, and a list of email addresses. The script then filters out any email address whose domain is not in the allow list.  The filtered list will be returned as an array.",
-				"name": "EmailDomainWhitelist",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
-				]
-			},
-			{
-				"description": "Find tables inside HTML and extract the contents into objects using the following logic:\n- If table has a single column, just create an array of strings from the values\n- If table has 2 columns and has no header row, treat the first column as key and second as value and create a table of key/value\n- If table has a header row, create a table of objects where attribute names are the headers\n- If table does not have a header row, create table of objects where attribute names are cell1, cell2, cell3...",
-				"name": "ExtractHTMLTables",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Prints text to war room (Markdown supported)",
-				"name": "Print",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Sets a custom incident field with current date",
-				"name": "SetDateField",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Deprecated. Use the **MatchRegexV2** script instead.",
-				"name": "MatchRegex",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Encodes an input to Base64 format.",
-				"name": "Base64EncodeV2",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Show indicator geo location on map",
-				"name": "ShowLocationOnMap",
-				"tags": [
-					"dynamic-indicator-section"
 				]
 			},
 			{
@@ -755,23 +73,280 @@
 				]
 			},
 			{
-				"description": "Creates indicators from the submitted STIX file. Supports STIX 1.0 and STIX 2.0.",
-				"name": "CreateIndicatorsFromSTIX",
+				"description": "Deprecated. Use the \"PhishingDedupPreprocessingRule\" script instead.\nFind duplicate incidents candidates.\nUsing machine learning techniques with pre-defined data (can also use data from the local environment), this script takes into consideration different features such as: labels comparison, email labels (relevant for phishing), incident time difference and shared indicators, which can be customized by the arguments.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "GetDuplicatesMlv2",
 				"tags": [
-					"stix",
-					"ioc"
+					"dedup",
+					"incidents",
+					"ml",
+					"duplicate"
 				]
 			},
 			{
-				"description": "Adds/Replaces a key in key/value store backed by an XSOAR list.",
-				"name": "AddKeyToList",
+				"description": "Gets hashes (MD5,SHA1,SHA256) from context.",
+				"name": "ContextGetHashes",
 				"tags": []
+			},
+			{
+				"description": "Delete field from context.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "DeleteContext",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Convert object keys to match table keys.\nUse when mapping object/collection to table (grid) field.\n(Array of objects/collections is also supported).\nExample:\nInput: { \"Engine\": \"val1\", \"Max Results\": 13892378, \"Key_With^Special   (characters)\": true }\nOutput: { \"engine\": \"val1\", \"maxresults\": 13892378, \"keywithspecialcharacters\": true }",
+				"name": "ConvertKeysToTableFieldFormat",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
+				"description": "Schedule a command to run inside the war room at a future time (once or reoccurring)",
+				"name": "ScheduleCommand",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Checks if the Docker container running this script has been hardened according to the recommended settings at: https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/docker/docker-hardening-guide.html",
+				"name": "DockerHardeningCheck",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Remove escaping chars from IP\n127[.]0[.]0[.]1 -\u003e 127.0.0.1",
+				"name": "UnEscapeIPs",
+				"tags": [
+					"indicator-format"
+				]
+			},
+			{
+				"description": "Map the given values to the translated values. If given values: a,b,c and translated: 1,2,3 then input is a will return 1",
+				"name": "MapValues",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "A context script for IP entities",
+				"name": "IPReputation",
+				"tags": [
+					"enhancement"
+				]
+			},
+			{
+				"description": "Sums a List\ne.g. [\"25\", \"10\", \"25\"] =\u003e  \"60\"\n\nThis is an example for number transformer.\n ",
+				"name": "SumList",
+				"tags": [
+					"transformer",
+					"number",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Takes the comments of a given entry ID and stores them in the incident context, under a provided context key. \nFor accessing the last executed task's comments, provide ${lastCompletedTaskEntries.[0]} as the value for the entryId input parameter.",
+				"name": "commentsToContext",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Generate report summaries for the passed incidents.",
+				"name": "GenerateSummaryReports",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Prints an error entry with a given message",
+				"name": "PrintErrorEntry",
+				"tags": []
+			},
+			{
+				"description": "Mark entries as notes if they are tagged with given tag",
+				"name": "MarkAsNoteByTag",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Gets all currently enabled integration instances.",
+				"name": "GetEnabledInstances",
+				"tags": []
+			},
+			{
+				"description": "Extract indicators from a text-based file.\nIndicators that can be extracted:\n* IP\n* Domain\n* URL\n* File Hash\n* Email Address\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "ExtractIndicatorsFromTextFile",
+				"tags": []
+			},
+			{
+				"description": "Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "SetAndHandleEmpty",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Gets a value and return it. This is to be used in playbook conditional tasks - get a value from incident field, label or context, and act accordingly. \nIf an array is returned. the first value will be the decision making value.",
+				"name": "checkValue",
+				"tags": [
+					"Utility",
+					"Condition"
+				]
+			},
+			{
+				"description": "Sleep for X seconds",
+				"name": "Sleep",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Set multiple keys/values to the context.",
+				"name": "SetMultipleValues",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Searches for string in a path in context. If path is null, string will be searched in full context.\n",
+				"name": "ContextSearchForString",
+				"tags": []
+			},
+			{
+				"description": "Converts a file from one format to a different format by using the convert-to function of Libre Office. For a list of supported input/output formats see:  https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0",
+				"name": "ConvertFile",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Will create an array object in context from given string input ",
+				"name": "CreateArray",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "This is only an example script, to showcase how to use and write JavaScript scripts",
+				"name": "ExampleJSScript",
+				"tags": [
+					"example"
+				]
+			},
+			{
+				"description": "This script accepts multiple values for both arguments and will iterate through each of the domains to check if the specified subdomains are located in at least one of the specified main domains. If the tested subdomain is in one of the main domains, the result will be true. For example, if the domain_to_check values are apps.paloaltonetworks.com and apps.paloaltonetworks.bla and the domains_to_compare values are paloaltonetworks.com and demisto.com, the result for apps.paloaltonetworks.com will be true since it is a part of the paloaltonetworks.com domain. The result for apps.paloaltonetworks.bla will be false since it is not a part of the paloaltonetworks.com or demisto.com domain.",
+				"name": "IsInternalDomainName",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Determines whether an IPv4 address is contained in at least one of the comma-delimited CIDR ranges. Multiple IPv4 addresses can be passed comma-delimited and each will be tested.",
+				"name": "IsInCidrRanges",
+				"tags": [
+					"filter"
+				]
+			},
+			{
+				"description": "Enables changing context in two ways. The first is to capitalize the first letter of each key in following level of the context key entered. The second is to change context keys to new values. ",
+				"name": "ChangeContext",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Decodes an input in Base64 format.",
+				"name": "Base64Decode",
+				"tags": [
+					"Utility",
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Lists  executed commands in War Room",
+				"name": "listExecutedCommands",
+				"tags": [
+					"Utility"
+				]
 			},
 			{
 				"description": "A filter that determines whether an IPv4 address is in the private RFC-1918 address space (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16).  For more information, see https://en.wikipedia.org/wiki/Private_network",
 				"name": "IsRFC1918Address",
 				"tags": [
 					"filter"
+				]
+			},
+			{
+				"description": "Data output script for populating dashboard pie graph widget with the percentage of incidents closed by DBot vs. incidents closed by analysts",
+				"name": "DBotClosedIncidentsPercentage",
+				"tags": [
+					"widget"
+				]
+			},
+			{
+				"description": "Loads a json from string input, and returns a json object result",
+				"name": "LoadJSON",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Returns a dict of all incident fields that exist in the system.",
+				"name": "IncidentFields",
+				"tags": []
+			},
+			{
+				"description": "Checks whether a port was open on given host.",
+				"name": "PortListenCheck",
+				"tags": []
+			},
+			{
+				"description": "This script finds similar files that can be related to each other by fuzzy hash (SSDeep).",
+				"name": "SSDeepSimilarity",
+				"tags": []
+			},
+			{
+				"description": "Checks whether the specified item is in a list. The default list is the Demisto Indicators Whitelist.",
+				"name": "FilterByList",
+				"tags": [
+					"whitelist"
+				]
+			},
+			{
+				"description": "Accepts an array of domains as a block list, and a list of email addresses. The script then filters out any email address whose domain is in the block list.  The filtered list will be returned as an array.",
+				"name": "EmailDomainBlacklist",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Get the string distance for the sender from our domain",
+				"name": "CheckSenderDomainDistance",
+				"tags": [
+					"server",
+					"phishing",
+					"Condition"
+				]
+			},
+			{
+				"description": "A script to generate investigation summary report in an automated way\nCan be used in post-processing flow as well.",
+				"name": "GenerateInvestigationSummaryReport",
+				"tags": [
+					"post-processing"
+				]
+			},
+			{
+				"description": "Add into the incident's context the system internal DBot score for the input indicator.",
+				"name": "GetIndicatorDBotScore",
+				"tags": [
+					"DBot",
+					"Enrichment"
 				]
 			},
 			{
@@ -786,255 +361,18 @@
 				]
 			},
 			{
-				"description": "This is only an example script, to showcase how to use and write JavaScript scripts",
-				"name": "ExampleJSScript",
+				"description": "Deprecated. No available replacement. Search for a binary on an endpoint using Carbon Black",
+				"name": "BinarySearchPy",
 				"tags": [
-					"example"
-				]
-			},
-			{
-				"description": "Add into the incident's context the system internal DBot score for the input indicator.",
-				"name": "GetIndicatorDBotScore",
-				"tags": [
-					"DBot",
-					"Enrichment"
-				]
-			},
-			{
-				"description": "Return all items from the list where their given 'field' attribute is equal to 'equalTo' argument\n\nE.g. !WhereFieldEquals with the following arguments:\n - value=[{ \"name\": \"192.1,0.82\", \"type\": \"IP\" }, { \"name\": \"myFile.txt\", \"type\": \"File\" }, { \"name\": \"172.0.0.2\", \"type\": \"IP\" }]\n - field='type'\n - equalTo='IP'\n - getField='name' \n\nWill return all items names where field 'type' equals 'IP' - ['192.1,0.82', '172.0.0.2']",
-				"name": "WhereFieldEquals",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
-				]
-			},
-			{
-				"description": "checks if left side is in range of right side (from,to anotation)\ne.g. - InRange left=4right=1,8 will return true.",
-				"name": "InRange",
-				"tags": [
-					"filter",
-					"number"
-				]
-			},
-			{
-				"description": "Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "SetAndHandleEmpty",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Converts UNIX Epoch time stamp to a simplified extended ISO format string. Use it to convert time stamp to Demisto date field\n\ne.g. 1525006939 will return '2018-04-29T13:02:19.000Z'",
-				"name": "TimeStampToDate",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
-				"description": "Get the string distance between inputString and compareString (compareString can be a comma-separated list) based on Levenshtein Distance algorithm.",
-				"name": "GetStringsDistance",
-				"tags": [
+					"hash",
 					"server",
-					"phishing"
+					"endpoint",
+					"carbon-black"
 				]
 			},
 			{
-				"description": "Verifies if the supplied JSON string is valid and optionally verifies against a provided schema. The script utilizes Powershell's Test-JSON cmdlet.",
-				"name": "VerifyJSON",
-				"tags": [
-					"JSON",
-					"Utility"
-				]
-			},
-			{
-				"description": "Gets docker image latest tag. Script simulates the docker pull flow but doesn't actually pull the image. Returns an entry with the docker image latest tag if all is good, otherwise will return an error.",
-				"name": "GetDockerImageLatestTag",
-				"tags": []
-			},
-			{
-				"description": "Returns the incident field names associated to the specified incident type.",
-				"name": "GetFieldsByIncidentType",
-				"tags": []
-			},
-			{
-				"description": "Get the overall score for the indicator as calculated by DBot.",
-				"name": "GetIndicatorDBotScoreFromCache",
-				"tags": []
-			},
-			{
-				"description": "Pings an IP or url address, to verify it's up",
-				"name": "Ping",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Ask a user a question via email and process the reply directly into the investigation.",
-				"name": "EmailAskUser",
-				"tags": [
-					"email"
-				]
-			},
-			{
-				"description": "Zip a file and upload to war room",
-				"name": "ZipFile",
-				"tags": [
-					"Utility",
-					"file"
-				]
-			},
-			{
-				"description": "Accepts a json object and returns a markdown.",
-				"name": "JsonToTable",
-				"tags": [
-					"transformer",
-					"entirelist",
-					"general"
-				]
-			},
-			{
-				"description": "Enables changing context in two ways. The first is to capitalize the first letter of each key in following level of the context key entered. The second is to change context keys to new values. ",
-				"name": "ChangeContext",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Check if list exist in demisto lists.",
-				"name": "IsListExist",
-				"tags": [
-					"Condition"
-				]
-			},
-			{
-				"description": "Get the error(s) associated with a given entry/entries. Use ${lastCompletedTaskEntries} to check the previous task entries. The automation will return an array of the error contents from those entries.",
-				"name": "GetErrorsFromEntry",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Language detection based on Google's language-detection.",
-				"name": "LanguageDetect",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "The script receives a list of fields and a context key base path. For example, Key=demisto.result List=username,user and will get all of the values from demisto.result.username and demisto.result.user.\nThe Get field of the task must have the value ${.=[]}.",
-				"name": "GetValuesOfMultipleFields",
-				"tags": [
-					"transformer"
-				]
-			},
-			{
-				"description": "Replaces regex match/es in string.\nReturns the string after replace was preformed.",
-				"name": "StringReplace",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Indicates whether a given value is a member of given array",
-				"name": "IsValueInArray",
-				"tags": [
-					"Condition"
-				]
-			},
-			{
-				"description": "Checks an object for an empty value and returns a pre-set default value.",
-				"name": "SetIfEmpty",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
-				]
-			},
-			{
-				"description": "Sends http request. Returns the response as json.",
-				"name": "http",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Parse a given JSON string \"value\" to a representative object. Example: '{\"a\": \"value\"}' =\u003e {\"a\": \"value\"}.",
-				"name": "ParseJSON",
-				"tags": [
-					"transformer",
-					"string"
-				]
-			},
-			{
-				"description": "Converts XML string to JSON format",
-				"name": "ConvertXmlToJson",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Checks if the email address is part of the internal domains",
-				"name": "IsEmailAddressInternal",
-				"tags": [
-					"email"
-				]
-			},
-			{
-				"description": "Works the same as the 'Set' command, but can work across incidents by specifying 'id' as an argument.\nSets a value into the context with the given context key. Doesn't append by default.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "SetByIncidentId",
-				"tags": [
-					"DemistoAPI"
-				]
-			},
-			{
-				"description": "Will encode an input using Base64 format.",
-				"name": "Base64Encode",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Convert object keys to match table keys.\nUse when mapping object/collection to table (grid) field.\n(Array of objects/collections is also supported).\nExample:\nInput: { \"Engine\": \"val1\", \"Max Results\": 13892378, \"Key_With^Special   (characters)\": true }\nOutput: { \"engine\": \"val1\", \"maxresults\": 13892378, \"keywithspecialcharacters\": true }",
-				"name": "ConvertKeysToTableFieldFormat",
-				"tags": [
-					"transformer"
-				]
-			},
-			{
-				"description": "Loads a json from string input, and returns a json object result",
-				"name": "LoadJSON",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "This script will parse a CSV file and place the unique IPs, Domains and Hashes into the context.",
-				"name": "ParseCSV",
-				"tags": [
-					"file",
-					"csv",
-					"Utility"
-				]
-			},
-			{
-				"description": "Runs the polling command repeatedly, completes a blocking manual task when polling is done.",
-				"name": "GenericPollingScheduledTask",
-				"tags": []
-			},
-			{
-				"description": "Reverse a list\ne.g. [\"Mars\", \"Jupiter\", \"Saturn\"] =\u003e  [\"Saturn\", \"Jupiter\", \"Mars\"]\n\nThis is an example for entire-list transformer - it operates the argument as a list  (note the \"entirelist\" tag)\n ",
-				"name": "ReverseList",
-				"tags": [
-					"general",
-					"entirelist",
-					"transformer"
-				]
-			},
-			{
-				"description": "Input Text Data to Encode as ASCII (Ignores any chars that aren't interpreted as ASCII)",
-				"name": "EncodeToAscii",
+				"description": "Use this script to avoid DB version errors when simultaneously running multiple linked incidents.",
+				"name": "LinkIncidentsWithRetry",
 				"tags": []
 			},
 			{
@@ -1042,292 +380,6 @@
 				"name": "ShowScheduledEntries",
 				"tags": [
 					"Utility"
-				]
-			},
-			{
-				"description": "Sleep for X seconds",
-				"name": "Sleep",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Takes a date or time input and adds or subtracts a determined amount of time. Returns a string in date or time in ISO Format.",
-				"name": "ModifyDateTime",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
-				"description": "Checks if the supplied URLs are in the specified domains.",
-				"name": "IsUrlPartOfDomain",
-				"tags": []
-			},
-			{
-				"description": "Add DBot score to context for indicators with custom vendor, score, reliability, and type.",
-				"name": "AddDBotScoreToContext",
-				"tags": []
-			},
-			{
-				"description": "Filter context keys by applying one of the various available manipulations and storing in a new context key. Please notice that the resulting context key will not be available automatically as an option but you can still specify it.",
-				"name": "ContextFilter",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "(Beta) Parse an email from an eml or msg file and populate all relevant context data to investigate the email. Also extracts inner attachments and returns them to the war room. The incident labels themselves are preserved and not modified - only the \"Label/x\" context items that originated from the labels, and the best practice is to rely on these for the remainder of the playbook. This script is based on the parse-emails XSOAR python package, check the script documentation for more info",
-				"name": "ParseEmailFilesV2",
-				"tags": [
-					"email",
-					"phishing",
-					"enhancement",
-					"file"
-				]
-			},
-			{
-				"description": "Gather information regarding CIDR -\n    1. Broadcast_address\n    2. CIDR\n    3. First_address\n    4. Last address\n    5. Max prefix len\n    6. Num addresses\n    7. Private\n    8. Version\n",
-				"name": "IPNetwork",
-				"tags": [
-					"ip"
-				]
-			},
-			{
-				"description": "Checks whether a substring or an array of substrings is within a string array(each item will be checked). Supports single strings as well. For example, for substrings ['a','b','c'] in a string 'a' the script will return true.\n",
-				"name": "StringContainsArray",
-				"tags": [
-					"filter",
-					"string"
-				]
-			},
-			{
-				"description": "When you apply this script to an incident field, that incident field is hidden for new incidents, and it displays in edit mode.",
-				"name": "hideFieldsOnNewIncident",
-				"tags": [
-					"field-display"
-				]
-			},
-			{
-				"description": "Extract strings from a file with optional filter - similar to binutils strings command",
-				"name": "Strings",
-				"tags": [
-					"server",
-					"file"
-				]
-			},
-			{
-				"description": "Called by the GenericPolling playbook, schedules the polling task.",
-				"name": "ScheduleGenericPolling",
-				"tags": []
-			},
-			{
-				"description": "After running DeleteContext, this script can repopulate all the file entries in the ${File} context key",
-				"name": "RepopulateFiles",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Set multiple keys/values to the context.",
-				"name": "SetMultipleValues",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Returns yes if the IP is in one of the ranges provided, returns no otherwise.",
-				"name": "IsIPInRanges",
-				"tags": [
-					"ip"
-				]
-			},
-			{
-				"description": "Gets all currently enabled integration instances.",
-				"name": "GetEnabledInstances",
-				"tags": []
-			},
-			{
-				"description": "Lists  executed commands in War Room",
-				"name": "listExecutedCommands",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Performs a JMESPath search on an input JSON format, when using a transformer.",
-				"name": "jmespath",
-				"tags": [
-					"transformer",
-					"general"
-				]
-			},
-			{
-				"description": "Widget script to view information about the relationship between an indicator, entity and other indicators and connect to indicators, if relevant.",
-				"name": "FeedRelatedIndicatorsWidget",
-				"tags": [
-					"dynamic-indicator-section"
-				]
-			},
-			{
-				"description": "This script will extract indicators from given HTML and will handle bad top-level domains to avoid false positives caused by file extensions.",
-				"name": "ParseHTMLIndicators",
-				"tags": []
-			},
-			{
-				"description": "Calculates the entropy for the given data.",
-				"name": "CalculateEntropy",
-				"tags": [
-					"entropy"
-				]
-			},
-			{
-				"description": "Returns the length of  the string passed as argument",
-				"name": "StringLength",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Lookup incidents with specified indicator. Use currentIncidentId to omit the existing incident from output.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "findIncidentsWithIndicator",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Close the current investigation as duplicate to other investigation.",
-				"name": "CloseInvestigationAsDuplicate",
-				"tags": [
-					"dedup"
-				]
-			},
-			{
-				"description": "Return the Demisto server version.",
-				"name": "DemistoVersion",
-				"tags": []
-			},
-			{
-				"description": "Populates critical assets in a grid field that has the section headers \"Asset Type\" and \"Asset Name\".",
-				"name": "PopulateCriticalAssets",
-				"tags": []
-			},
-			{
-				"description": "Checks if one number(float) as bigger than the other(float)\nReturns yes: if first \u003e second\nReturns no: if first \u003c= second\nReturns exception if one of the inputs is not a number",
-				"name": "IsGreaterThan",
-				"tags": [
-					"Utility",
-					"Condition"
-				]
-			},
-			{
-				"description": "Delete field from context.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "DeleteContext",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "This is a thin wrapper around the `dateutil.parser.parse` function. It will parse a string containing a date/time stamp and return it in ISO 8601 format.",
-				"name": "DateStringToISOFormat",
-				"tags": [
-					"transformer",
-					"date"
-				]
-			},
-			{
-				"description": "Decode MIME base64 headers.",
-				"name": "DecodeMimeHeader",
-				"tags": []
-			},
-			{
-				"description": "Utility script to use in playbooks - returns \"yes\" if the input is non-empty.",
-				"name": "UtilAnyResults",
-				"tags": [
-					"Utility",
-					"Condition"
-				]
-			},
-			{
-				"description": "Export given array to csv file",
-				"name": "ExportToCSV",
-				"tags": [
-					"Utility",
-					"csv"
-				]
-			},
-			{
-				"description": "Searches for string in context and returns context path, returns null if not found.",
-				"name": "ContextGetPathForString",
-				"tags": []
-			},
-			{
-				"description": "Script will run the provided mathematical action on 2 provided values and produce a result.\nThe result can be stored on the context using the contextKey argument\n",
-				"name": "MathUtil",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Creates a Grid table from items or key-value pairs.",
-				"name": "SetGridField",
-				"tags": []
-			},
-			{
-				"description": "Extract Attack Pattern Threat Intel Object. After auto extract extracts the Attack Pattern IDs, this script is executed and extracts the value (name) of the Attack Pattern.",
-				"name": "ExtractAttackPattern",
-				"tags": [
-					"indicator-format"
-				]
-			},
-			{
-				"description": "Encode a file as base64 and store it in a Demisto list.\n",
-				"name": "FileToBase64List",
-				"tags": [
-					"Utility",
-					"list"
-				]
-			},
-			{
-				"description": "Gets all IP addresses in context, excluding ones given.",
-				"name": "ContextGetIps",
-				"tags": []
-			},
-			{
-				"description": "Converts string to array. \nFor example: `http://example.com/?score:1,4,time:55` will be transformed to `[\"http://example.com/?score:1,4,time:55\"]`.",
-				"name": "StringToArray",
-				"tags": [
-					"transformer"
-				]
-			},
-			{
-				"description": "Encodes a URL string by replacing special characters in the string using the %xx escape. For example: https://example.com converts to https:%2F%2Fexample.com.",
-				"name": "URLEncode",
-				"tags": [
-					"transformer"
-				]
-			},
-			{
-				"description": "Strip set of characters from prefix and/or suffix\ne.g. StripChar value=~!!~www.mydomain.com~!~!~  chars=!~ will return www.mydomain.com",
-				"name": "StripChars",
-				"tags": [
-					"transformer",
-					"string"
-				]
-			},
-			{
-				"description": "Extracts regex data from the provided text. The script support groups and looping.",
-				"name": "MatchRegexV2",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Check if an email address's domain is trying to squat other domain using Levenshtein distance algorithm",
-				"name": "EmailDomainSquattingReputation",
-				"tags": [
-					"email",
-					"reputation"
 				]
 			},
 			{
@@ -1339,6 +391,21 @@
 				]
 			},
 			{
+				"description": "Shows a bar chart of the number of Positive Detections out of overall detections",
+				"name": "PositiveDetectionsVSDetectionEngines",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Checks if one number(float) as bigger than the other(float)\nReturns yes: if first \u003e second\nReturns no: if first \u003c= second\nReturns exception if one of the inputs is not a number",
+				"name": "IsGreaterThan",
+				"tags": [
+					"Utility",
+					"Condition"
+				]
+			},
+			{
 				"description": "Convert all chosen values but exceptions.",
 				"name": "ConvertAllExcept",
 				"tags": [
@@ -1346,31 +413,48 @@
 				]
 			},
 			{
-				"description": "Extract Domain(s) from URL(s) and/or Email(s)",
-				"name": "ExtractDomainFromUrlAndEmail",
-				"tags": [
-					"indicator-format"
-				]
-			},
-			{
-				"description": "Parses a list by header and value.",
-				"name": "GetListRow",
-				"tags": []
-			},
-			{
-				"description": "Count an array size",
-				"name": "CountArraySize",
+				"description": "Script will run the provided mathematical action on 2 provided values and produce a result.\nThe result can be stored on the context using the contextKey argument\n",
+				"name": "MathUtil",
 				"tags": [
 					"Utility"
 				]
 			},
 			{
-				"description": "Get the string distance for the sender from our domain",
-				"name": "CheckSenderDomainDistance",
+				"description": "List all Docker images that are in use by the installed integrations and automations.",
+				"name": "ListUsedDockerImages",
 				"tags": [
-					"server",
-					"phishing",
-					"Condition"
+					"Utility",
+					"Dockers",
+					"General"
+				]
+			},
+			{
+				"description": "Returns the incident field names associated to the specified incident type.",
+				"name": "GetFieldsByIncidentType",
+				"tags": []
+			},
+			{
+				"description": "Checks an object for an empty value and returns a pre-set default value.",
+				"name": "SetIfEmpty",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Deprecated. Use the **MatchRegexV2** script instead.",
+				"name": "MatchRegex",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "This script converts the input value into another value using two lists. The input value is searched in the first list (input_values). \nIf it exists, the value from the second list (mapped_values) at the same index is retutrned. If there is no match, the original value is returned.\nIf the original input is a dictionary, then the script will look for a \"stringified\" version of the key/:/value pair in the input_values and then map the result in the output_values into the original \"value\".\n\nExample 1:\n\ninput_values = \"1,2,3,4\"\nmapper_values = \"4,3,2,1\"\nvalue = 3\n\nOutput would be \"2\"\n\nExample 2:\n\ninput_values =\"firstkey: datahere,secondkey: datathere\"\nmapper_values = \"datathere,datahere\"\nvalue(dict)= {\n                                \"firstkey\": \"datahere\"\n                          }\n\nOutput would be:\n                          {\n                                \"firstkey\": \"datathere\"\n                           }\n\nThe reason for matching the key AND value pair in a dictionary is to allow the mappig of values that have a specific key name. In most cases, dictionaries will continan key-value pairs in which the values are the same. You might want to change the value of KeyA, but not the value of KeyB. This method gives control over which key is changed.\n\nWhen the input is a dict, str , int, or list, the output is ALWAYS returned as a string.",
+				"name": "MapValuesTransformer",
+				"tags": [
+					"transformer",
+					"string"
 				]
 			},
 			{
@@ -1381,147 +465,21 @@
 				]
 			},
 			{
-				"description": "Extract a string from an existing string.",
-				"name": "ExtractInbetween",
-				"tags": [
-					"transformer",
-					"string",
-					"Utility"
-				]
-			},
-			{
-				"description": "Stops the \"Time To Assign\" timer if the owner of the incident was changed.",
-				"name": "StopTimeToAssignOnOwnerChange",
-				"tags": [
-					"field-change-triggered",
-					"example"
-				]
-			},
-			{
-				"description": "Expose the incident owner into IncidentOwner context key",
-				"name": "ExposeIncidentOwner",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Add a remote system (such as a desktop under investigation) to an investigation (this will allow you to install and agent on the system)\n",
-				"name": "IncidentAddSystem",
-				"tags": [
-					"management"
-				]
-			},
-			{
-				"description": "Gets a value from the specified incident's context.",
-				"name": "GetByIncidentId",
+				"description": "Generates a random UUID (UUID 4).",
+				"name": "GenerateRandomUUID",
 				"tags": []
 			},
 			{
-				"description": "Find the top malicious ratio indicators.\nMalicious ratio is defined by the ratio between the number of \"bad\" incidents divided by the number of total number of incidents that the indicators appears in.",
-				"name": "TopMaliciousRatioIndicators",
+				"description": "Extract user's response from EmailAskUser reply. Returns the first textual response line of the provided entry that contains the reply body. Use ${lastCompletedTaskEntries} to analyze the previous playbook task containing the user's reply.",
+				"name": "EmailAskUserResponse",
 				"tags": [
-					"widget"
+					"Condition"
 				]
 			},
 			{
-				"description": "Not in context verification is a script that executes the given command and verifies that the specified field is not in the context after execution. \n",
-				"name": "NotInContextVerification",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Dumps a json from context key input, and returns a json object string result",
-				"name": "DumpJSON",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Gets specified indexes of a list.",
-				"name": "GetRange",
-				"tags": [
-					"transformer",
-					"general",
-					"entirelist"
-				]
-			},
-			{
-				"description": "Deprecated. Use the \"PhishingDedupPreprocessingRule\" script instead.\nFind duplicate incidents candidates.\nUsing machine learning techniques with pre-defined data (can also use data from the local environment), this script takes into consideration different features such as: labels comparison, email labels (relevant for phishing), incident time difference and shared indicators, which can be customized by the arguments.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "GetDuplicatesMlv2",
-				"tags": [
-					"dedup",
-					"incidents",
-					"ml",
-					"duplicate"
-				]
-			},
-			{
-				"description": "Edit the server configuration (under *settings/troubleshooting*). You can either add a new configuration or update and remove an existing one.",
-				"name": "EditServerConfig",
+				"description": "Searches for string in context and returns context path, returns null if not found.",
+				"name": "ContextGetPathForString",
 				"tags": []
-			},
-			{
-				"description": "Deprecated. Use the UnzipFile script instead. UnPack a file using fileName or entryID to specify a file. Files unpacked will be pushed to the war room and names will be pushed to the context.\nsupported types are:\n7z (.7z), ACE (.ace), ALZIP (.alz), AR (.a), ARC (.arc), ARJ (.arj), BZIP2 (.bz2), CAB (.cab), compress (.Z), CPIO (.cpio), DEB (.deb), DMS (.dms), GZIP (.gz), LRZIP (.lrz), LZH (.lha, .lzh), LZIP (.lz), LZMA (.lzma), LZOP (.lzo), RPM (.rpm), RAR (.rar), RZIP (.rz), TAR (.tar), XZ (.xz), ZIP (.zip, .jar) and ZOO (.zoo)",
-				"name": "UnPackFile",
-				"tags": [
-					"Utility",
-					"file"
-				]
-			},
-			{
-				"description": "Strips, unquotes and unescapes URLs. If the URL is a Proofpoint or ATP URL, extracts its redirect URL.",
-				"name": "FormatURL",
-				"tags": [
-					"indicator-format"
-				]
-			},
-			{
-				"description": "Set indicator reputation to \"suspicious\" when malicious ratio is above threshold.\nMalicious ratio is the ration between number of \"bad\" incidents to total number of incidents the indicator appears in.",
-				"name": "MaliciousRatioReputation",
-				"tags": [
-					"reputation"
-				]
-			},
-			{
-				"description": "Determines whether an IPv4 address is contained in at least one of the comma-delimited CIDR ranges. Multiple IPv4 addresses can be passed comma-delimited and each will be tested.",
-				"name": "IsInCidrRanges",
-				"tags": [
-					"filter"
-				]
-			},
-			{
-				"description": "Creates a file (using the given data input or entry ID) and uploads it to the current investigation War Room.\n",
-				"name": "FileCreateAndUploadV2",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Converts HTML to Markdown.",
-				"name": "HTMLtoMD",
-				"tags": []
-			},
-			{
-				"description": "Shows a bar chart of the number of Positive Detections out of overall detections",
-				"name": "PositiveDetectionsVSDetectionEngines",
-				"tags": [
-					"dynamic-indicator-section"
-				]
-			},
-			{
-				"description": "Converts a given array to an HTML table",
-				"name": "ConvertTableToHTML",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Publish entries to incident's context",
-				"name": "PublishEntriesToContext",
-				"tags": [
-					"Utility"
-				]
 			},
 			{
 				"description": "List the redirects for a given URL",
@@ -1531,124 +489,64 @@
 				]
 			},
 			{
-				"description": "Executes a test for all integration instances available and returns detailed information about succeeded and failed integration instances.",
-				"name": "FailedInstances",
-				"tags": []
-			},
-			{
-				"description": "Joins values from two lists by index according to a given format.",
-				"name": "ZipStrings",
-				"tags": []
-			},
-			{
-				"description": "This script checks that a field exists (and contains data), and optionally checks the value of the field for a match against an input value. If a regex is not supplied, the script checks that the field is not empty. This script can be used with the \"GenericPolling\" playbook to poll for field population or that a field contains a specific value.",
-				"name": "CheckFieldValue",
-				"tags": [
-					"evaluation",
-					"polling"
-				]
-			},
-			{
-				"description": "This command will allow you to run commands against a local Docker Container. You can run commands like wc for instance with word count, or other types of commands that you want on the docker container. \n\nWe recommend for tools that you want to use that are not part of the default Docker container, to cope this Automation script and then create a customer docker container with /docker_image_create with a custom docker container to add any command level tool to Demisto and output the results directly to the context.",
-				"name": "RunDockerCommand",
-				"tags": [
-					"Utilities"
-				]
-			},
-			{
-				"description": "This automation allows the usage of DT scripts within playbooks transformers",
-				"name": "DT",
-				"tags": [
-					"transformer",
-					"general"
-				]
-			},
-			{
-				"description": "Assign analyst to incident.\nBy default,  the analyst is picked randomly from the available users, according to the provided roles (if no roles provided, will fetch all users).\nOtherwise, the analyst will be picked according to the 'assignBy' arguments.\nmachine-learning: DBot will calculated and decide who is the best analyst for the job.\ntop-user: The user that is most commonly owns this type of incident\nless-busy-user: The less busy analyst will be picked to be the incident owner.\nonline: The analyst is picked randomly from all online analysts, according to the provided roles (if no roles provided, will fetch all users).\ncurrent: The user that executed the command",
-				"name": "AssignAnalystToIncident",
+				"description": "Convert an array to a nice table display. Usually, from the context.",
+				"name": "ToTable",
 				"tags": [
 					"Utility"
 				]
 			},
 			{
-				"description": "A transformer for simple if-then-else logic.",
-				"name": "If-Then-Else",
+				"description": "Find tables inside HTML and extract the contents into objects using the following logic:\n- If table has a single column, just create an array of strings from the values\n- If table has 2 columns and has no header row, treat the first column as key and second as value and create a table of key/value\n- If table has a header row, create a table of objects where attribute names are the headers\n- If table does not have a header row, create table of objects where attribute names are cell1, cell2, cell3...",
+				"name": "ExtractHTMLTables",
 				"tags": [
-					"transformer",
-					"general"
-				]
-			},
-			{
-				"description": "Deprecated. Use PCAPMinerV2 instead. PCAPMiner is a tool to parse PCAP files and will return things like extracted files that are found, HTTP flows, and a variety of other information. It is uses a docker instance located on docker hub trorabaugh/dempcap:1.0.  To use simply upload a PCAP file and then run PCAPMiner entryId=\"\u003cyour_entry_id\u003e\". To get the entry id click on the link on the top right hand corner of a file attachment.",
-				"name": "PCAPMiner",
-				"tags": [
-					"Utility",
-					"file",
-					"pcap"
-				]
-			},
-			{
-				"description": "Extraction of elements which are contained in all the subgroups of the match to the pattern.\nFor example, extracting from the string \"The quick brown fox\" the object `{\"article\":\"The\",\"noun\":quick\"}`\n(See arguments descriptions for more details) ",
-				"name": "RegexGroups",
-				"tags": [
-					"transformer",
-					"string"
-				]
-			},
-			{
-				"description": "Finds similar incidents by common incident keys, labels, custom fields or context keys.\nIt's highly recommended to use incident keys if possible (e.g., \"type\" for the same incident type).\nFor best performance, it's recommended to avoid using context keys if possible (for example, if the value also appears in a label key, use label).\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
-				"name": "FindSimilarIncidents",
-				"tags": [
-					"dedup",
-					"duplicate",
-					"incidents"
-				]
-			},
-			{
-				"description": "Returns DNS details for a domain",
-				"name": "GetDomainDNSDetails",
-				"tags": []
-			},
-			{
-				"description": "Removing the password protection from a PDF file and adding a new file entry with the unlocked PDF.",
-				"name": "PDFUnlocker",
-				"tags": []
-			},
-			{
-				"description": "This script searches for a value in a context path.",
-				"name": "ContextContains",
-				"tags": []
-			},
-			{
-				"description": "Check whether given entry/entries returned an error. Use ${lastCompletedTaskEntries} to check the previous task entries. If array is provided, will return yes if one of the entries returned an error.",
-				"name": "isError",
-				"tags": [
-					"Condition",
 					"Utility"
 				]
 			},
 			{
-				"description": "Check if number of availble addresses in IPv4 or IPv6 CIDR is greater than given number.",
-				"name": "GreaterCidrNumAddresses",
+				"description": "Checks if the supplied URLs are in the specified domains.",
+				"name": "IsUrlPartOfDomain",
+				"tags": []
+			},
+			{
+				"description": "Parses a list by header and value.",
+				"name": "GetListRow",
+				"tags": []
+			},
+			{
+				"description": "Indicates whether a given value is a member of given array",
+				"name": "IsValueInArray",
+				"tags": [
+					"Condition"
+				]
+			},
+			{
+				"description": "Fill the current time in a custom incident field",
+				"name": "SetTime",
+				"tags": []
+			},
+			{
+				"description": "Dumps a json from context key input, and returns a json object string result",
+				"name": "DumpJSON",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Runs a specified polling command one time. This is useful for initiating a local playbook context before running a polling scheduled task.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "RunPollingCommand",
+				"tags": []
+			},
+			{
+				"description": "Checks whether an IPv4 address is not contained in one or more comma-delimited CIDR ranges.",
+				"name": "IsNotInCidrRanges",
 				"tags": [
 					"filter"
 				]
 			},
 			{
-				"description": "Map the given values to the translated values. If given values: a,b,c and translated: 1,2,3 then input is a will return 1",
-				"name": "MapValues",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Adds zeros (0) to the beginning of the string, until the string reaches the specified length.",
-				"name": "PadZeros",
-				"tags": [
-					"transformer",
-					"string",
-					"number"
-				]
+				"description": "Convert a JSON warroom output via EntryID to a CSV file.",
+				"name": "JSONtoCSV",
+				"tags": []
 			},
 			{
 				"description": "Extracts domains and FQDNs from URLs and emails.",
@@ -1658,98 +556,28 @@
 				]
 			},
 			{
-				"description": "Decodes an input in Base64 format.",
-				"name": "Base64Decode",
-				"tags": [
-					"Utility",
-					"transformer",
-					"string"
-				]
-			},
-			{
-				"description": "Unzip a file using fileName or entryID to specify a file. Unzipped files will be loaded to the War Room and names will be put into the context.",
-				"name": "UnzipFile",
-				"tags": [
-					"Utility",
-					"file"
-				]
-			},
-			{
-				"description": "Parse an email from an eml or msg file and populate all relevant context data to investigate the email. Also extracts inner attachments and returns them to the war room. The incident labels themselves are preserved and not modified - only the \"Label/x\" context items that originated from the labels, and the best practice is to rely on these for the remainder of the playbook.",
-				"name": "ParseEmailFiles",
-				"tags": [
-					"email",
-					"phishing",
-					"enhancement",
-					"file"
-				]
-			},
-			{
-				"description": "Sends email to incident owner when selected field is triggered.",
-				"name": "emailFieldTriggered",
-				"tags": [
-					"field-change-triggered"
-				]
-			},
-			{
-				"description": "Allows to parse and extract http flows (requests \u0026 responses) from a pcap/pcapng file.",
-				"name": "PcapHTTPExtractor",
-				"tags": [
-					"pcap",
-					"http"
-				]
-			},
-			{
-				"description": "Send message to Demisto online users over Email, Slack, Mattermost or all.",
-				"name": "SendMessageToOnlineUsers",
+				"description": "Executes a test for all integration instances available and returns detailed information about succeeded and failed integration instances.",
+				"name": "FailedInstances",
 				"tags": []
 			},
 			{
-				"description": "Returns 'yes' if integration brand is available. Otherwise returns 'no'",
-				"name": "IsIntegrationAvailable",
-				"tags": [
-					"infra",
-					"Condition"
-				]
-			},
-			{
-				"description": "Calculate the time difference, in minutes",
-				"name": "CalculateTimeDifference",
+				"description": "This command will allow you to run commands against a local Docker Container. You can run commands like wc for instance with word count, or other types of commands that you want on the docker container. \n\nWe recommend for tools that you want to use that are not part of the default Docker container, to cope this Automation script and then create a customer docker container with /docker_image_create with a custom docker container to add any command level tool to Demisto and output the results directly to the context.",
+				"name": "RunDockerCommand",
 				"tags": [
 					"Utilities"
 				]
 			},
 			{
-				"description": "Script to convert a JSON File waroom output to a CSV file.",
-				"name": "JSONFileToCSV",
+				"description": "Joins values from two lists by index according to a given format.",
+				"name": "ZipStrings",
 				"tags": []
 			},
 			{
-				"description": "A context script for IP entities",
-				"name": "IPReputation",
+				"description": "Check if a given value is true. Will return 'no' otherwise",
+				"name": "IsTrue",
 				"tags": [
-					"enhancement"
-				]
-			},
-			{
-				"description": "Verifies that an email address is valid and only returns the address if it is valid.",
-				"name": "ExtractEmailV2",
-				"tags": [
-					"indicator-format"
-				]
-			},
-			{
-				"description": "Checks whether a given CIDR prefix is bigger than the defined maximum prefix.",
-				"name": "CIDRBiggerThanPrefix",
-				"tags": [
-					"filter"
-				]
-			},
-			{
-				"description": "Calculate ssdeep reputation based on similar files (by ssdeep similarity) on the system.",
-				"name": "SSDeepReputation",
-				"tags": [
-					"reputation"
+					"Utility",
+					"Condition"
 				]
 			},
 			{
@@ -1769,21 +597,284 @@
 				]
 			},
 			{
-				"description": "Gets all email addresses in context, excluding ones given.",
-				"name": "ContextGetEmails",
+				"description": "Adds/Replaces a key in key/value store backed by an XSOAR list.",
+				"name": "AddKeyToList",
 				"tags": []
 			},
 			{
-				"description": "Checks if the Docker container running this script has been hardened according to the recommended settings at: https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-0/cortex-xsoar-admin/docker/docker-hardening-guide.html",
-				"name": "DockerHardeningCheck",
+				"description": "Set a value in context under the key you entered.",
+				"name": "Set",
 				"tags": [
 					"Utility"
 				]
 			},
 			{
-				"description": "Convert a JSON warroom output via EntryID to a CSV file.",
-				"name": "JSONtoCSV",
+				"description": "This script will parse a CSV file and place the unique IPs, Domains and Hashes into the context.",
+				"name": "ParseCSV",
+				"tags": [
+					"file",
+					"csv",
+					"Utility"
+				]
+			},
+			{
+				"description": "Converts a given array to an HTML table",
+				"name": "ConvertTableToHTML",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Verifies if the supplied JSON string is valid and optionally verifies against a provided schema. The script utilizes Powershell's Test-JSON cmdlet.",
+				"name": "VerifyJSON",
+				"tags": [
+					"JSON",
+					"Utility"
+				]
+			},
+			{
+				"description": "Returns the length of  the string passed as argument",
+				"name": "StringLength",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Sends an email informing the user of an SLA breach. The email is sent to the user who is assigned to the incident. It includes the incident name, ID, name of the SLA field that was breached, duration of that SLA field, and the date and time when that SLA was started.\nIn order to run successfully, the script should be configured to trigger on SLA breach, through field edit mode.",
+				"name": "SendEmailOnSLABreach",
+				"tags": [
+					"sla",
+					"example"
+				]
+			},
+			{
+				"description": "Deprecated. Use the UnzipFile script instead. UnPack a file using fileName or entryID to specify a file. Files unpacked will be pushed to the war room and names will be pushed to the context.\nsupported types are:\n7z (.7z), ACE (.ace), ALZIP (.alz), AR (.a), ARC (.arc), ARJ (.arj), BZIP2 (.bz2), CAB (.cab), compress (.Z), CPIO (.cpio), DEB (.deb), DMS (.dms), GZIP (.gz), LRZIP (.lrz), LZH (.lha, .lzh), LZIP (.lz), LZMA (.lzma), LZOP (.lzo), RPM (.rpm), RAR (.rar), RZIP (.rz), TAR (.tar), XZ (.xz), ZIP (.zip, .jar) and ZOO (.zoo)",
+				"name": "UnPackFile",
+				"tags": [
+					"Utility",
+					"file"
+				]
+			},
+			{
+				"description": "Utility script to use in playbooks - returns \"yes\" if the input is non-empty.",
+				"name": "UtilAnyResults",
+				"tags": [
+					"Utility",
+					"Condition"
+				]
+			},
+			{
+				"description": "Whether value is within a date range.",
+				"name": "BetweenDates",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "Works the same as the 'Set' command, but can work across incidents by specifying 'id' as an argument.\nSets a value into the context with the given context key. Doesn't append by default.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "SetByIncidentId",
+				"tags": [
+					"DemistoAPI"
+				]
+			},
+			{
+				"description": "Verifies that an email address is valid and only returns the address if it is valid.",
+				"name": "ExtractEmailV2",
+				"tags": [
+					"indicator-format"
+				]
+			},
+			{
+				"description": "The script receives a list of fields and a context key base path. For example, Key=demisto.result List=username,user and will get all of the values from demisto.result.username and demisto.result.user.\nThe Get field of the task must have the value ${.=[]}.",
+				"name": "GetValuesOfMultipleFields",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
+				"description": "This function generates a password and allows various parameters to customize the properties of the password depending on the use case (e.g. password complexity requirements).  The default behavior is to generate a password of  *random length* including all four character classes (upper, lower, digits, symbols) with at least five and at most ten characters per class. \n\nThe min_* values all default to 0. This means that if the command is executed in this way:\n!GeneratePassword max_lcase=10\nIt is possible that a password of length zero could be generated. It is therefore recommended to always include a min_* parameter that matches. \n\nThe debug parameter will print certain properties of the command into the WarRoom for easy diagnostics.",
+				"name": "GeneratePassword",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Generates random string",
+				"name": "GenerateRandomString",
 				"tags": []
+			},
+			{
+				"description": "Check if number of availble addresses in IPv4 CIDR is lower than given number.",
+				"name": "LowerCidrNumAddresses",
+				"tags": [
+					"filter"
+				]
+			},
+			{
+				"description": "Optionally increases the incident severity to the new value if it is greater than the existing severity.",
+				"name": "IncreaseIncidentSeverity",
+				"tags": []
+			},
+			{
+				"description": "Extract Attack Pattern Threat Intel Object. After auto extract extracts the Attack Pattern IDs, this script is executed and extracts the value (name) of the Attack Pattern.",
+				"name": "ExtractAttackPattern",
+				"tags": [
+					"indicator-format"
+				]
+			},
+			{
+				"description": "Check if list exist in demisto lists.",
+				"name": "IsListExist",
+				"tags": [
+					"Condition"
+				]
+			},
+			{
+				"description": "Assign analyst to incident.\nBy default,  the analyst is picked randomly from the available users, according to the provided roles (if no roles provided, will fetch all users).\nOtherwise, the analyst will be picked according to the 'assignBy' arguments.\nmachine-learning: DBot will calculated and decide who is the best analyst for the job.\ntop-user: The user that is most commonly owns this type of incident\nless-busy-user: The less busy analyst will be picked to be the incident owner.\nonline: The analyst is picked randomly from all online analysts, according to the provided roles (if no roles provided, will fetch all users).\ncurrent: The user that executed the command",
+				"name": "AssignAnalystToIncident",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Load the contents of a file into context.",
+				"name": "ReadFile",
+				"tags": [
+					"Utility",
+					"ingestion"
+				]
+			},
+			{
+				"description": "Filter context keys by applying one of the various available manipulations and storing in a new context key. Please notice that the resulting context key will not be available automatically as an option but you can still specify it.",
+				"name": "ContextFilter",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Converts string to array. \nFor example: `http://example.com/?score:1,4,time:55` will be transformed to `[\"http://example.com/?score:1,4,time:55\"]`.",
+				"name": "StringToArray",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
+				"description": "Copy a context key to an incident field of multiple incidents, based on an incident query.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "CopyContextToField",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Export given array to csv file",
+				"name": "ExportToCSV",
+				"tags": [
+					"Utility",
+					"csv"
+				]
+			},
+			{
+				"description": "Converts a single string to an array of that string.",
+				"name": "ConvertToSingleElementArray",
+				"tags": [
+					"transformer",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Return the Demisto server version.",
+				"name": "DemistoVersion",
+				"tags": []
+			},
+			{
+				"description": "This stops the scheduled task whose ID is given in the taskID argument.",
+				"name": "StopScheduledTask",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Checks if one percentage is less than another\nReturns less: if firstPercentage \u003c secondPercentage\nReturns more: if firstPercentage \u003e= secondPercentage\nReturns exception if one of the inputs is not a float",
+				"name": "LessThanPercentage",
+				"tags": [
+					"Utility",
+					"Condition"
+				]
+			},
+			{
+				"description": "This script will extract indicators from given HTML and will handle bad top-level domains to avoid false positives caused by file extensions.",
+				"name": "ParseHTMLIndicators",
+				"tags": []
+			},
+			{
+				"description": "Tokenize the words in a input text.",
+				"name": "WordTokenizer",
+				"tags": [
+					"phishing",
+					"ml"
+				]
+			},
+			{
+				"description": "Check whether given entry/entries returned an error. Use ${lastCompletedTaskEntries} to check the previous task entries. If array is provided, will return yes if one of the entries returned an error.",
+				"name": "isError",
+				"tags": [
+					"Condition",
+					"Utility"
+				]
+			},
+			{
+				"description": "Count an array size",
+				"name": "CountArraySize",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Check if a given value exists in the context. Will return 'no' for empty empty arrays. To be used mostly with DQ and selectors.",
+				"name": "Exists",
+				"tags": [
+					"Utility",
+					"Condition"
+				]
+			},
+			{
+				"description": "A context script for hash entities",
+				"name": "FileReputation",
+				"tags": [
+					"enhancement"
+				]
+			},
+			{
+				"description": "Deprecated. Use PCAPMinerV2 instead. PCAPMiner is a tool to parse PCAP files and will return things like extracted files that are found, HTTP flows, and a variety of other information. It is uses a docker instance located on docker hub trorabaugh/dempcap:1.0.  To use simply upload a PCAP file and then run PCAPMiner entryId=\"\u003cyour_entry_id\u003e\". To get the entry id click on the link on the top right hand corner of a file attachment.",
+				"name": "PCAPMiner",
+				"tags": [
+					"Utility",
+					"file",
+					"pcap"
+				]
+			},
+			{
+				"description": "Pretty-print data using Python's pprint library.  This is useful for seeing the structure of incident and context data.  Here's how to use it:\n\n!PrettyPrint value=${incident}",
+				"name": "PrettyPrint",
+				"tags": []
+			},
+			{
+				"description": "Load a PDF file's content and metadata into context.",
+				"name": "ReadPDFFileV2",
+				"tags": [
+					"Utility",
+					"ingestion"
+				]
+			},
+			{
+				"description": "Parses a CSV and looks for a specific value in a specific column, returning a dict of the entire matching row. If no column value is specified, the entire CSV is read into the context.",
+				"name": "LookupCSV",
+				"tags": [
+					"file",
+					"csv",
+					"Utility"
+				]
 			},
 			{
 				"description": "This script adds the reputation to Onion URL indicators. The script is automatically triggered when a Onion URL indicator is auto-extracted. For instance, if you run a Cortex XSOAR CLI on a valid Onion URL, the indicators are extracted automatically and this script is triggered for the extracted indicators.",
@@ -1793,10 +884,28 @@
 				]
 			},
 			{
-				"description": "Execute a command on a remote machine (without installing a D2 agent)",
-				"name": "RemoteExec",
+				"description": "Script to convert a JSON File waroom output to a CSV file.",
+				"name": "JSONFileToCSV",
+				"tags": []
+			},
+			{
+				"description": "Extraction of elements which are contained in all the subgroups of the match to the pattern.\nFor example, extracting from the string \"The quick brown fox\" the object `{\"article\":\"The\",\"noun\":quick\"}`\n(See arguments descriptions for more details) ",
+				"name": "RegexGroups",
 				"tags": [
-					"endpoint"
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Gets all email addresses in context, excluding ones given.",
+				"name": "ContextGetEmails",
+				"tags": []
+			},
+			{
+				"description": "Converts a date from a different timezone to UTC timezone.",
+				"name": "ConvertDatetoUTC",
+				"tags": [
+					"Utility"
 				]
 			},
 			{
@@ -1809,30 +918,16 @@
 				]
 			},
 			{
-				"description": "Try to get the hostname correlated with the input IP.",
-				"name": "IPToHost",
+				"description": "Compare  two lists and put the differences in context.",
+				"name": "CompareLists",
 				"tags": []
 			},
 			{
-				"description": "Retrieves the current date and time.\n",
-				"name": "GetTime",
-				"tags": [
-					"Utility"
-				]
-			},
-			{
-				"description": "Check whether the values provided in arguments are equal. If either of the arguments are missing, no is returned.",
-				"name": "AreValuesEqual",
-				"tags": [
-					"Utility",
-					"Condition"
-				]
-			},
-			{
-				"description": "Converts a single string to an array of that string.",
-				"name": "ConvertToSingleElementArray",
+				"description": "Gets specified indexes of a list.",
+				"name": "GetRange",
 				"tags": [
 					"transformer",
+					"general",
 					"entirelist"
 				]
 			},
@@ -1844,10 +939,915 @@
 				]
 			},
 			{
+				"description": "This automation allows the usage of DT scripts within playbooks transformers",
+				"name": "DT",
+				"tags": [
+					"transformer",
+					"general"
+				]
+			},
+			{
+				"description": "After running DeleteContext, this script can repopulate all the file entries in the ${File} context key",
+				"name": "RepopulateFiles",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Lookup incidents with specified indicator. Use currentIncidentId to omit the existing incident from output.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "findIncidentsWithIndicator",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Pings an IP or url address, to verify it's up",
+				"name": "Ping",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "This script checks that a context key exists (and contains data), and optionally checks the value of the context key for a match against an input value. If a regex is not supplied, the script checks that the key is not empty. This script can be used with the \"GenericPolling\" playbook to poll for field population or that a field contains a specific value. This scripts does not support a context key which holds a list of values.",
+				"name": "CheckContextValue",
+				"tags": [
+					"evaluation",
+					"polling"
+				]
+			},
+			{
+				"description": "A transformer for simple if-then-else logic.",
+				"name": "If-Then-Else",
+				"tags": [
+					"transformer",
+					"general"
+				]
+			},
+			{
+				"description": "Close the current investigation as duplicate to other investigation.",
+				"name": "CloseInvestigationAsDuplicate",
+				"tags": [
+					"dedup"
+				]
+			},
+			{
+				"description": "Removes a key in key/value store backed by an XSOAR list.",
+				"name": "RemoveKeyFromList",
+				"tags": []
+			},
+			{
+				"description": "This script checks that a field exists (and contains data), and optionally checks the value of the field for a match against an input value. If a regex is not supplied, the script checks that the field is not empty. This script can be used with the \"GenericPolling\" playbook to poll for field population or that a field contains a specific value.",
+				"name": "CheckFieldValue",
+				"tags": [
+					"evaluation",
+					"polling"
+				]
+			},
+			{
+				"description": "Widget script to view information about the relationship between an indicator, entity and other indicators and connect to indicators, if relevant.",
+				"name": "FeedRelatedIndicatorsWidget",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Returns a map entry with a marker on the given coordinates (lat,lng), or address (requires a configured GoogleMaps instance).",
+				"name": "ShowOnMap",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "This script allows sending an HTML email, using a template stored as a list item under Lists (Settings -\u003e Advanced -\u003e Lists).\nPlaceholders are marked in DT format (i.e. ${incident.id} for incident ID).\nAvailable placeholders for example:\n- ${incident.labels.Email/from}\n- ${incident.name}\n- ${object.value}\nSee incident Context Data menu for available placeholders\n\nNote: Sending emails require an active  Mail Sender integration instance.",
+				"name": "CreateEmailHtmlBody",
+				"tags": [
+					"email",
+					"communication"
+				]
+			},
+			{
+				"description": "Get the string distance between inputString and compareString (compareString can be a comma-separated list) based on Levenshtein Distance algorithm.",
+				"name": "GetStringsDistance",
+				"tags": [
+					"server",
+					"phishing"
+				]
+			},
+			{
+				"description": "Extract a string from an existing string.",
+				"name": "ExtractInbetween",
+				"tags": [
+					"transformer",
+					"string",
+					"Utility"
+				]
+			},
+			{
+				"description": "Display HTML in the War Room.",
+				"name": "DisplayHTML",
+				"tags": []
+			},
+			{
+				"description": "Transformer that returns a filtered list of IPv4 addresses, based on whether they match a comma-separated list of IPv4 ranges.  Useful for filtering in internal IP address space.",
+				"name": "IPv4Whitelist",
+				"tags": [
+					"transformer",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Extract URLs redirected by security tools like Proofpoint.\nChanges https://urldefense.proofpoint.com/v2/url?u=https-3A__example.com_something.html -\u003e https://example.com/something.html\nAlso, un-escape URLs that are escaped for safety with formats like hxxps://www[.]demisto[.]com",
+				"name": "UnEscapeURLs",
+				"tags": [
+					"indicator-format"
+				]
+			},
+			{
+				"description": "Unzip a file using fileName or entryID to specify a file. Unzipped files will be loaded to the War Room and names will be put into the context.",
+				"name": "UnzipFile",
+				"tags": [
+					"Utility",
+					"file"
+				]
+			},
+			{
+				"description": "Encodes an input to Base64 format.",
+				"name": "Base64EncodeV2",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Prints text to war room (Markdown supported)",
+				"name": "Print",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Extract strings from a file with optional filter - similar to binutils strings command",
+				"name": "Strings",
+				"tags": [
+					"server",
+					"file"
+				]
+			},
+			{
+				"description": "Extract Domain(s) from URL(s) and/or Email(s)",
+				"name": "ExtractDomainFromUrlAndEmail",
+				"tags": [
+					"indicator-format"
+				]
+			},
+			{
+				"description": "Sends http request. Returns the response as json.",
+				"name": "http",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Checks whether the given value is within the specified time (hour) range.",
+				"name": "BetweenHours",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "Stops the \"Time To Assign\" timer if the owner of the incident was changed.",
+				"name": "StopTimeToAssignOnOwnerChange",
+				"tags": [
+					"field-change-triggered",
+					"example"
+				]
+			},
+			{
+				"description": "Takes a date or time input and adds or subtracts a determined amount of time. Returns a string in date or time in ISO Format.",
+				"name": "ModifyDateTime",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "A context script for URL entities",
+				"name": "URLReputation",
+				"tags": [
+					"enhancement"
+				]
+			},
+			{
+				"description": "Encodes a URL string by replacing special characters in the string using the %xx escape. For example: https://example.com converts to https:%2F%2Fexample.com.",
+				"name": "URLEncode",
+				"tags": [
+					"transformer"
+				]
+			},
+			{
+				"description": "Copy all entries marked as notes from current incident to another incident.",
+				"name": "CopyNotesToIncident",
+				"tags": []
+			},
+			{
+				"description": "Searches Demisto incidents.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "SearchIncidentsV2",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Expose the incident owner into IncidentOwner context key",
+				"name": "ExposeIncidentOwner",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "checks if left side is in range of right side (from,to anotation)\ne.g. - InRange left=4right=1,8 will return true.",
+				"name": "InRange",
+				"tags": [
+					"filter",
+					"number"
+				]
+			},
+			{
+				"description": "Checks if the supplied hostnames match either the organization's internal naming convention or the domain suffix.",
+				"name": "IsInternalHostName",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Converts Base64 file in a list to a binary file and upload to warroom",
+				"name": "Base64ListToFile",
+				"tags": [
+					"list",
+					"Utility"
+				]
+			},
+			{
+				"description": "Decode MIME base64 headers.",
+				"name": "DecodeMimeHeader",
+				"tags": []
+			},
+			{
+				"description": "Encode a file as base64 and store it in a Demisto list.\n",
+				"name": "FileToBase64List",
+				"tags": [
+					"Utility",
+					"list"
+				]
+			},
+			{
+				"description": "Creates a file (using the given data input or entry ID) and uploads it to the current investigation War Room.\n",
+				"name": "FileCreateAndUploadV2",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "A context script for Domain entities",
+				"name": "DomainReputation",
+				"tags": [
+					"enhancement"
+				]
+			},
+			{
+				"description": "Edit the server configuration (under *settings/troubleshooting*). You can either add a new configuration or update and remove an existing one.",
+				"name": "EditServerConfig",
+				"tags": []
+			},
+			{
+				"description": "The automation takes Excel file (entryID) as an input and parses its content to the war room and context",
+				"name": "ParseExcel",
+				"tags": []
+			},
+			{
+				"description": "Parse an email from an eml or msg file and populate all relevant context data to investigate the email. Also extracts inner attachments and returns them to the war room. The incident labels themselves are preserved and not modified - only the \"Label/x\" context items that originated from the labels, and the best practice is to rely on these for the remainder of the playbook. This script is based on the parse-emails XSOAR python package, check the script documentation for more info",
+				"name": "ParseEmailFilesV2",
+				"tags": [
+					"email",
+					"phishing",
+					"enhancement",
+					"file"
+				]
+			},
+			{
+				"description": "Get the overall score for the indicator as calculated by DBot.",
+				"name": "GetIndicatorDBotScoreFromCache",
+				"tags": []
+			},
+			{
+				"description": "When you apply this script to an incident field, that incident field is hidden for new incidents, and it displays in edit mode.",
+				"name": "hideFieldsOnNewIncident",
+				"tags": [
+					"field-display"
+				]
+			},
+			{
+				"description": "Check if number of availble addresses in IPv4 or IPv6 CIDR is greater than given number.",
+				"name": "GreaterCidrNumAddresses",
+				"tags": [
+					"filter"
+				]
+			},
+			{
+				"description": "Runs the polling command repeatedly, completes a blocking manual task when polling is done.",
+				"name": "GenericPollingScheduledTask",
+				"tags": []
+			},
+			{
+				"description": "Returns 'yes' if integration brand is available. Otherwise returns 'no'",
+				"name": "IsIntegrationAvailable",
+				"tags": [
+					"infra",
+					"Condition"
+				]
+			},
+			{
+				"description": "Returns DNS details for a domain",
+				"name": "GetDomainDNSDetails",
+				"tags": []
+			},
+			{
+				"description": "Strips, unquotes and unescapes URLs. If the URL is a Proofpoint or ATP URL, extracts its redirect URL.",
+				"name": "FormatURL",
+				"tags": [
+					"indicator-format"
+				]
+			},
+			{
+				"description": "Gather information regarding CIDR -\n    1. Broadcast_address\n    2. CIDR\n    3. First_address\n    4. Last address\n    5. Max prefix len\n    6. Num addresses\n    7. Private\n    8. Version\n",
+				"name": "IPNetwork",
+				"tags": [
+					"ip"
+				]
+			},
+			{
+				"description": "Check whether the values provided in arguments are equal. If either of the arguments are missing, no is returned.",
+				"name": "AreValuesEqual",
+				"tags": [
+					"Utility",
+					"Condition"
+				]
+			},
+			{
+				"description": "Get the error(s) associated with a given entry/entries. Use ${lastCompletedTaskEntries} to check the previous task entries. The automation will return an array of the error contents from those entries.",
+				"name": "GetErrorsFromEntry",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Accepts a json object and returns a markdown.",
+				"name": "JsonToTable",
+				"tags": [
+					"transformer",
+					"entirelist",
+					"general"
+				]
+			},
+			{
+				"description": "Changes the remediation SLA once a change in incident severity occurs.\nThis is done automatically and the changes can be configured to your needs.",
+				"name": "ChangeRemediationSLAOnSevChange",
+				"tags": [
+					"field-change-triggered",
+					"example"
+				]
+			},
+			{
+				"description": "Find the top malicious ratio indicators.\nMalicious ratio is defined by the ratio between the number of \"bad\" incidents divided by the number of total number of incidents that the indicators appears in.",
+				"name": "TopMaliciousRatioIndicators",
+				"tags": [
+					"widget"
+				]
+			},
+			{
+				"description": "Sends email to incident owner when selected field is triggered.",
+				"name": "emailFieldTriggered",
+				"tags": [
+					"field-change-triggered"
+				]
+			},
+			{
+				"description": "Converting time in Ticks to readable time. Ticks are used to represent time by some vendors, most commonly by Microsoft. ",
+				"name": "ticksToTime",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Cut a string by delimiter and return specific fields.\nExample\n=================\ninput: \"A-B-C-D-E\"\ndelimiter: \"-\"\nfields: \"1,5\"\n\nreturn: \"A-E\"\n",
+				"name": "Cut",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Transformer that returns a filtered list of IPv4 addresses, based on whether they do not match a comma-separated list of IPv4 ranges.  Useful for filtering out internal IP address space.",
+				"name": "IPv4Blacklist",
+				"tags": [
+					"transformer",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Takes an input docx file (entryID) as an input and saves an output text file (file entry) with the original file's contents.",
+				"name": "ParseWordDoc",
+				"tags": [
+					"word",
+					"docx",
+					"doc",
+					"parser"
+				]
+			},
+			{
 				"description": "Fetches the numbers of ads in the given url",
 				"name": "URLNumberOfAds",
 				"tags": [
 					"Utility"
+				]
+			},
+			{
+				"description": "Marks given incidents as related to current incident.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "MarkRelatedIncidents",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Ask a user a question via email and process the reply directly into the investigation.",
+				"name": "EmailAskUser",
+				"tags": [
+					"email"
+				]
+			},
+			{
+				"description": "Allows to parse and extract http flows (requests \u0026 responses) from a pcap/pcapng file.",
+				"name": "PcapHTTPExtractor",
+				"tags": [
+					"pcap",
+					"http"
+				]
+			},
+			{
+				"description": "Language detection based on Google's language-detection.",
+				"name": "LanguageDetect",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Adds zeros (0) to the beginning of the string, until the string reaches the specified length.",
+				"name": "PadZeros",
+				"tags": [
+					"transformer",
+					"string",
+					"number"
+				]
+			},
+			{
+				"description": "Return all items from the list where their given 'field' attribute is equal to 'equalTo' argument\n\nE.g. !WhereFieldEquals with the following arguments:\n - value=[{ \"name\": \"192.1,0.82\", \"type\": \"IP\" }, { \"name\": \"myFile.txt\", \"type\": \"File\" }, { \"name\": \"172.0.0.2\", \"type\": \"IP\" }]\n - field='type'\n - equalTo='IP'\n - getField='name' \n\nWill return all items names where field 'type' equals 'IP' - ['192.1,0.82', '172.0.0.2']",
+				"name": "WhereFieldEquals",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Called by the GenericPolling playbook, schedules the polling task.",
+				"name": "ScheduleGenericPolling",
+				"tags": []
+			},
+			{
+				"description": "Publish entries to incident's context",
+				"name": "PublishEntriesToContext",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Sets a custom incident field with current date",
+				"name": "SetDateField",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Checks whether a given CIDR prefix is bigger than the defined maximum prefix.",
+				"name": "CIDRBiggerThanPrefix",
+				"tags": [
+					"filter"
+				]
+			},
+			{
+				"description": "Shows a bar chart of the number of incident the 'To' and 'From' email addresses.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "NumberOfPhishingAttemptPerUser",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Compares a single timestamp to a list of timestamps.",
+				"name": "TimeStampCompare",
+				"tags": []
+			},
+			{
+				"description": "Pretty-print the contents of the playbook context",
+				"name": "PrintContext",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Gets a list of indicators from the indicators argument, and generates a JSON file in STIX 2.0 format.",
+				"name": "StixCreator",
+				"tags": []
+			},
+			{
+				"description": "Check if an email address's domain is trying to squat other domain using Levenshtein distance algorithm",
+				"name": "EmailDomainSquattingReputation",
+				"tags": [
+					"email",
+					"reputation"
+				]
+			},
+			{
+				"description": "This script searches for a value in a context path.",
+				"name": "ContextContains",
+				"tags": []
+			},
+			{
+				"description": "Returns the last element of an array. If the value passed is not an array, it returns the original value that was passed.",
+				"name": "LastArrayElement",
+				"tags": [
+					"general",
+					"transformer",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Add DBot score to context for indicators with custom vendor, score, reliability, and type.",
+				"name": "AddDBotScoreToContext",
+				"tags": []
+			},
+			{
+				"description": "Checks the given datetime has occured after the provided relative time.",
+				"name": "AfterRelativeDate",
+				"tags": [
+					"date",
+					"filter",
+					"Condition"
+				]
+			},
+			{
+				"description": "Parse an email from an eml or msg file and populate all relevant context data to investigate the email. Also extracts inner attachments and returns them to the war room. The incident labels themselves are preserved and not modified - only the \"Label/x\" context items that originated from the labels, and the best practice is to rely on these for the remainder of the playbook.",
+				"name": "ParseEmailFiles",
+				"tags": [
+					"email",
+					"phishing",
+					"enhancement",
+					"file"
+				]
+			},
+			{
+				"description": "Parse a given JSON string \"value\" to a representative object. Example: '{\"a\": \"value\"}' =\u003e {\"a\": \"value\"}.",
+				"name": "ParseJSON",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Checks whether a substring or an array of substrings is within a string array(each item will be checked). Supports single strings as well. For example, for substrings ['a','b','c'] in a string 'a' the script will return true.\n",
+				"name": "StringContainsArray",
+				"tags": [
+					"filter",
+					"string"
+				]
+			},
+			{
+				"description": "Converts UNIX Epoch time stamp to a simplified extended ISO format string. Use it to convert time stamp to Demisto date field\n\ne.g. 1525006939 will return '2018-04-29T13:02:19.000Z'",
+				"name": "TimeStampToDate",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "Resolve the original URL from the given shortened URL and place it in both as output and in the context of a playbook. (https://unshorten.me/api)",
+				"name": "ResolveShortenedURL",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Populates critical assets in a grid field that has the section headers \"Asset Type\" and \"Asset Name\".",
+				"name": "PopulateCriticalAssets",
+				"tags": []
+			},
+			{
+				"description": "A context script for Email entities",
+				"name": "EmailReputation",
+				"tags": [
+					"enhancement"
+				]
+			},
+			{
+				"description": "Converts a custom-formatted timestamp to UNIX epoch time. Use it to convert custom time stamps to a Demisto date field. If you pass formatter argument, we will use it to transform. If not, we will use dateparser.parse for transforming. For more info, see: https://docs.python.org/3.7/library/datetime.html#strftime-and-strptime-behavior",
+				"name": "FormattedDateToEpoch",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "Removing the password protection from a PDF file and adding a new file entry with the unlocked PDF.",
+				"name": "PDFUnlocker",
+				"tags": []
+			},
+			{
+				"description": "Converts XML file entry to JSON format",
+				"name": "ConvertXmlFileToJson",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Retrieves the current date and time.\n",
+				"name": "GetTime",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Calculate the time difference, in minutes",
+				"name": "CalculateTimeDifference",
+				"tags": [
+					"Utilities"
+				]
+			},
+			{
+				"description": "Parse CEF data into the context. Please notice that outputs will display only the 7 mandatory fields even if the CEF event includes many other custom or extended fields.",
+				"name": "CEFParser",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Not in context verification is a script that executes the given command and verifies that the specified field is not in the context after execution. \n",
+				"name": "NotInContextVerification",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Converts XML string to JSON format",
+				"name": "ConvertXmlToJson",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Calculate ssdeep reputation based on similar files (by ssdeep similarity) on the system.",
+				"name": "SSDeepReputation",
+				"tags": [
+					"reputation"
+				]
+			},
+			{
+				"description": "Replaces regex match/es in string.\nReturns the string after replace was preformed.",
+				"name": "StringReplace",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Extract regular text from the given HTML",
+				"name": "TextFromHTML",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Deprecated. Use FileCreateAndUploadV2 instead. Will create a file (using the given data input or entry ID) and upload it to current investigation war room.\n",
+				"name": "FileCreateAndUpload",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Extracts FQDNs from URLs and emails.",
+				"name": "ExtractFQDNFromUrlAndEmail",
+				"tags": [
+					"indicator-format"
+				]
+			},
+			{
+				"description": "Performs a JMESPath search on an input JSON format, when using a transformer.",
+				"name": "jmespath",
+				"tags": [
+					"transformer",
+					"general"
+				]
+			},
+			{
+				"description": "Strip set of characters from prefix and/or suffix\ne.g. StripChar value=~!!~www.mydomain.com~!~!~  chars=!~ will return www.mydomain.com",
+				"name": "StripChars",
+				"tags": [
+					"transformer",
+					"string"
+				]
+			},
+			{
+				"description": "Send message to Demisto online users over Email, Slack, Mattermost or all.",
+				"name": "SendMessageToOnlineUsers",
+				"tags": []
+			},
+			{
+				"description": "Take a list of devices and pull a specific file (given by path) from each using SCP",
+				"name": "SCPPullFiles",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Calculates the entropy for the given data.",
+				"name": "CalculateEntropy",
+				"tags": [
+					"entropy"
+				]
+			},
+			{
+				"description": "Extracts regex data from the provided text. The script support groups and looping.",
+				"name": "MatchRegexV2",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Set indicator reputation to \"suspicious\" when malicious ratio is above threshold.\nMalicious ratio is the ration between number of \"bad\" incidents to total number of incidents the indicator appears in.",
+				"name": "MaliciousRatioReputation",
+				"tags": [
+					"reputation"
+				]
+			},
+			{
+				"description": "Prints a raw representation of a string or object, visualising things likes tabs and newlines.  For instance, '\\n' will be displayed instead of a newline character, or a Windows CR will be displayed as '\\r\\n'.  This is useful for debugging issues where things aren't behaving as expected, such as when parsing a string with a regular expression.",
+				"name": "PrintRaw",
+				"tags": []
+			},
+			{
+				"description": "Creates a Grid table from items or key-value pairs.",
+				"name": "SetGridField",
+				"tags": []
+			},
+			{
+				"description": "Add a remote system (such as a desktop under investigation) to an investigation (this will allow you to install and agent on the system)\n",
+				"name": "IncidentAddSystem",
+				"tags": [
+					"management"
+				]
+			},
+			{
+				"description": "Gets all IP addresses in context, excluding ones given.",
+				"name": "ContextGetIps",
+				"tags": []
+			},
+			{
+				"description": "Input Text Data to Encode as ASCII (Ignores any chars that aren't interpreted as ASCII)",
+				"name": "EncodeToAscii",
+				"tags": []
+			},
+			{
+				"description": "Try to get the hostname correlated with the input IP.",
+				"name": "IPToHost",
+				"tags": []
+			},
+			{
+				"description": "Gets docker image latest tag. Script simulates the docker pull flow but doesn't actually pull the image. Returns an entry with the docker image latest tag if all is good, otherwise will return an error.",
+				"name": "GetDockerImageLatestTag",
+				"tags": []
+			},
+			{
+				"description": "Returns the first element of an array.  If the value passed is not an array, it returns the original value that was passed.",
+				"name": "FirstArrayElement",
+				"tags": [
+					"general",
+					"transformer",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Creates indicators from the submitted STIX file. Supports STIX 1.0 and STIX 2.0.",
+				"name": "CreateIndicatorsFromSTIX",
+				"tags": [
+					"stix",
+					"ioc"
+				]
+			},
+			{
+				"description": "Finds similar incidents by common incident keys, labels, custom fields or context keys.\nIt's highly recommended to use incident keys if possible (e.g., \"type\" for the same incident type).\nFor best performance, it's recommended to avoid using context keys if possible (for example, if the value also appears in a label key, use label).\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "FindSimilarIncidents",
+				"tags": [
+					"dedup",
+					"duplicate",
+					"incidents"
+				]
+			},
+			{
+				"description": "Returns yes if the IP is in one of the ranges provided, returns no otherwise.",
+				"name": "IsIPInRanges",
+				"tags": [
+					"ip"
+				]
+			},
+			{
+				"description": "Checks if the email address is part of the internal domains",
+				"name": "IsEmailAddressInternal",
+				"tags": [
+					"email"
+				]
+			},
+			{
+				"description": "Return indicators appears in resolved incidents, and resolved incident ids.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "IndicatorMaliciousRatioCalculation",
+				"tags": [
+					"ml"
+				]
+			},
+			{
+				"description": "Checks if the investigation found any malicious indicators (file, URL, IP address, domain, or email). Returns \"yes\" if at least one malicious indicator is found.",
+				"name": "IsMaliciousIndicatorFound",
+				"tags": [
+					"Utility",
+					"Condition"
+				]
+			},
+			{
+				"description": "Reverse a list\ne.g. [\"Mars\", \"Jupiter\", \"Saturn\"] =\u003e  [\"Saturn\", \"Jupiter\", \"Mars\"]\n\nThis is an example for entire-list transformer - it operates the argument as a list  (note the \"entirelist\" tag)\n ",
+				"name": "ReverseList",
+				"tags": [
+					"general",
+					"entirelist",
+					"transformer"
+				]
+			},
+			{
+				"description": "Finds which integrations implement a specific Demisto command.  The results will be returned as comma-separated values (CSV).  The \"Demisto REST API\" integration must first be enabled.",
+				"name": "ProvidesCommand",
+				"tags": [
+					"general"
+				]
+			},
+			{
+				"description": "Show indicator geo location on map",
+				"name": "ShowLocationOnMap",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Accepts an array of domains as an allow list, and a list of email addresses. The script then filters out any email address whose domain is not in the allow list.  The filtered list will be returned as an array.",
+				"name": "EmailDomainWhitelist",
+				"tags": [
+					"transformer",
+					"general",
+					"entirelist"
+				]
+			},
+			{
+				"description": "Sends a HTTP request with advanced capabilities",
+				"name": "HttpV2",
+				"tags": [
+					"basescript"
+				]
+			},
+			{
+				"description": "This is a thin wrapper around the `dateutil.parser.parse` function. It will parse a string containing a date/time stamp and return it in ISO 8601 format.",
+				"name": "DateStringToISOFormat",
+				"tags": [
+					"transformer",
+					"date"
+				]
+			},
+			{
+				"description": "Zip a file and upload to war room",
+				"name": "ZipFile",
+				"tags": [
+					"Utility",
+					"file"
+				]
+			},
+			{
+				"description": "Verify URL SSL certificate",
+				"name": "URLSSLVerification",
+				"tags": [
+					"url",
+					"Enrichment"
 				]
 			}
 		],
@@ -1873,14 +1873,14 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-27T09:01:37Z",
-	"currentVersion": "1.7.12",
+	"currentVersion": "1.7.14",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.6",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"DemistoRESTAPI": {
@@ -1901,7 +1901,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.13",
+			"minVersion": "1.2.14",
 			"name": "Elasticsearch"
 		},
 		"Gmail": {
@@ -1915,7 +1915,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.9",
+			"minVersion": "1.2.10",
 			"name": "Gmail Single User"
 		},
 		"MailSenderNew": {
@@ -1936,7 +1936,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.19",
+			"minVersion": "1.1.21",
 			"name": "Microsoft Graph Mail"
 		},
 		"ProtectWise": {
@@ -1950,7 +1950,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.4",
+			"minVersion": "1.0.5",
 			"name": "Remote Access"
 		},
 		"Shodan": {
@@ -1970,7 +1970,7 @@
 	},
 	"deprecated": false,
 	"description": "Frequently used scripts pack.",
-	"downloads": 62914,
+	"downloads": 63942,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -2007,7 +2007,7 @@
 			"name": "SumoLogic"
 		}
 	],
-	"itemVersion": "1.7.12",
+	"itemVersion": "1.7.14",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Scripts",
@@ -2031,14 +2031,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Trending",
-		"Filter",
-		"Transformer"
+		"Transformer",
+		"Filter"
 	],
 	"toServerVersion": "",
-	"updated": "2022-07-04T22:40:30Z",
+	"updated": "2022-07-13T22:12:25Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3202776",
+	"versionInfo": "3263593",
 	"videos": []
 }
