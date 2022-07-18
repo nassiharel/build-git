@@ -41,7 +41,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.7.12
+    itemVersion: 1.7.14
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
