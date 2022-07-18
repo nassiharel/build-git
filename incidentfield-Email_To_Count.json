@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_emailtocount",
 	"isReadOnly": false,
-	"itemVersion": "3.2.0",
+	"itemVersion": "3.2.9",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "Email To Count",
