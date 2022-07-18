@@ -9,27 +9,7 @@ contentitemexportablefields:
     - all
     toServerVersion: ""
 id: 344982ce-2225-4600-8527-e3dbd3650135
-inputs:
-- description: ""
-  key: ""
-  playbookInputQuery:
-    daterange:
-      fromdate: "0001-01-01T00:00:00Z"
-      fromdatelicenseval: "0001-01-01T00:00:00Z"
-      period:
-        by: ""
-        byfrom: ""
-        byto: ""
-        field: ""
-        fromvalue: null
-        tovalue: null
-      todate: "0001-01-01T00:00:00Z"
-    query: 'type:Domain '
-    queryEntity: indicators
-    results: null
-    runFromLastJobTime: false
-  required: false
-  value: {}
+inputs: []
 name: TIM-Testing_dev
 outputs: []
 quiet: true
@@ -111,7 +91,7 @@ tasks:
       {
         "position": {
           "x": 450,
-          "y": 200
+          "y": 190
         }
       }
   "2":
@@ -124,7 +104,7 @@ tasks:
       '#none#':
       - "9"
     note: false
-    quietmode: 0
+    quietmode: 2
     scriptarguments:
       extend-context:
         simple: domain_indicators_list
@@ -139,20 +119,20 @@ tasks:
       description: Gets a list of indicator objects and the associated indicator outputs
         that match the specified query and filters. The results are returned in a
         structured data file.
-      id: 7de45912-6258-48a2-8064-7f09155b1130
+      id: 02940705-d8b9-4914-8218-2898e6f401d9
       iscommand: false
       name: Start testing - Get 5 domain indicators
       script: GetIndicatorsByQuery
       type: regular
       version: -1
-    taskid: 7de45912-6258-48a2-8064-7f09155b1130
+    taskid: 02940705-d8b9-4914-8218-2898e6f401d9
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 450,
-          "y": 410
+          "x": 680,
+          "y": 360
         }
       }
   "3":
@@ -167,81 +147,19 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: e04533ed-9986-4b3d-8bdf-8119b8107611
+      id: 93451d30-6ed2-4515-87fc-be76099e9df0
       iscommand: false
-      name: Abort testing
+      name: Done
       type: title
       version: -1
-    taskid: e04533ed-9986-4b3d-8bdf-8119b8107611
+    taskid: 93451d30-6ed2-4515-87fc-be76099e9df0
     timertriggers: []
     type: title
     view: |-
       {
         "position": {
           "x": 450,
-          "y": 1140
-        }
-      }
-  "7":
-    continueonerrortype: ""
-    id: "7"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "8"
-    note: false
-    quietmode: 0
-    separatecontext: true
-    skipunavailable: false
-    task:
-      brand: ""
-      id: 76946d07-33df-4a2b-8e13-a103dcd9599e
-      iscommand: false
-      name: TIM - Process Domain Age With Whois
-      playbookId: TIM - Process Domain Age With Whois
-      type: playbook
-      version: -1
-    taskid: 76946d07-33df-4a2b-8e13-a103dcd9599e
-    timertriggers: []
-    type: playbook
-    view: |-
-      {
-        "position": {
-          "x": -30,
-          "y": 870
-        }
-      }
-  "8":
-    continueonerrortype: ""
-    id: "8"
-    ignoreworker: false
-    isautoswitchedtoquietmode: false
-    isoversize: false
-    nexttasks:
-      '#none#':
-      - "3"
-    note: false
-    quietmode: 0
-    separatecontext: true
-    skipunavailable: false
-    task:
-      brand: ""
-      id: 4d2f4c1b-4065-467e-8178-973cba9ee3e6
-      iscommand: false
-      name: TIM - Process Domain Registrant With Whois
-      playbookId: TIM - Process Domain Registrant With Whois
-      type: playbook
-      version: -1
-    taskid: 4d2f4c1b-4065-467e-8178-973cba9ee3e6
-    timertriggers: []
-    type: playbook
-    view: |-
-      {
-        "position": {
-          "x": -30,
-          "y": 1030
+          "y": 710
         }
       }
   "9":
@@ -252,7 +170,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "7"
+      - "3"
     note: false
     quietmode: 0
     separatecontext: true
@@ -271,8 +189,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -30,
-          "y": 720
+          "x": 680,
+          "y": 540
         }
       }
 version: -1
@@ -281,9 +199,9 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 1155,
-        "width": 860,
-        "x": -30,
+        "height": 725,
+        "width": 610,
+        "x": 450,
         "y": 50
       }
     }
