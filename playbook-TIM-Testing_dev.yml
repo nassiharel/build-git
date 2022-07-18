@@ -1,0 +1,312 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 344982ce-2225-4600-8527-e3dbd3650135
+inputs:
+- description: ""
+  key: ""
+  playbookInputQuery:
+    daterange:
+      fromdate: "0001-01-01T00:00:00Z"
+      fromdatelicenseval: "0001-01-01T00:00:00Z"
+      period:
+        by: ""
+        byfrom: ""
+        byto: ""
+        field: ""
+        fromvalue: null
+        tovalue: null
+      todate: "0001-01-01T00:00:00Z"
+    query: 'type:Domain '
+    queryEntity: indicators
+    results: null
+    runFromLastJobTime: true
+  required: false
+  value: {}
+name: TIM-Testing_dev
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7b363ddb-27ab-4502-83be-71c9f703009e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 7b363ddb-27ab-4502-83be-71c9f703009e
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Start Test?
+      cc: null
+      format: ""
+      methods: []
+      replyOptions:
+      - "Yes"
+      - "No"
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#default#':
+      - "3"
+      "Yes":
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a11e7b9e-fd23-440e-8145-34c3f812bb7e
+      iscommand: false
+      name: Start testing?
+      type: condition
+      version: -1
+    taskid: a11e7b9e-fd23-440e-8145-34c3f812bb7e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 200
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extend-context:
+        simple: domain_indicators_list
+      limit:
+        simple: "5"
+      query:
+        simple: type:domain
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a list of indicator objects and the associated indicator outputs
+        that match the specified query and filters. The results are returned in a
+        structured data file.
+      id: 7de45912-6258-48a2-8064-7f09155b1130
+      iscommand: false
+      name: Start testing - Get 5 domain indicators
+      script: GetIndicatorsByQuery
+      type: regular
+      version: -1
+    taskid: 7de45912-6258-48a2-8064-7f09155b1130
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 410
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e04533ed-9986-4b3d-8bdf-8119b8107611
+      iscommand: false
+      name: Abort testing
+      type: title
+      version: -1
+    taskid: e04533ed-9986-4b3d-8bdf-8119b8107611
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1140
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook compares the domain creation time against a provided
+        time value such as one month ago. The period can be configured within the
+        playbook inputs MinimumAgeOfDomainMonths or MinimumAgeOfDomainHours. The playbook
+        calculates the timestamp for the relevant period and compares it to the domain
+        creation time value provided by Whois. The domains are outputted accordingly
+        if they were created before or after the compared time, respectively.
+      id: 0feabd13-cccb-403a-84b8-50b47a807b84
+      iscommand: false
+      name: TIM - Process Domain Age With Whois
+      playbookId: TIM - Process Domain Age With Whois
+      type: playbook
+      version: -1
+    taskid: 0feabd13-cccb-403a-84b8-50b47a807b84
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 670
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook compares the domain registrant against the Cortex
+        XSOAR list of approved registrants provided in the inputs. A registrant is
+        the company or entity that owns the domain.
+      id: 37b385c6-8b8f-449f-8d40-9fbd11ca465c
+      iscommand: false
+      name: TIM - Process Domain Registrant With Whois
+      playbookId: TIM - Process Domain Registrant With Whois
+      type: playbook
+      version: -1
+    taskid: 37b385c6-8b8f-449f-8d40-9fbd11ca465c
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 870
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      CheckForWhoisDomainAgeCreation:
+        simple: "True"
+      CheckForWhoisRegistrant:
+        simple: "True"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This playbook uses several sub playbooks to process and tag indicators
+        based on the results of the Whois tool.
+      id: 6a7a660b-c43e-4141-83cf-e713c49947f6
+      iscommand: false
+      name: TIM - Process Domains With Whois
+      playbookId: TIM - Process Domains With Whois
+      type: playbook
+      version: -1
+    taskid: 6a7a660b-c43e-4141-83cf-e713c49947f6
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 670
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1155,
+        "width": 1290,
+        "x": -10,
+        "y": 50
+      }
+    }
+  }
