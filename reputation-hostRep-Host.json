@@ -249,7 +249,7 @@
 	"formatScript": "",
 	"fromServerVersion": "5.5.0",
 	"id": "hostRep",
-	"itemVersion": "3.2.37",
+	"itemVersion": "3.2.40",
 	"layout": "hostRep",
 	"legacyNames": null,
 	"locked": false,
