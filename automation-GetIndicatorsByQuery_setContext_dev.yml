@@ -20,7 +20,9 @@ args:
     are id, score, and investigationIDs.
   name: populateFields
 - defaultValue: "false"
+  description: Whether to set pulled indicators into context data or not
   name: toContext
+  type: textArea
 comment: Gets a list of indicator objects and the associated indicator outputs that
   match the specified query and filters. The results are returned in a structured
   data file.
@@ -41,7 +43,7 @@ dockerimage: demisto/python3:3.10.4.27798
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
-name: GetIndicatorsByQuery_copy
+name: GetIndicatorsByQuery_setContext_dev
 pswd: ""
 runas: DBotWeakRole
 runonce: false
@@ -162,7 +164,8 @@ script: |
       entry['Contents'] = indicators
       entry['ContentsFormat'] = formats['json']
       entry['HumanReadable'] = f'Fetched {len(indicators)} indicators successfully by the query: {query}'
-
+      if(demisto.getArg("toContext") == "true"):
+          demisto.setContext("indicators_list", indicators)
 
       return entry
 
