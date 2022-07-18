@@ -27,7 +27,7 @@ inputs:
     query: 'type:Domain '
     queryEntity: indicators
     results: null
-    runFromLastJobTime: true
+    runFromLastJobTime: false
   required: false
   value: {}
 name: TIM-Testing_dev
@@ -122,8 +122,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "6"
-      - "4"
+      - "9"
     note: false
     quietmode: 0
     scriptarguments:
@@ -183,46 +182,40 @@ tasks:
           "y": 1140
         }
       }
-  "4":
+  "7":
     continueonerrortype: ""
-    id: "4"
+    id: "7"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
     nexttasks:
       '#none#':
-      - "3"
+      - "8"
     note: false
     quietmode: 0
     separatecontext: true
     skipunavailable: false
     task:
       brand: ""
-      description: This playbook compares the domain creation time against a provided
-        time value such as one month ago. The period can be configured within the
-        playbook inputs MinimumAgeOfDomainMonths or MinimumAgeOfDomainHours. The playbook
-        calculates the timestamp for the relevant period and compares it to the domain
-        creation time value provided by Whois. The domains are outputted accordingly
-        if they were created before or after the compared time, respectively.
-      id: 0feabd13-cccb-403a-84b8-50b47a807b84
+      id: 76946d07-33df-4a2b-8e13-a103dcd9599e
       iscommand: false
       name: TIM - Process Domain Age With Whois
       playbookId: TIM - Process Domain Age With Whois
       type: playbook
       version: -1
-    taskid: 0feabd13-cccb-403a-84b8-50b47a807b84
+    taskid: 76946d07-33df-4a2b-8e13-a103dcd9599e
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": 900,
-          "y": 670
+          "x": -30,
+          "y": 870
         }
       }
-  "5":
+  "8":
     continueonerrortype: ""
-    id: "5"
+    id: "8"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
@@ -235,66 +228,51 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: This playbook compares the domain registrant against the Cortex
-        XSOAR list of approved registrants provided in the inputs. A registrant is
-        the company or entity that owns the domain.
-      id: 37b385c6-8b8f-449f-8d40-9fbd11ca465c
+      id: 4d2f4c1b-4065-467e-8178-973cba9ee3e6
       iscommand: false
       name: TIM - Process Domain Registrant With Whois
       playbookId: TIM - Process Domain Registrant With Whois
       type: playbook
       version: -1
-    taskid: 37b385c6-8b8f-449f-8d40-9fbd11ca465c
+    taskid: 4d2f4c1b-4065-467e-8178-973cba9ee3e6
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": -10,
-          "y": 870
+          "x": -30,
+          "y": 1030
         }
       }
-  "6":
+  "9":
     continueonerrortype: ""
-    id: "6"
+    id: "9"
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
-    loop:
-      exitCondition: ""
-      iscommand: false
-      max: 100
-      wait: 1
     nexttasks:
       '#none#':
-      - "5"
+      - "7"
     note: false
     quietmode: 0
-    scriptarguments:
-      CheckForWhoisDomainAgeCreation:
-        simple: "True"
-      CheckForWhoisRegistrant:
-        simple: "True"
     separatecontext: true
     skipunavailable: false
     task:
       brand: ""
-      description: This playbook uses several sub playbooks to process and tag indicators
-        based on the results of the Whois tool.
-      id: 6a7a660b-c43e-4141-83cf-e713c49947f6
+      id: 2199560e-14d0-4529-8120-2e5cf94db5db
       iscommand: false
       name: TIM - Process Domains With Whois
       playbookId: TIM - Process Domains With Whois
       type: playbook
       version: -1
-    taskid: 6a7a660b-c43e-4141-83cf-e713c49947f6
+    taskid: 2199560e-14d0-4529-8120-2e5cf94db5db
     timertriggers: []
     type: playbook
     view: |-
       {
         "position": {
-          "x": -10,
-          "y": 670
+          "x": -30,
+          "y": 720
         }
       }
 version: -1
@@ -304,8 +282,8 @@ view: |-
     "paper": {
       "dimensions": {
         "height": 1155,
-        "width": 1290,
-        "x": -10,
+        "width": 860,
+        "x": -30,
         "y": 50
       }
     }
