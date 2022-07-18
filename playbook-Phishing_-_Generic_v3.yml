@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 3.2.0
+    itemVersion: 3.2.9
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
@@ -747,7 +747,7 @@ tasks:
         complex:
           root: inputs.O365ExchangeLocationExclusion
       O365KQL:
-        simple: from:${incident.reportedemailfrom} AND subject:${incident.reportedemailsubject}
+        simple: from:${incident.reportedemailfrom} AND subject:"${incident.reportedemailsubject}"
       SearchAndDeleteIntegration:
         complex:
           root: inputs.SearchAndDeleteIntegration
@@ -2481,7 +2481,7 @@ tasks:
       {
         "position": {
           "x": -1230,
-          "y": 1005
+          "y": 1235
         }
       }
   "142":
@@ -2522,7 +2522,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "140"
+      - "156"
     note: false
     quietmode: 0
     separatecontext: false
@@ -2570,8 +2570,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -70,
-          "y": -240
+          "x": 270,
+          "y": -250
         }
       }
   "145":
@@ -2594,7 +2594,7 @@ tasks:
       '#default#':
       - "11"
       "yes":
-      - "85"
+      - "157"
     note: false
     quietmode: 0
     separatecontext: false
@@ -2615,8 +2615,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -70,
-          "y": -105
+          "x": 270,
+          "y": -110
         }
       }
   "147":
@@ -3099,25 +3099,97 @@ tasks:
           "y": 1950
         }
       }
+  "156":
+    continueonerrortype: ""
+    id: "156"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "84"
+      "yes":
+      - "140"
+    note: false
+    quietmode: 0
+    results:
+    - brandInstances
+    scriptarguments:
+      brandname:
+        simple: Rasterize
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'.
+      id: a82a5221-5d9f-41f2-8e58-37ced943a162
+      iscommand: false
+      name: Is the Rasterize integration enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: a82a5221-5d9f-41f2-8e58-37ced943a162
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -1230,
+          "y": 1005
+        }
+      }
+  "157":
+    continueonerrortype: ""
+    id: "157"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3bf56b47-3c00-4cf3-8f45-d3e65976861e
+      iscommand: false
+      name: Reporter Address specified
+      type: title
+      version: -1
+    taskid: 3bf56b47-3c00-4cf3-8f45-d3e65976861e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 270,
+          "y": 115
+        }
+      }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {
       "137_135_yes": 0.54,
-      "145_11_#default#": 0.15,
       "147_144_Manually": 0.52,
       "149_148_yes - phishing": 0.66,
       "149_27_#default#": 0.21,
       "151_8_#default#": 0.11,
       "152_43_#default#": 0.17,
       "153_84_#default#": 0.18,
+      "156_140_yes": 0.42,
+      "156_84_no": 0.25,
       "15_31_#default#": 0.6,
       "33_149_yes": 0.18,
       "36_43_#default#": 0.2,
       "37_43_#default#": 0.12,
       "37_91_yes": 0.57,
       "79_84_#default#": 0.21,
-      "90_84_#default#": 0.39,
+      "90_84_#default#": 0.1,
       "90_89_yes": 0.48
     },
     "paper": {
