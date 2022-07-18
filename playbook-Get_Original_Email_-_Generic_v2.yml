@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 3.2.0
+    itemVersion: 3.2.9
     packID: Phishing
     packName: Phishing
     packPropagationLabels:
