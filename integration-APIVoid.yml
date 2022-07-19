@@ -49,7 +49,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.0.15
+    itemVersion: 1.0.17
     packID: APIVoid
     packName: APIVoid
     packPropagationLabels:
@@ -1607,7 +1607,7 @@ script:
     - contextPath: APIVoid.SiteTrust.targeted_brands.truereligion
       description: ""
       type: boolean
-  dockerimage: demisto/python3:3.10.4.29342
+  dockerimage: demisto/python3:3.10.4.31492
   runonce: false
   script: |
     register_module_line('APIVoid', 'start', __line__())
