@@ -42,14 +42,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 1.13.0
+    itemVersion: 1.14.9
     packID: PAN-OS
     packName: PAN-OS
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.1.26972
+dockerimage: demisto/python3:3.10.4.30607
 engineinfo: {}
 mainengineinfo: {}
 name: PanoramaSecurityPolicyMatchWrapper
@@ -85,7 +85,6 @@ script: |
 
 
   from typing import Dict, Any
-  import traceback
 
   ''' STANDALONE FUNCTION '''
 
@@ -211,7 +210,6 @@ script: |
       try:
           return_results(wrapper_command(demisto.args()))
       except Exception as ex:
-          demisto.error(traceback.format_exc())  # print the traceback
           return_error(f'Failed to execute PanoramaSecurityPolicyMatchWrapper. Error: {str(ex)}')
 
 
