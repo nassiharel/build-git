@@ -27,7 +27,7 @@ inputs:
   playbookInputQuery: null
   required: false
   value:
-    simple: "False"
+    simple: "True"
 - description: |-
     Enables the Block Indicators capability.
     For a malicious email, the "Block Indicators" sub-playbook blocks all malicious indicators in the relevant integrations.
@@ -58,7 +58,7 @@ inputs:
   playbookInputQuery: null
   required: false
   value:
-    simple: EWS
+    simple: O365
 - description: |-
     Sets the method to delete emails in the "O365 - Security And Compliance - Search And Delete" playbook. Can be "Soft" (recoverable), or "Hard" (unrecoverable). Leave empty to decide manually for each email incident.
     This is only applicable if the SearchAndDeleteIntegration input is set to "O365".
@@ -138,7 +138,8 @@ inputs:
   key: GetOriginalEmail
   playbookInputQuery: null
   required: false
-  value: {}
+  value:
+    simple: "True"
 - description: |-
     The number of URLs to extract from the email HTML and analyze in the "DBotPredictURLPhishing" automation.
     This automation runs several checks to determine the score of the URLs found in the email, sets a verdict for URLs found as "Suspicious" or "Malicious", and adds these URLs as indicators. Based on the verdict, the incident severity is set (Medium for "Suspicious" and High for "Malicious").
@@ -3112,8 +3113,6 @@ tasks:
       - "140"
     note: false
     quietmode: 0
-    results:
-    - brandInstances
     scriptarguments:
       brandname:
         simple: Rasterize
