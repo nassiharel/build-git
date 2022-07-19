@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "0bef45cc-5c29-4504-89c6-9c5f9c742587",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Top 10 MITRE Techniques",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
