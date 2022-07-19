@@ -1,0 +1,162 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: dc1f1c4c-901f-47a4-85ab-8c9ea368fdb6
+inputs: []
+name: zan_plybook_loop_regression_6.9
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c7d4a478-f1a0-4ae8-8a76-34d0f4dc6c36
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: c7d4a478-f1a0-4ae8-8a76-34d0f4dc6c36
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      execution-timeout:
+        simple: "108000"
+      seconds:
+        simple: "108000"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: 286c786e-4c92-4f7c-8482-3c40337f08b1
+      iscommand: false
+      name: Sleep
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: 286c786e-4c92-4f7c-8482-3c40337f08b1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 360
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: Starting
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 3cd69ee4-39a6-4c84-8362-2eab808e29f2
+      iscommand: false
+      name: Print
+      script: Print
+      type: regular
+      version: -1
+    taskid: 3cd69ee4-39a6-4c84-8362-2eab808e29f2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 180
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: Ending
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 9c6e7a93-9248-43f5-82a2-5ab5b4ee9d0f
+      iscommand: false
+      name: Print
+      script: Print
+      type: regular
+      version: -1
+    taskid: 9c6e7a93-9248-43f5-82a2-5ab5b4ee9d0f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 540
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 585,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
