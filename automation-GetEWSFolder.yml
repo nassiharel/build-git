@@ -25,7 +25,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.11.9
+    itemVersion: 1.12.1
     packID: EWS
     packName: EWS
     packPropagationLabels:
