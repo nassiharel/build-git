@@ -1,0 +1,383 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Analytics \u0026 SIEM"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Automation to display identity objects from Splunk.",
+				"name": "SplunkShowIdentity",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Automation to display drilldown search results from Splunk.",
+				"name": "SplunkShowDrilldown",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Deprecated. No available replacement. Run a query through Splunk and format the results as a table.",
+				"name": "SplunkPySearch",
+				"tags": [
+					"enhancement",
+					"splunk"
+				]
+			},
+			{
+				"description": "Automation to display asset objects from Splunk.",
+				"name": "SplunkShowAsset",
+				"tags": [
+					"dynamic-section"
+				]
+			}
+		],
+		"classifier": [
+			{
+				"description": "Classifies Splunk events.",
+				"name": "Splunk - Classifier"
+			},
+			{
+				"description": "Maps Splunk ES incoming fields.",
+				"name": "Splunk - Notable Generic Incoming Mapper"
+			},
+			{
+				"description": "Maps Splunk logs fields.",
+				"name": "Splunk - Incoming Mapper"
+			},
+			{
+				"description": "Maps Splunk ES outgoing fields.",
+				"name": "Splunk - Notable Generic Outgoing Mapper"
+			}
+		],
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "The ID of the notable",
+				"name": "Notable - ID",
+				"type": "shortText"
+			},
+			{
+				"description": "The reviewer of the notable.",
+				"name": "Splunk Notable Reviewer",
+				"type": "user"
+			},
+			{
+				"description": "Indicates whether the asset enrichment was successful.",
+				"name": "Successful Asset Enrichment",
+				"type": "shortText"
+			},
+			{
+				"description": "Indicates whether the identity  enrichment was successful.",
+				"name": "Successful Identity Enrichment",
+				"type": "shortText"
+			},
+			{
+				"description": "The result of the drilldown search.",
+				"name": "Notable Drilldown",
+				"type": "markdown"
+			},
+			{
+				"description": "The owner of the notable.",
+				"name": "Notable Owner",
+				"type": "user"
+			},
+			{
+				"description": "The urgency of the notable.",
+				"name": "Notable Urgency",
+				"type": "singleSelect"
+			},
+			{
+				"description": "The Splunk notable status. Can be one of the following New, In Progress, Pending, Resolved, Closed",
+				"name": "Notable Status",
+				"type": "singleSelect"
+			},
+			{
+				"description": "Indicates whether the drilldown enrichment was successful.",
+				"name": "Successful Drilldown Enrichment",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Splunk Notable Generic",
+				"playbook": "Splunk Generic",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Returns the results of a previous Splunk search. You can use this command in conjunction with the splunk-job-create command.",
+						"name": "splunk-results"
+					},
+					{
+						"description": "Searches Splunk for events.",
+						"name": "splunk-search"
+					},
+					{
+						"description": "Creates a new event in Splunk.",
+						"name": "splunk-submit-event"
+					},
+					{
+						"description": "Prints all Splunk index names.",
+						"name": "splunk-get-indexes"
+					},
+					{
+						"description": "Updates existing notable events in Splunk ES.",
+						"name": "splunk-notable-event-edit"
+					},
+					{
+						"description": "Creates a new search job in Splunk.",
+						"name": "splunk-job-create"
+					},
+					{
+						"description": "Parses the raw part of the event.",
+						"name": "splunk-parse-raw"
+					},
+					{
+						"description": "Sends events to an HTTP Event Collector using the Splunk platform JSON event protocol.",
+						"name": "splunk-submit-event-hec"
+					},
+					{
+						"description": "Returns the status of a job.",
+						"name": "splunk-job-status"
+					},
+					{
+						"description": "Creates a new KV store table.",
+						"name": "splunk-kv-store-collection-create"
+					},
+					{
+						"description": "Configures the KV store fields.",
+						"name": "splunk-kv-store-collection-config"
+					},
+					{
+						"description": "Adds objects to a KV store utilizing the batch-save API.",
+						"name": "splunk-kv-store-collection-add-entries"
+					},
+					{
+						"description": "Lists all collections for the specified application.",
+						"name": "splunk-kv-store-collections-list"
+					},
+					{
+						"description": "Lists all data within a specific KV store collection or collections.",
+						"name": "splunk-kv-store-collection-data-list"
+					},
+					{
+						"description": "Deletes all data within the specified KV store collection or collections.",
+						"name": "splunk-kv-store-collection-data-delete"
+					},
+					{
+						"description": "Deletes the specified KV stores.",
+						"name": "splunk-kv-store-collection-delete"
+					},
+					{
+						"description": "Searches for specific objects in a store. The search can be a basic key-value pair or a full query.",
+						"name": "splunk-kv-store-collection-search-entry"
+					},
+					{
+						"description": "Deletes the specified object in store. The search can be a basic key-value pair or a full query.",
+						"name": "splunk-kv-store-collection-delete-entry"
+					},
+					{
+						"description": "Query Splunk to retrieve a list of sample alerts by alert type. Used for mapping fetched incidents through the Get Schema option.",
+						"name": "get-mapping-fields"
+					},
+					{
+						"description": "Gets data from a notable event. This method does not update the current incident, and should be used for debugging purposes.",
+						"name": "get-remote-data"
+					},
+					{
+						"description": "Gets the list of notable events that were modified since the last update. This command should be used for debugging purposes, and is available from Cortex XSOAR version 6.1.",
+						"name": "get-modified-remote-data"
+					},
+					{
+						"description": "Resets the enrichment mechanism of fetched notables.",
+						"name": "splunk-reset-enriching-fetch-mechanism"
+					},
+					{
+						"description": "Returns the Splunk's username matching the given Xsoar's username.",
+						"name": "splunk-get-username-by-xsoar-user"
+					}
+				],
+				"description": "Runs queries on Splunk servers.",
+				"name": "SplunkPy"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Splunk Notable Generic"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "This playbook queries Splunk for indicators such as file hashes, IP addresses, domains, or urls. It outputs detected users, ip addresses, and hostnames related to the indicators.",
+				"name": "Splunk Indicator Hunting"
+			},
+			{
+				"description": "This is a generic playbook to be executed for the Splunk Notable Generic incident type. The playbook performs all the common parts of the investigation, including notifying the SOC, enriching the data for indicators and users, calculating the severity, assigning the incident, notifying the SIEM admin for false positives and more.",
+				"name": "Splunk Generic"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-26T10:33:08Z",
+	"currentVersion": "2.4.4",
+	"definitionId": "",
+	"dependencies": {
+		"AccessInvestigation": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.2",
+			"name": "Access Investigation"
+		},
+		"Asset": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.3",
+			"name": "Asset"
+		},
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.7.14",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.37",
+			"name": "Common Types"
+		},
+		"Identity": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.0",
+			"name": "Identity"
+		},
+		"Malware": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.4.1",
+			"name": "Malware Core"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.2.8",
+			"name": "Phishing"
+		},
+		"PhishingAlerts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.0",
+			"name": "PhishingAlerts"
+		},
+		"SplunkPyPreRelease": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.11",
+			"name": "Splunk Prerelease"
+		}
+	},
+	"deprecated": false,
+	"description": "Run queries on Splunk servers.",
+	"downloads": 13811,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "SplunkPy",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/SplunkPy/SplunkPy_image.png",
+			"name": "SplunkPy"
+		}
+	],
+	"itemVersion": "2.4.4",
+	"keywords": [],
+	"legacy": true,
+	"name": "Splunk",
+	"packID": "SplunkPy",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This content pack runs queries on Splunk servers.\n\nWhen a query or alert triggers a notable event (incident) in Splunk, the event is stored in an index (table). An XSOAR analyst can fetch the event and its context data all from the XSOAR console. \n\nWe strongly recommend you to use the SplunkPy pre-release version, specifically if you experience any issues regarding fetch logic, including (but not limited to) missing incidents.\n\n\n## What does this pack do?\nUsing the SplunkPy integration, you can fetch Splunk notable events. The events contain details such as:\n- The name of the alert that was triggered.\n- The objects that make up the alert, such as the IP address, hashes, and user names.\n\nBesides fetching notable events, the SplunkPy integration enables you to run drill down searches to retrieve additional data from other tables in Splunk such as:\n- Data about the users (department, role, and geographical location)\n- Data about the assets (such as hostname, IP address, geographical location, and department)\n\nIn addition, the integration enables mirroring between Splunk and Cortex XSOAR.  \n\n**Note:**  \nWhen mirroring or fetching incidents between Splunk to Cortex XSOAR, you need to [map Splunk users to Cortex XSOAR users](https://xsoar.pan.dev/docs/reference/integrations/splunk-py#use-cases).",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-06-08T16:00:35Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
