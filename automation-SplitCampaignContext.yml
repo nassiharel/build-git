@@ -1,0 +1,162 @@
+args:
+- defaultValue: "0.8"
+  description: The similarity value on which to split the context campaign data.
+  name: similarity_threshold
+  required: true
+comment: |-
+  Splits incidents in the context data to below and above a similarity threshold.
+  If a low similarity incident was already added to the campaign,
+  then it will also be considered in the higher similarity incidents list.
+
+  This automation runs using the default Limited User role, unless you explicitly change the permissions.
+  For more information, see the section about permissions here:
+  https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+commonfields:
+  id: SplitCampaignContext
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 3.2.13
+    packID: Campaign
+    packName: Phishing Campaign
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.8.24399
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: SplitCampaignContext
+outputs:
+- contextPath: EmailCampaign.incidents.id
+  description: The IDs of the incidents involved in the campaign.
+  type: Number
+- contextPath: EmailCampaign.incidents.similarity
+  description: The textual similarity of the related emails to the current incident.
+  type: Number
+- contextPath: EmailCampaign.incidents.emailfrom
+  description: The senders of the emails involved in the campaign.
+  type: string
+- contextPath: EmailCampaign.incidents.emailfromdomain
+  description: The domains of the email senders involved in the campaign.
+  type: string
+- contextPath: EmailCampaign.incidents.recipients
+  description: A list of email addresses of recipients involved in the campaign. The
+    list is comprised of the following fields, "Email To", "Email CC", "Email BCC".
+  type: string
+- contextPath: EmailCampaign.incidents.recipientsdomain
+  description: A list of the domains of the email addresses of recipients involved
+    in the campaign. The list is comprised of the following fields, "Email To", "Email
+    CC", "Email BCC".
+  type: Unknown
+- contextPath: EmailCampaign.LowerSimilarityIncidents.id
+  description: The IDs of the incidents involved in the campaign.
+  type: Number
+- contextPath: EmailCampaign.LowerSimilarityIncidents.similarity
+  description: The textual similarity of the related emails to the current incident.
+  type: Number
+- contextPath: EmailCampaign.LowerSimilarityIncidents.emailfrom
+  description: The senders of the emails involved in the campaign.
+  type: string
+- contextPath: EmailCampaign.LowerSimilarityIncidents.emailfromdomain
+  description: The domains of the email senders involved in the campaign.
+  type: string
+- contextPath: EmailCampaign.LowerSimilarityIncidents.recipients
+  description: A list of email addresses of recipients involved in the campaign. The
+    list is comprised of the following fields, "Email To", "Email CC", "Email BCC".
+  type: string
+- contextPath: EmailCampaign.LowerSimilarityIncidents.recipientsdomain
+  description: A list of the domains of the email addresses of recipients involved
+    in the campaign. The list is comprised of the following fields, "Email To", "Email
+    CC", "Email BCC".
+  type: Unknown
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('SplitCampaignContext', 'start', __line__())
+
+
+  from typing import Tuple
+
+  BELOW_THRESHOLD_ITEMS_CONTEXT_PATH = 'LowerSimilarityIncidents'
+  ABOVE_THE_THRESHOLD_ITEMS_CONTEXT_PATH = 'incidents'
+
+
+  def save_to_context(items: list, context_path: str, delete_existing: bool = False, is_sub_playbook: str = 'auto',
+                      table_header='Incidents Result'):
+      if delete_existing:
+          res = demisto.executeCommand('DeleteContext', {"key": context_path, "subplaybook": is_sub_playbook})
+          if is_error(res):
+              return_error('Failed to delete current context. Error details:\n{}'.format(get_error(res)))
+
+      return CommandResults(
+          outputs_prefix=context_path,
+          outputs=items,
+          readable_output=tableToMarkdown(table_header, items))
+
+
+  def _get_incident_campaign(_id: int):
+      res = demisto.executeCommand('getIncidents', {'id': _id})
+
+      if is_error(res):
+          return
+
+      res_custom_fields = res[0]['Contents']['data'][0]['CustomFields']
+      return res_custom_fields['partofcampaign'] if 'partofcampaign' in res_custom_fields else None
+
+
+  def filter_by_threshold(context: list, threshold: float) -> Tuple[list, list]:
+      low = []
+      high = []
+      for item in context:
+          if item.get('similarity') >= threshold:
+              high.append(item)
+          else:
+              campaign = _get_incident_campaign(item['id'])
+              if campaign:
+                  high.append(item)
+              else:
+                  low.append(item)
+      return low, high
+
+
+  def main():
+      input_args = demisto.args()
+      # If user did not provide a lower threshold then split is not needed.
+      threshold = input_args.get('similarity_threshold')
+
+      try:
+          threshold = float(threshold)
+      except ValueError as e:
+          raise DemistoException(f'Could not use threshold: {threshold}. Error: {e}')
+
+      root_context_path = 'EmailCampaign'
+      above_threshold_context_path = f'{root_context_path}.{ABOVE_THE_THRESHOLD_ITEMS_CONTEXT_PATH}'
+      below_threshold_context_path = f'{root_context_path}.{BELOW_THRESHOLD_ITEMS_CONTEXT_PATH}'
+      context = demisto.get(demisto.context(), f'{above_threshold_context_path}')
+
+      # If there are no incident to split
+      if not context:
+          return
+      only_lower_values, only_higher_values = filter_by_threshold(context, threshold)
+      result = []
+      result.append(save_to_context(only_lower_values, below_threshold_context_path,
+                                    table_header='Low Similarity Incidents Result'))
+      result.append(save_to_context(only_higher_values, above_threshold_context_path, True,
+                                    table_header='High Similarity Incidents Result'))
+      return_results(result)
+
+
+  if __name__ in ['__main__', '__builtin__', 'builtins']:
+      main()
+
+  register_module_line('SplitCampaignContext', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags: []
+type: python
