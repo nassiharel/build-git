@@ -1133,7 +1133,7 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-27T15:13:05Z",
-	"currentVersion": "1.14.9",
+	"currentVersion": "1.14.10",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -1147,7 +1147,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.2.9",
+			"minVersion": "2.2.10",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
@@ -1160,7 +1160,7 @@
 	},
 	"deprecated": false,
 	"description": "Manage Palo Alto Networks Firewall and Panorama. For more information see Panorama documentation.",
-	"downloads": 16865,
+	"downloads": 16904,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1177,7 +1177,7 @@
 			"name": "Palo Alto Networks PAN-OS"
 		}
 	],
-	"itemVersion": "1.14.9",
+	"itemVersion": "1.14.10",
 	"keywords": [],
 	"legacy": true,
 	"name": "PAN-OS",
@@ -1203,9 +1203,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-07-18T22:20:36Z",
+	"updated": "2022-07-19T10:04:14Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3287093",
+	"versionInfo": "3290676",
 	"videos": []
 }
