@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "c89bc765-50a9-479f-88e5-d256e09788c5",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Grouping - Incidents",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
