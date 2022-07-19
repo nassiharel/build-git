@@ -2,16 +2,16 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.3
+    itemVersion: 1.1.5
     packID: PaloAltoNetworks_PAN_OS_EDL_Management
-    packName: Palo Alto Networks PAN-OS EDL Management
+    packName: Palo Alto Networks PAN-OS EDL Management (Deprecated)
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-description: |-
-  Configures an external dynamic list in PAN-OS.
-  In the event that the file exists on the web server, it will sync it to demisto. Then it will create an EDL object and a matching rule.
+deprecated: true
+description: Deprecated. Use Generic Export Indicators Service instead.
+hidden: true
 id: PAN-OS EDL Setup v3
 inputs:
 - description: |-
@@ -526,6 +526,8 @@ tasks:
       - "48"
     note: false
     quietmode: 0
+    results:
+    - AreValuesEqual
     scriptarguments:
       left:
         simple: ${inputs.auto-commit}
@@ -703,6 +705,8 @@ tasks:
       - "49"
     note: false
     quietmode: 0
+    results:
+    - AreValuesEqual
     scriptarguments:
       left:
         simple: ${inputs.auto-commit}
