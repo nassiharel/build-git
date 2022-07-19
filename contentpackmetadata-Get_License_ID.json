@@ -1,0 +1,96 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [],
+	"certification": "certified",
+	"contentItemTypes": [
+		"automation"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Returns the license ID.",
+				"name": "GetLicenseID",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-23T17:35:00Z",
+	"currentVersion": "1.0.4",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Returns the license ID.",
+	"downloads": 2264,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "GetLicenseID",
+	"installMessage": "",
+	"integrations": [],
+	"itemVersion": "1.0.4",
+	"keywords": [],
+	"legacy": true,
+	"name": "Get License ID",
+	"packID": "GetLicenseID",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2021-12-21T22:24:19Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
