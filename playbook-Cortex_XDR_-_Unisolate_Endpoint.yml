@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 4.4.0
+    itemVersion: 4.8.1
     packID: CortexXDR
     packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
@@ -65,6 +65,8 @@ tasks:
       - "4"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: Cortex XDR - IR
