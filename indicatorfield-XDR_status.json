@@ -25,7 +25,7 @@
 	"hidden": false,
 	"id": "indicator_xdrstatus",
 	"isReadOnly": false,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR status",
