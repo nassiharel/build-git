@@ -24,7 +24,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.1
+    itemVersion: 1.1.2
     packID: Shodan
     packName: Shodan
     packPropagationLabels:
@@ -340,7 +340,7 @@ script:
     description: Resumes receiving notifications for network alerts that are set off
       by the specified triggers.
     name: shodan-network-alert-remove-service-from-whitelist
-  dockerimage: demisto/python3:3.10.4.29342
+  dockerimage: demisto/python3:3.10.4.30607
   runonce: false
   script: |
     register_module_line('Shodan_v2', 'start', __line__())
