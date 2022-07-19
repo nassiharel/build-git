@@ -1,0 +1,377 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"indicatorfield",
+		"reputation",
+		"dashboard"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Deprecated. No available replacement. While loop is utility script, to do while loops on specific commands or scripts, it will allow you to loop over until some condition is fulfilled (${keyToWatch} == value). Please make sure timeout of the script also sufficient for the loop.",
+				"name": "WhileLoop",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Verify given entry contains a string",
+				"name": "VerifyHumanReadableContains",
+				"tags": []
+			},
+			{
+				"description": "Find the differences between two indicators lists.",
+				"name": "CompareIndicators",
+				"tags": []
+			},
+			{
+				"description": "Deprecated. No available replacement. Checks whether substring is within string. Returns - yes - string contains substring. no - string does not contain substring. If stringSeperator is provided, the substring will be split using the separator, and each item will be checked. If one of the items will be found in the string, the srcipt will return yes. This script is deprecated. The StringContainsArray filter implements the exact functionality.",
+				"name": "StringContains",
+				"tags": [
+					"Condition",
+					"Utility"
+				]
+			},
+			{
+				"description": "Given an integration name, returns the instance name.",
+				"name": "GetInstanceName",
+				"tags": [
+					"basescript"
+				]
+			},
+			{
+				"description": "Wait and complete tasks by given status. Used for test playbooks.",
+				"name": "WaitAndCompleteTask",
+				"tags": [
+					"basescript"
+				]
+			},
+			{
+				"description": "Check whether a given query returns enough incidents.",
+				"name": "VerifyEnoughIncidents",
+				"tags": []
+			},
+			{
+				"description": "Checks for existing errors in a given integration.",
+				"name": "VerifyIntegrationHealth",
+				"tags": [
+					"basescript"
+				]
+			},
+			{
+				"description": "Deprecated. Use playbook filters instead. Verify fields are in context.",
+				"name": "VerifyContextFields",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Execute FetchIncident for a given instance",
+				"name": "FetchFromInstance",
+				"tags": []
+			},
+			{
+				"description": "Deprecated. No available replacement. Sets key/value pair in incident's context.",
+				"name": "SetContext",
+				"tags": [
+					"Utility"
+				]
+			},
+			{
+				"description": "Returns, whether there're, are enough indicators in the system.",
+				"name": "VerifyEnoughIndicators",
+				"tags": []
+			},
+			{
+				"description": "Deprecated. Use playbook filters instead. Verifies path in context - Verifies path existence - If matching object is an array -  verify fields exists in each of the objects in the array - If matching object is not an array -  verify fields exists in matching object - if 'expectedValue' is given -  ensure that the given value is equal to the context path",
+				"name": "VerifyContext",
+				"tags": [
+					"context",
+					"Utility"
+				]
+			},
+			{
+				"description": "Verifies that a given object includes all the given fields.",
+				"name": "VerifyObjectFieldsList",
+				"tags": [
+					"basescript"
+				]
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": [
+			{
+				"name": "Metrics Test Cases Validation"
+			}
+		],
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": [
+			{
+				"description": "",
+				"name": "Developer Tools param2",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Developer Tools param1",
+				"type": "shortText"
+			}
+		],
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Test Scenario One - All 10 Pass on first try",
+						"name": "test-scenario-one"
+					},
+					{
+						"description": "Test Scenario Two - 5 Pass on first try, 5 error on quota and are scheduled",
+						"name": "test-scenario-two"
+					},
+					{
+						"description": "Test Scenario Three - 5 Fail on second try",
+						"name": "test-scenario-three"
+					},
+					{
+						"description": "Test Scenario Four - 2 Succeed, 3 Fail on retry",
+						"name": "test-scenario-four"
+					},
+					{
+						"description": "Test Scenario Five - 10 IPs as a string, 1 success",
+						"name": "test-scenario-five"
+					},
+					{
+						"description": "Test Scenario Six - 10 items are in 1 call. 1 fail.",
+						"name": "test-scenario-six"
+					},
+					{
+						"description": "Test Scenario Seven - 10 items are in 1 call. 1 fail. No metrics are returned.",
+						"name": "test-scenario-seven"
+					},
+					{
+						"description": "Test Scenario Eight - 10 items are in 1 call. 1 fail. No metrics returned. Timeout.",
+						"name": "test-scenario-eight"
+					},
+					{
+						"description": "This is the test PB scenario",
+						"name": "test-scenario-nine"
+					},
+					{
+						"description": "This command is executed five times in the PB",
+						"name": "test-scenario-ten"
+					}
+				],
+				"description": "This integration runs through all scenarios as defined in the API Metrics expected results guide.",
+				"name": "APIMetricsValidation"
+			},
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Get integration context.",
+						"name": "pwsh-test-get-integration-context"
+					},
+					{
+						"description": "Get integration versioned context.",
+						"name": "pwsh-test-get-integration-versioned-context"
+					},
+					{
+						"description": "Set integration context.",
+						"name": "pwsh-test-set-integration-context"
+					},
+					{
+						"description": "Set integration versioned context.",
+						"name": "pwsh-test-set-integration-versioned-context"
+					}
+				],
+				"description": "Powershell Integration for testing that Powershell support is working as expected.",
+				"name": "XSOAR Powershell Testing"
+			},
+			{
+				"category": "Vulnerability Management",
+				"commands": [
+					{
+						"description": "This command demonstrates the usage of the CustomIndicator helper class.",
+						"name": "test-custom-indicator"
+					}
+				],
+				"description": "This is a demo integration that demonstrates the usage of the CustomIndicator helper class.",
+				"name": "CustomIndicatorDemo"
+			},
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Creates incidents from json files provided, and stores it in the instance context.",
+						"name": "create-test-incident-from-file"
+					}
+				],
+				"description": "CreateIncidents fetches custom incidents that are created manually.",
+				"name": "Create Test Incidents"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [],
+				"description": "Mock Feed",
+				"name": "Create-Mock-Feed-Relationships"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": [
+			{
+				"details": "MyCustomIndicator",
+				"enhancementScriptNames": [],
+				"reputationScriptName": ""
+			}
+		],
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-20T12:29:51Z",
+	"currentVersion": "1.2.23",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.7.14",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.37",
+			"name": "Common Types"
+		},
+		"D2": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.5",
+			"name": "D2"
+		},
+		"DemistoRESTAPI": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.3.0",
+			"name": "Demisto REST API"
+		},
+		"GenericSQL": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.11",
+			"name": "GenericSQL"
+		}
+	},
+	"deprecated": false,
+	"description": "Basic tools for content development.",
+	"downloads": 5540,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "DeveloperTools",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/DeveloperTools/APIMetricsValidation_image.png",
+			"name": "APIMetricsValidation"
+		},
+		{
+			"imagePath": "content/packs/DeveloperTools/CreateIncidents_image.png",
+			"name": "Create Test Incidents"
+		},
+		{
+			"imagePath": "content/packs/DeveloperTools/Create-Mock-Feed-Relationships_image.png",
+			"name": "Create-Mock-Feed-Relationships"
+		},
+		{
+			"imagePath": "content/packs/DeveloperTools/CustomIndicatorDemo_image.png",
+			"name": "CustomIndicatorDemo"
+		},
+		{
+			"imagePath": "content/packs/DeveloperTools/XsoarPowershellTesting_image.png",
+			"name": "XSOAR Powershell Testing"
+		},
+		{
+			"imagePath": "content/packs/DemistoRESTAPI/DemistoRESTAPI_image.png",
+			"name": "Demisto REST API"
+		},
+		{
+			"imagePath": "content/packs/GenericSQL/GenericSQL_image.png",
+			"name": "Generic SQL"
+		}
+	],
+	"itemVersion": "1.2.23",
+	"keywords": [
+		"tools",
+		"developer"
+	],
+	"legacy": true,
+	"name": "Developer Tools",
+	"packID": "DeveloperTools",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "## Developer Tools Pack\nBasic tools for content development, mostly for internal use.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"TIM"
+	],
+	"toServerVersion": "",
+	"updated": "2022-07-11T23:00:40Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
