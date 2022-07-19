@@ -2,9 +2,9 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.2.0
-    itemVersion: 1.1.0
+    itemVersion: 1.1.3
     packID: FeedMitreAttackv2
-    packName: MITRE ATT&CK v2
+    packName: MITRE ATT&CK
     packPropagationLabels:
     - all
     propagationLabels: []
@@ -212,6 +212,8 @@ tasks:
       - "2"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: MITRE ATT&CK v2
