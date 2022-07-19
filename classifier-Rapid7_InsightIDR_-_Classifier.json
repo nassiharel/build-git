@@ -1,0 +1,32 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Rapid7 InsightIDR Alert",
+	"definitionId": "",
+	"description": "Classifies Rapid7 InsightIDR incidents",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Rapid7 InsightIDR",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.13",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Rapid7 InsightIDR - Classifier",
+	"nameRaw": "Rapid7 InsightIDR - Classifier",
+	"packID": "Rapid7_InsightIDR",
+	"packName": "Rapid7 InsightIDR",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
