@@ -25,7 +25,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.11.9
+    itemVersion: 1.12.1
     packID: EWS
     packName: EWS
     packPropagationLabels:
@@ -33,7 +33,8 @@ contentitemexportablefields:
     propagationLabels: []
     toServerVersion: ""
 description: Use the EWS Extension Online Powershell v2 integration to get information
-  about mailboxes and users in your organization.
+  about mailboxes and users in your organization.  This integration can also retrieve
+  and modify Tenant Allow/Block Lists.
 detaileddescription: |-
   ## EWS Extension Online Powershell v2
 
@@ -47,7 +48,7 @@ detaileddescription: |-
 
   ---
   [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/ews-extension-online-powershell-v2)
-display: O365 - EWS - Extension Online Powershell v2
+display: EWS Extension Online Powershell v2
 image: data:image/png;base64,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
 name: EWS Extension Online Powershell v2
 script:
@@ -322,9 +323,296 @@ script:
     - contextPath: EWS.Recipient.RecipientTypeDetails
       description: Recipient type details.
       type: String
+  - arguments:
+    - description: A comma-separated list of entries to add to the list (e.g. "Item1,Item2").
+      isArray: true
+      name: entries
+      required: true
+    - auto: PREDEFINED
+      description: List type to add items to.
+      name: list_type
+      predefined:
+      - sender
+      - filehash
+      - url
+      required: true
+    - auto: PREDEFINED
+      defaultValue: Tenant
+      description: List subtype to add items to.
+      name: list_subtype
+      predefined:
+      - Tenant
+      - AdvancedDelivery
+    - auto: PREDEFINED
+      description: Action to set for new entries
+      name: action
+      predefined:
+      - Block
+      - Allow
+      required: true
+    - description: Notes to include on new list entries
+      name: notes
+    - description: Enter a specific date and time for the new entries to expire using
+        ISO format "YYYY-MM-DDTHH:MM:SSZ" for UTC time.  Alternately, a PowerShell
+        **GetDate** statement can be used.
+      name: expiration_date
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Specify whether to create list entries with no expiration date.  Cannot
+        be used with "expiration_date".  If left false and no expiration date is set,
+        default of 30 days will be used.
+      name: no_expiration
+      predefined:
+      - "false"
+      - "true"
+    description: Add new items to the Tenant Allow/Block Lists.  Uses PowerShell New-TenantAllowBlockListItems
+      cmdlet.
+    execution: true
+    name: ews-new-tenant-allow-block-list-items
+    outputs:
+    - contextPath: EWS.NewTenantBlocks.Action
+      description: List type ('Block' or 'Allow')
+      type: string
+    - contextPath: EWS.NewTenantBlocks.EntryValueHash
+      description: Entry Value Hash
+      type: string
+    - contextPath: EWS.NewTenantBlocks.Error
+      description: Error (if any) returned by remote command
+    - contextPath: EWS.NewTenantBlocks.ExpirationDate
+      description: DateTime the entry will expire and be removed
+      type: string
+    - contextPath: EWS.NewTenantBlocks.Identity
+      description: Unique identifier for the entry
+      type: string
+    - contextPath: EWS.NewTenantBlocks.LastModifiedDateTime
+      description: DateTime of last modification
+      type: string
+    - contextPath: EWS.NewTenantBlocks.ListSubType
+      description: List sub type (Tenant or AdvancedDelivery)
+      type: string
+    - contextPath: EWS.NewTenantBlocks.ModifiedBy
+      description: User / App Registration which last modified this entry
+      type: string
+    - contextPath: EWS.NewTenantBlocks.Notes
+      description: Custom notes added to the entry.
+      type: string
+    - contextPath: EWS.NewTenantBlocks.ObjectState
+      description: State of the object (e.g. New/Modified/Deleted)
+      type: string
+    - contextPath: EWS.NewTenantBlocks.PSComputerName
+      description: Name of Remote Powershell endpoint
+      type: string
+    - contextPath: EWS.NewTenantBlocks.PSShowComputerName
+      description: Flag whether or not remote computer name is shown in PS prompt
+      type: boolean
+    - contextPath: EWS.NewTenantBlocks.RunspaceId
+      description: RunspaceID of the entry
+      type: string
+    - contextPath: EWS.NewTenantBlocks.SubmissionID
+      description: SubmissionID of the entry
+      type: string
+    - contextPath: EWS.NewTenantBlocks.SysManaged
+      description: SysManaged property of the entry
+      type: boolean
+    - contextPath: EWS.NewTenantBlocks.Value
+      description: The value of the new entry created
+      type: string
+  - arguments:
+    - auto: PREDEFINED
+      description: List type to retrieve items from.
+      name: list_type
+      predefined:
+      - sender
+      - filehash
+      - url
+      required: true
+    - auto: PREDEFINED
+      defaultValue: Tenant
+      description: List subtype to retrieve items from.
+      name: list_subtype
+      predefined:
+      - Tenant
+      - AdvancedDelivery
+    - auto: PREDEFINED
+      description: Action to filter entries by.
+      name: action
+      predefined:
+      - Block
+      - Allow
+      required: true
+    - description: Enter a specific date and time to filter entries by using ISO format
+        "YYYY-MM-DDTHH:MM:SSZ" for UTC time.  Alternately, a PowerShell **GetDate**
+        statement can be used.
+      name: expiration_date
+    - auto: PREDEFINED
+      defaultValue: "false"
+      description: Filter list items that are set to never expire.
+      name: no_expiration
+      predefined:
+      - "false"
+      - "true"
+    - description: Specific entry value to retrieve.
+      name: entry
+    description: Retrieve current Tenant Allow/Block List items.  Uses Get-TenantAllowBlockListItems
+      cmdlet.
+    name: ews-get-tenant-allow-block-list-items
+    outputs:
+    - contextPath: EWS.CurrentTenantBlocks.Action
+      description: List type ('Block' or 'Allow')
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.EntryValueHash
+      description: Entry Value Hash
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.Error
+      description: Error (if any) returned by remote command
+      type: boolean
+    - contextPath: EWS.CurrentTenantBlocks.ExpirationDate
+      description: DateTime the entry will expire and be removed
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.Identity
+      description: Unique identifier for the entry
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.LastModifiedDateTime
+      description: DateTime of last modification
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.ListSubType
+      description: List sub type (Tenant or AdvancedDelivery)
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.ModifiedBy
+      description: User / App Registration which last modified this entry
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.Notes
+      description: Custom notes added to the entry.
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.ObjectState
+      description: State of the object (e.g. New/Modified/Deleted)
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.PSComputerName
+      description: Name of Remote Powershell endpoint
+    - contextPath: EWS.CurrentTenantBlocks.PSShowComputerName
+      description: Flag whether or not remote computer name is shown in PS prompt
+      type: boolean
+    - contextPath: EWS.CurrentTenantBlocks.RunspaceId
+      description: RunspaceID of the entry
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.SubmissionID
+      description: SubmissionID of the entry
+      type: string
+    - contextPath: EWS.CurrentTenantBlocks.SysManaged
+      description: SysManaged property of the entry
+      type: boolean
+    - contextPath: EWS.CurrentTenantBlocks.Value
+      description: The value of the new entry created
+      type: string
+  - arguments:
+    - auto: PREDEFINED
+      description: List type to retrieve items from.
+      name: list_type
+      predefined:
+      - sender
+      - filehash
+      - url
+    - auto: PREDEFINED
+      defaultValue: Tenant
+      description: List subtype to retrieve items from.
+      name: list_subtype
+      predefined:
+      - Tenant
+      - AdvancedDelivery
+    description: Retrieve current count of defined Tenant Allow/Block List items.  Uses
+      Get-TenantAllowBlockListItems cmdlet.
+    name: ews-get-tenant-allow-block-list-count
+    outputs:
+    - contextPath: EWS.CurrentListCount.Count
+      description: Number of entries presently in the specified list
+      type: number
+    - contextPath: EWS.CurrentListCount.ListSubType
+      description: List sub type (Tenant or AdvancedDelivery)
+      type: string
+    - contextPath: EWS.CurrentListCount.ListType
+      description: List type
+      type: string
+  - arguments:
+    - description: Entries to remove from the list.  Either use this OR 'ids' to specify
+        items to remove.  Separate multiple entries with a comma (e.g. "Item1,Item2").
+      isArray: true
+      name: entries
+    - description: Entry IDs to remove from the list.  Either use this OR 'entries'
+        to specify items to remove.  Separate multiple entries with a comma (e.g.
+        "Item1,Item2").
+      name: ids
+    - auto: PREDEFINED
+      description: List type to remove items from.
+      name: list_type
+      predefined:
+      - sender
+      - filehash
+      - url
+      required: true
+    - auto: PREDEFINED
+      defaultValue: Tenant
+      description: List subtype to remove items from.
+      name: list_subtype
+      predefined:
+      - Tenant
+      - AdvancedDelivery
+    description: Remove items from the Tenant Allow/Block Lists.   You can delete
+      items by their value or by unique ID.  Uses PowerShell cmdlet Remove-TenantAllowBlockListItems
+      cmdlet.
+    name: ews-remove-tenant-allow-block-list-items
+    outputs:
+    - contextPath: EWS.RemovedTenantBlocks.Action
+      description: Action
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.EntryValueHash
+      description: Null for deleted items.
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.Error
+      description: Null for deleted items.
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.ExpirationDate
+      description: Null for deleted items.
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.Identity
+      description: Blank for deleted items.
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.LastModifiedDateTime
+      description: Null for deleted items.
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.ListSubType
+      description: Null for deleted items.
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.ModifiedBy
+      description: Null for deleted items.
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.Notes
+      description: Null for deleted items.
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.ObjectState
+      description: State of the object (Deleted)
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.PSComputerName
+      description: Name of Remote Powershell endpoint
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.PSShowComputerName
+      description: Flag whether or not remote computer name is shown in PS prompt
+      type: boolean
+    - contextPath: EWS.RemovedTenantBlocks.RunspaceId
+      description: RunspaceID of the entry
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.SubmissionID
+      description: SubmissionID of the entry
+      type: string
+    - contextPath: EWS.RemovedTenantBlocks.SysManaged
+      description: SysManaged property of the entry
+      type: boolean
+    - contextPath: EWS.RemovedTenantBlocks.Value
+      description: The value of the entry that was removed
+      type: string
   dockerimage: demisto/pwsh-exchange:1.0.0.22307
   runonce: false
-  script: |
+  script: |2
+
     <# IMPORTANT NOTICE
     # When conencting to ExchangeOnline - only needed command between CreateSession
     # and DisconnectSession and let also the `finally` term to disconnect (it will do nothing if everything is fine).
@@ -334,6 +622,9 @@ script:
     # should be called before returning results to the server.
     #>
     Import-Module ExchangeOnlineManagement
+
+    # Disable PowerShell progress bars, as they aren't helpful in a non-interactive script
+    $Global:ProgressPreference = 'SilentlyContinue'
 
     $COMMAND_PREFIX = "ews"
     $INTEGRATION_ENTRY_CONTEXT = "EWS"
@@ -374,11 +665,11 @@ script:
                 "Organization" = $this.organization
                 "Certificate" = $this.certificate
             }
-            Connect-ExchangeOnline @cmd_params -ShowBanner:$false -SkipImportSession -WarningAction:SilentlyContinue | Out-Null
+            Connect-ExchangeOnline @cmd_params -ShowBanner:$false -CommandName New-TenantAllowBlockListItems,Get-TenantAllowBlockListItems,Remove-TenantAllowBlockListItems -WarningAction:SilentlyContinue | Out-Null
         }
         DisconnectSession()
         {
-            Disconnect-ExchangeOnline -Confirm:$false -WarningAction:SilentlyContinue | Out-Null
+            Disconnect-ExchangeOnline -Confirm:$false -WarningAction:SilentlyContinue 6>$null | Out-Null
         }
         [PSObject]
         GetEXOCASMailbox(
@@ -642,6 +933,180 @@ script:
 
                 #>
         }
+
+        [PSObject]
+        EXONewTenantAllowBlockList(
+                [string]$entries,
+                [string]$list_type,
+                [string]$list_subtype,
+                [string]$action,
+                [string]$notes,
+                [bool]$no_expiration,
+                [string]$expiration_date
+        )
+        {
+            $cmd_params = @{ }
+            $entries_array = @()
+            if ($entries.Contains(','))
+            {
+                $entries_array = $entries -split ','
+            }
+            if ($entries -and -not $entries_array)
+            {
+                $entries_array += $entries
+                $cmd_params.Entries = $entries_array
+            }
+            else
+            {
+                $cmd_params.Entries = $entries_array
+            }
+            if ($list_type)
+            {
+                $cmd_params.ListType = $list_type
+            }
+            if ($list_subtype)
+            {
+                $cmd_params.ListSubType = $list_subtype
+            }
+            if ($notes)
+            {
+                $cmd_params.Notes = $notes
+            }
+            if ($no_expiration)
+            {
+                $cmd_params.NoExpiration = $null
+            }
+            if ($expiration_date)
+            {
+                $cmd_params.ExpirationDate = $expiration_date
+            }
+            if ($action -eq "Block")
+            {
+                $cmd_params.Block = $null
+            }
+            if ($action -eq "Allow")
+            {
+                $cmd_params.Allow = $null
+            }
+            $this.CreateSession()
+            $results = New-TenantAllowBlockListItems @cmd_params
+            $this.DisconnectSession()
+            return $results
+            <#
+                .DESCRIPTION
+                Use the New-TenantAllowBlockListItems cmdlet to add new entries to the Tenant Allow/Block Lists for your organization.
+                This cmdlet returns all new entries created, details about them, and their status
+
+            #>
+        }
+
+        [PSObject]
+        EXORemoveTenantAllowBlockList(
+                [string]$entries,
+                [string]$ids,
+                [string]$list_type,
+                [string]$list_subtype
+        )
+        {
+            $cmd_params = @{ }
+            $entries_array = @()
+            $ids_array = @()
+            if ($entries.Contains(','))
+            {
+                $entries_array = $entries -split ','
+            }
+            if ($entries -and -not $entries_array)
+            {
+                $entries_array += $entries
+                $cmd_params.Entries = $entries_array
+            }
+            elseif ($entries_array)
+            {
+                $cmd_params.Entries = $entries_array
+            }
+            if ($ids -and $ids.Contains(','))
+            {
+                $ids_array = $ids -split ','
+            }
+            if ($ids -and -not $ids_array)
+            {
+                $ids_array += $ids
+                $cmd_params.Ids = $ids_array
+            }
+            elseif ($ids_array)
+            {
+                $cmd_params.Ids = $ids_array
+            }
+            if ($list_type)
+            {
+                $cmd_params.ListType = $list_type
+            }
+            if ($list_subtype)
+            {
+                $cmd_params.ListSubType = $list_subtype
+            }
+            $this.CreateSession()
+            $results = Remove-TenantAllowBlockListItems @cmd_params
+            $this.DisconnectSession()
+            return $results
+            <#
+                .DESCRIPTION
+                Use the New-TenantAllowBlockListItems cmdlet to add new entries to the Tenant Allow/Block Lists for your organization.
+                This cmdlet returns all new entries created, details about them, and their status
+
+            #>
+        }
+
+        [PSObject]
+        EXOGetTenantAllowBlockList(
+                [string]$entry,
+                [string]$list_type,
+                [string]$list_subtype,
+                [string]$action,
+                [bool]$no_expiration,
+                [string]$expiration_date
+        )
+        {
+            $cmd_params = @{ }
+            if ($entry)
+            {
+                $cmd_params.Entry = $entry
+            }
+            if ($list_type)
+            {
+                $cmd_params.ListType = $list_type
+            }
+            if ($list_subtype)
+            {
+                $cmd_params.ListSubType = $list_subtype
+            }
+            if ($no_expiration)
+            {
+                $cmd_params.NoExpiration = $null
+            }
+            if ($expiration_date)
+            {
+                $cmd_params.ExpirationDate = $expiration_date
+            }
+            if ($action -eq "Block")
+            {
+                $cmd_params.Block = $null
+            }
+            if ($action -eq "Allow")
+            {
+                $cmd_params.Allow = $null
+            }
+            $this.CreateSession()
+            $results = Get-TenantAllowBlockListItems @cmd_params
+            $this.DisconnectSession()
+            return $results
+            <#
+                .DESCRIPTION
+                Use the Get-TenantAllowBlockListItems cmdlet to retrieve current entries in the Tenant Allow/Block Lists for your organization.
+                This cmdlet returns current entries and details about them.
+
+            #>
+        }
     }
 
     function GetEXORecipientCommand
@@ -725,6 +1190,96 @@ script:
         $entry_context = @{ "$script:INTEGRATION_ENTRY_CONTEXT.CASMailbox(obj.Guid === val.Guid)" = $raw_response }
         Write-Output $human_readable, $entry_context, $raw_response
     }
+
+    function EXONewTenantAllowBlockListCommand
+    {
+        [CmdletBinding()]
+        Param (
+            [Parameter(Mandatory)][ExchangeOnlinePowershellV2Client]$client,
+            [hashtable]$kwargs
+        )
+        $entries = $kwargs.entries
+        $list_type = $kwargs.list_type
+        $list_subtype = $kwargs.list_subtype
+        $action = $kwargs.action
+        $notes = $kwargs.notes
+        $no_expiration = if ($kwargs.no_expiration -eq "true") { $true } else { $false }
+        $expiration_date = $kwargs.expiration_date
+        $raw_response = $client.EXONewTenantAllowBlockList(
+            $entries, $list_type, $list_subtype, $action, $notes, $no_expiration, $expiration_date
+        )
+        $human_readable = TableToMarkdown $raw_response "Results of $command"
+        $entry_context = @{ "$script:INTEGRATION_ENTRY_CONTEXT.NewTenantBlocks" = $raw_response }
+        Write-Output $human_readable, $entry_context, $raw_response
+
+    }
+
+    function EXOGetTenantAllowBlockListCommand
+    {
+        [CmdletBinding()]
+        Param (
+            [Parameter(Mandatory)][ExchangeOnlinePowershellV2Client]$client,
+            [hashtable]$kwargs
+        )
+        $entry = $kwargs.entry
+        $list_type = $kwargs.list_type
+        $list_subtype = $kwargs.list_subtype
+        $action = $kwargs.action
+        $no_expiration = if ($kwargs.no_expiration -eq "true") { $true } else { $false }
+        $expiration_date = $kwargs.expiration_date
+        $raw_response = $client.EXOGetTenantAllowBlockList(
+            $entry, $list_type, $list_subtype, $action, $no_expiration, $expiration_date
+        )
+        $human_readable = TableToMarkdown $raw_response "Results of $command"
+        $entry_context = @{ "$script:INTEGRATION_ENTRY_CONTEXT.CurrentTenantBlocks" = $raw_response }
+        Write-Output $human_readable, $entry_context, $raw_response
+    }
+
+    function EXOCountTenantAllowBlockListCommand
+    {
+        [CmdletBinding()]
+        Param (
+            [Parameter(Mandatory)][ExchangeOnlinePowershellV2Client]$client,
+            [hashtable]$kwargs
+        )
+        $list_type = $kwargs.list_type
+        $list_subtype = $kwargs.list_subtype
+        $m = $client.EXOGetTenantAllowBlockList($null, $list_type, $list_subtype, $null, $null, $null) | Measure-Object
+        $raw_response = [PSCustomObject]@{
+            ListType = $list_type
+            ListSubType = $list_subtype
+            Count = $m.Count
+        }
+        $human_readable = TableToMarkdown $raw_response "Results of $command"
+        $entry_context = @{ "$script:INTEGRATION_ENTRY_CONTEXT.CurrentListCount" = $raw_response }
+        Write-Output $human_readable, $entry_context, $raw_response
+
+    }
+
+    function EXORemoveTenantAllowBlockListCommand
+    {
+        [CmdletBinding()]
+        Param (
+            [Parameter(Mandatory)][ExchangeOnlinePowershellV2Client]$client,
+            [hashtable]$kwargs
+        )
+        $entries = $kwargs.entries
+        $ids = $kwargs.ids
+        $list_type = $kwargs.list_type
+        $list_subtype = $kwargs.list_subtype
+        if ($entries -and $ids)
+        {
+            ReturnError "Error: Please provide either entries by value OR IDs, not both."
+        }
+        $raw_response = $client.EXORemoveTenantAllowBlockList(
+            $entries, $ids, $list_type, $list_subtype
+        )
+        $human_readable = TableToMarkdown $raw_response "Results of $command"
+        $entry_context = @{ "$script:INTEGRATION_ENTRY_CONTEXT.RemovedTenantBlocks" = $raw_response }
+        Write-Output $human_readable, $entry_context, $raw_response
+
+    }
+
     function TestModuleCommand($client)
     {
         try
@@ -785,6 +1340,18 @@ script:
                 }
                 "$script:COMMAND_PREFIX-recipient-list" {
                     ($human_readable, $entry_context, $raw_response) = GetEXORecipientCommand $exo_client $command_arguments
+                }
+                "$script:COMMAND_PREFIX-new-tenant-allow-block-list-items" {
+                    ($human_readable, $entry_context, $raw_response) = EXONewTenantAllowBlockListCommand $exo_client $command_arguments
+                }
+                "$script:COMMAND_PREFIX-get-tenant-allow-block-list-items" {
+                    ($human_readable, $entry_context, $raw_response) = EXOGetTenantAllowBlockListCommand $exo_client $command_arguments
+                }
+                "$script:COMMAND_PREFIX-get-tenant-allow-block-list-count" {
+                    ($human_readable, $entry_context, $raw_response) = EXOCountTenantAllowBlockListCommand $exo_client $command_arguments
+                }
+                "$script:COMMAND_PREFIX-remove-tenant-allow-block-list-items" {
+                    ($human_readable, $entry_context, $raw_response) = EXORemoveTenantAllowBlockListCommand $exo_client $command_arguments
                 }
                 default {
                     ReturnError "Could not recognize $command"
