@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "ac4ba4c9-b52a-4ea3-8ddd-752ff0c821c6",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Connected Endpoints",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
