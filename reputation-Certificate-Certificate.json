@@ -1,0 +1,150 @@
+{
+	"cacheVersn": 0,
+	"contextPath": "",
+	"contextValue": "",
+	"defaultMapping": null,
+	"definitionId": "",
+	"details": "Certificate",
+	"disabled": false,
+	"enhancementScriptNames": null,
+	"excludedBrands": null,
+	"expiration": 0,
+	"file": false,
+	"fileHashesPriority": null,
+	"formatScript": "",
+	"fromServerVersion": "6.0.0",
+	"id": "Certificate",
+	"itemVersion": "1.0.12",
+	"layout": "certificate",
+	"legacyNames": null,
+	"locked": false,
+	"manualMapping": {
+		"certificatenames": {
+			"complex": {
+				"accessor": "Name",
+				"filters": [],
+				"root": "Certificate",
+				"transformers": [
+					{
+						"args": {
+							"separator": {
+								"value": {
+									"simple": " "
+								}
+							}
+						},
+						"operator": "join"
+					}
+				]
+			}
+		},
+		"certificatesignature": {
+			"complex": {
+				"accessor": "Signature",
+				"filters": [],
+				"root": "Certificate",
+				"transformers": [
+					{
+						"operator": "ConvertKeysToTableFieldFormat"
+					}
+				]
+			}
+		},
+		"extension": {
+			"complex": {
+				"accessor": "Extension",
+				"filters": [],
+				"root": "Certificate",
+				"transformers": [
+					{
+						"operator": "ConvertKeysToTableFieldFormat"
+					}
+				]
+			}
+		},
+		"issuerdn": {
+			"complex": {
+				"accessor": "IssuerDN",
+				"filters": [],
+				"root": "Certificate",
+				"transformers": []
+			}
+		},
+		"md5": {
+			"simple": "Certificate.MD5"
+		},
+		"pem": {
+			"simple": "Certificate.PEM"
+		},
+		"pemmd5": {
+			"simple": "Certificate.PEMMD5"
+		},
+		"publickey": {
+			"complex": {
+				"accessor": "PublicKey",
+				"filters": [],
+				"root": "Certificate",
+				"transformers": [
+					{
+						"operator": "ConvertKeysToTableFieldFormat"
+					}
+				]
+			}
+		},
+		"serialnumber": {
+			"simple": "Certificate.SerialNumber"
+		},
+		"sha1": {
+			"simple": "Certificate.SHA1"
+		},
+		"sha256": {
+			"simple": "Certificate.SHA256"
+		},
+		"sha512": {
+			"complex": {
+				"accessor": "SHA512",
+				"filters": [],
+				"root": "Certificate",
+				"transformers": []
+			}
+		},
+		"spkisha256": {
+			"simple": "Certificate.SPKISHA256"
+		},
+		"subjectalternativenames": {
+			"complex": {
+				"accessor": "SubjectAlternativeName",
+				"filters": [],
+				"root": "Certificate",
+				"transformers": [
+					{
+						"operator": "ConvertKeysToTableFieldFormat"
+					}
+				]
+			}
+		},
+		"subjectdn": {
+			"simple": "Certificate.SubjectDN"
+		},
+		"validitynotafter": {
+			"simple": "Certificate.ValidityNotAfter"
+		},
+		"validitynotbefore": {
+			"simple": "Certificate.ValidityNotBefore"
+		}
+	},
+	"mergeContext": false,
+	"packID": "X509Certificate",
+	"packName": "X509Certificate",
+	"packPropagationLabels": [
+		"all"
+	],
+	"regex": "",
+	"reputationCommand": "certificate",
+	"reputationScriptName": "CertificateReputation",
+	"shouldShareComments": false,
+	"system": true,
+	"toServerVersion": "",
+	"updateAfter": 1,
+	"version": -1
+}
