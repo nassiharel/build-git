@@ -1,0 +1,39 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "Expanse Issue",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "ExpanseV2",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.10.16",
+	"keyTypeMap": {
+		"Critical": "Expanse Issue",
+		"High": "Expanse Issue",
+		"Low": "Expanse Issue",
+		"Medium": "Expanse Issue"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "ExpanseV2 - Classifier",
+	"nameRaw": "ExpanseV2 - Classifier",
+	"packID": "ExpanseV2",
+	"packName": "Cortex Xpanse",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "priority"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
