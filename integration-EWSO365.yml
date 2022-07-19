@@ -115,7 +115,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.11.9
+    itemVersion: 1.12.1
     packID: EWS
     packName: EWS
     packPropagationLabels:
@@ -941,7 +941,7 @@ script:
       name: replyTo
     description: Sends an email.
     name: send-mail
-  dockerimage: demisto/py3ews:1.0.0.28554
+  dockerimage: demisto/py3ews:1.0.0.29461
   isfetch: true
   runonce: false
   script: |
@@ -3272,6 +3272,10 @@ script:
         try:
             client = EWSClient(**params)
             start_logging()
+
+            # replace sensitive access_token value in logs
+            add_sensitive_log_strs(client.credentials.access_token.get('access_token', ''))
+
             command = demisto.command()
             # commands that return a single note result
             normal_commands = {
