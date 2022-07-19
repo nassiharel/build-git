@@ -1,0 +1,316 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Deprecated. No available replacement. Download malicious file sample from MISP.",
+				"name": "misp_download_sample",
+				"tags": []
+			},
+			{
+				"description": "Deprecated. No available replacement. Upload malicious file sample to MISP.",
+				"name": "misp_upload_sample",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Search for events in MISP.",
+						"name": "misp-search"
+					},
+					{
+						"description": "Checks the file reputation of the given hash.",
+						"name": "file"
+					},
+					{
+						"description": "Checks if the URL is in MISP events.",
+						"name": "url"
+					},
+					{
+						"description": "Checks the reputation of an IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Create a new MISP event.",
+						"name": "internal-misp-create-event"
+					},
+					{
+						"description": "Creates a new MISP event.",
+						"name": "misp-create-event"
+					},
+					{
+						"description": "Adds an attribute to an existing MISP event.",
+						"name": "internal-misp-add-attribute"
+					},
+					{
+						"description": "Downloads a file sample from MISP.",
+						"name": "misp-download-sample"
+					},
+					{
+						"description": "Adds an attribute to an existing MISP event.",
+						"name": "misp-add-attribute"
+					},
+					{
+						"description": "Uploads a file sample to MISP.",
+						"name": "misp-upload-sample"
+					},
+					{
+						"description": "Deletes an event according to event ID.",
+						"name": "misp-delete-event"
+					},
+					{
+						"description": "Adds a tag to the given UUID event or attribute.",
+						"name": "misp-add-tag"
+					},
+					{
+						"description": "Add sighting to an attribute.",
+						"name": "misp-add-sighting"
+					},
+					{
+						"description": "Adds an OSINT feed.",
+						"name": "misp-add-events-from-feed"
+					},
+					{
+						"description": "Adds an email object to the specified event ID.",
+						"name": "misp-add-email-object"
+					},
+					{
+						"description": "Adds a domain object.",
+						"name": "misp-add-domain-object"
+					},
+					{
+						"description": "Adds a URL object to a MISP event.",
+						"name": "misp-add-url-object"
+					},
+					{
+						"description": "Adds any other object to MISP.",
+						"name": "misp-add-object"
+					},
+					{
+						"description": "Adds an IP object to the MISP event. The following arguments are optional, but at least one must be supplied for the command to run successfully: \"ip\", \"dst_port\", \"src_port\", \"domain\", \"hostname\", \"ip_src\", and \"ip_dst\".",
+						"name": "misp-add-ip-object"
+					},
+					{
+						"description": "Search for attributes in MISP.",
+						"name": "misp-search-attributes"
+					}
+				],
+				"description": "Deprecated. Use the MISP v3 integration instead.",
+				"name": "MISP v2 (Deprecated)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Search for events in MISP. This search command will return only information about the matched events. To get information about attributes, use the misp-search-attributes command.",
+						"name": "misp-search-events"
+					},
+					{
+						"description": "Checks the reputation of the given domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Checks the reputation of the given email address.",
+						"name": "email"
+					},
+					{
+						"description": "Checks the file reputation of the given hash.",
+						"name": "file"
+					},
+					{
+						"description": "Checks the reputation of the given URL.",
+						"name": "url"
+					},
+					{
+						"description": "Checks the reputation of an IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Creates a new MISP event.",
+						"name": "misp-create-event"
+					},
+					{
+						"description": "Adds an attribute to an existing MISP event.",
+						"name": "misp-add-attribute"
+					},
+					{
+						"description": "Deletes an event according to the given event ID.",
+						"name": "misp-delete-event"
+					},
+					{
+						"description": "Removes a tag from the given UUID event .",
+						"name": "misp-remove-tag-from-event"
+					},
+					{
+						"description": "Adds a tag to the given UUID event .",
+						"name": "misp-add-tag-to-event"
+					},
+					{
+						"description": "Adds a tag to the given UUID attribute.",
+						"name": "misp-add-tag-to-attribute"
+					},
+					{
+						"description": "Removes a tag from the given UUID attribute.",
+						"name": "misp-remove-tag-from-attribute"
+					},
+					{
+						"description": "Add sighting to an attribute.",
+						"name": "misp-add-sighting"
+					},
+					{
+						"description": "Adds an OSINT feed. Only feeds in the misp format are allowed. For example have manifest.json.",
+						"name": "misp-add-events-from-feed"
+					},
+					{
+						"description": "Adds a file object to the specified event ID.",
+						"name": "misp-add-file-object"
+					},
+					{
+						"description": "Adds an email object to the specified event ID.",
+						"name": "misp-add-email-object"
+					},
+					{
+						"description": "Adds a domain object to MISP.",
+						"name": "misp-add-domain-object"
+					},
+					{
+						"description": "Adds a URL object to an MISP event.",
+						"name": "misp-add-url-object"
+					},
+					{
+						"description": "Adds any other object to MISP.",
+						"name": "misp-add-object"
+					},
+					{
+						"description": "Adds an IP object to the MISP event. The following arguments are optional, but at least one must be supplied for the command to run successfully: \"ip\", \"dst_port\", \"src_port\", \"domain\", \"hostname\", \"ip_src\", and \"ip_dst\".",
+						"name": "misp-add-ip-object"
+					},
+					{
+						"description": "Search for attributes in MISP.",
+						"name": "misp-search-attributes"
+					},
+					{
+						"description": "Update an attribute of an existing MISP event.",
+						"name": "misp-update-attribute"
+					},
+					{
+						"description": "Delete an attribute according to the given attribute ID.",
+						"name": "misp-delete-attribute"
+					},
+					{
+						"description": "Publish an event.",
+						"name": "misp-publish-event"
+					},
+					{
+						"description": "Set event attributes according to the given attributes data.",
+						"name": "misp-set-event-attributes"
+					},
+					{
+						"description": "Check a list of indicator values against the MISP warninglist.",
+						"name": "misp-check-warninglist"
+					}
+				],
+				"description": "Malware information sharing platform and threat sharing.",
+				"name": "MISP v3"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-19T15:52:25Z",
+	"currentVersion": "2.1.9",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Malware information and threat sharing platform.",
+	"downloads": 5922,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "MISP",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/MISP/MISPV2_image.png",
+			"name": "MISP v2 (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/MISP/MISPV3_image.png",
+			"name": "MISP v3"
+		}
+	],
+	"itemVersion": "2.1.9",
+	"keywords": [],
+	"legacy": true,
+	"name": "MISP",
+	"packID": "MISP",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-07-13T21:52:09Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
