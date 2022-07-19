@@ -11,9 +11,9 @@
 	"indicatorSamples": null,
 	"instanceIds": null,
 	"itemVersion": "2.4.4",
-	"keyTypeMap": null,
+	"keyTypeMap": {},
 	"locked": false,
-	"logicalVersion": 0,
+	"logicalVersion": 1,
 	"mapping": {
 		"Phishing Alerts": {
 			"dontMapEventToLabels": false,
@@ -176,6 +176,14 @@
 				},
 				"dbotMirrorInstance": {
 					"simple": "mirror_instance"
+				},
+				"testWeek": {
+					"complex": {
+						"accessor": "id",
+						"filters": [],
+						"root": "incident",
+						"transformers": []
+					}
 				}
 			}
 		}
