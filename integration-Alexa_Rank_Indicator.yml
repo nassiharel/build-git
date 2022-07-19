@@ -41,7 +41,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.11
+    itemVersion: 2.0.14
     packID: Alexa
     packName: Alexa Rank Indicator
     packPropagationLabels:
