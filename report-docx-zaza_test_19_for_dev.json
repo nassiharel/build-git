@@ -242,7 +242,7 @@
 		"locked": false,
 		"modified": "0001-01-01T00:00:00Z",
 		"modulePage": false,
-		"name": "zaza_test_19",
+		"name": "zaza_test_19_for_dev",
 		"owner": "",
 		"packID": "",
 		"packName": "",
@@ -544,11 +544,17 @@
 			},
 			"query": {
 				"filter": {
+					"fromDate": "0001-01-01T00:00:00Z",
 					"period": {
+						"by": "",
 						"byFrom": "days",
-						"fromValue": 7
+						"byTo": "",
+						"field": "",
+						"fromValue": 0,
+						"toValue": null
 					},
-					"query": ""
+					"query": "",
+					"toDate": "0001-01-01T00:00:00Z"
 				},
 				"type": "incident"
 			},
@@ -611,7 +617,7 @@
 						"byFrom": "days",
 						"byTo": "",
 						"field": "",
-						"fromValue": 7,
+						"fromValue": 0,
 						"toValue": null
 					},
 					"query": "Zanwidget",
