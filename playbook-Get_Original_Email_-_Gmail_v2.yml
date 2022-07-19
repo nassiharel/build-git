@@ -105,8 +105,6 @@ tasks:
       - "17"
     note: false
     quietmode: 0
-    results:
-    - brandInstances
     scriptarguments:
       brandname:
         simple: Gmail
