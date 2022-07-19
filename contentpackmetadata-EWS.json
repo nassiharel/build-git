@@ -16,10 +16,10 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "Creates a public key (.cer file), a private key (.pfx) file, and a Base64 encoded private key to use to authenticate the EWS Extension Online Powershell v2 integration.",
-				"name": "CreateCertificate",
+				"description": "Returns an EWS query according to the automation's arguments.",
+				"name": "BuildEWSQuery",
 				"tags": [
-					"basescript"
+					"ews"
 				]
 			},
 			{
@@ -30,10 +30,10 @@
 				]
 			},
 			{
-				"description": "Returns an EWS query according to the automation's arguments.",
-				"name": "BuildEWSQuery",
+				"description": "Creates a public key (.cer file), a private key (.pfx) file, and a Base64 encoded private key to use to authenticate the EWS Extension Online Powershell v2 integration.",
+				"name": "CreateCertificate",
 				"tags": [
-					"ews"
+					"basescript"
 				]
 			}
 		],
@@ -55,238 +55,6 @@
 		"incidenttype": null,
 		"indicatorfield": null,
 		"integration": [
-			{
-				"category": "Messaging",
-				"commands": [
-					{
-						"description": "Retrieves the actual attachments from an item (email message). To get all attachments for a message, only specify the item-id argument.",
-						"name": "ews-get-attachment"
-					},
-					{
-						"description": "Deletes the attachments of an item (email message).",
-						"name": "ews-delete-attachment"
-					},
-					{
-						"description": "Returns a list of searchable mailboxes. This command requires eDiscovery permissions to the Exchange Server. For more information, see the EWSv2 integration documentation.",
-						"name": "ews-get-searchable-mailboxes"
-					},
-					{
-						"description": "Move an item to different folder in the mailbox.",
-						"name": "ews-move-item"
-					},
-					{
-						"description": "Delete items from mailbox.",
-						"name": "ews-delete-items"
-					},
-					{
-						"description": "Searches for items in the specified mailbox. Specific permissions are needed for this operation to search in a target mailbox other than the default.",
-						"name": "ews-search-mailbox"
-					},
-					{
-						"description": "Retrieves contacts for a specified mailbox.",
-						"name": "ews-get-contacts"
-					},
-					{
-						"description": "Retrieves the out-of-office status for a specified mailbox.",
-						"name": "ews-get-out-of-office"
-					},
-					{
-						"description": "Recovers messages that were soft-deleted.",
-						"name": "ews-recover-messages"
-					},
-					{
-						"description": "Creates a new folder in a specified mailbox.",
-						"name": "ews-create-folder"
-					},
-					{
-						"description": "Marks an item as junk. This is commonly used to block an email address. For more information, see the Microsoft documentation: https://msdn.microsoft.com/en-us/library/office/dn481311(v=exchg.150).aspx",
-						"name": "ews-mark-item-as-junk"
-					},
-					{
-						"description": "Retrieves information for folders for a specified mailbox. Only folders with read permissions will be returned. Your visual folders on the mailbox, such as \"Inbox\", are under the folder \"Top of Information Store\".",
-						"name": "ews-find-folders"
-					},
-					{
-						"description": "Retrieves items from a specified folder in a mailbox. The items are order by the item created time, most recent is first.",
-						"name": "ews-get-items-from-folder"
-					},
-					{
-						"description": "Retrieves items by item ID.",
-						"name": "ews-get-items"
-					},
-					{
-						"description": "Moves an item from one mailbox to different mailbox.",
-						"name": "ews-move-item-between-mailboxes"
-					},
-					{
-						"description": "Retrieves a single folder.",
-						"name": "ews-get-folder"
-					},
-					{
-						"description": "Expands a distribution list to display all members. By default, expands only first layer of the distribution list. If recursive-expansion is \"True\", the command expands nested distribution lists and returns all members.",
-						"name": "ews-expand-group"
-					},
-					{
-						"description": "Marks items as read or unread.",
-						"name": "ews-mark-items-as-read"
-					},
-					{
-						"description": "Retrieves items by item ID and uploads its content as an EML file.",
-						"name": "ews-get-items-as-eml"
-					},
-					{
-						"description": "Sends an email.",
-						"name": "send-mail"
-					}
-				],
-				"description": "The new EWS O365 integration uses OAuth 2.0 protocol and can be used with Exchange Online and Office 365 (mail).",
-				"name": "EWS O365"
-			},
-			{
-				"category": "Utilities",
-				"commands": [
-					{
-						"description": "Displays mailbox objects and attributes, populate property pages, or supplies mailbox information to other tasks.",
-						"name": "ews-mailbox-list"
-					},
-					{
-						"description": "Displays Client Access settings that are configured on mailboxes.",
-						"name": "ews-cas-mailbox-list"
-					},
-					{
-						"description": "Retrieves permissions on a mailbox.",
-						"name": "ews-mailbox-permission-list"
-					},
-					{
-						"description": "Displays information about SendAs permissions that are configured for users.",
-						"name": "ews-recipient-permission-list"
-					},
-					{
-						"description": "Displays existing recipient objects in your organization. This command returns all mail-enabled objects (for example, mailboxes, mail users, mail contacts, and distribution groups).",
-						"name": "ews-recipient-list"
-					}
-				],
-				"description": "Use the EWS Extension Online Powershell v2 integration to get information about mailboxes and users in your organization.",
-				"name": "O365 - EWS - Extension Online Powershell v2"
-			},
-			{
-				"category": "Messaging",
-				"commands": [
-					{
-						"description": "OAuth2.0 - Start authorization.",
-						"name": "o365-sc-auth-start"
-					},
-					{
-						"description": "OAuth2.0 - Complete authorization.",
-						"name": "o365-sc-auth-complete"
-					},
-					{
-						"description": "OAuth2.0 - Test authorization.",
-						"name": "o365-sc-auth-test"
-					},
-					{
-						"description": "Create compliance search in the Security \u0026 Compliance Center.",
-						"name": "o365-sc-new-search"
-					},
-					{
-						"description": "Modifies non-running compliance searches in the Security \u0026 Compliance Center.",
-						"name": "o365-sc-set-search"
-					},
-					{
-						"description": "Remove compliance search by name from the Security \u0026 Compliance Center.",
-						"name": "o365-sc-remove-search"
-					},
-					{
-						"description": "List compliance searches in the Security \u0026 Compliance Center.",
-						"name": "o365-sc-list-search"
-					},
-					{
-						"description": "Gets compliance search by name from the Security \u0026 Compliance Center.",
-						"name": "o365-sc-get-search"
-					},
-					{
-						"description": "Starts stopped, completed, or not started compliance search in the Security \u0026 Compliance Center.",
-						"name": "o365-sc-start-search"
-					},
-					{
-						"description": "Stop running compliance search in the Security \u0026 Compliance Center.",
-						"name": "o365-sc-stop-search"
-					},
-					{
-						"description": "After you create a content search using the o365-sc-new-search command and run it using the o365-sc-start-search command, you assign a search action to the search using the o365-sc-new-search-action command.",
-						"name": "o365-sc-new-search-action"
-					},
-					{
-						"description": "Removes a compliance search action by searching for the action name in the Security \u0026 Compliance Center.",
-						"name": "o365-sc-remove-search-action"
-					},
-					{
-						"description": "Lists compliance search actions from the Security \u0026 Compliance Center.",
-						"name": "o365-sc-list-search-action"
-					},
-					{
-						"description": "Gets compliance search action from the Security \u0026 Compliance Center.",
-						"name": "o365-sc-get-search-action"
-					}
-				],
-				"description": "This integration allows you to manage and interact with Microsoft security and compliance content search.",
-				"name": "O365 - Security And Compliance - Content Search"
-			},
-			{
-				"category": "Messaging",
-				"commands": [
-					{
-						"description": "Starts the OAuth2.0 authorization process.",
-						"name": "ews-auth-start"
-					},
-					{
-						"description": "Completes the OAuth2.0 authorization process.",
-						"name": "ews-auth-complete"
-					},
-					{
-						"description": "Tests the OAuth2.0 authorization process.",
-						"name": "ews-auth-test"
-					},
-					{
-						"description": "Gets junk rules for the specified mailbox.",
-						"name": "ews-junk-rules-get"
-					},
-					{
-						"description": "Sets junk rules for the specified mailbox.",
-						"name": "ews-junk-rules-set"
-					},
-					{
-						"description": "Sets junk rules in all managed accounts.",
-						"name": "ews-global-junk-rules-set"
-					},
-					{
-						"description": "Searches message data for the last 10 days. If you run this command without any arguments, only data from the last 48 hours is returned.\nIf you enter a start date that is older than 10 days, you will receive an error and the command will return no results.\nThis command returns a maximum of 1,000,000 results, and will timeout on very large queries. If your query returns too many results, consider splitting it up using shorter start_date and end_date intervals.",
-						"name": "ews-message-trace-get"
-					},
-					{
-						"description": "Displays the federation trust configured for the Exchange organization.",
-						"name": "ews-federation-trust-get"
-					},
-					{
-						"description": "Retrieves the Exchange organization's federated organization identifier and related details, such as federated domains, organization contact, and status.",
-						"name": "ews-federation-configuration-get"
-					},
-					{
-						"description": "Gets the configuration information for the remote domains configured in your organization. This command is available only in the Exchange Online PowerShell V2 module.",
-						"name": "ews-remote-domain-get"
-					},
-					{
-						"description": "Displays the existing user objects in your organization.",
-						"name": "ews-user-list"
-					},
-					{
-						"description": "Retrieves information about the AuditBypassEnabled property value for user accounts (on-premises Exchange and the cloud) and computer accounts (on-premises Exchange only).",
-						"name": "ews-mailbox-audit-bypass-association-list"
-					}
-				],
-				"description": "This integration enables you to manage and interact with Microsoft O365 - Exchange Online from within XSOAR.",
-				"name": "O365 - EWS - Extension"
-			},
 			{
 				"category": "Messaging",
 				"commands": [
@@ -397,6 +165,254 @@
 				],
 				"description": "Exchange Web Services and Office 365 (mail)",
 				"name": "EWS v2"
+			},
+			{
+				"category": "Messaging",
+				"commands": [
+					{
+						"description": "Starts the OAuth2.0 authorization process.",
+						"name": "ews-auth-start"
+					},
+					{
+						"description": "Completes the OAuth2.0 authorization process.",
+						"name": "ews-auth-complete"
+					},
+					{
+						"description": "Tests the OAuth2.0 authorization process.",
+						"name": "ews-auth-test"
+					},
+					{
+						"description": "Gets junk rules for the specified mailbox.",
+						"name": "ews-junk-rules-get"
+					},
+					{
+						"description": "Sets junk rules for the specified mailbox.",
+						"name": "ews-junk-rules-set"
+					},
+					{
+						"description": "Sets junk rules in all managed accounts.",
+						"name": "ews-global-junk-rules-set"
+					},
+					{
+						"description": "Searches message data for the last 10 days. If you run this command without any arguments, only data from the last 48 hours is returned.\nIf you enter a start date that is older than 10 days, you will receive an error and the command will return no results.\nThis command returns a maximum of 1,000,000 results, and will timeout on very large queries. If your query returns too many results, consider splitting it up using shorter start_date and end_date intervals.",
+						"name": "ews-message-trace-get"
+					},
+					{
+						"description": "Displays the federation trust configured for the Exchange organization.",
+						"name": "ews-federation-trust-get"
+					},
+					{
+						"description": "Retrieves the Exchange organization's federated organization identifier and related details, such as federated domains, organization contact, and status.",
+						"name": "ews-federation-configuration-get"
+					},
+					{
+						"description": "Gets the configuration information for the remote domains configured in your organization. This command is available only in the Exchange Online PowerShell V2 module.",
+						"name": "ews-remote-domain-get"
+					},
+					{
+						"description": "Displays the existing user objects in your organization.",
+						"name": "ews-user-list"
+					},
+					{
+						"description": "Retrieves information about the AuditBypassEnabled property value for user accounts (on-premises Exchange and the cloud) and computer accounts (on-premises Exchange only).",
+						"name": "ews-mailbox-audit-bypass-association-list"
+					}
+				],
+				"description": "This integration enables you to manage and interact with Microsoft O365 - Exchange Online from within XSOAR.",
+				"name": "O365 - EWS - Extension"
+			},
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Displays mailbox objects and attributes, populate property pages, or supplies mailbox information to other tasks.",
+						"name": "ews-mailbox-list"
+					},
+					{
+						"description": "Displays Client Access settings that are configured on mailboxes.",
+						"name": "ews-cas-mailbox-list"
+					},
+					{
+						"description": "Retrieves permissions on a mailbox.",
+						"name": "ews-mailbox-permission-list"
+					},
+					{
+						"description": "Displays information about SendAs permissions that are configured for users.",
+						"name": "ews-recipient-permission-list"
+					},
+					{
+						"description": "Displays existing recipient objects in your organization. This command returns all mail-enabled objects (for example, mailboxes, mail users, mail contacts, and distribution groups).",
+						"name": "ews-recipient-list"
+					},
+					{
+						"description": "Add new items to the Tenant Allow/Block Lists.  Uses PowerShell New-TenantAllowBlockListItems cmdlet.",
+						"name": "ews-new-tenant-allow-block-list-items"
+					},
+					{
+						"description": "Retrieve current Tenant Allow/Block List items.  Uses Get-TenantAllowBlockListItems cmdlet.",
+						"name": "ews-get-tenant-allow-block-list-items"
+					},
+					{
+						"description": "Retrieve current count of defined Tenant Allow/Block List items.  Uses Get-TenantAllowBlockListItems cmdlet.",
+						"name": "ews-get-tenant-allow-block-list-count"
+					},
+					{
+						"description": "Remove items from the Tenant Allow/Block Lists.   You can delete items by their value or by unique ID.  Uses PowerShell cmdlet Remove-TenantAllowBlockListItems cmdlet.",
+						"name": "ews-remove-tenant-allow-block-list-items"
+					}
+				],
+				"description": "Use the EWS Extension Online Powershell v2 integration to get information about mailboxes and users in your organization.  This integration can also retrieve and modify Tenant Allow/Block Lists.",
+				"name": "EWS Extension Online Powershell v2"
+			},
+			{
+				"category": "Messaging",
+				"commands": [
+					{
+						"description": "Retrieves the actual attachments from an item (email message). To get all attachments for a message, only specify the item-id argument.",
+						"name": "ews-get-attachment"
+					},
+					{
+						"description": "Deletes the attachments of an item (email message).",
+						"name": "ews-delete-attachment"
+					},
+					{
+						"description": "Returns a list of searchable mailboxes. This command requires eDiscovery permissions to the Exchange Server. For more information, see the EWSv2 integration documentation.",
+						"name": "ews-get-searchable-mailboxes"
+					},
+					{
+						"description": "Move an item to different folder in the mailbox.",
+						"name": "ews-move-item"
+					},
+					{
+						"description": "Delete items from mailbox.",
+						"name": "ews-delete-items"
+					},
+					{
+						"description": "Searches for items in the specified mailbox. Specific permissions are needed for this operation to search in a target mailbox other than the default.",
+						"name": "ews-search-mailbox"
+					},
+					{
+						"description": "Retrieves contacts for a specified mailbox.",
+						"name": "ews-get-contacts"
+					},
+					{
+						"description": "Retrieves the out-of-office status for a specified mailbox.",
+						"name": "ews-get-out-of-office"
+					},
+					{
+						"description": "Recovers messages that were soft-deleted.",
+						"name": "ews-recover-messages"
+					},
+					{
+						"description": "Creates a new folder in a specified mailbox.",
+						"name": "ews-create-folder"
+					},
+					{
+						"description": "Marks an item as junk. This is commonly used to block an email address. For more information, see the Microsoft documentation: https://msdn.microsoft.com/en-us/library/office/dn481311(v=exchg.150).aspx",
+						"name": "ews-mark-item-as-junk"
+					},
+					{
+						"description": "Retrieves information for folders for a specified mailbox. Only folders with read permissions will be returned. Your visual folders on the mailbox, such as \"Inbox\", are under the folder \"Top of Information Store\".",
+						"name": "ews-find-folders"
+					},
+					{
+						"description": "Retrieves items from a specified folder in a mailbox. The items are order by the item created time, most recent is first.",
+						"name": "ews-get-items-from-folder"
+					},
+					{
+						"description": "Retrieves items by item ID.",
+						"name": "ews-get-items"
+					},
+					{
+						"description": "Moves an item from one mailbox to different mailbox.",
+						"name": "ews-move-item-between-mailboxes"
+					},
+					{
+						"description": "Retrieves a single folder.",
+						"name": "ews-get-folder"
+					},
+					{
+						"description": "Expands a distribution list to display all members. By default, expands only first layer of the distribution list. If recursive-expansion is \"True\", the command expands nested distribution lists and returns all members.",
+						"name": "ews-expand-group"
+					},
+					{
+						"description": "Marks items as read or unread.",
+						"name": "ews-mark-items-as-read"
+					},
+					{
+						"description": "Retrieves items by item ID and uploads its content as an EML file.",
+						"name": "ews-get-items-as-eml"
+					},
+					{
+						"description": "Sends an email.",
+						"name": "send-mail"
+					}
+				],
+				"description": "The new EWS O365 integration uses OAuth 2.0 protocol and can be used with Exchange Online and Office 365 (mail).",
+				"name": "EWS O365"
+			},
+			{
+				"category": "Messaging",
+				"commands": [
+					{
+						"description": "OAuth2.0 - Start authorization.",
+						"name": "o365-sc-auth-start"
+					},
+					{
+						"description": "OAuth2.0 - Complete authorization.",
+						"name": "o365-sc-auth-complete"
+					},
+					{
+						"description": "OAuth2.0 - Test authorization.",
+						"name": "o365-sc-auth-test"
+					},
+					{
+						"description": "Create compliance search in the Security \u0026 Compliance Center.",
+						"name": "o365-sc-new-search"
+					},
+					{
+						"description": "Modifies non-running compliance searches in the Security \u0026 Compliance Center.",
+						"name": "o365-sc-set-search"
+					},
+					{
+						"description": "Remove compliance search by name from the Security \u0026 Compliance Center.",
+						"name": "o365-sc-remove-search"
+					},
+					{
+						"description": "List compliance searches in the Security \u0026 Compliance Center.",
+						"name": "o365-sc-list-search"
+					},
+					{
+						"description": "Gets compliance search by name from the Security \u0026 Compliance Center.",
+						"name": "o365-sc-get-search"
+					},
+					{
+						"description": "Starts stopped, completed, or not started compliance search in the Security \u0026 Compliance Center.",
+						"name": "o365-sc-start-search"
+					},
+					{
+						"description": "Stop running compliance search in the Security \u0026 Compliance Center.",
+						"name": "o365-sc-stop-search"
+					},
+					{
+						"description": "After you create a content search using the o365-sc-new-search command and run it using the o365-sc-start-search command, you assign a search action to the search using the o365-sc-new-search-action command.",
+						"name": "o365-sc-new-search-action"
+					},
+					{
+						"description": "Removes a compliance search action by searching for the action name in the Security \u0026 Compliance Center.",
+						"name": "o365-sc-remove-search-action"
+					},
+					{
+						"description": "Lists compliance search actions from the Security \u0026 Compliance Center.",
+						"name": "o365-sc-list-search-action"
+					},
+					{
+						"description": "Gets compliance search action from the Security \u0026 Compliance Center.",
+						"name": "o365-sc-get-search-action"
+					}
+				],
+				"description": "This integration allows you to manage and interact with Microsoft security and compliance content search.",
+				"name": "O365 - Security And Compliance - Content Search"
 			}
 		],
 		"layoutscontainer": null,
@@ -405,40 +421,40 @@
 		"parsingrule": null,
 		"playbook": [
 			{
-				"description": "This playbook performs the following steps:\n1. Creates a compliance search.\n2. Starts a compliance search.\n3. Waits for the compliance search to complete.\n4. Gets the results of the compliance search as an output.\n5. Gets the preview results, if specified.",
-				"name": "O365 - Security And Compliance - Search"
+				"description": "This playbook perform:\n1. Creates a new compliance search action - Preview (Base on created compliance search).\n2. Waits for the preview action to complete.\n3. Retrieves the preview results.",
+				"name": "O365 - Security And Compliance - Search Action - Preview"
 			},
 			{
 				"description": "This playbook performs the following steps:\n1. Creates a new compliance search action Purge - Hard or Soft.\n2. Waits for the compliance search action to complete.\n3. Retrieves the delete search action.",
 				"name": "O365 - Security And Compliance - Search Action - Delete"
 			},
 			{
-				"description": "Process an EWS email",
-				"name": "Process Email - EWS"
+				"description": "This playbook searches EWS to identify and delete emails with similar attributes of a malicious email.",
+				"name": "Search And Delete Emails - EWS"
 			},
 			{
-				"description": "This playbook perform:\n1. Creates a new compliance search action - Preview (Base on created compliance search).\n2. Waits for the preview action to complete.\n3. Retrieves the preview results.",
-				"name": "O365 - Security And Compliance - Search Action - Preview"
+				"description": "Process an EWS email",
+				"name": "Process Email - EWS"
 			},
 			{
 				"description": "This playbook performs the following steps:\n1. Creates a compliance search.\n2. Starts a compliance search.\n3. Waits for the compliance search to complete.\n4. Gets the results of the compliance search.\n5. Gets the preview results, if specified.\n6. Deletes the search results (Hard/Soft).",
 				"name": "O365 - Security And Compliance - Search And Delete"
 			},
 			{
+				"description": "Get emails from specific folders and pre-process them using EWS.",
+				"name": "Get Mails By Folder Paths"
+			},
+			{
 				"description": "This v2 playbook retrieves the original email in a thread as an EML file (and not an email object as in the previous version) by using the EWS v2 or EWSO365 integration.\nIt also reduces the number of tasks to perform the fetch action.\nNote: You must have the necessary eDiscovery permissions in the EWS integration to execute a global search.",
 				"name": "Get Original Email - EWS v2"
 			},
 			{
+				"description": "This playbook performs the following steps:\n1. Creates a compliance search.\n2. Starts a compliance search.\n3. Waits for the compliance search to complete.\n4. Gets the results of the compliance search as an output.\n5. Gets the preview results, if specified.",
+				"name": "O365 - Security And Compliance - Search"
+			},
+			{
 				"description": "Run a ComplianceSearch on Office 365 and delete the results.",
 				"name": "Office 365 Search and Delete"
-			},
-			{
-				"description": "This playbook searches EWS to identify and delete emails with similar attributes of a malicious email.",
-				"name": "Search And Delete Emails - EWS"
-			},
-			{
-				"description": "Get emails from specific folders and pre-process them using EWS.",
-				"name": "Get Mails By Folder Paths"
 			}
 		],
 		"report": null,
@@ -449,41 +465,41 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-26T10:37:09Z",
-	"currentVersion": "1.11.9",
+	"currentVersion": "1.12.1",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.7",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.1.22",
+			"minVersion": "2.2.9",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.6.63",
+			"minVersion": "1.7.14",
 			"name": "Common Scripts"
 		},
 		"Phishing": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.2.0",
+			"minVersion": "3.2.9",
 			"name": "Phishing"
 		}
 	},
 	"deprecated": false,
 	"description": "Exchange Web Services and Office 365 (mail)",
-	"downloads": 17719,
+	"downloads": 19603,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -495,6 +511,10 @@
 	"id": "EWS",
 	"installMessage": "",
 	"integrations": [
+		{
+			"imagePath": "content/packs/EWS/EWSExtensionOnlinePowershellv2_image.png",
+			"name": "EWS Extension Online Powershell v2"
+		},
 		{
 			"imagePath": "content/packs/EWS/EWSO365_image.png",
 			"name": "EWS O365"
@@ -508,15 +528,11 @@
 			"name": "O365 - EWS - Extension"
 		},
 		{
-			"imagePath": "content/packs/EWS/EWSExtensionOnlinePowershellv2_image.png",
-			"name": "O365 - EWS - Extension Online Powershell v2"
-		},
-		{
 			"imagePath": "content/packs/EWS/SecurityAndCompliance_image.png",
 			"name": "O365 - Security And Compliance - Content Search"
 		}
 	],
-	"itemVersion": "1.11.9",
+	"itemVersion": "1.12.1",
 	"keywords": [],
 	"legacy": true,
 	"name": "EWS",
@@ -531,7 +547,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "Exchange Web Services (EWS) provides the functionality to enable client applications to communicate with the Exchange server. EWS provides access to much of the same data that is made available through Microsoft Office Outlook.\r\n\r\n\r\n## What does this pack do?\r\n\r\n- Monitor a specific email account and create incidents from incoming emails to the defined folder.\r\n- Search for an email message across mailboxes and folders.\r\n- Get email attachment information.\r\n- Delete email items from a mailbox.\r\n\r\n## Integrations\r\nThe [EWS O365 integration](https://xsoar.pan.dev/docs/reference/integrations/ewso365) enables you to:\r\n- Retrieve information on emails and activities in a target mailbox.\r\n- Perform operations on the target mailbox such as deleting emails and attachments or moving emails from folder to folder.\r\n\r\nThe [EWS v2 integration](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) enables you to:\r\n- Run compliance search commands as part of Office 365 to search for an email message across mailboxes and folders.\r\n- Retrieve information on emails and activities in a target mailbox.\r\n- Perform operations on the target mailbox such as deleting emails and attachments or moving emails from folder to folder. \r\n\r\nThe [O365 - EWS - Extension integration](https://xsoar.pan.dev/docs/reference/integrations/ews-extension) enables you to manage and interact with Microsoft O365 - Exchange Online from within XSOAR\r\n- Get junk rules for a specified mailbox.\r\n- Set junk rules for a specified mailbox.\r\n- Set junk rules for all managed accounts.\r\n- Search message data.\r\nThe [EWS Extension Online Powershell v2 integration](https://xsoar.pan.dev/docs/reference/integrations/ews-extension-online-powershell-v2) enables you to retrieve information about mailboxes and users in your organization.\r\n- Display client access settings that are configured on mailboxes.\r\n- Display mailbox objects and attributes, populate property pages, or supply mailbox information to other tasks.\r\n- Retrieve permissions on a mailbox.\r\n- Display information about SendAs permissions that are configured for users.\r\n- Display existing recipient objects in your organization such as mailboxes, mail users, mail contacts, and distribution groups. \r\n\r\n## EWS Permissions\r\nTo perform actions on mailboxes of other users, and to execute searches on the Exchange server, you need specific permissions. \r\n\r\n| Permission |Use Case |\r\n| ----- | ----|\r\n| Delegate | One-to-one relationship between users. |\r\n| Impersonation\t| A single account needs to access multiple mailboxes. |\r\n| eDiscovery | Search the Exchange server. |\t\r\n| Compliance Search | Perform searches across mailboxes and get an estimate of the results. |\r\n",
+	"readme": "Exchange Web Services (EWS) provides the functionality to enable client applications to communicate with the Exchange server. EWS provides access to much of the same data that is made available through Microsoft Office Outlook.\r\n\r\n\r\n## What does this pack do?\r\n\r\n- Monitor a specific email account and create incidents from incoming emails to the defined folder.\r\n- Search for an email message across mailboxes and folders.\r\n- Get email attachment information.\r\n- Delete email items from a mailbox.\r\n- Manage Tenant Allow/Block Lists.\r\n\r\n## Integrations\r\nThe [EWS O365 integration](https://xsoar.pan.dev/docs/reference/integrations/ewso365) enables you to:\r\n- Retrieve information on emails and activities in a target mailbox.\r\n- Perform operations on the target mailbox such as deleting emails and attachments or moving emails from folder to folder.\r\n\r\nThe [EWS v2 integration](https://xsoar.pan.dev/docs/reference/integrations/ews-v2) enables you to:\r\n- Run compliance search commands as part of Office 365 to search for an email message across mailboxes and folders.\r\n- Retrieve information on emails and activities in a target mailbox.\r\n- Perform operations on the target mailbox such as deleting emails and attachments or moving emails from folder to folder. \r\n\r\nThe [O365 - EWS - Extension integration](https://xsoar.pan.dev/docs/reference/integrations/ews-extension) enables you to manage and interact with Microsoft O365 - Exchange Online from within XSOAR\r\n- Get junk rules for a specified mailbox.\r\n- Set junk rules for a specified mailbox.\r\n- Set junk rules for all managed accounts.\r\n- Search message data.\r\nThe [EWS Extension Online Powershell v2 integration](https://xsoar.pan.dev/docs/reference/integrations/ews-extension-online-powershell-v2) enables you to retrieve information about mailboxes and users in your organization.\r\n- Display client access settings that are configured on mailboxes.\r\n- Display mailbox objects and attributes, populate property pages, or supply mailbox information to other tasks.\r\n- Retrieve permissions on a mailbox.\r\n- Display information about SendAs permissions that are configured for users.\r\n- Display existing recipient objects in your organization such as mailboxes, mail users, mail contacts, and distribution groups.\r\n- Add, remove, list, and count entries in Tenant Allow/Block Lists.\r\n\r\n## EWS Permissions\r\nTo perform actions on mailboxes of other users, and to execute searches on the Exchange server, you need specific permissions. \r\n\r\n| Permission |Use Case |\r\n| ----- | ----|\r\n| Delegate | One-to-one relationship between users. |\r\n| Impersonation\t| A single account needs to access multiple mailboxes. |\r\n| eDiscovery | Search the Exchange server. |\t\r\n| Compliance Search | Perform searches across mailboxes and get an estimate of the results. |\n### Pack Contributors:\n\n---\n - Mike Rizzo\n\nContributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -542,9 +558,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-05-20T09:27:30Z",
+	"updated": "2022-07-17T22:51:55Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2953671",
+	"versionInfo": "3281367",
 	"videos": []
 }
