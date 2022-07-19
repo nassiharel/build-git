@@ -1,0 +1,39 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#00F3E5",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "ServiceNow SIR Incident",
+	"itemVersion": "2.3.15",
+	"layout": "ServiceNow SIR Incident",
+	"locked": false,
+	"name": "ServiceNow SIR Incident",
+	"onChangeRepAlg": 0,
+	"packID": "ServiceNow",
+	"packName": "ServiceNow",
+	"packPropagationLabels": [
+		"all"
+	],
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
