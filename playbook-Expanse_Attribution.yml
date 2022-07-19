@@ -1,0 +1,1985 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.10.16
+    packID: ExpanseV2
+    packName: Cortex Xpanse
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |
+  Subplaybook for Handle Expanse Incident playbooks. Given an Expanse Issue IP, Issue Provider, Issue Domain,
+  Issue Port and Issue Protocol hunts for internal activity related to the detected service.
+  The playbook looks for logs on Splunk, Cortex Data Lake, Panorama, and ServiceNow CMDB.
+  Returns a list of potential owner BUs, owner Users, Device and Notes.
+id: Expanse Attribution
+inputs:
+- description: Expanse Issue IP.
+  key: IP
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.expanseip}
+- description: Expanse Issue Domain.
+  key: Domain
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.expansedomain}
+- description: Expanse Issue Provider.
+  key: Provider
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${incident.expanseprovider}
+- description: Expanse Issue Port.
+  key: Port
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.expanseport}
+- description: Expanse Issue Protocol.
+  key: Protocol
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.expanseprotocol}
+- description: 'A list of internal IP ranges to check IP addresses against. The list
+    should be provided in CIDR format, separated by commas. An example of a list of
+    ranges could be: 172.16.0.0/12,10.0.0.0/8,192.168.0.0/16. If a list of IP ranges
+    is not provided, the list provided in the IsIPInRanges script (the known IPv4
+    private address ranges) is used by default.'
+  key: InternalIPRange
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Number of days to look back to for logs.
+  key: NumberOfDaysInThePast
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "7"
+name: Expanse Attribution
+outputs:
+- contextPath: Expanse.AttributionIP
+  description: IP addresses
+  type: unknown
+- contextPath: Expanse.AttributionDevice
+  description: Devices
+  type: unknown
+- contextPath: Expanse.AttributionUser
+  description: Users
+  type: Unknown
+- contextPath: Expanse.AttributionCI
+  description: CMDB CI
+  type: Unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+      - "10"
+      - "17"
+      - "53"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 20a2a437-45bb-4ccb-87c4-f7b84709c1e8
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 20a2a437-45bb-4ccb-87c4-f7b84709c1e8
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 490,
+          "y": 50
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3e69abfd-e9fe-492b-8ad2-39e953efaf29
+      iscommand: false
+      name: Splunk
+      type: title
+      version: -1
+    taskid: 3e69abfd-e9fe-492b-8ad2-39e953efaf29
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 195
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 21f9f4ad-158a-4e3a-843d-82828584428e
+      iscommand: false
+      name: User Enrichment
+      type: title
+      version: -1
+    taskid: 21f9f4ad-158a-4e3a-843d-82828584428e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 580,
+          "y": 1660
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "46"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      earliest_time:
+        complex:
+          root: inputs.NumberOfDaysInThePast
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: '-'
+              suffix:
+                value:
+                  simple: d
+            operator: concat
+      event_limit:
+        simple: "100"
+      query:
+        complex:
+          root: inputs.IP
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: dest_ip=
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' dest_port='
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Port
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' transport='
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Protocol
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' action=allowed user!="unknown" | top limit=5 user by serial_number,
+                    vsys'
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches Splunk for events.
+      id: a54a20a5-c30c-49f3-8376-4eb8d98c8328
+      iscommand: true
+      name: Splunk Hunt For Users To IP
+      script: '|||splunk-search'
+      type: regular
+      version: -1
+    taskid: a54a20a5-c30c-49f3-8376-4eb8d98c8328
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -230,
+          "y": 530
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "46"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      earliest_time:
+        complex:
+          root: inputs.NumberOfDaysInThePast
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: '-'
+              suffix:
+                value:
+                  simple: d
+            operator: concat
+      event_limit:
+        simple: "100"
+      query:
+        complex:
+          root: inputs.IP
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: dest_ip=
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' dest_port='
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Port
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' transport='
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Protocol
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' action=allowed user="unknown" | top limit=5 src_ip by
+                    serial_number, vsys'
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches Splunk for events.
+      id: 82b8dc5e-25d6-443d-82b9-a25455b94787
+      iscommand: true
+      name: Splunk Hunt For Unknown Users To IP
+      script: '|||splunk-search'
+      type: regular
+      version: -1
+    taskid: 82b8dc5e-25d6-443d-82b9-a25455b94787
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 180,
+          "y": 530
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: SplunkPy
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "34"
+      "yes":
+      - "5"
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if Splunk integration is enabled
+      id: f6b404c4-6373-4d7b-8868-ede99a7e8a67
+      iscommand: false
+      name: Is Splunk Enabled?
+      type: condition
+      version: -1
+    taskid: f6b404c4-6373-4d7b-8868-ede99a7e8a67
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -460,
+          "y": 350
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cc91cd1b-2c18-4e56-8cb5-d7c7f0436765
+      iscommand: false
+      name: Cortex Data Lake
+      type: title
+      version: -1
+    taskid: cc91cd1b-2c18-4e56-8cb5-d7c7f0436765
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 930,
+          "y": 195
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Cortex Data Lake
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "35"
+      "yes":
+      - "13"
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if Cortex Data Lake is enabled
+      id: 494fb966-190e-4495-83ff-3c48353e4e51
+      iscommand: false
+      name: Is Cortex Data Lake Enabled?
+      type: condition
+      version: -1
+    taskid: 494fb966-190e-4495-83ff-3c48353e4e51
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 930,
+          "y": 340
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "45"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ignore-outputs:
+        simple: "false"
+      limit:
+        simple: "100"
+      query:
+        complex:
+          root: inputs.IP
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: SELECT source_ip.value AS src_ip,log_source_id,vsys,COUNT(*)
+                    AS count FROM `firewall.traffic` WHERE dest_ip.value="
+              suffix:
+                value:
+                  simple: '" AND source_user is NULL AND action.id=0 AND log_time
+                    > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL '
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.NumberOfDaysInThePast
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' DAY) AND protocol.value=LOWER("'
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Protocol
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: '") AND dest_port='
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Port
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' GROUP BY log_source_id, vsys, src_ip'
+            operator: concat
+      transform_results:
+        simple: "No"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Runs a query on  any table or field.
+      id: 0635281a-11c5-4afa-8824-52c1eb0c6222
+      iscommand: true
+      name: Cortex Data Lake Hunt for Unknown Users To IP
+      script: '|||cdl-query-logs'
+      type: regular
+      version: -1
+    taskid: 0635281a-11c5-4afa-8824-52c1eb0c6222
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1410,
+          "y": 720
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "45"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ignore-outputs:
+        simple: "false"
+      limit:
+        simple: "100"
+      query:
+        complex:
+          root: inputs.IP
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: SELECT source_user,log_source_id,vsys,COUNT(*) AS count
+                    FROM `firewall.traffic` WHERE dest_ip.value="
+              suffix:
+                value:
+                  simple: '" AND action.id=0 AND source_user is NOT NULL AND log_time
+                    > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL '
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.NumberOfDaysInThePast
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: '  DAY) AND protocol.value=LOWER("'
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Protocol
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: '") AND dest_port='
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Port
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' GROUP BY log_source_id,vsys,source_user'
+            operator: concat
+      transform_results:
+        simple: "No"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Runs a query on  any table or field.
+      id: 47d16459-c1a8-4998-8ad5-e4c7c8249afe
+      iscommand: true
+      name: Cortex Data Lake Hunt for Users To IP
+      script: '|||cdl-query-logs'
+      type: regular
+      version: -1
+    taskid: 47d16459-c1a8-4998-8ad5-e4c7c8249afe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 905,
+          "y": 720
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8c1b488d-ba55-4717-8b2a-e16a5272f685
+      iscommand: false
+      name: Panorama
+      type: title
+      version: -1
+    taskid: 8c1b488d-ba55-4717-8b2a-e16a5272f685
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1900,
+          "y": 195
+        }
+      }
+  "18":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Panorama
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "36"
+      "yes":
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if Panorama/PAN-OS is enabled
+      id: 1494bc17-2196-471b-8674-79bb01efd4cd
+      iscommand: false
+      name: Is Panorama Enabled?
+      type: condition
+      version: -1
+    taskid: 1494bc17-2196-471b-8674-79bb01efd4cd
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1900,
+          "y": 340
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "47"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      log_type:
+        simple: traffic
+      query:
+        complex:
+          root: inputs.Protocol
+          transformers:
+          - operator: toLowerCase
+          - args:
+              prefix:
+                value:
+                  simple: '(proto eq '
+              suffix:
+                value:
+                  simple: ') and (addr.dst in '
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.IP
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ') and (action eq allow) and (user.src eq '''') and (port.dst
+                    eq '
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Port
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: )
+            operator: concat
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Query Panorama Logs of types: traffic, threat, url, data-filtering
+        and wildfire.'
+      id: c046a5e7-ae14-4869-8634-b40babcb876d
+      iscommand: false
+      name: Panorama Query Logs
+      playbookId: Panorama Query Logs
+      type: playbook
+      version: -1
+    taskid: c046a5e7-ae14-4869-8634-b40babcb876d
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1900,
+          "y": 720
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      log_type:
+        simple: traffic
+      query:
+        complex:
+          root: inputs.Protocol
+          transformers:
+          - operator: toLowerCase
+          - args:
+              prefix:
+                value:
+                  simple: '(proto eq '
+              suffix:
+                value:
+                  simple: ') and (addr.dst in '
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.IP
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ') and (action eq allow) and (user.src neq '''') and (port.dst
+                    eq '
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.Port
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: )
+            operator: concat
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: 'Query Panorama Logs of types: traffic, threat, url, data-filtering
+        and wildfire.'
+      id: 1f2ae81e-d99e-44ad-8653-96cb9dd43788
+      iscommand: false
+      name: Panorama Query Logs
+      playbookId: Panorama Query Logs
+      type: playbook
+      version: -1
+    taskid: 1f2ae81e-d99e-44ad-8653-96cb9dd43788
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1900,
+          "y": 530
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6b3f9304-9880-4bfa-89d0-07d7a0f6d078
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 6b3f9304-9880-4bfa-89d0-07d7a0f6d078
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 580,
+          "y": 3150
+        }
+      }
+  "31":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: username
+                root: Expanse.AttributionUser
+                transformers:
+                - operator: count
+          operator: greaterThan
+          right:
+            value:
+              simple: "0"
+      label: "yes"
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "38"
+      "yes":
+      - "52"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if AD is enabled & we have users to enrich
+      id: 1f8d6a2b-c0c5-4285-8ea3-456e5648eae4
+      iscommand: false
+      name: Do We Have Users?
+      type: condition
+      version: -1
+    taskid: 1f8d6a2b-c0c5-4285-8ea3-456e5648eae4
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 580,
+          "y": 1780
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "38"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      current:
+        simple: ${Expanse.AttributionUser}
+      enrich:
+        simple: ${ActiveDirectory.Users}
+      enrich_fields:
+        simple: memberOf=groups,description,manager,mail
+      enrich_key:
+        simple: sAMAccountName
+      type:
+        simple: User
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Expanse Enrich Attribution Data Structure with additional details
+      id: b29f0c3e-65b7-4328-8d8e-fc7f14278733
+      iscommand: false
+      name: Export Enriched Users
+      script: ExpanseEnrichAttribution
+      type: regular
+      version: -1
+    taskid: b29f0c3e-65b7-4328-8d8e-fc7f14278733
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1010,
+          "y": 2160
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "46"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 99cf349e-2786-4724-8e99-29224705e898
+      iscommand: false
+      name: Splunk Not Enabled
+      type: title
+      version: -1
+    taskid: 99cf349e-2786-4724-8e99-29224705e898
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -820,
+          "y": 545
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "45"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c86b7744-86f6-417c-8738-bec58ffa4c9b
+      iscommand: false
+      name: Cortex Data Lake Not Enabled
+      type: title
+      version: -1
+    taskid: c86b7744-86f6-417c-8738-bec58ffa4c9b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 620,
+          "y": 545
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "47"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: de856729-58ae-4b4d-8cf3-ec1569df4366
+      iscommand: false
+      name: Panorama Not Enabled
+      type: title
+      version: -1
+    taskid: de856729-58ae-4b4d-8cf3-ec1569df4366
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2390,
+          "y": 545
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "39"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c79066b1-2d13-4d42-84d1-ce5315d4142b
+      iscommand: false
+      name: Device Enrichmnent
+      type: title
+      version: -1
+    taskid: c79066b1-2d13-4d42-84d1-ce5315d4142b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 580,
+          "y": 2400
+        }
+      }
+  "39":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: modules.brand
+          operator: isExists
+      - - left:
+            iscontext: true
+            value:
+              simple: modules.brand
+          operator: isEqualString
+          right:
+            value:
+              simple: Panorama
+      - - left:
+            iscontext: true
+            value:
+              simple: modules.state
+          operator: isEqualString
+          right:
+            value:
+              simple: active
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: serial
+                root: Expanse.AttributionDevice
+                transformers:
+                - operator: count
+          operator: greaterThan
+          right:
+            value:
+              simple: "0"
+      label: "yes"
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "30"
+      "yes":
+      - "40"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if Panorama/PAN-OS is enabled & we have device to enrich
+      id: 640d7f45-6644-4f59-83ad-7838d1439a15
+      iscommand: false
+      name: Is Panorama Enabled And We Have Devices?
+      type: condition
+      version: -1
+    taskid: 640d7f45-6644-4f59-83ad-7838d1439a15
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 580,
+          "y": 2550
+        }
+      }
+  "40":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "41"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      cmd:
+        simple: <show><devicegroups></devicegroups></show>
+      extend-context:
+        simple: PanoramaDeviceGroup=response.result.devicegroups.entry
+      ignore-outputs:
+        simple: "true"
+      type:
+        simple: op
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Run any command supported in the API.
+      id: 4bcae054-e6d5-4bad-8c87-c908a6100788
+      iscommand: true
+      name: Retrieve Device Groups
+      script: '|||pan-os'
+      type: regular
+      version: -1
+    taskid: 4bcae054-e6d5-4bad-8c87-c908a6100788
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1060,
+          "y": 2740
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "30"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      current:
+        simple: ${Expanse.AttributionDevice}
+      enrich:
+        complex:
+          root: PanoramaDeviceGroup
+          transformers:
+          - args:
+              expression:
+                value:
+                  simple: '{deviceGroup: "@name", serial: to_array(devices.entry)[].serial}'
+            operator: jmespath
+      enrich_fields:
+        simple: deviceGroup=device-group
+      enrich_key:
+        simple: serial
+      type:
+        simple: Device
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Expanse Enrich Attribution Data Structure with additional details
+      id: 9f66c2f7-8116-432c-85cc-9ceb2dac9d45
+      iscommand: false
+      name: Enrich Attribution Device
+      script: ExpanseEnrichAttribution
+      type: regular
+      version: -1
+    taskid: 9f66c2f7-8116-432c-85cc-9ceb2dac9d45
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1060,
+          "y": 2920
+        }
+      }
+  "45":
+    continueonerrortype: ""
+    id: "45"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "48"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 879c235a-d587-44e2-8ed3-4764502dd918
+      iscommand: false
+      name: Cortex Data Lake Done
+      type: title
+      version: -1
+    taskid: 879c235a-d587-44e2-8ed3-4764502dd918
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1185,
+          "y": 925
+        }
+      }
+  "46":
+    continueonerrortype: ""
+    id: "46"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "48"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5a5a24dd-fd8c-4ba1-8d9c-44fca712b2e7
+      iscommand: false
+      name: Splunk Done
+      type: title
+      version: -1
+    taskid: 5a5a24dd-fd8c-4ba1-8d9c-44fca712b2e7
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -45,
+          "y": 735
+        }
+      }
+  "47":
+    continueonerrortype: ""
+    id: "47"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "48"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c48ba4ca-fac0-483c-86bb-39f0203ebb2c
+      iscommand: false
+      name: Panorama Done
+      type: title
+      version: -1
+    taskid: c48ba4ca-fac0-483c-86bb-39f0203ebb2c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1900,
+          "y": 925
+        }
+      }
+  "48":
+    continueonerrortype: ""
+    id: "48"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "49"
+      - "50"
+      - "51"
+      - "56"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9e68c653-419e-4f6c-8259-d5976fb35413
+      iscommand: false
+      name: Aggregation
+      type: title
+      version: -1
+    taskid: 9e68c653-419e-4f6c-8259-d5976fb35413
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 580,
+          "y": 1295
+        }
+      }
+  "49":
+    continueonerrortype: ""
+    id: "49"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      current:
+        complex:
+          accessor: AttributionDevice
+          root: Expanse
+      input:
+        complex:
+          accessor: Result
+          root: Splunk
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: CDL.Logging
+            operator: append
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: Panorama.Monitor.Logs
+            operator: append
+      serial_fields:
+        simple: serial_number,serial,log_source_id,DeviceSN
+      vsys_fields:
+        simple: vsys,Vsys
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Aggregate entries from multiple sources into AttributionDevice
+      id: b3d1532c-8ce5-4f0b-83ea-b79333261b82
+      iscommand: false
+      name: Aggregate Attribution Device Result
+      script: ExpanseAggregateAttributionDevice
+      type: regular
+      version: -1
+    taskid: b3d1532c-8ce5-4f0b-83ea-b79333261b82
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 170,
+          "y": 1475
+        }
+      }
+  "50":
+    continueonerrortype: ""
+    id: "50"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      current:
+        complex:
+          accessor: AttributionIP
+          root: Expanse
+      input:
+        complex:
+          accessor: Result
+          root: Splunk
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: CDL.Logging
+            operator: append
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: Panorama.Monitor.Logs
+            operator: append
+      source_ip_fields:
+        simple: src,src_ip,SourceAddress
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Aggregate entries from multiple sources into AttributionIP
+      id: e52ea71f-fcf1-4620-8e03-a48431bc0654
+      iscommand: false
+      name: Aggregate Attribution IP Result
+      script: ExpanseAggregateAttributionIP
+      type: regular
+      version: -1
+    taskid: e52ea71f-fcf1-4620-8e03-a48431bc0654
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 580,
+          "y": 1475
+        }
+      }
+  "51":
+    continueonerrortype: ""
+    id: "51"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      current:
+        complex:
+          accessor: AttributionUser
+          root: Expanse
+      input:
+        complex:
+          accessor: Result
+          root: Splunk
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: CDL.Logging
+            operator: append
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: Panorama.Monitor.Logs
+            operator: append
+      username_fields:
+        simple: source_user,srcuser,user,SourceUser
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Aggregate entries from multiple sources into AttributionUser
+      id: 4edc47c0-99c5-4dc5-8e45-bd79201df192
+      iscommand: false
+      name: Aggregate Attribution User Result
+      script: ExpanseAggregateAttributionUser
+      type: regular
+      version: -1
+    taskid: 4edc47c0-99c5-4dc5-8e45-bd79201df192
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 985,
+          "y": 1475
+        }
+      }
+  "52":
+    continueonerrortype: ""
+    id: "52"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Username:
+        complex:
+          accessor: username
+          root: Expanse.AttributionUser
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Enrich accounts using one or more integrations.
+        Supported integrations:
+        - Active Directory
+      id: b4760c27-7ef3-4d06-8b20-905dc3db3ae0
+      iscommand: false
+      name: Account Enrichment - Generic v2.1
+      playbookId: Account Enrichment - Generic v2.1
+      type: playbook
+      version: -1
+    taskid: b4760c27-7ef3-4d06-8b20-905dc3db3ae0
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1010,
+          "y": 1980
+        }
+      }
+  "53":
+    continueonerrortype: ""
+    id: "53"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "57"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6fda483e-abff-4e51-8114-4ffb9aaf8c4e
+      iscommand: false
+      name: ServiceNow CMDB
+      type: title
+      version: -1
+    taskid: 6fda483e-abff-4e51-8114-4ffb9aaf8c4e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2860,
+          "y": 195
+        }
+      }
+  "54":
+    continueonerrortype: ""
+    id: "54"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "48"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c318d6b1-fa11-466b-8265-229ce5895c73
+      iscommand: false
+      name: ServiceNow CMDB Done
+      type: title
+      version: -1
+    taskid: c318d6b1-fa11-466b-8265-229ce5895c73
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2860,
+          "y": 1140
+        }
+      }
+  "56":
+    continueonerrortype: ""
+    id: "56"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      current:
+        complex:
+          accessor: AttributionCI}
+          root: ${Expanse
+      input:
+        complex:
+          accessor: Record}
+          root: ${ServiceNowCMDB
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Aggregate entries from ServiceNow CMDB into AttributionCI
+      id: 8b803c8e-3629-4e76-8e45-e0b06104480f
+      iscommand: false
+      name: ExpanseAggregateAttributionCI
+      script: ExpanseAggregateAttributionCI
+      type: regular
+      version: -1
+    taskid: 8b803c8e-3629-4e76-8e45-e0b06104480f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1400,
+          "y": 1475
+        }
+      }
+  "57":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: ServiceNow CMDB
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "57"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "54"
+      "yes":
+      - "58"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if Panorama/PAN-OS is enabled
+      id: edade4f3-0976-4c6f-8eb0-e08a10383ba7
+      iscommand: false
+      name: Is ServiceNow Enabled?
+      type: condition
+      version: -1
+    taskid: edade4f3-0976-4c6f-8eb0-e08a10383ba7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2860,
+          "y": 320
+        }
+      }
+  "58":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: incident.expanseprovider
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: On Prem
+                root: incident
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "58"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "54"
+      "yes":
+      - "59"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if Panorama/PAN-OS is enabled
+      id: 94fb2633-b674-437d-8767-e2912caf6432
+      iscommand: false
+      name: Is Asset On Prem?
+      type: condition
+      version: -1
+    taskid: 94fb2633-b674-437d-8767-e2912caf6432
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2860,
+          "y": 545
+        }
+      }
+  "59":
+    continueonerrortype: ""
+    id: "59"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "54"
+      "yes":
+      - "60"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: ip}
+          root: ${incident.labels
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty empty arrays. To be used mostly with DQ and selectors.
+      id: 68b15b4e-bede-4e7a-88fb-6996fb2a7fb0
+      iscommand: false
+      name: IP Address Exists?
+      script: Exists
+      type: condition
+      version: -1
+    taskid: 68b15b4e-bede-4e7a-88fb-6996fb2a7fb0
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2860,
+          "y": 745
+        }
+      }
+  "60":
+    continueonerrortype: ""
+    id: "60"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "54"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      SearchCIClass:
+        simple: cmdb_ci_network_adapter
+      SearchQueryField:
+        simple: ip_address
+      SearchQueryValue:
+        simple: ${inputs.IP}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Subplaybook for finding CI records in ServiceNow CMDB.
+      id: 4fa6975a-164f-41b6-89e8-14e3bec96f31
+      iscommand: false
+      name: ServiceNow CMDB Search
+      playbookId: ServiceNow CMDB Search
+      type: playbook
+      version: -1
+    taskid: 4fa6975a-164f-41b6-89e8-14e3bec96f31
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 2860,
+          "y": 945
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 3165,
+        "width": 4060,
+        "x": -820,
+        "y": 50
+      }
+    }
+  }
