@@ -17,7 +17,7 @@
 	"hours": 0,
 	"hoursR": 0,
 	"id": "Cortex XDR Device Control Violations",
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"layout": "Cortex XDR Device Control Violations",
 	"locked": false,
 	"name": "Cortex XDR Device Control Violations",
