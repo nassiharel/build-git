@@ -22,8 +22,7 @@ runonce: false
 script: |-
   data = [
       {"name": "Phishing", "data": [50], "dataType": "incidents", "Query": "type:Phishing",  "pivot": "type:Phishing"},
-      {"name": "Access", "data": [50], "dataType": "incidents", "query": "type:Access",  "pivot": "type:Access"},
-      {"name": "IP", "data": [50], "dataType": "indicators", "query": "type:IP", "pivot": "type:IP"}
+
   ];
   demisto.results(json.dumps(data));
 scripttarget: 0
