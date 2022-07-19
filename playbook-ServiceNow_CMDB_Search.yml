@@ -1,0 +1,387 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 2.3.15
+    packID: ServiceNow
+    packName: ServiceNow
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |
+  Subplaybook for finding CI records in ServiceNow CMDB.
+id: ServiceNow CMDB Search
+inputs:
+- description: The CMDB CI class to perform the search on (Defaults to cmdb_ci_network_adapter).
+  key: SearchCIClass
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: cmdb_ci_network_adapter
+- description: The CI field used to perform the query (Defaults to ip_address).
+  key: SearchQueryField
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ip_address
+- description: The value used to perform the query.
+  key: SearchQueryValue
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: ServiceNow CMDB Search
+outputs:
+- contextPath: ServiceNowCMDB.Record
+  description: Discovered CI records
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 95a33aa0-456c-4999-8d67-99c7e5559368
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 95a33aa0-456c-4999-8d67-99c7e5559368
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 730
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      class:
+        simple: ${inputs.SearchCIClass}
+      query:
+        simple: ${inputs.SearchQueryField}=${inputs.SearchQueryValue}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ServiceNow CMDB
+      description: Query records for a CMDB class.
+      id: d36ad1f6-c15d-47b5-878b-ee4a128b7ec1
+      iscommand: true
+      name: Search for CMDB record
+      script: ServiceNow CMDB|||servicenow-cmdb-records-list
+      type: regular
+      version: -1
+    taskid: d36ad1f6-c15d-47b5-878b-ee4a128b7ec1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 900
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      class:
+        simple: ${inputs.SearchCIClass}
+      sys_id:
+        complex:
+          accessor: sys_id
+          root: ServiceNowCMDB.Records
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ServiceNow CMDB
+      description: Query attributes and relationship information for a specific record.
+      id: 3f33ff9e-9141-4a55-8cd4-c4be43ec194d
+      iscommand: true
+      name: Get record by ID
+      script: ServiceNow CMDB|||servicenow-cmdb-record-get-by-id
+      type: regular
+      version: -1
+    taskid: 3f33ff9e-9141-4a55-8cd4-c4be43ec194d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 1330
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      class:
+        simple: cmdb_ci
+      sys_id:
+        complex:
+          accessor: value
+          root: ServiceNowCMDB.Record.Attributes.cmdb_ci
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ServiceNow CMDB
+      description: Query attributes and relationship information for a specific record.
+      id: 0653b01d-3c11-4ba0-8ff1-ed3ae6f5da2e
+      iscommand: true
+      name: Fetch related CMDB CI by ID
+      script: ServiceNow CMDB|||servicenow-cmdb-record-get-by-id
+      type: regular
+      version: -1
+    taskid: 0653b01d-3c11-4ba0-8ff1-ed3ae6f5da2e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 1525
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cde6d170-9365-4889-86f2-e6e3400626d0
+      iscommand: false
+      name: Playbook End
+      type: title
+      version: -1
+    taskid: cde6d170-9365-4889-86f2-e6e3400626d0
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1360,
+          "y": 1920
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "9"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: ${ServiceNowCMDB.Records}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty empty arrays. To be used mostly with DQ and selectors.
+      id: df8740ef-6092-4ace-84b4-8d0713b7e334
+      iscommand: false
+      name: Do records exist?
+      script: Exists
+      type: condition
+      version: -1
+    taskid: df8740ef-6092-4ace-84b4-8d0713b7e334
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1080
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Do you want to add this asset in the CMDB?
+      cc: null
+      format: ""
+      methods: []
+      replyOptions:
+      - "No"
+      - "Yes"
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: Analyst
+    nexttasks:
+      "No":
+      - "7"
+      "Yes":
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 163630a4-45e6-40c9-84a5-2b9d9f4fe3a6
+      iscommand: false
+      name: Add asset in CMDB?
+      type: condition
+      version: -1
+    taskid: 163630a4-45e6-40c9-84a5-2b9d9f4fe3a6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 890,
+          "y": 1330
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: The asset is not in your CMDB, please manually add asset in ServiceNow
+      id: f66dc3c1-9989-4920-8abc-ffc7ad432413
+      iscommand: false
+      name: Manually add asset in CMDB
+      type: regular
+      version: -1
+    taskid: f66dc3c1-9989-4920-8abc-ffc7ad432413
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 890,
+          "y": 1525
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    evidencedata:
+      customfields: {}
+      description:
+        simple: CMDB Evidence
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      columns:
+        simple: name,sys_class_name,sys_id,asset.display_value,asset.link,asset.value
+      data:
+        complex:
+          accessor: Attributes}
+          root: ${ServiceNowCMDB.Record
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Convert an array to a nice table display. Usually, from the context.
+      id: 76fe59cd-cf7c-44a1-8f8b-7d4751fee3b2
+      iscommand: false
+      name: Save CMDB information in Evidence
+      script: ToTable
+      type: regular
+      version: -1
+    taskid: 76fe59cd-cf7c-44a1-8f8b-7d4751fee3b2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 440,
+          "y": 1740
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1255,
+        "width": 1300,
+        "x": 440,
+        "y": 730
+      }
+    }
+  }
