@@ -1,0 +1,105 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps incoming InsightIDR alert fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Rapid7 InsightIDR - Incoming Mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.0.13",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Alert ID": {
+					"complex": {
+						"filters": [],
+						"root": "id",
+						"transformers": []
+					}
+				},
+				"Alert Name": {
+					"complex": {
+						"accessor": "type",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"Assigned User": {
+					"complex": {
+						"accessor": "name",
+						"filters": [],
+						"root": "assignee",
+						"transformers": []
+					}
+				},
+				"State": {
+					"complex": {
+						"filters": [],
+						"root": "status",
+						"transformers": []
+					}
+				},
+				"Sub Category": {
+					"complex": {
+						"filters": [],
+						"root": "source",
+						"transformers": []
+					}
+				},
+				"details": {
+					"complex": {
+						"accessor": "type_description",
+						"filters": [],
+						"root": "alerts",
+						"transformers": []
+					}
+				},
+				"name": {
+					"complex": {
+						"filters": [],
+						"root": "title",
+						"transformers": []
+					}
+				},
+				"occurred": {
+					"complex": {
+						"filters": [],
+						"root": "created_time",
+						"transformers": []
+					}
+				},
+				"owner": {
+					"complex": {
+						"accessor": "name",
+						"filters": [],
+						"root": "assignee",
+						"transformers": []
+					}
+				}
+			}
+		}
+	},
+	"name": "Rapid7 InsightIDR - Incoming Mapper",
+	"nameRaw": "Rapid7 InsightIDR - Incoming Mapper",
+	"packID": "Rapid7_InsightIDR",
+	"packName": "Rapid7 InsightIDR",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
