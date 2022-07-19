@@ -1,0 +1,124 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Searches for the specified URL on lists.",
+						"name": "url"
+					}
+				],
+				"description": "Search Safe Browsing, The Safe Browsing APIs (v4) let your client applications check URLs against Google's constantly updated lists of unsafe web resources.",
+				"name": "Google Safe Browsing v2"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Check URL Reputation",
+						"name": "url"
+					}
+				],
+				"description": "Deprecated. Use Google Safe Browsing v2 instead.",
+				"name": "Google Safe Browsing (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-06-30T20:23:07Z",
+	"currentVersion": "2.0.16",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Search Safe Browsing",
+	"downloads": 3265,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "GoogleSafeBrowsing",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/GoogleSafeBrowsing/GoogleSafeBrowsing_image.png",
+			"name": "Google Safe Browsing (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/GoogleSafeBrowsing/GoogleSafeBrowsingv2_image.png",
+			"name": "Google Safe Browsing v2"
+		}
+	],
+	"itemVersion": "2.0.16",
+	"keywords": [],
+	"legacy": true,
+	"name": "Google Safe Browsing",
+	"packID": "GoogleSafeBrowsing",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-07-17T22:21:59Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3281367",
+	"videos": []
+}
