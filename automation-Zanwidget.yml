@@ -23,5 +23,6 @@ script: |-
   {name: "Access", dataType:"incidents", query:"type:Access", data: [50], pivot: "type:Access"},
   {name: "IP", data: [50], dataType: "indicators", query:"type:IP", pivot:"type:IP"}]);
 scripttarget: 0
-tags: []
+tags:
+- widget
 type: javascript
