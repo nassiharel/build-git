@@ -8,7 +8,7 @@
 	"hideSearch": false,
 	"id": "MITRE ATT\u0026CK v2",
 	"isCommon": true,
-	"itemVersion": "1.1.0",
+	"itemVersion": "1.1.3",
 	"layout": [
 		{
 			"forceRange": false,
@@ -1012,7 +1012,7 @@
 	"name": "MITRE ATT\u0026CK",
 	"owner": "",
 	"packID": "FeedMitreAttackv2",
-	"packName": "MITRE ATT\u0026CK v2",
+	"packName": "MITRE ATT\u0026CK",
 	"packPropagationLabels": [
 		"all"
 	],
