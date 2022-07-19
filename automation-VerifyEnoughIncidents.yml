@@ -1,0 +1,76 @@
+args:
+- description: The query used to check whether there are sufficient incidents in Cortex
+    XSOAR.
+  name: query
+  required: true
+- description: The amount of incidents in which to check.
+  name: size
+  required: true
+comment: Check whether a given query returns enough incidents.
+commonfields:
+  id: VerifyEnoughIncidents
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.2.23
+    packID: DeveloperTools
+    packName: Developer Tools
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: VerifyEnoughIncidents
+outputs:
+- contextPath: IncidentsCheck.Size
+  description: The number of incidents in Cortex XSOAR that is expected to match the
+    query.
+  type: number
+- contextPath: IncidentsCheck.ConditionMet
+  description: Whether there are enough incidents in Cortex XSOAR that match the query.
+  type: boolean
+- contextPath: IncidentsCheck.Query
+  description: The incidents query used to check whether the condition was met.
+  type: boolean
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('VerifyEnoughIncidents', 'start', __line__())
+
+
+
+
+  def main():
+      args = demisto.args()
+      query = args.get('query')
+      size = int(args.get('size'))
+
+      try:
+          raw_result = demisto.executeCommand("SearchIncidentsV2", {"query": query,
+                                                                    "size": size})
+          incidents_len = len(raw_result[0].get("Contents", [{}])[0].get("Contents", {}).get("data"))
+      except Exception:
+          incidents_len = 0
+      outputs = {
+          'Query': query,
+          'Size': incidents_len,
+          'ConditionMet': incidents_len >= size
+      }
+      return_results(CommandResults(outputs=outputs, outputs_key_field='Query', outputs_prefix='IncidentsCheck'))
+
+
+  if __name__ in ['__main__', 'builtin', 'builtins']:
+      main()
+
+  register_module_line('VerifyEnoughIncidents', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags: []
+type: python
