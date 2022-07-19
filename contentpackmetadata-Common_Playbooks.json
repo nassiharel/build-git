@@ -301,14 +301,14 @@
 		"xsiamreport": null
 	},
 	"created": "2020-08-17T11:42:31Z",
-	"currentVersion": "2.2.9",
+	"currentVersion": "2.2.10",
 	"definitionId": "",
 	"dependencies": {
 		"ANYRUN": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.9",
+			"minVersion": "1.0.10",
 			"name": "ANY.RUN"
 		},
 		"ARIAPacketIntelligence": {
@@ -350,14 +350,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.7",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"CarbonBlackProtect": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.25",
+			"minVersion": "1.0.26",
 			"name": "Carbon Black Enterprise Protection"
 		},
 		"Carbon_Black_Enterprise_Live_Response": {
@@ -371,7 +371,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.1.17",
+			"minVersion": "2.1.18",
 			"name": "Carbon Black Enterprise Response"
 		},
 		"CheckpointFirewall": {
@@ -413,21 +413,21 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.7.12",
+			"minVersion": "1.7.14",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.2.37",
+			"minVersion": "3.2.40",
 			"name": "Common Types"
 		},
 		"CortexXDR": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "4.7.3",
+			"minVersion": "4.8.0",
 			"name": "Palo Alto Networks Cortex XDR - Investigation and Response"
 		},
 		"CrowdStrikeFalcon": {
@@ -441,7 +441,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.2",
+			"minVersion": "2.0.3",
 			"name": "CrowdStrike Falcon Sandbox"
 		},
 		"CrowdStrikeFalconX": {
@@ -504,7 +504,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.16",
+			"minVersion": "1.0.17",
 			"name": "F5 Silverline"
 		},
 		"FeedMitreAttackv2": {
@@ -532,7 +532,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.2.5",
+			"minVersion": "2.2.6",
 			"name": "FireEye HX"
 		},
 		"FortiGate": {
@@ -588,7 +588,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.14",
+			"minVersion": "1.1.15",
 			"name": "Kenna"
 		},
 		"Lastline": {
@@ -637,7 +637,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.14.7",
+			"minVersion": "1.14.9",
 			"name": "PAN-OS"
 		},
 		"PANWComprehensiveInvestigation": {
@@ -665,7 +665,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "3.2.8",
+			"minVersion": "3.2.9",
 			"name": "Phishing"
 		},
 		"Polygon": {
@@ -693,7 +693,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.2.2",
+			"minVersion": "2.2.4",
 			"name": "IBM QRadar"
 		},
 		"Rapid7_Nexpose": {
@@ -791,7 +791,7 @@
 			"author": "VirusTotal",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.4.3",
+			"minVersion": "2.4.4",
 			"name": "VirusTotal"
 		},
 		"VirusTotal-Private_API": {
@@ -853,7 +853,7 @@
 	},
 	"deprecated": false,
 	"description": "Frequently used playbooks pack.",
-	"downloads": 32042,
+	"downloads": 32665,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -946,14 +946,6 @@
 			"name": "SplunkPy"
 		},
 		{
-			"imagePath": "content/packs/Palo_Alto_Networks_WildFire/WildFire-Reports_image.png",
-			"name": "Palo Alto Networks WildFire Reports"
-		},
-		{
-			"imagePath": "content/packs/Palo_Alto_Networks_WildFire/WildFire-v2_image.png",
-			"name": "Palo Alto Networks WildFire v2"
-		},
-		{
 			"imagePath": "content/packs/QRadar/QRadar_image.png",
 			"name": "IBM QRadar (Deprecated)"
 		},
@@ -964,6 +956,14 @@
 		{
 			"imagePath": "content/packs/QRadar/QRadarv3_image.png",
 			"name": "IBM QRadar v3"
+		},
+		{
+			"imagePath": "content/packs/Palo_Alto_Networks_WildFire/WildFire-Reports_image.png",
+			"name": "Palo Alto Networks WildFire Reports"
+		},
+		{
+			"imagePath": "content/packs/Palo_Alto_Networks_WildFire/WildFire-v2_image.png",
+			"name": "Palo Alto Networks WildFire v2"
 		},
 		{
 			"imagePath": "content/packs/FeedMitreAttackv2/MITREATT%26CKv2_image.png",
@@ -998,16 +998,16 @@
 			"name": "Zscaler Internet Access"
 		},
 		{
-			"imagePath": "content/packs/VirusTotal-Private_API/VirusTotal-PrivateAPI_image.png",
-			"name": "VirusTotal - Private API"
-		},
-		{
 			"imagePath": "content/packs/Carbon_Black_Enterprise_Response/carbonblack-v2_image.png",
 			"name": "VMware Carbon Black EDR (Deprecated)"
 		},
 		{
 			"imagePath": "content/packs/Carbon_Black_Enterprise_Response/VMwareCarbonBlackEDRv2_image.png",
 			"name": "VMware Carbon Black EDR v2"
+		},
+		{
+			"imagePath": "content/packs/VirusTotal-Private_API/VirusTotal-PrivateAPI_image.png",
+			"name": "VirusTotal - Private API"
 		},
 		{
 			"imagePath": "content/packs/CheckpointFirewall/CheckPoint_image.png",
@@ -1042,12 +1042,12 @@
 			"name": "FireEye HX"
 		},
 		{
-			"imagePath": "content/packs/Cybereason/Cybereason_image.png",
-			"name": "Cybereason"
-		},
-		{
 			"imagePath": "content/packs/CrowdStrikeFalconX/CrowdStrikeFalconX_image.png",
 			"name": "CrowdStrike Falcon X"
+		},
+		{
+			"imagePath": "content/packs/Cybereason/Cybereason_image.png",
+			"name": "Cybereason"
 		},
 		{
 			"imagePath": "content/packs/epo/epo_image.png",
@@ -1138,12 +1138,12 @@
 			"name": "Threat Crowd v2"
 		},
 		{
-			"imagePath": "content/packs/Carbon_Black_Enterprise_Live_Response/carbonblackliveresponse_image.png",
-			"name": "VMware Carbon Black EDR (Live Response API)"
-		},
-		{
 			"imagePath": "content/packs/CiscoASA/CiscoASA_image.png",
 			"name": "Cisco ASA"
+		},
+		{
+			"imagePath": "content/packs/Carbon_Black_Enterprise_Live_Response/carbonblackliveresponse_image.png",
+			"name": "VMware Carbon Black EDR (Live Response API)"
 		},
 		{
 			"imagePath": "content/packs/CuckooSandbox/CuckooSandbox_image.png",
@@ -1154,20 +1154,20 @@
 			"name": "Proofpoint Protection Server v2"
 		},
 		{
-			"imagePath": "content/packs/Kenna/Kennav2_image.png",
-			"name": "Kenna v2"
-		},
-		{
-			"imagePath": "content/packs/FortiGate/FortiGate_image.png",
-			"name": "FortiGate"
-		},
-		{
 			"imagePath": "content/packs/CrowdStrikeFalconSandbox/VxStream_image.png",
 			"name": "CrowdStrike Falcon Sandbox (Deprecated)"
 		},
 		{
 			"imagePath": "content/packs/CrowdStrikeFalconSandbox/CrowdStrikeFalconSandboxV2_image.png",
 			"name": "CrowdStrike Falcon Sandbox v2"
+		},
+		{
+			"imagePath": "content/packs/Kenna/Kennav2_image.png",
+			"name": "Kenna v2"
+		},
+		{
+			"imagePath": "content/packs/FortiGate/FortiGate_image.png",
+			"name": "FortiGate"
 		},
 		{
 			"imagePath": "content/packs/McAfee-TIE/McAfeeThreatIntelligenceExchange_image.png",
@@ -1198,12 +1198,12 @@
 			"name": "IllusiveNetworks"
 		},
 		{
-			"imagePath": "content/packs/RiskSense/RiskSense_image.png",
-			"name": "RiskSense"
-		},
-		{
 			"imagePath": "content/packs/SNDBOX/SNDBOX_image.png",
 			"name": "SNDBOX (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/RiskSense/RiskSense_image.png",
+			"name": "RiskSense"
 		},
 		{
 			"imagePath": "content/packs/Mimecast/MimecastV2_image.png",
@@ -1212,6 +1212,10 @@
 		{
 			"imagePath": "content/packs/Code42/Code42_image.png",
 			"name": "Code42"
+		},
+		{
+			"imagePath": "content/packs/HybridAnalysis/HybridAnalysis_image.png",
+			"name": "Hybrid Analysis"
 		},
 		{
 			"imagePath": "content/packs/SignalSciences/SignalSciencesWAF_image.png",
@@ -1226,10 +1230,6 @@
 			"name": "ARIA Packet Intelligence"
 		},
 		{
-			"imagePath": "content/packs/HybridAnalysis/HybridAnalysis_image.png",
-			"name": "Hybrid Analysis"
-		},
-		{
 			"imagePath": "content/packs/Stealthwatch_Cloud/StealthwatchCloud_image.png",
 			"name": "Cisco Secure Cloud Analytics (Stealthwatch Cloud)"
 		},
@@ -1242,12 +1242,12 @@
 			"name": "ThreatX"
 		},
 		{
-			"imagePath": "content/packs/Akamai_WAF/AkamaiWAF_image.png",
-			"name": "Akamai WAF"
-		},
-		{
 			"imagePath": "content/packs/HatchingTriage/HatchingTriage_image.png",
 			"name": "Hatching Triage"
+		},
+		{
+			"imagePath": "content/packs/Akamai_WAF/AkamaiWAF_image.png",
+			"name": "Akamai WAF"
 		},
 		{
 			"imagePath": "content/packs/AgariPhishingDefense/AgariPhishingDefense_image.png",
@@ -1266,7 +1266,7 @@
 			"name": "F5 Silverline"
 		}
 	],
-	"itemVersion": "2.2.9",
+	"itemVersion": "2.2.10",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Playbooks",
@@ -1291,9 +1291,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-07-12T21:45:16Z",
+	"updated": "2022-07-18T22:58:16Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3250424",
+	"versionInfo": "3287093",
 	"videos": []
 }
