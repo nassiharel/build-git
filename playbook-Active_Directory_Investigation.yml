@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.4.11
+    itemVersion: 1.4.15
     packID: Active_Directory_Query
     packName: Active Directory Query
     packPropagationLabels:
