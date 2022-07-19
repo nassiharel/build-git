@@ -1,0 +1,332 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Copy a log file. Works on Windows and Unix (differently - take a peek at the script itself to see how).",
+				"name": "D2GetSystemLog",
+				"tags": [
+					"agent",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Get a file from a system using D2 agent.",
+				"name": "D2GetFile",
+				"tags": [
+					"agent"
+				]
+			},
+			{
+				"description": "Show system services",
+				"name": "D2Services",
+				"tags": [
+					"agent",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Use the D2 agent to retrieve the value of the given registry key.",
+				"name": "D2RegQuery",
+				"tags": [
+					"agent",
+					"registry"
+				]
+			},
+			{
+				"description": "Get a File from using a D2 agent",
+				"name": "FetchFileD2",
+				"tags": []
+			},
+			{
+				"description": "Common code that will be merged into each D2 agent script when it runs",
+				"name": "CommonD2",
+				"tags": [
+					"infra",
+					"agent"
+				]
+			},
+			{
+				"description": "Get active users from a D2 agent and parsed them into context",
+				"name": "ActiveUsersD2",
+				"tags": [
+					"endpoint",
+					"agent"
+				]
+			},
+			{
+				"description": "Show system information",
+				"name": "D2Hardware",
+				"tags": [
+					"agent",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Drop a file to a target system by providing its path on the server. Use CopyFileD2 instead in most cases.\nThis is a utility agent script to be used inside server scripts. See CopyFileD2 for an example.",
+				"name": "D2Drop",
+				"tags": [
+					"agent",
+					"util"
+				]
+			},
+			{
+				"description": "For phishing incidents, iterate on all attachments and run PE dump on each",
+				"name": "StaticAnalyze",
+				"tags": [
+					"phishing"
+				]
+			},
+			{
+				"description": "Use the D2 agent to execute Rekall on a system (usually a forensics workstation) and analyze a memory dump file located on that system.",
+				"name": "D2Rekall",
+				"tags": [
+					"agent",
+					"memory",
+					"forensics"
+				]
+			},
+			{
+				"description": "Check the given registry path against a small block list (score 3), allow list (score 1), and suspicious list (score 2). If the key matches neither, returns an answer of 0.",
+				"name": "RegPathReputationBasicLists",
+				"tags": [
+					"registry",
+					"reputation"
+				]
+			},
+			{
+				"description": "Execute the command and pack the output back to server",
+				"name": "D2Exec",
+				"tags": [
+					"agent",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Assign a 'Mailbox Import Export' management role to a user. This script runs through the agent on a Windows machine, pulls and executes a  PowerShell script - which talks to the Exchange server.",
+				"name": "D2O365SearchAndDelete",
+				"tags": [
+					"email",
+					"office365"
+				]
+			},
+			{
+				"description": "Used by the server-side script \"Autoruns\".\nUses d2 agent on endpoint to run SysInternals Autoruns.",
+				"name": "D2Autoruns",
+				"tags": [
+					"agent",
+					"endpoint",
+					"forensics"
+				]
+			},
+			{
+				"description": "Collect Autoruns items from an endpoint and hashes for each item.\nUses a d2 agent to run SysInternals Autoruns.",
+				"name": "Autoruns",
+				"tags": [
+					"endpoint",
+					"forensics"
+				]
+			},
+			{
+				"description": "Execute PE Dump on a file that is under /tmp somewhere. Used internally by StaticAnalyze",
+				"name": "D2PEDump",
+				"tags": [
+					"executable",
+					"agent"
+				]
+			},
+			{
+				"description": "Show running processes",
+				"name": "D2Processes",
+				"tags": [
+					"agent",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Copy a file from an entry to the destination path on the specified system. This uses the dissolvable agent's HTTPS communication channel rather than scp or other out-of-band methods.\nExample usage: !CopyFileD2 destpath=/home/sansforensics/collectedbinaries/inv8_suspiciousPE1.exe.evil entryid=21@8 system=Analyst1",
+				"name": "CopyFileD2",
+				"tags": [
+					"util",
+					"server"
+				]
+			},
+			{
+				"description": "Run a D2 built-in command on a D2 agent",
+				"name": "D2ExecuteCommand",
+				"tags": [
+					"endpoint",
+					"agent"
+				]
+			},
+			{
+				"description": "Show local accounts",
+				"name": "D2ActiveUsers",
+				"tags": [
+					"agent",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Use the D2 agent to carry the winpmem binary to a system and return the memory dump file to the war room. This usually takes a while, depending on amount of RAM in the target system.",
+				"name": "D2Winpmem",
+				"tags": [
+					"agent",
+					"memory",
+					"forensics"
+				]
+			},
+			{
+				"description": "Collect values for the given registry path from all Windows systems in this investigation.",
+				"name": "RegCollectValues",
+				"tags": [
+					"registry",
+					"enhancement"
+				]
+			},
+			{
+				"description": "Perform a short probe of the specified system's registry - retrieve and display the values of a list of interesting keys ",
+				"name": "RegProbeBasic",
+				"tags": [
+					"registry"
+				]
+			},
+			{
+				"description": "Removes the Demisto D2 agent from the system using d2_remove command.",
+				"name": "D2Remove",
+				"tags": []
+			},
+			{
+				"description": "Show local accounts",
+				"name": "D2Users",
+				"tags": [
+					"agent",
+					"endpoint"
+				]
+			},
+			{
+				"description": "Search mails in office-365",
+				"name": "O365SearchEmails",
+				"tags": [
+					"office365",
+					"email",
+					"response"
+				]
+			},
+			{
+				"description": "Assign a 'Mailbox Import Export' management role to a user. This script runs through the agent on a Windows machine, pulls and executes a  PowerShell script - which talks to the Exchange server.",
+				"name": "D2O365ComplianceSearch",
+				"tags": [
+					"email",
+					"office365"
+				]
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Returns a file sample to the war-room from a path on an endpoint using Demisto Dissolvable Agent (D2)\n\nInput:\n* Credentials - credentials to use when trying to deploy Demisto Dissolvable Agent (D2)  (default: Admin)\n* ${Endpoint.Hostname} - deploy agent on target endpoint\n* ${File.Path} - file's path to collect",
+				"name": "Get File Sample From Path - D2"
+			},
+			{
+				"description": "Uses Demisto's d2 agent to collect data from an endpoint for IR purposes.\n\nInput:\n* Hostname (default: ${Endpoint.Hostname})\n* OS (default: windows)\n* Credentials (default: Admin)\n* Path (default: None)",
+				"name": "D2 - Endpoint data collection"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:44:19Z",
+	"currentVersion": "1.0.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.7.14",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "D2 Agent pack",
+	"downloads": 2901,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "D2",
+	"installMessage": "",
+	"integrations": [],
+	"itemVersion": "1.0.5",
+	"keywords": [
+		"d2",
+		"agent tools"
+	],
+	"legacy": true,
+	"name": "D2",
+	"packID": "D2",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2021-12-26T10:28:16Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
