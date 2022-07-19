@@ -1,0 +1,108 @@
+comment: |-
+  Collect the recipients from all campaign incidents.
+
+  This automation runs using the default Limited User role, unless you explicitly change the permissions.
+  For more information, see the section about permissions here:
+  https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+commonfields:
+  id: CollectCampaignRecipients
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 3.2.13
+    packID: Campaign
+    packName: Phishing Campaign
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.9.8.24399
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: CollectCampaignRecipients
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('CollectCampaignRecipients', 'start', __line__())
+
+
+
+
+
+
+  ALL_INCIDENTS = 'All'
+  CAMPAIGN_EMAIL_TO_FIELD = 'campaignemailto'
+
+
+  def get_campaign_incidents():
+      """
+          Get the campaign incidents form the incident's context
+
+          :rtype: ``list``
+          :return: list of campaign incidents
+      """
+      incident = demisto.incidents()[0]
+      incident_id = incident.get('id') or incident.get('investigationId')
+      res = demisto.executeCommand('getContext', {'id': incident_id})
+      if isError(res):
+          return_error(f'Error occurred while trying to get the incident context: {get_error(res)}')
+
+      return demisto.get(res[0], 'Contents.context.EmailCampaign.incidents')
+
+
+  def collect_campaign_recipients(args):
+      """
+          Collect the campaign unique recipients from all the campaign incidents
+
+          :type args: ``dict``
+          :param args: args from demisto
+
+          :rtype: ``str``
+          :return: unique recipients in CSV
+      """
+      try:
+          selected_ids = args['new']
+          if not selected_ids:
+              return ''
+
+          incidents = get_campaign_incidents()
+          if ALL_INCIDENTS not in selected_ids:
+              incidents = filter(lambda incident: incident['id'] in selected_ids, incidents)
+
+          recipient_set = {recipient for incident in incidents for recipient in incident['recipients']}
+          return ','.join(recipient_set)
+      except KeyError as e:
+          raise DemistoException(f'Missing required arg: {str(e)}') from e
+
+
+  def update_campaign_email_to_field(recipients):
+      """
+          Update the campaignemailto field with the collected recipients
+      """
+      incident_id = demisto.incidents()[0]['id']
+      demisto.executeCommand('setIncident', {'id': incident_id, 'customFields': {CAMPAIGN_EMAIL_TO_FIELD: recipients}})
+
+
+  def main():
+      try:
+          args = demisto.args()
+          recipients = collect_campaign_recipients(args)
+          update_campaign_email_to_field(recipients)
+      except Exception as e:
+          return_error(f'Failed to execute CollectCampaignRecipients. Error: {str(e)}', error=traceback.format_exc())
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('CollectCampaignRecipients', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- field-change-triggered
+type: python
