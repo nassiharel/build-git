@@ -38,7 +38,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.0.17
+    itemVersion: 1.0.19
     packID: Maltiverse
     packName: Maltiverse
     packPropagationLabels:
@@ -413,7 +413,7 @@ script:
     - contextPath: File.Tags
       description: Attribute to label an IoC.
       type: String
-  dockerimage: demisto/python3:3.10.4.29342
+  dockerimage: demisto/python3:3.10.5.31928
   runonce: false
   script: |
     register_module_line('Maltiverse', 'start', __line__())
