@@ -1,0 +1,32 @@
+commonfields:
+  id: b6249dbb-113c-4fb5-880e-8ba1d91a69f5
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.5.31928
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: Zanwidget
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |-
+  data = [
+      {"name": "Phishing", "data": [50], "dataType": "incidents", "Query": "type:Phishing",  "pivot": "type:Phishing"},
+      {"name": "Access", "data": [50], "dataType": "incidents", "query": "type:Access",  "pivot": "type:Access"},
+      {"name": "IP", "data": [50], "dataType": "indicators", "query": "type:IP", "pivot": "type:IP"}
+  ];
+  demisto.results(json.dumps(data));
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
