@@ -19,8 +19,29 @@ inputs:
   required: false
   value:
     simple: ${incident.helloworldid}
+- description: ""
+  key: ""
+  playbookInputQuery:
+    daterange:
+      fromdate: "0001-01-01T00:00:00Z"
+      fromdatelicenseval: "0001-01-01T00:00:00Z"
+      period:
+        by: ""
+        byfrom: ""
+        byto: ""
+        field: ""
+        fromvalue: null
+        tovalue: null
+      todate: "0001-01-01T00:00:00Z"
+    query: ssdeep:* and value:"199b9e9a7533431731fbb08ff19d437de1de6533f3ebbffc1e13eeffaa4fd455"
+    queryEntity: indicators
+    results: null
+    runFromLastJobTime: false
+  required: false
+  value: {}
 name: Handle Hello World Alert_copy
 outputs: []
+quiet: true
 sourceplaybookid: Handle Hello World Alert
 starttaskid: "0"
 tasks:
@@ -59,23 +80,29 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+      - "5"
     note: false
     quietmode: 0
     scriptarguments:
-      alert_id:
-        simple: ${inputs.AlertID}
+      query:
+        simple: ssdeep:* and value:"199b9e9a7533431731fbb08ff19d437de1de6533f3ebbffc1e13eeffaa4fd455"
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Retrieve alert details for a HelloWorld alert by alert ID
-      id: 7a16e30b-cd8b-45ce-81cd-b19f9c603dc0
-      iscommand: true
-      name: Get alert details
-      script: '|||helloworld-get-alert'
+      description: Gets a list of indicator objects and the associated indicator outputs
+        that match the specified query and filters. The results are returned in a
+        structured data file.
+      id: 4e4c824d-e013-460f-8e1c-de9431e1b4f9
+      iscommand: false
+      name: Get Indicator with ssdeep
+      script: GetIndicatorsByQuery
       type: regular
       version: -1
-    taskid: 7a16e30b-cd8b-45ce-81cd-b19f9c603dc0
+    taskid: 4e4c824d-e013-460f-8e1c-de9431e1b4f9
     timertriggers: []
     type: regular
     view: |-
@@ -85,15 +112,109 @@ tasks:
           "y": 195
         }
       }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2dd56bab-8b5d-4507-86af-45a0ced44214
+      iscommand: false
+      name: DBot Indicator Enrichment - Generic
+      playbookId: dbot_indicator_enrichment_-_generic
+      type: playbook
+      version: -1
+    taskid: 2dd56bab-8b5d-4507-86af-45a0ced44214
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -150,
+          "y": 370
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b58b2240-9587-4785-876f-b9df370c9460
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: b58b2240-9587-4785-876f-b9df370c9460
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 600
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ssdeep_hash:
+        simple: ${File.SHA256}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This script finds similar files that can be related to each other
+        by fuzzy hash (SSDeep).
+      id: 9b97fd3f-b0db-4cc8-8ba4-0ab749ffadc8
+      iscommand: false
+      name: check SSDSimilarity
+      script: SSDeepSimilarity
+      type: regular
+      version: -1
+    taskid: 9b97fd3f-b0db-4cc8-8ba4-0ab749ffadc8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 330,
+          "y": 370
+        }
+      }
 version: -1
 view: |-
   {
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 240,
-        "width": 380,
-        "x": 50,
+        "height": 615,
+        "width": 860,
+        "x": -150,
         "y": 50
       }
     }
