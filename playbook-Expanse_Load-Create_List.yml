@@ -1,0 +1,342 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.10.16
+    packID: ExpanseV2
+    packName: Cortex Xpanse
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |
+  Sub-playbook to support Expanse Handle Incident playbook.
+  Loads a list to be used in the Expanse playbook.
+  Creates the list if it does not exist.
+id: Expanse Load-Create List
+inputs:
+- description: Name of the list to load. List will be created if it does not exist
+    or is empty.
+  key: ListName
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: If the list does not exist or is empty, it will be created with these
+    values.
+  key: ListValues
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: Expanse Load-Create List
+outputs:
+- contextPath: ParsedList
+  description: Contents of parsed list.
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fb25ef07-66ee-4752-857c-fc5357c3d3c0
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: fb25ef07-66ee-4752-857c-fc5357c3d3c0
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "YES":
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listName:
+        simple: ${inputs.ListName}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if the list exists in the Cortex XSOAR lists.
+      id: 5d981e49-dca5-49ca-88c1-c81fe74e6b7c
+      iscommand: false
+      name: List Exists?
+      script: IsListExist
+      type: condition
+      version: -1
+    taskid: 5d981e49-dca5-49ca-88c1-c81fe74e6b7c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 190
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extend-context:
+        simple: ListText=.
+      listName:
+        simple: ${inputs.ListName}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.list.get
+      id: a10ccb67-3c4d-4d93-8f8e-347a7fed3ed2
+      iscommand: true
+      name: Load List
+      script: Builtin|||getList
+      type: regular
+      version: -1
+    taskid: a10ccb67-3c4d-4d93-8f8e-347a7fed3ed2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 640
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: ${inputs.ListValues}
+      listName:
+        simple: ${inputs.ListName}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.list.create
+      id: b49935a1-6c41-4a45-8ab6-0237a1bb252a
+      iscommand: true
+      name: Create List
+      script: Builtin|||createList
+      type: regular
+      version: -1
+    taskid: b49935a1-6c41-4a45-8ab6-0237a1bb252a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 730,
+          "y": 410
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: ParsedList
+      value:
+        complex:
+          root: ListText
+          transformers:
+          - args:
+              applyIfEmpty: {}
+              defaultValue:
+                value:
+                  simple: '{}'
+            operator: SetIfEmpty
+          - operator: ParseJSON
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: fe3567cd-6f29-4922-8f74-b55d77a7bec9
+      iscommand: false
+      name: Set Context
+      script: Set
+      type: regular
+      version: -1
+    taskid: fe3567cd-6f29-4922-8f74-b55d77a7bec9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 820
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: ListText
+          operator: isEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if list is empty.
+      id: 6011b442-e0f9-41b1-8134-03b0341a5037
+      iscommand: false
+      name: Is List Empty?
+      type: condition
+      version: -1
+    taskid: 6011b442-e0f9-41b1-8134-03b0341a5037
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 980
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 004d92d9-a2fd-42aa-816c-b49d20f0bb24
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 004d92d9-a2fd-42aa-816c-b49d20f0bb24
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1370
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: ${inputs.ListValues}
+      listName:
+        simple: ${inputs.ListName}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.list.set
+      id: 62dda88b-b3a5-44c2-8fba-30516903d664
+      iscommand: true
+      name: Set Empty List
+      script: Builtin|||setList
+      type: regular
+      version: -1
+    taskid: 62dda88b-b3a5-44c2-8fba-30516903d664
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 850,
+          "y": 1170
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1385,
+        "width": 780,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
