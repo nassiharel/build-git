@@ -1,0 +1,86 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps a ServiceNow user data to a User Profile data.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "User Profile - ServiceNow (Incoming)",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.3.15",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"User Profile": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"City": {
+					"simple": "city"
+				},
+				"Cost Center": {
+					"simple": "cost_center"
+				},
+				"Country Name": {
+					"simple": "country"
+				},
+				"Department": {
+					"simple": "department"
+				},
+				"Display Name": {
+					"simple": "name"
+				},
+				"Email": {
+					"simple": "email"
+				},
+				"Employee ID": {
+					"simple": "employee_number"
+				},
+				"Given Name": {
+					"simple": "first_name"
+				},
+				"Manager Name": {
+					"simple": "manager"
+				},
+				"Mobile Phone": {
+					"simple": "mobile_phone"
+				},
+				"State": {
+					"simple": "state"
+				},
+				"Street Address": {
+					"simple": "street"
+				},
+				"Surname": {
+					"simple": "last_name"
+				},
+				"Title": {
+					"simple": "title"
+				},
+				"Username": {
+					"simple": "user_name"
+				},
+				"Zip Code": {
+					"simple": "zip"
+				}
+			}
+		}
+	},
+	"name": "User Profile - ServiceNow (Incoming)",
+	"nameRaw": "User Profile - ServiceNow (Incoming)",
+	"packID": "ServiceNow",
+	"packName": "ServiceNow",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
