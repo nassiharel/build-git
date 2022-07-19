@@ -16,21 +16,21 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "Enhancement automation for user type indicator, to enrich the user name from Active Directory data",
-				"name": "UserEnrichAD",
-				"tags": [
-					"enhancement",
-					"active directory",
-					"user"
-				]
-			},
-			{
 				"description": "Generates password,\nSet an AD user account with this password.\nEnable the account.\nSend mail to the user with tha account information.\nThis script is running `send-mail` command, make sure there is a matching Integration configurated.",
 				"name": "IAMInitADUser",
 				"tags": [
 					"IAM",
 					"active directory",
 					"Utility"
+				]
+			},
+			{
+				"description": "Enhancement automation for user type indicator, to enrich the user name from Active Directory data",
+				"name": "UserEnrichAD",
+				"tags": [
+					"enhancement",
+					"active directory",
+					"user"
 				]
 			},
 			{
@@ -53,11 +53,11 @@
 		"classifier": [
 			{
 				"description": "",
-				"name": "User Profile - Active Directory (Outgoing)"
+				"name": "User Profile - Active Directory (Incoming)"
 			},
 			{
 				"description": "",
-				"name": "User Profile - Active Directory (Incoming)"
+				"name": "User Profile - Active Directory (Outgoing)"
 			}
 		],
 		"correlationrule": null,
@@ -170,6 +170,10 @@
 					{
 						"description": "Updates attributes of an existing Active Directory group.",
 						"name": "ad-update-group"
+					},
+					{
+						"description": "Modifies the AD account attribute \"Password Never Expire\".",
+						"name": "ad-modify-password-never-expire"
 					}
 				],
 				"description": "The Active Directory Query integration enables you to access and manage Active Directory objects (users, contacts, and computers).",
@@ -182,12 +186,12 @@
 		"parsingrule": null,
 		"playbook": [
 			{
-				"description": "Active Directory Investigation playbook provides tools and guidance to investigate changes and manipulation in Active Directory containers, ACLs, Schema, and objects.\nThis playbook uses a 3rd party tool provided by Microsoft to scan the Active Directory access list, trees, and objects.\nAdditional investigative information is provided for manual investigation.",
-				"name": "Active Directory Investigation"
-			},
-			{
 				"description": "Takes an email address or a username of a user account in Active Directory, and returns the email address of the user's manager.",
 				"name": "Active Directory - Get User Manager Details"
+			},
+			{
+				"description": "Active Directory Investigation playbook provides tools and guidance to investigate changes and manipulation in Active Directory containers, ACLs, Schema, and objects.\nThis playbook uses a 3rd party tool provided by Microsoft to scan the Active Directory access list, trees, and objects.\nAdditional investigative information is provided for manual investigation.",
+				"name": "Active Directory Investigation"
 			}
 		],
 		"report": null,
@@ -198,28 +202,28 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-23T17:53:09Z",
-	"currentVersion": "1.4.11",
+	"currentVersion": "1.4.15",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.7",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.6.60",
+			"minVersion": "1.7.14",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.2.33",
+			"minVersion": "3.2.37",
 			"name": "Common Types"
 		},
 		"CrisisManagement": {
@@ -233,21 +237,21 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.8",
+			"minVersion": "1.1.10",
 			"name": "EWS Mail Sender"
 		},
 		"Gmail": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.16",
+			"minVersion": "1.1.19",
 			"name": "Gmail"
 		},
 		"GmailSingleUser": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.6",
+			"minVersion": "1.2.10",
 			"name": "Gmail Single User"
 		},
 		"MailSenderNew": {
@@ -268,13 +272,13 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.15",
+			"minVersion": "1.1.21",
 			"name": "Microsoft Graph Mail"
 		}
 	},
 	"deprecated": false,
 	"description": "Active Directory Query integration enables you to access and manage Active Directory objects (users, contacts, and computers).",
-	"downloads": 20099,
+	"downloads": 23183,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -291,7 +295,7 @@
 			"name": "Active Directory Query v2"
 		}
 	],
-	"itemVersion": "1.4.11",
+	"itemVersion": "1.4.15",
 	"keywords": [
 		"Active Directory"
 	],
@@ -317,13 +321,11 @@
 		"email": "",
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
-	"tags": [
-		"Trending"
-	],
+	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-05-16T21:26:29Z",
+	"updated": "2022-07-04T10:34:40Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2930786",
+	"versionInfo": "3263593",
 	"videos": []
 }
