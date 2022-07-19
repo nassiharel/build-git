@@ -1,0 +1,101 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps outgoing ServiceNow incidents fields for ServiceNow create ticket and mirror playbook",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "c650b1a2-8f36-4f97-8bea-2dc4eb478ef7",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.3.15",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"description": {
+					"simple": "details"
+				},
+				"opened_at": {
+					"complex": {
+						"accessor": "[0]",
+						"filters": [],
+						"root": "created",
+						"transformers": [
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": " "
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "T"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {},
+									"toReplace": {
+										"value": {
+											"simple": "Z"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"delimiter": {
+										"value": {
+											"simple": "."
+										}
+									}
+								},
+								"operator": "split"
+							},
+							{
+								"args": {
+									"index": {
+										"value": {
+											"simple": "0"
+										}
+									}
+								},
+								"operator": "atIndex"
+							}
+						]
+					}
+				},
+				"short_description": {
+					"simple": "name"
+				}
+			}
+		}
+	},
+	"name": "ServiceNow Create Ticket - Outgoing Mapper",
+	"nameRaw": "ServiceNow Create Ticket - Outgoing Mapper",
+	"packID": "ServiceNow",
+	"packName": "ServiceNow",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-outgoing",
+	"unclassifiedCases": null,
+	"version": -1
+}
