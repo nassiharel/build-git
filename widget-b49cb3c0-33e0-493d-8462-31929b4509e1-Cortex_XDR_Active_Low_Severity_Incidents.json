@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "b49cb3c0-33e0-493d-8462-31929b4509e1",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Active Low Severity Incidents",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
