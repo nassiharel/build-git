@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 1.11.9
+    itemVersion: 1.12.1
     packID: EWS
     packName: EWS
     packPropagationLabels:
@@ -75,6 +75,8 @@ tasks:
       - "3"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: EWS v2
@@ -346,6 +348,8 @@ tasks:
       - "3"
     note: false
     quietmode: 0
+    results:
+    - brandInstances
     scriptarguments:
       brandname:
         simple: EWSO365
