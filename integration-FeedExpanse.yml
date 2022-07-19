@@ -1,0 +1,858 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: FeedExpanse
+  version: -1
+configuration:
+- defaultvalue: https://expander.expanse.co
+  display: Your server URL
+  name: url
+  required: true
+  type: 0
+- additionalinfo: The API Key to use for connection
+  display: API Key
+  name: apikey
+  required: true
+  type: 4
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- defaultvalue: "20000"
+  display: The maximum number of indicators to fetch.
+  name: max_fetch
+  required: false
+  type: 0
+- defaultvalue: "7"
+  display: Retrieve indicators observed in the last specified number of days
+  name: min_last_observed
+  required: false
+  type: 0
+- defaultvalue: suddenDeath
+  display: ""
+  name: feedExpirationPolicy
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+  required: false
+  type: 17
+- defaultvalue: "20160"
+  display: ""
+  name: feedExpirationInterval
+  required: false
+  type: 1
+- defaultvalue: "720"
+  display: Feed Fetch Interval
+  name: feedFetchInterval
+  required: false
+  type: 19
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+- additionalinfo: Reliability of the source providing the intelligence data
+  defaultvalue: F - Reliability cannot be judged
+  display: Source Reliability
+  name: feedReliability
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- additionalinfo: Indicators from this integration instance will be marked with this
+    reputation
+  display: Indicator Reputation
+  name: feedReputation
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  required: false
+  type: 18
+- additionalinfo: Supports CSV values.
+  display: Tags
+  name: feedTags
+  required: false
+  type: 0
+- additionalinfo: The Traffic Light Protocol (TLP) designation to apply to indicators
+    fetched from the feed
+  display: Traffic Light Protocol Color
+  name: tlp_color
+  options:
+  - RED
+  - AMBER
+  - GREEN
+  - WHITE
+  required: false
+  type: 15
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.10.16
+    packID: ExpanseV2
+    packName: Cortex Xpanse
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Use this feed to retrieve the discovered IPs/Domains/Certificates from
+  Expanse Expander asset database.
+detaileddescription: |-
+  ## Expanse Expander Feed Instance Configuration
+
+  The API Key can be retrieved by contacting your Expanse Engagement Manager.
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/feed-expanse)
+display: Expanse Expander Feed
+image: data:image/png;base64,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
+name: FeedExpanse
+script:
+  commands:
+  - arguments:
+    - defaultValue: "10"
+      description: The maximum number of results to return per type
+      name: max_indicators
+    - defaultValue: "yes"
+      description: Retrieve discovered IPs
+      name: ip
+    - defaultValue: "yes"
+      description: Retrieve discovered Domains
+      name: domain
+    - defaultValue: "yes"
+      description: Retrieve discovered certificates
+      name: certificate
+    - defaultValue: "yes"
+      description: Retrieve IP Ranges
+      name: iprange
+    description: Retrieve discovered IPs/IP Ranges/Domains/Certificates
+    execution: true
+    name: feedexpanse-get-indicators
+  dockerimage: demisto/python3:3.10.4.30607
+  feed: true
+  runonce: false
+  script: |
+    register_module_line('FeedExpanse', 'start', __line__())
+    """Cortex XSOAR Integration for Expanse Expander and Behavior
+
+    """
+
+
+
+
+
+    import requests
+    import base64
+    from datetime import datetime, timedelta
+    from ipaddress import IPv4Address, AddressValueError, summarize_address_range
+    from typing import (
+        Any, Dict, Optional, Iterable, List
+    )
+
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()  # pylint: disable=no-member
+
+
+    """ CONSTANTS """
+
+    TOKEN_DURATION = 7200
+    DEFAULT_MAX_INDICATORS = 10  # used in expanse-get-indicators
+    DEFAULT_FETCH_MAX_INDICATORS = 1000  # used in fetch-indicators
+    DEFAULT_FETCH_MIN_LAST_OBSERVED = 7  # used in fetch-indicators
+
+
+    """ CLIENT CLASS """
+
+
+    class Client(BaseClient):
+        """Client class to interact with the Expanse API"""
+
+        def __init__(
+            self, base_url: str, api_key: str, verify: bool, proxy: bool, **kwargs
+        ):
+            self.api_key = api_key
+            hdr = {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "User-Agent": "Expanse_XSOAR/0.0.1",
+            }
+            super().__init__(base_url, verify=verify, proxy=proxy, headers=hdr, **kwargs)
+
+        def authenticate(self) -> None:
+            """
+            Perform authentication using API_KEY,
+            stores token and stored timestamp in integration context,
+            retrieves new token when expired
+            """
+            current_utc_timestamp = int(datetime.utcnow().timestamp())
+
+            stored_token = demisto.getIntegrationContext()
+            if (
+                isinstance(stored_token, dict)
+                and "token" in stored_token
+                and "expires" in stored_token
+                and current_utc_timestamp < int(stored_token["expires"])
+            ):
+                self._headers['Authorization'] = f'JWT {stored_token["token"]}'
+            else:
+                # fetch new token
+                hdr = self._headers.copy()
+                hdr["Authorization"] = f"Bearer {self.api_key}"
+
+                r = self._http_request("GET", "/v1/IdToken", headers=hdr)
+                if isinstance(r, dict) and r.get("token", None) is None:
+                    raise ValueError("Authorization failed")
+
+                token_expiration = current_utc_timestamp + TOKEN_DURATION
+
+                self._headers['Authorization'] = f'JWT {r["token"]}'
+                demisto.setIntegrationContext(
+                    {"token": r["token"], "expires": token_expiration}
+                )
+
+        def _paginate(self, method: str, url_suffix: str, params: Optional[Dict[str, Any]]) -> Iterable[Any]:
+            next_url: Optional[str] = None
+
+            while True:
+                result = self._http_request(
+                    method=method,
+                    url_suffix=url_suffix,
+                    full_url=next_url,
+                    params=params,
+                    raise_on_status=True,
+                    timeout=30
+                )
+
+                data = result.get('data', [])
+                if data is not None:
+                    yield from data
+
+                pagination = result.get('pagination', None)
+                if pagination is None:
+                    break
+                next_url = pagination.get('next', None)
+                if next_url is None:
+                    break
+
+                params = None
+
+        def get_iprange_by_id(self, iprange_id: str) -> Dict[str, Any]:
+            result = self._http_request(
+                method="GET",
+                url_suffix=f"/v2/ip-range/{iprange_id}",
+                raise_on_status=True,
+                params={
+                    'include': "severityCounts,annotations,attributionReasons,relatedRegistrationInformation,locationInformation"
+                }
+            )
+            return result
+
+        def get_domain_by_domain(self, domain: str, last_observed_date: Optional[str]) -> Dict[str, Any]:
+            params = {}
+            if last_observed_date is not None:
+                params['minRecentIpLastObservedDate'] = last_observed_date
+
+            result = self._http_request(
+                method="GET",
+                url_suffix=f"/v2/assets/domains/{domain}",
+                raise_on_status=True,
+                params=params
+            )
+            return result
+
+        def get_certificate_by_pem_md5_hash(self, pem_md5_hash: str, last_observed_date: Optional[str]) -> Dict[str, Any]:
+            params = {}
+
+            if last_observed_date is not None:
+                params['minRecentIpLastObservedDate'] = last_observed_date
+
+            result = self._http_request(
+                method="GET",
+                url_suffix=f"/v2/assets/certificates/{pem_md5_hash}",
+                raise_on_status=True,
+                params=params
+            )
+            return result
+
+        def get_ipranges(self, params: Dict[str, Any]) -> Iterable[Any]:
+            return self._paginate(
+                method="GET",
+                url_suffix="/v2/ip-range",
+                params=params
+            )
+
+        def get_domains(self, params: Dict[str, Any]) -> Iterable[Any]:
+            return self._paginate(
+                method="GET",
+                url_suffix="/v2/assets/domains",
+                params=params
+            )
+
+        def get_certificates(self, params: Dict[str, Any]) -> Iterable[Any]:
+            return self._paginate(
+                method="GET",
+                url_suffix="/v2/assets/certificates",
+                params=params
+            )
+
+        def get_ips(self, params: Dict[str, Any]) -> Iterable[Any]:
+            return self._paginate(
+                method="GET",
+                url_suffix="/v2/assets/ips",
+                params=params
+            )
+
+
+    """ HELPER FUNCTIONS """
+
+
+    def check_int(arg: Any, arg_name: str, min_val: int = None, max_val: int = None, required: bool = False) -> Optional[int]:
+        """Converts a string argument to a Python int
+        This function is used to quickly validate an argument provided and convert
+        it into an ``int`` type. It will throw a ValueError if the input is invalid
+        or outside the optional range. If the input is None, it will throw a ValueError
+        if required is ``True``, or ``None`` if required is ``False.
+        """
+
+        # check if argument is mandatory
+        if arg is None:
+            if required is True:
+                raise ValueError(f'Missing argument "{arg_name}"')
+            return None
+
+        i: Optional[int] = None
+
+        if isinstance(arg, str):
+            if not arg.isdigit():
+                raise ValueError(f'Integer invalid: "{arg_name}"="{arg}"')
+            try:
+                i = int(arg)
+            except ValueError:
+                raise ValueError(f'Integer invalid: "{arg_name}"="{arg}"')
+        elif isinstance(arg, int):
+            i = arg
+        else:
+            raise ValueError(f'Invalid number: "{arg_name}"')
+
+        # range check
+        if min_val and i < min_val:
+            raise ValueError(f'Integer outside minimum range: "{arg_name}"="{arg}" ("min={min_val}")')
+        if max_val and i > max_val:
+            raise ValueError(f'Integer outside maximum range: "{arg_name}"="{arg}" ("max={max_val}")')
+
+        return i
+
+
+    def validate_max_indicators(max_indicators_param: Optional[str]) -> Optional[int]:
+        try:
+            max_indicators = check_int(
+                max_indicators_param,
+                'maxIndicators',
+                None, None, False
+            )
+        except ValueError:
+            return None
+
+        if max_indicators is None:
+            max_indicators = DEFAULT_FETCH_MAX_INDICATORS
+
+        return max_indicators
+
+
+    def validate_min_last_observed(min_last_observed_param: Optional[str]) -> Optional[str]:
+        try:
+            min_last_observed = check_int(
+                min_last_observed_param,
+                'minLastObserved',
+                None, None, False
+            )
+        except ValueError:
+            return None
+
+        if min_last_observed is None:
+            min_last_observed = DEFAULT_FETCH_MIN_LAST_OBSERVED
+
+        start_time = datetime.utcnow() - timedelta(days=min_last_observed)
+
+        return start_time.strftime("%Y-%m-%d")
+
+
+    def safe_b64_to_hex(i: str) -> Optional[str]:
+        if not i:
+            return None
+
+        try:
+            return base64.urlsafe_b64decode(i).hex()
+        except Exception:
+            return None
+
+
+    """ INDICATORS HANDLING FUNCTIONS """
+
+
+    def ip_to_demisto_indicator(ip_indicator: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        value = ip_indicator.get('ip', None)
+        if value is None:
+            return None
+
+        provider_name = ip_indicator.get('provider', {}).get('name')
+
+        tenant_name = ip_indicator.get('tenant', {}).get('name')
+
+        business_units = ip_indicator.get("businessUnits", [])
+        business_unit_names = [bu['name'] for bu in business_units if bu.get('name')]
+
+        # to faciliate classifiers
+        ip_indicator['expanseType'] = 'ip'
+
+        return {
+            'type': FeedIndicatorType.IP,
+            'value': value,
+            'rawJSON': ip_indicator,
+            'score': Common.DBotScore.NONE,
+            'fields': {
+                'expansetype': ip_indicator.get('type', None),
+                'expanseassetype': ip_indicator.get('assetType', None),
+                'expansedomain': ip_indicator.get('domain', None),
+                'expansecommonname': ip_indicator.get('commonName', None),
+                'expanselastobserved': ip_indicator.get('lastObserved', None),
+                'lastseenbysource': ip_indicator.get('lastObserved', None),
+                'expanseprovidername': provider_name,
+                'expansetenantname': tenant_name,
+                'expansebusinessunits': business_unit_names
+            }
+        }
+
+
+    def certificate_to_demisto_indicator(certificate: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        certificate_details = certificate.get('certificate')
+        if certificate_details is None:
+            return None
+
+        ec_sha256 = certificate_details.get('pemSha256')
+        if ec_sha256 is None:
+            return None
+        indicator_value = safe_b64_to_hex(ec_sha256)
+        if indicator_value is None:
+            return None
+
+        ec_md5 = certificate_details.get('md5Hash')
+        ec_sha1 = certificate_details.get('pemSha1')
+        ec_spki = certificate_details.get('publicKeySpki')
+
+        ec_modulus = certificate_details.get('publicKeyModulus')
+        ec_publickey = None
+        if (pktemp := certificate_details.get('publicKey')) is not None:
+            ec_publickey = safe_b64_to_hex(pktemp)
+
+        ec_san = certificate_details.get('subjectAlternativeNames')
+
+        ec_names = set()
+        if isinstance(ec_san, str) and len(ec_san) > 0:
+            ec_names.update([san for san in ec_san.split() if len(san) != 0])
+        if (ec_subject_name := certificate_details.get('subjectName')) is not None:
+            ec_names.add(ec_subject_name)
+
+        annotations = certificate.get('annotations', {})
+        tags = [tag['name'] for tag in annotations.get('tags', [])]
+
+        providers = certificate.get('providers', [])
+        provider_name = None if len(providers) == 0 else providers[0].get('name')
+
+        tenant_name = certificate.get('tenant', {}).get('name')
+
+        business_units = certificate.get("businessUnits", [])
+        business_unit_names = [bu['name'] for bu in business_units if bu.get('name')]
+
+        return {
+            'type': 'Certificate',
+            'value': indicator_value,
+            'rawJSON': certificate,
+            'score': Common.DBotScore.NONE,
+            'fields': {
+                # standard context
+                "serialnumber": certificate_details.get('serialNumber'),
+                "certificatenames": '\n'.join(sorted(list(ec_names))) if ec_names else None,
+                "subjectdn": certificate_details.get('subject'),
+                "certificatesignature": {'algorithm': certificate_details.get('signatureAlgorithm')},
+                "subjectalternativenames": [{'value': san} for san in ec_san.split() if len(san) != 0] if ec_san else None,
+                "validitynotafter": certificate_details.get('validNotAfter'),
+                "spkisha256": safe_b64_to_hex(ec_spki) if ec_spki else None,
+                "validitynotbefore": certificate_details.get('validNotBefore'),
+                "publickey": {
+                    "algorithm": certificate_details.get('publicKeyAlgorithm'),
+                    "length": certificate_details.get('publicKeyBits'),
+                    "modulus": ':'.join([ec_modulus[i:i + 2] for i in range(0, len(ec_modulus), 2)]) if ec_modulus else None,
+                    "exponent": certificate_details.get('publicKeyRsaExponent'),
+                    "publickey": ':'.join([ec_publickey[i:i + 2] for i in range(0, len(ec_publickey), 2)]) if ec_publickey else None
+                },
+                "issuerdn": certificate_details.get('issuer'),
+                "md5": safe_b64_to_hex(ec_md5) if ec_md5 else None,
+                "sha1": safe_b64_to_hex(ec_sha1) if ec_sha1 else None,
+                "sha256": indicator_value,
+
+                # expanse specific
+                'expansetags': tags,
+                'expansecertificateadvertisementstatus': certificate.get('certificateAdvertisementStatus', None),
+                'expansedateadded': certificate.get('dateAdded', None),
+                'expansefirstobserved': certificate.get('firstObserved', None),
+                'firstseenbysource': certificate.get('firstObserved', None),
+                'expanselastobserved': certificate.get('lastObserved', None),
+                'lastseenbysource': certificate.get('lastObserved', None),
+                'expanseproperties': '\n'.join(certificate.get('properties', [])),
+                'expanseservicestatus': certificate.get('serviceStatus', None),
+                'expanseprovidername': provider_name,
+                'expansetenantname': tenant_name,
+                'expansebusinessunits': business_unit_names
+            }
+        }
+
+
+    def domain_to_demisto_indicator(domain_indicator: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+        domain = domain_indicator.get('domain', None)
+        if domain is None:
+            return None
+
+        annotations = domain_indicator.get('annotations', {})
+        tags = [tag['name'] for tag in annotations.get('tags', [])]
+
+        providers = domain_indicator.get('providers', [])
+        provider_name = None if len(providers) == 0 else providers[0].get('name')
+
+        tenant_name = domain_indicator.get('tenant', {}).get('name')
+
+        business_units = domain_indicator.get("businessUnits", [])
+        business_unit_names = [bu['name'] for bu in business_units if bu.get('name')]
+
+        # to faciliate classifiers
+        domain_indicator['expanseType'] = 'domain'
+
+        return {
+            'type': 'DomainGlob' if '*' in domain else 'Domain',
+            'value': domain,
+            'rawJSON': domain_indicator,
+            'score': Common.DBotScore.NONE,
+            'fields': {
+                'expansetags': tags,
+                'expansednsresolutionstatus': domain_indicator.get('dnsResolutionStatus', None),
+                'expansedateadded': domain_indicator.get('dateAdded', None),
+                'expansefirstobserved': domain_indicator.get('firstObserved', None),
+                'firstseenbysource': domain_indicator.get('firstObserved', None),
+                'expanselastobserved': domain_indicator.get('lastObserved', None),
+                'lastseenbysource': domain_indicator.get('lastObserved', None),
+                'expanselastsampledip': domain_indicator.get('lastSampledIp', None),
+                'expanseservicestatus': domain_indicator.get('serviceStatus', None),
+                'expansesourcedomain': domain_indicator.get('sourceDomain', None),
+                'expanseprovidername': provider_name,
+                'expansetenantname': tenant_name,
+                'expansebusinessunits': business_unit_names
+            }
+        }
+
+
+    def iprange_to_demisto_indicator(iprange_indicator: Dict[str, Any]) -> Iterable[Dict[str, Any]]:
+        demisto.debug(f"{iprange_indicator!r}")
+
+        ipVersion = iprange_indicator.get('ipVersion', "4")
+        if ipVersion != "4":
+            return []
+
+        start_address = iprange_indicator.get('startAddress', None)
+        if start_address is None:
+            return []
+        try:
+            start_address = IPv4Address(start_address)
+        except AddressValueError:
+            return []
+
+        end_address = iprange_indicator.get('endAddress', None)
+        if end_address is None:
+            return []
+        try:
+            end_address = IPv4Address(end_address)
+        except AddressValueError:
+            return []
+
+        if end_address < start_address:
+            return []
+
+        annotations = iprange_indicator.get('annotations', {})
+        tags = [tag['name'] for tag in annotations.get('tags', []) if tag.get('name')]
+
+        business_units = iprange_indicator.get("businessUnits", [])
+        business_unit_names = [bu['name'] for bu in business_units if bu.get('name')]
+
+        attribution_reasons: List[str] = [ar['reason'] for ar in iprange_indicator.get('attributionReason', []) if ar.get('reason')]
+
+        # to faciliate classifiers
+        iprange_indicator['expanseType'] = 'iprange'
+
+        for cidr in summarize_address_range(start_address, end_address):
+            yield {
+                'type': 'CIDR',
+                'value': str(cidr),
+                'rawJSON': iprange_indicator,
+                'score': Common.DBotScore.NONE,
+                'fields': {
+                    'expansetags': tags,
+                    'expansebusinessunits': business_unit_names,
+                    'expanseseveritycount': iprange_indicator.get('severityCounts', {}),
+                    'expanseattributionreason': attribution_reasons,
+                    'expanseresponsiveipcount': iprange_indicator.get('responsiveIpCount', None)
+                }
+            }
+
+
+    """ COMMAND FUNCTIONS """
+
+
+    def test_module(
+            client: Client,
+            max_indicators_param: Optional[str],
+            min_last_observed_param: Optional[str],
+            tlp_color: Optional[str]) -> str:
+        max_indicators = validate_max_indicators(max_indicators_param)
+        if max_indicators is None:
+            return "Invalid value for max indicators"
+
+        min_last_observed = validate_min_last_observed(min_last_observed_param)
+        if min_last_observed is None:
+            return "Invalide value for last observed range"
+
+        try:
+            client.get_ips(params={
+                'limit': 1,
+                'minLastObservedDate': min_last_observed
+            })
+        except DemistoException as e:
+            if "Forbidden" in str(e) or "Authorization failed" in str(e):
+                return "Authorization Error: make sure API Key is correctly set"
+            else:
+                raise e
+        return "ok"
+
+
+    def indicator_generator(client: Client,
+                            max_indicators: Optional[int] = None,
+                            min_last_observed: Optional[str] = None,
+                            retrieve_ip: Optional[bool] = True,
+                            retrieve_domain: Optional[bool] = True,
+                            retrieve_certificate: Optional[bool] = True,
+                            retrieve_iprange: Optional[bool] = True,
+                            tlp_color: Optional[str] = '',
+                            feed_tags: str = '') -> Iterable[Dict[str, Any]]:
+        if retrieve_ip:
+            get_ips_params = {}
+            if min_last_observed is not None:
+                get_ips_params['minLastObservedDate'] = min_last_observed
+
+            num_indicators = 0
+            for ip_indicator in client.get_ips(params=get_ips_params):
+                if max_indicators is not None and num_indicators >= max_indicators:
+                    break
+
+                demisto_indicator = ip_to_demisto_indicator(ip_indicator)
+                if demisto_indicator is None:
+                    continue
+
+                if tlp_color is not None:
+                    demisto_indicator['fields']['trafficlightprotocol'] = tlp_color
+                if feed_tags:
+                    demisto_indicator['fields']['tags'] = feed_tags
+
+                yield demisto_indicator
+                num_indicators += 1
+
+        if retrieve_certificate:
+            get_certificates_params = {'sort': '-dateAdded'}
+            if min_last_observed is not None:
+                get_certificates_params['minLastObservedDate'] = min_last_observed
+
+            num_indicators = 0
+            for cert_indicator in client.get_certificates(params=get_certificates_params):
+                if max_indicators is not None and num_indicators >= max_indicators:
+                    break
+
+                demisto_indicator = certificate_to_demisto_indicator(cert_indicator)
+                if demisto_indicator is None:
+                    continue
+
+                if tlp_color is not None:
+                    demisto_indicator['fields']['trafficlightprotocol'] = tlp_color
+                if feed_tags:
+                    demisto_indicator['fields']['tags'] = feed_tags
+
+                yield demisto_indicator
+                num_indicators += 1
+
+        if retrieve_domain:
+            get_domains_params = {'sort': '-dateAdded'}
+            if min_last_observed is not None:
+                get_domains_params['minLastObservedDate'] = min_last_observed
+
+            num_indicators = 0
+            for domain_indicator in client.get_domains(params=get_domains_params):
+                if max_indicators is not None and num_indicators >= max_indicators:
+                    break
+
+                demisto_indicator = domain_to_demisto_indicator(domain_indicator)
+                if demisto_indicator is None:
+                    continue
+
+                if tlp_color is not None:
+                    demisto_indicator['fields']['trafficlightprotocol'] = tlp_color
+                if feed_tags:
+                    demisto_indicator['fields']['tags'] = feed_tags
+
+                yield demisto_indicator
+                num_indicators += 1
+
+        if retrieve_iprange:
+            num_indicators = 0
+            iprange_params = {'include': 'severityCounts,annotations,attributionReasons'}
+            for iprange_indicator in client.get_ipranges(params=iprange_params):
+                if max_indicators is not None and num_indicators >= max_indicators:
+                    break
+
+                for demisto_indicator in iprange_to_demisto_indicator(iprange_indicator):
+                    if tlp_color is not None:
+                        demisto_indicator['fields']['trafficlightprotocol'] = tlp_color
+                    if feed_tags:
+                        demisto_indicator['fields']['tags'] = feed_tags
+
+                    yield demisto_indicator
+                    num_indicators += 1
+
+
+    def get_indicators_command(client: Client, args: Dict[str, Any],
+                               tlp_color: Optional[str] = '',
+                               feed_tags: str = '') -> CommandResults:
+        retrieve_ip = argToBoolean(args.get('ip', 'yes'))
+        retrieve_domain = argToBoolean(args.get('domain', 'yes'))
+        retrieve_certificate = argToBoolean(args.get('certificate', 'yes'))
+        retrieve_iprange = argToBoolean(args.get('iprange', 'yes'))
+
+        max_indicators = check_int(args.get('max_indicators'), 'max_indicators', None, None, False)
+        if not max_indicators:
+            max_indicators = DEFAULT_MAX_INDICATORS
+
+        indicators: List[Dict[str, Any]] = []
+        for indicator in indicator_generator(
+                client,
+                max_indicators=max_indicators,
+                retrieve_ip=retrieve_ip,
+                retrieve_domain=retrieve_domain,
+                retrieve_certificate=retrieve_certificate,
+                retrieve_iprange=retrieve_iprange,
+                tlp_color=tlp_color,
+                feed_tags=feed_tags):
+            indicators.append(indicator)
+
+        readable_output = tableToMarkdown(
+            f'Expanse Indicators (capped at {max_indicators})',
+            indicators,
+            headers=['value', 'type']
+        )
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix=None,
+            outputs_key_field=None,
+            outputs=None,
+            raw_response=indicators
+        )
+
+
+    """ MAIN FUNCTION """
+
+
+    def main() -> None:
+        """main function, parses params and runs command functions
+
+        :return:
+        :rtype:
+        """
+
+        params = demisto.params()
+        command = demisto.command()
+        api_key = params.get("apikey")
+        base_url = urljoin(params["url"], "/api")
+        verify_certificate = not params.get("insecure", False)
+        proxy = params.get("proxy", False)
+        max_indicators_param = params.get('max_fetch')
+        min_last_observed_param = params.get('min_last_observed')
+        tlp_color = params.get('tlp_color')
+        feed_tags = params.get('feedTags', '')
+
+        try:
+            client = Client(
+                api_key=api_key, base_url=base_url, verify=verify_certificate, proxy=proxy
+            )
+
+            client.authenticate()
+
+            if command == "test-module":
+                result = test_module(client, max_indicators_param, min_last_observed_param, tlp_color)
+                return_results(result)
+
+            elif command == "fetch-indicators":
+                max_indicators = validate_max_indicators(max_indicators_param)
+                if validate_max_indicators is None:
+                    raise ValueError("Invalid value for max indicators")
+
+                min_last_observed = validate_min_last_observed(min_last_observed_param)
+                if min_last_observed is None:
+                    raise ValueError("Invalid value for last observed day range")
+
+                indicator_batch = []
+                for indicator in indicator_generator(client, tlp_color=tlp_color, feed_tags=feed_tags, max_indicators=max_indicators):
+                    indicator_batch.append(indicator)
+                    if len(indicator_batch) == 2000:
+                        demisto.createIndicators(indicator_batch)
+                        indicator_batch = []
+                if len(indicator_batch) != 0:
+                    demisto.createIndicators(indicator_batch)
+
+            elif command == "feedexpanse-get-indicators":
+                return_results(get_indicators_command(client, demisto.args(), tlp_color=tlp_color, feed_tags=feed_tags))
+            else:
+                raise NotImplementedError(f'Command {command} is not implemented.')
+
+        # Log exceptions and return errors
+        except Exception as e:
+            return_error(
+                f"Failed to execute {command} command.\nError:\n{str(e)}"
+            )
+
+
+    """ ENTRY POINT """
+
+
+    if __name__ in ("__main__", "__builtin__", "builtins"):
+        main()
+
+    register_module_line('FeedExpanse', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
