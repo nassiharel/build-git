@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "f0021d41-aef6-4870-8f61-2c0bb2df3685",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Top 10 Alerts",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
