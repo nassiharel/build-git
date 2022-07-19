@@ -1,0 +1,155 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Queries an IP address in AlienVault OTX.",
+						"name": "ip"
+					},
+					{
+						"description": "Queries a domain in AlienVault OTX.",
+						"name": "domain"
+					},
+					{
+						"description": "Queries IPv6 in AlienVault OTX.",
+						"name": "alienvault-search-ipv6"
+					},
+					{
+						"description": "Searches for a host name in AlienVault OTX.",
+						"name": "alienvault-search-hostname"
+					},
+					{
+						"description": "Query a file in AlienVault OTX.",
+						"name": "file"
+					},
+					{
+						"description": "Query Common Vulnerabilities and Exposures (CVE) in AlienVault OTX.",
+						"name": "alienvault-search-cve"
+					},
+					{
+						"description": "Returns related URLs by indicator.",
+						"name": "alienvault-get-related-urls-by-indicator"
+					},
+					{
+						"description": "Returns related hashes by indicator.",
+						"name": "alienvault-get-related-hashes-by-indicator"
+					},
+					{
+						"description": "Returns passive DNS records by indicator.",
+						"name": "alienvault-get-passive-dns-data-by-indicator"
+					},
+					{
+						"description": "Searches for pulses in AlienVault OTX.",
+						"name": "alienvault-search-pulses"
+					},
+					{
+						"description": "Returns pulse details.",
+						"name": "alienvault-get-pulse-details"
+					},
+					{
+						"description": "Queries a URL in AlienVault OTX.",
+						"name": "url"
+					}
+				],
+				"description": "Query Indicators of Compromise in AlienVault OTX.",
+				"name": "AlienVault OTX v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-06-30T20:28:56Z",
+	"currentVersion": "1.1.19",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Query Indicators of Compromise in AlienVault OTX.",
+	"downloads": 5227,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "AlienVault_OTX",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/AlienVault_OTX/AlienVaultOTXv2_image.png",
+			"name": "AlienVault OTX v2"
+		}
+	],
+	"itemVersion": "1.1.19",
+	"keywords": [],
+	"legacy": true,
+	"name": "AlienVault OTX",
+	"packID": "AlienVault_OTX",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Relationship"
+	],
+	"toServerVersion": "",
+	"updated": "2022-07-05T21:58:58Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
