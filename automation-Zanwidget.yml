@@ -11,7 +11,6 @@ contentitemexportablefields:
     propagationLabels:
     - all
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.5.31928
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -20,12 +19,9 @@ pswd: ""
 runas: DBotWeakRole
 runonce: false
 script: |-
-  data = [
-      {"name": "Phishing", "data": [50], "dataType": "incidents", "Query": "type:Phishing",  "pivot": "type:Phishing"},
-
-  ];
-  demisto.results(json.dumps(data));
+  return JSON.stringify([{name: "Phishing", dataType:"incidents", query:"type:Phishing", data: [50],  pivot: "type:Phishing"},
+  {name: "Access", dataType:"incidents", query:"type:Access", data: [50], pivot: "type:Access"},
+  {name: "IP", data: [50], dataType: "indicators", query:"type:IP", pivot:"type:IP"}]);
 scripttarget: 0
-subtype: python3
 tags: []
-type: python
+type: javascript
