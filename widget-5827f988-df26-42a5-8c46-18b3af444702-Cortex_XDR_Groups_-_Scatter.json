@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "5827f988-df26-42a5-8c46-18b3af444702",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Groups - Scatter",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
