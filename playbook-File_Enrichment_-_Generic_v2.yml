@@ -381,7 +381,7 @@ tasks:
       id: f030af26-2985-453a-88bf-4f1dcc536fab
       iscommand: false
       name: File Enrichment - Virus Total (API v3)
-      playbookName: File Enrichment - Virus Total (API v3)
+      playbookId: File Enrichment - Virus Total (API v3)
       type: playbook
       version: -1
     taskid: f030af26-2985-453a-88bf-4f1dcc536fab
