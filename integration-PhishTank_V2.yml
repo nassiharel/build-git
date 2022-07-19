@@ -39,7 +39,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.16
+    itemVersion: 2.0.17
     packID: PhishTank
     packName: PhishTank
     packPropagationLabels:
@@ -95,7 +95,7 @@ script:
     description: Shows the status (timestamp) of the last time that PhishTank database
       was loaded.
     name: phishtank-status
-  dockerimage: demisto/python3:3.10.4.29342
+  dockerimage: demisto/python3:3.10.4.30607
   runonce: false
   script: |
     register_module_line('PhishTank V2', 'start', __line__())
@@ -442,7 +442,6 @@ script:
 
         # Log exceptions and return errors
         except Exception as e:
-            demisto.error(traceback.format_exc())  # print the traceback
             return_error(f'Failed to execute {command} command.\nError:\n{str(e)}')
 
 
