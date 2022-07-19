@@ -180,6 +180,63 @@
 				},
 				"x": 2,
 				"y": 3
+			},
+			{
+				"forceRange": false,
+				"h": 3,
+				"i": "440d27e0-077e-11ed-ae43-1dab3fb36e55",
+				"id": "440d27e0-077e-11ed-ae43-1dab3fb36e55",
+				"reflectDimensions": true,
+				"w": 5,
+				"widget": {
+					"Cache": null,
+					"cacheVersn": 0,
+					"category": "",
+					"commitMessage": "",
+					"dataType": "incidents",
+					"dateRange": {
+						"fromDate": "0001-01-01T00:00:00Z",
+						"fromDateLicense": "0001-01-01T00:00:00Z",
+						"period": {
+							"by": "",
+							"byFrom": "days",
+							"byTo": "",
+							"field": "",
+							"fromValue": 7,
+							"toValue": null
+						},
+						"toDate": "0001-01-01T00:00:00Z"
+					},
+					"definitionId": "",
+					"fromServerVersion": "5.0.0",
+					"id": "active-incidents-by-type",
+					"isPredefined": true,
+					"itemVersion": "1.2.7",
+					"modified": "2022-07-18T12:30:34.515080028Z",
+					"name": "Active Incidents - Line chart",
+					"packID": "CommonWidgets",
+					"packName": "Common Widgets",
+					"packPropagationLabels": [
+						"all"
+					],
+					"params": {
+						"groupBy": [
+							"occurred(d)",
+							"type"
+						]
+					},
+					"prevName": "Active Incidents - Line chart",
+					"propagationLabels": [],
+					"query": "-category:job and -status:archived and -status:closed",
+					"shouldCommit": false,
+					"toServerVersion": "",
+					"vcShouldIgnore": false,
+					"vcShouldKeepItemLegacyProdMachine": false,
+					"version": 6,
+					"widgetType": "line"
+				},
+				"x": 4,
+				"y": 5
 			}
 		],
 		"locked": false,
@@ -363,7 +420,7 @@
 	"latestReportUsername": "",
 	"latestScheduledReportTime": "0001-01-01T00:00:00Z",
 	"locked": false,
-	"name": "zaza_test_19",
+	"name": "zaza_test_19_for_dev",
 	"nextScheduledTime": "0001-01-01T00:00:00Z",
 	"orientation": "portrait",
 	"packID": "",
@@ -563,6 +620,79 @@
 				"type": "scripts"
 			},
 			"title": "zan",
+			"titleStyle": null,
+			"type": "chart"
+		},
+		{
+			"autoPageBreak": false,
+			"automation": {
+				"args": null,
+				"id": "",
+				"name": "",
+				"noEvent": false
+			},
+			"data": null,
+			"layout": {
+				"chartProperties": {
+					"axis": {
+						"x": {},
+						"y": {}
+					},
+					"format": "DD MMM Y",
+					"isDatesChart": true,
+					"layout": "vertical",
+					"margin": {
+						"bottom": 5,
+						"left": 13,
+						"right": 5,
+						"top": 5
+					},
+					"timeFrame": "days"
+				},
+				"chartType": "line",
+				"columnPos": 4,
+				"dimensions": {
+					"height": 300,
+					"width": 273
+				},
+				"forceRangeMessage": "",
+				"h": 3,
+				"i": "440d27e0-077e-11ed-ae43-1dab3fb36e55",
+				"legendStyle": {
+					"align": "center",
+					"iconSize": 8,
+					"iconType": "square",
+					"verticalAlign": "top",
+					"width": 273,
+					"wrapperStyle": {
+						"maxHeight": 96
+					}
+				},
+				"reflectDimensions": true,
+				"rowPos": 5,
+				"w": 5
+			},
+			"query": {
+				"filter": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 0,
+						"toValue": null
+					},
+					"query": "-category:job and -status:archived and -status:closed",
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"groupBy": [
+					"occurred(d)",
+					"type"
+				],
+				"type": "incident"
+			},
+			"title": "Active Incidents - Line chart",
 			"titleStyle": null,
 			"type": "chart"
 		}
