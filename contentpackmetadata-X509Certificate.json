@@ -1,0 +1,219 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"automation",
+		"indicatorfield",
+		"reputation",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Enrich and calculate the reputation of a certificate indicator.",
+				"name": "CertificateReputation",
+				"tags": [
+					"reputation"
+				]
+			},
+			{
+				"description": "Extract fields from a certificate file and return the standard context.",
+				"name": "CertificateExtract",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": [
+			{
+				"description": "Starting of certificate validity period",
+				"name": "Validity Not Before",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "Certificate Names",
+				"type": "longText"
+			},
+			{
+				"description": "Issuer Distinguished Name",
+				"name": "Issuer DN",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Certificate Validation Checks",
+				"type": "tagsSelect"
+			},
+			{
+				"description": "SHA256 fingerprint of Subject Public Key Info",
+				"name": "SPKI SHA256",
+				"type": "shortText"
+			},
+			{
+				"description": "Certificate in PEM format.",
+				"name": "PEM",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "Certificate Signature",
+				"type": "grid"
+			},
+			{
+				"description": "Subject Distinguished Name",
+				"name": "Subject DN",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Extension",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Subject Alternative Names",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "Public Key",
+				"type": "grid"
+			},
+			{
+				"description": "End of certificate validity period",
+				"name": "Validity Not After",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "Serial Number",
+				"type": "shortText"
+			}
+		],
+		"integration": null,
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Certificate Indicator"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": [
+			{
+				"details": "Certificate",
+				"enhancementScriptNames": [],
+				"reputationScriptName": "CertificateReputation"
+			}
+		],
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-12-21T11:29:02Z",
+	"currentVersion": "1.0.12",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.37",
+			"name": "Common Types"
+		},
+		"ExpanseV2": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.10.16",
+			"name": "Cortex Xpanse"
+		}
+	},
+	"deprecated": false,
+	"description": "The X509 Certificate Content Packs provides additional capabilities for handling, parsing and validating X509 Certificates in Cortex XSOAR.",
+	"downloads": 2297,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "6.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "X509Certificate",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ExpanseV2/ExpanseV2_image.png",
+			"name": "Cortex Xpanse"
+		},
+		{
+			"imagePath": "content/packs/ExpanseV2/FeedExpanse_image.png",
+			"name": "Expanse Expander Feed"
+		}
+	],
+	"itemVersion": "1.0.12",
+	"keywords": [
+		"X509",
+		"Certificate"
+	],
+	"legacy": true,
+	"name": "X509Certificate",
+	"packID": "X509Certificate",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This pack introduces the Certificate indicator type for handling X509 Certificates in Cortex XSOAR. \n\n## Default Indicator Type\n\nThis pack includes the Certificate indicator type.\n\n## Indicator Fields\n\nThis following are the indicator fields for the Certificate indicator layout.\n\n- Certificate Names\n- Certificate Signature\n- Certificate Validation Checks\n- Extension\n- Issuer DN (Issuer Distinguished Name)\n- PEM (Certificate in PEM format)\n- Public Key\n- Serial Number\n- SPKI SHA256\n- SHA256 fingerprint of Subject Public Key Info\n- Subject Alternative Names\n- Subject DN (Subject Distinguished Name)\n- Validity Not After (End of certificate validity period)\n- Validity Not Before (Starting of certificate validity period)\n\n## Automation\nThis pack includes the following 2 Automations.\n\n- **CertificateExtract** - Extracts all the certificate fields from a X509 certificate in PEM or DER format.\n- **CertificateReputation** - Enriches and calculates the reputation of a Certificate indicator.\n\n## Layout\n\nThe default Certificate Indicator layout includes information about the indicators on both the Info page and the Details page. \n\n### The Info Page\nThe following information appears in the Info page.\n- Creation date, modified date, expiration date of the indicator.\n- Reputation of the indicator sources.\n- The date, event, and source of the indicators.\n- Certificate information, validation checks, Subject Alternative Name (SAN), and fingerprints of the indicators\n- Related incidents.\n\nIt also includes [action buttons](#action-buttons) for Analysts to utilize in their day to day.\n\n### The Details Page\nThe following information appears in the Details page. \n- Extensions \n- Public key\n- The raw certificate\n- Extended details\n\n### Action Buttons\n\nThe following action button scripts appear in the Certificate Indicator layout:\n- Enrich - Enriches the indicators.\n- Expire - Allows a user to expire an indicator. When an indicator is expired, it remains in the indicator's table with the status of expired.\n\n\n\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "6.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Use Case",
+		"Security",
+		"Threat Intelligence",
+		"Network"
+	],
+	"toServerVersion": "",
+	"updated": "2022-06-28T10:28:21Z",
+	"useCases": [
+		"Threat Intelligence Management"
+	],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
