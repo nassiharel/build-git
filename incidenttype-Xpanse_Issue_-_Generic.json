@@ -1,0 +1,40 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#418ae7",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Xpanse Issue - Generic",
+	"itemVersion": "1.10.16",
+	"layout": "expanseissue",
+	"locked": false,
+	"name": "Xpanse Issue - Generic",
+	"onChangeRepAlg": 1,
+	"packID": "ExpanseV2",
+	"packName": "Cortex Xpanse",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Xpanse Incident Handling - Generic",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
