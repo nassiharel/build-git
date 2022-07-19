@@ -1,0 +1,124 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Provides an Alexa ranking of the domain.",
+						"name": "domain"
+					}
+				],
+				"description": "Alexa provides website ranking information that can be useful when determining if a domain has a strong web presence.",
+				"name": "Alexa Rank Indicator v2"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Provides an Alexa ranking of the Domain in question.",
+						"name": "domain"
+					}
+				],
+				"description": "Alexa provides website ranking information that can be useful in determining if the domain in question has a strong web presence.",
+				"name": "Alexa Rank Indicator"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-23T17:51:12Z",
+	"currentVersion": "2.0.14",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Alexa provides website ranking information that can be useful in determining if the domain in question has a strong web presence.",
+	"downloads": 3604,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Alexa",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Alexa/AlexaRankIndicator_image.png",
+			"name": "Alexa Rank Indicator"
+		},
+		{
+			"imagePath": "content/packs/Alexa/AlexaRankIndicatorv2_image.png",
+			"name": "Alexa Rank Indicator v2"
+		}
+	],
+	"itemVersion": "2.0.14",
+	"keywords": [],
+	"legacy": true,
+	"name": "Alexa Rank Indicator",
+	"packID": "Alexa",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-07-05T22:52:15Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
