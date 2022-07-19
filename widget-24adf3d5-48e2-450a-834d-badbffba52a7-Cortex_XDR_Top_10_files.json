@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "24adf3d5-48e2-450a-834d-badbffba52a7",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Top 10 files",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
