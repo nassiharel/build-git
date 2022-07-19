@@ -1,0 +1,37 @@
+args:
+- default: true
+  description: The arguments to pass to the D2script - Dictionary format "{arg1:val1,arg2:val2}"
+  name: arguments
+- description: The d2 command to run
+  name: commandName
+  required: true
+comment: Run a D2 built-in command on a D2 agent
+commonfields:
+  id: D2ExecuteCommand
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.5
+    packID: D2
+    packName: D2
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+engineinfo: {}
+mainengineinfo: {}
+name: D2ExecuteCommand
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  d_args = args.arguments ? JSON.parse(args.arguments) : {};
+  return executeCommand(args.commandName, d_args);
+scripttarget: 0
+system: true
+tags:
+- endpoint
+- agent
+type: javascript
