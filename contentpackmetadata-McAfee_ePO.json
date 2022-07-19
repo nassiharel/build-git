@@ -244,34 +244,34 @@
 		"xsiamreport": null
 	},
 	"created": "2020-11-09T18:41:05Z",
-	"currentVersion": "2.0.5",
+	"currentVersion": "2.0.6",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.6",
+			"minVersion": "1.31.5",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.6.60",
+			"minVersion": "1.7.7",
 			"name": "Common Scripts"
 		},
 		"ServiceNow": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.3.9",
+			"minVersion": "2.3.12",
 			"name": "ServiceNow"
 		}
 	},
 	"deprecated": false,
 	"description": "McAfee ePolicy Orchestrator",
-	"downloads": 2580,
+	"downloads": 2881,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -308,7 +308,7 @@
 			"name": "ServiceNow v2"
 		}
 	],
-	"itemVersion": "2.0.5",
+	"itemVersion": "2.0.6",
 	"keywords": [],
 	"legacy": true,
 	"name": "McAfee ePO",
@@ -333,9 +333,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-04-19T09:23:16Z",
+	"updated": "2022-05-29T21:22:40Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2909779",
+	"versionInfo": "3157401",
 	"videos": []
 }
