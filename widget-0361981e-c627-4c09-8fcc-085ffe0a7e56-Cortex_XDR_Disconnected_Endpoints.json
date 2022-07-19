@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "0361981e-c627-4c09-8fcc-085ffe0a7e56",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": " Cortex XDR Disconnected Endpoints",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
