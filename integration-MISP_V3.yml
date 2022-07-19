@@ -59,7 +59,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.1.5
+    itemVersion: 2.1.9
     packID: MISP
     packName: MISP
     packPropagationLabels:
@@ -1060,6 +1060,8 @@ script:
     - description: Sharing group ID. Mandatory when Sharing_group distribution is
         set.
       name: sharing_group_id
+    - description: Set the creation date for the event in the format YYYY-MM-DD.
+      name: creation_date
     description: Creates a new MISP event.
     name: misp-create-event
     outputs:
@@ -1724,6 +1726,94 @@ script:
       required: true
     description: Adds a file object to the specified event ID.
     name: misp-add-file-object
+    outputs:
+    - contextPath: MISP.Event.ID
+      description: MISP event ID.
+      type: number
+    - contextPath: MISP.Event.Object.MetaCategory
+      description: Object meta category.
+      type: String
+    - contextPath: MISP.Event.Object.Distribution
+      description: Distribution of the object.
+      type: Number
+    - contextPath: MISP.Event.Object.Name
+      description: Name of the object.
+      type: String
+    - contextPath: MISP.Event.Object.TemplateVersion
+      description: Template version of the object.
+      type: Number
+    - contextPath: MISP.Event.Object.EventID
+      description: ID of the event in which the object was first created.
+      type: Number
+    - contextPath: MISP.Event.Object.TemplateUUID
+      description: UUID of the template.
+      type: String
+    - contextPath: MISP.Event.Object.LastChanged
+      description: Timestamp when the object was last changed.
+      type: String
+    - contextPath: MISP.Event.Object.Deleted
+      description: Whether the object was deleted.
+      type: Boolean
+    - contextPath: MISP.Event.Object.ID
+      description: ID of the object.
+      type: Number
+    - contextPath: MISP.Event.Object.UUID
+      description: UUID of the object.
+      type: String
+    - contextPath: MISP.Event.Object.Attribute.Value
+      description: Value of the attribute.
+      type: String
+    - contextPath: MISP.Event.Object.Attribute.EventID
+      description: ID of the first event from which the object originated.
+      type: Number
+    - contextPath: MISP.Event.Object.Attribute.LastChanged
+      description: Attribute last changed timestamp.
+      type: Date
+    - contextPath: MISP.Event.Object.Attribute.Deleted
+      description: Whether the object was deleted.
+      type: Boolean
+    - contextPath: MISP.Event.Object.Attribute.ObjectID
+      description: ID of the object.
+      type: Number
+    - contextPath: MISP.Event.Object.Attribute.DisableCorrelation
+      description: Whether correlation is disabled.
+      type: Boolean
+    - contextPath: MISP.Event.Object.Attribute.ID
+      description: ID of the attribute.
+      type: Unknown
+    - contextPath: MISP.Event.Object.Attribute.ObjectRelation
+      description: Relation of the object.
+      type: String
+    - contextPath: MISP.Event.Object.Attribute.Type
+      description: Object type.
+      type: String
+    - contextPath: MISP.Event.Object.Attribute.UUID
+      description: UUID of the attribute.
+      type: String
+    - contextPath: MISP.Event.Object.Attribute.ToIDs
+      description: Whether the to_ids flag is on.
+      type: Boolean
+    - contextPath: MISP.Event.Object.Attribute.Category
+      description: Category of the attribute.
+      type: String
+    - contextPath: MISP.Event.Object.Attribute.SharingGroupID
+      description: ID of the sharing group.
+      type: Number
+    - contextPath: MISP.Event.Object.Attribute.Comment
+      description: Comment of the attribute.
+      type: String
+    - contextPath: MISP.Event.Object.Description
+      description: Description of the object.
+      type: String
+  - arguments:
+    - description: Entry ID of the email.
+      name: entry_id
+      required: true
+    - description: ID of the event to which to add object to.
+      name: event_id
+      required: true
+    description: Adds an email object to the specified event ID.
+    name: misp-add-email-object
     outputs:
     - contextPath: MISP.Event.ID
       description: MISP event ID.
@@ -2494,7 +2584,7 @@ script:
     - contextPath: MISP.Warninglist.Lists
       description: Name of warninglists where the value was found.
       type: string
-  dockerimage: demisto/pymisp2:1.0.0.27777
+  dockerimage: demisto/pymisp2:1.0.0.31860
   runonce: false
   script: |
     register_module_line('MISP V3', 'start', __line__())
@@ -2504,7 +2594,7 @@ script:
     import urllib3
 
     from pymisp import ExpandedPyMISP, PyMISPError, MISPObject, MISPSighting, MISPEvent, MISPAttribute
-    from pymisp.tools import GenericObjectGenerator
+    from pymisp.tools import GenericObjectGenerator, EMailObject
     import copy
     from pymisp.tools import FileObject
 
@@ -3011,7 +3101,7 @@ script:
         analysis_arg = args.get('analysis')
         event.analysis = MISP_ANALYSIS_TO_IDS.get(analysis_arg) if analysis_arg in MISP_ANALYSIS_TO_IDS else analysis_arg
         event.info = args.get('info') if args.get('info') else 'Event from XSOAR'
-        event.date = datetime.today()
+        event.date = datetime.strptime(args.get('creation_date'), "%Y-%m-%d") if args.get('creation_date') else datetime.today()
         event.published = argToBoolean(args.get('published', 'False'))
         return event
 
@@ -3800,6 +3890,14 @@ script:
         return add_object(event_id, obj)
 
 
+    def add_email_object(demisto_args: dict):
+        entry_id = demisto_args.get('entry_id')
+        event_id = demisto_args.get('event_id')
+        email_path = demisto.getFilePath(entry_id).get('path')
+        obj = EMailObject(email_path)
+        return add_object(event_id, obj)
+
+
     def add_domain_object(demisto_args: dict):
         """Adds a domain object to MISP
         domain-ip description: https://www.misp-project.org/objects.html#_domain_ip
@@ -4121,6 +4219,8 @@ script:
                                                           reliability, attributes_limit))
             elif command == 'misp-add-file-object':
                 return_results(add_file_object(args))
+            elif command == 'misp-add-email-object':
+                return_results(add_email_object(args))
             elif command == 'misp-add-domain-object':
                 return_results(add_domain_object(args))
             elif command == 'misp-add-url-object':
