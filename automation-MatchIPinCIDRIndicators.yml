@@ -1,0 +1,135 @@
+args:
+- description: IP Address to match.
+  name: ip
+  required: true
+- description: Tags to search (comma separated string).
+  isArray: true
+  name: tags
+comment: Match provided IP address in all the Indicators of type CIDR with the provided
+  tags (longest match).
+commonfields:
+  id: MatchIPinCIDRIndicators
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.10.16
+    packID: ExpanseV2
+    packName: Cortex Xpanse
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.30607
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: MatchIPinCIDRIndicators
+outputs:
+- contextPath: MatchingCIDRIndicator
+  description: Matching CIDR Indicator
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('MatchIPinCIDRIndicators', 'start', __line__())
+
+
+
+  """MatchIPinCIDRIndicators
+
+  """
+
+  from typing import Dict, Any
+  import ipaddress
+
+
+  ''' STANDALONE FUNCTION '''
+
+
+  ''' COMMAND FUNCTION '''
+
+
+  def match_ip_in_cidr_indicators(args: Dict[str, Any]) -> CommandResults:
+      """
+      match_ip_in_cidr_indicators
+      Given ip address in the args dictionary returns the indicator of type CIDR with the
+      longest prefix matching the ip.
+
+      :type args: ``Dict[str, Any]``
+      :param args: Dictionary of arguments. Should contain the "ip" address, and optionally
+          a "tags" argument with a list of tags to filter indicators.
+
+      :return: Result of the search.
+      :rtype: ``CommandResults``
+      """
+      ip = args.get('ip', None)
+      if not ip:
+          raise ValueError('ip not provided')
+
+      tags = argToList(args.get('tags', []))
+
+      keys = ['id', 'value', 'CustomFields', 'type', 'score', 'firstSeen', 'lastSeen',
+              'expiration', 'expirationStatus', 'sourceBrands', 'sourceInstances']
+
+      tagquery = f' and tags:({" OR ".join(tags)})' if tags else None
+
+      ranges = []
+      for r in range(32, 7, -1):
+          ranges.append(str(ipaddress.ip_network(f'{ip}/{r}', strict=False)))
+
+      joinexpr = '\" or value:\"'.join(ranges)
+      query = f'type:CIDR{tagquery} and ( value:"{joinexpr}")'
+
+      indicators = demisto.executeCommand("findIndicators", {"query": query, 'size': 32})
+      outputs = list()
+      if not isinstance(indicators, list) or len(indicators) < 1 or 'Contents' not in indicators[0]:
+          raise ValueError('No content')
+
+      longest_match = 0
+      found_ind: Dict = {}
+      for i in indicators[0]['Contents']:
+          if 'value' not in i:
+              continue
+          pfx = ipaddress.ip_network(i['value']).prefixlen
+          if pfx > longest_match:
+              longest_match = pfx
+              found_ind = i
+
+      oi = dict()
+      for k in found_ind.keys():
+          if k in keys:
+              oi[k] = i[k]
+      outputs.append(oi)
+
+      return CommandResults(
+          outputs_prefix='MatchingCIDRIndicator',
+          outputs_key_field='value',
+          outputs=outputs,
+          ignore_auto_extract=True
+      )
+
+
+  ''' MAIN FUNCTION '''
+
+
+  def main():
+      try:
+          return_results(match_ip_in_cidr_indicators(demisto.args()))
+      except Exception as ex:
+          return_error(f'Failed to execute MatchIPinCIDRIndicators. Error: {str(ex)}')
+
+
+  ''' ENTRY POINT '''
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('MatchIPinCIDRIndicators', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags: []
+type: python
