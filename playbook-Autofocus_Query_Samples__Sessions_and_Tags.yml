@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.18
+    itemVersion: 2.0.21
     packID: AutoFocus
     packName: AutoFocus
     packPropagationLabels:
