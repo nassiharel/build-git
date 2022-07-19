@@ -8,7 +8,7 @@
 	"hideSearch": false,
 	"id": "Cortex XDR Events Grouping",
 	"isCommon": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"layout": [
 		{
 			"forceRange": false,
