@@ -20,7 +20,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.16
+    itemVersion: 2.0.17
     packID: PhishTank
     packName: PhishTank
     packPropagationLabels:
