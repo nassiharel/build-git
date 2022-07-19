@@ -26,55 +26,6 @@
 				"category": "Data Enrichment \u0026 Threat Intelligence",
 				"commands": [
 					{
-						"description": "Gets indicators from AutoFocus.",
-						"name": "autofocus-daily-get-indicators"
-					}
-				],
-				"description": "Deprecated. No available replacement.",
-				"name": "AutoFocus Daily Feed (Deprecated)"
-			},
-			{
-				"category": "Data Enrichment \u0026 Threat Intelligence",
-				"commands": [
-					{
-						"description": "Gets the indicators from AutoFocus.",
-						"name": "autofocus-get-indicators"
-					}
-				],
-				"description": "Use the AutoFocus Feeds integration to fetch indicators from AutoFocus.",
-				"name": "AutoFocus Feed"
-			},
-			{
-				"category": "Data Enrichment \u0026 Threat Intelligence",
-				"commands": [
-					{
-						"description": "Search for samples on Autofocus",
-						"name": "autofocus-search-samples"
-					},
-					{
-						"description": "Search for sessions on Autofocus",
-						"name": "autofocus-search-sessions"
-					},
-					{
-						"description": "Get details of a specific session",
-						"name": "autofocus-session"
-					},
-					{
-						"description": "Retrieve the sample analysis",
-						"name": "autofocus-sample-analysis"
-					},
-					{
-						"description": "Check file reputation of the given hash",
-						"name": "file"
-					}
-				],
-				"description": "Deprecated. Use the Palo Alto Networks AutoFocus v2 integration instead. Palo Alto Networks AutoFocus enables you to distinguish the most important threats from everyday commodity attacks.",
-				"name": "Palo Alto AutoFocus (Deprecated)"
-			},
-			{
-				"category": "Data Enrichment \u0026 Threat Intelligence",
-				"commands": [
-					{
 						"description": "Searches for samples in AutoFocus. To view results, run the autofocus-samples-search-results command with the returned AF Cookie. The AF Cookie expires 120 seconds after the search completes. `Autofocus Query Samples, Sessions and Tags` Playbook is recommended for querying and polling.",
 						"name": "autofocus-search-samples"
 					},
@@ -144,6 +95,55 @@
 				],
 				"description": "Use the AutoFocus Tags Feed integration to fetch indicators from AutoFocus Tags.",
 				"name": "AutoFocus Tags Feed"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets indicators from AutoFocus.",
+						"name": "autofocus-daily-get-indicators"
+					}
+				],
+				"description": "Deprecated. No available replacement.",
+				"name": "AutoFocus Daily Feed (Deprecated)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Search for samples on Autofocus",
+						"name": "autofocus-search-samples"
+					},
+					{
+						"description": "Search for sessions on Autofocus",
+						"name": "autofocus-search-sessions"
+					},
+					{
+						"description": "Get details of a specific session",
+						"name": "autofocus-session"
+					},
+					{
+						"description": "Retrieve the sample analysis",
+						"name": "autofocus-sample-analysis"
+					},
+					{
+						"description": "Check file reputation of the given hash",
+						"name": "file"
+					}
+				],
+				"description": "Deprecated. Use the Palo Alto Networks AutoFocus v2 integration instead. Palo Alto Networks AutoFocus enables you to distinguish the most important threats from everyday commodity attacks.",
+				"name": "Palo Alto AutoFocus (Deprecated)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets the indicators from AutoFocus.",
+						"name": "autofocus-get-indicators"
+					}
+				],
+				"description": "Use the AutoFocus Feeds integration to fetch indicators from AutoFocus.",
+				"name": "AutoFocus Feed"
 			}
 		],
 		"layoutscontainer": null,
@@ -152,12 +152,12 @@
 		"parsingrule": null,
 		"playbook": [
 			{
-				"description": "This playbook is used for querying the PANW threat intelligence Autofocus system. The playbook accepts indicators such as IP's, hashes, domains to run basic queries or mode advanced queries that can leverage several query parameters. In order to run the more advanced queries its recommended to use the Autofocus UI https://autofocus.paloaltonetworks.com/#/dashboard/organization to created a query and than use the export search button. The result can be used as a playbook input.\n\nThe playbook supports searching both the Samples API and the sessions API.",
-				"name": "Autofocus Query Samples, Sessions and Tags"
-			},
-			{
 				"description": "Use this playbook as a sub-playbook to  query PANW Autofocus Threat intelligence system. This sub-playbook is the same as the generic polling sub-playbook besides that it provides outputs in the playbook. The reason for that is that in Autofocus its impossible to query the results of the same query more than once so the outputs have to be in the polling context.\n\nThis playbook implements polling by continuously running the command in Step \\#2 until the operation completes.\nThe remote action should have the following structure:\n\n1. Initiate the operation.\n2. Poll to check if the operation completed.\n3. (optional) Get the results of the operation.",
 				"name": "AutoFocusPolling"
+			},
+			{
+				"description": "This playbook is used for querying the PANW threat intelligence Autofocus system. The playbook accepts indicators such as IP's, hashes, domains to run basic queries or mode advanced queries that can leverage several query parameters. In order to run the more advanced queries its recommended to use the Autofocus UI https://autofocus.paloaltonetworks.com/#/dashboard/organization to created a query and than use the export search button. The result can be used as a playbook input.\n\nThe playbook supports searching both the Samples API and the sessions API.",
+				"name": "Autofocus Query Samples, Sessions and Tags"
 			}
 		],
 		"report": null,
@@ -168,34 +168,34 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-25T17:48:08Z",
-	"currentVersion": "2.0.18",
+	"currentVersion": "2.0.21",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.7",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.6.62",
+			"minVersion": "1.7.14",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.2.34",
+			"minVersion": "3.2.37",
 			"name": "Common Types"
 		}
 	},
 	"deprecated": false,
 	"description": "Use the Palo Alto Networks AutoFocus integration to distinguish the most\n  important threats from everyday commodity attacks.",
-	"downloads": 16722,
+	"downloads": 18862,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -228,7 +228,7 @@
 			"name": "Palo Alto Networks AutoFocus v2"
 		}
 	],
-	"itemVersion": "2.0.18",
+	"itemVersion": "2.0.21",
 	"keywords": [
 		"TIM"
 	],
@@ -255,13 +255,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"TIM",
-		"Relationship"
+		"Relationship",
+		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2022-05-18T11:57:51Z",
+	"updated": "2022-07-05T21:57:26Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2941201",
+	"versionInfo": "3263593",
 	"videos": []
 }
