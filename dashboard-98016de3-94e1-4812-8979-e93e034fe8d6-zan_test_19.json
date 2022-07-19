@@ -1,0 +1,32 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "98016de3-94e1-4812-8979-e93e034fe8d6",
+	"isCommon": true,
+	"itemVersion": "",
+	"layout": [],
+	"locked": false,
+	"modulePage": false,
+	"name": "zan_test_19",
+	"owner": "",
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 7,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"system": false,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
