@@ -29,7 +29,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.0.5
+    itemVersion: 2.0.6
     packID: epo
     packName: McAfee ePO
     packPropagationLabels:
@@ -857,7 +857,7 @@ script:
       name: properties
     description: Update an issue.
     name: epo-update-issue
-  dockerimage: demisto/python3:3.10.1.27636
+  dockerimage: demisto/python3:3.10.4.29342
   runonce: false
   script: |
     register_module_line('McAfee ePO v2', 'start', __line__())
