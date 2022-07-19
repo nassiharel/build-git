@@ -1,0 +1,984 @@
+{
+	"author": "Chronicle",
+	"authorImage": "content/packs/GoogleChronicleBackstory/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Analytics \u0026 SIEM"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"indicatorfield",
+		"reputation",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Notifies if the IP address associated with the ChronicleAsset is isolated or not.",
+				"name": "ChronicleIsolatedIPWidgetScript",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Shows the details of sources in the Chronicle Domain Intelligence Sources section of the incident.",
+				"name": "ChronicleDomainIntelligenceSourcesWidgetScript",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Collect all asset identifiers - Hostname, IP address and MAC address in the context.",
+				"name": "ChronicleAssetIdentifierScript",
+				"tags": []
+			},
+			{
+				"description": "Displays the list of events fetched for an asset identified as a \"ChronicleAsset\" type of indicator, when its MAC address is passed as an asset identifier.",
+				"name": "ChronicleAssetEventsForMACWidgetScript",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Displays a pie chart of the number of events, categorized by its event type, fetched for all the identifiers of the ChronicleAsset.",
+				"name": "ChronicleListDeviceEventsByEventTypeWidgetScript",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Displays the list of events fetched for an asset identified as a \"ChronicleAsset\" type of indicator, when its hostname is passed as an asset identifier.",
+				"name": "ChronicleAssetEventsForHostnameWidgetScript",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Notifies if the hostname associated with the ChronicleAsset is isolated or not.",
+				"name": "ChronicleIsolatedHostnameWidgetScript",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Displays the list of events fetched for an asset identified as a \"ChronicleAsset\" type of indicator, when its IP address is passed as an asset identifier.",
+				"name": "ChronicleAssetEventsForIPWidgetScript",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Shows the DBot Score and reputation of the Domain.",
+				"name": "ChronicleDBotScoreWidgetScript",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "List all of the events discovered within your enterprise on a particular device within 2 hours earlier than the current time.",
+				"name": "ListDeviceEvents",
+				"tags": [
+					"enhancement"
+				]
+			},
+			{
+				"description": "Converts Domain(s) to URL(s).",
+				"name": "ConvertDomainToURLs",
+				"tags": []
+			},
+			{
+				"description": "Displays the list of events fetched for an asset identified as a \"ChronicleAsset\" type of indicator, when its product ID is passed as an asset identifier.",
+				"name": "ChronicleAssetEventsForProductIDWidgetScript",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Notifies if the IP address associated with the ChronicleAsset is potentially blocked or not.",
+				"name": "ChroniclePotentiallyBlockedIPWidgetScript",
+				"tags": [
+					"dynamic-indicator-section"
+				]
+			},
+			{
+				"description": "Extracts domain and its details from the Chronicle IOC Domain match response.",
+				"name": "ExtractDomainFromIOCDomainMatchRes",
+				"tags": []
+			}
+		],
+		"classifier": [
+			{
+				"description": "Classifies Chronicle incidents",
+				"name": "Chronicle - Classifier"
+			},
+			{
+				"description": "Maps incoming Chronicle incident fields.",
+				"name": "Chronicle - Incoming Mapper"
+			}
+		],
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "The support email address of the chronicle asset.",
+				"name": "ChronicleAsset Support Contact",
+				"type": "shortText"
+			},
+			{
+				"description": "Identifier for the detection.",
+				"name": "Chronicle Detection ID",
+				"type": "shortText"
+			},
+			{
+				"description": "The name of the alert.",
+				"name": "Chronicle Alert Name",
+				"type": "shortText"
+			},
+			{
+				"description": "The number of times alerts occur.",
+				"name": "Chronicle Alert Count",
+				"type": "shortText"
+			},
+			{
+				"description": "IOC ingest time fetched from the Chronicle IOC Domain Matches.",
+				"name": "Chronicle IOC Ingest Time",
+				"type": "date"
+			},
+			{
+				"description": "The time period the detection was found in.",
+				"name": "Chronicle Detection Time",
+				"type": "date"
+			},
+			{
+				"description": "The unique identifier of the user.",
+				"name": "Chronicle User",
+				"type": "shortText"
+			},
+			{
+				"description": "Indicates whether the rule generating this detection currently has alerting enabled or disabled.",
+				"name": "Chronicle Detection State",
+				"type": "singleSelect"
+			},
+			{
+				"description": "Identifier for the rule generating the detection.",
+				"name": "Chronicle Rule ID",
+				"type": "shortText"
+			},
+			{
+				"description": "Time the detection was created.",
+				"name": "Chronicle Detection Created Time",
+				"type": "date"
+			},
+			{
+				"description": "Auto block the detected suspicious Domain(s) and URL(s). Select 'yes' to automatically start the process of blocking the entities, 'no' otherwise.",
+				"name": "Chronicle Auto Block Entities",
+				"type": "singleSelect"
+			},
+			{
+				"description": "The source of the alert.",
+				"name": "Chronicle Source Product",
+				"type": "shortText"
+			},
+			{
+				"description": "The start time of the window the detection was found in.",
+				"name": "Chronicle Detection Window Start Time",
+				"type": "date"
+			},
+			{
+				"description": "Skip the isolation of entities. Select 'Yes' to skip isolation process of the entities, 'No' otherwise.",
+				"name": "Chronicle Skip Entity Isolation",
+				"type": "singleSelect"
+			},
+			{
+				"description": "Type of detection.",
+				"name": "Chronicle Detection Type",
+				"type": "shortText"
+			},
+			{
+				"description": "Name of the rule generating the detection.",
+				"name": "Chronicle Rule Name",
+				"type": "shortText"
+			},
+			{
+				"description": "List of chronicle UDM events.",
+				"name": "Chronicle Events",
+				"type": "grid"
+			},
+			{
+				"description": "Domain name fetched from the Chronicle IOC Domain Matches.",
+				"name": "Chronicle Domain Name",
+				"type": "shortText"
+			},
+			{
+				"description": "The end time of the window the detection was found in.",
+				"name": "Chronicle Detection Window End Time",
+				"type": "date"
+			},
+			{
+				"description": "DBot Score obtained for the IOC Domain Matches fetched from Chronicle",
+				"name": "Chronicle DBot Score",
+				"type": "number"
+			},
+			{
+				"description": "Identifier for the rule version generating the detection.",
+				"name": "Chronicle Rule Version",
+				"type": "shortText"
+			},
+			{
+				"description": "Whether the rule generating this detection is a single event or multi-event rule.",
+				"name": "Chronicle Rule Type",
+				"type": "singleSelect"
+			},
+			{
+				"description": "The Alert/IOC Domain was first seen within your enterprise.",
+				"name": "Chronicle First Seen",
+				"type": "date"
+			},
+			{
+				"description": "The Alert/IOC Domain was most recently seen within your enterprise.",
+				"name": "Chronicle Last Seen",
+				"type": "date"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Chronicle User Alert",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Chronicle IOC Domain Matches",
+				"playbook": "Threat Hunting - Chronicle",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Chronicle Asset Alert",
+				"playbook": "",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Chronicle Rule Detection",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": [
+			{
+				"description": "Determines if the host is isolated.",
+				"name": "Chronicle Isolated Hostname",
+				"type": "singleSelect"
+			},
+			{
+				"description": "Determines if the IP Address is isolated.",
+				"name": "Chronicle Isolated IP",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "ChronicleAssetMAC",
+				"type": "shortText"
+			},
+			{
+				"description": "Summary of the event types of the events fetched for all the possible asset identifiers.",
+				"name": "ChronicleAsset Summary",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "ChronicleAssetProductID",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "ChronicleAssetHostname",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "ChronicleAssetIP",
+				"type": "shortText"
+			},
+			{
+				"description": "Determines if the IP Address is potentially blocked.",
+				"name": "Chronicle Potentially Blocked IP",
+				"type": "singleSelect"
+			}
+		],
+		"integration": [
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Lists the IOC Domain matches within your enterprise for the specified time interval. The indicator of compromise (IOC) domain matches lists for which the domains that your security infrastructure has flagged as both suspicious and that have been seen recently within your enterprise.",
+						"name": "gcb-list-iocs"
+					},
+					{
+						"description": "Returns a list of the assets that accessed the input artifact (IP, domain, MD5, SHA1 and SHA256) during the specified time.",
+						"name": "gcb-assets"
+					},
+					{
+						"description": "Checks the reputation of an IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Checks the reputation of a domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Accepts an artifact indicator and returns any threat intelligence associated with the artifact. The threat intelligence information is drawn from your enterprise security systems and from Chronicle's IoC partners (for example, the DHS threat feed).",
+						"name": "gcb-ioc-details"
+					},
+					{
+						"description": "List all the alerts tracked within your enterprise for the specified time range. Both the parsed alerts and their corresponding raw alert logs are returned.",
+						"name": "gcb-list-alerts"
+					},
+					{
+						"description": "List all of the events discovered within your enterprise on a particular device within the specified time range. If you receive the maximum number of events you specified using the page_size parameter (or 100, the default), there might still be more events within your Chronicle account. You can narrow the time range and issue the call again to ensure you have visibility into all possible events. This command returns more than 60 different types of events. Any event would have only specific output context set. Refer the UDM documentation to figure out the output properties specific to the event types.",
+						"name": "gcb-list-events"
+					},
+					{
+						"description": "Return the detections for the specified version of a rule, the latest version of a rule, all versions of a rule, or all versions of all rules.",
+						"name": "gcb-list-detections"
+					},
+					{
+						"description": "List the latest versions of all Rules.",
+						"name": "gcb-list-rules"
+					}
+				],
+				"description": "Use the Chronicle integration to retrieve Asset alerts or IOC Domain matches as Incidents. Use it to fetch a list of infected assets based on the indicator accessed. This integration also provides reputation and threat enrichment of indicators observed in the enterprise.",
+				"name": "Chronicle (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "Chronicle User Alert Incident Layout",
+				"name": "Chronicle User Alert Incident"
+			},
+			{
+				"description": "Chronicle Rule Detection Incident Layout",
+				"name": "Chronicle Rule Detection Incident"
+			},
+			{
+				"description": "ChronicleAsset Indicator Layout",
+				"name": "ChronicleAsset Indicator"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "This playbook receives ChronicleAsset identifier information and provides a list of events related to each one of them.\nSupported integration:\n- Chronicle",
+				"name": "List Device Events - Chronicle"
+			},
+			{
+				"description": "This playbook receives ChronicleAsset type of indicators from its parent playbook \"ChronicleAsset Investigation - Chronicle\", performs enrichment and investigation for each one of them, provides an opportunity to isolate and block the hostname or IP address associated with the current indicator, and provides a list of isolated and blocked entities.",
+				"name": "Hostname And IP Address Investigation And Remediation - Chronicle"
+			},
+			{
+				"description": "Performs enrichment and investigation of the ChronicleAsset type of indicators, provides an opportunity to remediate in case any of the ChronicleAsset information i.e., hostname or IP address is found to be malicious or suspicious, and sends out an email containing the list of isolated and potentially blocked entities. To select the indicators you want to add, go to playbook inputs, choose \"from indicators\" and set your query. For example, type:ChronicleAsset etc. The default playbook query is \"type:ChronicleAsset\". In case indicators with different query parameters are to be investigated, the query must be edited accordingly. This playbook needs to be used with caution as it might use up the integration’s API license when running large amounts of indicators.",
+				"name": "ChronicleAssets Investigation And Remediation - Chronicle"
+			},
+			{
+				"description": "Use this playbook to investigate and remediate suspicious IOC domain matches with recent activity found in the enterprise. This playbook also creates indicators for the entities fetched, as well as investigating and enriching them.\nSupported Integrations:\n- Chronicle\n- Whois",
+				"name": "Threat Hunting - Chronicle"
+			},
+			{
+				"description": "Use this playbook to investigate and remediate Bad IOC domain matches with recent activity found in the enterprise, as well as notify the SOC lead and network team about the matches.\nSupported Integrations:\n- Chronicle\n- Whois\n- Mail Sender (New)\n- Palo Alto Networks PAN-OS\n- Palo Alto Networks AutoFocus v2",
+				"name": "Investigate On Bad Domain Matches - Chronicle"
+			},
+			{
+				"description": "This playbook receives indicators from its parent playbook, performs enrichment and investigation for each one of them, provides an opportunity to isolate and block the hostname or IP address associated with the current indicator, and gives out a list of isolated and blocked entities. This playbook also lists the events fetched for the asset identifier information associated with the indicator.",
+				"name": "ChronicleAsset Investigation - Chronicle"
+			}
+		],
+		"report": null,
+		"reputation": [
+			{
+				"details": "ChronicleAsset",
+				"enhancementScriptNames": [
+					"ListDeviceEvents"
+				],
+				"reputationScriptName": ""
+			}
+		],
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-28T18:57:00Z",
+	"currentVersion": "2.0.20",
+	"definitionId": "",
+	"dependencies": {
+		"APIVoid": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.17",
+			"name": "APIVoid"
+		},
+		"AbuseDB": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.13",
+			"name": "AbuseIPDB"
+		},
+		"Alexa": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.14",
+			"name": "Alexa Rank Indicator"
+		},
+		"AlienVault_OTX": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.19",
+			"name": "AlienVault OTX"
+		},
+		"Anomali_ThreatStream": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.12",
+			"name": "Anomali ThreatStream"
+		},
+		"AutoFocus": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.21",
+			"name": "AutoFocus"
+		},
+		"AwakeSecurity": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.9",
+			"name": "Awake Security"
+		},
+		"Barracuda": {
+			"author": "Harri Ruuttila",
+			"certification": "",
+			"mandatory": false,
+			"minVersion": "1.0.5",
+			"name": "Barracuda"
+		},
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"Cisco-umbrella": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.11",
+			"name": "Cisco Umbrella Investigate"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.2.9",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.7.14",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.37",
+			"name": "Common Types"
+		},
+		"CrowdStrikeIntel": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.16",
+			"name": "CrowdStrike Falcon Intel"
+		},
+		"CyberTotal": {
+			"author": "CyCraft Technology Corporation.",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.9",
+			"name": "CyberTotal"
+		},
+		"DomainTools": {
+			"author": "DomainTools",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.3",
+			"name": "DomainTools Enterprise"
+		},
+		"DomainTools_Iris": {
+			"author": "DomainTools",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.4",
+			"name": "DomainTools Iris Investigate"
+		},
+		"EWS": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.12.1",
+			"name": "EWS"
+		},
+		"EWSMailSender": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.10",
+			"name": "EWS Mail Sender"
+		},
+		"EclecticIQ": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.4",
+			"name": "EclecticIQ Platform"
+		},
+		"Flashpoint": {
+			"author": "Flashpoint",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.3.3",
+			"name": "Flashpoint"
+		},
+		"Gmail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.19",
+			"name": "Gmail"
+		},
+		"GmailSingleUser": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.10",
+			"name": "Gmail Single User"
+		},
+		"HelloWorld": {
+			"author": "Cortex XSOAR",
+			"certification": "verified",
+			"mandatory": false,
+			"minVersion": "1.2.12",
+			"name": "HelloWorld"
+		},
+		"Ipstack": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.7",
+			"name": "Ipstack"
+		},
+		"JsonWhoIs": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.15",
+			"name": "JsonWhoIs"
+		},
+		"MISP": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.1.9",
+			"name": "MISP"
+		},
+		"MailSenderNew": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.6",
+			"name": "Mail Sender (New)"
+		},
+		"Maltiverse": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.18",
+			"name": "Maltiverse"
+		},
+		"MaxMind_GeoIP2": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.6",
+			"name": "MaxMind GeoIP2"
+		},
+		"MicrosoftGraphListener": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.25",
+			"name": "Microsoft Graph Mail Single User"
+		},
+		"MicrosoftGraphMail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.21",
+			"name": "Microsoft Graph Mail"
+		},
+		"NIST": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.6",
+			"name": "NIST"
+		},
+		"PAN-OS": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.14.8",
+			"name": "PAN-OS"
+		},
+		"PaloAltoNetworks_PAN_OS_EDL_Management": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.1.5",
+			"name": "Palo Alto Networks PAN-OS EDL Management (Deprecated)"
+		},
+		"PaloAltoNetworks_Threat_Vault": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.15",
+			"name": "Palo Alto Networks Threat Vault (Deprecated)."
+		},
+		"PassiveTotal": {
+			"author": "RiskIQ",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.1.1",
+			"name": "PassiveTotal"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.8",
+			"name": "Phishing"
+		},
+		"PolySwarm": {
+			"author": "PolySwarm",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.2",
+			"name": "PolySwarm"
+		},
+		"Pulsedive": {
+			"author": "Konrad Zacharias",
+			"certification": "",
+			"mandatory": false,
+			"minVersion": "1.6.0",
+			"name": "Pulsedive"
+		},
+		"Pwned": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.7",
+			"name": "Pwned"
+		},
+		"RecordedFuture": {
+			"author": "Recorded Future",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.1",
+			"name": "RecordedFuture v2"
+		},
+		"Recorded_Future": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.5",
+			"name": "Recorded Future (Deprecated)"
+		},
+		"RiskIQDigitalFootprint": {
+			"author": "RiskIQ",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.0",
+			"name": "RiskIQ Digital Footprint"
+		},
+		"SANS": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.1.2",
+			"name": "SANS"
+		},
+		"Shodan": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.2",
+			"name": "Shodan"
+		},
+		"Sixgill-Darkfeed": {
+			"author": "Cybersixgill",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.0.10",
+			"name": "Sixgill Darkfeed - Annual Subscription"
+		},
+		"SlashNextPhishingIncidentResponse": {
+			"author": "SlashNext",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.3.1",
+			"name": "SlashNext Phishing Incident Response - Annual Subscription  (Direct Subscription)"
+		},
+		"Spamcop": {
+			"author": "Harri Ruuttila",
+			"certification": "",
+			"mandatory": false,
+			"minVersion": "1.0.3",
+			"name": "Spamcop"
+		},
+		"Symantec_Deepsight": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.5",
+			"name": "Accenture Deepsight Intelligence (Deprecated)"
+		},
+		"Synapse": {
+			"author": "Jordan Berry",
+			"certification": "",
+			"mandatory": false,
+			"minVersion": "1.0.3",
+			"name": "Synapse"
+		},
+		"TCPIPUtils": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.2",
+			"name": "TCPIPUtils (Deprecated)"
+		},
+		"ThreatConnect": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.18",
+			"name": "ThreatConnect"
+		},
+		"ThreatExchange": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.0.9",
+			"name": "ThreatExchange"
+		},
+		"ThreatMiner": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.8",
+			"name": "ThreatMiner"
+		},
+		"ThreatQ": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.18",
+			"name": "ThreatQ"
+		},
+		"TruSTAR": {
+			"author": "TruSTAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.1.6",
+			"name": "TruSTAR"
+		},
+		"URLHaus": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.15",
+			"name": "URLhaus"
+		},
+		"VirusTotal": {
+			"author": "VirusTotal",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.4.4",
+			"name": "VirusTotal"
+		},
+		"Whois": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.10",
+			"name": "Whois"
+		},
+		"XForceExchange": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.14",
+			"name": "IBM X-Force Exchange"
+		},
+		"Zscaler": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.0",
+			"name": "Zscaler Internet Access"
+		},
+		"iDefense": {
+			"author": "Accenture",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "3.2.4",
+			"name": "Accenture CTI"
+		},
+		"illuminate": {
+			"author": "Analyst1",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.12",
+			"name": "Analyst1"
+		},
+		"ipinfo": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.1.3",
+			"name": "Ipinfo"
+		},
+		"isight": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.1",
+			"name": "FireEye iSIGHT"
+		}
+	},
+	"deprecated": false,
+	"description": "Retrieve Chronicle detections, impacted assets, IOC matches, and 3P alerts to enrich your XSOAR workflows.",
+	"downloads": 5302,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "GoogleChronicleBackstory",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/GoogleChronicleBackstory/GoogleChronicleBackstory_image.png",
+			"name": "Chronicle"
+		},
+		{
+			"imagePath": "content/packs/PAN-OS/Panorama_image.png",
+			"name": "Palo Alto Networks PAN-OS"
+		},
+		{
+			"imagePath": "content/packs/Whois/Whois_image.png",
+			"name": "Whois"
+		},
+		{
+			"imagePath": "content/packs/PaloAltoNetworks_PAN_OS_EDL_Management/palo_alto_networks_pan_os_edl_management_image.png",
+			"name": "Palo Alto Networks PAN-OS EDL Management (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/Sixgill-Darkfeed/Sixgill_DVE_Feed_image.png",
+			"name": "Cybersixgill DVE Feed Threat Intelligence (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/Sixgill-Darkfeed/Sixgill_Darkfeed_Enrichment_image.png",
+			"name": "Sixgill DarkFeed Enrichment"
+		},
+		{
+			"imagePath": "content/packs/Sixgill-Darkfeed/Sixgill_Darkfeed_image.png",
+			"name": "Sixgill DarkFeed Threat Intelligence"
+		},
+		{
+			"imagePath": "content/packs/JsonWhoIs/JsonWhoIs_image.png",
+			"name": "JsonWhoIs"
+		},
+		{
+			"imagePath": "content/packs/DomainTools/DomainTools_image.png",
+			"name": "DomainTools"
+		},
+		{
+			"imagePath": "content/packs/RiskIQDigitalFootprint/RiskIQDigitalFootprint_image.png",
+			"name": "RiskIQ Digital Footprint"
+		}
+	],
+	"itemVersion": "2.0.20",
+	"keywords": [],
+	"legacy": true,
+	"name": "Chronicle",
+	"packID": "GoogleChronicleBackstory",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Quickly respond to security incidents by integrating Chronicle with Palo Alto Networks Cortex XSOAR. \n\nChronicle is a cloud service, built as a specialized layer on top of core Google infrastructure, designed for enterprises to privately retain, analyze, and search the massive amounts of security and network telemetry they generate. Chronicle normalizes, indexes, correlates, and analyzes the data to provide instant analysis and context on risky activity.\n\nChronicle instances, APIs and search parameters are all accessible directly within Cortex XSOAR for full automation of playbooks.\n\nFor more information, please visit https://chronicle.security/products/platform/\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "chronicle-support@chronicle.security",
+		"url": "https://go.chronicle.security/contact"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-07-05T22:01:19Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
