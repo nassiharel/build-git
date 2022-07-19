@@ -1,0 +1,341 @@
+{
+	"cacheVersn": 0,
+	"cronView": false,
+	"dashboard": {
+		"cacheVersn": 0,
+		"commitMessage": "",
+		"definitionId": "",
+		"fromDate": "0001-01-01T00:00:00Z",
+		"fromDateLicense": "0001-01-01T00:00:00Z",
+		"fromServerVersion": "",
+		"hidePivot": false,
+		"hideSearch": false,
+		"id": "",
+		"isCommon": false,
+		"itemVersion": "",
+		"layout": [
+			{
+				"forceRange": false,
+				"h": 3,
+				"i": "8f695980-0769-11ed-b92e-391ebc7cf697",
+				"id": "8f695980-0769-11ed-b92e-391ebc7cf697",
+				"reflectDimensions": true,
+				"w": 5,
+				"widget": {
+					"Cache": null,
+					"cacheVersn": 0,
+					"category": "",
+					"commitMessage": "",
+					"dataType": "scripts",
+					"dateRange": {
+						"fromDate": "0001-01-01T00:00:00Z",
+						"fromDateLicense": "0001-01-01T00:00:00Z",
+						"period": {
+							"by": "",
+							"byFrom": "",
+							"byTo": "",
+							"field": "",
+							"fromValue": null,
+							"toValue": null
+						},
+						"toDate": "0001-01-01T00:00:00Z"
+					},
+					"definitionId": "",
+					"fromServerVersion": "",
+					"id": "535597f0-283f-444a-830b-948f4604277b",
+					"isPredefined": false,
+					"itemVersion": "",
+					"modified": "2022-07-19T12:45:39.540261379Z",
+					"name": "zan",
+					"packID": "",
+					"packName": "",
+					"params": {
+						"valuesFormat": "abbreviated"
+					},
+					"prevName": "zan",
+					"propagationLabels": [
+						"all"
+					],
+					"query": "Zanwidget",
+					"shouldCommit": false,
+					"toServerVersion": "",
+					"vcShouldIgnore": false,
+					"vcShouldKeepItemLegacyProdMachine": false,
+					"version": 1,
+					"widgetType": "column"
+				},
+				"x": 0,
+				"y": 0
+			}
+		],
+		"locked": false,
+		"modified": "0001-01-01T00:00:00Z",
+		"modulePage": false,
+		"name": "zan",
+		"owner": "",
+		"packID": "",
+		"packName": "",
+		"period": {
+			"by": "",
+			"byFrom": "",
+			"byTo": "",
+			"field": "",
+			"fromValue": null,
+			"toValue": null
+		},
+		"prevName": "",
+		"shouldCommit": false,
+		"system": false,
+		"toDate": "0001-01-01T00:00:00Z",
+		"toServerVersion": "",
+		"vcShouldIgnore": false,
+		"vcShouldKeepItemLegacyProdMachine": false,
+		"version": 0
+	},
+	"decoder": {
+		"evidences.fetched": {
+			"type": "date",
+			"value": "02/01/06 3:04:05 PM"
+		},
+		"evidences.markedDate": {
+			"type": "date",
+			"value": "02/01/06 3:04:05 PM"
+		},
+		"evidences.occurred": {
+			"type": "date",
+			"value": "02/01/06 3:04:05 PM"
+		},
+		"incident.dbotStatus.0": {
+			"type": "string",
+			"value": "Pending"
+		},
+		"incident.dbotStatus.1": {
+			"type": "string",
+			"value": "Active"
+		},
+		"incident.dbotStatus.2": {
+			"type": "string",
+			"value": "Closed"
+		},
+		"incident.dbotStatus.3": {
+			"type": "string",
+			"value": "Closed"
+		},
+		"incident.dbotStatus.4": {
+			"type": "string",
+			"value": "On Hold"
+		},
+		"incident.dueDate": {
+			"type": "date",
+			"value": "2006-01-02T15:04:05Z07:00"
+		},
+		"incident.openDuration": {
+			"type": "duration",
+			"value": ""
+		},
+		"incident.phase.": {
+			"type": "string",
+			"value": "Unassigned"
+		},
+		"incident.roles.": {
+			"type": "string",
+			"value": "Unassigned"
+		},
+		"incident.severity.0": {
+			"type": "string",
+			"value": "Unknown"
+		},
+		"incident.severity.0.5": {
+			"type": "string",
+			"value": "Informational"
+		},
+		"incident.severity.1": {
+			"type": "string",
+			"value": "Low"
+		},
+		"incident.severity.2": {
+			"type": "string",
+			"value": "Medium"
+		},
+		"incident.severity.3": {
+			"type": "string",
+			"value": "High"
+		},
+		"incident.severity.4": {
+			"type": "string",
+			"value": "Critical"
+		},
+		"incident.status.0": {
+			"type": "string",
+			"value": "Pending"
+		},
+		"incident.status.1": {
+			"type": "string",
+			"value": "Active"
+		},
+		"incident.status.2": {
+			"type": "string",
+			"value": "Closed"
+		},
+		"incident.status.3": {
+			"type": "string",
+			"value": "Closed"
+		},
+		"incident.status.4": {
+			"type": "string",
+			"value": "On Hold"
+		},
+		"indicators.score.0": {
+			"type": "string",
+			"value": "Unknown"
+		},
+		"indicators.score.1": {
+			"type": "string",
+			"value": "Benign"
+		},
+		"indicators.score.2": {
+			"type": "string",
+			"value": "Suspicious"
+		},
+		"indicators.score.3": {
+			"type": "string",
+			"value": "Malicious"
+		},
+		"investigation.openDuration": {
+			"type": "duration",
+			"value": ""
+		},
+		"investigation.status.0": {
+			"type": "string",
+			"value": "Active"
+		},
+		"investigation.status.1": {
+			"type": "string",
+			"value": "Done"
+		},
+		"investigation.type.0": {
+			"type": "string",
+			"value": "Standard"
+		},
+		"investigation.type.1": {
+			"type": "string",
+			"value": "Restricted"
+		},
+		"investigation.type.9": {
+			"type": "string",
+			"value": "Playground"
+		},
+		"relationships.revoked.": {
+			"type": "string",
+			"value": "Active"
+		},
+		"relationships.revoked.false": {
+			"type": "string",
+			"value": "Active"
+		},
+		"relationships.revoked.true": {
+			"type": "string",
+			"value": "Revoked"
+		}
+	},
+	"definitionId": "",
+	"disableHeader": false,
+	"endingDate": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"id": "6e08ff6a-bbbd-4cba-8324-428543e03a57",
+	"itemVersion": "",
+	"latestReportName": "",
+	"latestReportTime": "0001-01-01T00:00:00Z",
+	"latestReportUsername": "",
+	"latestScheduledReportTime": "0001-01-01T00:00:00Z",
+	"locked": false,
+	"name": "zan",
+	"nextScheduledTime": "0001-01-01T00:00:00Z",
+	"orientation": "portrait",
+	"packID": "",
+	"packName": "",
+	"paperSize": "A4",
+	"propagationLabels": [
+		"all"
+	],
+	"recipients": null,
+	"recurrent": false,
+	"reportType": "",
+	"runOnce": false,
+	"runningRoles": null,
+	"runningUser": "",
+	"scheduled": false,
+	"sections": [
+		{
+			"autoPageBreak": false,
+			"automation": {
+				"args": null,
+				"id": "",
+				"name": "",
+				"noEvent": false
+			},
+			"data": null,
+			"layout": {
+				"chartProperties": {
+					"axis": {
+						"x": {},
+						"y": {}
+					},
+					"barSize": 35,
+					"format": "DD MMM Y",
+					"isDatesChart": false,
+					"layout": "horizontal",
+					"timeFrame": "days",
+					"valuesFormat": "abbreviated"
+				},
+				"chartType": "column",
+				"columnPos": 0,
+				"dimensions": {
+					"height": 300,
+					"width": 273
+				},
+				"forceRangeMessage": "",
+				"h": 3,
+				"i": "8f695980-0769-11ed-b92e-391ebc7cf697",
+				"legendStyle": {
+					"align": "right",
+					"hideLegend": false,
+					"iconType": "square",
+					"layout": "horizontal",
+					"verticalAlign": "top",
+					"wrapperStyle": {
+						"maxHeight": 96,
+						"top": 5,
+						"width": "100%"
+					}
+				},
+				"reflectDimensions": true,
+				"rowPos": null,
+				"w": 5
+			},
+			"query": {
+				"filter": {
+					"period": {
+						"byFrom": "days",
+						"fromValue": 7
+					},
+					"query": "Zanwidget"
+				},
+				"type": "scripts"
+			},
+			"title": "zan",
+			"titleStyle": null,
+			"type": "chart"
+		}
+	],
+	"sensitive": false,
+	"startDate": "0001-01-01T00:00:00Z",
+	"system": false,
+	"times": 0,
+	"timezoneOffset": 0,
+	"toServerVersion": "",
+	"type": "pdf",
+	"userAPIKey": "",
+	"userAPIKeyID": "",
+	"version": -1
+}
