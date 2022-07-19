@@ -1,0 +1,169 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Returns the reputation and extended context of the IP.",
+						"name": "apivoid-ip"
+					},
+					{
+						"description": "Returns the reputation of the domain.",
+						"name": "apivoid-domain"
+					},
+					{
+						"description": "Returns the reputation of the URL.",
+						"name": "apivoid-url"
+					},
+					{
+						"description": "Returns the reputation of the IP.",
+						"name": "ip"
+					},
+					{
+						"description": "Returns the reputation of the domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Returns the reputation of the URL.",
+						"name": "url"
+					},
+					{
+						"description": "Gets DNS records of a host.",
+						"name": "apivoid-dns-lookup"
+					},
+					{
+						"description": "Get useful SSL information from a remote host",
+						"name": "apivoid-ssl-info"
+					},
+					{
+						"description": "Checks if an email address is disposable, if it has MX records, and more.",
+						"name": "apivoid-email-verify"
+					},
+					{
+						"description": "Check if a website is present on ThreatLog database",
+						"name": "apivoid-threatlog"
+					},
+					{
+						"description": "Detect if a domain (i.e google.com) is actually parked",
+						"name": "apivoid-parked-domain"
+					},
+					{
+						"description": "Get the registration date of a domain and the domain age in days",
+						"name": "apivoid-domain-age"
+					},
+					{
+						"description": "Capture a high-quality screenshot of any website or URL",
+						"name": "apivoid-url-to-image"
+					},
+					{
+						"description": "Convert an URL info high-quality and printable PDF document",
+						"name": "apivoid-url-to-pdf"
+					},
+					{
+						"description": "Get the body of an html page after javascript has been executed",
+						"name": "apivoid-url-to-html"
+					},
+					{
+						"description": "A smart API that accurately checks a website's trustworthiness.",
+						"name": "apivoid-site-trustworthiness"
+					}
+				],
+				"description": "APIVoid wraps up a number of services such as ipvoid \u0026 urlvoid",
+				"name": "APIVoid"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:48:30Z",
+	"currentVersion": "1.0.17",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "APIVoid wraps up a number of services such as ipvoid \u0026 urlvoid",
+	"downloads": 2980,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "APIVoid",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/APIVoid/APIVoid_image.png",
+			"name": "APIVoid"
+		}
+	],
+	"itemVersion": "1.0.17",
+	"keywords": [],
+	"legacy": true,
+	"name": "APIVoid",
+	"packID": "APIVoid",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-07-05T21:56:20Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
