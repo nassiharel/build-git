@@ -1,0 +1,56 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Classifies Cortex XDR incidents.",
+	"feed": false,
+	"fromServerVersion": "6.5.0",
+	"id": "Cortex XDR Incident Handler - Classifier",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "4.8.1",
+	"keyTypeMap": {
+		"Malware": "Malware Investigation and Response",
+		"PortScan": "Cortex XDR Port Scan",
+		"XDR Incident": "Cortex XDR Incident"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Cortex XDR Incident Handler - Classifier",
+	"nameRaw": "Cortex XDR Incident Handler - Classifier",
+	"packID": "CortexXDR",
+	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
+	"packPropagationLabels": [
+		"all"
+	],
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"complex": {
+			"filters": [],
+			"root": ".",
+			"transformers": [
+				{
+					"args": {
+						"dt": {
+							"value": {
+								"simple": ".=val \u0026\u0026 val.description.toLowerCase().indexOf(\"port scan\") \u003e -1 ? \"PortScan\" :(val.file_artifacts.length\u003e0 ? \"Malware\" : \"XDR Incident\")"
+							}
+						}
+					},
+					"operator": "DT"
+				}
+			]
+		}
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
