@@ -1,0 +1,46 @@
+args:
+- default: true
+  description: Path to the memory dump file in the machine's filesystem.
+  name: file
+  required: true
+- description: Format argument for Rekall e.g. json or text.
+  name: format
+comment: Use the D2 agent to execute Rekall on a system (usually a forensics workstation)
+  and analyze a memory dump file located on that system.
+commonfields:
+  id: D2Rekall
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.5
+    packID: D2
+    packName: D2
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+engineinfo: {}
+mainengineinfo: {}
+name: D2Rekall
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  if (args.format)
+      fmt = args.format;
+  else
+      fmt= "text";
+  var out = execute('rekal --format ' + fmt + ' -f ' + args.file + ' ' + args.cmd, 60*60); // 1 hour timeout
+  pack(out.Stdout);
+  if( ! out.Success) {
+      pack('Exception thrown: ' + out.Error + "\nStderr: " + out.Stderr);
+  }
+scripttarget: 1
+system: true
+tags:
+- agent
+- memory
+- forensics
+type: javascript
