@@ -1,0 +1,193 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Utilities"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Utilities",
+				"commands": [
+					{
+						"description": "Displays the contents of the specified remote file located in the War Room.",
+						"name": "pan-os-edl-get-external-file"
+					},
+					{
+						"description": "Searches for a string in a remote file.",
+						"name": "pan-os-edl-search-external-file"
+					},
+					{
+						"description": "Updates the instance context with the specified list name and list items, and then overrides the path of the remote file with the internal list.",
+						"name": "pan-os-edl-update"
+					},
+					{
+						"description": "Updates internal list data with the contents of a remote file.",
+						"name": "pan-os-edl-update-from-external-file"
+					},
+					{
+						"description": "Deletes a file from a remote server.",
+						"name": "pan-os-edl-delete-external-file"
+					},
+					{
+						"description": "Displays internal list data in the War Room.",
+						"name": "pan-os-edl-print-internal-list"
+					},
+					{
+						"description": "Dumps (copies) instance context to either the incident context or a file.",
+						"name": "pan-os-edl-dump-internal-list"
+					},
+					{
+						"description": "Displays instance context list names.",
+						"name": "pan-os-edl-list-internal-lists"
+					},
+					{
+						"description": "Search for a string in internal list.",
+						"name": "pan-os-edl-search-internal-list"
+					},
+					{
+						"description": "Compares internal list and external file contents.",
+						"name": "pan-os-edl-compare"
+					},
+					{
+						"description": "Gets metadata for an external file.",
+						"name": "pan-os-edl-get-external-file-metadata"
+					},
+					{
+						"description": "Updates the instance context with the specified list name and list items.",
+						"name": "pan-os-edl-update-internal-list"
+					},
+					{
+						"description": "Updates a remote file with the contents of an internal list.",
+						"name": "pan-os-edl-update-external-file"
+					}
+				],
+				"description": "Deprecated. Use the Generic Export Indicators Service integration instead. This integration is still supported however, for customers with over 1000 Firewalls.",
+				"name": "Palo Alto Networks PAN-OS EDL Management (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Deprecated. Use Generic Export Indicators Service instead.",
+				"name": "PAN-OS - Block IP and URL - External Dynamic List v2"
+			},
+			{
+				"description": "Deprecated. Use Generic Export Indicators Service instead.",
+				"name": "PAN-OS EDL Setup v3"
+			},
+			{
+				"description": "Deprecated. Use Generic Export Indicators Service instead.",
+				"name": "PAN-OS - Block Domain - External Dynamic List"
+			},
+			{
+				"description": "Deprecated. Use Generic Export Indicators Service instead.",
+				"name": "Block IOCs from CSV - External Dynamic List"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2021-01-27T22:59:04Z",
+	"currentVersion": "1.1.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.7.14",
+			"name": "Common Scripts"
+		},
+		"PAN-OS": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.14.8",
+			"name": "PAN-OS"
+		}
+	},
+	"deprecated": false,
+	"description": "Deprecated. Use the Generic Export Indicators Service instead.",
+	"downloads": 4873,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "PaloAltoNetworks_PAN_OS_EDL_Management",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/PaloAltoNetworks_PAN_OS_EDL_Management/palo_alto_networks_pan_os_edl_management_image.png",
+			"name": "Palo Alto Networks PAN-OS EDL Management (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/PAN-OS/Panorama_image.png",
+			"name": "Palo Alto Networks PAN-OS"
+		}
+	],
+	"itemVersion": "1.1.5",
+	"keywords": [],
+	"legacy": true,
+	"name": "Palo Alto Networks PAN-OS EDL Management (Deprecated)",
+	"packID": "PaloAltoNetworks_PAN_OS_EDL_Management",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": -40,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-07-05T22:23:39Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
