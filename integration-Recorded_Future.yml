@@ -83,9 +83,9 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.3
+    itemVersion: 1.1.5
     packID: Recorded_Future
-    packName: Recorded Future
+    packName: Recorded Future (Deprecated)
     packPropagationLabels:
     - all
     propagationLabels: []
