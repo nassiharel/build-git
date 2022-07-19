@@ -1,0 +1,292 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 2.3.15
+    packID: ServiceNow
+    packName: ServiceNow
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  Use ServiceNow Incident State Polling as a sub-playbook when required to pause the execution of a master playbook until the ServiceNow ticket state is either resolved or closed.
+  This playbook implements polling by continuously running the servicenow-get-ticket command until the state is either resolved or closed.
+id: ServiceNow Ticket State Polling
+inputs:
+- description: The ServiceNow ticket number to poll for its state.
+  key: TicketNumber
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: Frequency that the polling command will run (minutes).
+  key: Interval
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: Amount of time to poll before declaring a timeout and resuming the
+    playbook (in minutes).
+  key: Timeout
+  playbookInputQuery: null
+  required: true
+  value: {}
+- description: |-
+    Set the ServiceNow Instance that will be used by the polling command.
+    Only relevant when there is more than one ServiceNow instance.
+  key: InstanceName
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: "Additional polling commands are relevant when using StatePolling,
+    and there is more than one ServiceNow instance. It will specify the polling command
+    to use a specific instance to run on. \nIf so, please add \"using\" to the value.\nThe
+    polling command will then take the instance name as the instance to use. "
+  key: AdditionalPollingCommandName
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: ServiceNow Ticket State Polling
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: '-'
+      id: c644af04-2cd7-4462-83e3-5f55bc12aa73
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: c644af04-2cd7-4462-83e3-5f55bc12aa73
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      additionalPollingCommandArgNames:
+        complex:
+          root: inputs.AdditionalPollingCommandName
+      additionalPollingCommandArgValues:
+        complex:
+          root: inputs.InstanceName
+      dt:
+        simple: ServiceNow.Ticket(val.State != '6' && val.State != '7').Number
+      ids:
+        complex:
+          root: inputs.TicketNumber
+      interval:
+        simple: ${inputs.Interval}
+      playbookId:
+        simple: ${currentPlaybookID}
+      pollingCommand:
+        simple: servicenow-get-ticket
+      pollingCommandArgName:
+        simple: number
+      timeout:
+        simple: ${inputs.Timeout}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Schedule Polling Task
+      id: 914b5b4c-709e-479d-8210-b06bdad59965
+      iscommand: false
+      name: Schedule Ticket State Polling  Task
+      script: ScheduleGenericPolling
+      type: regular
+      version: -1
+    taskid: 914b5b4c-709e-479d-8210-b06bdad59965
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 370
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "YES":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This task will complete automatically when polling is complete.
+      id: 4991346d-2fa3-4efe-8c21-d531312deacb
+      iscommand: false
+      name: Waiting for Ticket State Polling to complete (Automated Task)
+      tags:
+      - polling
+      type: condition
+      version: -1
+    taskid: 4991346d-2fa3-4efe-8c21-d531312deacb
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      additionalPollingCommandArgNames:
+        complex:
+          root: inputs.AdditionalPollingCommandName
+      additionalPollingCommandArgValues:
+        complex:
+          root: inputs.InstanceName
+      ids:
+        complex:
+          root: inputs.TicketNumber
+      pollingCommand:
+        simple: servicenow-get-ticket
+      pollingCommandArgName:
+        simple: number
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: RunPollingCommand
+      id: b4dfa54e-3fb9-40a7-803b-edc450bd5aea
+      iscommand: false
+      name: Run Ticket State Polling Command
+      script: RunPollingCommand
+      type: regular
+      version: -1
+    taskid: b4dfa54e-3fb9-40a7-803b-edc450bd5aea
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 195
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Done
+      id: 778e1007-f7ea-4ff6-89c4-cffc067165c4
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 778e1007-f7ea-4ff6-89c4-cffc067165c4
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -170,
+          "y": 740
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: GenericPollingScheduledTask encountered an error.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Scheduled Task Failed
+      id: 62b13486-ae6a-49c1-8988-16765f35f1cc
+      iscommand: false
+      name: Scheduled Task Failed
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 62b13486-ae6a-49c1-8988-16765f35f1cc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 280,
+          "y": 725
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "2_5_YES": 0.48
+    },
+    "paper": {
+      "dimensions": {
+        "height": 770,
+        "width": 830,
+        "x": -170,
+        "y": 50
+      }
+    }
+  }
