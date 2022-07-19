@@ -57,7 +57,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.17
+    itemVersion: 2.0.18
     packID: ThreatConnect
     packName: ThreatConnect
     packPropagationLabels:
@@ -336,7 +336,8 @@ script:
   - arguments:
     - description: A list of results filtered by the owner of the indicator.
       name: owner
-    - description: The maximum number of results that can be returned. The default
+    - defaultValue: "500"
+      description: The maximum number of results that can be returned. The default
         is 500.
       name: limit
     description: Retrieves a list of all indicators.
@@ -641,6 +642,11 @@ script:
       required: true
     - description: A list of indicators filtered by the owner.
       name: owner
+    - defaultValue: "100"
+      description: 'The limit of the indicators that will be available in the raw
+        response. Default value is 100. NOTICE: In the context you will be able to
+        see up to 100 indicators.'
+      name: limit
     description: Fetches all indicators that have a tag.
     name: tc-get-indicators-by-tag
     outputs:
@@ -2877,7 +2883,7 @@ script:
 
     def tc_indicators_command():
         args = demisto.args()
-        limit = int(args.get('limit', 500))
+        limit = arg_to_number(args.get('limit', 500))
         owners = args.get('owner')
         ec, indicators, raw_response = tc_indicators(owners, limit)
 
@@ -3124,7 +3130,8 @@ script:
         args = demisto.args()
         tag = args['tag']
         owner = args.get('owner')
-        response = tc_get_indicators_by_tag(tag, owner)
+        limit = arg_to_number(args.get('limit', MAX_CONTEXT))
+        response = tc_get_indicators_by_tag(tag, owner, limit)
         raw_indicators = response['data']['indicator']
         ec, indicators = create_context(raw_indicators, include_dbot_score=True)
 
@@ -3140,11 +3147,11 @@ script:
 
 
     # @loger
-    def tc_get_indicators_by_tag(tag, owner):
+    def tc_get_indicators_by_tag(tag, owner, limit):
         tc = get_client()
         ro = RequestObject()
         ro.set_http_method('GET')
-        cmd = '/v2/tags/{}/indicators'.format(tag)
+        cmd = '/v2/tags/{}/indicators?resultLimit={}'.format(tag, limit)
         if owner is not None:
             cmd += '?owner={}'.format(owner)
 
