@@ -31,9 +31,9 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.3
+    itemVersion: 1.1.5
     packID: PaloAltoNetworks_PAN_OS_EDL_Management
-    packName: Palo Alto Networks PAN-OS EDL Management
+    packName: Palo Alto Networks PAN-OS EDL Management (Deprecated)
     packPropagationLabels:
     - all
     propagationLabels: []
