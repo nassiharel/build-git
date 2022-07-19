@@ -1,0 +1,186 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Analytics \u0026 SIEM"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidenttype",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Maps incoming InsightIDR alert fields.",
+				"name": "Rapid7 InsightIDR - Incoming Mapper"
+			},
+			{
+				"description": "Classifies Rapid7 InsightIDR incidents",
+				"name": "Rapid7 InsightIDR - Classifier"
+			}
+		],
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Rapid7 InsightIDR Alert",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "List all open/closed investigations. You can filter results by time range and investigation status.",
+						"name": "rapid7-insight-idr-list-investigations"
+					},
+					{
+						"description": "Gets a single investigation (open or closed).",
+						"name": "rapid7-insight-idr-get-investigation"
+					},
+					{
+						"description": "Bulk closes investigations according to the specified investigation create-time date range. You can specify the maximum number of alerts to close per call. If that maximum is exceeded a 400 error response is returned.",
+						"name": "rapid7-insight-idr-close-investigations"
+					},
+					{
+						"description": "Assigns a user to an investigation according to the specified user email  address.",
+						"name": "rapid7-insight-idr-assign-user"
+					},
+					{
+						"description": "Sets the investigation status to either open or closed.",
+						"name": "rapid7-insight-idr-set-status"
+					},
+					{
+						"description": "Adds new indicators to a threat (IP addresses, hashes, domains, and URLs).",
+						"name": "rapid7-insight-idr-add-threat-indicators"
+					},
+					{
+						"description": "Deletes existing indicators from a threat and adds new indicators to the threat.",
+						"name": "rapid7-insight-idr-replace-threat-indicators"
+					},
+					{
+						"description": "Lists all existing logs for an account.",
+						"name": "rapid7-insight-idr-list-logs"
+					},
+					{
+						"description": "Lists all existing log sets for your InsightsIDR instance.",
+						"name": "rapid7-insight-idr-list-log-sets"
+					},
+					{
+						"description": "Downloads logs for from your InsightsIDR instance. The maximum number of logs per call is 10.",
+						"name": "rapid7-insight-idr-download-logs"
+					},
+					{
+						"description": "Queries within a log for certain values.",
+						"name": "rapid7-insight-idr-query-log"
+					},
+					{
+						"description": "Queries within a log set for certain values.",
+						"name": "rapid7-insight-idr-query-log-set"
+					}
+				],
+				"description": "Rapid7 InsightIDR is a Cloud-Based SIEM that detect and respond to security incidents.",
+				"name": "Rapid7 InsightIDR"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Rapid7 InsightIDR - Layout"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-12-29T23:39:41Z",
+	"currentVersion": "1.0.13",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.37",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Rapid7 InsightIDR is a Cloud-Based SIEM that detect and respond to security incidents.",
+	"downloads": 846,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Rapid7_InsightIDR",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Rapid7_InsightIDR/Rapid7InsightIDR_image.png",
+			"name": "Rapid7 InsightIDR"
+		}
+	],
+	"itemVersion": "1.0.13",
+	"keywords": [],
+	"legacy": true,
+	"name": "Rapid7 InsightIDR",
+	"packID": "Rapid7_InsightIDR",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-06-23T22:14:03Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
