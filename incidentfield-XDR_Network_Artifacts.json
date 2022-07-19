@@ -120,7 +120,7 @@
 	"hidden": false,
 	"id": "incident_xdrnetworkartifacts",
 	"isReadOnly": false,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR Network Artifacts",
