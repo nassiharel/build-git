@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 2.2.9
+    itemVersion: 2.2.10
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -179,7 +179,7 @@ tasks:
           transformers:
           - operator: uniq
     separatecontext: false
-    skipunavailable: false
+    skipunavailable: true
     task:
       brand: ""
       description: Checks the authenticity of an email based on the email's SPF, DMARC,
