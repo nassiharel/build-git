@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 4.4.0
+    itemVersion: 4.8.1
     packID: CortexXDR
     packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
@@ -281,8 +281,8 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: Saves the email addresses to notify about the compromised host,
-        if any were configured in the playbook inputs.
+      description: Saves the email addresses to notify about the compromised host
+        if any emails were configured in the playbook inputs.
       id: 7a7a6ec8-c9fa-415a-87bc-bc507762e35e
       iscommand: false
       name: Save email addresses to notify
@@ -1846,6 +1846,8 @@ tasks:
       - "66"
     note: false
     quietmode: 0
+    results:
+    - XDRSyncScriptTaskID
     scriptarguments:
       incident_id:
         complex:
