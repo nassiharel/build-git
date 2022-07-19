@@ -23,64 +23,8 @@
 	"contentItems": {
 		"automation": [
 			{
-				"description": "Train clustering model on Cortex XDR incident type.",
-				"name": "DBotGroupXDRIncidents",
-				"tags": [
-					"widget"
-				]
-			},
-			{
 				"description": "This widget displays Cortex XDR identity information.",
 				"name": "CortexXDRIdentityInformationWidget",
-				"tags": [
-					"dynamic-section"
-				]
-			},
-			{
-				"description": "Entry widget that returns the number of users that participated in a specified Cortex XDR incident.",
-				"name": "EntryWidgetNumberUsersXDR",
-				"tags": [
-					"dynamic-section"
-				]
-			},
-			{
-				"description": "This script returns an HTML result of the cloud providers in the incident. The result will be displayed in the following font colors: AWS - red, GCP - green, Azure - blue.",
-				"name": "CortexXDRCloudProviderWidget",
-				"tags": [
-					"dynamic-section"
-				]
-			},
-			{
-				"description": "This script retrieves additional original alert information from the context.",
-				"name": "CortexXDRAdditionalAlertInformationWidget",
-				"tags": [
-					"dynamic-section"
-				]
-			},
-			{
-				"description": "Entry widget that returns the number of hosts in a Cortex XDR incident.",
-				"name": "EntryWidgetNumberHostsXDR",
-				"tags": [
-					"dynamic-section"
-				]
-			},
-			{
-				"description": "The widget returns the number of the connected endpoints using xdr-get-endpoints command.",
-				"name": "XDRConnectedEndpoints",
-				"tags": [
-					"widget"
-				]
-			},
-			{
-				"description": "Entry widget that returns a pie chart of alerts for a specified Cortex XDR incident by alert severity (low, medium, and high).",
-				"name": "EntryWidgetPieAlertsXDR",
-				"tags": [
-					"dynamic-section"
-				]
-			},
-			{
-				"description": "This widget displays Cortex XDR remediation action information.",
-				"name": "CortexXDRRemediationActionsWidget",
 				"tags": [
 					"dynamic-section"
 				]
@@ -93,25 +37,85 @@
 				]
 			},
 			{
+				"description": "Entry widget that returns a pie chart of alerts for a specified Cortex XDR incident by alert severity (low, medium, and high).",
+				"name": "EntryWidgetPieAlertsXDR",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Train clustering model on Cortex XDR incident type.",
+				"name": "DBotGroupXDRIncidents",
+				"tags": [
+					"widget"
+				]
+			},
+			{
+				"description": "This widget displays Cortex XDR remediation action information.",
+				"name": "CortexXDRRemediationActionsWidget",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "The widget returns the number of the connected endpoints using xdr-get-endpoints command.",
+				"name": "XDRConnectedEndpoints",
+				"tags": [
+					"widget"
+				]
+			},
+			{
+				"description": "Entry widget that returns the number of hosts in a Cortex XDR incident.",
+				"name": "EntryWidgetNumberHostsXDR",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "This script retrieves additional original alert information from the context.",
+				"name": "CortexXDRAdditionalAlertInformationWidget",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "This script returns an HTML result of the cloud providers in the incident. The result will be displayed in the following font colors: AWS - red, GCP - green, Azure - blue.",
+				"name": "CortexXDRCloudProviderWidget",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
 				"description": "Deprecated. No available replacement. Syncs a single incident between Demisto and XDR. This script always uses the xdr-get-incident-extra-data command and outputs to the context the entire incident JSON. When the incident is updated in XDR, the Demisto incident will be updated accordingly and the default playbook will rerun. When an incident is updated in Demisto, the script will execute the xdr-update-incident command and update the incident in XDR.",
 				"name": "XDRSyncScript",
 				"tags": [
 					"xdr"
 				]
+			},
+			{
+				"description": "Entry widget that returns the number of users that participated in a specified Cortex XDR incident.",
+				"name": "EntryWidgetNumberUsersXDR",
+				"tags": [
+					"dynamic-section"
+				]
 			}
 		],
 		"classifier": [
-			{
-				"description": "Maps outgoing Cortex XDR incidents fields.",
-				"name": "Cortex XDR - Outgoing Mapper"
-			},
 			{
 				"description": "Classifies Cortex XDR incidents.",
 				"name": "Cortex XDR - Classifier"
 			},
 			{
+				"description": "Maps outgoing Cortex XDR incidents fields.",
+				"name": "Cortex XDR - Outgoing Mapper"
+			},
+			{
 				"description": "Maps incoming Cortex XDR incidents fields.",
 				"name": "XDR - Incoming Mapper"
+			},
+			{
+				"description": "Classifies Cortex XDR incidents.",
+				"name": "Cortex XDR Incident Handler - Classifier"
 			}
 		],
 		"correlationrule": null,
@@ -128,13 +132,33 @@
 		"incidentfield": [
 			{
 				"description": "",
-				"name": "XDR Assigned User Email",
-				"type": "shortText"
+				"name": "XDR File Name",
+				"type": "multiSelect"
 			},
 			{
-				"description": "The last time the incident was mirrored in.",
-				"name": "LastMirroredInTime",
-				"type": "date"
+				"description": "",
+				"name": "XDR MITRE Techniques",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "XDR High Severity Alert Count",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "XDR device control violations",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "XDR User Count",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "XDR Host Count",
+				"type": "number"
 			},
 			{
 				"description": "",
@@ -143,8 +167,83 @@
 			},
 			{
 				"description": "",
+				"name": "XDR Medium Severity Alert Count",
+				"type": "number"
+			},
+			{
+				"description": "The time the incident was modified in XDR",
+				"name": "XDR Modification Time",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "XDR Assigned User Pretty Name",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "XDR Alert Count",
+				"type": "number"
+			},
+			{
+				"description": "",
+				"name": "XDR Detection Time",
+				"type": "date"
+			},
+			{
+				"description": "",
+				"name": "XDR File SHA256",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "XDR URL",
+				"type": "url"
+			},
+			{
+				"description": "",
+				"name": "XDR Similar Incidents",
+				"type": "grid"
+			},
+			{
+				"description": "",
+				"name": "XDR Starred",
+				"type": "boolean"
+			},
+			{
+				"description": "",
+				"name": "XDR Description",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "XDR Resolve Comment",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "XDR MITRE Tactics",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "XDR Status v2",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "XDR File Artifacts",
+				"type": "grid"
+			},
+			{
+				"description": "",
 				"name": "XDR Incident ID",
 				"type": "shortText"
+			},
+			{
+				"description": "The last time the incident was mirrored in.",
+				"name": "LastMirroredInTime",
+				"type": "date"
 			},
 			{
 				"description": "",
@@ -158,42 +257,12 @@
 			},
 			{
 				"description": "",
-				"name": "XDR File Name",
-				"type": "multiSelect"
-			},
-			{
-				"description": "",
-				"name": "XDR Alert Name",
-				"type": "multiSelect"
-			},
-			{
-				"description": "",
-				"name": "XDR MITRE Techniques",
-				"type": "multiSelect"
+				"name": "XDR Network Artifacts",
+				"type": "grid"
 			},
 			{
 				"description": "Deprecated from version 6.0.0. Please use XDR Status v2 instead",
 				"name": "XDR Status",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "XDR Low Severity Alert Count",
-				"type": "number"
-			},
-			{
-				"description": "",
-				"name": "XDR Host Count",
-				"type": "number"
-			},
-			{
-				"description": "The time the incident was modified in XDR",
-				"name": "XDR Modification Time",
-				"type": "date"
-			},
-			{
-				"description": "",
-				"name": "XDR Resolve Comment",
 				"type": "shortText"
 			},
 			{
@@ -203,43 +272,13 @@
 			},
 			{
 				"description": "",
-				"name": "XDR High Severity Alert Count",
-				"type": "number"
-			},
-			{
-				"description": "",
-				"name": "XDR Similar Incidents",
-				"type": "grid"
-			},
-			{
-				"description": "",
-				"name": "XDR Description",
+				"name": "XDR Assigned User Email",
 				"type": "shortText"
 			},
 			{
 				"description": "",
-				"name": "XDR Detection Time",
-				"type": "date"
-			},
-			{
-				"description": "",
-				"name": "XDR MITRE Tactics",
-				"type": "multiSelect"
-			},
-			{
-				"description": "",
-				"name": "XDR File Artifacts",
-				"type": "grid"
-			},
-			{
-				"description": "",
-				"name": "XDR Network Artifacts",
-				"type": "grid"
-			},
-			{
-				"description": "",
-				"name": "XDR Alert Count",
-				"type": "number"
+				"name": "XDR manual severity",
+				"type": "shortText"
 			},
 			{
 				"description": "",
@@ -248,43 +287,13 @@
 			},
 			{
 				"description": "",
-				"name": "XDR File SHA256",
+				"name": "XDR Alert Name",
 				"type": "multiSelect"
 			},
 			{
 				"description": "",
-				"name": "XDR device control violations",
-				"type": "grid"
-			},
-			{
-				"description": "",
-				"name": "XDR Status v2",
-				"type": "singleSelect"
-			},
-			{
-				"description": "",
-				"name": "XDR User Count",
+				"name": "XDR Low Severity Alert Count",
 				"type": "number"
-			},
-			{
-				"description": "",
-				"name": "XDR URL",
-				"type": "url"
-			},
-			{
-				"description": "",
-				"name": "XDR Medium Severity Alert Count",
-				"type": "number"
-			},
-			{
-				"description": "",
-				"name": "XDR Assigned User Pretty Name",
-				"type": "shortText"
-			},
-			{
-				"description": "",
-				"name": "XDR manual severity",
-				"type": "shortText"
 			}
 		],
 		"incidenttype": [
@@ -292,16 +301,8 @@
 				"closureScript": "",
 				"days": 0,
 				"hours": 0,
-				"name": "Cortex XDR Disconnected endpoints",
-				"playbook": "Cortex XDR disconnected endpoints",
-				"weeks": 0
-			},
-			{
-				"closureScript": "",
-				"days": 0,
-				"hours": 0,
-				"name": "Cortex XDR Incident",
-				"playbook": "Cortex XDR incident handling v3",
+				"name": "Cortex XDR Port Scan",
+				"playbook": "Cortex XDR - Port Scan",
 				"weeks": 0
 			},
 			{
@@ -316,16 +317,24 @@
 				"closureScript": "",
 				"days": 0,
 				"hours": 0,
-				"name": "Cortex XDR - XCLOUD",
-				"playbook": "",
+				"name": "Cortex XDR Incident",
+				"playbook": "Cortex XDR incident handling v3",
 				"weeks": 0
 			},
 			{
 				"closureScript": "",
 				"days": 0,
 				"hours": 0,
-				"name": "Cortex XDR Port Scan",
-				"playbook": "Cortex XDR - Port Scan",
+				"name": "Cortex XDR Disconnected endpoints",
+				"playbook": "Cortex XDR disconnected endpoints",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Cortex XDR - XCLOUD",
+				"playbook": "",
 				"weeks": 0
 			}
 		],
@@ -337,6 +346,37 @@
 			}
 		],
 		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Sync your IOC with Cortex XDR and delete the old.",
+						"name": "xdr-iocs-sync"
+					},
+					{
+						"description": "Push modified IOCs to Cortex XDR.",
+						"name": "xdr-iocs-push"
+					},
+					{
+						"description": "Set sync time manually (Do not use this command unless you unredstandard the consequences).",
+						"name": "xdr-iocs-set-sync-time"
+					},
+					{
+						"description": "Creates the sync file for the manual process. Run this command when instructed by the XDR support team.",
+						"name": "xdr-iocs-create-sync-file"
+					},
+					{
+						"description": "Enables IOCs in the XDR server.",
+						"name": "xdr-iocs-enable"
+					},
+					{
+						"description": "Disables IOCs in the XDR server.",
+						"name": "xdr-iocs-disable"
+					}
+				],
+				"description": "Use the Cortex XDR - IOCs feed integration to sync indicators from Cortex XSOAR to Cortex XDR and back to Cortex XSOAR. Cortex XDR is the world's first detection and response app that natively integrates network, endpoint and cloud data to stop sophisticated attacks.",
+				"name": "Cortex XDR - IOC"
+			},
 			{
 				"category": "Endpoint",
 				"commands": [
@@ -353,7 +393,7 @@
 						"name": "xdr-update-incident"
 					},
 					{
-						"description": "Upload alert from external alert sources in Cortex XDR format. Cortex XDR displays alerts that are parsed\nsuccessfully in related incidents and views. You can send 600 alerts per minute. Each request can contain a\nmaximum of 60 alerts.",
+						"description": "Uploads an alert from external alert sources in Cortex XDR format. Cortex XDR displays alerts that are parsed\nsuccessfully in related incidents and views. You can send 600 alerts per minute. Each request can contain a\nmaximum of 60 alerts.",
 						"name": "xdr-insert-parsed-alert"
 					},
 					{
@@ -441,7 +481,7 @@
 						"name": "xdr-restore-file"
 					},
 					{
-						"description": "Runs a scan on a selected endpoint. To scan all endpoints, run this command with argument all=true. Do note that scanning all the endpoints may cause performance issues and latency.",
+						"description": "Runs a scan on a selected endpoint. To scan all endpoints, run this command with argument all=true. Note: scanning all the endpoints may cause performance issues and latency.",
 						"name": "xdr-endpoint-scan-execute"
 					},
 					{
@@ -449,19 +489,19 @@
 						"name": "xdr-endpoint-scan"
 					},
 					{
-						"description": "Cancel the scan of selected endpoints. A scan can only be aborted if the selected endpoints are Pending or In Progress. To scan all endpoints, run the command with the argument all=true. Note that scanning all of the endpoints may cause performance issues and latency.",
+						"description": "Cancels the scan of selected endpoints. A scan can only be aborted if the selected endpoints are Pending or In Progress. To scan all endpoints, run the command with the argument all=true. Note that scanning all of the endpoints may cause performance issues and latency.",
 						"name": "xdr-endpoint-scan-abort"
 					},
 					{
-						"description": "Get mapping fields from remote incident. Please note that this method will not update the current incident, it's here for debugging purposes.",
+						"description": "Gets mapping fields from remote incident. Note: This method will not update the current incident, it's here for debugging purposes.",
 						"name": "get-mapping-fields"
 					},
 					{
-						"description": "Get remote data from a remote incident. Please note that this method will not update the current incident, it's here for debugging purposes.",
+						"description": "Gets remote data from a remote incident. Note: This method will not update the current incident, it's here for debugging purposes.",
 						"name": "get-remote-data"
 					},
 					{
-						"description": "Get the list of incidents that were modified since the last update. Please note that this method is here for debugging purposes. get-modified-remote-data is used as part of a Mirroring feature, which is available since version 6.1.",
+						"description": "Gets the list of incidents that were modified since the last update. Note: This method is here for debugging purposes. get-modified-remote-data is used as part of a Mirroring feature, which is available since version 6.1.",
 						"name": "get-modified-remote-data"
 					},
 					{
@@ -529,11 +569,11 @@
 						"name": "xdr-get-script-execution-result-files"
 					},
 					{
-						"description": "Initiate a new endpoint script execution of shell commands.",
+						"description": "Initiates a new endpoint script execution of shell commands.",
 						"name": "xdr-script-commands-execute"
 					},
 					{
-						"description": "Initiate a new endpoint script execution of shell commands. This command will be deprecated soon, use `xdr-script-commands-execute` instead.",
+						"description": "Initiates a new endpoint script execution of shell commands. This command will be deprecated soon, use `xdr-script-commands-execute` instead.",
 						"name": "xdr-run-script-execute-commands"
 					},
 					{
@@ -573,7 +613,7 @@
 						"name": "xdr-get-cloud-original-alerts"
 					},
 					{
-						"description": "Returns a list of alerts and their meta-data, which you can filter by built-in arguments or use the custom_filter to input a JSON filter object. \nMultiple filter arguments will be concatenated using AND operator, while arguments that support a comma-separated list of values will use an OR operator between each value.",
+						"description": "Returns a list of alerts and their metadata, which you can filter by built-in arguments or use the custom_filter to input a JSON filter object. \nMultiple filter arguments will be concatenated using the AND operator, while arguments that support a comma-separated list of values will use an OR operator between each value.",
 						"name": "xdr-get-alerts"
 					},
 					{
@@ -583,41 +623,18 @@
 					{
 						"description": "Removes requested files from block list.",
 						"name": "xdr-remove-blocklist-files"
+					},
+					{
+						"description": "Retrieves contributing events for a specific alert.",
+						"name": "xdr-get-contributing-event"
+					},
+					{
+						"description": "Replace the featured hosts\\users\\IP addresses\\active directory groups listed in your environment.",
+						"name": "xdr-replace-featured-field"
 					}
 				],
 				"description": "Cortex XDR is the world's first detection and response app that natively integrates network, endpoint, and cloud data to stop sophisticated attacks.",
 				"name": "Palo Alto Networks Cortex XDR - Investigation and Response"
-			},
-			{
-				"category": "Data Enrichment \u0026 Threat Intelligence",
-				"commands": [
-					{
-						"description": "Sync your IOC with Cortex XDR and delete the old.",
-						"name": "xdr-iocs-sync"
-					},
-					{
-						"description": "Push modified IOCs to Cortex XDR.",
-						"name": "xdr-iocs-push"
-					},
-					{
-						"description": "Set sync time manually (Do not use this command unless you unredstandard the consequences).",
-						"name": "xdr-iocs-set-sync-time"
-					},
-					{
-						"description": "Creates the sync file for the manual process. Run this command when instructed by the XDR support team.",
-						"name": "xdr-iocs-create-sync-file"
-					},
-					{
-						"description": "Enables IOCs in the XDR server.",
-						"name": "xdr-iocs-enable"
-					},
-					{
-						"description": "Disables IOCs in the XDR server.",
-						"name": "xdr-iocs-disable"
-					}
-				],
-				"description": "Use the Cortex XDR - IOCs feed integration to sync indicators from Cortex XSOAR to Cortex XDR and back to Cortex XSOAR. Cortex XDR is the world's first detection and response app that natively integrates network, endpoint and cloud data to stop sophisticated attacks.",
-				"name": "Cortex XDR - IOC"
 			},
 			{
 				"category": "Endpoint",
@@ -682,6 +699,10 @@
 		"layoutscontainer": [
 			{
 				"description": "",
+				"name": "Cortex XDR Disconnected endpoints"
+			},
+			{
+				"description": "",
 				"name": "Cortex XDR Device Control Violations"
 			},
 			{
@@ -690,15 +711,11 @@
 			},
 			{
 				"description": "",
-				"name": "Cortex XDR Incident"
-			},
-			{
-				"description": "",
-				"name": "Cortex XDR Disconnected endpoints"
-			},
-			{
-				"description": "",
 				"name": "Cortex XDR Port Scan"
+			},
+			{
+				"description": "",
+				"name": "Cortex XDR Incident"
 			}
 		],
 		"list": null,
@@ -706,36 +723,84 @@
 		"parsingrule": null,
 		"playbook": [
 			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook assists in retrieving file paths from the Cortex XDR incident by hash.",
+				"name": "Cortex XDR - Get File Path from alerts by hash"
+			},
+			{
+				"description": "Investigate and respond to Cortex XDR Cloud alerts where an AWS IAM user`s access key is used suspiciously to access the cloud environment. \nThe following alerts are supported for AWS environments.\n- Penetration testing tool attempt\n- Penetration testing tool activity\n- Suspicious API call from a Tor exit node\n This is a beta playbook, which lets you implement and test pre-release software. At the moment we support AWS but are working towards multi-cloud support. Since the playbook is beta, it might contain bugs. Updates to the playbook during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the content to help us identify issues, fix them, and continually improve.\n",
+				"name": "Cortex XDR - AWS IAM user access investigation"
+			},
+			{
+				"description": "Queries Cortex XDR for device control violations for the specified hosts, IP address, or XDR endpoint ID. It then communicates via email with the involved users to understand the nature of the incident and if the user connected the device. \nAll the collected data will be displayed in the XDR device control incident layout.\nThis playbook can also be associated with Cortex XDR device control violation job to periodically query and investigate XDR device control violations. In this configuration, the playbook will only communicate with the involved users.",
+				"name": "Cortex XDR device control violations"
+			},
+			{
+				"description": "Initiates a new endpoint script execution to delete the specified file and retrieve the results.",
+				"name": "Cortex XDR - delete file"
+			},
+			{
+				"description": "Retrieves files from selected endpoints. You can retrieve up to 20 files, from no more than 10 endpoints.\nInputs for this playbook are:\n- A comma-separated list of endpoint IDs.\n- A comma-separated list of file paths for your operating system, either Windows, Linux, or Mac. At least one file path is required.",
+				"name": "Cortex XDR - Retrieve File Playbook"
+			},
+			{
 				"description": "Investigates a Cortex XDR incident containing internal port scan alerts. The playbook:\n- Syncs data with Cortex XDR.\n- Notifies management about a compromised host.\n- Escalates the incident in case of lateral movement alert detection.\n\nThe playbook is designed to run as a sub-playbook in 'Cortex XDR Incident Handling - v3 \u0026 Cortex XDR Alerts Handling'. \nIt depends on the data from the parent playbooks and can not be used as a standalone version.",
 				"name": "Cortex XDR - Port Scan - Adjusted"
 			},
 			{
-				"description": "Initiates a new script execution of shell commands.",
-				"name": "Cortex XDR - Execute commands"
+				"description": "A Job to periodically query disconnected Cortex XDR endpoints with a provided last seen time range playbook input.\nThe Collected data, if found will be generated to a CSV report, including a detailed list of the disconnected endpoints.\nThe report will be sent to the recipient's provided email addresses in the playbook input.\nThe playbook includes an incident type with a dedicated layout to visualize the collected data.\nTo set the job correctly, you will need to.\n1. Create a new recurring job.\n2. Set the recurring schedule.\n3. Add a name.\n4. Set type to Cortex XDR disconnected endpoints.\n5. Set this playbook as the job playbook.\n\nhttps://xsoar.pan.dev/docs/incidents/incident-jobs\n\nThe scheduled run time and the timestamp relative date should be identical,\nIf the job is recurring every 7 days, the time range should be 7 days as well.\n",
+				"name": "Cortex XDR disconnected endpoints"
 			},
 			{
-				"description": "Initiates a new endpoint script execution action using the provided snippet code and retrieves the file results.",
-				"name": "Cortex XDR - Execute snippet code script"
-			},
-			{
-				"description": "This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident. \nThe playbook syncs and updates new XDR alerts that construct the incident. It enriches indicators using Threat Intelligence integrations and Palo Alto Networks AutoFocus. The incident's severity is then updated based on the indicators reputation and an analyst is assigned for manual investigation. If chosen, automated remediation with Palo Alto Networks FireWall is initiated. After a manual review by the SOC analyst, the XDR incident is closed automatically.\n\n*** Note - The XDRSyncScript used by this playbook sets data in the XDR incident fields that were released to content from the Demisto server version 5.0.0.\nFor Demisto versions under 5.0.0, please follow the 'Palo Alto Networks Cortex XDR' documentation to upload the new fields manually.",
-				"name": "Cortex XDR Incident Handling"
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response. This playbook handles all the endpoint investigation actions available with Cortex XSOAR, including the following tasks:\n * Pre-defined MITRE Tactics\n * Host fields (Host ID)\n * Attacker fields (Attacker IP, External host)\n * MITRE techniques\n * File hash (currently, the playbook supports only SHA256)  \n\n Note: The playbook inputs enable manipulating the execution flow; read the input descriptions for details.",
+				"name": "Cortex XDR - Endpoint Investigation"
 			},
 			{
 				"description": "Compares incidents in Palo Alto Networks Cortex XDR and Cortex XSOAR, and updates the incidents appropriately. When an incident is updated in Cortex XSOAR, the XDRSyncScript will update the incident in XDR. When an incident is updated in XDR, the XDRSyncScript will update the incident fields in Cortex XSOAR and rerun the current playbook. Do not use this playbook when enabling the incident mirroring feature added in XSOAR version 6.0.0.",
 				"name": "Cortex XDR Incident Sync"
 			},
 			{
+				"description": "Initiates a new endpoint script execution to check if the file exists and retrieve the results.\n",
+				"name": "Cortex XDR - check file existence"
+			},
+			{
+				"description": "This playbook unisolates endpoints according to the endpoint ID that is provided in the playbook input.",
+				"name": "Cortex XDR - Unisolate Endpoint"
+			},
+			{
+				"description": "This playbook is used to loop over every alert in a Cortex XDR incident. \nSupported alert categories:\n- Malware\n- Port Scan",
+				"name": "Cortex XDR Alerts Handling"
+			},
+			{
 				"description": "Initiates a new endpoint script execution action using a provided script unique id from Cortex XDR script library.",
 				"name": "Cortex XDR - Run script"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook investigates Cortex XDR malware incidents. It uses:\\n\\n - Cortex XDR insights \\n - Command Line Analysis \\n - Dedup \\n - Sandbox hash search and detonation \\n - Cortex XDR enrichment \\n - Incident Handling (True/False Positive)",
+				"name": "Cortex XDR Malware - Investigation And Response"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook is a sub-playbook for the Cortex XDR malware investigation flow. In this playbook, we retrieve multiple files from the investigated device (using the Device ID incident field), based on their SHA256 hash.",
+				"name": "Cortex XDR - Retrieve File by sha256"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook handles false-positive incident closures for Cortex XDR - Malware investigation.",
+				"name": "Cortex XDR - False Positive Incident Handling"
+			},
+			{
+				"description": "This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident. \nThe playbook syncs and updates new XDR alerts that construct the incident. It enriches indicators using Threat Intelligence integrations and Palo Alto Networks AutoFocus. The incident's severity is then updated based on the indicators reputation and an analyst is assigned for manual investigation. If chosen, automated remediation with Palo Alto Networks FireWall is initiated. After a manual review by the SOC analyst, the XDR incident is closed automatically.\n\n*** Note - The XDRSyncScript used by this playbook sets data in the XDR incident fields that were released to content from the Demisto server version 5.0.0.\nFor Demisto versions under 5.0.0, please follow the 'Palo Alto Networks Cortex XDR' documentation to upload the new fields manually.",
+				"name": "Cortex XDR Incident Handling"
+			},
+			{
+				"description": "Initiates a new endpoint script execution action using the provided snippet code and retrieves the file results.",
+				"name": "Cortex XDR - Execute snippet code script"
 			},
 			{
 				"description": "Investigates a Cortex XDR incident containing internal malware alerts. The playbook:\n- Enriches the infected endpoint details.\n- Lets the analyst manually retrieve the malicious file.\n- Performs file detonation.\n\nThe playbook is used as a sub- playbook in ‘Cortex XDR Incident Handling - v2’\n",
 				"name": "Cortex XDR - Malware Investigation"
 			},
 			{
-				"description": "Initiates a new endpoint script execution to delete the specified file and retrieve the results.",
-				"name": "Cortex XDR - delete file"
+				"description": "",
+				"name": "Cortex XDR - quarantine file"
 			},
 			{
 				"description": "This playbook accepts an XDR endpoint ID and isolates it using the 'Palo Alto Networks Cortex XDR - Investigation and Response' integration.",
@@ -746,16 +811,24 @@
 				"name": "Cortex XDR - Block File"
 			},
 			{
+				"description": "Investigates a Cortex XDR incident containing internal port scan alerts. The playbook:\n- Syncs data with Cortex XDR\n- Enriches the hostname and IP address of the attacking endpoint\n- Notifies management about host compromise\n- Escalates the incident in case of lateral movement alert detection\n- Hunts malware associated with the alerts across the organization\n- Blocks detected malware associated with the incident\n- Blocks IPs associated with the malware\n- Isolates the attacking endpoint\n- Allows manual blocking of ports that were used for host login following the port scan",
+				"name": "Cortex XDR - Port Scan"
+			},
+			{
 				"description": "Initiates a new endpoint script execution kill process and retrieves the results.",
 				"name": "Cortex XDR - kill process"
 			},
 			{
-				"description": "Investigate and respond to Cortex XDR Cloud alerts where an AWS IAM user`s access key is used suspiciously to access the cloud environment. \nThe following alerts are supported for AWS environments.\n- Penetration testing tool attempt\n- Penetration testing tool activity\n- Suspicious API call from a Tor exit node\n This is a beta playbook, which lets you implement and test pre-release software. At the moment we support AWS but are working towards multi-cloud support. Since the playbook is beta, it might contain bugs. Updates to the playbook during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the content to help us identify issues, fix them, and continually improve.\n",
-				"name": "Cortex XDR - AWS IAM user access investigation"
+				"description": "The playbook targets specific PrintNightmare rules written by Cortex XDR for both vulnerabilities:\n[CVE-2021-1675 LPE](https://nvd.nist.gov/vuln/detail/CVE-2021-1675)\n[CVE-2021-34527 RCE](https://nvd.nist.gov/vuln/detail/CVE-2021-34527)\n\nThis playbook includes the following tasks:\n- Containment of files, endpoints, users and IP Addresses\n- Enrichment of indicators\n- Data acquisition of system info and files using Cortex XDR\n- Eradicating compromised user credentials\n\n** Note: This is a beta playbook, which lets you implement and test pre-release software. Since the playbook is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve.",
+				"name": "Cortex XDR - PrintNightmare Detection and Response"
 			},
 			{
-				"description": "This playbook is used to loop over every alert in a Cortex XDR incident. \nSupported alert categories:\n- Malware\n- Port Scan",
-				"name": "Cortex XDR Alerts Handling"
+				"description": "This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.\nThe playbook syncs and updates new XDR alerts that construct the incident and triggers a sub-playbook to handle each alert by type.\nThen, the playbook performs enrichment on the incident’s indicators and hunts for related IOCs.\nBased on the severity, it lets the analyst decide whether to continue to the remediation stage or close the investigation as a false positive.\nAfter the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. For performing the bidirectional sync, the playbook uses the incoming and outgoing mirroring feature added in XSOAR version 6.0.0. After the Calculate Severity - Generic v2 sub-playbook’s run, Cortex XSOAR will be treated as the single source of truth for the severity field, and it will sync only from Cortex XSOAR to XDR, so manual changes for the severity field in XDR will not update in the XSOAR incident.",
+				"name": "Cortex XDR incident handling v3"
+			},
+			{
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook enriches the Cortex XDR incident. The enrichment is done on the involved endpoint and Mitre technique ID information, and sets the 'Malware-Investigation and Response' layout.",
+				"name": "Cortex XDR Malware - Incident Enrichment"
 			},
 			{
 				"description": "  A job to periodically query Cortex XDR device control violations by a given timestamp in a relative date playbook input.\n  The collected data, if found, will be generated for a new incident.\n  You can configure the created new incident type in the playbook input and use the XDR Device Control Violations incident type to associate it with the response playbook.\n  The job includes an incident type with a dedicated layout to visualize the collected data.\n  To configure the job correctly:\n  1. Create a new recurring job.\n  2. Configure the recurring schedule.\n  3. Add a name.\n  4. Configure the type to XDR Device Control Violations.\n  5. Configure this playbook as the job playbook.\n  The scheduled run time and the timestamp relative date should be identical.\n  If the job recurs every 7 days, the timestamp should be 7 days as well.",
@@ -766,69 +839,29 @@
 				"name": "Cortex XDR - Check Action Status"
 			},
 			{
-				"description": "Initiates a new endpoint script execution to check if the file exists and retrieve the results.\n",
-				"name": "Cortex XDR - check file existence"
+				"description": "Initiates a new script execution of shell commands.",
+				"name": "Cortex XDR - Execute commands"
 			},
 			{
 				"description": "This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.\nThe playbook syncs and updates new XDR alerts that construct the incident and triggers a sub-playbook to handle each alert by type.\nThen, the playbook performs enrichment on the incident's indicators and hunting for related IOCs.\nBased on the severity, it lets the analyst decide whether to continue to the remediation stage or close the investigation as a false positive. \nAfter the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation.",
 				"name": "Cortex XDR incident handling v2"
 			},
 			{
-				"description": "The playbook targets specific PrintNightmare rules written by Cortex XDR for both vulnerabilities:\n[CVE-2021-1675 LPE](https://nvd.nist.gov/vuln/detail/CVE-2021-1675)\n[CVE-2021-34527 RCE](https://nvd.nist.gov/vuln/detail/CVE-2021-34527)\n\nThis playbook includes the following tasks:\n- Containment of files, endpoints, users and IP Addresses\n- Enrichment of indicators\n- Data acquisition of system info and files using Cortex XDR\n- Eradicating compromised user credentials\n\n** Note: This is a beta playbook, which lets you implement and test pre-release software. Since the playbook is beta, it might contain bugs. Updates to the pack during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the pack to help us identify issues, fix them, and continually improve.",
-				"name": "Cortex XDR - PrintNightmare Detection and Response"
-			},
-			{
-				"description": "A Job to periodically query disconnected Cortex XDR endpoints with a provided last seen time range playbook input.\nThe Collected data, if found will be generated to a CSV report, including a detailed list of the disconnected endpoints.\nThe report will be sent to the recipient's provided email addresses in the playbook input.\nThe playbook includes an incident type with a dedicated layout to visualize the collected data.\nTo set the job correctly, you will need to.\n1. Create a new recurring job.\n2. Set the recurring schedule.\n3. Add a name.\n4. Set type to Cortex XDR disconnected endpoints.\n5. Set this playbook as the job playbook.\n\nhttps://xsoar.pan.dev/docs/incidents/incident-jobs\n\nThe scheduled run time and the timestamp relative date should be identical,\nIf the job is recurring every 7 days, the time range should be 7 days as well.\n",
-				"name": "Cortex XDR disconnected endpoints"
-			},
-			{
-				"description": "Investigates a Cortex XDR incident containing internal port scan alerts. The playbook:\n- Syncs data with Cortex XDR\n- Enriches the hostname and IP address of the attacking endpoint\n- Notifies management about host compromise\n- Escalates the incident in case of lateral movement alert detection\n- Hunts malware associated with the alerts across the organization\n- Blocks detected malware associated with the incident\n- Blocks IPs associated with the malware\n- Isolates the attacking endpoint\n- Allows manual blocking of ports that were used for host login following the port scan",
-				"name": "Cortex XDR - Port Scan"
-			},
-			{
-				"description": "",
-				"name": "Cortex XDR - quarantine file"
-			},
-			{
-				"description": "This playbook is triggered by fetching a Palo Alto Networks Cortex XDR incident.\nThe playbook syncs and updates new XDR alerts that construct the incident and triggers a sub-playbook to handle each alert by type.\nThen, the playbook performs enrichment on the incident’s indicators and hunts for related IOCs.\nBased on the severity, it lets the analyst decide whether to continue to the remediation stage or close the investigation as a false positive.\nAfter the remediation, if there are no new alerts, the playbook stops the alert sync and closes the XDR incident and investigation. For performing the bidirectional sync, the playbook uses the incoming and outgoing mirroring feature added in XSOAR version 6.0.0. After the Calculate Severity - Generic v2 sub-playbook’s run, Cortex XSOAR will be treated as the single source of truth for the severity field, and it will sync only from Cortex XSOAR to XDR, so manual changes for the severity field in XDR will not update in the XSOAR incident.",
-				"name": "Cortex XDR incident handling v3"
-			},
-			{
-				"description": "Queries Cortex XDR for device control violations for the specified hosts, IP address, or XDR endpoint ID. It then communicates via email with the involved users to understand the nature of the incident and if the user connected the device. \nAll the collected data will be displayed in the XDR device control incident layout.\nThis playbook can also be associated with Cortex XDR device control violation job to periodically query and investigate XDR device control violations. In this configuration, the playbook will only communicate with the involved users.",
-				"name": "Cortex XDR device control violations"
-			},
-			{
-				"description": "This playbook unisolates endpoints according to the endpoint ID that is provided in the playbook input.",
-				"name": "Cortex XDR - Unisolate Endpoint"
-			},
-			{
-				"description": "Retrieves files from selected endpoints. You can retrieve up to 20 files, from no more than 10 endpoints.\nInputs for this playbook are:\n- A comma-separated list of endpoint IDs.\n- A comma-separated list of file paths for your operating system, either Windows, Linux, or Mac. At least one file path is required.",
-				"name": "Cortex XDR - Retrieve File Playbook"
+				"description": "This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.\nThis playbook handles a true-positive incident closure for Cortex XDR - Malware Investigation.",
+				"name": "Cortex XDR - True Positive Incident Handling"
 			}
 		],
 		"report": null,
 		"reputation": null,
 		"widget": [
 			{
-				"name": "Cortex XDR Top 10 Alerts"
-			},
-			{
-				"name": "Cortex XDR Grouping - Summary"
-			},
-			{
-				"name": "Cortex XDR Top 10 Categories"
+				"name": " Cortex XDR Disconnected Endpoints"
 			},
 			{
 				"name": "Cortex XDR Top 10 files"
 			},
 			{
-				"name": "Cortex XDR Unassigned Incidents"
-			},
-			{
-				"name": "Cortex XDR Top 10 MITRE Tactics"
-			},
-			{
-				"name": "Cortex XDR Closed Incidents"
+				"name": "Cortex XDR Active Device Control Violations Incidents"
 			},
 			{
 				"name": "Cortex XDR Top 10 MITRE Techniques"
@@ -837,25 +870,13 @@
 				"name": "Cortex XDR Active Low Severity Incidents"
 			},
 			{
-				"name": "Cortex XDR Top 10 Users"
+				"name": "Cortex XDR Top 10 MITRE Tactics"
 			},
 			{
-				"name": "Cortex XDR Grouping - Incidents"
-			},
-			{
-				"name": "Cortex XDR Active High Severity Incidents"
-			},
-			{
-				"name": "Cortex XDR Top 10 File SHA256"
+				"name": "Cortex XDR Top 10 Alerts"
 			},
 			{
 				"name": "Cortex XDR Closed Device Control Violations"
-			},
-			{
-				"name": "Cortex XDR Active Device Control Violations Incidents"
-			},
-			{
-				"name": "Cortex XDR Active Medium Severity Incidents"
 			},
 			{
 				"name": "Cortex XDR Connected Endpoints"
@@ -864,10 +885,34 @@
 				"name": "Cortex XDR Top 10 Hosts"
 			},
 			{
+				"name": "Cortex XDR Top 10 Users"
+			},
+			{
+				"name": "Cortex XDR Grouping - Incidents"
+			},
+			{
+				"name": "Cortex XDR Unassigned Incidents"
+			},
+			{
 				"name": "Cortex XDR Groups - Scatter"
 			},
 			{
-				"name": " Cortex XDR Disconnected Endpoints"
+				"name": "Cortex XDR Grouping - Summary"
+			},
+			{
+				"name": "Cortex XDR Top 10 File SHA256"
+			},
+			{
+				"name": "Cortex XDR Active High Severity Incidents"
+			},
+			{
+				"name": "Cortex XDR Closed Incidents"
+			},
+			{
+				"name": "Cortex XDR Active Medium Severity Incidents"
+			},
+			{
+				"name": "Cortex XDR Top 10 Categories"
 			}
 		],
 		"wizard": null,
@@ -875,13 +920,13 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-26T19:57:43Z",
-	"currentVersion": "4.4.0",
+	"currentVersion": "4.8.1",
 	"definitionId": "",
 	"dependencies": {
 		"AWS-IAM": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
-			"mandatory": true,
+			"mandatory": false,
 			"minVersion": "1.1.10",
 			"name": "AWS - IAM"
 		},
@@ -889,92 +934,64 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.4.11",
+			"minVersion": "1.4.15",
 			"name": "Active Directory Query"
 		},
 		"AutoFocus": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "2.0.18",
+			"minVersion": "2.0.21",
 			"name": "AutoFocus"
 		},
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.7",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.2.0",
+			"minVersion": "2.2.10",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
-			"mandatory": true,
-			"minVersion": "1.6.64",
+			"mandatory": false,
+			"minVersion": "1.7.14",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.2.34",
+			"minVersion": "3.2.40",
 			"name": "Common Types"
 		},
-		"EWS": {
+		"FeedMitreAttackv2": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.11.9",
-			"name": "EWS"
+			"mandatory": true,
+			"minVersion": "1.1.3",
+			"name": "MITRE ATT\u0026CK"
 		},
-		"EWSMailSender": {
+		"Jira": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.8",
-			"name": "EWS Mail Sender"
+			"minVersion": "2.0.7",
+			"name": "Atlassian Jira"
 		},
-		"Gmail": {
+		"MalwareInvestigationAndResponse": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.1.16",
-			"name": "Gmail"
-		},
-		"GmailSingleUser": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.2.7",
-			"name": "Gmail Single User"
-		},
-		"MailSenderNew": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.0.6",
-			"name": "Mail Sender (New)"
-		},
-		"MicrosoftGraphListener": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.0.25",
-			"name": "Microsoft Graph Mail Single User"
-		},
-		"MicrosoftGraphMail": {
-			"author": "Cortex XSOAR",
-			"certification": "certified",
-			"mandatory": false,
-			"minVersion": "1.1.15",
-			"name": "Microsoft Graph Mail"
+			"minVersion": "1.5.6",
+			"name": "Malware Investigation and Response"
 		},
 		"PANWComprehensiveInvestigation": {
 			"author": "Cortex XSOAR",
@@ -982,11 +999,18 @@
 			"mandatory": false,
 			"minVersion": "1.3.10",
 			"name": "PANW Comprehensive Investigation"
+		},
+		"ServiceNow": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "2.3.15",
+			"name": "ServiceNow"
 		}
 	},
 	"deprecated": false,
 	"description": "Automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.",
-	"downloads": 14041,
+	"downloads": 16234,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1043,11 +1067,39 @@
 			"name": "Palo Alto Networks AutoFocus v2"
 		},
 		{
+			"imagePath": "content/packs/ServiceNow/ServiceNow_image.png",
+			"name": "ServiceNow (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowCMDB_image.png",
+			"name": "ServiceNow CMDB"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowIAM_image.png",
+			"name": "ServiceNow IAM"
+		},
+		{
+			"imagePath": "content/packs/ServiceNow/ServiceNowv2_image.png",
+			"name": "ServiceNow v2"
+		},
+		{
+			"imagePath": "content/packs/FeedMitreAttackv2/MITREATT%26CKv2_image.png",
+			"name": "MITRE ATT\u0026CK"
+		},
+		{
+			"imagePath": "content/packs/FeedMitreAttackv2/MITREATT%26CKv2_image.png",
+			"name": "MITRE ATT\u0026CK Feed v2"
+		},
+		{
+			"imagePath": "content/packs/Jira/jira-v2_image.png",
+			"name": "Atlassian Jira v2"
+		},
+		{
 			"imagePath": "content/packs/AWS-IAM/AWS-IAM_image.png",
 			"name": "AWS - Identity and Access Management"
 		}
 	],
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"keywords": [
 		"adaptive cyber protection",
 		"apt"
@@ -1076,16 +1128,16 @@
 	},
 	"tags": [
 		"Use Case",
-		"TIM",
-		"Incident Mirroring"
+		"Incident Mirroring",
+		"TIM"
 	],
 	"toServerVersion": "",
-	"updated": "2022-05-24T09:27:25Z",
+	"updated": "2022-07-18T23:06:19Z",
 	"useCases": [
 		"Malware"
 	],
 	"version": -1,
-	"versionInfo": "2972267",
+	"versionInfo": "3287093",
 	"videos": [
 		"https://www.youtube.com/watch?v=ium2969zgn8"
 	]
