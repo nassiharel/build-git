@@ -2,15 +2,16 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.3
+    itemVersion: 1.1.5
     packID: PaloAltoNetworks_PAN_OS_EDL_Management
-    packName: Palo Alto Networks PAN-OS EDL Management
+    packName: Palo Alto Networks PAN-OS EDL Management (Deprecated)
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-description: This playbook parses a CSV file with IOCs and blocks them using Palo
-  Alto Networks External Dynamic Lists.
+deprecated: true
+description: Deprecated. Use Generic Export Indicators Service instead.
+hidden: true
 id: Block IOCs from CSV - External Dynamic List
 inputs:
 - description: The column number that contains IPs. (First column is column 0).
