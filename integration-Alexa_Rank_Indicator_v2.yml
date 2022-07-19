@@ -55,7 +55,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.0.11
+    itemVersion: 2.0.14
     packID: Alexa
     packName: Alexa Rank Indicator
     packPropagationLabels:
@@ -111,7 +111,7 @@ script:
     - contextPath: Alexa.Domain.Rank
       description: Alexa rank as determined by Amazon.
       type: String
-  dockerimage: demisto/python3:3.10.4.29342
+  dockerimage: demisto/python3:3.10.4.31492
   runonce: false
   script: |
     register_module_line('Alexa Rank Indicator v2', 'start', __line__())
@@ -120,7 +120,6 @@ script:
 
 
     import requests
-    import traceback
     from typing import Dict
 
     # Disable insecure warnings
@@ -298,7 +297,6 @@ script:
                 raise NotImplementedError(f'Command {demisto.command()} is not implemented.')
 
         except Exception as e:
-            demisto.error(traceback.format_exc())  # print the traceback
             return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
 
 
