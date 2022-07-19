@@ -1,0 +1,121 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Checks the reputation of an IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Checks the reputation of a domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Checks the reputation of an URL.",
+						"name": "url"
+					},
+					{
+						"description": "Checks the reputation of a file by file hash.",
+						"name": "file"
+					}
+				],
+				"description": "Use the Maltiverse integration to analyze suspicious hashes, URLs, domains and IP addresses.",
+				"name": "Maltiverse"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:47:41Z",
+	"currentVersion": "1.0.19",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Maltiverse helps you to analyze suspicious hashes, URLs, domains, and IP addresses.",
+	"downloads": 2902,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Maltiverse",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Maltiverse/Maltiverse_image.png",
+			"name": "Maltiverse"
+		}
+	],
+	"itemVersion": "1.0.19",
+	"keywords": [],
+	"legacy": true,
+	"name": "Maltiverse",
+	"packID": "Maltiverse",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-07-17T22:43:58Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3281367",
+	"videos": []
+}
