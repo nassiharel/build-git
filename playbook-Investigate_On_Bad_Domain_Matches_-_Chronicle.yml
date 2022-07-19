@@ -1,0 +1,1512 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.20
+    packID: GoogleChronicleBackstory
+    packName: Chronicle
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  Use this playbook to investigate and remediate Bad IOC domain matches with recent activity found in the enterprise, as well as notify the SOC lead and network team about the matches.
+  Supported Integrations:
+  - Chronicle
+  - Whois
+  - Mail Sender (New)
+  - Palo Alto Networks PAN-OS
+  - Palo Alto Networks AutoFocus v2
+id: Investigate On Bad Domain Matches - Chronicle
+inputs:
+- description: 'Enter the email address of the network team that needs to be notified. '
+  key: networkteam_email
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Enter the email of the stakeholder to whom you want to send the investigation
+    summary report.
+  key: stakeholder_email
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Investigate On Bad Domain Matches - Chronicle
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+      - "23"
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1c4259fc-1834-43b4-8a8d-2b0a69e00b17
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 1c4259fc-1834-43b4-8a8d-2b0a69e00b17
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 510,
+          "y": -420
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    evidencedata:
+      customfields: {}
+      description:
+        simple: AutoFocus Verdict
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: true
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      domain:
+        complex:
+          accessor: labels.Artifact
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks the reputation of a domain.
+      id: 46153c29-6ca3-403b-8a36-fdf0694870be
+      iscommand: true
+      name: Perform domain reputation check using Autofocus
+      script: '|||domain'
+      type: regular
+      version: -1
+    taskid: 46153c29-6ca3-403b-8a36-fdf0694870be
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -330,
+          "y": -25
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 91f53dce-eafd-4ef5-804a-924e73a30bcf
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 91f53dce-eafd-4ef5-804a-924e73a30bcf
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 260,
+          "y": 3370
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: true
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      artifact_value:
+        complex:
+          accessor: Name
+          root: Domain
+      preset_time_range:
+        simple: Last 30 days
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns a list of the assets that accessed the input artifact (IP,
+        domain, MD5, SHA1 and SHA256) during the specified time.
+      id: 478ec1f3-99bf-433f-8639-7683c1d81d7f
+      iscommand: true
+      name: Get list of assets that connected to the suspicious domain
+      script: '|||gcb-assets'
+      type: regular
+      version: -1
+    taskid: 478ec1f3-99bf-433f-8639-7683c1d81d7f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -1070,
+          "y": 850
+        }
+      }
+  "10":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Domain.LatestPanVerdicts
+                root: AutoFocus
+                transformers:
+                - operator: Stringify
+          operator: containsString
+          right:
+            value:
+              simple: BENIGN
+      label: Benign
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "26"
+      - "28"
+      Benign:
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty arrays. To be used mostly with DQ and selectors.
+      id: 8267a2a2-4985-40ca-8707-dc644805ec0a
+      iscommand: false
+      name: 'Is the domain benign? '
+      type: condition
+      version: -1
+    taskid: 8267a2a2-4985-40ca-8707-dc644805ec0a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 470,
+          "y": 430
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      assignBy:
+        simple: less-busy-user
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Assign analyst to incident.
+        By default, the analyst is picked randomly from the available users, according to the provided roles (if no roles are provided, all users are fetched).
+        Otherwise, the analyst is picked according to the 'assignBy' arguments.
+        machine-learning: DBot calculates who is the best analyst for the job.
+        top-user: The user that most commonly owns this type of incident
+        less-busy-user: The least busy analyst will be picked to be the incident owner.
+        online: The analyst is picked randomly from all online analysts, according to the provided roles (if no roles provided, all users are fetched).
+        current: The user that executed the command.
+      id: 57d2bad0-ddf2-4278-8cca-4c9125d2f43b
+      iscommand: false
+      name: Assign analyst to incident
+      script: AssignAnalystToIncident
+      type: regular
+      version: -1
+    taskid: 57d2bad0-ddf2-4278-8cca-4c9125d2f43b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 510,
+          "y": -230
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      body:
+        simple: Malicious Domain has been found
+      subject:
+        simple: Malicious Domain Found
+      to:
+        complex:
+          root: inputs.networkteam_email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sends an email to the network team that a malicious domain has
+        been detected.
+      id: 9dcfa248-f379-4d2e-896f-c90af39f16b7
+      iscommand: true
+      name: Notify network team
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: 9dcfa248-f379-4d2e-896f-c90af39f16b7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2030,
+          "y": 1020
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Review the incident and context data.
+      id: 27387840-4a7f-4ec0-833e-ee526ea10ec2
+      iscommand: false
+      name: 'Perform Final Review '
+      type: regular
+      version: -1
+    taskid: 27387840-4a7f-4ec0-833e-ee526ea10ec2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 400,
+          "y": 1725
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "29"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incidentId:
+        complex:
+          accessor: id
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        A script to generate an automated investigation summary report.
+        Can be used in post-processing flow as well.
+      id: 87804b8a-8480-432e-803f-cbe315f0e6c5
+      iscommand: false
+      name: Generate investigation summary report
+      script: GenerateInvestigationSummaryReport
+      type: regular
+      version: -1
+    taskid: 87804b8a-8480-432e-803f-cbe315f0e6c5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 200,
+          "y": 2260
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    evidencedata:
+      customfields: {}
+      description:
+        simple: Additional related details from Backstory
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: true
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      artifact_value:
+        complex:
+          accessor: Name
+          root: Domain
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Accepts an artifact indicator and returns any threat intelligence
+        associated with the artifact. The threat intelligence information is drawn
+        from your enterprise security systems and from Chronicle's IoC partners (for
+        example, the DHS threat feed).
+      id: b107edce-fa83-41c4-8c84-8e2ec2d6a1d3
+      iscommand: true
+      name: Get IOC details from Chronicle
+      script: '|||gcb-ioc-details'
+      type: regular
+      version: -1
+    taskid: b107edce-fa83-41c4-8c84-8e2ec2d6a1d3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -610,
+          "y": 850
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      attachIDs:
+        complex:
+          accessor: EntryID
+          root: InfoFile
+      subject:
+        simple: Investigation Summary Report
+      to:
+        complex:
+          root: inputs.stakeholder_email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Emails the report to the relevant stakeholders.
+      id: ee5dbbee-1621-4508-875e-305a5b4543d2
+      iscommand: true
+      name: Email the report to stakeholders
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: ee5dbbee-1621-4508-875e-305a5b4543d2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -210,
+          "y": 2950
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    evidencedata:
+      customfields: {}
+      description:
+        simple: Backstory domain reputation checks
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: true
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      detailed:
+        simple: "true"
+      domain:
+        complex:
+          accessor: Name
+          root: Domain
+      fullResponse:
+        simple: "true"
+      long:
+        simple: "true"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns a complete profile of the domain.
+      id: d18a53b7-7781-4b0b-8d1f-52a99fe0cde1
+      iscommand: true
+      name: Perform domain reputation check using Chronicle
+      script: '|||domain'
+      type: regular
+      version: -1
+    taskid: d18a53b7-7781-4b0b-8d1f-52a99fe0cde1
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -120,
+          "y": 850
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    form:
+      description: Employee User ID
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: user
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Please enter userid
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "1"
+        label: ""
+        labelarg:
+          simple: Please enter tagname
+        options:
+        - Bark_test_tag
+        - Quarantine
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: singleSelect
+      sender: Your SOC team
+      title: getuserid
+      totalanswers: 0
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: 'Hi, Please provide the user id for the employee, and the corresponding
+          tagname, that is trying to access this bad domain? '
+      cc: null
+      format: ""
+      methods:
+      - email
+      subject:
+        simple: please enter the userid and tagname
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        complex:
+          root: inputs.networkteam_email
+    nexttasks:
+      '#none#':
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    sla:
+      days: 0
+      hours: 4
+      minutes: 0
+      weeks: 0
+    slareminder:
+      days: 1
+      hours: 0
+      minutes: 0
+      weeks: 0
+    task:
+      brand: ""
+      description: Collect the user id for the employee that is trying to get access
+        to this bad domain, and the corresponding tag name.
+      id: 44262ee6-66bd-4830-8fa4-f85b04955786
+      iscommand: false
+      name: Get userid and tagname via email
+      type: collection
+      version: -1
+    taskid: 44262ee6-66bd-4830-8fa4-f85b04955786
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 2030,
+          "y": 1170
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      Users:
+        complex:
+          accessor: Answers.0
+          root: getuserid
+      tag:
+        complex:
+          accessor: Answers.1
+          root: getuserid
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Registers Users to a tag.
+      id: 1b284313-88ee-4a43-8b10-a8ee23d31a4b
+      iscommand: true
+      name: Apply user tag at the firewall
+      script: '|||panorama-register-user-tag'
+      type: regular
+      version: -1
+    taskid: 1b284313-88ee-4a43-8b10-a8ee23d31a4b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2030,
+          "y": 1520
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      query:
+        complex:
+          accessor: labels.Artifact
+          root: incident
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Provides data enrichment for domains.
+      id: 78a113c8-a877-421d-8bac-530a1681ad8e
+      iscommand: true
+      name: Get WhoIs information
+      script: '|||whois'
+      type: regular
+      version: -1
+    taskid: 78a113c8-a877-421d-8bac-530a1681ad8e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1325,
+          "y": -25
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: Asset.HostName
+          root: GoogleChronicleBackstory
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (markdown supported)
+      id: e283ce90-2de5-47b8-891c-dbede9b4fb06
+      iscommand: false
+      name: Get hostnames
+      script: Print
+      type: regular
+      version: -1
+    taskid: e283ce90-2de5-47b8-891c-dbede9b4fb06
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -40,
+          "y": 2090
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: Domain.Sources.Category
+          root: GoogleChronicleBackstory
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (markdown supported)
+      id: e43251ad-8498-4ffd-8372-cc4daaa50c4f
+      iscommand: false
+      name: Print category
+      script: Print
+      type: regular
+      version: -1
+    taskid: e43251ad-8498-4ffd-8372-cc4daaa50c4f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 730,
+          "y": 1900
+        }
+      }
+  "23":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: AutoFocus V2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there is an active instance of the Palo Alto Networks
+        AutoFocus v2 integration enabled.
+      id: 4dece52a-a185-4735-8097-d1c2bac02508
+      iscommand: false
+      name: Is Palo Alto Networks AutoFocus v2 integration enabled?
+      type: condition
+      version: -1
+    taskid: 4dece52a-a185-4735-8097-d1c2bac02508
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -70,
+          "y": -230
+        }
+      }
+  "24":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Whois
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there is an active instance of the Whois integration
+        enabled.
+      id: 30c60822-8090-4a93-86cd-27cf36a100e0
+      iscommand: false
+      name: Is Whois integration enabled?
+      type: condition
+      version: -1
+    taskid: 30c60822-8090-4a93-86cd-27cf36a100e0
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1095,
+          "y": -230
+        }
+      }
+  "26":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Google Chronicle Backstory
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "15"
+      - "17"
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there is an active instance of the Chronicle integration
+        enabled.
+      id: ba414d45-15f6-4ef8-8ba8-b2729f7b3578
+      iscommand: false
+      name: Is Chronicle integration enabled?
+      type: condition
+      version: -1
+    taskid: ba414d45-15f6-4ef8-8ba8-b2729f7b3578
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -380,
+          "y": 640
+        }
+      }
+  "27":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Panorama
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there is an active instance of the Palo Alto Networks
+        PAN-OS integration enabled.
+      id: b95ce21c-55c6-4a93-8d7f-4634356ca450
+      iscommand: false
+      name: Is Palo Alto Networks PAN-OS integration enabled?
+      type: condition
+      version: -1
+    taskid: b95ce21c-55c6-4a93-8d7f-4634356ca450
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2460,
+          "y": 1345
+        }
+      }
+  "28":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Mail Sender (New)
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there is an active instance of the Mail Sender integration
+        enabled.
+      id: decbbe90-2f1e-4114-8361-dd0daf6859bf
+      iscommand: false
+      name: Is Mail Sender integration enabled?
+      type: condition
+      version: -1
+    taskid: decbbe90-2f1e-4114-8361-dd0daf6859bf
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2070,
+          "y": 640
+        }
+      }
+  "29":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Mail Sender (New)
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "32"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there is an active instance of the Mail Sender integration
+        enabled.
+      id: 80b7063d-592a-4824-8c32-137e481981df
+      iscommand: false
+      name: Is Mail Sender integration enabled?
+      type: condition
+      version: -1
+    taskid: 80b7063d-592a-4824-8c32-137e481981df
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 200,
+          "y": 2415
+        }
+      }
+  "30":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.networkteam_email
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "31"
+      "yes":
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0d2f9b6b-fc76-4949-8fdf-751073e13bb2
+      iscommand: false
+      name: Is network team email address set?
+      type: condition
+      version: -1
+    taskid: 0d2f9b6b-fc76-4949-8fdf-751073e13bb2
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2440,
+          "y": 820
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    form:
+      description: Employee User ID
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: user
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Please enter userid
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "1"
+        label: ""
+        labelarg:
+          simple: Please enter tagname
+        options:
+        - Bark_test_tag
+        - Quarantine
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: singleSelect
+      sender: Your SOC team
+      title: getuserid
+      totalanswers: 0
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: 'Hi, Please provide the user id, and the corresponding tag name, for
+          the employee that is trying to get access to this bad domain. '
+      cc: null
+      format: ""
+      methods: []
+      subject:
+        simple: please enter the userid and tagname
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: {}
+    nexttasks:
+      '#none#':
+      - "27"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    sla:
+      days: 0
+      hours: 4
+      minutes: 0
+      weeks: 0
+    slareminder:
+      days: 1
+      hours: 0
+      minutes: 0
+      weeks: 0
+    task:
+      brand: ""
+      description: Collect the user id, and the corresponding tag name, for the employee
+        that is trying to get access to this bad domain.
+      id: 307d253e-5072-438f-8a36-f6e9e39ec58c
+      iscommand: false
+      name: Get userid and tagname
+      type: collection
+      version: -1
+    taskid: 307d253e-5072-438f-8a36-f6e9e39ec58c
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 2460,
+          "y": 1010
+        }
+      }
+  "32":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.stakeholder_email
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "33"
+      "yes":
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6c38cb7b-54b5-4423-8044-24ef58598b50
+      iscommand: false
+      name: Is Stakeholder email address set?
+      type: condition
+      version: -1
+    taskid: 6c38cb7b-54b5-4423-8044-24ef58598b50
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -210,
+          "y": 2590
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    form:
+      description: Enter the email address of stakeholder
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Email input.
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      sender: Your SOC team
+      title: Stakeholder Email
+      totalanswers: 0
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Please provide stakeholder email address.
+      cc: null
+      format: ""
+      methods: []
+      subject:
+        simple: please enter the userid and tagname
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: {}
+    nexttasks:
+      '#none#':
+      - "34"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    sla:
+      days: 0
+      hours: 4
+      minutes: 0
+      weeks: 0
+    slareminder:
+      days: 1
+      hours: 0
+      minutes: 0
+      weeks: 0
+    task:
+      brand: ""
+      description: Collect the user id, and the corresponding tag name, for the employee
+        that is trying to get access to this bad domain.
+      id: d735d256-8d4d-45f2-83e7-ff215fd39c11
+      iscommand: false
+      name: Get stakeholder email address.
+      type: collection
+      version: -1
+    taskid: d735d256-8d4d-45f2-83e7-ff215fd39c11
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": -690,
+          "y": 2770
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      attachIDs:
+        complex:
+          accessor: EntryID
+          root: InfoFile
+      subject:
+        simple: Investigation Summary Report
+      to:
+        complex:
+          accessor: Answers.0
+          root: Stakeholder Email
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Send an email
+      id: cd699d30-f712-41e0-88bb-3ac3c4ba86e0
+      iscommand: true
+      name: Email the report to stakeholders
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: cd699d30-f712-41e0-88bb-3ac3c4ba86e0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -690,
+          "y": 2960
+        }
+      }
+  "35":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Asset.HostName
+                root: GoogleChronicleBackstory
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "14"
+      "yes":
+      - "21"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if GoogleChronicleBackstory.Asset.HostName is present in
+        context or not.
+      id: d965f315-3f37-41ba-8ada-d8e4e70b3bc4
+      iscommand: false
+      name: Is hostname found?
+      type: condition
+      version: -1
+    taskid: d965f315-3f37-41ba-8ada-d8e4e70b3bc4
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 200,
+          "y": 1910
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "10_2_Benign": 0.34,
+      "23_1_yes": 0.37,
+      "23_2_#default#": 0.11,
+      "24_20_yes": 0.44,
+      "24_2_#default#": 0.1,
+      "26_15_yes": 0.49,
+      "26_17_yes": 0.64,
+      "26_2_#default#": 0.37,
+      "26_7_yes": 0.63,
+      "27_19_yes": 0.37,
+      "27_2_#default#": 0.13,
+      "28_2_#default#": 0.18,
+      "29_2_#default#": 0.24,
+      "32_33_#default#": 0.54,
+      "35_14_#default#": 0.48
+    },
+    "paper": {
+      "dimensions": {
+        "height": 3855,
+        "width": 3910,
+        "x": -1070,
+        "y": -420
+      }
+    }
+  }
