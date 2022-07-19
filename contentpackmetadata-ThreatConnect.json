@@ -1,0 +1,428 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Searches for an indicator of type IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Searches for an indicator of type URL.",
+						"name": "url"
+					},
+					{
+						"description": "Searches for an indicator of type file.",
+						"name": "file"
+					},
+					{
+						"description": "Retrieves all owners for the current account.",
+						"name": "tc-owners"
+					},
+					{
+						"description": "Retrieves a list of all indicators.",
+						"name": "tc-indicators"
+					},
+					{
+						"description": "Returns a list of all ThreatConnect tags.",
+						"name": "tc-get-tags"
+					},
+					{
+						"description": "Adds a tag to an existing indicator.",
+						"name": "tc-tag-indicator"
+					},
+					{
+						"description": "Retrieves information about an indicator.",
+						"name": "tc-get-indicator"
+					},
+					{
+						"description": "Fetches all indicators that have a tag.",
+						"name": "tc-get-indicators-by-tag"
+					},
+					{
+						"description": "Adds a new indicator to ThreatConnect.",
+						"name": "tc-add-indicator"
+					},
+					{
+						"description": "Creates a new incident group.",
+						"name": "tc-create-incident"
+					},
+					{
+						"description": "Fetches incidents from ThreatConnect.",
+						"name": "tc-fetch-incidents"
+					},
+					{
+						"description": "Associates an indicator with an existing incident. The indicator must exist before running this command. To add an indicator, run the tc-add-indicator command.",
+						"name": "tc-incident-associate-indicator"
+					},
+					{
+						"description": "Searches for an indicator of type domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Returns indicators that are related to a specific incident.",
+						"name": "tc-get-incident-associate-indicators"
+					},
+					{
+						"description": "Updates the indicator in ThreatConnect.",
+						"name": "tc-update-indicator"
+					},
+					{
+						"description": "Removes a tag from a specified indicator.",
+						"name": "tc-delete-indicator-tag"
+					},
+					{
+						"description": "Deletes an indicator from ThreatConnect.",
+						"name": "tc-delete-indicator"
+					},
+					{
+						"description": "Creates a group based on the \"Campaign\" type.",
+						"name": "tc-create-campaign"
+					},
+					{
+						"description": "Creates a group based on the \"Event\" type.",
+						"name": "tc-create-event"
+					},
+					{
+						"description": "Creates a group based on the \"Threats\" type.",
+						"name": "tc-create-threat"
+					},
+					{
+						"description": "Deletes a group.",
+						"name": "tc-delete-group"
+					},
+					{
+						"description": "Adds an attribute to a specified group.",
+						"name": "tc-add-group-attribute"
+					},
+					{
+						"description": "Returns a list of events.",
+						"name": "tc-get-events"
+					},
+					{
+						"description": "Returns all groups, filtered by the group type.",
+						"name": "tc-get-groups"
+					},
+					{
+						"description": "Adds a security label to a group.",
+						"name": "tc-add-group-security-label"
+					},
+					{
+						"description": "Adds tags to a specified group.",
+						"name": "tc-add-group-tag"
+					},
+					{
+						"description": "Returns all indicator types available.",
+						"name": "tc-get-indicator-types"
+					},
+					{
+						"description": "Associates an indicator with a group.",
+						"name": "tc-group-associate-indicator"
+					},
+					{
+						"description": "Creates a document group.",
+						"name": "tc-create-document-group"
+					},
+					{
+						"description": "Retrieves a single group.",
+						"name": "tc-get-group"
+					},
+					{
+						"description": "Retrieves the attribute of a group.",
+						"name": "tc-get-group-attributes"
+					},
+					{
+						"description": "Retrieves the security labels of a group.",
+						"name": "tc-get-group-security-labels"
+					},
+					{
+						"description": "Retrieves the tags of a group.",
+						"name": "tc-get-group-tags"
+					},
+					{
+						"description": "Downloads the contents of a document.",
+						"name": "tc-download-document"
+					},
+					{
+						"description": "Returns indicators associated with a group.",
+						"name": "tc-get-group-indicators"
+					},
+					{
+						"description": "Returns indicators associated with a specified group.",
+						"name": "tc-get-associated-groups"
+					},
+					{
+						"description": "Associates one group with another group.",
+						"name": "tc-associate-group-to-group"
+					}
+				],
+				"description": "Deprecated. Use the ThreatConnect v2 integration instead.",
+				"name": "ThreatConnect (Deprecated)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Searches for an indicator of type IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Searches for an indicator of type URL.",
+						"name": "url"
+					},
+					{
+						"description": "Searches for an indicator of type file.",
+						"name": "file"
+					},
+					{
+						"description": "Retrieves all owners for the current account.",
+						"name": "tc-owners"
+					},
+					{
+						"description": "Retrieves a list of all indicators.",
+						"name": "tc-indicators"
+					},
+					{
+						"description": "Returns a list of all ThreatConnect tags.",
+						"name": "tc-get-tags"
+					},
+					{
+						"description": "Adds a tag to an existing indicator.",
+						"name": "tc-tag-indicator"
+					},
+					{
+						"description": "Retrieves information about an indicator.",
+						"name": "tc-get-indicator"
+					},
+					{
+						"description": "Fetches all indicators that have a tag.",
+						"name": "tc-get-indicators-by-tag"
+					},
+					{
+						"description": "Adds a new indicator to ThreatConnect.",
+						"name": "tc-add-indicator"
+					},
+					{
+						"description": "Creates a new incident group.",
+						"name": "tc-create-incident"
+					},
+					{
+						"description": "Fetches incidents from ThreatConnect.",
+						"name": "tc-fetch-incidents"
+					},
+					{
+						"description": "Associates an indicator with an existing incident. The indicator must exist before running this command. To add an indicator, run the tc-add-indicator command.",
+						"name": "tc-incident-associate-indicator"
+					},
+					{
+						"description": "Searches for an indicator of type domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Returns indicators that are related to a specific incident.",
+						"name": "tc-get-incident-associate-indicators"
+					},
+					{
+						"description": "Updates the indicator in ThreatConnect.",
+						"name": "tc-update-indicator"
+					},
+					{
+						"description": "Removes a tag from a specified indicator.",
+						"name": "tc-delete-indicator-tag"
+					},
+					{
+						"description": "Deletes an indicator from ThreatConnect.",
+						"name": "tc-delete-indicator"
+					},
+					{
+						"description": "Creates a group based on the \"Campaign\" type.",
+						"name": "tc-create-campaign"
+					},
+					{
+						"description": "Creates a group based on the \"Event\" type.",
+						"name": "tc-create-event"
+					},
+					{
+						"description": "Creates a group based on the \"Threats\" type.",
+						"name": "tc-create-threat"
+					},
+					{
+						"description": "Deletes a group.",
+						"name": "tc-delete-group"
+					},
+					{
+						"description": "Adds an attribute to a specified group.",
+						"name": "tc-add-group-attribute"
+					},
+					{
+						"description": "Returns a list of events.",
+						"name": "tc-get-events"
+					},
+					{
+						"description": "Returns all groups, filtered by the group type.",
+						"name": "tc-get-groups"
+					},
+					{
+						"description": "Adds a security label to a group.",
+						"name": "tc-add-group-security-label"
+					},
+					{
+						"description": "Adds tags to a specified group.",
+						"name": "tc-add-group-tag"
+					},
+					{
+						"description": "Returns all indicator types available.",
+						"name": "tc-get-indicator-types"
+					},
+					{
+						"description": "Associates an indicator with a group.",
+						"name": "tc-group-associate-indicator"
+					},
+					{
+						"description": "Creates a document group.",
+						"name": "tc-create-document-group"
+					},
+					{
+						"description": "Retrieves a single group.",
+						"name": "tc-get-group"
+					},
+					{
+						"description": "Retrieves the attribute of a group.",
+						"name": "tc-get-group-attributes"
+					},
+					{
+						"description": "Retrieves the security labels of a group.",
+						"name": "tc-get-group-security-labels"
+					},
+					{
+						"description": "Retrieves the tags of a group.",
+						"name": "tc-get-group-tags"
+					},
+					{
+						"description": "Downloads the contents of a document.",
+						"name": "tc-download-document"
+					},
+					{
+						"description": "Returns indicators associated with a group.",
+						"name": "tc-get-group-indicators"
+					},
+					{
+						"description": "Returns indicators associated with a specified group.",
+						"name": "tc-get-associated-groups"
+					},
+					{
+						"description": "Associates one group with another group.",
+						"name": "tc-associate-group-to-group"
+					},
+					{
+						"description": "Get Owner for Indicator",
+						"name": "tc-get-indicator-owners"
+					},
+					{
+						"description": "The group report to download in PDF format.",
+						"name": "tc-download-report"
+					}
+				],
+				"description": "ThreatConnect's intelligence-driven security operations solution with intelligence, automation, analytics, and workflows.",
+				"name": "ThreatConnect v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-23T16:36:35Z",
+	"currentVersion": "2.0.18",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Threat intelligence platform.",
+	"downloads": 2252,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ThreatConnect",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ThreatConnect/ThreatConnect_image.png",
+			"name": "ThreatConnect (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/ThreatConnect/ThreatConnectv2_image.png",
+			"name": "ThreatConnect v2"
+		}
+	],
+	"itemVersion": "2.0.18",
+	"keywords": [],
+	"legacy": true,
+	"name": "ThreatConnect",
+	"packID": "ThreatConnect",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-06-13T21:41:05Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
