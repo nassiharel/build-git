@@ -30,7 +30,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.3
+    itemVersion: 2.0.5
     packID: ReversingLabs_A1000
     packName: ReversingLabs A1000
     packPropagationLabels:
