@@ -1,0 +1,80 @@
+comment: Shows the details of sources in the Chronicle Domain Intelligence Sources
+  section of the incident.
+commonfields:
+  id: ChronicleDomainIntelligenceSourcesWidgetScript
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.20
+    packID: GoogleChronicleBackstory
+    packName: Chronicle
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.31492
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ChronicleDomainIntelligenceSourcesWidgetScript
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('ChronicleDomainIntelligenceSourcesWidgetScript', 'start', __line__())
+
+
+
+  from typing import Any, Dict
+  import traceback
+  import json
+
+
+  def get_source_hr(source) -> Dict[str, Any]:
+      return {
+          'Category/Description': source.get('Category', ''),
+          'Confidence': source.get('IntRawConfidenceScore', 0),
+          'Normalized Confidence': source.get('NormalizedConfidenceScore', ''),
+          'Severity': source.get('RawSeverity', '')
+      }
+
+
+  def main() -> None:
+      try:
+          incident_details = demisto.incidents()[0].get('details', '')
+          try:
+              incident_details = json.loads(incident_details)
+          except Exception:
+              demisto.debug("Error while loading investigation data from incident details.")
+
+          sources_hr = ''
+          sources = incident_details.get('Sources', {})
+          for source in sources:
+              sources_hr += tableToMarkdown('{}'.format(source.get('Source')), get_source_hr(source),
+                                            ['Category/Description', 'Confidence', 'Normalized Confidence', 'Severity'])
+          result = {
+              'Type': entryTypes['note'],
+              'Contents': '',
+              'ContentsFormat': '',
+              'ReadableContentsFormat': formats['markdown'],
+              'HumanReadable': sources_hr
+          }
+          demisto.results(result)
+      except Exception as e:
+          demisto.error(traceback.format_exc())
+          return_error(f'Could not load widget:\n{e}')
+
+
+  # python2 uses __builtin__ python3 uses builtins
+  if __name__ == '__builtin__' or __name__ == 'builtins':
+      main()
+
+  register_module_line('ChronicleDomainIntelligenceSourcesWidgetScript', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- dynamic-section
+type: python
