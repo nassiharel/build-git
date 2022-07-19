@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 2.2.9
+    itemVersion: 2.2.10
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -1001,7 +1001,7 @@ tasks:
       id: d46dc80f-b44e-4a16-8c42-0e0645017299
       iscommand: false
       name: Search And Delete Emails - Gmail
-      playbookName: Search And Delete Emails - Gmail
+      playbookId: Search And Delete Emails - Gmail
       type: playbook
       version: -1
     taskid: d46dc80f-b44e-4a16-8c42-0e0645017299
