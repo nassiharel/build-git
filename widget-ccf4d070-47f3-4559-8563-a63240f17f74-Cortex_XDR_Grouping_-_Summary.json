@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "ccf4d070-47f3-4559-8563-a63240f17f74",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Grouping - Summary",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
