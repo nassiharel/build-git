@@ -98,20 +98,20 @@
 		"xsiamreport": null
 	},
 	"created": "2020-11-09T18:48:16Z",
-	"currentVersion": "1.1.1",
+	"currentVersion": "1.1.2",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.7",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "A search engine used for searching Internet-connected devices",
-	"downloads": 2941,
+	"downloads": 3476,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -128,7 +128,7 @@
 			"name": "Shodan v2"
 		}
 	],
-	"itemVersion": "1.1.1",
+	"itemVersion": "1.1.2",
 	"keywords": [],
 	"legacy": true,
 	"name": "Shodan",
@@ -153,9 +153,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-05-20T09:23:15Z",
+	"updated": "2022-06-26T13:03:45Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2953671",
+	"versionInfo": "3263593",
 	"videos": []
 }
