@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "2de3d4e6-573a-4c4e-86c1-85d57dbd88b7",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Closed Device Control Violations",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
