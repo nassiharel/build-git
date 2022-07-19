@@ -1,0 +1,192 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Maps incoming Chronicle incident fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Chronicle-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.0.20",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 1,
+	"mapping": {
+		"Chronicle Rule Detection": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Chronicle Detection Created Time": {
+					"complex": {
+						"filters": [],
+						"root": "createdTime",
+						"transformers": []
+					}
+				},
+				"Chronicle Detection ID": {
+					"complex": {
+						"filters": [],
+						"root": "id",
+						"transformers": []
+					}
+				},
+				"Chronicle Detection State": {
+					"complex": {
+						"accessor": "alertState",
+						"filters": [],
+						"root": "detection",
+						"transformers": []
+					}
+				},
+				"Chronicle Detection Time": {
+					"complex": {
+						"filters": [],
+						"root": "detectionTime",
+						"transformers": []
+					}
+				},
+				"Chronicle Detection Type": {
+					"complex": {
+						"filters": [],
+						"root": "type",
+						"transformers": []
+					}
+				},
+				"Chronicle Detection Window End Time": {
+					"complex": {
+						"accessor": "endTime",
+						"filters": [],
+						"root": "timeWindow",
+						"transformers": []
+					}
+				},
+				"Chronicle Detection Window Start Time": {
+					"complex": {
+						"accessor": "startTime",
+						"filters": [],
+						"root": "timeWindow",
+						"transformers": []
+					}
+				},
+				"Chronicle Events": {
+					"complex": {
+						"accessor": "references",
+						"filters": [],
+						"root": "collectionElements",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				},
+				"Chronicle Rule ID": {
+					"complex": {
+						"accessor": "ruleId",
+						"filters": [],
+						"root": "detection",
+						"transformers": []
+					}
+				},
+				"Chronicle Rule Name": {
+					"complex": {
+						"accessor": "ruleName",
+						"filters": [],
+						"root": "detection",
+						"transformers": []
+					}
+				},
+				"Chronicle Rule Type": {
+					"complex": {
+						"accessor": "ruleType",
+						"filters": [],
+						"root": "detection",
+						"transformers": []
+					}
+				},
+				"Chronicle Rule Version": {
+					"complex": {
+						"accessor": "ruleVersion",
+						"filters": [],
+						"root": "detection",
+						"transformers": []
+					}
+				}
+			}
+		},
+		"Chronicle User Alert": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Chronicle Alert Count": {
+					"complex": {
+						"filters": [],
+						"root": "Alerts",
+						"transformers": []
+					}
+				},
+				"Chronicle Alert Name": {
+					"complex": {
+						"filters": [],
+						"root": "AlertName",
+						"transformers": []
+					}
+				},
+				"Chronicle Events": {
+					"complex": {
+						"filters": [],
+						"root": "UdmEvents",
+						"transformers": [
+							{
+								"operator": "ConvertKeysToTableFieldFormat"
+							}
+						]
+					}
+				},
+				"Chronicle First Seen": {
+					"complex": {
+						"filters": [],
+						"root": "FirstSeen",
+						"transformers": []
+					}
+				},
+				"Chronicle Last Seen": {
+					"complex": {
+						"filters": [],
+						"root": "LastSeen",
+						"transformers": []
+					}
+				},
+				"Chronicle Source Product": {
+					"complex": {
+						"filters": [],
+						"root": "Sources",
+						"transformers": []
+					}
+				},
+				"Chronicle User": {
+					"complex": {
+						"filters": [],
+						"root": "User",
+						"transformers": []
+					}
+				}
+			}
+		}
+	},
+	"name": "Chronicle - Incoming Mapper",
+	"nameRaw": "Chronicle - Incoming Mapper",
+	"packID": "GoogleChronicleBackstory",
+	"packName": "Chronicle",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
