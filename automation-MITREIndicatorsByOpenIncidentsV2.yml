@@ -12,9 +12,9 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.1.0
+    itemVersion: 1.1.3
     packID: FeedMitreAttackv2
-    packName: MITRE ATT&CK v2
+    packName: MITRE ATT&CK
     packPropagationLabels:
     - all
     propagationLabels: []
