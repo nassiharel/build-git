@@ -1,0 +1,375 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Messaging"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Displays the highest severity among the incidents that make up the phishing campaign.",
+				"name": "ShowCampaignHighestSeverity",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Displays all the campaign incident owners and their quantity.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "ShowCampaignIncidentsOwners",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Gets the campaign incidents with low similarity information as a markdown table.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "GetCampaignLowSimilarityIncidentsInfo",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Displays the number of unique recipients of an email campaign.",
+				"name": "ShowCampaignUniqueRecipients",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Collect the recipients from all campaign incidents.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "CollectCampaignRecipients",
+				"tags": [
+					"field-change-triggered"
+				]
+			},
+			{
+				"description": "Displays the similarity range between the incidents that make up the phishing campaign.",
+				"name": "ShowCampaignSimilarityRange",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Splits incidents in the context data to below and above a similarity threshold.\nIf a low similarity incident was already added to the campaign,\nthen it will also be considered in the higher similarity incidents list.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "SplitCampaignContext",
+				"tags": []
+			},
+			{
+				"description": "Find a campaign of emails based on their textual similarity.",
+				"name": "FindEmailCampaign",
+				"tags": [
+					"ml",
+					"phishing"
+				]
+			},
+			{
+				"description": "Gets the IDs of incidents with lower similarity. Used to fill the optional values of the multi-select \"Phishing Campaign Select Campaign Lower Similarity Incidents\" incident field.",
+				"name": "GetCampaignLowerSimilarityIncidentsIdsAsOptions",
+				"tags": [
+					"field-display"
+				]
+			},
+			{
+				"description": "Send email to all recipients from the selected campaign incidents.",
+				"name": "SendEmailToCampaignRecipients",
+				"tags": []
+			},
+			{
+				"description": "Gets all the enabled instances of integrations that have a send-mail command, in the output format of a single select field.",
+				"name": "GetSendEmailInstances",
+				"tags": [
+					"field-display"
+				]
+			},
+			{
+				"description": "Displays the phishing campaign senders' email addresses and the number of incidents each email address appears in.",
+				"name": "ShowCampaignSenders",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Displays the number of phishing incidents that make up the phishing campaign.",
+				"name": "ShowNumberOfCampaignIncidents",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Displays the number of unique senders of an email campaign.",
+				"name": "ShowCampaignUniqueSenders",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Creates a channel in Slack v2 or in Microsoft Teams. If both Slack v2 and Microsoft Teams are available,\nit creates the channel in both Slack v2 and Microsoft Teams.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "GetCampaignIncidentsInfo",
+				"tags": [
+					"field-display",
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Copying EmailCampaign context from current incident to other existing incident.\nThis script runs with elevated permissions.\nCortex XSOAR recommends using the built-in RBAC functionality to limit access to only those users requiring access to this script.",
+				"name": "SetPhishingCampaignDetails",
+				"tags": []
+			},
+			{
+				"description": "Get the incident campaign's ID for the campaign that is linked to at least one  of the given incidents.",
+				"name": "IsIncidentPartOfCampaign",
+				"tags": [
+					"phishing",
+					"campaign"
+				]
+			},
+			{
+				"description": "Get the campaign incident IDs as option values for Multi Select field.",
+				"name": "GetCampaignIncidentsIdsAsOptions",
+				"tags": [
+					"field-display"
+				]
+			},
+			{
+				"description": "Calculate the duration of the current campaign and returns the result in a string with HTML format.",
+				"name": "GetCampaignDuration",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Displays the phishing campaign recipients' email addresses and the number of incidents each email address appears in.",
+				"name": "ShowCampaignRecipients",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Displays the occurrence date of the last campaign incident.",
+				"name": "ShowCampaignLastIncidentOccurred",
+				"tags": [
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Gets the campaign indicators by the campaign incident ids as a MD table.",
+				"name": "GetCampaignIndicatorsByIncidentId",
+				"tags": [
+					"field-display",
+					"dynamic-section"
+				]
+			},
+			{
+				"description": "Perform user actions such as link, close, etc., on selected incidents from a campaign.\n\nThis automation runs using the default Limited User role, unless you explicitly change the permissions.\nFor more information, see the section about permissions here:\nhttps://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html",
+				"name": "PerformActionOnCampaignIncidents",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Select Low Similarity Incidents",
+				"type": "multiSelect"
+			},
+			{
+				"description": "",
+				"name": "Actions On Low Similarity Incidents",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Select Action",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Campaign Email Subject",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Campaign Email Sender Instance",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Campaign Close Notes",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "Actions On Campaign Incidents",
+				"type": "singleSelect"
+			},
+			{
+				"description": "",
+				"name": "Campaign Email Body",
+				"type": "longText"
+			},
+			{
+				"description": "",
+				"name": "Campaign Email To",
+				"type": "shortText"
+			},
+			{
+				"description": "Select Campaign Incidents ",
+				"name": "Select Campaign Incidents",
+				"type": "multiSelect"
+			},
+			{
+				"description": "Display incidents info in MD format",
+				"name": "Incidents Info",
+				"type": "markdown"
+			},
+			{
+				"description": "",
+				"name": "Campaign Mutual Indicators",
+				"type": "markdown"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Phishing Campaign",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Phishing Campaign"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "This playbook is used to find, create and manage phishing campaigns. When a number of similar phishing incidents exist in the system, the playbook can be used to do the following:\n1. Find and link related incidents to the same phishing attack (a phishing campaign).\n2. Search for an existing Phishing Campaign incident, or create a new incident for the linked Phishing incidents.\n3. Link all detected phishing incidents to the Phishing Campaign incident that was found or that was created previously.\n4. Update the Phishing Campaign incident with the latest data about the campaign, and update all related phishing incidents to indicate that they are part of the campaign.",
+				"name": "Detect \u0026 Manage Phishing Campaigns"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2021-03-04T22:49:56Z",
+	"currentVersion": "3.2.13",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.7.14",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.37",
+			"name": "Common Types"
+		},
+		"DemistoLocking": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.3",
+			"name": "Demisto Lock"
+		},
+		"Phishing": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.8",
+			"name": "Phishing"
+		}
+	},
+	"deprecated": false,
+	"description": "This pack can help you find related phishing, spam or other types of email incidents and characterize campaigns.",
+	"downloads": 5377,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Campaign",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/DemistoLocking/DemistoLock_image.png",
+			"name": "Demisto Lock"
+		}
+	],
+	"itemVersion": "3.2.13",
+	"keywords": [],
+	"legacy": true,
+	"name": "Phishing Campaign",
+	"packID": "Campaign",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "When a suspicious email is detected, you can use this pack to determine whether the email is part of a bigger phishing campaign, and to understand its scale and potential risks.\r\n\r\n## What does this pack do?\r\n\r\nThe pack includes the **FindEmailCampaign** script which enables you to: \r\n- Filter past email incidents according to multiple search criteria such as incident types, email body and/or subject, email sender and more.\r\n- Define criteria for a collection of related email incidents to be considered a campaign: minimum number of incidents, minimum number of unique recipients and machine-learning driven similarity threshold between emails.\r\n\r\nThe script output indicates whether a campaign was identified. When a campaign is identified, more information about the campaign is provided: number of incidents involved in the campaign, indicators involved in the campaign and more.\r\nThis allows the user to take additional steps on the campaign findings, like blocking the email of the campaign sender or notifying the email recipients about the campaign.\r\n\r\n\r\n## How does this pack work?\r\n\r\n- You can use the FindEmailCampaign script from this pack on any existing email incident to search through past incidents of the same type and identify campaigns.\r\n- You can use the data gathered from the FindEmailCampaign script to close existing incidents as duplicates and to let the recipients know about the detected campaign.\r\n- You can use the data gathered from the FindEmailCampaign script to identify malicious indicators used in the campaign and block them.\r\n- The pack expects you to have pre-existing email incidents created from a mail listener such as EWS v2.\r\n- The Phishing content pack is required because the **FindEmailCampaign** script uses the **FindDuplicateEmailIncidents** script from that pack.\r\n\r\n_For more information, visit our [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/packs/phishing-campaign)._\r\n\r\n![image](https://user-images.githubusercontent.com/43602124/125288979-630da380-e327-11eb-91d1-9284c2e5a332.png)\r\n\r\n![image](https://user-images.githubusercontent.com/43602124/125288084-68b6b980-e326-11eb-99c0-19e1b7b6af8c.png)\r\n\r\n\r\n\r\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Use Case",
+		"Spam",
+		"Email",
+		"Scam"
+	],
+	"toServerVersion": "",
+	"updated": "2022-05-25T09:25:19Z",
+	"useCases": [
+		"Phishing"
+	],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
