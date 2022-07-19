@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "f39f1990-8c88-4e76-8fa7-a0e564692d77",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Active Device Control Violations Incidents",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
