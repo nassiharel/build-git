@@ -1,0 +1,42 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Classifies Splunk events.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "SplunkPy",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.4.4",
+	"keyTypeMap": {
+		"Access - Brute Force Access Behavior Detected - Rule": "Access",
+		"Access - Brute Force Access Behavior Detected Over 1d - Rule": "Access",
+		"Access - Concurrent App Accesses - Rule": "Access",
+		"Access - Excessive Failed Logins - Rule": "Access",
+		"Access - High or Critical Priority Individual Logging into Infected Machine - Rule": "Access",
+		"Endpoint - High Or Critical Priority Host With Malware - Rule": "Malware",
+		"Threat - Suspicious Email - URL - Rule": "Phishing Alerts"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Splunk - Classifier",
+	"nameRaw": "Splunk - Classifier",
+	"packID": "SplunkPy",
+	"packName": "Splunk",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "source"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
