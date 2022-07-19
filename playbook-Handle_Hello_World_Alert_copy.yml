@@ -33,7 +33,7 @@ inputs:
         fromvalue: null
         tovalue: null
       todate: "0001-01-01T00:00:00Z"
-    query: ssdeep:* and value:"199b9e9a7533431731fbb08ff19d437de1de6533f3ebbffc1e13eeffaa4fd455"
+    query: ssdeep:*
     queryEntity: indicators
     results: null
     runFromLastJobTime: false
