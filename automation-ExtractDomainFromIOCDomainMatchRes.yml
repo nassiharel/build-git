@@ -1,0 +1,80 @@
+args:
+- description: JSON response of IOC Domain Match
+  name: json_response
+comment: Extracts domain and its details from the Chronicle IOC Domain match response.
+commonfields:
+  id: ExtractDomainFromIOCDomainMatchRes
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.20
+    packID: GoogleChronicleBackstory
+    packName: Chronicle
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.28442
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: ExtractDomainFromIOCDomainMatchRes
+outputs:
+- contextPath: Domain.Name
+  description: The suspicious domain name recently observed in enterprise.
+  type: string
+- contextPath: ChronicleIOCDomainMatches.Domain
+  description: The suspicious domain name recently observed in enterprise.
+  type: string
+- contextPath: ChronicleIOCDomainMatches.IOCIngestTime
+  description: Time(UTC) the IOC was first seen by Chronicle.
+  type: date
+- contextPath: ChronicleIOCDomainMatches.FirstSeen
+  description: Time(UTC) the artifact was first seen within your enterprise.
+  type: date
+- contextPath: ChronicleIOCDomainMatches.LastSeen
+  description: Time(UTC) the artifact was most recently seen within your enterprise.
+  type: date
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('ExtractDomainFromIOCDomainMatchRes', 'start', __line__())
+
+  import traceback
+  import json
+  from typing import Dict, Any
+
+
+  def get_entry_context(json_res) -> Dict[str, Any]:
+      return {outputPaths["domain"]: {"Name": json_res['Artifact']},
+              "ChronicleIOCDomainMatches": {"Domain": json_res['Artifact'], "IOCIngestTime": json_res["IocIngestTime"],
+                                            "FirstSeen": json_res["FirstAccessedTime"],
+                                            "LastSeen": json_res["LastAccessedTime"]}}
+
+
+  def main() -> None:
+      try:
+          json_res = demisto.args().get('json_response', {})
+          json_res = json.loads(json_res)
+
+          ec = get_entry_context(json_res)
+          demisto.results(
+              {"Type": entryTypes['note'], "EntryContext": ec, "Contents": {}, "ContentsFormat": formats["json"]})
+      except Exception as e:
+          demisto.error(traceback.format_exc())
+          return_error(f'Error occurred while extracting Domain from IOC Domain Matches response:\n{e}')
+
+
+  # python2 uses __builtin__ python3 uses builtins
+  if __name__ == '__builtin__' or __name__ == 'builtins':
+      main()
+
+  register_module_line('ExtractDomainFromIOCDomainMatchRes', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags: []
+type: python
