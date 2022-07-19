@@ -46,89 +46,6 @@
 						"name": "threatstream-get-passive-dns"
 					},
 					{
-						"description": "Imports indicators (observables) into ThreatStream. The imported data must be approved using the ThreatStream UI. The data can be imported using one of three methods: plain-text, file, or URL.",
-						"name": "threatstream-import-indicator-with-approval"
-					},
-					{
-						"description": "Imports indicators (observables) into ThreatStream. Approval is not required for the imported data. You must have the Approve Intel user permission to import without approval using the API.",
-						"name": "threatstream-import-indicator-without-approval"
-					},
-					{
-						"description": "Returns a list of threat models.",
-						"name": "threatstream-get-model-list"
-					},
-					{
-						"description": "Returns an HTML file with a description of the threat model.",
-						"name": "threatstream-get-model-description"
-					},
-					{
-						"description": "Returns a list of indicators associated with the specified model and ID of the model.",
-						"name": "threatstream-get-indicators-by-model"
-					},
-					{
-						"description": "Submits a file or URL to the ThreatStream-hosted sandbox for detonation.",
-						"name": "threatstream-submit-to-sandbox"
-					},
-					{
-						"description": "Returns the current status of the report submitted to the sandbox. The report ID is returned from the threatstream-submit-to-sandbox command.",
-						"name": "threatstream-get-analysis-status"
-					},
-					{
-						"description": "Returns the report of a file or URL submitted to the sandbox.",
-						"name": "threatstream-analysis-report"
-					},
-					{
-						"description": "Return filtered indicators from ThreatStream. If a query is defined, it overrides all other arguments that were passed to the command.",
-						"name": "threatstream-get-indicators"
-					},
-					{
-						"description": "Adds tags to intelligence to filter for related entities.",
-						"name": "threatstream-add-tag-to-model"
-					},
-					{
-						"description": "Creates a threat model with the specified parameters.",
-						"name": "threatstream-create-model"
-					},
-					{
-						"description": "Updates a threat model with specific parameters. If one or more optional parameters are defined, the command overrides previous data stored in ThreatStream.",
-						"name": "threatstream-update-model"
-					},
-					{
-						"description": "Returns a list of supported platforms for default or premium sandbox.",
-						"name": "threatstream-supported-platforms"
-					},
-					{
-						"description": "Checks the reputation of the given URL.",
-						"name": "url"
-					}
-				],
-				"description": "Use Anomali ThreatStream to query and submit threats.",
-				"name": "Anomali ThreatStream v3"
-			},
-			{
-				"category": "Data Enrichment \u0026 Threat Intelligence",
-				"commands": [
-					{
-						"description": "Checks the reputation of the given IP address.",
-						"name": "ip"
-					},
-					{
-						"description": "Checks the reputation of the given domain name.",
-						"name": "domain"
-					},
-					{
-						"description": "Checks the reputation of the given hash of the file.",
-						"name": "file"
-					},
-					{
-						"description": "Checks the reputation of the given email address.",
-						"name": "threatstream-email-reputation"
-					},
-					{
-						"description": "Returns enrichment data for Domain or IP for available observables.",
-						"name": "threatstream-get-passive-dns"
-					},
-					{
 						"description": "Imports indicators (observables) into ThreatStream. Approval of the imported data is required, using the ThreatStream UI. The data can be imported using one of three methods: plain-text, file, or URL. Only one argument can be used.",
 						"name": "threatstream-import-indicator-with-approval"
 					},
@@ -192,6 +109,89 @@
 				"category": "Data Enrichment \u0026 Threat Intelligence",
 				"commands": [
 					{
+						"description": "Checks the reputation of the given IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Checks the reputation of the given domain name.",
+						"name": "domain"
+					},
+					{
+						"description": "Checks the reputation of the given hash of the file.",
+						"name": "file"
+					},
+					{
+						"description": "Checks the reputation of the given email address.",
+						"name": "threatstream-email-reputation"
+					},
+					{
+						"description": "Returns enrichment data for Domain or IP for available observables.",
+						"name": "threatstream-get-passive-dns"
+					},
+					{
+						"description": "Imports indicators (observables) into ThreatStream. The imported data must be approved using the ThreatStream UI. The data can be imported using one of three methods: plain-text, file, or URL.",
+						"name": "threatstream-import-indicator-with-approval"
+					},
+					{
+						"description": "Imports indicators (observables) into ThreatStream. Approval is not required for the imported data. You must have the Approve Intel user permission to import without approval using the API.",
+						"name": "threatstream-import-indicator-without-approval"
+					},
+					{
+						"description": "Returns a list of threat models.",
+						"name": "threatstream-get-model-list"
+					},
+					{
+						"description": "Returns an HTML file with a description of the threat model.",
+						"name": "threatstream-get-model-description"
+					},
+					{
+						"description": "Returns a list of indicators associated with the specified model and ID of the model.",
+						"name": "threatstream-get-indicators-by-model"
+					},
+					{
+						"description": "Submits a file or URL to the ThreatStream-hosted sandbox for detonation.",
+						"name": "threatstream-submit-to-sandbox"
+					},
+					{
+						"description": "Returns the current status of the report submitted to the sandbox. The report ID is returned from the threatstream-submit-to-sandbox command.",
+						"name": "threatstream-get-analysis-status"
+					},
+					{
+						"description": "Returns the report of a file or URL submitted to the sandbox.",
+						"name": "threatstream-analysis-report"
+					},
+					{
+						"description": "Return filtered indicators from ThreatStream. If a query is defined, it overrides all other arguments that were passed to the command.",
+						"name": "threatstream-get-indicators"
+					},
+					{
+						"description": "Adds tags to intelligence to filter for related entities.",
+						"name": "threatstream-add-tag-to-model"
+					},
+					{
+						"description": "Creates a threat model with the specified parameters.",
+						"name": "threatstream-create-model"
+					},
+					{
+						"description": "Updates a threat model with specific parameters. If one or more optional parameters are defined, the command overrides previous data stored in ThreatStream.",
+						"name": "threatstream-update-model"
+					},
+					{
+						"description": "Returns a list of supported platforms for default or premium sandbox.",
+						"name": "threatstream-supported-platforms"
+					},
+					{
+						"description": "Checks the reputation of the given URL.",
+						"name": "url"
+					}
+				],
+				"description": "Use Anomali ThreatStream to query and submit threats.",
+				"name": "Anomali ThreatStream v3"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
 						"description": "To retrieve threat intelligence from the ThreatStream cloud",
 						"name": "threatstream-intelligence"
 					},
@@ -226,12 +226,12 @@
 		"parsingrule": null,
 		"playbook": [
 			{
-				"description": "Detonate one or more files using the Anomali ThreatStream v2 integration. This playbook returns relevant reports to the War Room, and file reputations to the context data.",
-				"name": "Detonate File - ThreatStream"
-			},
-			{
 				"description": "Detonates one or more URLs using the Anomali ThreatStream v2 sandbox integration.\nReturns relevant reports to the War Room and URL reputations to the context data.",
 				"name": "Detonate URL - ThreatStream"
+			},
+			{
+				"description": "Detonate one or more files using the Anomali ThreatStream v2 integration. This playbook returns relevant reports to the War Room, and file reputations to the context data.",
+				"name": "Detonate File - ThreatStream"
 			}
 		],
 		"report": null,
@@ -242,34 +242,34 @@
 		"xsiamreport": null
 	},
 	"created": "2020-06-30T20:29:34Z",
-	"currentVersion": "2.0.9",
+	"currentVersion": "2.0.12",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.7",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.1.22",
+			"minVersion": "2.2.9",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.6.62",
+			"minVersion": "1.7.14",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Use Anomali ThreatStream to query and submit threats.",
-	"downloads": 3006,
+	"downloads": 3411,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -294,7 +294,7 @@
 			"name": "Anomali ThreatStream v3"
 		}
 	],
-	"itemVersion": "2.0.9",
+	"itemVersion": "2.0.12",
 	"keywords": [],
 	"legacy": true,
 	"name": "Anomali ThreatStream",
@@ -319,9 +319,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-05-20T09:26:45Z",
+	"updated": "2022-07-11T10:57:29Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2953671",
+	"versionInfo": "3263593",
 	"videos": []
 }
