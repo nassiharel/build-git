@@ -758,7 +758,7 @@
 	"id": "Cortex XDR Port Scan",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"locked": false,
 	"mobile": null,
 	"name": "Cortex XDR Port Scan",
