@@ -526,7 +526,7 @@ tasks:
       id: b319325d-4649-4d0a-85b6-ca86878fe32f
       iscommand: true
       name: Fetch instance info
-      script: Panorama|||panorama
+      script: Panorama|||pan-os
       type: regular
       version: -1
     taskid: b319325d-4649-4d0a-85b6-ca86878fe32f
