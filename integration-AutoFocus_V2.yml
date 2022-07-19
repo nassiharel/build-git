@@ -51,7 +51,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.18
+    itemVersion: 2.0.21
     packID: AutoFocus
     packName: AutoFocus
     packPropagationLabels:
@@ -1217,7 +1217,7 @@ script:
     - contextPath: Domain.Name
       description: The domain name.
       type: String
-  dockerimage: demisto/python3:3.10.4.29342
+  dockerimage: demisto/python3:3.10.4.31492
   runonce: false
   script: |
     register_module_line('AutoFocus V2', 'start', __line__())
