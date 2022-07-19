@@ -1,0 +1,131 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "Incoming Mapper for Flashpoint Alerts",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "Flashpoint Alerts - Incoming Mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "1.3.3",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"Flashpoint Alerts": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Flashpoint Alert ID": {
+					"simple": "alert_id"
+				},
+				"Flashpoint Alert Text": {
+					"simple": "source.body.text/plain"
+				},
+				"Flashpoint Created Date": {
+					"simple": "source.created_at.date-time"
+				},
+				"Flashpoint First Observed Date": {
+					"simple": "source.first_observed_at.date-time"
+				},
+				"Flashpoint ID": {
+					"simple": "fpid"
+				},
+				"Flashpoint Keyword Text": {
+					"simple": "keyword.keyword_text"
+				},
+				"Flashpoint Last Observed Date": {
+					"simple": "source.last_observed_at.date-time"
+				},
+				"Flashpoint Link to Alert": {
+					"complex": {
+						"accessor": "fpid",
+						"filters": [],
+						"root": "source",
+						"transformers": [
+							{
+								"args": {
+									"prefix": {
+										"value": {
+											"simple": "https://fp.tools/home/redirect/"
+										}
+									},
+									"suffix": {}
+								},
+								"operator": "concat"
+							}
+						]
+					}
+				},
+				"Flashpoint Native ID": {
+					"simple": "source.native_id"
+				},
+				"Flashpoint Site Actor Names": {
+					"simple": "source.site_actor.names.handle"
+				},
+				"Flashpoint Site Title": {
+					"simple": "source.site.title"
+				},
+				"Flashpoint Sort Date": {
+					"simple": "source.sort_date"
+				},
+				"Flashpoint Source": {
+					"simple": "source.source"
+				},
+				"Flashpoint Source Basetypes": {
+					"complex": {
+						"accessor": "basetypes",
+						"filters": [],
+						"root": "source",
+						"transformers": [
+							{
+								"args": {
+									"separator": {
+										"value": {
+											"simple": ", "
+										}
+									}
+								},
+								"operator": "join"
+							}
+						]
+					}
+				},
+				"Flashpoint Source File": {
+					"simple": "source.file"
+				},
+				"Flashpoint Source Owner": {
+					"simple": "source.owner"
+				},
+				"Flashpoint Source Repo": {
+					"simple": "source.repo"
+				},
+				"Flashpoint Source URL": {
+					"simple": "source.url"
+				},
+				"Flashpoint Title": {
+					"simple": "source.title"
+				},
+				"occurred": {
+					"simple": "source.created_at.date-time"
+				}
+			}
+		}
+	},
+	"name": "Flashpoint Alerts - Incoming Mapper",
+	"nameRaw": "Flashpoint Alerts - Incoming Mapper",
+	"packID": "Flashpoint",
+	"packName": "Flashpoint",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
