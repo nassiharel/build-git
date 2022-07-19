@@ -1,0 +1,100 @@
+args:
+- description: Integration name to check its health status.
+  name: integration_name
+  required: true
+comment: Checks for existing errors in a given integration.
+commonfields:
+  id: VerifyIntegrationHealth
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.2.23
+    packID: DeveloperTools
+    packName: Developer Tools
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.4.30607
+engineinfo: {}
+mainengineinfo: {}
+name: VerifyIntegrationHealth
+outputs:
+- contextPath: IntegrationHealth.isHealthy
+  description: Determines the health status of the integration.
+  type: Boolean
+- contextPath: IntegrationHealth.fetchDone
+  description: Determines whether the fetch-indicators command completed.
+  type: Boolean
+- contextPath: IntegrationHealth.integrationName
+  description: Requested integration name.
+  type: String
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('VerifyIntegrationHealth', 'start', __line__())
+
+
+
+
+  from typing import Dict, Any, Tuple
+
+
+  def health_check(health_dict, integration_name: str) -> Tuple[bool, bool]:
+      for _, integration in health_dict.items():
+          if integration.get('brand') == integration_name:
+              return (False, True) if integration.get('lastError') else (True, True)
+      return True, False
+
+
+  def health_check_command(args: Dict[str, Any]) -> CommandResults:
+
+      integration_name = args.get('integration_name', '')
+
+      raw_result = demisto.executeCommand(
+          "demisto-api-post",
+          {
+              "uri": "/settings/integration/search",
+              "body": {
+                  "size": 10,
+                  "query": "name:" + integration_name
+              },
+          })
+      if is_error(raw_result):
+          return_error(get_error(raw_result))
+
+      health_dict = raw_result[0]["Contents"]["response"]["health"]
+
+      is_healthy, fetch_done = health_check(health_dict, integration_name)
+
+      return CommandResults(
+          outputs_prefix='IntegrationHealth',
+          outputs_key_field='integrationName',
+          outputs={
+              'isHealthy': is_healthy,
+              'fetchDone': fetch_done,
+              'integrationName': integration_name
+          },
+      )
+
+
+  def main():
+      try:
+          return_results(health_check_command(demisto.args()))
+      except Exception as ex:
+          return_error(f'Failed to execute Script. Error: {str(ex)}')
+
+
+  if __name__ in ('__main__', '__builtin__', 'builtins'):
+      main()
+
+  register_module_line('VerifyIntegrationHealth', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- basescript
+type: python
