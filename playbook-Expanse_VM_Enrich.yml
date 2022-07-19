@@ -1,0 +1,860 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.10.16
+    packID: ExpanseV2
+    packName: Cortex Xpanse
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |
+  This Playbook is used to verify that all assets found by Expanse are being scanned by a vulnerability management tool by:
+  - Searching the IP and / or domain of the identified Expanse asset in the vulnerability management tool
+  This playbook expects an incident with an IP or a Domain to exist in the context.
+id: Expanse VM Enrich
+inputs: []
+name: Expanse VM Enrich
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+      - "12"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d3e8fa75-ecdc-4527-8700-392cf485f91b
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: d3e8fa75-ecdc-4527-8700-392cf485f91b
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "6"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: ip}
+          root: ${incident.labels
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty empty arrays. To be used mostly with DQ and selectors.
+      id: 1ae5e795-beca-47c5-8a8f-9a4339aedd93
+      iscommand: false
+      name: IP Address Exists
+      script: Exists
+      type: condition
+      version: -1
+    taskid: 1ae5e795-beca-47c5-8a8f-9a4339aedd93
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 515
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        complex:
+          accessor: ip}
+          root: ${incident.labels
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Tenable.io
+      description: Get a list of up to 5000 of the vulnerabilities recorded for a
+        given asset.
+      id: f70dfa1b-b7f2-41fa-8a46-293dfce6cf6d
+      iscommand: true
+      name: tenable-io-get-vulnerabilities-by-asset
+      script: '|||tenable-io-get-vulnerabilities-by-asset'
+      type: regular
+      version: -1
+    taskid: f70dfa1b-b7f2-41fa-8a46-293dfce6cf6d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 690
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      hostname:
+        complex:
+          accessor: domain
+          root: incident.labels
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Tenable.io
+      description: Get a list of up to 5000 of the vulnerabilities recorded for a
+        given asset.
+      id: 1ff0cea7-6bbd-4791-8c11-3640e448da77
+      iscommand: true
+      name: tenable-io-get-vulnerabilities-by-asset
+      script: '|||tenable-io-get-vulnerabilities-by-asset'
+      type: regular
+      version: -1
+    taskid: 1ff0cea7-6bbd-4791-8c11-3640e448da77
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 690
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "6"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: domain}
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: ${incident.labels
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: "null"
+          root: ${incident.labels
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty empty arrays. To be used mostly with DQ and selectors.
+      id: 4169e587-c5ce-4551-8507-ca2efed3694c
+      iscommand: false
+      name: Domain Exists
+      script: Exists
+      type: condition
+      version: -1
+    taskid: 4169e587-c5ce-4551-8507-ca2efed3694c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 515
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 612b3278-a80b-4075-87bd-5018f070eaef
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 612b3278-a80b-4075-87bd-5018f070eaef
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1395
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "9"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: ${TenableIO.Vulnerabilities}
+              operator: isNotEmpty
+          root: ${TenableIO.Vulnerabilities}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty empty arrays. To be used mostly with DQ and selectors.
+      id: fdb06f60-7209-4e21-84e5-7b18cdeca09f
+      iscommand: false
+      name: Do Vulnerability Findings Exist for Asset
+      script: Exists
+      type: condition
+      version: -1
+    taskid: fdb06f60-7209-4e21-84e5-7b18cdeca09f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 865
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    evidencedata:
+      customfields: {}
+      description:
+        simple: Vulnerability Details from Tenable.io
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      columns:
+        simple: Id,Name,Family,Severity
+      data:
+        complex:
+          accessor: Vulnerabilities}
+          root: ${TenableIO
+      title:
+        complex:
+          accessor: Hostname}
+          root: ${TenableIO.Assets
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: 'Vulnerabilities found for '
+              suffix: {}
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Convert an array to a nice table display. Usually, from the context.
+      id: 3a8a9de4-0def-4dad-8ee6-3a611ff6a123
+      iscommand: false
+      name: Print Vulnerability Summary
+      script: ToTable
+      type: regular
+      version: -1
+    taskid: 3a8a9de4-0def-4dad-8ee6-3a611ff6a123
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1040
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3bf4e8c3-7c9e-4247-81dc-44428729449c
+      iscommand: false
+      name: Manual VM Scan
+      type: regular
+      version: -1
+    taskid: 3bf4e8c3-7c9e-4247-81dc-44428729449c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1040
+        }
+      }
+  "10":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Tenable.io
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "5"
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 925f09bc-240b-4d26-835e-806660bd74ef
+      iscommand: false
+      name: Is Tenable.io Enabled?
+      type: condition
+      version: -1
+    taskid: 925f09bc-240b-4d26-835e-806660bd74ef
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 340
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3b91595d-7c58-47c2-829b-c9d206ac101b
+      iscommand: false
+      name: Tenable.io
+      type: title
+      version: -1
+    taskid: 3b91595d-7c58-47c2-829b-c9d206ac101b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 195
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a57ef9ff-bb6f-461a-85f3-5634faee3825
+      iscommand: false
+      name: Rapid7 Nexpose
+      type: title
+      version: -1
+    taskid: a57ef9ff-bb6f-461a-85f3-5634faee3825
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1540,
+          "y": 195
+        }
+      }
+  "13":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Rapid7 Nexpose
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "6"
+      "yes":
+      - "15"
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d2ba263b-e38a-4186-8436-c450ff0a5179
+      iscommand: false
+      name: Is Nexpose Enabled?
+      type: condition
+      version: -1
+    taskid: d2ba263b-e38a-4186-8436-c450ff0a5179
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1540,
+          "y": 340
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "6"
+      "yes":
+      - "16"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: ip}
+          root: ${incident.labels
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty arrays. To be used mostly with DQ and selectors.
+      id: 1e087b03-e0ad-42ab-8810-d06ff56808bb
+      iscommand: false
+      name: IP Address Exists
+      script: Exists
+      type: condition
+      version: -1
+    taskid: 1e087b03-e0ad-42ab-8810-d06ff56808bb
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1120,
+          "y": 515
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "6"
+      "yes":
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: domain}
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: ${incident.labels
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: "null"
+          root: ${incident.labels
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty arrays. To be used mostly with DQ and selectors.
+      id: 227faf57-d35f-4535-89ea-128f99eb9240
+      iscommand: false
+      name: Domain Exists
+      script: Exists
+      type: condition
+      version: -1
+    taskid: 227faf57-d35f-4535-89ea-128f99eb9240
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1540,
+          "y": 515
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ipAddressIs:
+        complex:
+          accessor: ip}
+          root: ${incident.labels
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Rapid7 Nexpose
+      description: Returns all assets for which you have access that match the given
+        search criteria.
+      id: 50419856-f471-4b55-8d7a-b037f2109b24
+      iscommand: true
+      name: Nexpose find Asset by IP
+      script: '|||nexpose-search-assets'
+      type: regular
+      version: -1
+    taskid: 50419856-f471-4b55-8d7a-b037f2109b24
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1120,
+          "y": 690
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      hostNameIs:
+        complex:
+          accessor: domain
+          root: incident.labels
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Rapid7 Nexpose
+      description: Returns all assets for which you have access that match the given
+        search criteria.
+      id: ce06af07-7456-4c32-8e9b-7a243c792f81
+      iscommand: true
+      name: Nexpose find Asset by Domain
+      script: '|||nexpose-search-assets'
+      type: regular
+      version: -1
+    taskid: ce06af07-7456-4c32-8e9b-7a243c792f81
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1540,
+          "y": 690
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "19"
+      "yes":
+      - "20"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: ${Nexpose.Assets.Assessed}
+              operator: isTrue
+          root: ${Nexpose.Assets.Assessed}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty arrays. To be used mostly with DQ and selectors.
+      id: f3637637-4338-47bb-8933-243f9a0f8e1c
+      iscommand: false
+      name: Has Asset been assessed?
+      script: Exists
+      type: condition
+      version: -1
+    taskid: f3637637-4338-47bb-8933-243f9a0f8e1c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1330,
+          "y": 865
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b70cde15-4941-45f2-8d34-abd38e6c86a5
+      iscommand: false
+      name: Manual VM Scan
+      type: regular
+      version: -1
+    taskid: b70cde15-4941-45f2-8d34-abd38e6c86a5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1540,
+          "y": 1040
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    evidencedata:
+      customfields: {}
+      description:
+        simple: Asset Details from InsightVM
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      columns:
+        simple: AssetId,Name,Assessed,LastScanId, Vulnerabilities
+      data:
+        complex:
+          accessor: Assets}
+          root: ${Nexpose
+      title:
+        complex:
+          root: ${Nexpose.Assets.Name}
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: 'Vulnerabilities found for '
+              suffix: {}
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Convert an array to a nice table display, usually from the context.
+      id: 17f514e1-8059-480d-887d-61e5eefe5898
+      iscommand: false
+      name: Print Asset Summary
+      script: ToTable
+      type: regular
+      version: -1
+    taskid: 17f514e1-8059-480d-887d-61e5eefe5898
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1120,
+          "y": 1040
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "10_6_#default#": 0.41,
+      "15_17_yes": 0.84
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1410,
+        "width": 1870,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
