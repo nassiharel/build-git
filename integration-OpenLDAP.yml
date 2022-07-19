@@ -1,0 +1,548 @@
+category: Authentication
+commonfields:
+  id: OpenLDAP
+  version: -1
+configuration:
+- display: Server IP or Host Name (e.g., 192.168.0.1)
+  name: host
+  required: true
+  type: 0
+- display: Port. If not specified, default port is 389, or 636 for LDAPS.
+  name: port
+  required: false
+  type: 0
+- display: User DN (e.g., cn=admin,ou=users,dc=domain,dc=com)
+  name: credentials
+  required: true
+  type: 9
+- display: Base DN (e.g., DC=domain,DC=com)
+  name: base_dn
+  required: true
+  type: 0
+- defaultvalue: "true"
+  display: Auto populate groups
+  name: fetch_groups
+  required: false
+  type: 8
+- defaultvalue: posixGroup
+  display: Groups Object Class
+  name: group_filter_class
+  required: false
+  type: 0
+- defaultvalue: gidNumber
+  display: Groups Unique Identifier Attribute
+  name: group_identifier_attribute
+  required: false
+  type: 0
+- defaultvalue: memberUid
+  display: Group Membership Identifier Attribute
+  name: member_identifier_attribute
+  required: false
+  type: 0
+- defaultvalue: posixAccount
+  display: User Object Class
+  name: user_filter_class
+  required: false
+  type: 0
+- additionalinfo: User attributes will be added to the user filter in 'ad-authenticate-and-roles'.
+    Attributes should be in the format "attrA=valA,attrB=valB,...".
+  display: User Defined Attributes
+  name: custom_attributes
+  required: false
+  type: 0
+- defaultvalue: uid
+  display: User Unique Identifier Attribute
+  name: user_identifier_attribute
+  required: false
+  type: 0
+- defaultvalue: "500"
+  display: Page size
+  name: page_size
+  required: false
+  type: 0
+- defaultvalue: None
+  display: Connection Type
+  name: connection_type
+  options:
+  - None
+  - SSL
+  required: true
+  type: 15
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.8
+    packID: OpenLDAP
+    packName: OpenLDAP
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Authenticate using OpenLDAP.
+detaileddescription: '[View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/open-ldap)'
+display: OpenLDAP
+image: data:image/png;base64,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
+name: OpenLDAP
+script:
+  commands:
+  - arguments:
+    - description: The username for simple authentication.
+      name: username
+      required: true
+    - description: The password for simple authentication.
+      name: password
+      required: true
+      secret: true
+    description: Performs a simple bind operation on the LDAP server.
+    name: ad-authenticate
+  - arguments:
+    - description: A list of group object names to fetch. The list is delimited by
+        a number sign (#).
+      name: specific-groups
+    description: Fetches LDAP groups under a given base DN.
+    name: ad-groups
+  - arguments:
+    - description: The username for simple authentication.
+      name: username
+      required: true
+    - description: The password for simple authentication.
+      name: password
+      required: true
+      secret: true
+    - defaultValue: mail
+      description: Mail attribute to return in the response. Default is "mail".
+      name: attribute-mail
+    - description: Name attribute to return in the response.
+      name: attribute-name
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: 'Whether to return the name attribute. Possible values are: "true"
+        and "false". Default is "true".'
+      name: attribute-name-pull
+      predefined:
+      - "true"
+      - "false"
+    - auto: PREDEFINED
+      defaultValue: "true"
+      description: 'Whether to return the mail attribute. Possible values are: "true"
+        and "false". Default is "true".'
+      name: attribute-mail-pull
+      predefined:
+      - "true"
+      - "false"
+    description: Performs a simple bind operation on the LDAP server and returns the      authenticated
+      user's groups.
+    name: ad-authenticate-and-roles
+  dockerimage: demisto/py3-tools:1.0.0.31193
+  runonce: false
+  script: |
+    register_module_line('OpenLDAP', 'start', __line__())
+
+
+
+
+    ''' IMPORTS '''
+    from ldap3 import Server, Connection, Tls, BASE
+    from ldap3.utils.dn import parse_dn
+    from ldap3.core.exceptions import LDAPBindError, LDAPInvalidDnError, LDAPSocketOpenError, LDAPInvalidPortError
+    from ssl import CERT_REQUIRED
+    from typing import Tuple
+
+    ''' OpenLDAP CLIENT '''
+
+
+    class LdapClient:
+        """
+            Base client for Ldap authentication.
+
+            :type kwargs: ``dict``
+            :param kwargs: Initialize params for ldap client
+        """
+
+        GROUPS_TOKEN = 'primaryGroupToken'
+        GROUPS_MEMBER = 'memberOf'
+        GROUPS_PRIMARY_ID = 'primaryGroupID'
+        TIMEOUT = 120  # timeout for ssl/tls socket
+        DEV_BUILD_NUMBER = 'REPLACE_THIS_WITH_CI_BUILD_NUM'  # is used only in dev mode
+        SUPPORTED_BUILD_NUMBER = 57352  # required server build number
+
+        def __init__(self, kwargs):
+            self._host = kwargs.get('host')
+            self._port = int(kwargs.get('port')) if kwargs.get('port') else None
+            self._username = kwargs.get('credentials', {}).get('identifier', '')
+            self._password = kwargs.get('credentials', {}).get('password', '')
+            self._base_dn = kwargs.get('base_dn', '').strip()
+            self._connection_type = kwargs.get('connection_type', 'none').lower()
+            self._fetch_groups = kwargs.get('fetch_groups', True)
+            self._verify = not kwargs.get('insecure', False)
+            self._ldap_server = self._initialize_ldap_server()
+            self._page_size = int(kwargs.get('page_size', 500))
+            self._groups_filter_class = kwargs.get('group_filter_class', 'posixGroup').strip()
+            self._group_identifier_attribute = kwargs.get('group_identifier_attribute', 'gidNumber').strip()
+            self._member_identifier_attribute = kwargs.get('member_identifier_attribute', 'memberUid').strip()
+            self._user_filter_class = kwargs.get('user_filter_class', 'posixAccount')
+            self._user_identifier_attribute = kwargs.get('user_identifier_attribute', 'uid')
+            self._custom_attributes = kwargs.get('custom_attributes', '')
+
+        @property
+        def GROUPS_OBJECT_CLASS(self):
+            """
+            :rtype: ``str``
+            :return: Group's base class object name.
+            """
+            return self._groups_filter_class
+
+        @property
+        def GROUPS_IDENTIFIER_ATTRIBUTE(self):
+            """
+            :rtype: ``str``
+            :return: Groups identifier attribute.
+            """
+            return self._group_identifier_attribute
+
+        @property
+        def GROUPS_MEMBERSHIP_IDENTIFIER_ATTRIBUTE(self):
+            """
+            :rtype: ``str``
+            :return: Groups membership attribute.
+            """
+            return self._member_identifier_attribute
+
+        @property
+        def USER_OBJECT_CLASS(self):
+            """
+            :rtype: ``str``
+            :return: User's base class object name.
+            """
+            return self._user_filter_class
+
+        @property
+        def USER_IDENTIFIER_ATTRIBUTE(self):
+            """
+            rtype: ``str``
+            :return: Users identifier attribute.
+            """
+            return self._user_identifier_attribute
+
+        @property
+        def CUSTOM_ATTRIBUTE(self):
+            """
+            rtype: ``str``
+            :return: User defined attributes.
+            """
+            return self._custom_attributes
+
+        def _initialize_ldap_server(self):
+            """
+            Initializes ldap server object with given parameters. Supports both encrypted and non encrypted connection.
+
+            :rtype: ldap3.Server
+            :return: Initialized ldap server object.
+            """
+            if self._connection_type == 'ssl':
+                tls = Tls(validate=CERT_REQUIRED,
+                          ca_certs_file=os.environ.get('SSL_CERT_FILE')) if self._verify else None
+                # if certificate verification isn't required, SSL connection will be used. Otherwise secure connection
+                # will be performed over Tls.
+                return Server(host=self._host, port=self._port, use_ssl=True, tls=tls, connect_timeout=LdapClient.TIMEOUT)
+            else:
+                # non encrypted connection initialized
+                return Server(host=self._host, port=self._port, connect_timeout=LdapClient.TIMEOUT)
+
+        @staticmethod
+        def _parse_ldap_group_entries(ldap_group_entries: List[dict], groups_identifier_attribute: str) -> List[dict]:
+            """
+                Returns parsed ldap groups entries.
+            """
+            return [{'DN': ldap_group.get('dn'), 'Attributes': [{'Name': LdapClient.GROUPS_TOKEN,
+                                                                 'Values': [str(ldap_group.get('attributes', {}).get(
+                                                                     groups_identifier_attribute))]}]}
+                    for ldap_group in ldap_group_entries]
+
+        @staticmethod
+        def _parse_ldap_users_groups_entries(ldap_group_entries: List[dict]) -> List[Optional[Any]]:
+            """
+                Returns parsed user's group entries.
+            """
+            return [ldap_group.get('dn') for ldap_group in ldap_group_entries]
+
+        @staticmethod
+        def _build_entry_for_user(user_groups: str, user_data: dict, mail_attribute: str, name_attribute: str) -> dict:
+            """
+                Returns entry for specific ldap user.
+            """
+            parsed_ldap_groups = {'Name': LdapClient.GROUPS_MEMBER, 'Values': user_groups}
+            parsed_group_id = {'Name': LdapClient.GROUPS_PRIMARY_ID, 'Values': user_data['gid_number']}
+            attributes = [parsed_ldap_groups, parsed_group_id]
+
+            if 'name' in user_data:
+                attributes.append({'Name': name_attribute, 'Values': [user_data['name']]})
+            if 'email' in user_data:
+                attributes.append({'Name': mail_attribute, 'Values': [user_data['email']]})
+
+            return {
+                'DN': user_data['dn'],
+                'Attributes': attributes
+            }
+
+        @staticmethod
+        def _is_valid_dn(dn: str, user_identifier_attribute: str) -> Tuple[bool, str]:
+            """
+                Validates whether given input is valid ldap DN. Returns flag indicator and user's identifier value from DN.
+            """
+            try:
+                parsed_dn = parse_dn(dn, strip=False)
+                for attribute_and_value in parsed_dn:
+                    if attribute_and_value[0].lower() == user_identifier_attribute.lower():
+                        return True, attribute_and_value[1]
+
+                raise Exception(f'OpenLDAP {user_identifier_attribute} attribute was not found in user DN : {dn}')
+            except LDAPInvalidDnError as e:
+                demisto.debug(f'OpenLDAP failed parsing DN with error: {str(e)}. Fallback for unique id activated')
+                return False, dn
+            except Exception:
+                raise
+
+        def _fetch_all_groups(self):
+            """
+                Fetches all ldap groups under given base DN.
+            """
+            with Connection(self._ldap_server, self._username, self._password) as ldap_conn:
+                search_filter = f'(objectClass={self.GROUPS_OBJECT_CLASS})'
+                ldap_group_entries = ldap_conn.extend.standard.paged_search(search_base=self._base_dn,
+                                                                            search_filter=search_filter,
+                                                                            attributes=[self.GROUPS_IDENTIFIER_ATTRIBUTE],
+                                                                            paged_size=self._page_size)
+
+                return {
+                    'Controls': None,
+                    'Referrals': ldap_conn.result.get('referrals'),
+                    'Entries': LdapClient._parse_ldap_group_entries(ldap_group_entries, self.GROUPS_IDENTIFIER_ATTRIBUTE)
+                }
+
+        def _get_formatted_custom_attributes(self) -> str:
+            """
+            :return: custom attributes parsed to the form (att_name1=value1)(attname2=value2)
+            """
+            if not self.CUSTOM_ATTRIBUTE:
+                return ''
+            formatted_attributes = ''
+            for att in self.CUSTOM_ATTRIBUTE.split(','):
+                if len(att.split('=')) != 2:
+                    raise Exception(f'User defined attributes must be of the form'
+                                    f' \"attrA=valA,attrB=valB,...\", but got: {self.CUSTOM_ATTRIBUTE}')
+                formatted_attributes = formatted_attributes + f'({att})'
+            return formatted_attributes
+
+        def _create_search_filter(self, filter_prefix: str) -> str:
+            return filter_prefix + self._get_formatted_custom_attributes()
+
+        def _fetch_specific_groups(self, specific_groups: str) -> dict:
+            """
+                Fetches specific ldap groups under given base DN.
+            """
+            dn_list = [group.strip() for group in argToList(specific_groups, separator="#")]
+            with Connection(self._ldap_server, self._username, self._password) as ldap_conn:
+                parsed_ldap_entries = []
+
+                for dn in dn_list:
+                    search_filter = f'(objectClass={self.GROUPS_OBJECT_CLASS})'
+                    ldap_group_entries = ldap_conn.extend.standard.paged_search(search_base=dn,
+                                                                                search_filter=search_filter,
+                                                                                attributes=[
+                                                                                    self.GROUPS_IDENTIFIER_ATTRIBUTE],
+                                                                                paged_size=self._page_size,
+                                                                                search_scope=BASE)
+                    parsed_ldap_entries.append(
+                        self._parse_ldap_group_entries(ldap_group_entries, self.GROUPS_IDENTIFIER_ATTRIBUTE))
+
+                return {
+                    'Controls': None,
+                    'Referrals': ldap_conn.result.get('referrals'),
+                    'Entries': parsed_ldap_entries
+                }
+
+        def get_ldap_groups(self, specific_group: str = '') -> dict:
+            """
+                Implements ldap groups command.
+            """
+            instance_name = demisto.integrationInstance()
+            if not self._fetch_groups and not specific_group:
+                demisto.info(f'Instance [{instance_name}] configured not to fetch groups')
+                sys.exit()
+
+            searched_results = self._fetch_specific_groups(
+                specific_group) if not self._fetch_groups else self._fetch_all_groups()
+            demisto.info(f'Retrieved {len(searched_results["Entries"])} groups from OpenLDAP {instance_name}')
+
+            return searched_results
+
+        def authenticate_ldap_user(self, username: str, password: str) -> str:
+            """
+                Performs simple bind operation on ldap server.
+            """
+            ldap_conn = Connection(server=self._ldap_server, user=username, password=password, auto_bind=True)
+
+            if ldap_conn.bound:
+                ldap_conn.unbind()
+                return "Done"
+            else:
+                raise Exception("OpenLDAP authentication connection failed")
+
+        def get_user_data(self, username: str, pull_name: bool, pull_mail: bool,
+                          name_attribute: str, mail_attribute: str, search_user_by_dn: bool = False) -> dict:
+            """
+                Returns data for given ldap user.
+            """
+            with Connection(self._ldap_server, self._username, self._password) as ldap_conn:
+                attributes = [self.GROUPS_IDENTIFIER_ATTRIBUTE]
+
+                if pull_name:
+                    attributes.append(name_attribute)
+                if pull_mail:
+                    attributes.append(mail_attribute)
+
+                if search_user_by_dn:
+                    search_filter = f'(&(objectClass={self.USER_OBJECT_CLASS})' +\
+                                    self._get_formatted_custom_attributes() + ')'
+                    ldap_conn.search(search_base=username, search_filter=search_filter, size_limit=1,
+                                     attributes=attributes, search_scope=BASE)
+                else:
+                    custom_attributes = self._get_formatted_custom_attributes()
+                    search_filter = (f'(&(objectClass={self.USER_OBJECT_CLASS})'
+                                     f'({self.USER_IDENTIFIER_ATTRIBUTE}={username}){custom_attributes})')
+                    ldap_conn.search(search_base=self._base_dn, search_filter=search_filter, size_limit=1,
+                                     attributes=attributes)
+
+                if not ldap_conn.entries:
+                    raise Exception("OpenLDAP user not found")
+                entry = ldap_conn.entries[0]
+
+                if self.GROUPS_IDENTIFIER_ATTRIBUTE not in entry \
+                        or not entry[self.GROUPS_IDENTIFIER_ATTRIBUTE].value:
+                    raise Exception(f"OpenLDAP user's {self.GROUPS_IDENTIFIER_ATTRIBUTE} not found")
+
+                user_data = {'dn': entry.entry_dn, 'gid_number': [str(entry[self.GROUPS_IDENTIFIER_ATTRIBUTE].value)],
+                             'referrals': ldap_conn.result.get('referrals')}
+
+                if name_attribute in entry and entry[name_attribute].value:
+                    user_data['name'] = ldap_conn.entries[0][name_attribute].value
+                if mail_attribute in entry and entry[mail_attribute].value:
+                    user_data['email'] = ldap_conn.entries[0][mail_attribute].value
+
+                return user_data
+
+        def get_user_groups(self, user_identifier: str):
+            """
+                Returns user's group.
+            """
+            with Connection(self._ldap_server, self._username, self._password) as ldap_conn:
+                search_filter = (f'(&(objectClass={self.GROUPS_OBJECT_CLASS})'
+                                 f'({self.GROUPS_MEMBERSHIP_IDENTIFIER_ATTRIBUTE}={user_identifier}))')
+                ldap_group_entries = ldap_conn.extend.standard.paged_search(search_base=self._base_dn,
+                                                                            search_filter=search_filter,
+                                                                            attributes=[
+                                                                                self.GROUPS_IDENTIFIER_ATTRIBUTE],
+                                                                            paged_size=self._page_size)
+                return LdapClient._parse_ldap_users_groups_entries(ldap_group_entries)
+
+        def authenticate_and_roles(self, username: str, password: str, pull_name: bool = True, pull_mail: bool = True,
+                                   mail_attribute: str = 'mail', name_attribute: str = 'name') -> dict:
+            """
+                Implements authenticate and roles command.
+            """
+            search_user_by_dn, user_identifier = LdapClient._is_valid_dn(username, self.USER_IDENTIFIER_ATTRIBUTE)
+            user_data = self.get_user_data(username=username, search_user_by_dn=search_user_by_dn, pull_name=pull_name,
+                                           pull_mail=pull_mail, mail_attribute=mail_attribute,
+                                           name_attribute=name_attribute)
+            self.authenticate_ldap_user(user_data['dn'], password)
+            user_groups = self.get_user_groups(user_identifier)
+
+            return {
+                'Controls': None,
+                'Referrals': user_data['referrals'],
+                'Entries': [LdapClient._build_entry_for_user(user_groups=user_groups, user_data=user_data,
+                                                             mail_attribute=mail_attribute, name_attribute=name_attribute)]
+            }
+
+        def test_module(self):
+            """
+                Basic test connection and validation of the Ldap integration.
+            """
+            build_number = get_demisto_version().get('buildNumber', LdapClient.DEV_BUILD_NUMBER)
+            self._get_formatted_custom_attributes()
+
+            if build_number != LdapClient.DEV_BUILD_NUMBER \
+                    and LdapClient.SUPPORTED_BUILD_NUMBER > int(build_number):
+                raise Exception(f'OpenLDAP integration is supported from build number: {LdapClient.SUPPORTED_BUILD_NUMBER}')
+
+            try:
+                parse_dn(self._username)
+            except LDAPInvalidDnError:
+                raise Exception("Invalid credentials input. Credentials must be full DN.")
+            self.authenticate_ldap_user(username=self._username, password=self._password)
+            demisto.results('ok')
+
+
+    def main():
+        """ COMMANDS MANAGER / SWITCH PANEL """
+        params = demisto.params()
+        command = demisto.command()
+        args = demisto.args()
+
+        LOG(f'Command being called is {command}')
+        try:
+            # initialized OpenLDAP client
+            client = LdapClient(params)
+
+            if command == 'test-module':
+                client.test_module()
+            elif command == 'ad-authenticate':
+                username = args.get('username')
+                password = args.get('password')
+                authentication_result = client.authenticate_ldap_user(username, password)
+                demisto.results(authentication_result)
+            elif command == 'ad-groups':
+                specific_group = args.get('specific-groups')
+                searched_results = client.get_ldap_groups(specific_group)
+                demisto.results(searched_results)
+            elif command == 'ad-authenticate-and-roles':
+                username = args.get('username')
+                password = args.get('password')
+                mail_attribute = args.get('attribute-mail', 'mail')
+                name_attribute = args.get('attribute-name', 'name')
+                pull_name = argToBoolean(args.get('attribute-name-pull', True))
+                pull_mail = argToBoolean(args.get('attribute-mail-pull', True))
+                entry_result = client.authenticate_and_roles(username=username, password=password, pull_name=pull_name,
+                                                             pull_mail=pull_mail, mail_attribute=mail_attribute,
+                                                             name_attribute=name_attribute)
+                demisto.results(entry_result)
+
+        # Log exceptions
+        except Exception as e:
+            msg = str(e)
+            if isinstance(e, LDAPBindError):
+                msg = f'OpenLDAP authentication connection failed. Additional details: {msg}'
+            elif isinstance(e, LDAPSocketOpenError):
+                msg = f'Failed to connect to OpenLDAP server. Additional details: {msg}'
+            elif isinstance(e, LDAPInvalidPortError):
+                msg = 'Not valid ldap server input. Check that server input is of form: ip or ldap://ip'
+            return_error(str(msg))
+
+
+    if __name__ in ['__main__', '__builtin__', 'builtins']:
+        main()
+
+    register_module_line('OpenLDAP', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
