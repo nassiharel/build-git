@@ -1,0 +1,558 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.0.20
+    packID: GoogleChronicleBackstory
+    packName: Chronicle
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook receives ChronicleAsset identifier information and provides a list of events related to each one of them.
+  Supported integration:
+  - Chronicle
+id: List Device Events - Chronicle
+inputs:
+- description: The hostname associated with the ChronicleAsset.
+  key: chronicleasset_hostname
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The IP address associated with the ChronicleAsset.
+  key: chronicleasset_ip
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The MAC address associated with the ChronicleAsset.
+  key: chronicleasset_mac
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The product ID associated with the ChronicleAsset.
+  key: chronicleasset_product_id
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: List Device Events - Chronicle
+outputs:
+- contextPath: GoogleChronicleBackstory.Events
+  description: List of events associated with the ChronicleAsset.
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c663d51c-653d-44d0-89c0-6187fd10cc98
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: c663d51c-653d-44d0-89c0-6187fd10cc98
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 350,
+          "y": -280
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e31de2ce-b2d2-444d-871c-a399bf7b3963
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: e31de2ce-b2d2-444d-871c-a399bf7b3963
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 350,
+          "y": 1530
+        }
+      }
+  "5":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.chronicleasset_hostname
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "12"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is a hostname associated with the ChronicleAsset.
+      id: 41ee7b16-7816-4c79-8585-263332cf6ab9
+      iscommand: false
+      name: Is there a hostname associated with the ChronicleAsset?
+      type: condition
+      version: -1
+    taskid: 41ee7b16-7816-4c79-8585-263332cf6ab9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 120,
+          "y": 160
+        }
+      }
+  "8":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      asset_identifier:
+        complex:
+          root: inputs.chronicleasset_ip
+      asset_identifier_type:
+        simple: IP Address
+      preset_time_range:
+        simple: Last 30 days
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets the list of events discovered within your enterprise for the
+        specified IP address within the specified time range.
+      id: 428f3108-2c45-4e1d-8442-9c1d9ac7c213
+      iscommand: true
+      name: Get the list of events for the IP address
+      script: '|||gcb-list-events'
+      type: regular
+      version: -1
+    taskid: 428f3108-2c45-4e1d-8442-9c1d9ac7c213
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -110,
+          "y": 670
+        }
+      }
+  "9":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      asset_identifier:
+        complex:
+          root: inputs.chronicleasset_product_id
+      asset_identifier_type:
+        simple: Product ID
+      preset_time_range:
+        simple: Last 30 days
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets the list of events discovered within your enterprise for the
+        specified product ID within the specified time range.
+      id: abcf21df-13fb-4618-84fc-45bbdc354b73
+      iscommand: true
+      name: Get the list of events for the product ID
+      script: '|||gcb-list-events'
+      type: regular
+      version: -1
+    taskid: abcf21df-13fb-4618-84fc-45bbdc354b73
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -110,
+          "y": 1350
+        }
+      }
+  "10":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      asset_identifier:
+        complex:
+          root: inputs.chronicleasset_mac
+      asset_identifier_type:
+        simple: MAC Address
+      preset_time_range:
+        simple: Last 30 days
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets the list of events discovered within your enterprise for the
+        specified MAC address within the specified time range.
+      id: 49bc1b9b-140a-4a5f-8c7c-290d2d8890a0
+      iscommand: true
+      name: Get the list of events for the MAC address
+      script: '|||gcb-list-events'
+      type: regular
+      version: -1
+    taskid: 49bc1b9b-140a-4a5f-8c7c-290d2d8890a0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -110,
+          "y": 1010
+        }
+      }
+  "11":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    reputationcalc: 3
+    scriptarguments:
+      asset_identifier:
+        complex:
+          root: inputs.chronicleasset_hostname
+      asset_identifier_type:
+        simple: Host Name
+      preset_time_range:
+        simple: Last 30 days
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets the list of events discovered within your enterprise for the
+        specified hostname within the specified time range.
+      id: 6a74941f-586b-4452-834a-5e96681d2a30
+      iscommand: true
+      name: Get the list of events for the hostname
+      script: '|||gcb-list-events'
+      type: regular
+      version: -1
+    taskid: 6a74941f-586b-4452-834a-5e96681d2a30
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -110,
+          "y": 330
+        }
+      }
+  "12":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.chronicleasset_ip
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "13"
+      "yes":
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is an IP address associated with the ChronicleAsset.
+      id: 7029544c-817f-45a8-8905-d5209567f3f2
+      iscommand: false
+      name: Is there an IP address associated with the ChronicleAsset?
+      type: condition
+      version: -1
+    taskid: 7029544c-817f-45a8-8905-d5209567f3f2
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 120,
+          "y": 500
+        }
+      }
+  "13":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.chronicleasset_mac
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "14"
+      "yes":
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is a MAC address associated with the ChronicleAsset.
+      id: 23202ff9-f864-485a-8d22-47327d028c4a
+      iscommand: false
+      name: Is there a MAC address associated with the ChronicleAsset?
+      type: condition
+      version: -1
+    taskid: 23202ff9-f864-485a-8d22-47327d028c4a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 120,
+          "y": 840
+        }
+      }
+  "14":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.chronicleasset_product_id
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if there is a product ID associated with the ChronicleAsset.
+      id: 26d40f29-7d15-45bc-89df-2e80efc22b4a
+      iscommand: false
+      name: Is there a product ID associated with the ChronicleAsset?
+      type: condition
+      version: -1
+    taskid: 26d40f29-7d15-45bc-89df-2e80efc22b4a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 120,
+          "y": 1180
+        }
+      }
+  "35":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Google Chronicle Backstory
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "2"
+      "yes":
+      - "36"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether there is an active instance of the Chronicle integration.
+      id: 072bb478-718c-41ae-8ec5-96e853448527
+      iscommand: false
+      name: Is the Chronicle integration enabled?
+      type: condition
+      version: -1
+    taskid: 072bb478-718c-41ae-8ec5-96e853448527
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 350,
+          "y": -160
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      key:
+        simple: GoogleChronicleBackstory.Events
+      subplaybook:
+        simple: auto
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Deletes the "GoogleChronicleBackstory.Events" key from the context
+        to clear the list of events fetched for the previous indicator.
+      id: 3e621e01-22fe-41de-858c-de037bc9d917
+      iscommand: false
+      name: Clear the list of events fetched for the previous indicator
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 3e621e01-22fe-41de-858c-de037bc9d917
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 120,
+          "y": 10
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "14_2_#default#": 0.33,
+      "35_2_#default#": 0.11,
+      "5_11_yes": 0.47,
+      "5_12_#default#": 0.42
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1875,
+        "width": 840,
+        "x": -110,
+        "y": -280
+      }
+    }
+  }
