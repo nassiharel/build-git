@@ -1,0 +1,206 @@
+{
+	"author": "ReversingLabs",
+	"authorImage": "content/packs/ReversingLabs_A1000/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Forensics \u0026 Malware Analysis"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Calculates A1000 final classification based on A1000 classification and A1000 full reports.",
+				"name": "A1000FinalClassification",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Retrieve sample analysis results",
+						"name": "reversinglabs-a1000-get-results"
+					},
+					{
+						"description": "Upload sample to A1000 for analysis",
+						"name": "reversinglabs-a1000-upload-sample"
+					},
+					{
+						"description": "Upload sample to A1000 and retrieve analysis results",
+						"name": "reversinglabs-a1000-upload-sample-and-get-results"
+					},
+					{
+						"description": "Delete an uploaded sample from A1000",
+						"name": "reversinglabs-a1000-delete-sample"
+					},
+					{
+						"description": "List files extracted from a sample",
+						"name": "reversinglabs-a1000-list-extracted-files"
+					},
+					{
+						"description": "Download sample from A1000",
+						"name": "reversinglabs-a1000-download-sample"
+					},
+					{
+						"description": "Re-analyze sample on A1000",
+						"name": "reversinglabs-a1000-reanalyze"
+					},
+					{
+						"description": "Download samples obtained through the unpacking process",
+						"name": "reversinglabs-a1000-download-extracted-files"
+					},
+					{
+						"description": "Retrieve classification report for a sample",
+						"name": "reversinglabs-a1000-get-classification"
+					},
+					{
+						"description": "Search for hashes on A1000 using multi-part search criteria",
+						"name": "reversinglabs-a1000-advanced-search"
+					}
+				],
+				"description": "ReversingLabs A1000 advanced Malware Analysis Platform.",
+				"name": "ReversingLabs A1000 v2 (Partner Contribution)"
+			},
+			{
+				"category": "Forensics \u0026 Malware Analysis",
+				"commands": [
+					{
+						"description": "Retrieve file reputation data from an A1000 appliance",
+						"name": "file"
+					},
+					{
+						"description": "Upload a sample to A1000 for analysis",
+						"name": "reversinglabs-upload"
+					},
+					{
+						"description": "Delete an uploaded sample",
+						"name": "reversinglabs-delete"
+					},
+					{
+						"description": "List extracted files from a sample",
+						"name": "reversinglabs-extracted-files"
+					},
+					{
+						"description": "Download a sample to the investigation",
+						"name": "reversinglabs-download"
+					},
+					{
+						"description": "Re-analyze sample",
+						"name": "reversinglabs-analyze"
+					},
+					{
+						"description": "Download samples obtained through the unpacking process",
+						"name": "reversinglabs-download-unpacked"
+					}
+				],
+				"description": "Deprecated. Use the ReversingLabs A1000 v2 integration instead.",
+				"name": "ReversingLabs A1000 (Deprecated) (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Upload sample to ReversingLabs A1000 appliance and automatically retrieve full \u0026 classification reports. Calculate final classification.",
+				"name": "Detonate File - ReversingLabs A1000"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2021-01-27T23:00:04Z",
+	"currentVersion": "2.0.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Powerful threat detection and file analysis platform. Get detailed information on each file's status and threat capabilities.",
+	"downloads": 1636,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ReversingLabs_A1000",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ReversingLabs_A1000/ReversingLabsA1000_image.png",
+			"name": "ReversingLabs A1000 (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/ReversingLabs_A1000/ReversingLabsA1000v2_image.png",
+			"name": "ReversingLabs A1000 v2"
+		}
+	],
+	"itemVersion": "2.0.5",
+	"keywords": [
+		"Static Analysis",
+		"File Analysis"
+	],
+	"legacy": true,
+	"name": "ReversingLabs A1000",
+	"packID": "ReversingLabs_A1000",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "## What is the ReversingLabs A1000 Cortex XSOAR integration pack?\nReversingLabs A1000 Malware Analysis Appliance integrates the ReversingLabs game-changing TitaniumCore\nautomated static analysis technology and the TitaniumCloud File Reputation Service database. The REST Services APIs enable analysts to input suspected samples, access unpacked files and view extracted Proactive Threat Indicators (PTIs). The A1000 also calculates each file’s Threat Level to help with determination of remediation priorities. The platform performs an in-depth static analysis of a comprehensive array of file types including Windows, Linux, Mac OS, iOS, Android, Windows Mobile, email attachments, documents and\nfirmware.\n\nThis pack provides Cortex XSOAR integrations created by ReversingLabs that allow seamless and effective use of A1000 services through the Cortex XSOAR interface.\n\n#### Currently available integrations:\n- ReversingLabs A1000 v2\n    - Enables the use of a wide range of A1000 services.\n    - The included commands can be used separately in the War Room or as part of a playbook.\n\nThis pack also includes 1 playbook:\n- **Detonate File - ReversingLabs A1000**: Upload sample to ReversingLabs A1000 appliance and automatically retrieve the analysis report.\n\nNote: Support for this pack moved to the partner on April 22nd 2021. Please contact the partner directly via the support link on the right.",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@reversinglabs.com",
+		"url": "https://www.reversinglabs.com/products/malware-threat-hunting-and-investigations"
+	},
+	"tags": [
+		"Threat Intelligence",
+		"Security",
+		"Malware",
+		"Forensics"
+	],
+	"toServerVersion": "",
+	"updated": "2022-06-22T17:20:52Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
