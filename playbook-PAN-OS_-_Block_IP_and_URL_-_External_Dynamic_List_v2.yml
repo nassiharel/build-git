@@ -2,16 +2,16 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.1.3
+    itemVersion: 1.1.5
     packID: PaloAltoNetworks_PAN_OS_EDL_Management
-    packName: Palo Alto Networks PAN-OS EDL Management
+    packName: Palo Alto Networks PAN-OS EDL Management (Deprecated)
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-description: |-
-  This playbook blocks IP addresses and URLs using Palo Alto Networks Panorama or Firewall External Dynamic Lists.
-  It checks if the EDL configuration is in place with the 'PAN-OS EDL Setup' sub-playbook (otherwise the list will be configured), and adds the inputted IPs and URLs to the relevant lists.
+deprecated: true
+description: Deprecated. Use Generic Export Indicators Service instead.
+hidden: true
 id: PAN-OS - Block IP and URL - External Dynamic List v2
 inputs:
 - description: IP address list from the instance context with which to override the
