@@ -3,7 +3,8 @@ commonfields:
   id: Cortex XDR - IR
   version: -1
 configuration:
-- display: Fetch incidents
+- defaultvalue: "true"
+  display: Fetch incidents
   name: isFetch
   required: false
   type: 8
@@ -25,13 +26,27 @@ configuration:
   name: url
   required: true
   type: 0
+- display: ""
+  displaypassword: API Key ID
+  hiddenusername: true
+  name: apikey_id_creds
+  required: false
+  type: 9
+- display: ""
+  displaypassword: API Key
+  hiddenusername: true
+  name: apikey_creds
+  required: false
+  type: 9
 - display: API Key ID
+  hidden: true
   name: apikey_id
-  required: true
+  required: false
   type: 4
 - display: API Key
+  hidden: true
   name: apikey
-  required: true
+  required: false
   type: 4
 - additionalinfo: The timeout of the HTTP requests sent to Cortex XDR API (in seconds).
   defaultvalue: "120"
@@ -43,6 +58,17 @@ configuration:
   defaultvalue: "10"
   display: Maximum number of incidents per fetch
   name: max_fetch
+  required: false
+  type: 0
+- display: Only fetch starred incidents
+  name: starred
+  required: false
+  type: 8
+- additionalinfo: Starred fetch window timestamp (<number> <time unit>, e.g., 12 hours,
+    7 days). Fetches only starred incidents within the specified time range.
+  defaultvalue: 3 days
+  display: Starred incidents fetch window
+  name: starred_incidents_fetch_window
   required: false
   type: 0
 - defaultvalue: 3 days
@@ -68,6 +94,11 @@ configuration:
   type: 8
 - display: Use system proxy settings
   name: proxy
+  required: false
+  type: 8
+- additionalinfo: Whether the XDR tenant Mode is prevent only
+  display: Prevent Only Mode
+  name: prevent_only
   required: false
   type: 8
 - additionalinfo: 'The statuses of the incidents that will be fetched. If no status
@@ -96,14 +127,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 4.4.0
+    itemVersion: 4.8.1
     packID: CortexXDR
     packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-defaultclassifier: Cortex XDR - IR
+defaultclassifier: Cortex XDR Incident Handler - Classifier
 defaultmapperin: Cortex XDR - IR-mapper
 defaultmapperout: Cortex XDR - IR-out-mapper
 description: Cortex XDR is the world's first detection and response app that natively
@@ -177,6 +208,16 @@ script:
         new, under_investigation, resolved_known_issue, resolved_false_positive, resolved_true_positive
         resolved_security_testing, resolved_other, resolved_auto'
       name: status
+    - auto: PREDEFINED
+      description: 'Whether the incident is starred (Boolean value: true or false).'
+      name: starred
+      predefined:
+      - "true"
+      - "false"
+    - defaultValue: 3 days
+      description: Starred fetch window timestamp (<number> <time unit>, e.g., 12
+        hours, 7 days)
+      name: starred_incidents_fetch_window
     description: |-
       Returns a list of incidents, which you can filter by a list of incident IDs (max. 100), the time the incident was last modified, and the time the incident was created.
       If you pass multiple filtering arguments, they will be concatenated using the AND condition. The OR condition is not supported.
@@ -202,7 +243,7 @@ script:
       description: Number of hosts involved in the incident.
       type: number
     - contextPath: PaloAltoNetworksXDR.Incident.xdr_url
-      description: A link to the incident view on XDR.
+      description: A link to the incident view on Cortex XDR.
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.assigned_user_pretty_name
       description: Full name of the user assigned to the incident.
@@ -238,7 +279,7 @@ script:
       description: Comments entered by the user regarding the incident.
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.creation_time
-      description: Date and time the incident was created on XDR.
+      description: Date and time the incident was created on Cortex XDR.
       type: date
     - contextPath: PaloAltoNetworksXDR.Incident.detection_time
       description: Date and time that the first alert occurred in the incident.
@@ -251,12 +292,12 @@ script:
       name: incident_id
       required: true
     - defaultValue: "1000"
-      description: Maximum number of alerts to return. Default is 1,000.
+      description: Maximum number of alerts to return.
       name: alerts_limit
     - defaultValue: "False"
       description: Return data only if the incident was changed since the last time
-        it was mirrored in to XSOAR.  This flag should be used only from within a
-        XDR incident.
+        it was mirrored into Cortex XSOAR.  This flag should be used only from within
+        a Cortex XDR incident.
       name: return_only_updated_incident
     description: Returns additional data for the specified incident, for example,
       related alerts, file artifacts, network artifacts, and so on.
@@ -266,7 +307,7 @@ script:
       description: Unique ID assigned to each returned incident.
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.creation_time
-      description: Date and time the incident was created on XDR.
+      description: Date and time the incident was created on Cortex XDR.
       type: Date
     - contextPath: PaloAltoNetworksXDR.Incident.modification_time
       description: Date and time that the incident was last modified.
@@ -323,13 +364,13 @@ script:
       description: Incident description provided by the user.
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.xdr_url
-      description: A link to the incident view on XDR.
+      description: A link to the incident view on Cortex XDR.
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.starred
       description: Incident starred.
       type: Boolean
     - contextPath: PaloAltoNetworksXDR.Incident.wildfire_hits.mitre_techniques_ids_and_names
-      description: Incident Mitre techniques ids and names.
+      description: Incident Mitre techniques IDs and names.
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.wildfire_hits.mitre_tactics_ids_and_names
       description: Incident Mitre tactics ids and names.
@@ -408,7 +449,7 @@ script:
         "Unsigned" "Revoked" "Signature Fail" "N/A" "Weak Hash".'
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.alerts.actor_process_signature_vendor
-      description: Singature vendor name.
+      description: Signature vendor name.
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.alerts.causality_actor_process_image_name
       description: Image name.
@@ -424,7 +465,7 @@ script:
       description: Signature vendor.
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.alerts.causality_actor_causality_id
-      description: Causality id.
+      description: Causality ID.
       type: Unknown
     - contextPath: PaloAltoNetworksXDR.Incident.alerts.action_process_image_name
       description: Image name.
@@ -518,7 +559,7 @@ script:
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.file_artifacts.file_wildfire_verdict
       description: 'The file verdict, calculated by Wildfire. Valid values are: "BENIGN"
-        "MALWARE" "GRAYWARE" "PHISING" "UNKNOWN".'
+        "MALWARE" "GRAYWARE" "PHISHING" "UNKNOWN".'
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.file_artifacts.alert_count
       description: Number of alerts related to the artifact.
@@ -534,7 +575,7 @@ script:
         "IP" "DOMAIN" "REGISTRY" "HOSTNAME"'
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.file_artifacts.file_sha256
-      description: SHA-256 hash of the file.
+      description: SHA256 hash of the file.
       type: String
     - contextPath: PaloAltoNetworksXDR.Incident.file_artifacts.file_signature_vendor_name
       description: File signature vendor name.
@@ -633,7 +674,7 @@ script:
     - description: String value that defines the product.
       name: product
       required: true
-    - description: String value that defines the product.
+    - description: String value that defines the vendor.
       name: vendor
       required: true
     - description: String value for the source IP address.
@@ -651,9 +692,9 @@ script:
         port.
       name: remote_port
       required: true
-    - description: Integer value representing the epoch of the time the alert occurred
-        in milliseconds, or a string value in date format 2019-10-23T10:00:00. If
-        not set, the event time will be defined as now.
+    - description: Integer value representing the time the alert occurred in milliseconds,
+        or a string value in date format 2019-10-23T10:00:00. If not set, the event
+        time will be defined as now.
       name: event_timestamp
     - auto: PREDEFINED
       defaultValue: Medium
@@ -672,7 +713,7 @@ script:
     - description: String defining the alert description.
       name: alert_description
     description: |-
-      Upload alert from external alert sources in Cortex XDR format. Cortex XDR displays alerts that are parsed
+      Uploads an alert from external alert sources in Cortex XDR format. Cortex XDR displays alerts that are parsed
       successfully in related incidents and views. You can send 600 alerts per minute. Each request can contain a
       maximum of 60 alerts.
     name: xdr-insert-parsed-alert
@@ -687,7 +728,7 @@ script:
       can contain a maximum of 60 alerts.
     name: xdr-insert-cef-alerts
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: The endpoint ID (string) to isolate. You can retrieve the string
@@ -719,7 +760,7 @@ script:
       type: String
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: The endpoint ID (string) to isolate. You can retrieve the string
@@ -743,7 +784,7 @@ script:
       description: The endpoint ID.
       type: String
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: The endpoint ID (string) for which to reverse the isolation. You
@@ -775,7 +816,7 @@ script:
       type: String
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: The endpoint ID (string) for which to reverse the isolation. You
@@ -901,6 +942,10 @@ script:
       predefined:
       - asc
       - desc
+    - description: The usernames to query for, accepts a single user, or comma-separated
+        list of usernames.
+      isArray: true
+      name: username
     description: Gets a list of endpoints, according to the passed filters. If there
       are no filters, all endpoints are returned. Filtering by multiple fields will
       be concatenated using AND condition (OR is not supported). Maximum result set
@@ -1036,7 +1081,7 @@ script:
       - upgrade
       required: true
     - description: agent_version returned from xdr-get-distribution-versions. Not
-        required for Android platfom
+        required for Android platform.
       name: agent_version
       required: true
     - description: Information about the package.
@@ -1099,7 +1144,7 @@ script:
       description: URL for downloading the installation package.
       type: String
   - arguments:
-    - description: A comma-separated list of distribution IDs to get the status of.
+    - description: A comma-separated list of distribution IDs to get the status for.
       isArray: true
       name: distribution_ids
       required: true
@@ -1288,7 +1333,7 @@ script:
       - Proxy Communication
       - Quota Exceeded
       - Minimal Content
-      - Reboot Eequired
+      - Reboot Required
       - Missing Disc Access
     - auto: PREDEFINED
       description: The result type. Can be "Success" or "Fail". If not passed, returns
@@ -1412,17 +1457,17 @@ script:
     name: xdr-blocklist-files
     outputs:
     - contextPath: PaloAltoNetworksXDR.blocklist.added_hashes
-      description: Added fileHash to blocklist
+      description: Number of file hashes added to block list.
       type: Number
     - contextPath: PaloAltoNetworksXDR.blocklist.excluded_hashes
-      description: Added fileHash to blocklist
+      description: Number of file hashes excluded from block list.
       type: Number
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: String that represents a list of hashed files you want to block
-        list. Must be a valid SHA256 hash.
+    - description: String that represents a list of hashed files you want to add to
+        the block list. Must be a valid SHA256 hash.
       isArray: true
       name: hash_list
       required: true
@@ -1454,17 +1499,17 @@ script:
     name: xdr-allowlist-files
     outputs:
     - contextPath: PaloAltoNetworksXDR.allowlist.added_hashes
-      description: Added fileHash to allowlist
+      description: Number of added file hashes to allowlist.
       type: Number
     - contextPath: PaloAltoNetworksXDR.allowlist.excluded_hashes
-      description: Added fileHash to allowlist
+      description: Number of excluded file hashes from allowlist.
       type: Number
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: String that represents a list of hashed files you want to add to
-        allow list. Must be a valid SHA256 hash.
+        the allow list. Must be a valid SHA256 hash.
       isArray: true
       name: hash_list
       required: true
@@ -1474,7 +1519,7 @@ script:
     description: Deprecated, use `xdr-allowlist-files` instead.
     name: xdr-whitelist-files
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: List of endpoint IDs.
@@ -1501,7 +1546,7 @@ script:
     name: xdr-file-quarantine
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: List of endpoint IDs.
@@ -1531,7 +1576,7 @@ script:
     description: Retrieves the quarantine status for a selected file.
     name: xdr-get-quarantine-status
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: String that represents the file in hash. Must be a valid SHA256
@@ -1569,7 +1614,7 @@ script:
       will be deprecated soon, use `xdr-file-restore` instead.
     name: xdr-restore-file
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: List of endpoint IDs.
@@ -1578,13 +1623,13 @@ script:
     - description: Name of the distribution list.
       isArray: true
       name: dist_name
-    - description: Epoch timestamp in milliseconds.
+    - description: GTE first seen timestamp in milliseconds.
       name: gte_first_seen
-    - description: Epoch timestamp in milliseconds.
+    - description: GET last seen timestamp in milliseconds.
       name: gte_last_seen
-    - description: Epoch timestamp in milliseconds.
+    - description: LTE first seen timestamp in milliseconds.
       name: lte_first_seen
-    - description: Epoch timestamp in milliseconds.
+    - description: LTE last seen timestamp in milliseconds.
       name: lte_last_seen
     - description: List of IP addresses.
       isArray: true
@@ -1615,8 +1660,8 @@ script:
       name: hostname
     - auto: PREDEFINED
       defaultValue: "false"
-      description: Whether to scan all of the endpoints or not. Default is false.
-        Scanning all of the endpoints may cause performance issues and latency.
+      description: Whether to scan all of the endpoints. Scanning all of the endpoints
+        may cause performance issues and latency.
       name: all
       predefined:
       - "true"
@@ -1629,9 +1674,9 @@ script:
       name: interval_in_seconds
     - description: Polling timeout in seconds.
       name: timeout_in_seconds
-    description: Runs a scan on a selected endpoint. To scan all endpoints, run this
-      command with argument all=true. Do note that scanning all the endpoints may
-      cause performance issues and latency.
+    description: 'Runs a scan on a selected endpoint. To scan all endpoints, run this
+      command with argument all=true. Note: scanning all the endpoints may cause performance
+      issues and latency.'
     execution: true
     name: xdr-endpoint-scan-execute
     outputs:
@@ -1639,11 +1684,11 @@ script:
       description: The action ID of the scan request.
       type: Number
     - contextPath: PaloAltoNetworksXDR.endpointScan.aborted
-      description: Was the scan aborted.
+      description: Was the scan aborted?
       type: Boolean
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: List of endpoint IDs.
@@ -1652,13 +1697,13 @@ script:
     - description: Name of the distribution list.
       isArray: true
       name: dist_name
-    - description: Epoch timestamp in milliseconds.
+    - description: GTE first seen timestamp in milliseconds.
       name: gte_first_seen
-    - description: Epoch timestamp in milliseconds.
+    - description: GTE last seen timestamp in milliseconds.
       name: gte_last_seen
-    - description: Epoch timestamp in milliseconds.
+    - description: LTE first seen timestamp in milliseconds.
       name: lte_first_seen
-    - description: Epoch timestamp in milliseconds.
+    - description: LTE last seen timestamp in milliseconds.
       name: lte_last_seen
     - description: List of IP addresses.
       isArray: true
@@ -1689,8 +1734,8 @@ script:
       name: hostname
     - auto: PREDEFINED
       defaultValue: "false"
-      description: Whether to scan all of the endpoints or not. Default is false.
-        Scanning all of the endpoints may cause performance issues and latency.
+      description: 'Whether to scan all of the endpoints. Note: scanning all of the
+        endpoints may cause performance issues and latency.'
       name: all
       predefined:
       - "true"
@@ -1704,10 +1749,10 @@ script:
       description: The action ID of the scan request.
       type: Number
     - contextPath: PaloAltoNetworksXDR.endpointScan.aborted
-      description: Was the scan aborted.
+      description: Was the scan aborted?
       type: Boolean
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
     - description: List of endpoint IDs.
@@ -1716,13 +1761,13 @@ script:
     - description: Name of the distribution list.
       isArray: true
       name: dist_name
-    - description: Epoch timestamp in milliseconds.
+    - description: GTE first seen timestamp in milliseconds.
       name: gte_first_seen
-    - description: Epoch timestamp in milliseconds.
+    - description: GTE last seen timestamp in milliseconds.
       name: gte_last_seen
-    - description: Epoch timestamp in milliseconds.
+    - description: LTE first seen timestamp in milliseconds.
       name: lte_first_seen
-    - description: Epoch timestamp in milliseconds.
+    - description: LTE last seen timestamp in milliseconds.
       name: lte_last_seen
     - description: List of IP addresses.
       isArray: true
@@ -1753,13 +1798,13 @@ script:
       name: hostname
     - auto: PREDEFINED
       defaultValue: "false"
-      description: Whether to scan all of the endpoints or not. Default is false.
-        Note that scanning all of the endpoints may cause performance issues and latency.
+      description: 'Whether to scan all of the endpoints. Note: scanning all of the
+        endpoints may cause performance issues and latency.'
       name: all
       predefined:
       - "true"
       - "false"
-    description: Cancel the scan of selected endpoints. A scan can only be aborted
+    description: Cancels the scan of selected endpoints. A scan can only be aborted
       if the selected endpoints are Pending or In Progress. To scan all endpoints,
       run the command with the argument all=true. Note that scanning all of the endpoints
       may cause performance issues and latency.
@@ -1767,33 +1812,33 @@ script:
     name: xdr-endpoint-scan-abort
     outputs:
     - contextPath: PaloAltoNetworksXDR.endpointScan.actionId
-      description: The action id of the abort scan request.
+      description: The action ID of the abort scan request.
       type: Unknown
     - contextPath: PaloAltoNetworksXDR.endpointScan.aborted
-      description: Was the scan aborted.
+      description: Was the scan aborted?
       type: Boolean
   - arguments: []
-    description: Get mapping fields from remote incident. Please note that this method
-      will not update the current incident, it's here for debugging purposes.
+    description: 'Gets mapping fields from remote incident. Note: This method will
+      not update the current incident, it''s here for debugging purposes.'
     name: get-mapping-fields
   - arguments:
-    - description: The remote incident id
+    - description: The remote incident ID.
       name: id
       required: true
     - defaultValue: "0"
       description: UTC timestamp in seconds. The incident is only updated if it was
         modified after the last update time.
       name: lastUpdate
-    description: Get remote data from a remote incident. Please note that this method
-      will not update the current incident, it's here for debugging purposes.
+    description: 'Gets remote data from a remote incident. Note: This method will
+      not update the current incident, it''s here for debugging purposes.'
     name: get-remote-data
   - arguments:
     - description: Date string representing the local time.The incident is only returned
         if it was modified after the last update time.
       name: lastUpdate
-    description: Get the list of incidents that were modified since the last update.
-      Please note that this method is here for debugging purposes. get-modified-remote-data
-      is used as part of a Mirroring feature, which is available since version 6.1.
+    description: 'Gets the list of incidents that were modified since the last update.
+      Note: This method is here for debugging purposes. get-modified-remote-data is
+      used as part of a Mirroring feature, which is available since version 6.1.'
     name: get-modified-remote-data
   - arguments:
     - description: The endpoint ID. Can be retrieved by running the xdr-get-endpoints
@@ -1822,10 +1867,9 @@ script:
     - description: A comma-separated list of the users who created the script.
       isArray: true
       name: created_by
-    - description: The maximum number of scripts returned to the War Room. Default
-        is 50.
+    - description: The maximum number of scripts returned to the War Room.
       name: limit
-    - description: (Int) Offset in the data set. Default is 0.
+    - description: (Int) Offset in the data set.
       name: offset
     - auto: PREDEFINED
       description: Whether the script can be executed on a Windows operating system.
@@ -1889,7 +1933,7 @@ script:
         script when executing.
       type: string
   - arguments:
-    - description: Comma-separated list of endpoint IDs. You can retrieve the endpoint
+    - description: A comma-separated list of endpoint IDs. You can retrieve the endpoint
         IDs from the xdr-get-endpoints command.
       name: endpoint_ids
       required: true
@@ -1897,7 +1941,7 @@ script:
       up to 1000 endpoints.
     name: xdr-delete-endpoints
   - arguments:
-    - description: Comma-separated list of endpoint IDs. You can retrieve the endpoint
+    - description: A comma-separated list of endpoint IDs. You can retrieve the endpoint
         IDs from the xdr-get-endpoints command.
       isArray: true
       name: endpoint_ids
@@ -1920,7 +1964,7 @@ script:
         relative time, or epoch timestamp. For example:  "2019-10-21T23:45:00" (ISO
         date format), "3 days ago" (relative time) 1579039377301 (epoch time).'
       name: timestamp_lte
-    - description: Comma-separated list of IP addresses.
+    - description: A comma-separated list of IP addresses.
       isArray: true
       name: ip_list
     - description: Name of the vendor.
@@ -1941,7 +1985,7 @@ script:
     - description: Hostname.
       isArray: true
       name: hostname
-    - description: Comma-separated list of violation IDs.
+    - description: A comma-separated list of violation IDs.
       isArray: true
       name: violation_id_list
     - description: Username.
@@ -1961,7 +2005,7 @@ script:
       description: Type of the operating system.
       type: string
     - contextPath: PaloAltoNetworksXDR.EndpointViolations.violations.hostname
-      description: Hostname of the violation.
+      description: Host name of the violation.
       type: string
     - contextPath: PaloAltoNetworksXDR.EndpointViolations.violations.username
       description: Username of the violation.
@@ -2000,7 +2044,7 @@ script:
     - description: Allows to link the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs.
+    - description: A comma-separated list of endpoint IDs.
       isArray: true
       name: endpoint_ids
       required: true
@@ -2015,8 +2059,8 @@ script:
       name: mac_file_paths
     - description: A comma-separated list of file paths in any platform. Can be used
         instead of the mac/windows/linux file paths. The order of the files path list
-        must be parellel to the endpoints list order, therefore, the first file path
-        in the list is related to the first endpoint and so on.
+        must be parallel to the endpoints list order, so the first file path in the
+        list is related to the first endpoint and so on.
       isArray: true
       name: generic_file_path
     - description: Interval in seconds between each poll.
@@ -2037,12 +2081,21 @@ script:
     - contextPath: PaloAltoNetworksXDR.RetrievedFiles.action_id
       description: ID of the action to retrieve files from selected endpoints.
       type: string
+    - contextPath: PaloAltoNetworksXDR.RetrievedFiles.endpoint_id
+      description: Endpoint ID. Added only when the operation is successful.
+      type: string
+    - contextPath: PaloAltoNetworksXDR.RetrievedFiles.file_link
+      description: Link to the file. Added only when the operation is successful.
+      type: string
+    - contextPath: PaloAltoNetworksXDR.RetrievedFiles.status
+      description: The action status. Added only when the operation is unsuccessful.
+      type: string
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs.
+    - description: A comma-separated list of endpoint IDs.
       isArray: true
       name: endpoint_ids
       required: true
@@ -2057,8 +2110,8 @@ script:
       name: mac_file_paths
     - description: A comma-separated list of file paths in any platform. Can be used
         instead of the mac/windows/linux file paths. The order of the files path list
-        must be parellel to the endpoints list order, therefore, the first file path
-        in the list is related to the first endpoint and so on.
+        must be parallel to the endpoints list order, so the first file path in the
+        list is related to the first endpoint and so on.
       isArray: true
       name: generic_file_path
     description: Retrieves files from selected endpoints. This command will be deprecated
@@ -2201,10 +2254,10 @@ script:
       description: The specified action ID.
       type: number
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       name: endpoint_ids
       required: true
@@ -2212,7 +2265,7 @@ script:
         xdr-get-scripts command.
       name: script_uid
       required: true
-    - description: Dictionary contains the parameter name as key and its value for
+    - description: Dictionary containing the parameter name as key and its value for
         this execution as the value. For example, {"param1":"param1_value","param2":"param2_value"}
       name: parameters
     - defaultValue: "600"
@@ -2229,10 +2282,10 @@ script:
       description: Number of endpoints the action was initiated on.
       type: Number
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       name: endpoint_ids
       required: true
@@ -2260,10 +2313,10 @@ script:
       type: Number
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       name: endpoint_ids
       required: true
@@ -2421,14 +2474,14 @@ script:
       description: The extension of the file.
       type: String
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       name: endpoint_ids
       required: true
-    - description: Comma-separated list of shell commands to execute.
+    - description: A comma-separated list of shell commands to execute.
       name: commands
       required: true
     - defaultValue: "600"
@@ -2442,7 +2495,7 @@ script:
       description: For polling use
       isArray: true
       name: action_id
-    description: Initiate a new endpoint script execution of shell commands.
+    description: Initiates a new endpoint script execution of shell commands.
     name: xdr-script-commands-execute
     outputs:
     - contextPath: PaloAltoNetworksXDR.ScriptRun.action_id
@@ -2453,20 +2506,20 @@ script:
       type: Number
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       name: endpoint_ids
       required: true
-    - description: Comma-separated list of shell commands to execute.
+    - description: A comma-separated list of shell commands to execute.
       name: commands
       required: true
     - defaultValue: "600"
       description: The timeout in seconds for this execution.
       name: timeout
-    description: Initiate a new endpoint script execution of shell commands. This
+    description: Initiates a new endpoint script execution of shell commands. This
       command will be deprecated soon, use `xdr-script-commands-execute` instead.
     name: xdr-run-script-execute-commands
     outputs:
@@ -2477,17 +2530,16 @@ script:
       description: Number of endpoints the action was initiated on.
       type: Number
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       isArray: true
       name: endpoint_ids
       required: true
-    - description: Paths of the files to delete, in a comma-separated list. Paths
-        of the files to check for existence. All of the given file paths will run
-        on all of the endpoints.
+    - description: A comma-separated list of paths of the files to delete. All of
+        the given file paths will run on all of the endpoints.
       isArray: true
       name: file_path
       required: true
@@ -2514,17 +2566,16 @@ script:
       type: Number
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       isArray: true
       name: endpoint_ids
       required: true
-    - description: Paths of the files to delete, in a comma-separated list. Paths
-        of the files to check for existence. All of the given file paths will run
-        on all of the endpoints.
+    - description: A comma-separated list of paths of the files to delete. All of
+        the given file paths will run on all of the endpoints.
       isArray: true
       name: file_path
       required: true
@@ -2543,16 +2594,16 @@ script:
       description: Number of endpoints the action was initiated on.
       type: Number
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       isArray: true
       name: endpoint_ids
       required: true
-    - description: Paths of the files to check for existence, in a comma-separated
-        list. All of the given file paths will run on all of the endpoints.
+    - description: A comma-separated list of paths of the files to check for existence.
+        All of the given file paths will run on all of the endpoints.
       isArray: true
       name: file_path
       required: true
@@ -2578,16 +2629,16 @@ script:
       type: Number
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       isArray: true
       name: endpoint_ids
       required: true
-    - description: Paths of the files to check for existence, in a comma-separated
-        list. All of the given file paths will run on all of the endpoints.
+    - description: A comma-separated list of paths of the files to check for existence.
+        All of the given file paths will run on all of the endpoints.
       isArray: true
       name: file_path
       required: true
@@ -2608,7 +2659,7 @@ script:
     - description: Allows to link the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       isArray: true
       name: endpoint_ids
@@ -2640,10 +2691,10 @@ script:
       type: Number
     polling: true
   - arguments:
-    - description: Allows to link the response action to the incident that triggered
+    - description: Allows linking the response action to the incident that triggered
         it.
       name: incident_id
-    - description: Comma-separated list of endpoint IDs. Can be retrieved by running
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
         the xdr-get-endpoints command.
       isArray: true
       name: endpoint_ids
@@ -2674,32 +2725,32 @@ script:
       description: The endpoint IP address.
       isArray: true
       name: ip
-    - description: The endpoint hostname.
+    - description: The endpoint host name.
       isArray: true
       name: hostname
     description: Returns information about an endpoint.
     name: endpoint
     outputs:
     - contextPath: Endpoint.Hostname
-      description: The endpoint's hostname.
+      description: The endpoint hostname.
       type: String
     - contextPath: Endpoint.OS
-      description: The endpoint's operation system.
+      description: The endpoint operation system.
       type: String
     - contextPath: Endpoint.IPAddress
-      description: The endpoint's IP address.
+      description: The endpoint IP address.
       type: String
     - contextPath: Endpoint.ID
-      description: The endpoint's ID.
+      description: The endpoint ID.
       type: String
     - contextPath: Endpoint.Status
-      description: The endpoint's status.
+      description: The endpoint status.
       type: String
     - contextPath: Endpoint.IsIsolated
-      description: The endpoint's isolation status.
+      description: The endpoint isolation status.
       type: String
     - contextPath: Endpoint.MACAddress
-      description: The endpoint's MAC address.
+      description: The endpoint MAC address.
       type: String
     - contextPath: Endpoint.Vendor
       description: The integration name of the endpoint vendor.
@@ -2728,10 +2779,10 @@ script:
     name: xdr-get-endpoints-by-status
     outputs:
     - contextPath: PaloAltoNetworksXDR.EndpointsStatus.status
-      description: The endpoint's status.
+      description: The endpoint status.
       type: String
     - contextPath: PaloAltoNetworksXDR.EndpointsStatus.count
-      description: The number of endpoint's with this status.
+      description: The number of endpoints with this status.
       type: Number
   - arguments:
     - description: A comma-separated list of alert IDs.
@@ -2742,7 +2793,7 @@ script:
     name: xdr-get-cloud-original-alerts
     outputs:
     - contextPath: PaloAltoNetworksXDR.OriginalAlert.event._time
-      description: The timestamp of the occurence of the event.
+      description: The timestamp of the occurrence of the event.
       type: String
     - contextPath: PaloAltoNetworksXDR.OriginalAlert.event.vendor
       description: Vendor name.
@@ -2892,7 +2943,7 @@ script:
       name: severity
       predefined:
       - low
-      - meduim
+      - medium
       - high
     - description: "a custom filter, when using this argument, other filter arguments
         are not relevant. example: \n`{\n                \"OR\": [\n                    {\n
@@ -2918,7 +2969,7 @@ script:
     - description: A unique identifier per agent.
       isArray: true
       name: agent_id
-    - description: The hostname to connect to. In case of a proxy connection, this
+    - description: The host name to connect to. In case of a proxy connection, this
         value will differ from action_remote_ip.
       isArray: true
       name: action_external_hostname
@@ -3003,7 +3054,7 @@ script:
       isArray: true
       name: dst_action_external_hostname
     - defaultValue: source_insert_ts
-      description: The field by which we will sort the results.
+      description: The field by which we sort the results.
       isArray: true
       name: sort_field
     - auto: PREDEFINED
@@ -3032,18 +3083,21 @@ script:
       predefined:
       - "true"
       - "false"
-    description: "Returns a list of alerts and their meta-data, which you can filter
+    - description: The MITRE attack technique.
+      isArray: true
+      name: mitre_technique_id_and_name
+    description: "Returns a list of alerts and their metadata, which you can filter
       by built-in arguments or use the custom_filter to input a JSON filter object.
-      \nMultiple filter arguments will be concatenated using AND operator, while arguments
-      that support a comma-separated list of values will use an OR operator between
-      each value."
+      \nMultiple filter arguments will be concatenated using the AND operator, while
+      arguments that support a comma-separated list of values will use an OR operator
+      between each value."
     name: xdr-get-alerts
     outputs:
     - contextPath: PaloAltoNetworksXDR.Alert.internal_id
       description: The unique ID of the alert.
       type: String
     - contextPath: PaloAltoNetworksXDR.Alert.source_insert_ts
-      description: The detection timestam
+      description: The detection timestamp
       type: Number
     - contextPath: PaloAltoNetworksXDR.Alert.alert_name
       description: The name of the alert.
@@ -3064,10 +3118,10 @@ script:
       description: The alert description.
       type: String
     - contextPath: PaloAltoNetworksXDR.Alert.agent_ip_addresses
-      description: The host IP
+      description: The host IP.
       type: String
-    - contextPath: PaloAltoNetworksXDR.Alert.agent_hostmae
-      description: The host name
+    - contextPath: PaloAltoNetworksXDR.Alert.agent_hostname
+      description: The host name.
       type: String
     - contextPath: PaloAltoNetworksXDR.Alert.mitre_tactic_id_and_name
       description: The MITRE attack tactic.
@@ -3082,7 +3136,7 @@ script:
     - description: Links the response action to the incident that triggered it.
       name: incident_id
     - description: String that represents a list of hashed files you want to add to
-        allow list. Must be a valid SHA256 hash.
+        the allow list. Must be a valid SHA256 hash.
       isArray: true
       name: hash_list
       required: true
@@ -3098,7 +3152,7 @@ script:
     - description: Links the response action to the incident that triggered it.
       name: incident_id
     - description: String that represents a list of hashed files you want to add to
-        allow list. Must be a valid SHA256 hash.
+        the allow list. Must be a valid SHA256 hash.
       isArray: true
       name: hash_list
       required: true
@@ -3110,7 +3164,66 @@ script:
     - contextPath: PaloAltoNetworksXDR.blocklist.removed_hashes
       description: Removed fileHash from blocklist
       type: Number
-  dockerimage: demisto/python3:3.10.4.29342
+  - arguments:
+    - description: The alert ID's from where to retrieve the contributing events.
+      isArray: true
+      name: alert_ids
+      required: true
+    - defaultValue: "50"
+      description: The maximum number of contributing events to retrieve.
+      name: limit
+    - defaultValue: "1"
+      description: The page number to retrieve. Minimum is 1.
+      name: page_number
+    - defaultValue: "50"
+      description: The page size.
+      name: page_size
+    description: Retrieves contributing events for a specific alert.
+    name: xdr-get-contributing-event
+    outputs:
+    - contextPath: PaloAltoNetworksXDR.ContributingEvent.alertID
+      description: The alert ID.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.ContributingEvent.events
+      description: The contributing events.
+      type: Unknown
+  - arguments:
+    - auto: PREDEFINED
+      description: The field type to change.
+      name: field_type
+      predefined:
+      - hosts
+      - users
+      - ip_addresses
+      - ad_groups
+      required: true
+    - description: The string value, which defines the new field. Maximum length is
+        256 characters.
+      isArray: true
+      name: values
+      required: true
+    - description: The string value, which represents additional information regarding
+        the featured alert field.
+      name: comments
+    - auto: PREDEFINED
+      defaultValue: group
+      description: The string value to replace an active directory group or organizational
+        unit.
+      name: ad_type
+      predefined:
+      - group
+      - ou
+    description: Replace the featured hosts\users\IP addresses\active directory groups
+      listed in your environment.
+    name: xdr-replace-featured-field
+    outputs:
+    - contextPath: PaloAltoNetworksXDR.FeaturedField.fieldType
+      description: The field type that changed.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.FeaturedField.fields
+      description: String value that defines the new field.
+      type: String
+  dockerimage: demisto/python3:3.10.5.31797
   isfetch: true
   ismappable: true
   isremotesyncin: true
@@ -3265,133 +3378,6 @@ script:
             super().__init__(base_url=base_url, headers=headers, proxy=proxy, verify=verify)
             self.timeout = timeout
 
-        def get_incidents(self, incident_id_list=None, lte_modification_time=None, gte_modification_time=None,
-                          lte_creation_time=None, gte_creation_time=None, status=None, sort_by_modification_time=None,
-                          sort_by_creation_time=None, page_number=0, limit=100, gte_creation_time_milliseconds=0):
-            """
-            Filters and returns incidents
-
-            :param incident_id_list: List of incident ids - must be list
-            :param lte_modification_time: string of time format "2019-12-31T23:59:00"
-            :param gte_modification_time: string of time format "2019-12-31T23:59:00"
-            :param lte_creation_time: string of time format "2019-12-31T23:59:00"
-            :param gte_creation_time: string of time format "2019-12-31T23:59:00"
-            :param status: string of status
-            :param sort_by_modification_time: optional - enum (asc,desc)
-            :param sort_by_creation_time: optional - enum (asc,desc)
-            :param page_number: page number
-            :param limit: maximum number of incidents to return per page
-            :param gte_creation_time_milliseconds: greater than time in milliseconds
-            :return:
-            """
-            search_from = page_number * limit
-            search_to = search_from + limit
-
-            request_data = {
-                'search_from': search_from,
-                'search_to': search_to,
-            }
-
-            if sort_by_creation_time and sort_by_modification_time:
-                raise ValueError('Should be provide either sort_by_creation_time or '
-                                 'sort_by_modification_time. Can\'t provide both')
-            if sort_by_creation_time:
-                request_data['sort'] = {
-                    'field': 'creation_time',
-                    'keyword': sort_by_creation_time
-                }
-            elif sort_by_modification_time:
-                request_data['sort'] = {
-                    'field': 'modification_time',
-                    'keyword': sort_by_modification_time
-                }
-
-            filters = []
-            if incident_id_list is not None and len(incident_id_list) > 0:
-                filters.append({
-                    'field': 'incident_id_list',
-                    'operator': 'in',
-                    'value': incident_id_list
-                })
-
-            if lte_creation_time:
-                filters.append({
-                    'field': 'creation_time',
-                    'operator': 'lte',
-                    'value': date_to_timestamp(lte_creation_time, TIME_FORMAT)
-                })
-
-            if gte_creation_time:
-                filters.append({
-                    'field': 'creation_time',
-                    'operator': 'gte',
-                    'value': date_to_timestamp(gte_creation_time, TIME_FORMAT)
-                })
-
-            if lte_modification_time:
-                filters.append({
-                    'field': 'modification_time',
-                    'operator': 'lte',
-                    'value': date_to_timestamp(lte_modification_time, TIME_FORMAT)
-                })
-
-            if gte_modification_time:
-                filters.append({
-                    'field': 'modification_time',
-                    'operator': 'gte',
-                    'value': date_to_timestamp(gte_modification_time, TIME_FORMAT)
-                })
-
-            if gte_creation_time_milliseconds > 0:
-                filters.append({
-                    'field': 'creation_time',
-                    'operator': 'gte',
-                    'value': gte_creation_time_milliseconds
-                })
-
-            if status:
-                filters.append({
-                    'field': 'status',
-                    'operator': 'eq',
-                    'value': status
-                })
-
-            if len(filters) > 0:
-                request_data['filters'] = filters
-            res = self._http_request(
-                method='POST',
-                url_suffix='/incidents/get_incidents/',
-                json_data={'request_data': request_data},
-                timeout=self.timeout
-            )
-            incidents = res.get('reply').get('incidents', [])
-
-            return incidents
-
-        def get_incident_extra_data(self, incident_id, alerts_limit=1000):
-            """
-            Returns incident by id
-
-            :param incident_id: The id of incident
-            :param alerts_limit: Maximum number alerts to get
-            :return:
-            """
-            request_data = {
-                'incident_id': incident_id,
-                'alerts_limit': alerts_limit,
-            }
-
-            reply = self._http_request(
-                method='POST',
-                url_suffix='/incidents/get_incident_extra_data/',
-                json_data={'request_data': request_data},
-                timeout=self.timeout
-            )
-
-            incident = reply.get('reply')
-
-            return incident
-
         def update_incident(self, incident_id, status=None, assigned_user_mail=None, assigned_user_pretty_name=None, severity=None,
                             resolve_comment=None, unassign_user=None):
             update_data = {}
@@ -3446,6 +3432,7 @@ script:
                           sort_by_first_seen=None,
                           sort_by_last_seen=None,
                           status=None,
+                          username=None,
                           no_filter=False
                           ):
 
@@ -3477,6 +3464,13 @@ script:
                         'field': 'endpoint_status',
                         'operator': 'IN',
                         'value': [status]
+                    })
+
+                if username:
+                    filters.append({
+                        'field': 'username',
+                        'operator': 'IN',
+                        'value': username
                     })
 
                 if endpoint_id_list:
@@ -4475,15 +4469,6 @@ script:
             )
             return reply
 
-        def save_modified_incidents_to_integration_context(self):
-            last_modified_incidents = self.get_incidents(limit=100, sort_by_modification_time='desc')
-            modified_incidents_context = {}
-            for incident in last_modified_incidents:
-                incident_id = incident.get('incident_id')
-                modified_incidents_context[incident_id] = incident.get('modification_time')
-
-            set_integration_context({'modified_incidents': modified_incidents_context})
-
         def get_endpoints_by_status(self, status, last_seen_gte=None, last_seen_lte=None):
             filters = []
 
@@ -4611,6 +4596,7 @@ script:
             'action_local_port': AlertFilterArg('action_local_port', 'EQ', array),
             'action_remote_port': AlertFilterArg('action_remote_port', 'EQ', array),
             'dst_action_external_hostname': AlertFilterArg('dst_action_external_hostname', 'CONTAINS', array),
+            'mitre_technique_id_and_name': AlertFilterArg('mitre_technique_id_and_name', 'CONTAINS', array),
         }
 
 
@@ -4669,6 +4655,8 @@ script:
         # get polling result
         command_results = results_function(client, args)
         outputs_result_func = command_results.raw_response
+        if not outputs_result_func:
+            return_error(f"Command {cmd} didn't succeeded, received empty response.")
         result = outputs_result_func.get(polling_field) if isinstance(outputs_result_func, dict) else \
             outputs_result_func[0].get(polling_field)
         cond = result not in polling_value if stop_polling else result in polling_value
@@ -4685,7 +4673,7 @@ script:
                 timeout_in_seconds=timeout_in_seconds)
 
             # result with scheduled_command only - no update to the war room
-            command_results = CommandResults(scheduled_command=scheduled_command)
+            command_results = CommandResults(scheduled_command=scheduled_command, raw_response=outputs_result_func)
         return command_results
 
 
@@ -4743,9 +4731,12 @@ script:
 
                 # relative time frame
                 else:
+                    search_value = None
                     search_type = 'RELATIVE_TIMESTAMP'
-                    date = dateparser.parse(arg_value)
-                    search_value = date.strftime("%Y-%m-%dT%H:%M:%S") if date else None
+                    relative_date = dateparser.parse(arg_value)
+                    if relative_date:
+                        delta_in_milliseconds = int((datetime.now() - relative_date).total_seconds() * 1000)
+                        search_value = str(delta_in_milliseconds)
 
                 and_operator_list.append({
                     'SEARCH_FIELD': arg_properties.search_field,
@@ -4882,8 +4873,9 @@ script:
 
         return CommandResults(
             readable_output=tableToMarkdown(name='Get Action Status', t=result, removeNull=True),
-            outputs={
-                f'{args.get("integration_context_brand", "CoreApiModule")}.GetActionStatus(val.action_id == obj.action_id)': result},
+            outputs_prefix=f'{args.get("integration_context_brand", "CoreApiModule")}.'
+                           f'GetActionStatus(val.action_id == obj.action_id)',
+            outputs=result,
             raw_response=result
         )
 
@@ -5065,6 +5057,8 @@ script:
             sort_by_first_seen = args.get('sort_by_first_seen')
             sort_by_last_seen = args.get('sort_by_last_seen')
 
+            username = argToList(args.get('username'))
+
             endpoints = client.get_endpoints(
                 endpoint_id_list=endpoint_id_list,
                 dist_name=dist_name,
@@ -5082,7 +5076,8 @@ script:
                 last_seen_lte=last_seen_lte,
                 sort_by_first_seen=sort_by_first_seen,
                 sort_by_last_seen=sort_by_last_seen,
-                status=status
+                status=status,
+                username=username
             )
 
         integration_name = args.get("integration_name", "CoreApiModule")
@@ -5172,13 +5167,13 @@ script:
             file_path_list=file_path_list,
             incident_id=incident_id
         )
-
         result = {'action_id': reply.get('action_id')}
 
         return CommandResults(
             readable_output=tableToMarkdown(name='Retrieve files', t=result, headerTransform=string_to_table_header),
-            outputs={f'{args.get("integration_context_brand", "CoreApiModule")}'
-                     f'.RetrievedFiles(val.action_id == obj.action_id)': result},
+            outputs_prefix=f'{args.get("integration_context_brand", "CoreApiModule")}'
+                           f'.RetrievedFiles(val.action_id == obj.action_id)',
+            outputs=result,
             raw_response=reply
         )
 
@@ -6071,7 +6066,7 @@ script:
         )
 
 
-    def retrieve_file_details_command(client: CoreClient, args):
+    def retrieve_file_details_command(client: CoreClient, args, add_to_context):
         action_id_list = argToList(args.get('action_id', ''))
         action_id_list = [arg_to_int(arg=item, arg_name=str(item)) for item in action_id_list]
 
@@ -6101,13 +6096,14 @@ script:
 
         hr = f'### Action id : {args.get("action_id", "")} \n Retrieved {retrived_files_count} files from ' \
              f'{endpoints_count} endpoints. \n To get the exact action status run the core-action-status-get command'
-
+        context = {f'{args.get("integration_context_brand", "CoreApiModule")}'
+                   f'.RetrievedFiles(val.action_id == obj.action_id)': result}
         return_entry = {'Type': entryTypes['note'],
                         'ContentsFormat': formats['json'],
                         'Contents': raw_result,
                         'HumanReadable': hr,
                         'ReadableContentsFormat': formats['markdown'],
-                        'EntryContext': {}
+                        'EntryContext': context if add_to_context else {}
                         }
         return return_entry, file_results
 
@@ -6446,6 +6442,7 @@ script:
         sort_order = args.pop('sort_order', 'DESC')
         prefix = args.pop("integration_context_brand", "CoreApiModule")
         args.pop("integration_name", None)
+        custom_filter = {}
         filter_data['sort'] = [{
             'FIELD': sort_field,
             'ORDER': sort_order
@@ -6460,20 +6457,25 @@ script:
             raise DemistoException('Please provide at least one filter argument.')
 
         # handle custom filter
-        custom_filter = args.pop('custom_filter', None)
+        custom_filter_str = args.pop('custom_filter', None)
 
-        if custom_filter:
-            if args:
-                raise DemistoException(
-                    'Please provide either "custom_filter" argument or other filter arguments but not both.')
+        if custom_filter_str:
+            for arg in args:
+                if arg not in ['time_frame', 'start_time', 'end_time']:
+                    raise DemistoException(
+                        'Please provide either "custom_filter" argument or other filter arguments but not both.')
             try:
-                filter_res = json.loads(custom_filter)
+                custom_filter = json.loads(custom_filter_str)
             except Exception as e:
                 raise DemistoException('custom_filter format is not valid.') from e
 
-        # if custom filter was not given, we should create the filter from the given arguments.
-        else:
-            filter_res = create_filter_from_args(args)
+        filter_res = create_filter_from_args(args)
+        if custom_filter:  # if exists, add custom filter to the built filter
+            if 'AND' in custom_filter:
+                filter_obj = custom_filter['AND']
+                filter_res['AND'].extend(filter_obj)
+            else:
+                filter_res['AND'].append(custom_filter)
 
         filter_data['filter'] = filter_res
         demisto.debug(f'sending the following request data: {request_data}')
@@ -6534,6 +6536,7 @@ script:
 
     register_module_line('CoreIRApiModule', 'end', __line__(), wrapper=1)
     ### END GENERATED CODE ###
+    from itertools import zip_longest
 
     # Disable insecure warnings
     urllib3.disable_warnings()
@@ -6636,6 +6639,33 @@ script:
         return res
 
 
+    def filter_and_save_unseen_incident(incidents: List, limit: int, number_of_already_filtered_incidents: int) -> List:
+        """
+        Filters incidents that were seen already and saves the unseen incidents to LastRun object.
+        :param incidents: List of incident - must be list
+        :param limit: the maximum number of incident per fetch
+        :param number_of_already_filtered_incidents: number of incidents that were fetched already
+        :return: the filtered incidents.
+        """
+        last_run_obj = demisto.getLastRun()
+        fetched_starred_incidents = last_run_obj.pop('fetched_starred_incidents', {})
+        filtered_incidents = []
+        for incident in incidents:
+            incident_id = incident.get('incident_id')
+            if incident_id in fetched_starred_incidents:
+                demisto.debug(f'incident (ID {incident_id}) was already fetched in the past.')
+                continue
+            fetched_starred_incidents[incident_id] = True
+            filtered_incidents.append(incident)
+            number_of_already_filtered_incidents += 1
+            if number_of_already_filtered_incidents >= limit:
+                break
+
+        last_run_obj['fetched_starred_incidents'] = fetched_starred_incidents
+        demisto.setLastRun(last_run_obj)
+        return filtered_incidents
+
+
     class Client(CoreClient):
 
         def test_module(self, first_fetch_time):
@@ -6652,6 +6682,238 @@ script:
                                            f'XSOAR and XDR server clocks are in sync')
                 else:
                     raise
+
+        def handle_fetch_starred_incidents(self, limit: int, page_number: int, request_data: dict) -> List:
+            """
+            handles pagination and filter of starred incidents that were fetched.
+            :param limit: the maximum number of incident per fetch
+            :param page_number: page number
+            :param request_data: the api call request data
+            :return: the filtered starred incidents.
+            """
+            res = self._http_request(
+                method='POST',
+                url_suffix='/incidents/get_incidents/',
+                json_data={'request_data': request_data},
+                timeout=self.timeout
+            )
+            raw_incidents = res.get('reply', {}).get('incidents', [])
+
+            # we want to avoid duplications of starred incidents in the fetch-incident command (we fetch all incidents
+            # in the fetch window).
+            filtered_incidents = filter_and_save_unseen_incident(raw_incidents, limit, 0)
+
+            # we want to support pagination on starred incidents.
+            while len(filtered_incidents) < limit:
+                page_number += 1
+                search_from = page_number * limit
+                search_to = search_from + limit
+                request_data['search_from'] = search_from
+                request_data['search_to'] = search_to
+
+                res = self._http_request(
+                    method='POST',
+                    url_suffix='/incidents/get_incidents/',
+                    json_data={'request_data': request_data},
+                    timeout=self.timeout
+                )
+                raw_incidents = res.get('reply', {}).get('incidents', [])
+                if not raw_incidents:
+                    break
+                filtered_incidents += filter_and_save_unseen_incident(raw_incidents, limit, len(filtered_incidents))
+
+            return filtered_incidents
+
+        def get_incidents(self, incident_id_list=None, lte_modification_time=None, gte_modification_time=None,
+                          lte_creation_time=None, gte_creation_time=None, status=None, starred=None,
+                          starred_incidents_fetch_window=None, sort_by_modification_time=None, sort_by_creation_time=None,
+                          page_number=0, limit=100, gte_creation_time_milliseconds=0):
+            """
+            Filters and returns incidents
+
+            :param incident_id_list: List of incident ids - must be list
+            :param lte_modification_time: string of time format "2019-12-31T23:59:00"
+            :param gte_modification_time: string of time format "2019-12-31T23:59:00"
+            :param lte_creation_time: string of time format "2019-12-31T23:59:00"
+            :param gte_creation_time: string of time format "2019-12-31T23:59:00"
+            :param starred_incidents_fetch_window: string of time format "2019-12-31T23:59:00"
+            :param starred: True if the incident is starred, else False
+            :param status: string of status
+            :param sort_by_modification_time: optional - enum (asc,desc)
+            :param sort_by_creation_time: optional - enum (asc,desc)
+            :param page_number: page number
+            :param limit: maximum number of incidents to return per page
+            :param gte_creation_time_milliseconds: greater than time in milliseconds
+            :return:
+            """
+            search_from = page_number * limit
+            search_to = search_from + limit
+
+            request_data = {
+                'search_from': search_from,
+                'search_to': search_to,
+            }
+
+            if sort_by_creation_time and sort_by_modification_time:
+                raise ValueError('Should be provide either sort_by_creation_time or '
+                                 'sort_by_modification_time. Can\'t provide both')
+            if sort_by_creation_time:
+                request_data['sort'] = {
+                    'field': 'creation_time',
+                    'keyword': sort_by_creation_time
+                }
+            elif sort_by_modification_time:
+                request_data['sort'] = {
+                    'field': 'modification_time',
+                    'keyword': sort_by_modification_time
+                }
+
+            filters = []
+            if incident_id_list is not None and len(incident_id_list) > 0:
+                filters.append({
+                    'field': 'incident_id_list',
+                    'operator': 'in',
+                    'value': incident_id_list
+                })
+
+            if status:
+                filters.append({
+                    'field': 'status',
+                    'operator': 'eq',
+                    'value': status
+                })
+
+            if starred and starred_incidents_fetch_window:
+                filters.append({
+                    'field': 'starred',
+                    'operator': 'eq',
+                    'value': True
+                })
+                filters.append({
+                    'field': 'creation_time',
+                    'operator': 'gte',
+                    'value': starred_incidents_fetch_window
+                })
+                if demisto.command() == 'fetch-incidents':
+                    if len(filters) > 0:
+                        request_data['filters'] = filters
+                    incidents = self.handle_fetch_starred_incidents(limit, page_number, request_data)
+                    return incidents
+
+            else:
+                if lte_creation_time:
+                    filters.append({
+                        'field': 'creation_time',
+                        'operator': 'lte',
+                        'value': date_to_timestamp(lte_creation_time, TIME_FORMAT)
+                    })
+
+                if gte_creation_time:
+                    filters.append({
+                        'field': 'creation_time',
+                        'operator': 'gte',
+                        'value': date_to_timestamp(gte_creation_time, TIME_FORMAT)
+                    })
+
+                if lte_modification_time:
+                    filters.append({
+                        'field': 'modification_time',
+                        'operator': 'lte',
+                        'value': date_to_timestamp(lte_modification_time, TIME_FORMAT)
+                    })
+
+                if gte_modification_time:
+                    filters.append({
+                        'field': 'modification_time',
+                        'operator': 'gte',
+                        'value': date_to_timestamp(gte_modification_time, TIME_FORMAT)
+                    })
+
+                if gte_creation_time_milliseconds > 0:
+                    filters.append({
+                        'field': 'creation_time',
+                        'operator': 'gte',
+                        'value': gte_creation_time_milliseconds
+                    })
+
+            if len(filters) > 0:
+                request_data['filters'] = filters
+
+            res = self._http_request(
+                method='POST',
+                url_suffix='/incidents/get_incidents/',
+                json_data={'request_data': request_data},
+                timeout=self.timeout
+            )
+            incidents = res.get('reply', {}).get('incidents', [])
+
+            return incidents
+
+        def get_incident_extra_data(self, incident_id, alerts_limit=1000):
+            """
+            Returns incident by id
+
+            :param incident_id: The id of incident
+            :param alerts_limit: Maximum number alerts to get
+            :return:
+            """
+            request_data = {
+                'incident_id': incident_id,
+                'alerts_limit': alerts_limit,
+            }
+
+            reply = self._http_request(
+                method='POST',
+                url_suffix='/incidents/get_incident_extra_data/',
+                json_data={'request_data': request_data},
+                timeout=self.timeout
+            )
+
+            incident = reply.get('reply')
+
+            return incident
+
+        def save_modified_incidents_to_integration_context(self):
+            last_modified_incidents = self.get_incidents(limit=100, sort_by_modification_time='desc')
+            modified_incidents_context = {}
+            for incident in last_modified_incidents:
+                incident_id = incident.get('incident_id')
+                modified_incidents_context[incident_id] = incident.get('modification_time')
+
+            set_integration_context({'modified_incidents': modified_incidents_context})
+
+        def get_contributing_event_by_alert_id(self, alert_id: int) -> dict:
+            request_data = {
+                "request_data": {
+                    "alert_id": alert_id,
+                }
+            }
+
+            reply = self._http_request(
+                method='POST',
+                url_suffix='/alerts/get_correlation_alert_data/',
+                json_data=request_data,
+                timeout=self.timeout,
+            )
+
+            return reply.get('reply', {})
+
+        def replace_featured_field(self, field_type: str, fields: list[dict]) -> dict:
+            request_data = {
+                'request_data': {
+                    'fields': fields
+                }
+            }
+
+            reply = self._http_request(
+                method='POST',
+                url_suffix=f'/featured_fields/replace_{field_type}',
+                json_data=request_data,
+                timeout=self.timeout,
+                raise_on_status=True
+            )
+
+            return reply.get('reply')
 
 
     def get_incidents_command(client, args):
@@ -6690,6 +6952,10 @@ script:
 
         statuses = argToList(args.get('status', ''))
 
+        starred = args.get('starred')
+        starred_incidents_fetch_window = args.get('starred_incidents_fetch_window', '3 days')
+        starred_incidents_fetch_window, _ = parse_date_range(starred_incidents_fetch_window, to_timestamp=True)
+
         sort_by_modification_time = args.get('sort_by_modification_time')
         sort_by_creation_time = args.get('sort_by_creation_time')
 
@@ -6699,7 +6965,7 @@ script:
         # If no filters were given, return a meaningful error message
         if not incident_id_list and (not lte_modification_time and not gte_modification_time and not since_modification_time
                                      and not lte_creation_time and not gte_creation_time and not since_creation_time
-                                     and not statuses):
+                                     and not statuses and not starred):
             raise ValueError("Specify a query for the incidents.\nFor example:"
                              " !xdr-get-incidents since_creation_time=\"1 year\" sort_by_creation_time=\"desc\" limit=10")
 
@@ -6717,11 +6983,13 @@ script:
                     sort_by_modification_time=sort_by_modification_time,
                     page_number=page,
                     limit=limit,
-                    status=status
+                    status=status,
+                    starred=starred,
+                    starred_incidents_fetch_window=starred_incidents_fetch_window,
                 )
 
             if len(raw_incidents) > limit:
-                raw_incidents[:limit]
+                raw_incidents = raw_incidents[:limit]
         else:
             raw_incidents = client.get_incidents(
                 incident_id_list=incident_id_list,
@@ -6733,6 +7001,8 @@ script:
                 sort_by_modification_time=sort_by_modification_time,
                 page_number=page,
                 limit=limit,
+                starred=starred,
+                starred_incidents_fetch_window=starred_incidents_fetch_window,
             )
 
         return (
@@ -7137,7 +7407,7 @@ script:
 
 
     def fetch_incidents(client, first_fetch_time, integration_instance, last_run: dict = None, max_fetch: int = 10,
-                        statuses: List = []):
+                        statuses: List = [], starred: Optional[bool] = None, starred_incidents_fetch_window: str = None):
         # Get the last fetch time, if exists
         last_fetch = last_run.get('time') if isinstance(last_run, dict) else None
         incidents_from_previous_run = last_run.get('incidents_from_previous_run', []) if isinstance(last_run,
@@ -7147,6 +7417,9 @@ script:
         if last_fetch is None:
             last_fetch, _ = parse_date_range(first_fetch_time, to_timestamp=True)
 
+        if starred:
+            starred_incidents_fetch_window, _ = parse_date_range(starred_incidents_fetch_window, to_timestamp=True)
+
         incidents = []
         if incidents_from_previous_run:
             raw_incidents = incidents_from_previous_run
@@ -7155,11 +7428,13 @@ script:
                 raw_incidents = []
                 for status in statuses:
                     raw_incidents += client.get_incidents(gte_creation_time_milliseconds=last_fetch, status=status,
-                                                          limit=max_fetch, sort_by_creation_time='asc')
+                                                          limit=max_fetch, sort_by_creation_time='asc', starred=starred,
+                                                          starred_incidents_fetch_window=starred_incidents_fetch_window)
                 raw_incidents = sorted(raw_incidents, key=lambda inc: inc['creation_time'])
             else:
                 raw_incidents = client.get_incidents(gte_creation_time_milliseconds=last_fetch, limit=max_fetch,
-                                                     sort_by_creation_time='asc')
+                                                     sort_by_creation_time='asc', starred=starred,
+                                                     starred_incidents_fetch_window=starred_incidents_fetch_window)
 
         # save the last 100 modified incidents to the integration context - for mirroring purposes
         client.save_modified_incidents_to_integration_context()
@@ -7236,7 +7511,8 @@ script:
             arg_name='last_seen_lte'
         )
 
-        endpoints_count, raw_res = client.get_endpoints_by_status(status, last_seen_gte=last_seen_gte, last_seen_lte=last_seen_lte)
+        endpoints_count, raw_res = client.get_endpoints_by_status(status, last_seen_gte=last_seen_gte,
+                                                                  last_seen_lte=last_seen_lte)
 
         ec = {'status': status, 'count': endpoints_count}
 
@@ -7248,28 +7524,107 @@ script:
             raw_response=raw_res)
 
 
+    def file_details_results(client: Client, args: Dict, add_to_context: bool) -> None:
+        return_entry, file_results = retrieve_file_details_command(client, args, add_to_context)
+        demisto.results(return_entry)
+        if file_results:
+            demisto.results(file_results)
+
+
+    def get_contributing_event_command(client: Client, args: Dict) -> CommandResults:
+
+        if alert_ids := argToList(args.get('alert_ids')):
+            alerts = []
+
+            for alert_id in alert_ids:
+                if alert := client.get_contributing_event_by_alert_id(int(alert_id)):
+                    page_number = max(int(args.get('page_number', 1)), 1) - 1  # Min & default zero (First page)
+                    page_size = max(int(args.get('page_size', 50)), 0)  # Min zero & default 50
+                    offset = page_number * page_size
+                    limit = max(int(args.get('limit', 0)), 0) or offset + page_size
+
+                    alert_with_events = {
+                        'alertID': str(alert_id),
+                        'events': alert.get('events', [])[offset:limit],
+                    }
+                    alerts.append(alert_with_events)
+
+            readable_output = tableToMarkdown(
+                'Contributing events', alerts, headerTransform=pascalToSpace, removeNull=True, is_auto_json_transform=True
+            )
+            return CommandResults(
+                readable_output=readable_output,
+                outputs_prefix=f'{INTEGRATION_CONTEXT_BRAND}.ContributingEvent',
+                outputs_key_field='alertID',
+                outputs=alerts,
+                raw_response=alerts
+            )
+
+        else:
+            return CommandResults(readable_output='The alert_ids argument cannot be empty.')
+
+
+    def replace_featured_field_command(client: Client, args: Dict) -> CommandResults:
+        field_type = args.get('field_type', '')
+        values = argToList(args.get('values'))
+        len_values = len(values)
+        comments = argToList(args.get('comments'))[:len_values]
+        ad_type = argToList(args.get('ad_type', 'group'))[:len_values]
+
+        if field_type == 'ad_groups':
+            fields = [
+                {
+                    'value': field[0], 'comment': field[1], 'type': field[2]
+                } for field in zip_longest(values, comments, ad_type, fillvalue='')
+            ]
+        else:
+            fields = [
+                {'value': field[0], 'comment': field[1]} for field in zip_longest(values, comments, fillvalue='')
+            ]
+
+        client.replace_featured_field(field_type, fields)
+
+        result = {'fieldType': field_type, 'fields': fields}
+
+        readable_output = tableToMarkdown(
+            f'Replaced featured: {result.get("fieldType")}', result.get('fields'), headerTransform=pascalToSpace
+        )
+
+        return CommandResults(
+            readable_output=readable_output,
+            outputs_prefix=f'{INTEGRATION_CONTEXT_BRAND}.FeaturedField',
+            outputs_key_field='fieldType',
+            outputs=result,
+            raw_response=result
+        )
+
+
     def main():  # pragma: no cover
         """
         Executes an integration command
         """
         command = demisto.command()
+        params = demisto.params()
         LOG(f'Command being called is {command}')
 
-        api_key = demisto.params().get('apikey')
-        api_key_id = demisto.params().get('apikey_id')
-        first_fetch_time = demisto.params().get('fetch_time', '3 days')
-        base_url = urljoin(demisto.params().get('url'), '/public_api/v1')
-        proxy = demisto.params().get('proxy')
-        verify_cert = not demisto.params().get('insecure', False)
-        statuses = demisto.params().get('status')
+        # using two different credentials object as they both fields need to be encrypted
+        api_key = params.get('apikey') or params.get('apikey_creds').get('password', '')
+        api_key_id = params.get('apikey_id') or params.get('apikey_id_creds').get('password', '')
+        first_fetch_time = params.get('fetch_time', '3 days')
+        base_url = urljoin(params.get('url'), '/public_api/v1')
+        proxy = params.get('proxy')
+        verify_cert = not params.get('insecure', False)
+        statuses = params.get('status')
+        starred = True if params.get('starred') else None
+        starred_incidents_fetch_window = params.get('starred_incidents_fetch_window', '3 days')
 
         try:
-            timeout = int(demisto.params().get('timeout', 120))
+            timeout = int(params.get('timeout', 120))
         except ValueError as e:
             demisto.debug(f'Failed casting timeout parameter to int, falling back to 120 - {e}')
             timeout = 120
         try:
-            max_fetch = int(demisto.params().get('max_fetch', 10))
+            max_fetch = int(params.get('max_fetch', 10))
         except ValueError as e:
             demisto.debug(f'Failed casting max fetch parameter to int, falling back to 10 - {e}')
             max_fetch = 10
@@ -7279,6 +7634,9 @@ script:
         auth_key = "%s%s%s" % (api_key, nonce, timestamp)
         auth_key = auth_key.encode("utf-8")
         api_key_hash = hashlib.sha256(auth_key).hexdigest()
+
+        if argToBoolean(params.get("prevent_only", False)):
+            api_key_hash = api_key
 
         headers = {
             "x-xdr-timestamp": timestamp,
@@ -7306,9 +7664,12 @@ script:
 
             elif command == 'fetch-incidents':
                 integration_instance = demisto.integrationInstance()
-                next_run, incidents = fetch_incidents(client, first_fetch_time, integration_instance, demisto.getLastRun(),
-                                                      max_fetch, statuses)
-                demisto.setLastRun(next_run)
+                next_run, incidents = fetch_incidents(client, first_fetch_time, integration_instance,
+                                                      demisto.getLastRun().get('next_run'), max_fetch, statuses, starred,
+                                                      starred_incidents_fetch_window)
+                last_run_obj = demisto.getLastRun()
+                last_run_obj['next_run'] = next_run
+                demisto.setLastRun(last_run_obj)
                 demisto.incidents(incidents)
 
             elif command == 'xdr-get-incidents':
@@ -7468,22 +7829,31 @@ script:
                 return_results(retrieve_files_command(client, args))
 
             elif command == 'xdr-file-retrieve':
-                return_results(run_polling_command(client=client,
-                                                   args=args,
-                                                   cmd="xdr-file-retrieve",
-                                                   command_function=retrieve_files_command,
-                                                   command_decision_field="action_id",
-                                                   results_function=action_status_get_command,
-                                                   polling_field="status",
-                                                   polling_value=["PENDING",
-                                                                  "IN_PROGRESS",
-                                                                  "PENDING_ABORT"]))
+                polling = run_polling_command(client=client,
+                                              args=args,
+                                              cmd="xdr-file-retrieve",
+                                              command_function=retrieve_files_command,
+                                              command_decision_field="action_id",
+                                              results_function=action_status_get_command,
+                                              polling_field="status",
+                                              polling_value=["PENDING",
+                                                             "IN_PROGRESS",
+                                                             "PENDING_ABORT"])
+                raw = polling.raw_response
+                # raw is the response returned by the get-action-status
+                if polling.scheduled_command:
+                    return_results(polling)
+                    return
+                status = raw[0].get('status')  # type: ignore
+                if status == 'COMPLETED_SUCCESSFULLY':
+                    file_details_results(client, args, True)
+                else:  # status is not in polling value and operation was not COMPLETED_SUCCESSFULLY
+                    polling.outputs_prefix = f'{args.get("integration_context_brand", "CoreApiModule")}' \
+                                             f'.RetrievedFiles(val.action_id == obj.action_id)'
+                    return_results(polling)
 
             elif command == 'xdr-retrieve-file-details':
-                return_entry, file_results = retrieve_file_details_command(client, args)
-                demisto.results(return_entry)
-                if file_results:
-                    demisto.results(file_results)
+                file_details_results(client, args, False)
 
             elif command == 'xdr-get-scripts':
                 return_outputs(*get_scripts_command(client, args))
@@ -7610,6 +7980,12 @@ script:
 
             elif command == 'xdr-remove-allowlist-files':
                 return_results(remove_allowlist_files_command(client, args))
+
+            elif command == 'xdr-get-contributing-event':
+                return_results(get_contributing_event_command(client, args))
+
+            elif command == 'xdr-replace-featured-field':
+                return_results(replace_featured_field_command(client, args))
 
         except Exception as err:
             demisto.error(traceback.format_exc())
