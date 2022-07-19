@@ -1,0 +1,770 @@
+category: Forensics & Malware Analysis
+commonfields:
+  id: ReversingLabs A1000 v2
+  version: -1
+configuration:
+- defaultvalue: https://a1000.reversinglabs.com
+  display: ReversingLabs A1000 instance URL
+  name: host
+  required: true
+  type: 0
+- display: API Token
+  name: token
+  required: true
+  type: 4
+- defaultvalue: "true"
+  display: Verify host certificates
+  name: verify
+  required: false
+  type: 8
+- defaultvalue: C - Fairly reliable
+  display: Reliability
+  name: reliability
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: false
+  type: 15
+- defaultvalue: "2"
+  display: Wait time between report fetching retries (seconds). Deafult is 2 seconds.
+  name: wait_time_seconds
+  required: false
+  type: 0
+- defaultvalue: "30"
+  display: Number of report fetching retries. Default is 30.
+  name: num_of_retries
+  required: false
+  type: 0
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.0.5
+    packID: ReversingLabs_A1000
+    packName: ReversingLabs A1000
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: ReversingLabs A1000 advanced Malware Analysis Platform.
+detaileddescription: |-
+  ### Partner Contributed Integration
+  #### Integration Author: ReversingLabs
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [support@reversinglabs.com](mailto:support@reversinglabs.com)
+  - **URL**: [https://www.reversinglabs.com/products/malware-threat-hunting-and-investigations](https://www.reversinglabs.com/products/malware-threat-hunting-and-investigations)
+  ***
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/reversing-labs-a1000-v2)
+display: ReversingLabs A1000 v2 (Partner Contribution)
+image: data:image/png;base64,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
+name: ReversingLabs A1000 v2
+script:
+  commands:
+  - arguments:
+    - default: true
+      description: file hash
+      name: hash
+      required: true
+    description: Retrieve sample analysis results
+    name: reversinglabs-a1000-get-results
+    outputs:
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file.
+      type: String
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: File.SHA512
+      description: The SHA512 hash of the file.
+      type: String
+    - contextPath: File.Name
+      description: The name of the file.
+      type: String
+    - contextPath: File.EntryID
+      description: The Entry ID.
+      type: String
+    - contextPath: File.Info
+      description: Information about the file.
+      type: String
+    - contextPath: File.Type
+      description: The type of the file.
+      type: String
+    - contextPath: File.MD5
+      description: MD5 hash of the file.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: ReversingLabs.a1000_report
+      description: A1000 report
+      type: Unknown
+  - arguments:
+    - default: true
+      description: The file entry to upload
+      name: entryId
+      required: true
+    - description: A comment to add to the file
+      name: comment
+    - description: List of tags for the file
+      name: tags
+    description: Upload sample to A1000 for analysis
+    execution: true
+    name: reversinglabs-a1000-upload-sample
+    outputs:
+    - contextPath: ReversingLabs.a1000_upload_report
+      description: A1000 report
+      type: Unknown
+  - arguments:
+    - default: true
+      description: The file entry to upload
+      name: entryId
+      required: true
+    - description: A comment to add to the file
+      name: comment
+    - description: List of tags for the file
+      name: tags
+    description: Upload sample to A1000 and retrieve analysis results
+    name: reversinglabs-a1000-upload-sample-and-get-results
+    outputs:
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file.
+      type: String
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: File.SHA512
+      description: The SHA512 hash of the file.
+      type: String
+    - contextPath: File.Name
+      description: The name of the file.
+      type: String
+    - contextPath: File.EntryID
+      description: The Entry ID.
+      type: String
+    - contextPath: File.Info
+      description: Information about the file.
+      type: String
+    - contextPath: File.Type
+      description: The type of the file.
+      type: String
+    - contextPath: File.MD5
+      description: MD5 hash of the file.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: ReversingLabs.a1000_report
+      description: A1000 report
+      type: Unknown
+  - arguments:
+    - default: true
+      description: The hash to delete
+      name: hash
+      required: true
+    description: Delete an uploaded sample from A1000
+    execution: true
+    name: reversinglabs-a1000-delete-sample
+    outputs:
+    - contextPath: ReversingLabs.a1000_delete_report
+      description: A1000 file delete report
+      type: Unknown
+  - arguments:
+    - default: true
+      description: The sample hash
+      name: hash
+      required: true
+    description: List files extracted from a sample
+    name: reversinglabs-a1000-list-extracted-files
+    outputs:
+    - contextPath: ReversingLabs.a1000_list_extracted_report
+      description: A1000 list extracted files report
+      type: Unknown
+  - arguments:
+    - default: true
+      description: Sample hash to download
+      name: hash
+      required: true
+    description: Download sample from A1000
+    name: reversinglabs-a1000-download-sample
+  - arguments:
+    - default: true
+      description: The hash of an already uploaded sample
+      name: hash
+      required: true
+    description: Re-analyze sample on A1000
+    name: reversinglabs-a1000-reanalyze
+    outputs:
+    - contextPath: ReversingLabs.a1000_reanalyze_report
+      description: Get extracted files report
+      type: Unknown
+  - arguments:
+    - default: true
+      description: The sample hash we want unpacked samples for
+      name: hash
+      required: true
+    description: Download samples obtained through the unpacking process
+    name: reversinglabs-a1000-download-extracted-files
+  - arguments:
+    - description: The hash of a desired sample
+      name: hash
+      required: true
+    - defaultValue: "False"
+      description: Return only local classification data for the sample, without falling
+        back to querying TitaniumCloud.
+      name: localOnly
+    description: Retrieve classification report for a sample
+    name: reversinglabs-a1000-get-classification
+    outputs:
+    - contextPath: File.SHA256
+      description: The SHA256 hash of the file.
+      type: String
+    - contextPath: File.SHA1
+      description: The SHA1 hash of the file.
+      type: String
+    - contextPath: File.SHA512
+      description: The SHA512 hash of the file.
+      type: String
+    - contextPath: File.Name
+      description: The name of the file.
+      type: String
+    - contextPath: File.EntryID
+      description: The Entry ID.
+      type: String
+    - contextPath: File.Info
+      description: Information about the file.
+      type: String
+    - contextPath: File.Type
+      description: The type of the file.
+      type: String
+    - contextPath: File.MD5
+      description: MD5 hash of the file.
+      type: String
+    - contextPath: DBotScore.Score
+      description: The actual score.
+      type: Number
+    - contextPath: DBotScore.Type
+      description: The indicator type.
+      type: String
+    - contextPath: DBotScore.Indicator
+      description: The indicator that was tested.
+      type: String
+    - contextPath: DBotScore.Vendor
+      description: The vendor used to calculate the score.
+      type: String
+    - contextPath: ReversingLabs.a1000_classification_report
+      description: A1000 classification report
+      type: Unknown
+  - arguments:
+    - description: Advanced search query
+      name: query
+      required: true
+    - defaultValue: "5000"
+      description: Maximum number of results
+      name: result_limit
+    description: Search for hashes on A1000 using multi-part search criteria
+    name: reversinglabs-a1000-advanced-search
+    outputs:
+    - contextPath: ReversingLabs.a1000_advanced_search_report
+      description: A1000 classification report
+      type: Unknown
+  dockerimage: demisto/reversinglabs-sdk-py3:2.0.0.25193
+  runonce: false
+  script: |
+    register_module_line('ReversingLabs A1000 v2', 'start', __line__())
+
+    from ReversingLabs.SDK.a1000 import A1000
+
+    VERSION = "v2.0.0"
+    USER_AGENT = f"ReversingLabs XSOAR A1000 {VERSION}"
+    HOST = demisto.getParam('host')
+    TOKEN = demisto.getParam('token')
+    VERIFY_CERT = demisto.getParam('verify')
+    RELIABILITY = demisto.params().get('reliability', 'C - Fairly reliable')
+    WAIT_TIME_SECONDS = demisto.params().get('wait_time_seconds')
+    NUM_OF_RETRIES = demisto.params().get('num_of_retries')
+
+
+    def classification_to_score(classification):
+        score_dict = {
+            "UNKNOWN": 0,
+            "KNOWN": 1,
+            "SUSPICIOUS": 2,
+            "MALICIOUS": 3
+        }
+        return score_dict.get(classification, 0)
+
+
+    def test(a1000):
+        """
+        Test credentials and connectivity
+        """
+        try:
+            a1000.test_connection()
+            return 'ok'
+        except Exception as e:
+            return_error(str(e))
+
+
+    def get_results(a1000):
+        """
+        Get A1000 report
+        """
+        try:
+            hash_value = demisto.getArg('hash')
+            response_json = a1000.get_results(hash_value).json()
+        except Exception as e:
+            return_error(str(e))
+
+        command_result = a1000_report_output(response_json)
+
+        file_result = fileResult('A1000 report file', json.dumps(response_json, indent=4),
+                                 file_type=EntryType.ENTRY_INFO_FILE)
+
+        return_results([command_result, file_result])
+
+
+    def upload_sample_and_get_results(a1000):
+        """
+        Upload file to A1000 and get report
+        """
+        file_entry = demisto.getFilePath(demisto.getArg('entryId'))
+
+        try:
+            with open(file_entry['path'], 'rb') as f:
+                response_json = a1000.upload_sample_and_get_results(file_source=f,
+                                                                    custom_filename=file_entry.get('name'),
+                                                                    tags=demisto.getArg('tags'),
+                                                                    comment=demisto.getArg('comment')).json()
+        except Exception as e:
+            return_error(str(e))
+
+        command_result = a1000_report_output(response_json)
+
+        file_result = fileResult('A1000 report file', json.dumps(response_json, indent=4),
+                                 file_type=EntryType.ENTRY_INFO_FILE)
+
+        return [command_result, file_result]
+
+
+    def a1000_report_output(response_json):
+        results = response_json.get('results')
+        result = results[0] if results else {}
+        status = result.get('threat_status', '')
+        d_bot_score = classification_to_score(status.upper())
+
+        md5 = result.get('md5')
+        sha1 = result.get('sha1')
+        sha256 = result.get('sha256')
+        sha512 = result.get('sha512')
+        file_type = result.get('file_type')
+        file_subtype = result.get('file_subtype')
+        file_size = result.get('file_size')
+
+        markdown = f'''## ReversingLabs A1000 results for: {result.get('sha1')}\n **Type:** {file_type}/{file_subtype}
+        **Size:** {file_size} bytes \n'''
+
+        if md5:
+            markdown += f'**MD5:** {md5}\n'
+        if sha1:
+            markdown += f'**SHA1:** {sha1}\n'
+        if sha256:
+            markdown += f'**SHA256:** {sha256}\n'
+        if sha512:
+            markdown += f'**SHA512:** {sha512}\n'
+
+        markdown += f'''**ID:** {demisto.get(result, 'summary.id')}
+        **Malware status:** {format(status)}
+        **Local first seen:** {result.get('local_first_seen')}
+        **Local last seen:** {result.get('local_last_seen')}
+        **First seen:** {demisto.gets(result, 'ticloud.first_seen')}
+        **Last seen:** {demisto.gets(result, 'ticloud.last_seen')}
+        **DBot score:** {d_bot_score}
+        **Trust factor:** {result.get('trust_factor')} \n'''
+        if status == 'malicious':
+            markdown += f'''**Threat name:** {result.get('threat_name')}
+                    **Threat level:** {result.get('threat_level')}'''
+        markdown += f'''\n **Category:** {result.get('category')}
+        **Classification origin:** {result.get('classification_origin')}
+        **Classification reason:** {result.get('classification_reason')}
+        **Aliases:** {','.join(result.get('aliases'))}
+        **Extracted file count:** {result.get('extracted_file_count')}
+        **Identification name:** {result.get('identification_name')}
+        **Identification version:** {result.get('identification_version')}\n'''
+        indicators = demisto.get(result, 'summary.indicators')
+        if indicators:
+            markdown += tableToMarkdown('ReversingLabs threat indicators', indicators)
+
+        dbot_score = Common.DBotScore(
+            indicator=sha1,
+            indicator_type=DBotScoreType.FILE,
+            integration_name='ReversingLabs A1000',
+            score=d_bot_score,
+            malicious_description=f"{result.get('classification_reason')} - {result.get('threat_name')}",
+            reliability=RELIABILITY
+        )
+
+        common_file = Common.File(
+            md5=md5,
+            sha1=sha1,
+            sha256=sha256,
+            dbot_score=dbot_score
+        )
+
+        command_results = CommandResults(
+            outputs_prefix='ReversingLabs',
+            outputs={'a1000_report': response_json},
+            readable_output=markdown,
+            indicator=common_file
+        )
+        return command_results
+
+
+    def upload_sample(a1000):
+        """
+        Upload file to A1000 for analysis
+        """
+        file_entry = demisto.getFilePath(demisto.getArg('entryId'))
+
+        try:
+            with open(file_entry['path'], 'rb') as f:
+                response_json = a1000.upload_sample_from_file(f,
+                                                              custom_filename=file_entry.get('name'),
+                                                              tags=demisto.getArg('tags'),
+                                                              comment=demisto.getArg('comment')).json()
+        except Exception as e:
+            return_error(str(e))
+
+        markdown = f'''## ReversingLabs A1000 upload sample\n **Message:** {response_json.get('message')}
+        **ID:** {demisto.get(response_json, 'detail.id')}
+        **SHA1:** {demisto.get(response_json, 'detail.sha1')}
+        **Created:** {demisto.get(response_json, 'detail.created')}'''
+
+        command_result = CommandResults(
+            outputs_prefix='ReversingLabs',
+            outputs={'a1000_upload_report': response_json},
+            readable_output=markdown
+        )
+
+        file_result = fileResult('Upload sample report file', json.dumps(response_json, indent=4),
+                                 file_type=EntryType.ENTRY_INFO_FILE)
+
+        return [command_result, file_result]
+
+
+    def delete_sample(a1000):
+        """
+        Delete a file from A1000
+        """
+        hash_value = demisto.getArg('hash')
+        try:
+            response_json = a1000.delete_samples(hash_value).json()
+        except Exception as e:
+            return_error(str(e))
+
+        res = response_json.get('results')
+        markdown = f'''## ReversingLabs A1000 delete sample\n **Message:** {res.get('message')}
+        **MD5:** {demisto.get(res, 'detail.md5')}
+        **SHA1:** {demisto.get(res, 'detail.sha1')}
+        **SHA256:** {demisto.get(res, 'detail.sha256')}'''
+
+        command_result = CommandResults(
+            outputs_prefix='ReversingLabs',
+            outputs={'a1000_delete_report': response_json},
+            readable_output=markdown
+        )
+
+        file_result = fileResult('Delete sample report file', json.dumps(response_json, indent=4),
+                                 file_type=EntryType.ENTRY_INFO_FILE)
+
+        return [command_result, file_result]
+
+
+    def reanalyze(a1000):
+        """
+        Re-Analyze a sample already existing on A1000
+        """
+        hash_value = demisto.getArg('hash')
+        try:
+            response_json = a1000.reanalyze_samples(hash_value).json()
+        except Exception as e:
+            return_error(str(e))
+
+        markdown = f'''## ReversingLabs A1000 re-analyze sample\n**Message:** {response_json.get('message')}
+        **MD5:** {demisto.get(response_json, 'detail.md5')}
+        **SHA1:** {demisto.get(response_json, 'detail.sha1')}
+        **SHA256:** {demisto.get(response_json, 'detail.sha256')}'''
+
+        command_result = CommandResults(
+            outputs_prefix='ReversingLabs',
+            outputs={'a1000_reanalyze_report': response_json},
+            readable_output=markdown
+        )
+
+        file_result = fileResult('ReAnalyze sample report file', json.dumps(response_json, indent=4),
+                                 file_type=EntryType.ENTRY_INFO_FILE)
+
+        return [command_result, file_result]
+
+
+    def list_extracted_files(a1000):
+        """
+        Get the list of extracted files for a given sample
+        """
+        hash_value = demisto.getArg('hash')
+
+        try:
+            response_json = a1000.get_extracted_files(hash_value).json()
+        except Exception as e:
+            return_error(str(e))
+
+        command_result = list_extracted_files_output(response_json)
+
+        file_result = fileResult('List extracted files report file', json.dumps(response_json, indent=4),
+                                 file_type=EntryType.ENTRY_INFO_FILE)
+
+        return [command_result, file_result]
+
+
+    def list_extracted_files_output(response_json):
+        results = response_json.get('results')
+
+        file_list = []
+        for result in results:
+            sha1 = demisto.get(result, 'sample.sha1')
+            status = demisto.get(result, 'sample.threat_status')
+            file_data = {
+                'SHA1': sha1,
+                'Name': result.get('filename'),
+                'Info': demisto.get(result, 'sample.type_display'),
+                'Size': demisto.get(result, 'sample.file_size'),
+                'Path': result.get('path'),
+                'Local First': demisto.get(result, 'sample.local_first_seen'),
+                'Local Last': demisto.get(result, 'sample.local_last_seen'),
+                'Malware Status': status,
+                'Trust': demisto.get(result, 'sample.trust_factor'),
+                'Threat Name': demisto.get(result, 'sample.threat_name'),
+                'Threat Level': demisto.get(result, 'sample.threat_level')
+            }
+
+            file_list.append(file_data)
+
+        markdown = tableToMarkdown('Extracted files', file_list,
+                                   ['SHA1', 'Name', 'Path', 'Info', 'Size', 'Local First', 'Local Last',
+                                    'Malware Status', 'Trust', 'Threat Name', 'Threat Level'])
+
+        command_results = CommandResults(
+            outputs_prefix='ReversingLabs',
+            outputs={'a1000_list_extracted_report': response_json},
+            readable_output=markdown,
+        )
+
+        return command_results
+
+
+    def download_extracted_files(a1000):
+        """
+        Download samples obtained through the unpacking process
+        """
+        hash_value = demisto.getArg('hash')
+        try:
+            response = a1000.download_extracted_files(hash_value)
+        except Exception as e:
+            return_error(str(e))
+
+        filename = hash_value + '.zip'
+        command_results = CommandResults(
+            readable_output=f"## ReversingLabs A1000 download extraced files \nExtracted files are available for download "
+                            f"under the name {filename}"
+        )
+
+        file_result = fileResult(filename, response.content, file_type=EntryType.FILE)
+
+        return [command_results, file_result]
+
+
+    def download_sample(a1000):
+        """
+        Download a sample from A1000
+        """
+        hash_value = demisto.getArg('hash')
+
+        try:
+            response = a1000.download_sample(hash_value)
+        except Exception as e:
+            return_error(str(e))
+
+        command_results = CommandResults(
+            readable_output=f"## ReversingLabs A1000 download sample \nRequested sample is available for download under "
+                            f"the name {hash_value}"
+        )
+
+        file_result = fileResult(hash_value, response.content, file_type=EntryType.FILE)
+
+        return [command_results, file_result]
+
+
+    def get_classification(a1000):
+        """
+        Download samples obtained through the unpacking process
+        """
+        hash_value = demisto.getArg('hash')
+        local_only = argToBoolean(demisto.getArg('localOnly'))
+
+        try:
+            response_json = a1000.get_classification(hash_value, local_only=local_only).json()
+        except Exception as e:
+            return_error(str(e))
+
+        command_result = get_classification_output(response_json)
+        file_result = fileResult('Get classification report file', json.dumps(response_json, indent=4),
+                                 file_type=EntryType.ENTRY_INFO_FILE)
+
+        return [command_result, file_result]
+
+
+    def get_classification_output(response_json):
+        markdown = f"## ReversingLabs A1000 get classification for sha1: {response_json.get('sha1')}\n"
+        for key, value in response_json.items():
+            markdown += f'**{str.capitalize(key.replace("_", " "))}:** {value}\n'
+
+        status = response_json.get('threat_status')
+        if status:
+            d_bot_score = classification_to_score(status.upper())
+            dbot_score = Common.DBotScore(
+                indicator=response_json.get('sha1'),
+                indicator_type=DBotScoreType.FILE,
+                integration_name='ReversingLabs A1000',
+                score=d_bot_score,
+                malicious_description=status,
+                reliability=RELIABILITY
+            )
+
+            common_file = Common.File(
+                md5=response_json.get('md5'),
+                sha1=response_json.get('sha1'),
+                sha256=response_json.get('sha256'),
+                dbot_score=dbot_score
+            )
+
+            command_results = CommandResults(
+                outputs_prefix='ReversingLabs',
+                outputs={'a1000_classification_report': response_json},
+                indicator=common_file,
+                readable_output=markdown
+            )
+            return command_results
+
+
+    def advanced_search(a1000):
+        """
+        Advanced Search by query
+        """
+        query = demisto.getArg('query')
+
+        try:
+            limit = demisto.getArg("result-limit")
+            if not isinstance(limit, int):
+                limit = int(limit)
+        except KeyError:
+            limit = 5000
+
+        try:
+            result_list = a1000.advanced_search_aggregated(query_string=query, max_results=limit)
+        except Exception as e:
+            return_error(str(e))
+
+        command_result = CommandResults(
+            outputs_prefix='ReversingLabs',
+            outputs={'a1000_advanced_search_report': result_list},
+            readable_output="## Reversinglabs A1000 advanced Search \nFull report is returned in a downloadable file"
+        )
+
+        file_result = fileResult('Advanced search report file', json.dumps(result_list, indent=4),
+                                 file_type=EntryType.ENTRY_INFO_FILE)
+
+        return [command_result, file_result]
+
+
+    def main():
+
+        try:
+            wait_time_seconds = int(WAIT_TIME_SECONDS)
+        except ValueError:
+            return_error("Integration parameter <Wait between retries> has to be of type integer.")
+
+        try:
+            num_of_retries = int(NUM_OF_RETRIES)
+        except ValueError:
+            return_error("Integration parameter <Number of retries> has to be of type integer.")
+
+        a1000 = A1000(
+            host=HOST,
+            token=TOKEN,
+            verify=VERIFY_CERT,
+            user_agent=USER_AGENT,
+            wait_time_seconds=wait_time_seconds,
+            retries=num_of_retries
+        )
+
+        demisto.info(f'Command being called is {demisto.command()}')
+
+        try:
+            if demisto.command() == 'test-module':
+                return_results(test(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-get-results':
+                return_results(get_results(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-upload-sample-and-get-results':
+                return_results(upload_sample_and_get_results(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-upload-sample':
+                return_results(upload_sample(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-delete-sample':
+                return_results(delete_sample(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-list-extracted-files':
+                return_results(list_extracted_files(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-download-sample':
+                return_results(download_sample(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-reanalyze':
+                return_results(reanalyze(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-download-extracted-files':
+                return_results(download_extracted_files(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-get-classification':
+                return_results(get_classification(a1000))
+            elif demisto.command() == 'reversinglabs-a1000-advanced-search':
+                return_results(advanced_search(a1000))
+            else:
+                return_error(f'Command [{demisto.command()}] not implemented')
+
+        except Exception as e:
+            return_error(f'Failed to execute {demisto.command()} command. Error: {str(e)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('ReversingLabs A1000 v2', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
