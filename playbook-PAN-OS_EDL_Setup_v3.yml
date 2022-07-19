@@ -500,7 +500,7 @@ tasks:
       id: 9021dcf2-bcc7-432e-84aa-bcf740cc4c2b
       iscommand: true
       name: Create EDL Object
-      script: '|||panorama-create-edl'
+      script: '|||pan-os-create-edl'
       type: regular
       version: -1
     taskid: 9021dcf2-bcc7-432e-84aa-bcf740cc4c2b
@@ -526,8 +526,6 @@ tasks:
       - "48"
     note: false
     quietmode: 0
-    results:
-    - AreValuesEqual
     scriptarguments:
       left:
         simple: ${inputs.auto-commit}
@@ -616,7 +614,7 @@ tasks:
       id: beecfebc-ceaa-462b-81bd-3207a042ea6f
       iscommand: true
       name: Add the list items to the EDL
-      script: '|||pan-os-edl-update'
+      script: Panorama|||pan-os-edl-update
       type: regular
       version: -1
     taskid: beecfebc-ceaa-462b-81bd-3207a042ea6f
@@ -705,8 +703,6 @@ tasks:
       - "49"
     note: false
     quietmode: 0
-    results:
-    - AreValuesEqual
     scriptarguments:
       left:
         simple: ${inputs.auto-commit}
@@ -792,7 +788,7 @@ tasks:
       id: 65e522d7-c2df-47d0-8684-4710e2e534e2
       iscommand: true
       name: Fetch Instance Info
-      script: '|||panorama'
+      script: Panorama|||pan-os
       type: regular
       version: -1
     taskid: 65e522d7-c2df-47d0-8684-4710e2e534e2
@@ -870,7 +866,7 @@ tasks:
       id: 530e2470-d45e-400f-8a36-7106c1e0161b
       iscommand: true
       name: Get EDL Object
-      script: '|||panorama-get-edl'
+      script: '|||pan-os-get-edl'
       type: regular
       version: -1
     taskid: 530e2470-d45e-400f-8a36-7106c1e0161b
