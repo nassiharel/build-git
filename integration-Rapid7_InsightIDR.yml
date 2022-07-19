@@ -1,0 +1,1322 @@
+category: Analytics & SIEM
+commonfields:
+  id: Rapid7 InsightIDR
+  version: -1
+configuration:
+- display: Insight cloud server region
+  name: region
+  options:
+  - US
+  - EU
+  - CA
+  - AU
+  - AP
+  required: true
+  type: 15
+- display: InsightIDR API key
+  name: apiKey
+  required: true
+  type: 4
+- display: Fetch incidents
+  name: isFetch
+  required: false
+  type: 8
+- display: Incident type
+  name: incidentType
+  required: false
+  type: 13
+- defaultvalue: 7 days
+  display: First fetch timestamp (<number> <time unit>, e.g., 12 hours, 7 days)
+  name: first_fetch
+  required: false
+  type: 0
+- additionalinfo: Max number of alerts per fetch. Default is 50.
+  defaultvalue: "50"
+  display: Fetch Limit
+  name: max_fetch
+  required: false
+  type: 0
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- defaultvalue: "1"
+  display: Incidents Fetch Interval
+  name: incidentFetchInterval
+  required: false
+  type: 19
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.13
+    packID: Rapid7_InsightIDR
+    packName: Rapid7 InsightIDR
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Rapid7 InsightIDR is a Cloud-Based SIEM that detect and respond to security
+  incidents.
+detaileddescription: |-
+  ## Authentication
+  In order to use the Rapid7 InsightIDR integration, you need to get an API key with Read/Write privileges.
+
+  ### Generate an API Key
+  1. Log in to Rapid7 InsightIDR.
+  2. Click **Settings > API Keys**.
+  3. Generate a new API key with Read/Write privileges.
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/rapid7-insight-idr)
+display: Rapid7 InsightIDR
+image: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH5AoEDxII+aDDHgAAAAFvck5UAc+id5oAABcgSURBVHja7d15lBxHfQfwb3X3TM/OXjps6z5W92XJuixbloRPQNhCGHOZ8AiEcB8hmDO8B/8QyAvBDwKGYAMvD0gcnGAbI2zjSCvJki3J8a5WsiTrsnVblmxde073zNQvf8ysWMuyPLvSTnXXfD/v6T3tX/Or6upfVVdXVwFERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERExinTAfRF+wN3S/74YcBxTIdCvaBcD3ATQNKH46eh0rVw6gbBGTQE7qBh8EaMj2V7jLNYVnjXxsek7Zffgpx8GXBc0+FQyeS1fzoukEjCSaQAPwWnegCcy0fAGzUR7uBh8MbNRHLS7Fi20biIbeV2bXxU2n/1begzrwKKI4FYk+7EIIX/CwDXg6qph1s3CIkp8+GNmYLE1AVIjJ4c2zYbRbGuzM7VD0j7r/8R0tkGqFgXhc5HBIAAWgNeAk7dYHhjpyM54xokZixEsmEGL/pFin0Ftj/0U+l88MeQMGASsJ0Uk4HrwhlwGRIT58CfdzOq3nIHL3wfWVFxrfd+U7oa/8t0GFROIoBoqGQK7vBx8BcsRWrhbfCGNVjRpsvFmso69c8fl7BpJecDKo4AWgCl4A4ZDX/hbUgtWo7EyInWtO3+ZE0lZQ/uktaf/D1y+5/n68FKJbqYCMYiteR21NzxeWvad3+xqoIyzzwhrfd+A9J2ivMBlUxrwHHhjZmC9NKPoup6zhG8Eesqpv2Bu6XjoZ8VegOqbDoP5aeRnHMjqpd/EolxV1rX3i+WlRXC+QA6SwprC9wrRiF9698gvfQjVrb5vrKyMsK9W6T1h59D/pXDTAJUIBoqkYJ/zTtQfcfn+LagyMq7Izlhlkrf+jGohI/XLT+lyqQcSDZAZt1DOPOjLyDTvJoN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plTxtJ8VpiM5K2x5svgcHfH7SGsoL4HE5LmouvVjSM27OeIBmxOLu6n9t99Fbv+2yrn5i5N/ybnRmf3PbHpcckf2RvvmFw2IwB01EdUf+joGfvt+xZv/wiI/Ajh992ck2PR4vJ47L5ZoJKZejeTE2ZFpvIVNPzui+e5fa8Bx4A4di9Si5YVTe2J+Zl+5RDoBnPnRFyTz9Ipo9zqXnEAlq4qbftxjOhgAQO7oi3LqOx+O1nUQKQz1kz7c0ePhL1iK1LW3Fo/r+qLp6GIjsgngzE++JJmnHrHmS9OSaYE7ciKqFi2PTMmD5tXQJ45GYBQmgBYAAqd2ELzxM+EveBvSN92pgEcBfN50VcVOJBPAmR/9nWTW/6H4V2Tug/JQCv7cmwA8YjqSs8Lm4oc/Job/xdd4AKCqauEOHQN/9vVIzlyC5LSrFfDvpqsn1iKXAE7/+IuSWf9ItIab5SICZ+AVxQQQDcH2DXLmB58uT+/fvbirOJmnkimomgFwh41Fcso8JCbPgz/7BhWlNyNxF6kEcPruz0jQ3fNXwkq/c+k8EtOvQWLcjMhkv6CpsbDpp+Nc+mtSHM4DABI+VLoGjp+GO6wB3ujJ8EZOgjfuSiTGTlXA70xXhZUikwBaf/ktCZ5dCWfwcNOhGCJQXhKpBW8H8EPTwZyVP7wbzmXDL/kIwEnXwh0xAe6QUVBeEs6gIfBGTykue15vuthERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERERE1Av/D9e0Jv/UovzQAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTEwLTA0VDE1OjE4OjA4KzAwOjAw3FySBQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0xMC0wNFQxNToxODowOCswMDowMK0BKrkAAAAASUVORK5CYII=
+name: Rapid7 InsightIDR
+script:
+  commands:
+  - arguments:
+    - description: An optional time range string (i.e 1 week, 1 day)
+      name: time_range
+    - description: Only investigations whose createTime is after this date will be
+        returned. If this argument is omitted, investigations with any create_time
+        may be returned. Use ISO time format (e.g., 2018-07-01T00:00:00Z).
+      name: start_time
+    - description: Only investigations whose createTime is before this date will be
+        returned. If this argument is omitted, investigations with any create_time
+        may be returned. Use ISO time format (e.g., 2018-07-01T00:00:00Z).
+      name: end_time
+    - auto: PREDEFINED
+      description: Only investigations whose status matches one of the entries in
+        the list will be returned. If this argument is omitted, all investigations
+        will be returned.
+      name: statuses
+      predefined:
+      - open
+      - closed
+    - description: The optional 0-based index of the page to retrieve. Must be an
+        integer greater than or equal to 0.
+      name: index
+    - description: The optional size of the page to retrieve. Must be an integer greater
+        than 0 or less than or equal to 1000.
+      name: page_size
+    description: List all open/closed investigations. You can filter results by time
+      range and investigation status.
+    name: rapid7-insight-idr-list-investigations
+    outputs:
+    - contextPath: Rapid7InsightIDR.Investigation.title
+      description: Title of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.id
+      description: ID of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.status
+      description: Status of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.created_time
+      description: Time the investigation was created.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.source
+      description: Source of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.assignee.email
+      description: Email address of the investigation assignee.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.assignee.name
+      description: Name of the investigation assignee.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert.type
+      description: Type of alert in the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert.type_description
+      description: Description of the type of the alert in the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert.first_event_time
+      description: First event time of the alert in the investigation.
+      type: String
+  - arguments:
+    - description: ID of the investigation to get.
+      name: investigation_id
+      required: true
+    description: Gets a single investigation (open or closed).
+    name: rapid7-insight-idr-get-investigation
+    outputs:
+    - contextPath: Rapid7InsightIDR.Investigation.title
+      description: Title of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.id
+      description: ID of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.status
+      description: Status of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.created_time
+      description: Time the investigation was created.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.source
+      description: Source of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.assignee.email
+      description: Email address of the investigation assignee.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.assignee.name
+      description: Name of the investigation assignee.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert.type
+      description: Type of alert in the investigation
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert.type_description
+      description: Description of the type of the alert in the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert.first_event_time
+      description: First event time of the alert in the investigation.
+      type: String
+  - arguments:
+    - description: Only investigations whose createTime is before this date will be
+        returned. If this argument is omitted, investigations with any create_time
+        may be returned - Use ISO time format (e.g., 2018-07-01T00:00:00Z).
+      name: start_time
+      required: true
+    - description: AOnly investigations whose createTime is before this date will
+        be returned. If this argument is omitted, investigations with any create_time
+        may be returned. Use ISO time format (e.g., 2018-07-01T00:00:00Z).
+      name: end_time
+      required: true
+    - auto: PREDEFINED
+      description: The name of an investigation source. Only investigations from this
+        source will be closed. If the source is ALERT, an alert type must be specified
+        as well. Can be "ALERT", "MANUAL", or "HUNT""The LEQL query to match desired
+        log events. Do not use a calculation.more
+      name: source
+      predefined:
+      - ALERT
+      - MANUAL
+      - HUNT
+      required: true
+    - description: The category of alerts to closed. This argument is required if
+        the source is ALERT and ignored for other sources. This value must be an exact
+        match of the alert type returned by the List Investigations response.
+      isArray: true
+      name: alert_type
+    - description: The maximum number of alerts to close with this request. If this
+        argument is not specified then there is no maximum. If this limit is exceeded,
+        then a 400 error response is returned. The minimum value is 0.
+      name: max_investigations_to_close
+    description: Bulk closes investigations according to the specified investigation
+      create-time date range. You can specify the maximum number of alerts to close
+      per call. If that maximum is exceeded a 400 error response is returned.
+    name: rapid7-insight-idr-close-investigations
+    outputs:
+    - contextPath: Rapid7InsightIDR.Investigation.id
+      description: ID of the investigation.
+      type: String
+  - arguments:
+    - description: ID of the investigation to assign the user to.
+      isArray: true
+      name: investigation_id
+      required: true
+    - description: The email address of the user to assign to this investigation.
+        This must be the same email address used to log in to the Insight platform.
+      name: user_email_address
+      required: true
+    description: Assigns a user to an investigation according to the specified user
+      email  address.
+    name: rapid7-insight-idr-assign-user
+    outputs:
+    - contextPath: Rapid7InsightIDR.Investigation.title
+      description: Title of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.id
+      description: ID of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.status
+      description: Status of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.created_time
+      description: Time the investigation was created.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.source
+      description: Source of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.assignee.email
+      description: Email address of the investigation assignee.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.assignee.name
+      description: Name of the investigation assignee.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert.type
+      description: Type of alert in the investigation
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert.type_description
+      description: Description of the type of the alert in the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert.first_event_time
+      description: First event time of the alert in the investigation.
+      type: String
+  - arguments:
+    - description: ID of the investigation to set the status of.
+      isArray: true
+      name: investigation_id
+      required: true
+    - auto: PREDEFINED
+      description: The new status for the investigation. Can be "open" or "closed".
+      name: status
+      predefined:
+      - open
+      - closed
+      required: true
+    description: Sets the investigation status to either open or closed.
+    name: rapid7-insight-idr-set-status
+    outputs:
+    - contextPath: Rapid7InsightIDR.Investigation.title
+      description: Title of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.id
+      description: ID of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.status
+      description: Status of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.created_time
+      description: Time the investigation was created.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.source
+      description: Source of the investigation.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.assignee_email
+      description: Email address of the investigation assignee.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.assignee_name
+      description: Name of the investigation assignee.
+      type: String
+    - contextPath: Rapid7InsightIDR.Investigation.alert_type
+      description: Type of alert in the investigation.
+      type: String
+  - arguments:
+    - description: Key of the threat (or threats) to add indicators to
+      isArray: true
+      name: key
+      required: true
+    - description: IP address indicators to add.
+      isArray: true
+      name: ip_addresses
+    - description: Hash indicators to add.
+      isArray: true
+      name: hashes
+    - description: Domain indicators to add.
+      isArray: true
+      name: domain_names
+    - description: URL indicators to add.
+      isArray: true
+      name: url
+    description: Adds new indicators to a threat (IP addresses, hashes, domains, and
+      URLs).
+    name: rapid7-insight-idr-add-threat-indicators
+    outputs:
+    - contextPath: Rapid7InsightIDR.Threat.name
+      description: Name of the threat.
+      type: String
+    - contextPath: Rapid7InsightIDR.Threat.note
+      description: Notes for the threat.
+      type: String
+    - contextPath: Rapid7InsightIDR.Threat.indicator_count
+      description: How many indicators the threat has.
+      type: Number
+    - contextPath: Rapid7InsightIDR.Threat.published
+      description: Whether or not the threat is published.
+      type: Boolean
+  - arguments:
+    - description: Key of the threat (or threats) to replace indicators for.
+      isArray: true
+      name: key
+      required: true
+    - description: IP address indicators to add.
+      isArray: true
+      name: ip_addresses
+    - description: Hash indicators to add.
+      isArray: true
+      name: hashes
+    - description: Domain indicators to add.
+      isArray: true
+      name: domain_names
+    - description: URL indicators to add.
+      isArray: true
+      name: url
+    description: Deletes existing indicators from a threat and adds new indicators
+      to the threat.
+    name: rapid7-insight-idr-replace-threat-indicators
+    outputs:
+    - contextPath: Rapid7InsightIDR.Threat.name
+      description: Name of the threat.
+      type: String
+    - contextPath: Rapid7InsightIDR.Threat.note
+      description: Notes for the threat.
+      type: String
+    - contextPath: Rapid7InsightIDR.Threat.indicator_count
+      description: How many indicators the threat has.
+      type: Number
+    - contextPath: Rapid7InsightIDR.Threat.published
+      description: Whether or not the threat is published.
+      type: Boolean
+  - arguments: []
+    description: Lists all existing logs for an account.
+    name: rapid7-insight-idr-list-logs
+    outputs:
+    - contextPath: Rapid7InsightIDR.Log.name
+      description: Log name.
+      type: String
+    - contextPath: Rapid7InsightIDR.Log.id
+      description: Log ID.
+      type: String
+  - arguments: []
+    description: Lists all existing log sets for your InsightsIDR instance.
+    name: rapid7-insight-idr-list-log-sets
+    outputs:
+    - contextPath: Rapid7InsightIDR.LogSet.name
+      description: Log name.
+      type: String
+    - contextPath: Rapid7InsightIDR.LogSet.id
+      description: Log ID
+      type: String
+  - arguments:
+    - description: IDs of the logs to download - up to 10 logs allowed.
+      isArray: true
+      name: log_ids
+      required: true
+    - description: 'Lower bound of the time range you want to query against. Format:
+        UNIX timestamp in milliseconds. This is optional if time_range is supplied.'
+      name: start_time
+    - description: 'Upper bound of the time range you want to query against. Format:
+        UNIX timestamp in milliseconds.'
+      name: end_time
+    - description: 'The relative time range in a readable format. Optional if "from"
+        \ is supplied. For example: Last 4 Days. Note that if start_time, end_time
+        and\ \ time_range is not provided the default will be Last 3 days.'
+      name: time_range
+    - description: 'The LEQL query to match desired log events. Do not use a calculation.more
+        info: https://docs.rapid7.com/insightidr/build-a-query/'
+      name: query
+    - description: 'The maximum number of log events to download; cannot exceed 20
+        million. The default is 20 million. The argument value should be written like
+        this: "10 thousand" or "2 million").'
+      name: limit
+    description: Downloads logs for from your InsightsIDR instance. The maximum number
+      of logs per call is 10.
+    name: rapid7-insight-idr-download-logs
+  - arguments:
+    - description: Logentries log key
+      name: log_id
+      required: true
+    - description: 'A valid LEQL query to run against the logmore info: https://docs.rapid7.com/insightidr/build-a-query/'
+      name: query
+      required: true
+    - description: A time range string (i.e 1 week, 1 day) - While using this parameter,
+        start_time and end_time isn't needed
+      name: time_range
+    - description: 'Lower bound of the time range you want to query against. Format:
+        UNIX timestamp in milliseconds. Example:1450557004000'
+      name: start_time
+    - description: 'Upper bound of the time range you want to query against. Format:
+        UNIX timestamp in milliseconds. Example:1460557604000'
+      name: end_time
+    - description: The maximum number of log entries to return per page. Default of
+        50.
+      name: logs_per_page
+    - description: The earlier sequence number of a log entry to start searching from.
+      name: sequence_number
+    description: Queries within a log for certain values.
+    name: rapid7-insight-idr-query-log
+    outputs:
+    - contextPath: Rapid7InsightIDR.Event.log_id
+      description: Event message.
+      type: String
+    - contextPath: Rapid7InsightIDR.Event.message
+      description: ID of the log the event appears in.
+      type: String
+    - contextPath: Rapid7InsightIDR.Event.timestamp
+      description: Time when the event was triggered.
+      type: Number
+  - arguments:
+    - description: ID of the log set.
+      isArray: true
+      name: log_set_id
+      required: true
+    - description: 'A valid LEQL query to run against the logmore info: https://docs.rapid7.com/insightidr/build-a-query/'
+      name: query
+      required: true
+    - description: A time range string (e.g., 1 week, 1 day) - While using this parameter,
+        start_time and end_time isn't needed
+      name: time_range
+    - description: 'Lower bound of the time range you want to query against. Format:
+        UNIX timestamp in milliseconds. Example:1450557004000'
+      name: start_time
+    - description: 'Upper bound of the time range you want to query against. Format:
+        UNIX timestamp in milliseconds. Example:1460557604000'
+      name: end_time
+    - description: The maximum number of log entries to return per page. Default of
+        50.
+      name: logs_per_page
+    - description: The earlier sequence number of a log entry to start searching from.
+      name: sequence_number
+    description: Queries within a log set for certain values.
+    name: rapid7-insight-idr-query-log-set
+    outputs:
+    - contextPath: Rapid7InsightIDR.Event.log_id
+      description: Event message.
+      type: String
+    - contextPath: Rapid7InsightIDR.Event.message
+      description: ID of the log the event appears in.
+      type: String
+    - contextPath: Rapid7InsightIDR.Event.timestamp
+      description: Time when the event was triggered.
+      type: Number
+  dockerimage: demisto/python3:3.10.4.30607
+  isfetch: true
+  runonce: false
+  script: |
+    register_module_line('Rapid7 InsightIDR', 'start', __line__())
+
+
+
+
+    import dateparser
+    import json
+    import urllib3
+    from datetime import datetime, timedelta
+    from typing import Dict, Tuple
+    from requests import Response
+
+    # Disable insecure warnings
+    urllib3.disable_warnings()
+
+    DATE_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
+
+    INVESTIGATIONS_FIELDS = ['title', 'id', 'status', 'created_time', 'source', 'assignee', 'alerts']
+    THREATS_FIELDS = ['name', 'note', 'indicator_count', 'published']
+    LOGS_FIELDS = ['name', 'id']
+    EVENTS_FIELDS = ['log_id', 'message', 'timestamp']
+
+
+    class Client(BaseClient):
+        """Client for Rapid7 InsightIDR REST API."""
+
+        def __init__(self, base_url: str, headers: dict, verify: bool, proxy: bool):
+            super().__init__(base_url=base_url, verify=verify, proxy=proxy, headers=headers)
+
+        def list_investigations(self, params: dict) -> dict:
+            return self._http_request(method='GET',
+                                      url_suffix='idr/v1/investigations',
+                                      params=params)
+
+        def bulk_close_investigations(self, body: dict) -> dict:
+            return self._http_request(method='POST',
+                                      url_suffix='idr/v1/investigations/bulk_close',
+                                      headers=self._headers,
+                                      json_data=body)
+
+        def assign_user(self, investigation_id: str, body: dict) -> dict:
+            return self._http_request(method='PUT',
+                                      url_suffix=f'idr/v1/investigations/{investigation_id}/assignee',
+                                      headers=self._headers,
+                                      json_data=body)
+
+        def set_status(self, investigation_id: str, status: str) -> dict:
+            return self._http_request(method='PUT',
+                                      url_suffix=f'idr/v1/investigations/{investigation_id}'
+                                                 f'/status/{status}',
+                                      headers=self._headers)
+
+        def add_threat_indicators(self, key: str, body: dict) -> dict:
+            return self._http_request(method='POST',
+                                      url_suffix=f'idr/v1/customthreats/key/{key}/indicators/add',
+                                      headers=self._headers,
+                                      params={"format": "json"},
+                                      json_data=body)
+
+        def replace_threat_indicators(self, key: str, body: dict) -> dict:
+            return self._http_request(method='POST',
+                                      url_suffix=f'idr/v1/customthreats/key/{key}/indicators/replace',
+                                      headers=self._headers,
+                                      params={"format": "json"},
+                                      json_data=body)
+
+        def list_logs(self) -> dict:
+            return self._http_request(method='GET',
+                                      url_suffix='log_search/management/logs',
+                                      headers=self._headers)
+
+        def list_log_sets(self) -> dict:
+            return self._http_request(method='GET',
+                                      url_suffix='log_search/management/logsets',
+                                      headers=self._headers)
+
+        def download_logs(self, log_ids: str, params: dict) -> Response:
+            headers = self._headers.copy()
+            headers['Accept-Encoding'] = ''
+            return self._http_request(method='GET',
+                                      url_suffix=f'log_search/download/logs/{log_ids}',
+                                      headers=headers,
+                                      params=params,
+                                      resp_type='response')
+
+        def query_log(self, log_id: str, params: dict) -> Response:
+            return self._http_request(method='GET',
+                                      url_suffix=f'log_search/query/logs/{log_id}',
+                                      headers=self._headers,
+                                      params=params,
+                                      resp_type='response')
+
+        def query_log_set(self, log_set_id: str, params: dict) -> Response:
+            return self._http_request(method='GET',
+                                      url_suffix=f'log_search/query/logsets/{log_set_id}',
+                                      headers=self._headers,
+                                      params=params,
+                                      resp_type='response')
+
+        def query_log_callback(self, url: str) -> dict:
+            return self._http_request(method='GET',
+                                      url_suffix='',
+                                      full_url=url,
+                                      headers=self._headers)
+
+        def validate(self) -> Response:
+            """
+            Validate API using list-investigations method.
+
+            Returns:
+                response(Response): API response from InsightIDR
+            """
+            params = {'size': 1}
+            return self._http_request(method='GET',
+                                      url_suffix='idr/v1/investigations',
+                                      params=params,
+                                      resp_type='response')
+
+
+    def insight_idr_list_investigations_command(client: Client, statuses: str = None,
+                                                time_range: str = None,
+                                                start_time: str = None, end_time: str = None,
+                                                index: int = 0, page_size: int = 20) -> CommandResults:
+        """
+        List investigations according to received parameters.
+
+        Args:
+            client(Client): Rapid7 client
+            statuses(str): An optional comma separated set of investigation statuses
+            time_range(str): An optional relative time range in a readable format.
+            start_time(str): An optional ISO formatted timestamp
+            end_time(str): An optional ISO formatted timestamp
+            index(int): The optional 0 based index of the page to retrieve
+            page_size(int): The optional size of the page to retrieve
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+        """
+        # start_time and end_time can come in "last 1 day" format, so we parse it
+        if time_range:
+            start_time, end_time = parse_date_range(time_range, date_format=DATE_FORMAT)
+
+        params = {
+            'statuses': statuses,
+            'start_time': start_time,
+            'end_time': end_time,
+            'index': index,
+            'size': page_size
+        }
+
+        results = client.list_investigations(remove_empty_elements(params))
+
+        data_for_output = results.get('data', [])
+        readable_output = tableToMarkdown('Requested Investigations',
+                                          data_for_output,
+                                          headers=INVESTIGATIONS_FIELDS,
+                                          removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Investigation',
+            outputs_key_field='id',
+            raw_response=results,
+            outputs=data_for_output,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_get_investigation_command(client: Client, investigation_id: str) -> CommandResults:
+        """
+            List investigations according to received parameters.
+
+            Args:
+                client(Client): Rapid7 client
+                investigation_id(str): Investigation ID
+
+            Returns:
+                CommandResults with raw_response, readable_output and outputs.
+            """
+        results = client.list_investigations({})
+
+        data_for_output = results.get('data', [])
+        investigation_data = {}
+
+        for investigation in data_for_output:
+            if investigation.get('id') == investigation_id:
+                investigation_data = investigation
+
+        if not investigation_data:
+            return CommandResults(raw_response=None)
+
+        readable_output = tableToMarkdown(f'Investigation Information (id: {investigation_id})',
+                                          investigation_data,
+                                          headers=INVESTIGATIONS_FIELDS,
+                                          removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Investigation',
+            outputs_key_field='id',
+            raw_response=investigation_data,
+            outputs=investigation_data,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_close_investigations_command(client: Client, start_time: str, end_time: str,
+                                                 source: str, max_investigations_to_close: int = None,
+                                                 alert_type: str = None) -> CommandResults:
+        """
+        Close investigations by start_time, end_time and source.
+
+        Args:
+            client(Client): Rapid7 client
+            start_time(str): An ISO formatted timestamp.
+            end_time(str): An ISO formatted timestamp.
+            source(str): The name of an investigation source
+            max_investigations_to_close(int): An optional maximum number of alerts to close
+            alert_type(str): The category of alerts that should be closed
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+
+        """
+        body = {
+            'from': start_time,
+            'to': end_time,
+            'source': source,
+            'max_investigations_to_close': max_investigations_to_close,
+            'alert_type': alert_type
+        }
+
+        results = client.bulk_close_investigations(remove_empty_elements(body))
+
+        ids = {
+            'id': results.get('ids')
+        }
+
+        data_for_outputs = []
+        for current_id in results.get('ids', []):
+            data_for_outputs.append({
+                'id': current_id,
+                'status': 'CLOSED'
+            })
+
+        readable_output = tableToMarkdown('Closed Investigations IDs', ids, headers=['id'],
+                                          removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Investigation',
+            outputs_key_field='id',
+            raw_response=results,
+            outputs=data_for_outputs,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_assign_user_command(client: Client, investigation_id: str,
+                                        user_email_address: str):
+        """
+        Assigning user, by email, to investigation or investigations.
+
+        Args:
+            client(Client): Rapid7 client
+            investigation_id(str): Investigation IDs, One or XSOAR list (str separated by commas)
+            user_email_address(str): The email address of the user to assign
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+        """
+        results = []
+        data_for_readable_output = []
+
+        for investigation in argToList(investigation_id):
+            body = {
+                'user_email_address': user_email_address
+            }
+
+            result = client.assign_user(investigation, body)
+            results.append(result)
+
+            data_for_readable_output.append(result)
+            time.sleep(0.01)
+
+        readable_output = tableToMarkdown(f'Investigation Information (id: {investigation_id})',
+                                          data_for_readable_output,
+                                          headers=INVESTIGATIONS_FIELDS,
+                                          removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Investigation',
+            outputs_key_field='id',
+            raw_response=results,
+            outputs=data_for_readable_output,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_set_status_command(client: Client, investigation_id: str, status: str):
+        """
+        Change the status of investigation or investigations to OPEN/CLOSED.
+
+            Args:
+                client(Client): Rapid7 client
+                investigation_id(str): Investigation IDs, One or XSOAR list (str separated by commas)
+                status(str): The new status for the investigation (open/closed)
+
+            Returns:
+                CommandResults with raw_response, readable_output and outputs.
+            """
+
+        results = []
+        data_for_readable_output = []
+        for investigation in argToList(investigation_id):
+            result = client.set_status(investigation, status)
+            results.append(result)
+
+            data_for_readable_output.append(result)
+            time.sleep(0.01)
+
+        readable_output = tableToMarkdown(f'Investigation Information (id: {investigation_id})',
+                                          data_for_readable_output,
+                                          headers=INVESTIGATIONS_FIELDS,
+                                          removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Investigation',
+            outputs_key_field='id',
+            raw_response=results,
+            outputs=data_for_readable_output,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_add_threat_indicators_command(client: Client, key: str,
+                                                  ip_addresses: str = None,
+                                                  hashes: str = None,
+                                                  domain_names: str = None,
+                                                  url: str = None) -> CommandResults:
+        """
+        Adding threat indicators to threat (or threats) by key.
+
+        Args:
+            client(Client): Rapid7 client
+            key(str): Threat key (Threat IDs), One or XSOAR list (str separated by commas)
+            ip_addresses(str): IPs addresses, One or XSOAR list (str separated by commas)
+            hashes(str): Hashes, One or XSOAR list (str separated by commas)
+            domain_names(str): Domain names, One or XSOAR list (str separated by commas)
+            url(str): URLs, One or XSOAR list (str separated by commas)
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+        """
+        body = {
+            'ips': argToList(ip_addresses),
+            'hashes': argToList(hashes),
+            'domain_names': argToList(domain_names),
+            'urls': argToList(url)
+        }
+        body = remove_empty_elements(body)
+
+        results = []
+        data_for_readable_output = []
+
+        for threat in argToList(key):
+            result = client.add_threat_indicators(threat, body)
+            results.append(result)
+
+            data_for_readable_output.append(result.get('threat'))
+            time.sleep(0.01)
+
+        readable_output = tableToMarkdown(f'Threat Information (key: {key})', data_for_readable_output,
+                                          headers=THREATS_FIELDS, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Threat',
+            outputs_key_field='name',
+            raw_response=results,
+            outputs=data_for_readable_output,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_replace_threat_indicators_command(client: Client, key: str,
+                                                      ip_addresses: str = None, hashes: str = None,
+                                                      domain_names: str = None,
+                                                      url: str = None) -> CommandResults:
+        """
+        Replace threat indicators to threat (or threats) by key.
+
+        Args:
+            client(Client): Rapid7 Client
+            key(str): Threat key (threat ID), One or XSOAR list (str separated by commas)
+            ip_addresses(str/List[str]): IPs addresses, One or XSOAR list (str separated by commas)
+            hashes(str/List[str]): hashes, One or XSOAR list (str separated by commas)
+            domain_names(str/List[str]): DOMAIN NAMEs, One or XSOAR list (str separated by commas)
+            url(str/List[str]): URLs, One or XSOAR list (str separated by commas)
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+        """
+        body = {
+            'ips': argToList(ip_addresses),
+            'hashes': argToList(hashes),
+            'domain_names': argToList(domain_names),
+            'urls': argToList(url)
+        }
+        body = remove_empty_elements(body)
+
+        results = []
+        data_for_readable_output = []
+
+        for threat in argToList(key):
+            result = client.replace_threat_indicators(threat, body)
+            results.append(result)
+
+            data_for_readable_output.append(result.get('threat'))
+            time.sleep(0.01)
+
+        readable_output = tableToMarkdown(f'Threat Information (key: {key})', data_for_readable_output,
+                                          headers=THREATS_FIELDS, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Threat',
+            outputs_key_field='name',
+            raw_response=results,
+            outputs=data_for_readable_output,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_list_logs_command(client: Client) -> CommandResults:
+        """
+        List all logs.
+
+        Args:
+            client(Client): Rapid7 Client
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+        """
+        results = client.list_logs()
+
+        logs = results.get('logs', {})
+        data_for_readable_output = []
+
+        for log in logs:
+            data_for_readable_output.append(log)
+
+        readable_output = tableToMarkdown('List Logs', data_for_readable_output, headers=LOGS_FIELDS,
+                                          removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Log',
+            outputs_key_field='id',
+            raw_response=results,
+            outputs=data_for_readable_output,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_list_log_sets_command(client: Client) -> CommandResults:
+        """
+        List all log sets.
+
+        Args:
+            client(Client): Rapid7 Client
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+        """
+        results = client.list_log_sets()
+
+        logs = results.get('logsets', {})
+        data_for_readable_output = []
+
+        for log in logs:
+            data_for_readable_output.append(log)
+
+        readable_output = tableToMarkdown('List Log Sets', data_for_readable_output,
+                                          headers=LOGS_FIELDS, removeNull=True)
+
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.LogSet',
+            outputs_key_field='id',
+            raw_response=results,
+            outputs=data_for_readable_output,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_download_logs_command(client: Client, log_ids: str, time_range: str = None,
+                                          start_time: str = None, end_time: str = None,
+                                          query: str = None, limit: str = None):
+        """
+        Download logs to .log file based on time and query (query - optional)
+
+        Args:
+            client(Client): Rapid7 Client
+            log_ids(str): Log ids to be downloaded
+            time_range(str): human time format 'last 4 days' (can be hours, days, months, years
+            start_time(str): UNIX timestamp in milliseconds
+            end_time(str): UNIX timestamp in milliseconds
+            query(str): LEQL query
+            limit(int): max number of logs to download
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+        """
+        if not (start_time or end_time or time_range):
+            time_range = 'Last 3 days'
+
+        params = {
+            'from': start_time,
+            'to': end_time,
+            'time_range': time_range,
+            'query': query,
+            'limit': limit
+        }
+        response = client.download_logs(log_ids.replace(',', ':'), remove_empty_elements(params))
+        content_disposition = response.headers.get('Content-Disposition')
+        try:
+            filename = content_disposition.split(';')[1].split('=')[1].replace(' ', '')  # type: ignore
+        except AttributeError:
+            filename = datetime.now().strftime(DATE_FORMAT) + '.log'
+
+        file_type = entryTypes['entryInfoFile']
+        return fileResult(filename, response.content, file_type)
+
+
+    def insight_idr_query_log_command(client: Client, log_id: str, query: str, time_range: str = None,
+                                      start_time: str = None, end_time: str = None,
+                                      logs_per_page: int = None,
+                                      sequence_number: int = None) -> CommandResults:
+        """
+        Search a log by Query.
+
+        Args:
+            client(Client): Rapid7 Client
+            log_id(str): Logentries log key
+            query(str): A valid LEQL query to run against the log
+            time_range(str): An optional relative time range in a readable format
+            start_time(str): Lower bound of the time range you want to query against
+            end_time(str): Upper bound of the time range you want to query against
+            logs_per_page(int): The number of log entries to return per page
+            sequence_number(int): The earlier sequence number of a log entry to start searching from
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+        """
+        if time_range:
+            start_time, end_time = parse_date_range(time_range, to_timestamp=True)
+
+        params = {
+            'query': query,
+            'from': start_time,
+            'to': end_time,
+            'per_page': logs_per_page,
+            'sequence_number': sequence_number
+        }
+
+        params = remove_empty_elements(params)
+
+        results = client.query_log(log_id, params)
+
+        data_for_readable_output = []
+        new_data = []
+
+        # 202 if there is a callback, and 200 if that's the full response
+        if results.status_code == 202:
+            for link in results.json().get('links', []):
+                url = link.get('href')
+                data = client.query_log_callback(url)
+                new_data.append(data)
+                events = data.get('events', [])
+                for event in events:
+                    data_for_readable_output.append(event)
+        else:
+            events = results.json().get('events', [])
+            for event in events:
+                data_for_readable_output.append(event)
+
+        raw_response = new_data if new_data else results.json()
+
+        readable_output = tableToMarkdown('Query Results', data_for_readable_output,
+                                          headers=EVENTS_FIELDS, removeNull=True)
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Event',
+            outputs_key_field='message',
+            raw_response=raw_response,
+            outputs=data_for_readable_output,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def insight_idr_query_log_set_command(client: Client, log_set_id: str, query: str,
+                                          time_range: str = None,
+                                          start_time: str = None, end_time: str = None,
+                                          logs_per_page: int = None,
+                                          sequence_number: int = None) -> CommandResults:
+        """
+        Search a log set by Query.
+
+        Args:
+            client(Client): Rapid7 Client
+            log_set_id(str): log set id
+            query(str): A valid LEQL query to run against the log
+            time_range(str): An optional relative time range in a readable format
+            start_time(str): Lower bound of the time range you want to query against (ISO  format)
+            end_time(str): Upper bound of the time range you want to query against (ISO  format)
+            logs_per_page(int): The number of log entries to return per page
+            sequence_number(int): The earlier sequence number of a log entry to start searching from
+
+        Returns:
+            CommandResults with raw_response, readable_output and outputs.
+        """
+        if time_range:
+            start_time, end_time = parse_date_range(time_range, to_timestamp=True)
+
+        params = {
+            'query': query,
+            'from': start_time,
+            'to': end_time,
+            'per_page': logs_per_page,
+            'sequence_number': sequence_number
+        }
+
+        params = remove_empty_elements(params)
+
+        results = client.query_log_set(log_set_id, params)
+
+        data_for_readable_output = []
+        new_data = []
+
+        # 202 if there is a callback, and 200 if that's the full response
+        if results.status_code == 202:
+            for link in results.json().get('links', []):
+                url = link.get('href')
+                data = client.query_log_callback(url)
+                new_data.append(data)
+                events = data.get('events', [])
+                for event in events:
+                    data_for_readable_output.append(event)
+        else:
+            events = results.json().get('events', [])
+            for event in events:
+                data_for_readable_output.append(event)
+
+        raw_response = new_data if new_data else results.json()
+
+        readable_output = tableToMarkdown('Query Results', data_for_readable_output,
+                                          headers=EVENTS_FIELDS, removeNull=True)
+        command_results = CommandResults(
+            outputs_prefix='Rapid7InsightIDR.Event',
+            outputs_key_field='message',
+            raw_response=raw_response,
+            outputs=data_for_readable_output,
+            readable_output=readable_output
+        )
+        return command_results
+
+
+    def test_module(client: Client) -> str:
+        """
+        Returning 'ok' indicates that the integration works like it is supposed to.
+
+        200 - success
+        401 - API key not valid
+        500 - not account region
+        Args:
+            client(Client): Rapid7 Client
+
+        Returns:
+            'ok' if test passed, anything else will fail the test.
+        """
+        try:
+            response = client.validate()
+            status_code = response.status_code
+            if status_code == 200:
+                return 'ok'
+
+            if status_code == 401:
+                return 'API key is not valid.'
+
+            if status_code == 500:
+                return 'This isn\'t your account region.'
+
+            return 'Something went wrong...'
+        except DemistoException:
+            return 'Connection error. Check your region.'
+
+
+    def fetch_incidents(client: Client,
+                        last_run: Dict,
+                        first_fetch_time: str,
+                        max_fetch: str) -> Tuple[Dict[str, int], List[dict]]:
+        """
+        Fetch incidents (investigations) each minute (by default).
+
+        Args:
+            client(Client): Rapid7 Client
+            last_run(Dict[str, int]): Dict with last_fetch object,
+                                      saving the last fetch time(in millisecond timestamp)
+            first_fetch_time: Dict with first fetch time in str (ex: 3 days ago) need to be parsed
+            max_fetch(str): Max number of alerts per fetch. Default is 50
+        Returns:
+            Tuple of next_run (millisecond timestamp) and the incidents list
+        """
+        last_fetch_timestamp = last_run.get('last_fetch', None)
+
+        if last_fetch_timestamp:
+            last_fetch = datetime.fromtimestamp(last_fetch_timestamp / 1000)
+        else:
+            last_fetch, _ = parse_date_range(first_fetch_time)
+
+        incidents = []
+        next_run = last_fetch
+
+        size = int(max_fetch) if max_fetch else 50
+        params = {'start_time': last_fetch.strftime(DATE_FORMAT),
+                  'size': size}
+
+        investigations = client.list_investigations(remove_empty_elements(params))
+        for investigation in investigations.get('data', []):
+            investigation_created_time = investigation.get('created_time')
+            created_time = dateparser.parse(investigation_created_time,
+                                            settings={'RETURN_AS_TIMEZONE_AWARE': False})
+            assert created_time is not None, f"could not parse {investigation_created_time}"
+            incident = {
+                'name': investigation.get('title'),
+                'occurred': created_time.strftime(DATE_FORMAT)[:-4] + "Z",
+                'rawJSON': json.dumps(investigation)
+            }
+            incidents.append(incident)
+            if created_time > next_run:
+                next_run = created_time
+
+        # add 1 millisecond to next_run to prevent duplication
+        next_run = next_run + timedelta(milliseconds=1)
+        next_run_timestamp = int(datetime.timestamp(next_run) * 1000)
+
+        return {'last_fetch': next_run_timestamp}, incidents
+
+
+    def main():
+        """PARSE AND VALIDATE INTEGRATION PARAMS"""
+
+        params = demisto.params()
+        region = params.get('region', {})
+        api_key = params.get('apiKey', {})
+        max_fetch = params.get('max_fetch', '50')
+
+        base_url = f'https://{region}.api.insight.rapid7.com/'
+
+        verify_certificate = not params.get('insecure', False)
+        proxy = params.get('proxy', False)
+
+        headers = {
+            'X-Api-Key': api_key,
+            'content-type': 'application/json'
+        }
+
+        # How much time before the first fetch to retrieve incidents
+        first_fetch_time = params.get('fetch_time', '3 days').strip()
+
+        command = demisto.command()
+        demisto.info(f'Command being called is {command}')
+
+        try:
+            client = Client(
+                base_url=base_url,
+                headers=headers,
+                verify=verify_certificate,
+                proxy=proxy)
+            if command == 'test-module':
+                # This is the call made when pressing the integration Test button.
+                return_results(test_module(client))
+
+            elif command == 'fetch-incidents':
+                next_run, incidents = fetch_incidents(client=client,
+                                                      last_run=demisto.getLastRun(),
+                                                      first_fetch_time=first_fetch_time,
+                                                      max_fetch=max_fetch)
+                demisto.setLastRun(next_run)
+                demisto.incidents(incidents)
+
+            elif command == 'rapid7-insight-idr-list-investigations':
+                return_results(insight_idr_list_investigations_command(client, **demisto.args()))
+
+            elif command == 'rapid7-insight-idr-get-investigation':
+                return_results(insight_idr_get_investigation_command(client, **demisto.args()))
+
+            elif command == 'rapid7-insight-idr-close-investigations':
+                return_results(insight_idr_close_investigations_command(client, **demisto.args()))
+
+            elif command == 'rapid7-insight-idr-assign-user':
+                return_results(insight_idr_assign_user_command(client, **demisto.args()))
+
+            elif command == 'rapid7-insight-idr-set-status':
+                return_results(insight_idr_set_status_command(client, **demisto.args()))
+
+            elif command == 'rapid7-insight-idr-add-threat-indicators':
+                return_results(insight_idr_add_threat_indicators_command(client, **demisto.args()))
+
+            elif command == 'rapid7-insight-idr-replace-threat-indicators':
+                return_results(insight_idr_replace_threat_indicators_command(client, **demisto.args()))
+
+            elif command == 'rapid7-insight-idr-list-logs':
+                return_results(insight_idr_list_logs_command(client))
+
+            elif command == 'rapid7-insight-idr-list-log-sets':
+                return_results(insight_idr_list_log_sets_command(client))
+
+            elif command == 'rapid7-insight-idr-download-logs':
+                return_results(insight_idr_download_logs_command(client, **demisto.args()))
+
+            elif command == 'rapid7-insight-idr-query-log':
+                return_results(insight_idr_query_log_command(client, **demisto.args()))
+
+            elif command == 'rapid7-insight-idr-query-log-set':
+                return_results(insight_idr_query_log_set_command(client, **demisto.args()))
+
+        # Log exceptions
+        except Exception as error:
+            return_error(f'Failed to execute {command} command. Error: {str(error)}')
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Rapid7 InsightIDR', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
