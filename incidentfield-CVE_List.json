@@ -23,7 +23,7 @@
 	"hidden": false,
 	"id": "incident_cvelist",
 	"isReadOnly": false,
-	"itemVersion": "1.14.9",
+	"itemVersion": "1.14.10",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "CVE List",
