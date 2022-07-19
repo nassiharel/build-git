@@ -1,0 +1,414 @@
+{
+	"author": "Flashpoint",
+	"authorImage": "content/packs/Flashpoint/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"classifier",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": [
+			{
+				"description": "Incoming Mapper for Flashpoint Compromised Credentials",
+				"name": "Flashpoint Compromised Credentials - Incoming Mapper"
+			},
+			{
+				"description": "Incoming Mapper for Flashpoint Alerts",
+				"name": "Flashpoint Alerts - Incoming Mapper"
+			}
+		],
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "The body of the alert.",
+				"name": "Flashpoint Alert Text",
+				"type": "html"
+			},
+			{
+				"description": "This is the domain object extracted off of the email address.",
+				"name": "Flashpoint Source Domain",
+				"type": "shortText"
+			},
+			{
+				"description": "The created date of the alert. Datetime object formatted as YYYY-mm-ddTHH:MM:SSZ.",
+				"name": "Flashpoint Created Date",
+				"type": "date"
+			},
+			{
+				"description": "File name for the matched alert.",
+				"name": "Flashpoint Source File",
+				"type": "shortText"
+			},
+			{
+				"description": "Data source of breach (i.e. Analyst Research, CredentialStealer, etc.).",
+				"name": "Flashpoint Breach Source",
+				"type": "shortText"
+			},
+			{
+				"description": "The ID of the alert.",
+				"name": "Flashpoint Alert ID",
+				"type": "shortText"
+			},
+			{
+				"description": "The probable hash algorithm information of the password.",
+				"name": "Flashpoint Password Probable Hash Algorithms",
+				"type": "shortText"
+			},
+			{
+				"description": "The information about password complexity of the credential.",
+				"name": "Flashpoint Password Information",
+				"type": "grid"
+			},
+			{
+				"description": "Author of the repo.",
+				"name": "Flashpoint Source Owner",
+				"type": "shortText"
+			},
+			{
+				"description": "The title of the alert.",
+				"name": "Flashpoint Title",
+				"type": "shortText"
+			},
+			{
+				"description": "The ID used by the original site for the resource.",
+				"name": "Flashpoint Native ID",
+				"type": "shortText"
+			},
+			{
+				"description": "The Flashpoint ID of the alert.",
+				"name": "Flashpoint ID",
+				"type": "shortText"
+			},
+			{
+				"description": "Type of source of the breach.",
+				"name": "Flashpoint Breach Source Type",
+				"type": "shortText"
+			},
+			{
+				"description": "The value of the keyword.",
+				"name": "Flashpoint Keyword Text",
+				"type": "shortText"
+			},
+			{
+				"description": "This will be \"true\" if the credential has not been seen before, and it hasn't been marked \"not fresh\" by an analyst.",
+				"name": "Flashpoint Is Fresh",
+				"type": "boolean"
+			},
+			{
+				"description": "The original site or platform where the resource was published.",
+				"name": "Flashpoint Site Title",
+				"type": "shortText"
+			},
+			{
+				"description": "The link of the alert.",
+				"name": "Flashpoint Link to Alert",
+				"type": "url"
+			},
+			{
+				"description": "Link to the alerted source.",
+				"name": "Flashpoint Source URL",
+				"type": "shortText"
+			},
+			{
+				"description": "Repository name.",
+				"name": "Flashpoint Source Repo",
+				"type": "shortText"
+			},
+			{
+				"description": "Timestamp for when this document was indexed into the Flashpoint database.",
+				"name": "Flashpoint Header Indexed At Date",
+				"type": "date"
+			},
+			{
+				"description": "If exists, time object for when the credential was previously observed. Datetime object formatted as YYYY-mm-ddTHH:MM:SSZ.",
+				"name": "Flashpoint Last Observed Date",
+				"type": "date"
+			},
+			{
+				"description": "Affected domain of the IoC.",
+				"name": "Flashpoint Affected Domain",
+				"type": "shortText"
+			},
+			{
+				"description": "The first observed date of the alert. Datetime object formatted as YYYY-mm-ddTHH:MM:SSZ.",
+				"name": "Flashpoint First Observed Date",
+				"type": "date"
+			},
+			{
+				"description": "The email address for the compromised credential.",
+				"name": "Flashpoint Compromised Email",
+				"type": "shortText"
+			},
+			{
+				"description": "The type of the alert.",
+				"name": "Flashpoint Source Basetypes",
+				"type": "shortText"
+			},
+			{
+				"description": "Code repository platform.",
+				"name": "Flashpoint Source",
+				"type": "shortText"
+			},
+			{
+				"description": "The handle of the user who created the message, authored the blog post, or posted a product for sale.",
+				"name": "Flashpoint Site Actor Names",
+				"type": "shortText"
+			},
+			{
+				"description": "Victim of the breach.",
+				"name": "Flashpoint Victim",
+				"type": "shortText"
+			},
+			{
+				"description": "Sort date of the alert.",
+				"name": "Flashpoint Sort Date",
+				"type": "date"
+			},
+			{
+				"description": "The password for the credential (in plain text, if possible).",
+				"name": "Flashpoint Compromised Password",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Flashpoint Compromised Credentials",
+				"playbook": "Compromised Credentials Match - Flashpoint",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Flashpoint Alerts",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Looks up details of an IP indicator. The reputation of the IP address is considered malicious if there's at least one IOC event in the Flashpoint database that matches the IP indicator. Alternatively, the IP address is considered suspicious if it matches any one of the Torrent's Peer IP Address or Forum Visit's Peer IP Address.",
+						"name": "ip"
+					},
+					{
+						"description": "Lookup the \"Domain\" type indicator details. The reputation of Domain is considered Malicious if there's at least one IOC event in Flashpoint database matching the Domain indicator.",
+						"name": "domain"
+					},
+					{
+						"description": "Lookup the \"Filename\" type indicator details. The reputation of Filename is considered Malicious if there's at least one IOC event in Flashpoint database matching the Filename indicator.",
+						"name": "filename"
+					},
+					{
+						"description": "Lookup the \"URL\" type indicator details. The reputation of Url is considered Malicious if there's at least one IOC event in Flashpoint database matching the Url indicator.",
+						"name": "url"
+					},
+					{
+						"description": "Lookup the \"File\" type indicator details. The reputation of File-hash is considered Malicious if there's at least one IOC event in Flashpoint database matching the File-hash indicator.",
+						"name": "file"
+					},
+					{
+						"description": "Lookup the \"Email\" type indicator details. The reputation of Email is considered Malicious if there's at least one IOC event in Flashpoint database matching the Email indicator.",
+						"name": "email"
+					},
+					{
+						"description": "Search for the Intelligence Reports using a keyword",
+						"name": "flashpoint-search-intelligence-reports"
+					},
+					{
+						"description": "Get single report details using the report id. The report id can be known from output context path (Flashpoint.Report.ReportId) of report-search command or some other investigation.",
+						"name": "flashpoint-get-single-intelligence-report"
+					},
+					{
+						"description": "Get related reports for a particular report using the report-id. The report id can be known from output context path (Flashpoint.Report.ReportId) of report-search command or some other investigation.",
+						"name": "flashpoint-get-related-reports"
+					},
+					{
+						"description": "Retrieves the details of a single event using event UUID or FPID. To retrieve the event id, run the get-events command and see the value under the Flashpoint.Event.EventId context path. or indicator reputation command response or some other investigation.",
+						"name": "flashpoint-get-single-event"
+					},
+					{
+						"description": "Searches for events within the specified time-period, the report fpid, or attack IDs.",
+						"name": "flashpoint-get-events"
+					},
+					{
+						"description": "Lookup any type of indicator",
+						"name": "flashpoint-common-lookup"
+					},
+					{
+						"description": "Retrieves forum details using the forum ID. To retrieve the forum ID run the flashpoint-search-forum-posts command and see the value under the following context paths, Flashpoint.Forum.ForumId or Flashpoint.Forum.Post.Forum.id.",
+						"name": "flashpoint-get-forum-details"
+					},
+					{
+						"description": "Retrieves forum room details using the room ID. To retrieve the room ID run the flashpoint-search-forum-posts command and see the value under the Flashpoint.Forum.Post.Room.id context path.",
+						"name": "flashpoint-get-forum-room-details"
+					},
+					{
+						"description": "Retrieves user details using the user-id. To retrieve the user ID, run the flashpoint-search-forum-posts command and see the value under the Flashpoint.Forum.Post.User.id context path.",
+						"name": "flashpoint-get-forum-user-details"
+					},
+					{
+						"description": "Retrieves post details using the post-id. To retrieve the post ID, run the flashpoint-search-forum-posts command and see the value under the Flashpoint.Forum.Post.PostId context path. command or some other investigation.",
+						"name": "flashpoint-get-forum-post-details"
+					},
+					{
+						"description": "Searches forum sites using a keyword. it will search in site content like name, title, descripion etc.",
+						"name": "flashpoint-search-forum-sites"
+					},
+					{
+						"description": "Search forum posts using a keyword",
+						"name": "flashpoint-search-forum-posts"
+					},
+					{
+						"description": "Retrieves an alert or a list of alerts based on the filter values provided in the command arguments. Yields the alerts from Flashpoint collected sources and the alerts from data exposure.",
+						"name": "flashpoint-alert-list"
+					},
+					{
+						"description": "Retrieves the compromised credentials based on the filter values provided in the command arguments.",
+						"name": "flashpoint-compromised-credentials-list"
+					}
+				],
+				"description": "Use the Flashpoint integration to reduce business risk. Flashpoint allows users to ingest alerts and compromised credentials as incident alerts and executes commands such as search intelligence report, ip, url, get events, and more.",
+				"name": "Flashpoint (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "Flashpoint Compromised Credentials Layout.",
+				"name": "Flashpoint Compromised Credentials"
+			},
+			{
+				"description": "Flashpoint Alerts Layout.",
+				"name": "Flashpoint Alerts"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Compromised Credentials Match playbook uses the details of the compromised credentials ingested from the Flashpoint and authenticates using the Active Directory integration by providing the compromised credentials of the user, expires the credentials if it matches, and sends an email alert about the breach.\nSupported integrations:\n- Flashpoint\n- OpenLDAP\n- Active Directory Query v2",
+				"name": "Compromised Credentials Match - Flashpoint"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-25T01:56:40Z",
+	"currentVersion": "1.3.3",
+	"definitionId": "",
+	"dependencies": {
+		"Active_Directory_Query": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.4.15",
+			"name": "Active Directory Query"
+		},
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.7.14",
+			"name": "Common Scripts"
+		},
+		"OpenLDAP": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.8",
+			"name": "OpenLDAP"
+		}
+	},
+	"deprecated": false,
+	"description": "Use the Flashpoint integration to reduce business risk.",
+	"downloads": 2341,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Flashpoint",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Flashpoint/Flashpoint_image.png",
+			"name": "Flashpoint"
+		},
+		{
+			"imagePath": "content/packs/Active_Directory_Query/ActiveDirectoryQueryv2_image.png",
+			"name": "Active Directory Query v2"
+		},
+		{
+			"imagePath": "content/packs/OpenLDAP/OpenLDAP_image.png",
+			"name": "OpenLDAP"
+		}
+	],
+	"itemVersion": "1.3.3",
+	"keywords": [],
+	"legacy": true,
+	"name": "Flashpoint",
+	"packID": "Flashpoint",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Use the Flashpoint integration to reduce business risk. Flashpoint allows users to ingest alerts and compromised credentials as incident alerts and executes commands such as search intelligence report, ip, url, get events, and more.\n\n\n## What does this pack do?\nThe actions in this pack helps you to determine risks and help to remediate tasks using playbook:\n- Get alerts, compromised credentials, forum details, event details, report and reputation information.\n- Investigate compromised credentials incident.\n\n### Playbook\n**Compromised Credentials Match - Flashpoint:** It authenticates and expires the credentials and sends an email alert.\n![Compromised Credentials Match - Flashpoint](https://github.com/demisto/content/raw/f3d75c9da2e0e4d56ff087b86b941a21e0d63cb2/Packs/Flashpoint/doc_files/Compromised_Credentials_Match_-_Flashpoint.png)\n\n_For more information, visit our [Flashpoint Developer Documentation](https://docs.fp.tools/)_\n",
+	"searchRank": 20,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "demisto_support@flashpoint-intel.com",
+		"url": ""
+	},
+	"tags": [
+		"Relationship",
+		"Featured"
+	],
+	"toServerVersion": "",
+	"updated": "2022-06-10T09:52:45Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
