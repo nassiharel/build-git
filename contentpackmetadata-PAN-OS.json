@@ -90,6 +90,14 @@
 						"name": "panorama-push-to-device-group"
 					},
 					{
+						"description": "Pushes the given PAN-OS template to the given devices or all devices that belong to the template.",
+						"name": "pan-os-push-to-template"
+					},
+					{
+						"description": "Pushes the given PAN-OS template-stack to the given devices or all devices that belong to the template stack.",
+						"name": "pan-os-push-to-template-stack"
+					},
+					{
 						"description": "Returns a list of addresses.",
 						"name": "panorama-list-addresses"
 					},
@@ -642,6 +650,14 @@
 						"name": "pan-os-delete-edl"
 					},
 					{
+						"description": "Pull the running config file",
+						"name": "pan-os-get-running-config"
+					},
+					{
+						"description": "Pull the merged config file",
+						"name": "pan-os-get-merged-config"
+					},
+					{
 						"description": "Refreshes the specified external dynamic list.",
 						"name": "pan-os-refresh-edl"
 					},
@@ -1012,6 +1028,14 @@
 					{
 						"description": "Fixes security rules that have incorrect log settings by adding a log forwarding profile and setting.",
 						"name": "pan-os-hygiene-fix-security-rule-profile-settings"
+					},
+					{
+						"description": "Searches and returns a reference for the given object type and name. If no name is provided, all objects of the given type will be returned. Note this ONLY returns the object name and its location in the configuration hierachy, not the entire object.",
+						"name": "pan-os-config-get-object"
+					},
+					{
+						"description": "Get the device state from the provided device. Note; This will attempt to connect directly to the provided target to get the device state. If the IP address as reported in \"show system info\" is unreachable, this command will fail.",
+						"name": "pan-os-platform-get-device-state"
 					}
 				],
 				"description": "Manage Palo Alto Networks Firewall and Panorama. For more information see Panorama documentation.",
@@ -1029,76 +1053,76 @@
 		"parsingrule": null,
 		"playbook": [
 			{
-				"description": "Network operations playbook that updates the version and content of the firewall. You must have Superuser permissions to update the PAN-OS version.",
-				"name": "NetOps - Firewall Version and Content Upgrade"
+				"description": "This playbook sets up and maintains log forwarding for the Panorama rulebase.\nIt can be run when setting up a new instance, or as a periodic job to enforce log forwarding policy.\nYou can either update all rules and override previous profiles, or update only rules that do not have a log forwarding profile configured.",
+				"name": "PAN-OS Log Forwarding Setup And Configuration"
 			},
 			{
-				"description": "Query Panorama Logs of types: traffic, threat, url, data-filtering and wildfire.",
-				"name": "Panorama Query Logs"
-			},
-			{
-				"description": "This playbook blocks URLs using Palo Alto Networks Panorama or Firewall through Custom URL Categories.\nThe playbook checks whether the input URL category already exists, and if the URLs are a part of this category. Otherwise, it will create the category, block the URLs, and commit the configuration.",
-				"name": "PAN-OS - Block URL - Custom URL Category"
-			},
-			{
-				"description": "This playbook blocks IP addresses using Custom Block Rules in Palo Alto Networks Panorama or Firewall.\nThe playbook receives malicious IP addresses as inputs, creates a custom bi-directional rule to block them, and commits the configuration.",
-				"name": "PAN-OS - Block IP - Custom Block Rule"
-			},
-			{
-				"description": "This playbook deletes a PAN-OS static route from the PAN-OS instance.",
-				"name": "PAN-OS - Delete Static Routes"
-			},
-			{
-				"description": "This playbook utilizes the Dynamic Address Group (DAG) capability of PAN-OS.\nDAG enables analysts to create a rule one time, where the group is the source/destination, and adds IP addresses dynamically without the need to commit the configuration every time.\n\nThe playbook checks if the given tag already exists. If the tag exists, then the IP address is added to the tag.\n\nIf the tag does not exist, a new address group is created with the given tag and a matching rule, and the configuration is committed. \n",
-				"name": "PAN-OS DAG Configuration"
-			},
-			{
-				"description": "Creates or edits a Panorama rule and moves it into the desired position",
-				"name": "PAN-OS - Create Or Edit Rule"
-			},
-			{
-				"description": "Creates or edits a Panorama rule and moves it into the desired position",
-				"name": "PAN-OS - Create Or Edit EDL Rule"
-			},
-			{
-				"description": "Block a user by tagging them in the Palo Alto Networks NGFW. This requires PAN-OS 9.1 or higher.",
-				"name": "NetSec - Palo Alto Networks DUG - Tag User"
-			},
-			{
-				"description": "Commit the PAN-OS Panorama or Firewall configuration.\\nIf specified as Panorama, it also pushes the Policies to the specified Device Group in the instance.",
-				"name": "PAN-OS Commit Configuration"
-			},
-			{
-				"description": "This playbook blocks a Destination IP and Service (TCP or UDP port) by creating a rule for a specific Device Group on PAN-OS. ",
-				"name": "PAN-OS - Block Destination Service"
-			},
-			{
-				"description": "Network operations playbook that upgrades the firewall. You must have Superuser permissions to update the PAN-OS version. Note: This playbook should only be used for minor version upgrades. Major version upgrades will not work due to a change in the API key.",
-				"name": "NetOps - Upgrade PAN-OS Firewall Device"
+				"description": "Find if there is signature coverage for a specific CVE.",
+				"name": "NetOps Panorama coverage by CVE"
 			},
 			{
 				"description": "This playbook blocks IP addresses using Static Address Groups in Palo Alto Networks Panorama or Firewall.\nThe playbook receives malicious IP addresses and an address group name as inputs, verifies that the addresses are not already a part of the address group, adds them and commits the configuration.\n\n***Note - The playbook does not block the address group communication using a policy block rule. This step will be taken once outside of the playbook.",
 				"name": "PAN-OS - Block IP - Static Address Group"
 			},
 			{
-				"description": "This playbook sets up and maintains log forwarding for the Panorama rulebase.\nIt can be run when setting up a new instance, or as a periodic job to enforce log forwarding policy.\nYou can either update all rules and override previous profiles, or update only rules that do not have a log forwarding profile configured.",
-				"name": "PAN-OS Log Forwarding Setup And Configuration"
+				"description": "This playbook utilizes the Dynamic Address Group (DAG) capability of PAN-OS.\nDAG enables analysts to create a rule one time, where the group is the source/destination, and adds IP addresses dynamically without the need to commit the configuration every time.\n\nThe playbook checks if the given tag already exists. If the tag exists, then the IP address is added to the tag.\n\nIf the tag does not exist, a new address group is created with the given tag and a matching rule, and the configuration is committed. \n",
+				"name": "PAN-OS DAG Configuration"
+			},
+			{
+				"description": "This playbook blocks URLs using Palo Alto Networks Panorama or Firewall through Custom URL Categories.\nThe playbook checks whether the input URL category already exists, and if the URLs are a part of this category. Otherwise, it will create the category, block the URLs, and commit the configuration.",
+				"name": "PAN-OS - Block URL - Custom URL Category"
+			},
+			{
+				"description": "Commit the PAN-OS Panorama or Firewall configuration.\\nIf specified as Panorama, it also pushes the Policies to the specified Device Group in the instance.",
+				"name": "PAN-OS Commit Configuration"
 			},
 			{
 				"description": "This playbook queries the following PAN-OS log types: traffic, threat, url, data-filtering and wildfire. The playbook accepts inputs such as IP. hash, and url.",
 				"name": "PAN-OS Query Logs For Indicators"
 			},
 			{
-				"description": "This playbook pulls Panorama content update file from shared SMB folder, uploads it to the Panorama server and installs it. It also uploads the content file to SCP folder for future use of the Panorama Device Deployment content updates engine which can be scheduled to pull the files automatically from SCP server.\nThis playbook should run in \"Air Gap internal network\" and works together with \"Air Gap - Panorama Content Update Sender - External\" playbook that runs in \"Air Gap external network\".\n\nThis playbook should be run as part of a Job in the internal network.\n\nPlaybook inputs:\npanorama_admin_email - email address of the panorama admin for sending the output of the update.\nsmbshare - the SMB share of the content update folder. Example: Folder\nscpwildfire - scp folder for wildfire content update file. Example: /home/demisto/Folder/wildfire\nscpcontents - scp folder for contents  (antivirus and apps) content update file. Example: /home/demisto/Folder/contents\nscpantivirus - scp folder for Anti-Virus content update file. Example: /home/demisto/Folder/antivirus\nsmbpath - SMB path to the content files files. Example: Content",
-				"name": "panorama_content_update_test"
+				"description": "Block a user by tagging them in the Palo Alto Networks NGFW. This requires PAN-OS 9.1 or higher.",
+				"name": "NetSec - Palo Alto Networks DUG - Tag User"
+			},
+			{
+				"description": "Creates or edits a Panorama rule and moves it into the desired position",
+				"name": "PAN-OS - Create Or Edit EDL Rule"
+			},
+			{
+				"description": "Query Panorama Logs of types: traffic, threat, url, data-filtering and wildfire.",
+				"name": "Panorama Query Logs"
+			},
+			{
+				"description": "This playbook deletes a PAN-OS static route from the PAN-OS instance.",
+				"name": "PAN-OS - Delete Static Routes"
+			},
+			{
+				"description": "This playbook blocks IP addresses using Custom Block Rules in Palo Alto Networks Panorama or Firewall.\nThe playbook receives malicious IP addresses as inputs, creates a custom bi-directional rule to block them, and commits the configuration.",
+				"name": "PAN-OS - Block IP - Custom Block Rule"
+			},
+			{
+				"description": "Network operations playbook that updates the version and content of the firewall. You must have Superuser permissions to update the PAN-OS version.",
+				"name": "NetOps - Firewall Version and Content Upgrade"
+			},
+			{
+				"description": "Creates or edits a Panorama rule and moves it into the desired position",
+				"name": "PAN-OS - Create Or Edit Rule"
+			},
+			{
+				"description": "This playbook blocks a Destination IP and Service (TCP or UDP port) by creating a rule for a specific Device Group on PAN-OS. ",
+				"name": "PAN-OS - Block Destination Service"
 			},
 			{
 				"description": "This playbook accepts a PAN-OS static route configuration and creates it in the PAN-OS instance.",
 				"name": "PAN-OS - Add Static Routes"
 			},
 			{
-				"description": "Find if there is signature coverage for a specific CVE.",
-				"name": "NetOps Panorama coverage by CVE"
+				"description": "This playbook pulls Panorama content update file from shared SMB folder, uploads it to the Panorama server and installs it. It also uploads the content file to SCP folder for future use of the Panorama Device Deployment content updates engine which can be scheduled to pull the files automatically from SCP server.\nThis playbook should run in \"Air Gap internal network\" and works together with \"Air Gap - Panorama Content Update Sender - External\" playbook that runs in \"Air Gap external network\".\n\nThis playbook should be run as part of a Job in the internal network.\n\nPlaybook inputs:\npanorama_admin_email - email address of the panorama admin for sending the output of the update.\nsmbshare - the SMB share of the content update folder. Example: Folder\nscpwildfire - scp folder for wildfire content update file. Example: /home/demisto/Folder/wildfire\nscpcontents - scp folder for contents  (antivirus and apps) content update file. Example: /home/demisto/Folder/contents\nscpantivirus - scp folder for Anti-Virus content update file. Example: /home/demisto/Folder/antivirus\nsmbpath - SMB path to the content files files. Example: Content",
+				"name": "panorama_content_update_test"
+			},
+			{
+				"description": "Network operations playbook that upgrades the firewall. You must have Superuser permissions to update the PAN-OS version. Note: This playbook should only be used for minor version upgrades. Major version upgrades will not work due to a change in the API key.",
+				"name": "NetOps - Upgrade PAN-OS Firewall Device"
 			}
 		],
 		"report": null,
@@ -1109,34 +1133,34 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-27T15:13:05Z",
-	"currentVersion": "1.13.0",
+	"currentVersion": "1.14.9",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.7",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.1.21",
+			"minVersion": "2.2.9",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.6.60",
+			"minVersion": "1.7.14",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Manage Palo Alto Networks Firewall and Panorama. For more information see Panorama documentation.",
-	"downloads": 14266,
+	"downloads": 16865,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1153,7 +1177,7 @@
 			"name": "Palo Alto Networks PAN-OS"
 		}
 	],
-	"itemVersion": "1.13.0",
+	"itemVersion": "1.14.9",
 	"keywords": [],
 	"legacy": true,
 	"name": "PAN-OS",
@@ -1168,7 +1192,7 @@
 	"rawKeywords": null,
 	"rawTags": null,
 	"rawUseCases": null,
-	"readme": "PAN‑OS is the software that runs all Palo Alto Networks next-generation firewalls. \r\nUsing this pack, you can monitor and prevent phishing attacks by controlling the sites to which users can submit valid corporate credentials, and to enforce safe search for search engines like Google and Bing.\r\n\r\n## What does this pack do?\r\n- Create and manage custom security rules in Palo Alto Networks PAN-OS.\r\n- Create and manage address objects, address-groups, custom URL categories, URL filtering objects.\r\n- Use the URL Filtering category information to enrich URLs.\r\n- Commit configurations to Palo Alto Firewall and to Panorama, and push configurations from Panorama to Pre-Defined Device-Groups of Firewalls.\r\n- Upgrade the version and content of the firewall. \r\n- Query the following PAN-OS log types: traffic, threat, url, data-filtering, and Wildfire.\r\n- Manage External Dynamic Lists (EDLs).\r\n\r\nAs part of this pack, you will get several playbooks to facilitate your workflows.### Pack Contributors:\n\n---\n - Adam Baumeister\n\nContributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).",
+	"readme": "PAN‑OS is the software that runs all Palo Alto Networks next-generation firewalls. \r\nUsing this pack, you can monitor and prevent phishing attacks by controlling the sites to which users can submit valid corporate credentials, and to enforce safe search for search engines like Google and Bing.\r\n\r\n## What does this pack do?\r\n- Create and manage custom security rules in Palo Alto Networks PAN-OS.\r\n- Create and manage address objects, address-groups, custom URL categories, URL filtering objects.\r\n- Use the URL Filtering category information to enrich URLs.\r\n- Commit configurations to Palo Alto Firewall and to Panorama, and push configurations from Panorama to Pre-Defined Device-Groups of Firewalls.\r\n- Upgrade the version and content of the firewall. \r\n- Query the following PAN-OS log types: traffic, threat, url, data-filtering, and Wildfire.\r\n- Manage External Dynamic Lists (EDLs).\r\n\r\nAs part of this pack, you will get several playbooks to facilitate your workflows.\n### Pack Contributors:\n\n---\n - Adam Baumeister\n\nContributions are welcome and appreciated. For more info, visit our [Contribution Guide](https://xsoar.pan.dev/docs/contributing/contributing).",
 	"searchRank": 10,
 	"serverMaxVersion": "",
 	"serverMinVersion": "5.0.0",
@@ -1179,9 +1203,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-05-16T21:26:39Z",
+	"updated": "2022-07-18T22:20:36Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2930786",
+	"versionInfo": "3287093",
 	"videos": []
 }
