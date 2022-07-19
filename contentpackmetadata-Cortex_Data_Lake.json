@@ -1,0 +1,151 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Analytics \u0026 SIEM"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Runs a query on  any table or field.",
+						"name": "cdl-query-logs"
+					},
+					{
+						"description": "Runs a query on the threat table according to preset queries.",
+						"name": "cdl-get-critical-threat-logs"
+					},
+					{
+						"description": "Runs a query on traffic table where app_sub_category = \"social networking\".",
+						"name": "cdl-get-social-applications"
+					},
+					{
+						"description": "Runs a query on the threat table with the query 'SELECT * FROM `firewall.threat` WHERE file_sha_256 = \u003cfile_hash\u003e'",
+						"name": "cdl-search-by-file-hash"
+					},
+					{
+						"description": "Searches the Cortex firewall.traffic table. Traffic logs contain entries for the end of each network session.",
+						"name": "cdl-query-traffic-logs"
+					},
+					{
+						"description": "Searches the Cortex panw.threat table, which is the threat logs table for PAN-OS/Panorama.",
+						"name": "cdl-query-threat-logs"
+					},
+					{
+						"description": "Searches the URL log table.",
+						"name": "cdl-query-url-logs"
+					},
+					{
+						"description": "Searches the Cortex firewall.file_data table.",
+						"name": "cdl-query-file-data"
+					},
+					{
+						"description": "Use this command in case your authentication calls fail due to internal call-limit, the command will reset the limit cache.",
+						"name": "cdl-reset-authentication-timeout"
+					}
+				],
+				"description": "Palo Alto Networks Cortex Data Lake provides cloud-based, centralized log storage and aggregation for your organization on premise, virtual (private cloud and public cloud) firewalls, for Prisma Access, and for cloud-delivered services such as Cortex XDR.",
+				"name": "Cortex Data Lake"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-05T11:44:00Z",
+	"currentVersion": "1.3.6",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"GetLicenseID": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.4",
+			"name": "Get License ID"
+		}
+	},
+	"deprecated": false,
+	"description": "Palo Alto Networks Cortex Data Lake provides cloud-based, centralized log storage and aggregation for your on premise, virtual (private cloud and public cloud) firewalls, for Prisma Access, and for cloud-delivered services such as Cortex XDR",
+	"downloads": 3195,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CortexDataLake",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CortexDataLake/CortexDataLake_image.png",
+			"name": "Cortex Data Lake"
+		}
+	],
+	"itemVersion": "1.3.6",
+	"keywords": [
+		"CDL",
+		"Cortex Data Lake"
+	],
+	"legacy": true,
+	"name": "Cortex Data Lake",
+	"packID": "CortexDataLake",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-04-12T21:29:11Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3263593",
+	"videos": []
+}
