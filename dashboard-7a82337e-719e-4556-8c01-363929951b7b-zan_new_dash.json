@@ -1,0 +1,264 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "7a82337e-719e-4556-8c01-363929951b7b",
+	"isCommon": true,
+	"itemVersion": "",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "a22e11e0-075b-11ed-b92e-391ebc7cf697",
+			"id": "a22e11e0-075b-11ed-b92e-391ebc7cf697",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "active-incidents-by-severity",
+				"isPredefined": true,
+				"itemVersion": "1.2.7",
+				"modified": "2022-07-18T12:30:34.514190546Z",
+				"name": "Active Incidents - Pie chart",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"severity"
+					]
+				},
+				"prevName": "Active Incidents - Pie chart",
+				"propagationLabels": [],
+				"query": "-category:job and -status:archived and -status:closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 6,
+				"widgetType": "pie"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "a8023a10-075b-11ed-b92e-391ebc7cf697",
+			"id": "a8023a10-075b-11ed-b92e-391ebc7cf697",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "6.0.0",
+				"id": "0b674563-66ca-4c41-8eac-134722296026",
+				"isPredefined": true,
+				"itemVersion": "4.8.1",
+				"modified": "2022-07-19T07:47:38.391592268Z",
+				"name": "Cortex XDR Top 10 Categories",
+				"packID": "CortexXDR",
+				"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"xdralertcategory"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "id",
+							"position": 0,
+							"width": 110
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "type",
+							"position": 3,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "severity",
+							"position": 4,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "status",
+							"position": 5,
+							"width": 80
+						},
+						{
+							"isDefault": true,
+							"key": "owner",
+							"position": 6,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "roles",
+							"position": 7,
+							"width": 160
+						},
+						{
+							"isDefault": true,
+							"key": "playbookId",
+							"position": 8,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "occurred",
+							"position": 9,
+							"width": 200
+						},
+						{
+							"isDefault": true,
+							"key": "dueDate",
+							"position": 10,
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Cortex XDR Top 10 Categories",
+				"propagationLabels": [],
+				"query": "type:\"Cortex XDR Incident\" -status:Closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 5,
+				"widgetType": "column"
+			},
+			"x": 2,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "b68dd440-075b-11ed-b92e-391ebc7cf697",
+			"id": "b68dd440-075b-11ed-b92e-391ebc7cf697",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "top-active-playbooks",
+				"isPredefined": true,
+				"itemVersion": "1.2.7",
+				"modified": "2022-07-18T12:30:34.51518865Z",
+				"name": "Top Active Playbooks",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"playbookId"
+					]
+				},
+				"prevName": "Top Active Playbooks",
+				"propagationLabels": [],
+				"query": "status:active -category:job",
+				"shouldCommit": false,
+				"size": 5,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 6,
+				"widgetType": "column"
+			},
+			"x": 4,
+			"y": 0
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "zan_new_dash",
+	"owner": "",
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 7,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"system": false,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
