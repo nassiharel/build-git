@@ -27,7 +27,7 @@ inputs:
   playbookInputQuery: null
   required: false
   value:
-    simple: "True"
+    simple: "False"
 - description: |-
     Enables the Block Indicators capability.
     For a malicious email, the "Block Indicators" sub-playbook blocks all malicious indicators in the relevant integrations.
@@ -103,7 +103,8 @@ inputs:
   key: InternalDomains
   playbookInputQuery: null
   required: false
-  value: {}
+  value:
+    simple: demistodev.onmicrosoft.com
 - description: Determines whether to use the "URL Detonation" playbook. Detonating
     a URL may take a few minutes.
   key: DetonateURL
@@ -138,8 +139,7 @@ inputs:
   key: GetOriginalEmail
   playbookInputQuery: null
   required: false
-  value:
-    simple: "True"
+  value: {}
 - description: |-
     The number of URLs to extract from the email HTML and analyze in the "DBotPredictURLPhishing" automation.
     This automation runs several checks to determine the score of the URLs found in the email, sets a verdict for URLs found as "Suspicious" or "Malicious", and adds these URLs as indicators. Based on the verdict, the incident severity is set (Medium for "Suspicious" and High for "Malicious").
