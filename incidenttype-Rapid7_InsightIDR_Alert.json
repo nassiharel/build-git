@@ -1,0 +1,39 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#B7E7FF",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "5.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Rapid7 InsightIDR Alert",
+	"itemVersion": "1.0.13",
+	"layout": "Rapid7 InsightIDR - Layout",
+	"locked": false,
+	"name": "Rapid7 InsightIDR Alert",
+	"onChangeRepAlg": 1,
+	"packID": "Rapid7_InsightIDR",
+	"packName": "Rapid7 InsightIDR",
+	"packPropagationLabels": [
+		"all"
+	],
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
