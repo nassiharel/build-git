@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.2.9
+    itemVersion: 2.2.10
     packID: CommonPlaybooks
     packName: Common Playbooks
     packPropagationLabels:
@@ -536,7 +536,7 @@ tasks:
     skipunavailable: true
     task:
       brand: ""
-      description: Detonates a URL using the McAfee Advanced Threat Defense sandbox.
+      description: Detonates a URL using the McAfee Advanced Threat Defense sandbox
         integration.
       id: 237ce1af-7984-4df7-8eea-e6577bf59c4a
       iscommand: false
