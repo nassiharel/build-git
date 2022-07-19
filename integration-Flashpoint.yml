@@ -75,7 +75,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.3.1
+    itemVersion: 1.3.3
     packID: Flashpoint
     packName: Flashpoint
     packPropagationLabels:
@@ -121,7 +121,7 @@ detaileddescription: "### Partner Contributed Integration\n#### Integration Auth
   option would be selected.\n- Add \"API Key\" and save the instance.\n\n---\n[View
   Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/flashpoint)"
 display: Flashpoint (Partner Contribution)
-image: data:image/png;base64,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
+image: data:image/png;base64,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
 name: Flashpoint
 script:
   commands:
@@ -1149,14 +1149,13 @@ script:
     - contextPath: Flashpoint.CompromisedCredential.sort
       description: Sort value of the IoC.
       type: Unknown
-  dockerimage: demisto/python3:3.10.4.27798
+  dockerimage: demisto/python3:3.10.4.29342
   isfetch: true
   runonce: false
   script: |
     register_module_line('Flashpoint', 'start', __line__())
+    """Flashpoint Main File."""
 
-
-    """ IMPORTS """
     import re
     import ipaddress
     import requests
@@ -1167,7 +1166,8 @@ script:
     requests.packages.urllib3.disable_warnings()
 
     """ CONSTANTS """
-
+    INTEGRATION_VERSION = "v1.3.3"
+    INTEGRATION_PLATFORM = "XSOAR Cortex"
     FIRST_FETCH = "3 days"
     MAX_FETCH = 15
     DEFAULT_PAGE_SIZE = 50
@@ -1183,6 +1183,22 @@ script:
     SORT_ORDER_VALUES = ['asc', 'desc']
     SORT_DATE_VALUES = ['created_at', 'first_observed_at']
     FILTER_DATE_VALUES = ['created_at', 'first_observed_at']
+
+    DATE_OBSERVED = "Date Observed (UTC)"
+    STRING_FORMAT = "[{}]({})"
+    TIME_OBSERVED = "Observed time (UTC)"
+    QUERY = r'+type:("ip-src","ip-dst","ip-dst|port") +value.\*:"'
+    HR_TITLE = '### Flashpoint IP address reputation for '
+    REPUTATION_MALICIOUS = 'Reputation: Malicious\n\n'
+    TABLE_TITLE = 'Events in which this IOC observed'
+    ALL_DETAILS_LINK = '\nAll events and details (fp-tools): [{}]({})\n'
+    MALICIOUS_DESCRIPTION = 'Found in malicious indicators dataset'
+    STIX_ATTACK_PATTERN = 'STIX Attack Pattern'
+    REPUTATION_UNKNOWN = 'Reputation: Unknown\n\n'
+    FORUM_NAME = 'Forum Name'
+    ROOM_TITLE = 'Room Title'
+    AUTHOR_NAME = 'Author Name'
+    THREAD_TITLE = 'Thread Title'
 
     FLASHPOINT_PATHS = {
         'IP': 'Flashpoint.IP.Event(val.Fpid && val.Fpid == obj.Fpid)',
@@ -1239,6 +1255,7 @@ script:
     class Client:
         """
         Client to use in integration with powerful http_request.
+
         :type api_key: ``str``
         :param api_key: Use to authenticate request in header
 
@@ -1259,6 +1276,7 @@ script:
         """
 
         def __init__(self, api_key, url, verify, proxies, create_relationships):
+            """Initialize class object."""
             self.url = url
             self.api_key = api_key
             self.verify = verify
@@ -1282,7 +1300,10 @@ script:
                 full_url = self.url + url_suffix
 
             headers = {
-                'Authorization': self.api_key
+                'Authorization': f"Bearer {self.api_key}",
+                'X-FP-IntegrationPlatform': INTEGRATION_PLATFORM,
+                'X-FP-IntegrationPlatformVersion': get_demisto_version_as_str(),
+                'X-FP-IntegrationVersion': INTEGRATION_VERSION
             }
 
             resp = requests.request(
@@ -1321,7 +1342,7 @@ script:
 
 
     def get_apikey():
-        """ Get API Key from the command argument"""
+        """Get API Key from the command argument."""
         api_key = demisto.params()["api_key"]
 
         return api_key
@@ -1329,7 +1350,7 @@ script:
 
     def get_url_suffix(query):
         """
-        Create url-suffix using the query value with url encoding
+        Create url-suffix using the query value with url encoding.
 
         :param query: value of query param
         :return: url-encoded url-suffix
@@ -1339,7 +1360,7 @@ script:
 
     def prepare_args_for_fetch_alerts(max_fetch: int, start_time: str, last_run: dict) -> dict:
         """
-        Function to prepare arguments for fetching alerts
+        Prepare arguments for fetching alerts.
 
         :param max_fetch: Maximum number of incidents per fetch
         :param start_time: Date time to start fetching incidents from
@@ -1362,7 +1383,7 @@ script:
     def prepare_args_for_fetch_compromised_credentials(max_fetch: int, start_time: str, is_fresh: bool,
                                                        last_run: dict) -> dict:
         """
-        Function to prepare arguments for fetching compromised credentials
+        Prepare arguments for fetching compromised credentials.
 
         :param max_fetch: Maximum number of incidents per fetch
         :param start_time: Date time to start fetching incidents from
@@ -1417,7 +1438,7 @@ script:
 
     def validate_fetch_incidents_params(params: dict, last_run: dict) -> Dict:
         """
-        Function to validate the parameter list for fetch incidents
+        Validate the parameter list for fetch incidents.
 
         :param params: Dictionary containing demisto configuration parameters
         :param last_run: last run returned by function demisto.getLastRun
@@ -1461,7 +1482,7 @@ script:
 
     def parse_indicator_response(indicators):
         """
-        Extract Flashpoint event details and href values from each of the indicator in an indicator list
+        Extract Flashpoint event details and href values from each of the indicator in an indicator list.
 
         :param indicators: list of indicators
         :return: dict containing event details and href
@@ -1480,7 +1501,7 @@ script:
             observed_time = time.strftime(READABLE_DATE_FORMAT, time.gmtime(float(event['timestamp'])))
 
             events.append({
-                'Date Observed (UTC)': observed_time,
+                DATE_OBSERVED: observed_time,
                 'Name': event.get('info', ''),
                 'Tags': tags_value,
             })
@@ -1490,7 +1511,7 @@ script:
 
     def parse_event_response(client, event, fpid, href):
         """
-        Prepare required event json object from event response
+        Prepare required event json object from event response.
 
         :param href: reference link of event
         :param fpid: unique id of event. i.e EventId
@@ -1503,7 +1524,7 @@ script:
         uuid = event.get('uuid', '')
         if uuid:
             fp_link = client.url + '/home/technical_data/iocs/items/' + uuid
-            name_str = '[{}]({})'.format(name, fp_link)
+            name_str = STRING_FORMAT.format(name, fp_link)
         else:
             name_str = name
 
@@ -1513,7 +1534,7 @@ script:
         event_creator_email = event.get('event_creator_email', '')
 
         event = {
-            'Observed time (UTC)': observed_time,
+            TIME_OBSERVED: observed_time,
             'Name': name_str,
             'Tags': tags_value,
             'EventCreatorEmail': event_creator_email,
@@ -1526,7 +1547,7 @@ script:
 
     def parse_forum_response(resp):
         """
-        Prepare forum json object from forum response
+        Prepare forum json object from forum response.
 
         :param resp: forum response
         :return: required forum json object
@@ -1548,7 +1569,7 @@ script:
 
     def get_post_context(resp):
         """
-        Prepare context data for forum post
+        Prepare context data for forum post.
 
         :param resp: forum post api response
         :return: dict object
@@ -1568,8 +1589,7 @@ script:
 
     def reputation_operation_command(client, indicator, func, command_results=False):
         """
-        Common method for reputation commands to accept argument as a comma-separated values and converted into list
-        and call specific function for all values.
+        Call specific function for all reputation commands from this common method.
 
         :param client: object of client class
         :param indicator: comma-separated values or single value
@@ -1587,7 +1607,7 @@ script:
 
     def replace_key(dictionary, new_key, old_key):
         """
-        This method is used for replace key in dictionary.
+        Replace key in dictionary.
 
         :param dictionary: dictionary object on which we wan to replace key.
         :param new_key: key which will replace in dictionary
@@ -1601,11 +1621,12 @@ script:
 
     def validate_alert_list_args(args: dict) -> dict:
         """
-        Validate arguments for flashpoint-alert-list command, raise ValueError on invalid arguments.
+        Validate arguments for flashpoint-alert-list command.
 
         :param args: The command arguments
 
         :return: Validated dictionary of arguments
+        :raises: ValueError for invalid arguments
         """
         params = {}
 
@@ -1631,7 +1652,7 @@ script:
 
     def prepare_hr_for_alerts(alerts: List) -> str:
         """
-        Prepare human readable format for alerts
+        Prepare human readable format for alerts.
 
         :param alerts: List of alerts
 
@@ -1691,7 +1712,7 @@ script:
 
     def validate_page_parameters_for_compromised_credentials(args: dict, params: dict) -> None:
         """
-        Function to validate page_size and page_number for flashpoint-compromised-credentials-list command
+        Validate page_size and page_number for flashpoint-compromised-credentials-list command.
 
         :param args: The command arguments
         :param params: Dictionary of parameters
@@ -1716,7 +1737,7 @@ script:
 
     def validate_date_parameters_for_compromised_credentials(args: dict, params: dict) -> None:
         """
-        Function to validate start_date, end_date, and filter_date for flashpoint-compromised-credentials-list command
+        Validate date params for flashpoint-compromised-credentials-list command.
 
         :param args: The command arguments
         :param params: Dictionary of parameters
@@ -1748,7 +1769,7 @@ script:
 
     def validate_sort_parameters_for_compromised_credentials(args: dict, params: dict) -> None:
         """
-        Function to validate sort_order and sort_date for flashpoint-compromised-credentials-list command
+        Validate sort_order and sort_date for flashpoint-compromised-credentials-list command.
 
         :param args: The command arguments
         :param params: Dictionary of parameters
@@ -1772,11 +1793,12 @@ script:
 
     def validate_compromised_credentials_list_args(args: dict) -> dict:
         """
-        Validate arguments for flashpoint-compromised-credentials-list command, raise ValueError on invalid arguments.
+        Validate arguments for flashpoint-compromised-credentials-list command.
 
         :param args: The command arguments
 
         :return: Validated dictionary of arguments
+        :raises: ValueError on invalid arguments
         """
         params = {'query': '+basetypes:(credential-sighting)'}
 
@@ -1799,7 +1821,7 @@ script:
 
     def prepare_hr_for_compromised_credentials(hits: list) -> str:
         """
-        Prepare human readable format for compromised credentials
+        Prepare human readable format for compromised credentials.
 
         :param hits: List of compromised credentials
 
@@ -1836,7 +1858,7 @@ script:
 
     def remove_duplicate_records(records: List, fetch_type: str, next_run: dict) -> List:
         """
-        Function to check for duplicate records and remove them from the list
+        Check for duplicate records and remove them from the list.
 
         :param records: List of records
         :param fetch_type: Type of the records
@@ -1862,21 +1884,23 @@ script:
 
     def update_alert_body(alert: dict) -> None:
         """
-        Function to add highlight to keyword text
+        Add highlight to keyword text.
 
         :param alert: The alert object
 
         :return: None
         """
-        keyword = alert.get("keyword", {}).get("keyword_text", "").replace('\"', "")
+        # Plain text might not contain quotes (and spaces) present in peripherals, thus stripping them
+        keyword = alert.get("keyword", {}).get("keyword_text", "").strip("\" ")
         body = alert.get("source", {}).get("body", {}).get("text/plain")
         if body:
-            alert["source"]["body"]["text/plain"] = re.sub(keyword, f"<mark>{keyword}</mark>", body, flags=re.IGNORECASE)
+            alert["source"]["body"]["text/plain"] = re.sub(re.escape(keyword), f"<mark>{keyword}</mark>", body,
+                                                           flags=re.IGNORECASE)
 
 
     def prepare_context_from_next_href(links: str) -> Dict:
         """
-        Function to prepare context from href
+        Prepare context from href.
 
         :param links: Link with the arguments
 
@@ -1889,7 +1913,7 @@ script:
 
     def prepare_incidents_from_alerts_data(response: dict, next_run: dict, start_time: str) -> Tuple[dict, list]:
         """
-        Function to prepare incidents from the alerts data
+        Prepare incidents from the alerts data.
 
         :param response: Response from the alerts API
         :param next_run: Dictionary to set in last run
@@ -1943,7 +1967,7 @@ script:
 
     def check_value_of_total_records(total: Any, next_run: dict) -> None:
         """
-        Function to check if total number of records are more than the limit or not
+        Check if total number of records are more than the limit or not.
 
         :param total: Total number of records
         :param next_run: Dictionary to set in last run
@@ -1958,7 +1982,7 @@ script:
 
     def prepare_checkpoint_and_related_objects(hits: List, hit_ids: List, next_run: dict) -> None:
         """
-        Function to prepare checkpoint and related objects for incidents of type compromised credentials
+        Prepare checkpoint and related objects for incidents of type compromised credentials.
 
         :param hits: List of compromised credentials
         :param hit_ids: List of ids of compromised credentials
@@ -1984,7 +2008,7 @@ script:
 
     def prepare_next_run_when_data_is_present(next_run: dict, start_time: str) -> None:
         """
-        Function to prepare next run when data is present
+        Prepare next run when data is present.
 
         :param next_run: Dictionary to set in last run
         :param start_time:  Date time saved of the last fetch
@@ -1997,7 +2021,7 @@ script:
 
     def prepare_next_run_when_data_is_empty(next_run: dict, hits: List) -> None:
         """
-        Function to prepare next run when data is present
+        Prepare next run when data is present.
 
         :param next_run: Dictionary to set in last run
         :param hits: List of compromised credentials
@@ -2014,7 +2038,7 @@ script:
     def prepare_incidents_from_compromised_credentials_data(response: dict, next_run: dict,
                                                             start_time: str) -> Tuple[dict, list]:
         """
-        Function to prepare incidents from the compromised credentials data
+        Prepare incidents from the compromised credentials data.
 
         :param response: Response from the compromised credentials API
         :param next_run: Dictionary to set in last run
@@ -2053,12 +2077,36 @@ script:
         return next_run, incidents
 
 
+    def remove_space_from_args(args):
+        """Remove space from args."""
+        for key in args.keys():
+            if isinstance(args[key], str):
+                args[key] = args[key].strip()
+        return args
+
+
+    def create_relationships_list(client, events_details, ip):
+        """Create relationships list from given data."""
+        relationships = []
+        if client.create_relationships and events_details.get('attack_ids'):
+            for attack_id in events_details.get('attack_ids'):
+                relationships.append(
+                    EntityRelationship(name='indicator-of',
+                                       entity_a=ip,
+                                       entity_a_type=FeedIndicatorType.IP,
+                                       entity_b=attack_id,
+                                       entity_b_type=FeedIndicatorType.indicator_type_by_server_version(
+                                           STIX_ATTACK_PATTERN),
+                                       brand=BRAND))
+        return relationships
+
+
     ''' FUNCTIONS '''
 
 
     def test_module(client: Client, params: Dict) -> None:
         """
-        Tests the Flashpoint instance configuration
+        Test the Flashpoint instance configuration.
 
         :param: client: Object of Client class
         :param: params: Dictionary containing demisto configuration parameters
@@ -2072,11 +2120,11 @@ script:
 
     def ip_lookup_command(client, ip):
         """
-        'ip' command to lookup a particular ip-address
+        Lookup a particular ip-address.
+
         This command searches for the ip in Flashpoint's IOC Dataset. If found, mark it as Malicious.
         If not found, lookup in Torrents for matching peer ip. If found, mark it as Suspicious.
         If not found, lookup in Forums for matching ip. If found, mark it as Suspicious.
-
 
         :param client: object of client class
         :param ip: ip-address
@@ -2085,48 +2133,36 @@ script:
         if not is_ip_valid(ip, True):
             raise ValueError("Invalid ip - " + ip)
 
-        query = r'+type:("ip-src","ip-dst") +value.\*:"' + urllib.parse.quote(ip.encode('utf-8')) + '"'
+        query = QUERY + urllib.parse.quote(ip.encode('utf-8')) + '"'
         resp = client.http_request("GET", url_suffix=get_url_suffix(query))
 
+        indicators = []
         if isinstance(resp, list):
             indicators = resp
-        else:
-            indicators = []
 
         if len(indicators) > 0:
 
-            hr = '### Flashpoint IP address reputation for ' + ip + '\n'
-            hr += 'Reputation: Malicious\n\n'
+            hr = HR_TITLE + ip + '\n'
+            hr += REPUTATION_MALICIOUS
 
             events_details = parse_indicator_response(indicators)
 
-            hr += tableToMarkdown('Events in which this IOC observed', events_details['events'],
-                                  ['Date Observed (UTC)', 'Name', 'Tags'])
+            hr += tableToMarkdown(TABLE_TITLE, events_details['events'],
+                                  [DATE_OBSERVED, 'Name', 'Tags'])
 
             # Constructing FP Deeplink
-            fp_link = client.url + '/home/search/iocs?group=indicator&ioc_type=ip-dst%2Cip-src&ioc_value=' + ip
-            hr += '\nAll events and details (fp-tools): [{}]({})\n'.format(fp_link, fp_link)
+            fp_link = \
+                client.url + '/home/search/iocs?group=indicator&ioc_type=ip-dst%2Cip-src%2Cip-dst%7Cport&ioc_value=' + ip
+            hr += ALL_DETAILS_LINK.format(fp_link, fp_link)
             dbot_score = Common.DBotScore(
                 indicator=ip,
                 indicator_type=DBotScoreType.IP,
                 integration_name=BRAND,
                 score=3,
-                malicious_description='Found in malicious indicators dataset'
+                malicious_description=MALICIOUS_DESCRIPTION
 
             )
-            relationships = []
-            if client.create_relationships:
-                if events_details.get('attack_ids'):
-                    for attack_id in events_details.get('attack_ids'):
-                        relationships.append(
-                            EntityRelationship(name='indicator-of',
-                                               entity_a=ip,
-                                               entity_a_type=FeedIndicatorType.IP,
-                                               entity_b=attack_id,
-                                               entity_b_type=FeedIndicatorType.indicator_type_by_server_version(
-                                                   'STIX Attack Pattern'),
-                                               brand=BRAND))
-
+            relationships = create_relationships_list(client, events_details, ip)
             ip_ioc = Common.IP(ip=ip, dbot_score=dbot_score, relationships=relationships)
 
             flashpoint_ip_context = []
@@ -2167,7 +2203,7 @@ script:
             if torrent_result:
                 torrent_search_link = client.url + '/home/search/torrents?ip_address=' + ip
 
-                hr = '### Flashpoint IP address reputation for ' + ip + '\n'
+                hr = HR_TITLE + ip + '\n'
                 hr += 'Reputation: Suspicious\n\n'
                 hr += 'FP tools link to torrent search: [{}]({})\n'.format(torrent_search_link, torrent_search_link)
 
@@ -2197,7 +2233,7 @@ script:
                     forum_search_link = client.url + '/home/search/visits?exclude_tor_nodes_and_known_proxies=true' \
                                                      '&ip_address=' + ip
 
-                    hr = '### Flashpoint IP address reputation for ' + ip + '\n'
+                    hr = HR_TITLE + ip + '\n'
                     hr += 'Reputation: Suspicious\n\n'
                     hr += 'FP tools link to Forum-visit search: [{}]({})\n'.format(forum_search_link, forum_search_link)
 
@@ -2218,8 +2254,8 @@ script:
                         raw_response=resp,
                     )
                 else:
-                    hr = '### Flashpoint IP address reputation for ' + ip + '\n'
-                    hr += 'Reputation: Unknown\n\n'
+                    hr = HR_TITLE + ip + '\n'
+                    hr += REPUTATION_UNKNOWN
                     ec = {
                         'DBotScore': {
                             'Indicator': ip,
@@ -2239,7 +2275,7 @@ script:
 
     def domain_lookup_command(client, domain):
         """
-        'domain' command to lookup a particular domain
+        Lookup a particular domain.
 
         :param client: object of client class
         :param domain: domain
@@ -2256,22 +2292,22 @@ script:
         if len(indicators) > 0:
 
             hr = '### Flashpoint Domain reputation for ' + domain + '\n'
-            hr += 'Reputation: Malicious\n\n'
+            hr += REPUTATION_MALICIOUS
 
             events_details = parse_indicator_response(indicators)
 
-            hr += tableToMarkdown('Events in which this IOC observed', events_details['events'],
-                                  ['Date Observed (UTC)', 'Name', 'Tags'])
+            hr += tableToMarkdown(TABLE_TITLE, events_details['events'],
+                                  [DATE_OBSERVED, 'Name', 'Tags'])
 
             fp_link = client.url + '/home/search/iocs?group=indicator&ioc_type=domain&ioc_value=' + domain
-            hr += '\nAll events and details (fp-tools): [{}]({})\n'.format(fp_link, fp_link)
+            hr += ALL_DETAILS_LINK.format(fp_link, fp_link)
 
             dbot_score = Common.DBotScore(
                 indicator=domain,
                 indicator_type=DBotScoreType.DOMAIN,
                 integration_name=BRAND,
                 score=3,
-                malicious_description='Found in malicious indicators dataset'
+                malicious_description=MALICIOUS_DESCRIPTION
 
             )
             relationships = []
@@ -2284,7 +2320,7 @@ script:
                                                entity_a_type=FeedIndicatorType.Domain,
                                                entity_b=attack_id,
                                                entity_b_type=FeedIndicatorType.indicator_type_by_server_version(
-                                                   'STIX Attack Pattern'),
+                                                   STIX_ATTACK_PATTERN),
                                                brand=BRAND))
 
             domain_ioc = Common.Domain(domain=domain, dbot_score=dbot_score, relationships=relationships)
@@ -2318,7 +2354,7 @@ script:
 
         else:
             hr = '### Flashpoint Domain reputation for ' + domain + '\n'
-            hr += 'Reputation: Unknown\n\n'
+            hr += REPUTATION_UNKNOWN
             ec = {
                 'DBotScore': {
                     'Indicator': domain,
@@ -2338,7 +2374,7 @@ script:
 
     def filename_lookup_command(client, filename):
         """
-        'filename' command to lookup a particular filename
+        Lookup a particular filename.
 
         :param client: object of client class
         :param filename: filename
@@ -2355,16 +2391,16 @@ script:
         if len(indicators) > 0:
 
             hr = '### Flashpoint Filename reputation for ' + filename + '\n'
-            hr += 'Reputation: Malicious\n\n'
+            hr += REPUTATION_MALICIOUS
 
             events_details = parse_indicator_response(indicators)
 
-            hr += tableToMarkdown('Events in which this IOC observed', events_details['events'],
-                                  ['Date Observed (UTC)', 'Name', 'Tags'])
+            hr += tableToMarkdown(TABLE_TITLE, events_details['events'],
+                                  [DATE_OBSERVED, 'Name', 'Tags'])
 
-            fp_link = client.url + '/home/search/iocs?group=indicator&ioc_type=filename&ioc_value=' + urllib.parse.quote(
-                filename.replace('\\', '\\\\').encode('utf8'))
-            hr += '\nAll events and details (fp-tools): [{}]({})\n'.format(fp_link, fp_link)
+            fp_link = client.url + '/home/search/iocs?query_i18n=en&query=%22' + urllib.parse.quote(
+                filename.replace('\\', '\\\\').encode('utf8')) + '%22'
+            hr += ALL_DETAILS_LINK.format(fp_link, fp_link)
 
             dbot_context = {
                 'Indicator': filename,
@@ -2377,7 +2413,7 @@ script:
                 'Name': filename,
                 'Malicious': {
                     'Vendor': 'Flashpoint',
-                    'Description': 'Found in malicious indicators dataset'
+                    'Description': MALICIOUS_DESCRIPTION
                 }
 
             }
@@ -2408,7 +2444,7 @@ script:
 
         else:
             hr = '### Flashpoint Filename reputation for ' + filename + '\n'
-            hr += 'Reputation: Unknown\n\n'
+            hr += REPUTATION_UNKNOWN
             ec = {
                 'DBotScore': {
                     'Indicator': filename,
@@ -2423,7 +2459,7 @@ script:
 
     def url_lookup_command(client, url):
         """
-        'url' command to lookup a particular url
+        Lookup a particular url.
 
         :param client: object of client class
         :param url: url as indicator
@@ -2431,7 +2467,7 @@ script:
         """
         encoded_url = urllib.parse.quote(url.encode('utf8'))
 
-        query = r'+type:("url") +value.\*.keyword:"' + url + '"'
+        query = r'+type:("url") +value.\*:"' + url + '"'
         resp = client.http_request("GET", url_suffix=get_url_suffix(query))
 
         if isinstance(resp, list):
@@ -2442,22 +2478,22 @@ script:
         if len(indicators) > 0:
 
             hr = '### Flashpoint URL reputation for ' + url + '\n'
-            hr += 'Reputation: Malicious\n\n'
+            hr += REPUTATION_MALICIOUS
 
             events_details = parse_indicator_response(indicators)
 
-            hr += tableToMarkdown('Events in which this IOC observed', events_details['events'],
-                                  ['Date Observed (UTC)', 'Name', 'Tags'])
+            hr += tableToMarkdown(TABLE_TITLE, events_details['events'],
+                                  [DATE_OBSERVED, 'Name', 'Tags'])
 
-            fp_link = client.url + '/home/search/iocs?group=indicator&ioc_type=url&ioc_value=' + encoded_url
-            hr += '\nAll events and details (fp-tools): [{}]({})\n'.format(fp_link, fp_link)
+            fp_link = client.url + '/home/search/iocs?query_i18n=en&query=%22' + encoded_url + '%22'
+            hr += ALL_DETAILS_LINK.format(fp_link, fp_link)
 
             dbot_score = Common.DBotScore(
                 indicator=url,
                 indicator_type=DBotScoreType.URL,
                 integration_name=BRAND,
                 score=3,
-                malicious_description='Found in malicious indicators dataset'
+                malicious_description=MALICIOUS_DESCRIPTION
             )
 
             relationships = []
@@ -2470,7 +2506,7 @@ script:
                                                entity_a_type=FeedIndicatorType.URL,
                                                entity_b=attack_id,
                                                entity_b_type=FeedIndicatorType.indicator_type_by_server_version(
-                                                   'STIX Attack Pattern'),
+                                                   STIX_ATTACK_PATTERN),
                                                brand=BRAND))
 
             url_ioc = Common.URL(url=url, dbot_score=dbot_score, relationships=relationships)
@@ -2504,7 +2540,7 @@ script:
 
         else:
             hr = '### Flashpoint URL reputation for ' + url + '\n'
-            hr += 'Reputation: Unknown\n\n'
+            hr += REPUTATION_UNKNOWN
             ec = {
                 'DBotScore': {
                     'Indicator': url,
@@ -2524,56 +2560,53 @@ script:
 
     def file_lookup_command(client, file):
         """
-        'file' command to lookup a particular file hash (md5, sha1, sha256, sha512)
+        Lookup a particular file hash (md5, sha1, sha256, sha512).
 
         :param client: object of client class
         :param file: file as indicator
         :return: command output
         """
-
         query = r'+type:("md5", "sha1", "sha256", "sha512") +value.\*.keyword:"' + file + '"'
         resp = client.http_request("GET", url_suffix=get_url_suffix(query))
 
+        indicators = []
         if isinstance(resp, list):
             indicators = resp
-        else:
-            indicators = []
 
         if len(indicators) > 0:
             indicator_type = (indicators[0].get('Attribute', {}).get('type')).upper()
             hr = '### Flashpoint File reputation for ' + file + '\n'
-            hr += 'Reputation: Malicious\n\n'
+            hr += REPUTATION_MALICIOUS
 
             events_details = parse_indicator_response(indicators)
 
-            hr += tableToMarkdown('Events in which this IOC observed', events_details['events'],
-                                  ['Date Observed (UTC)', 'Name', 'Tags'])
+            hr += tableToMarkdown(TABLE_TITLE, events_details['events'],
+                                  [DATE_OBSERVED, 'Name', 'Tags'])
 
             fp_link = client.url + '/home/search/iocs?group=indicator&ioc_type=md5%2Csha1%2Csha256%2Csha512' \
                                    '&ioc_value=' + urllib.parse.quote(file.encode('utf8'))
 
-            hr += '\nAll events and details (fp-tools): [{}]({})\n'.format(fp_link, fp_link)
+            hr += ALL_DETAILS_LINK.format(fp_link, fp_link)
 
             dbot_score = Common.DBotScore(
                 indicator=file,
                 indicator_type=DBotScoreType.FILE,
                 integration_name=BRAND,
                 score=3,
-                malicious_description='Found in malicious indicators dataset'
+                malicious_description=MALICIOUS_DESCRIPTION
             )
 
             relationships = []
-            if client.create_relationships:
-                if events_details.get('attack_ids'):
-                    for attack_id in events_details.get('attack_ids'):
-                        relationships.append(
-                            EntityRelationship(name='indicator-of',
-                                               entity_a=file,
-                                               entity_a_type=DBotScoreType.FILE,
-                                               entity_b=attack_id,
-                                               entity_b_type=FeedIndicatorType.indicator_type_by_server_version(
-                                                   'STIX Attack Pattern'),
-                                               brand=BRAND))
+            if client.create_relationships and events_details.get('attack_ids'):
+                for attack_id in events_details.get('attack_ids'):
+                    relationships.append(
+                        EntityRelationship(name='indicator-of',
+                                           entity_a=file,
+                                           entity_a_type=DBotScoreType.FILE,
+                                           entity_b=attack_id,
+                                           entity_b_type=FeedIndicatorType.indicator_type_by_server_version(
+                                               STIX_ATTACK_PATTERN),
+                                           brand=BRAND))
 
             hash_type = get_hash_type(file)  # if file_hash found, has to be md5, sha1 or sha256
             if hash_type == 'md5':
@@ -2612,7 +2645,7 @@ script:
 
         else:
             hr = '### Flashpoint File reputation for ' + file + '\n'
-            hr += 'Reputation: Unknown\n\n'
+            hr += REPUTATION_UNKNOWN
             ec = {
                 'DBotScore':
                     [
@@ -2641,13 +2674,13 @@ script:
 
     def email_lookup_command(client, email):
         """
-        'email' command to lookup a particular email address or subject
+        Lookup a particular email address or subject.
 
         :param client: object of client class
         :param email: email address or subject
         :return: command output
         """
-        query = r'+type:("email-dst", "email-src", "email-src-display-name", "email-subject") +value.\*.keyword:"' \
+        query = r'+type:("email-dst", "email-src", "email-src-display-name", "email-subject", "email") +value.\*.keyword:"' \
                 + email + '" '
         resp = client.http_request("GET", url_suffix=get_url_suffix(query))
 
@@ -2659,22 +2692,22 @@ script:
         if len(indicators) > 0:
 
             hr = '### Flashpoint Email reputation for ' + email + '\n'
-            hr += 'Reputation: Malicious\n\n'
+            hr += REPUTATION_MALICIOUS
 
             events_details = parse_indicator_response(indicators)
 
-            hr += tableToMarkdown('Events in which this IOC observed', events_details['events'],
-                                  ['Date Observed (UTC)', 'Name', 'Tags'])
+            hr += tableToMarkdown(TABLE_TITLE, events_details['events'],
+                                  [DATE_OBSERVED, 'Name', 'Tags'])
 
-            fp_link = client.url + '/home/search/iocs?group=indicator&ioc_type=email-dst%2Cemail-src%2Cemail-src' \
-                                   '-display-name%2Cemail-subject&ioc_value=' + urllib.parse.quote(email.encode('utf8'))
-            hr += '\nAll events and details (fp-tools): [{}]({})\n'.format(fp_link, fp_link)
+            fp_link = \
+                client.url + '/home/search/iocs?query_i18n=en&query=%22' + urllib.parse.quote(email.encode('utf8')) + '%22'
+            hr += ALL_DETAILS_LINK.format(fp_link, fp_link)
 
             email_context = {
                 'Name': email,
                 'Malicious': {
                     'Vendor': 'Flashpoint',
-                    'Description': 'Found in malicious indicators dataset'
+                    'Description': MALICIOUS_DESCRIPTION
                 }
             }
 
@@ -2710,7 +2743,7 @@ script:
 
         else:
             hr = '### Flashpoint Email reputation for ' + email + '\n'
-            hr += 'Reputation: Unknown\n\n'
+            hr += REPUTATION_UNKNOWN
             ec = {
                 'DBotScore': {
                     'Indicator': email,
@@ -2725,7 +2758,7 @@ script:
 
     def common_lookup_command(client, indicator_value):
         """
-        Command to lookup all types of the indicators
+        Lookup all types of the indicators.
 
         :param client: object of client class
         :param indicator_value: value of the indicator to lookup
@@ -2735,11 +2768,11 @@ script:
 
         try:
             ipaddress.ip_address(indicator_value)
-            query = r'+type:("ip-src","ip-dst") +value.\*:"' + indicator_value + '"'
+            query = QUERY + indicator_value + '"'
         except ValueError:
             try:
                 ipaddress.IPv6Address(indicator_value)
-                query = r'+type:("ip-src","ip-dst") +value.\*:"' + indicator_value + '"'
+                query = QUERY + indicator_value + '"'
             except ValueError:
                 query = r'+value.\*.keyword:"' + indicator_value + '"'
 
@@ -2755,15 +2788,15 @@ script:
             indicator_type = indicators[0].get('Attribute', {}).get('type')
 
             hr = '### Flashpoint reputation for ' + indicator_value + '\n'
-            hr += 'Reputation: Malicious\n\n'
+            hr += REPUTATION_MALICIOUS
 
             events_details = parse_indicator_response(indicators)
 
-            hr += tableToMarkdown('Events in which this IOC observed', events_details['events'],
-                                  ['Date Observed (UTC)', 'Name', 'Tags'])
+            hr += tableToMarkdown(TABLE_TITLE, events_details['events'],
+                                  [DATE_OBSERVED, 'Name', 'Tags'])
 
-            fp_link = client.url + '/home/search/iocs?group=indicator&ioc_value=' + encoded_value
-            hr += '\nAll events and details (fp-tools): [{}]({})\n'.format(fp_link, fp_link)
+            fp_link = client.url + '/home/search/iocs?query_i18n=en&query=%22' + encoded_value + '%22'
+            hr += ALL_DETAILS_LINK.format(fp_link, fp_link)
 
             ec = {'DBotScore': {
                 'Indicator': indicator_value,
@@ -2776,20 +2809,21 @@ script:
 
         else:
             hr = '### Flashpoint reputation for ' + indicator_value + '\n'
-            hr += 'Reputation: Unknown\n\n'
+            hr += REPUTATION_UNKNOWN
             ec = {}
 
             return hr, ec, resp
 
 
-    def get_reports_command(client, report_search):
+    def get_reports_command(client, args):
         """
-        Get reports matching the given search term or query
+        Get reports matching the given search term or query.
 
         :param client: object of client class
-        :param report_search: search term or query
+        :param args: demisto args
         :return: command output
         """
+        report_search = args.get('report_search')
         url_suffix = '/reports/?query=' + urllib.parse.quote(report_search) + '&limit=5'
         resp = client.http_request("GET", url_suffix=url_suffix)
         reports = resp.get("data", [])
@@ -2834,14 +2868,15 @@ script:
         return hr, ec, resp
 
 
-    def get_report_by_id_command(client, report_id):
+    def get_report_by_id_command(client, args):
         """
-        Get specific report using its fpid
+        Get specific report using its fpid.
 
         :param client: object of client class
-        :param report_id: report's fpid
+        :param args: demisto args
         :return: command output
         """
+        report_id = args.get('report_id')
         url_suffix = '/reports/' + urllib.parse.quote(report_id.encode('utf-8'))
         resp = client.http_request("GET", url_suffix=url_suffix)
         report = resp
@@ -2876,7 +2911,7 @@ script:
                 timestamp_str = 'N/A'
 
             report_details = [{
-                'Title': '[{}]({})'.format(report.get('title', 'N/A'), report.get('platform_url', '')),
+                'Title': STRING_FORMAT.format(report.get('title', 'N/A'), report.get('platform_url', '')),
                 'Date Published (UTC)': timestamp_str,
                 'Summary': report.get('summary', 'N/A'),
                 'Tags': tag_string
@@ -2901,14 +2936,15 @@ script:
         return hr, ec, resp
 
 
-    def get_related_reports_command(client, report_id):
+    def get_related_reports_command(client, args):
         """
-        Get reports related to given report
+        Get reports related to given report.
 
-        :param report_id: report id which is related to other reports
+        :param args: demisto args
         :param client: object of client class
         :return: command output
         """
+        report_id = args.get('report_id')
         url_suffix = '/reports/' + urllib.parse.quote(report_id.encode('utf-8')) + '/related?limit=5'
         resp = client.http_request("GET", url_suffix=url_suffix)
         reports = resp.get("data", [])
@@ -2948,14 +2984,15 @@ script:
         return hr, ec, resp
 
 
-    def get_event_by_id_command(client, event_id):
+    def get_event_by_id_command(client, args):
         """
-        Get specific event using its event id
+        Get specific event using its event id.
 
         :param client: object of client class
-        :param event_id: event's fpid
+        :param args: demisto args
         :return: command output
         """
+        event_id = args.get('event_id')
         url_suffix = '/indicators/event/' + urllib.parse.quote(event_id.encode('utf-8'))
         resp = client.http_request("GET", url_suffix=url_suffix)
 
@@ -2977,13 +3014,13 @@ script:
                 event['Malware Description'] = resp[0].get('malware_description', '')
             events.append(event)
             hr += tableToMarkdown('Below are the detail found:', events,
-                                  ['Observed time (UTC)', 'Name', 'Tags', 'Malware Description'])
+                                  [TIME_OBSERVED, 'Name', 'Tags', 'Malware Description'])
 
             ec[FLASHPOINT_PATHS['Event']] = {
                 'EventId': events[0]['EventId'],
                 'Name': events[0]['Name'],
                 'Tags': events[0]['Tags'],
-                'ObservedTime': events[0]['Observed time (UTC)'],
+                'ObservedTime': events[0][TIME_OBSERVED],
                 'EventCreatorEmail': event['EventCreatorEmail'],
                 'Href': href
             }
@@ -2994,17 +3031,18 @@ script:
         return hr, ec, resp
 
 
-    def get_events_command(client, limit, report_fpid, attack_ids, time_period):
+    def get_events_command(client, args):
         """
-        Get events matching the given parameters
+        Get events matching the given parameters.
 
         :param client: object of client class
-        :param limit: limit of the records
-        :param report_fpid: report fpid to fetch events
-        :param attack_ids: array of attack ids of event
-        :param time_period: time period i.e 2M, 3d etc
+        :param args: demisto args
         :return: command output
         """
+        limit = args.get('limit', 10)
+        report_fpid = args.get('report_fpid')
+        attack_ids = args.get('attack_ids')
+        time_period = args.get('time_period')
         url_suffix = '/indicators/event?sort_timestamp=desc&'
         getvars = {}
         if limit:
@@ -3039,16 +3077,16 @@ script:
                 events.append(event)
 
             hr += tableToMarkdown('Below are the detail found:', events,
-                                  ['Observed time (UTC)', 'Name', 'Tags', 'Malware Description'])
+                                  [TIME_OBSERVED, 'Name', 'Tags', 'Malware Description'])
 
             fp_link = client.url + '/home/search/iocs'
             if attack_ids:
                 fp_link = fp_link + '?attack_ids=' + urllib.parse.quote(attack_ids)
-            hr += '\nAll events and details (fp-tools): [{}]({})\n'.format(fp_link, fp_link)
+            hr += ALL_DETAILS_LINK.format(fp_link, fp_link)
 
             # Replacing the dict keys for ec  to strip any white spaces and special charcters
             for event in events:
-                replace_key(event, 'ObservedTime', 'Observed time (UTC)')
+                replace_key(event, 'ObservedTime', TIME_OBSERVED)
                 replace_key(event, 'MalwareDescription', 'Malware Description')
 
             ec[FLASHPOINT_PATHS['Event']] = events
@@ -3059,14 +3097,15 @@ script:
         return hr, ec, resp
 
 
-    def get_forum_details_by_id_command(client, forum_id):
+    def get_forum_details_by_id_command(client, args):
         """
-        Get specific forum details by its fpid
+        Get specific forum details by its fpid.
 
         :param client: object of client class
-        :param forum_id: forum's fpid
+        :param args: demisto args
         :return: command output
         """
+        forum_id = args.get('forum_id')
         url_suffix = '/forums/sites/' + urllib.parse.quote(forum_id.encode('utf-8'))
         resp = client.http_request("GET", url_suffix=url_suffix)
 
@@ -3093,14 +3132,15 @@ script:
         return hr, ec, resp
 
 
-    def get_room_details_by_id_command(client, room_id):
+    def get_room_details_by_id_command(client, args):
         """
-        Get room details by its room id
+        Get room details by its room id.
 
         :param client: object of client class
-        :param room_id: room's fpid
+        :param args: demisto args
         :return: command output
         """
+        room_id = args.get('room_id')
         url_suffix = '/forums/rooms/' + urllib.parse.quote(room_id.encode('utf-8')) + '?embed=forum'
         resp = client.http_request("GET", url_suffix=url_suffix)
 
@@ -3113,12 +3153,12 @@ script:
             title = resp.get('title', '')
 
             room_details = {
-                'Forum Name': forum_name,
+                FORUM_NAME: forum_name,
                 'Title': title,
                 'URL': url
             }
 
-            hr += tableToMarkdown('Below are the detail found:', room_details, ['Forum Name', 'Title', 'URL'])
+            hr += tableToMarkdown('Below are the detail found:', room_details, [FORUM_NAME, 'Title', 'URL'])
             hr += '\n'
 
             ec[FLASHPOINT_PATHS['Room']] = {
@@ -3134,14 +3174,15 @@ script:
         return hr, ec, resp
 
 
-    def get_user_details_by_id_command(client, user_id):
+    def get_user_details_by_id_command(client, args):
         """
-        Get user details by user's fpid
+        Get user details by user's fpid.
 
         :param client: object of client class
-        :param user_id: user's fpid
+        :param args: demisto args
         :return: command output
         """
+        user_id = args.get('user_id')
         url_suffix = '/forums/users/' + urllib.parse.quote(user_id.encode('utf-8')) + '?embed=forum'
         resp = client.http_request("GET", url_suffix=url_suffix)
 
@@ -3154,12 +3195,12 @@ script:
             name = resp.get('name', '')
 
             user_details = {
-                'Forum Name': forum_name,
+                FORUM_NAME: forum_name,
                 'Name': name,
                 'URL': url
             }
 
-            hr += tableToMarkdown('Below are the detail found:', user_details, ['Forum Name', 'Name', 'URL'])
+            hr += tableToMarkdown('Below are the detail found:', user_details, [FORUM_NAME, 'Name', 'URL'])
             hr += '\n'
 
             ec[FLASHPOINT_PATHS['User']] = {
@@ -3176,14 +3217,15 @@ script:
         return hr, ec, resp
 
 
-    def get_post_details_by_id_command(client, post_id):
+    def get_post_details_by_id_command(client, args):
         """
-        Get forum post details by post's fpid
+        Get forum post details by post's fpid.
 
         :param client: object of client class
-        :param post_id: fpid of post
+        :param args: demisto args
         :return: command output
         """
+        post_id = args.get('post_id')
         url_suffix = '/forums/posts/' + urllib.parse.quote(
             post_id.encode('utf-8')) + '?body_html=stripped&embed=author,room,forum,thread'
         resp = client.http_request("GET", url_suffix=url_suffix)
@@ -3202,16 +3244,16 @@ script:
 
             post_details = {
                 'Published at': published_at,
-                'Forum Name': forum_name,
-                'Room Title': room_title,
-                'Author Name': author_name,
-                'Thread Title': thread_title,
+                FORUM_NAME: forum_name,
+                ROOM_TITLE: room_title,
+                AUTHOR_NAME: author_name,
+                THREAD_TITLE: thread_title,
                 'URL': url,
                 'Platform url': "[{}]({})".format(platform_url, platform_url)
             }
 
             hr += tableToMarkdown('Below are the detail found:', post_details,
-                                  ['Published at', 'Forum Name', 'Room Title', 'Author Name', 'Thread Title', 'URL',
+                                  ['Published at', FORUM_NAME, ROOM_TITLE, AUTHOR_NAME, THREAD_TITLE, 'URL',
                                    'Platform url'])
             hr += '\n'
             post_ec = get_post_context(resp)
@@ -3223,14 +3265,15 @@ script:
         return hr, ec, resp
 
 
-    def get_forum_sites_command(client, site_search):
+    def get_forum_sites_command(client, args):
         """
-        Get forum sites matching search keyword or query
+        Get forum sites matching search keyword or query.
 
         :param client: object of client class
-        :param site_search: site's keyword or query
+        :param args: demisto args
         :return: command output
         """
+        site_search = args.get('site_search')
         url_suffix = '/forums/sites/?query=' + urllib.parse.quote(site_search.encode('utf8')) + '&limit=10'
         resp = client.http_request("GET", url_suffix=url_suffix)
         sites = resp.get("data", [])
@@ -3266,14 +3309,15 @@ script:
         return hr, ec, resp
 
 
-    def get_forum_posts_command(client, post_search):
+    def get_forum_posts_command(client, args):
         """
-        Get forum posts details matching given keyword or query
+        Get forum posts details matching given keyword or query.
 
         :param client: object of client class
-        :param post_search: keyword or query for search in posts
+        :param args: demisto args
         :return: command output
         """
+        post_search = args.get('post_search')
         url_suffix = '/forums/posts/?query=' + urllib.parse.quote(
             post_search.encode('utf8')) + '&limit=10&embed=forum,room,author,thread'
         resp = client.http_request("GET", url_suffix=url_suffix)
@@ -3292,16 +3336,16 @@ script:
                 post_ec = get_post_context(post)
                 post_entry_context.append(post_ec)
                 post_detail = {
-                    'Forum Name': post['embed']['forum']['name'],
-                    'Thread Title': thread_title[:30] + '....',
-                    'Room Title': post['embed']['room']['title'],
-                    'Author Name': post['embed']['author']['name'],
-                    'Platform URL': '[{}]({})'.format(platform_url[:30] + '...', platform_url)
+                    FORUM_NAME: post['embed']['forum']['name'],
+                    THREAD_TITLE: thread_title[:30] + '....',
+                    ROOM_TITLE: post['embed']['room']['title'],
+                    AUTHOR_NAME: post['embed']['author']['name'],
+                    'Platform URL': STRING_FORMAT.format(platform_url[:30] + '...', platform_url)
                 }
                 post_details.append(post_detail)
 
             hr += tableToMarkdown('Below are the detail found:', post_details,
-                                  ['Forum Name', 'Thread Title', 'Room Title', 'Author Name', 'Platform URL'])
+                                  [FORUM_NAME, THREAD_TITLE, ROOM_TITLE, AUTHOR_NAME, 'Platform URL'])
             hr += '\n'
 
             fp_url = client.url + '/home/search/forums?query=' + urllib.parse.quote(post_search.encode('utf8'))
@@ -3411,7 +3455,7 @@ script:
 
     def fetch_incidents(client: Client, last_run: dict, params: dict) -> Tuple[dict, list]:
         """
-        Fetches incidents from Flashpoint.
+        Fetch incidents from Flashpoint.
 
         :param client: Client object
         :param last_run: Last run returned by function demisto.getLastRun
@@ -3444,9 +3488,7 @@ script:
 
 
     def main():
-        """
-        PARSE AND VALIDATE INTEGRATION PARAMS
-        """
+        """Parse and validate integration params."""
         params = demisto.params()
         api_key = get_apikey()
         url = params["url"]
@@ -3454,22 +3496,29 @@ script:
         create_relationships = argToBoolean(params.get('create_relationships', True))
         proxies = handle_proxy()
 
-        args = demisto.args()
-        nargs = {}
-        for arg in args:
-            if isinstance(args[arg], str):
-                nargs[arg] = args[arg].strip()
-            else:
-                nargs[arg] = args[arg]
-        args = nargs
+        args = remove_space_from_args(demisto.args())
 
         command = demisto.command()
         try:
             client = Client(api_key, url, verify_certificate, proxies, create_relationships)
 
+            COMMAND_TO_FUNCTION = {
+                'flashpoint-search-intelligence-reports': get_reports_command,
+                'flashpoint-get-single-intelligence-report': get_report_by_id_command,
+                'flashpoint-get-related-reports': get_related_reports_command,
+                'flashpoint-get-single-event': get_event_by_id_command,
+                'flashpoint-get-events': get_events_command,
+                'flashpoint-get-forum-details': get_forum_details_by_id_command,
+                'flashpoint-get-forum-room-details': get_room_details_by_id_command,
+                'flashpoint-get-forum-user-details': get_user_details_by_id_command,
+                'flashpoint-get-forum-post-details': get_post_details_by_id_command,
+                'flashpoint-search-forum-sites': get_forum_sites_command,
+                'flashpoint-search-forum-posts': get_forum_posts_command,
+            }
+
             if demisto.command() == 'test-module':
                 # This is the call made when pressing the integration Test button.
-                test_module(client, params)    # NOSONAR
+                test_module(client, params)  # NOSONAR
                 demisto.results('ok')
 
             elif command == 'fetch-incidents':
@@ -3479,86 +3528,44 @@ script:
                 demisto.incidents(incidents)
 
             elif demisto.command() == 'ip':
-                ip = demisto.args()['ip']
+                ip = args.get('ip')
                 reputation_operation_command(client, ip, ip_lookup_command, True)
 
             elif demisto.command() == 'domain':
-                domain = demisto.args()['domain']
+                domain = args.get('domain')
                 reputation_operation_command(client, domain, domain_lookup_command, True)
 
             elif demisto.command() == 'filename':
-                filename = demisto.args()['filename']
+                filename = args.get('filename')
                 reputation_operation_command(client, filename, filename_lookup_command)
 
             elif demisto.command() == 'url':
-                url = demisto.args()['url']
+                url = args.get('url')
                 reputation_operation_command(client, url, url_lookup_command, True)
 
             elif demisto.command() == 'file':
-                file = demisto.args()['file']
+                file = args.get('file')
                 reputation_operation_command(client, file, file_lookup_command, True)
 
             elif demisto.command() == 'email':
-                email = demisto.args()['email']
+                email = args.get('email')
                 reputation_operation_command(client, email, email_lookup_command)
 
             elif demisto.command() == 'flashpoint-common-lookup':
-                indicator_value = demisto.args()['indicator']
+                indicator_value = args.get('indicator')
                 reputation_operation_command(client, indicator_value, common_lookup_command)
-
-            elif demisto.command() == 'flashpoint-search-intelligence-reports':
-                report_search = demisto.args()['report_search']
-                return_outputs(*get_reports_command(client, report_search))
-
-            elif demisto.command() == 'flashpoint-get-single-intelligence-report':
-                report_id = demisto.args()['report_id']
-                return_outputs(*get_report_by_id_command(client, report_id))
-
-            elif demisto.command() == 'flashpoint-get-related-reports':
-                report_id = demisto.args()['report_id']
-                return_outputs(*get_related_reports_command(client, report_id))
-
-            elif demisto.command() == 'flashpoint-get-single-event':
-                event_id = demisto.args()['event_id']
-                return_outputs(*get_event_by_id_command(client, event_id))
-
-            elif demisto.command() == 'flashpoint-get-events':
-                args = demisto.args()
-                limit = args.get('limit', 10)
-                report_fpid = args.get('report_fpid')
-                attack_ids = args.get('attack_ids')
-                time_period = args.get('time_period')
-                return_outputs(*get_events_command(client, limit, report_fpid, attack_ids, time_period))
-
-            elif demisto.command() == 'flashpoint-get-forum-details':
-                forum_id = demisto.args()['forum_id']
-                return_outputs(*get_forum_details_by_id_command(client, forum_id))
-
-            elif demisto.command() == 'flashpoint-get-forum-room-details':
-                room_id = demisto.args()['room_id']
-                return_outputs(*get_room_details_by_id_command(client, room_id))
-
-            elif demisto.command() == 'flashpoint-get-forum-user-details':
-                user_id = demisto.args()['user_id']
-                return_outputs(*get_user_details_by_id_command(client, user_id))
-
-            elif demisto.command() == 'flashpoint-get-forum-post-details':
-                post_id = demisto.args()['post_id']
-                return_outputs(*get_post_details_by_id_command(client, post_id))
-
-            elif demisto.command() == 'flashpoint-search-forum-sites':
-                site_search = demisto.args()['site_search']
-                return_outputs(*get_forum_sites_command(client, site_search))
-
-            elif demisto.command() == 'flashpoint-search-forum-posts':
-                post_search = demisto.args()['post_search']
-                return_outputs(*get_forum_posts_command(client, post_search))
 
             elif command == 'flashpoint-alert-list':
                 return_results(flashpoint_alert_list_command(client, args))
 
             elif command == 'flashpoint-compromised-credentials-list':
                 return_results(flashpoint_compromised_credentials_list_command(client, args))
+
+            elif COMMAND_TO_FUNCTION.get(demisto.command()):
+                return_outputs(*COMMAND_TO_FUNCTION[demisto.command()](client, args))
+
+            else:
+                raise NotImplementedError(f'Command {demisto.command()} is not implemented')
 
         except requests.exceptions.ConnectionError as c:
             """ Caused mostly when URL is altered."""
