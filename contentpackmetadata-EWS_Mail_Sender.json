@@ -50,20 +50,20 @@
 		"xsiamreport": null
 	},
 	"created": "2020-11-09T18:50:16Z",
-	"currentVersion": "1.1.8",
+	"currentVersion": "1.1.10",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.6",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Exchange Web Services and Office 365 Email Sender. Note: this Integration supports Office 365 basic authentication only. If you are using Office 365, we recommend using the EWS O365 Integration instead, which supports modern authentication (oauth2).",
-	"downloads": 5147,
+	"downloads": 6481,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -80,7 +80,7 @@
 			"name": "EWS Mail Sender"
 		}
 	],
-	"itemVersion": "1.1.8",
+	"itemVersion": "1.1.10",
 	"keywords": [],
 	"legacy": true,
 	"name": "EWS Mail Sender",
@@ -106,9 +106,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-05-09T21:24:54Z",
+	"updated": "2022-06-02T10:07:17Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2909779",
+	"versionInfo": "3263593",
 	"videos": []
 }
