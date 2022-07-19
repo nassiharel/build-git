@@ -1,0 +1,433 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "ServiceNow Ticket",
+	"definitionId": "",
+	"description": "Maps outgoing ServiceNow incident Fields.",
+	"feed": false,
+	"fromServerVersion": "6.0.0",
+	"id": "ServiceNow-outgoing-mapper",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "2.3.15",
+	"keyTypeMap": null,
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"ServiceNow SIR Incident": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"attack_vector": {
+					"simple": "servicenowattackvector"
+				},
+				"business_criticality": {
+					"complex": {
+						"filters": [],
+						"root": "servicenowbusinessimpact",
+						"transformers": [
+							{
+								"args": {
+									"input_values": {
+										"value": {
+											"simple": "1 - Critical,2 - High,3 - Non-Critical"
+										}
+									},
+									"mapped_values": {
+										"value": {
+											"simple": "1,2,3"
+										}
+									}
+								},
+								"operator": "MapValuesTransformer"
+							}
+						]
+					}
+				},
+				"close_notes": {
+					"simple": "servicenowresolutionnotes"
+				},
+				"description": {
+					"simple": "details"
+				},
+				"impact": {
+					"complex": {
+						"filters": [],
+						"root": "servicenowimpact",
+						"transformers": [
+							{
+								"args": {
+									"input_values": {
+										"value": {
+											"simple": "3 - Low,2 - Medium,1 - High"
+										}
+									},
+									"mapped_values": {
+										"value": {
+											"simple": "3,2,1"
+										}
+									}
+								},
+								"operator": "MapValuesTransformer"
+							}
+						]
+					}
+				},
+				"priority": {
+					"complex": {
+						"filters": [],
+						"root": "servicenowpriority",
+						"transformers": [
+							{
+								"args": {
+									"input_values": {
+										"value": {
+											"simple": "1 - Critical,2 - High,3 - Moderate,4 - Low,5 - Planning"
+										}
+									},
+									"mapped_values": {
+										"value": {
+											"simple": "1,2,3,4,5"
+										}
+									}
+								},
+								"operator": "MapValuesTransformer"
+							}
+						]
+					}
+				},
+				"risk_score": {
+					"complex": {
+						"filters": [],
+						"root": "severity",
+						"transformers": [
+							{
+								"args": {
+									"by": {
+										"value": {
+											"simple": "20"
+										}
+									}
+								},
+								"operator": "multiply"
+							},
+							{
+								"args": {
+									"by": {
+										"value": {
+											"simple": "1"
+										}
+									}
+								},
+								"operator": "addition"
+							}
+						]
+					}
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "servicenowseverity",
+						"transformers": [
+							{
+								"args": {
+									"input_values": {
+										"value": {
+											"simple": "1 - High,2 - Medium,3 - Low"
+										}
+									},
+									"mapped_values": {
+										"value": {
+											"simple": "1,2,3"
+										}
+									}
+								},
+								"operator": "MapValuesTransformer"
+							}
+						]
+					}
+				},
+				"short_description": {
+					"simple": "name"
+				},
+				"sla_due": {
+					"complex": {
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "remediationsla.dueDate"
+										}
+									},
+									"operator": "isAfter",
+									"right": {
+										"value": {
+											"simple": "0001-01-01T00:00:00Z"
+										}
+									}
+								}
+							]
+						],
+						"root": "remediationsla.dueDate",
+						"transformers": []
+					}
+				},
+				"state": {
+					"complex": {
+						"filters": [],
+						"root": "servicenowsirstate",
+						"transformers": [
+							{
+								"args": {
+									"input_values": {
+										"value": {
+											"simple": "Closed,Analysis,Contain,Eradicate,Recover,Draft,Review,Cancelled"
+										}
+									},
+									"mapped_values": {
+										"value": {
+											"simple": "3,16,17,18,20,10,100,7"
+										}
+									}
+								},
+								"operator": "MapValuesTransformer"
+							}
+						]
+					}
+				},
+				"urgency": {
+					"complex": {
+						"filters": [],
+						"root": "servicenowurgency",
+						"transformers": [
+							{
+								"args": {
+									"input_values": {
+										"value": {
+											"simple": "1 - High,2 - Medium,3 - Low"
+										}
+									},
+									"mapped_values": {
+										"value": {
+											"simple": "1,2,3"
+										}
+									}
+								},
+								"operator": "MapValuesTransformer"
+							}
+						]
+					}
+				}
+			}
+		},
+		"ServiceNow Ticket": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"category": {
+					"simple": "servicenowcategory"
+				},
+				"closed_at": {
+					"complex": {
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "closed"
+										}
+									},
+									"operator": "isAfter",
+									"right": {
+										"value": {
+											"simple": "0001-01-01T00:00:00Z"
+										}
+									}
+								}
+							]
+						],
+						"root": "closed",
+						"transformers": []
+					}
+				},
+				"description": {
+					"simple": "details"
+				},
+				"escalation": {
+					"simple": "servicenowescalation"
+				},
+				"impact": {
+					"simple": "servicenowimpact"
+				},
+				"notify": {
+					"simple": "servicenownotify"
+				},
+				"priority": {
+					"simple": "servicenowpriority"
+				},
+				"resolved_at": {
+					"complex": {
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "closed"
+										}
+									},
+									"operator": "isAfter",
+									"right": {
+										"value": {
+											"simple": "0001-01-01T00:00:00Z"
+										}
+									}
+								}
+							]
+						],
+						"root": "closed",
+						"transformers": []
+					}
+				},
+				"severity": {
+					"complex": {
+						"filters": [],
+						"root": "severity",
+						"transformers": [
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "3 - Low"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "0"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "3 - Low"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "0.5"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "3 - Low"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "1"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "2 - Medium"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "2"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "1 - High"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "3"
+										}
+									}
+								},
+								"operator": "replace"
+							},
+							{
+								"args": {
+									"limit": {},
+									"replaceWith": {
+										"value": {
+											"simple": "1 - High"
+										}
+									},
+									"toReplace": {
+										"value": {
+											"simple": "4"
+										}
+									}
+								},
+								"operator": "replace"
+							}
+						]
+					}
+				},
+				"short_description": {
+					"simple": "name"
+				},
+				"sla_due": {
+					"simple": "remediationsla.dueDate"
+				},
+				"state": {
+					"simple": "servicenowstate"
+				},
+				"subcategory": {
+					"simple": "subcategory"
+				},
+				"urgency": {
+					"simple": "servicenowurgency"
+				},
+				"work_start": {
+					"simple": "timetoassignment.startDate"
+				}
+			}
+		}
+	},
+	"name": "ServiceNow - Outgoing Mapper",
+	"nameRaw": "ServiceNow - Outgoing Mapper",
+	"packID": "ServiceNow",
+	"packName": "ServiceNow",
+	"packPropagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": true,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-outgoing",
+	"unclassifiedCases": null,
+	"version": -1
+}
