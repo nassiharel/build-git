@@ -1,0 +1,40 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#F8E7A5",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Splunk Notable Generic",
+	"itemVersion": "2.4.4",
+	"layout": "Splunk Notable Generic",
+	"locked": false,
+	"name": "Splunk Notable Generic",
+	"onChangeRepAlg": 0,
+	"packID": "SplunkPy",
+	"packName": "Splunk",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "Splunk Generic",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 2,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
