@@ -1,0 +1,52 @@
+comment: Show system information
+commonfields:
+  id: D2Hardware
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.5
+    packID: D2
+    packName: D2
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+engineinfo: {}
+mainengineinfo: {}
+name: D2Hardware
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |2
+
+  function hardwareLinux() {
+      packOutput('lshw');
+  }
+  function hardwareDarwin(){
+      packOutput('system_profiler');
+  }
+  function hardwareWindows() {
+      pack(wmi_query('select Name,FileSystem, FreeSpace,Size,VolumeName,VolumeSerialNumber from Win32_LogicalDisk'),'table');
+      pack(wmi_query('select Description, Manufacturer, Name, SMBIOSBIOSVersion,Version from Win32_Bios'),'table');
+      pack(wmi_query('select Version, SerialNumber,SocketDesignation, Name, Description, Manufacturer, AddressWidth from Win32_Processor'),'table');
+      pack(wmi_query('select Manufacturer, Model, SystemType, UserName from Win32_ComputerSystem'),'table');
+  }
+  try {
+      if (env.OS=== "windows") {
+          hardwareWindows();
+      } else if (env.OS==="linux") {
+          hardwareLinux();
+      } else {
+          hardwareDarwin();
+      }
+  } catch (ex) {
+      pack("Error: " + ex);
+  }
+scripttarget: 1
+system: true
+tags:
+- agent
+- endpoint
+type: javascript
