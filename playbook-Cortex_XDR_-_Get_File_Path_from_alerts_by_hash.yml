@@ -1,0 +1,293 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 4.8.1
+    packID: CortexXDR
+    packName: Palo Alto Networks Cortex XDR - Investigation and Response
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  This playbook is part of the 'Malware Investigation And Response' pack. For more information, refer to https://xsoar.pan.dev/docs/reference/packs/malware-investigation-and-response.
+  This playbook assists in retrieving file paths from the Cortex XDR incident by hash.
+id: Cortex XDR - Get File Path from alerts by hash
+inputs:
+- description: List of hashes to run against.
+  key: NonFoundHashes
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Cortex XDR - Get File Path from alerts by hash
+outputs:
+- contextPath: fileRetrieval
+  description: The path for the requested file.
+  type: unknown
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 247785bd-9b66-428e-8189-70b0f13d0fbd
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 247785bd-9b66-428e-8189-70b0f13d0fbd
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: fileRetrieval.path
+      value:
+        complex:
+          accessor: actor_process_image_path
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.action_process_image_sha256
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.NonFoundHashes
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.endpoint_id
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: incident.deviceid
+          root: PaloAltoNetworksXDR.Incident.alerts
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the permissions section here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 8cbdbc4c-c7d0-4fe7-8175-bc443d0af042
+      iscommand: false
+      name: Set Actor Process Path for this hash
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 8cbdbc4c-c7d0-4fe7-8175-bc443d0af042
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 190
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: fileRetrieval.path
+      value:
+        complex:
+          accessor: action_file_path
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.action_file_sha256
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.NonFoundHashes
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.endpoint_id
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: incident.deviceid
+          root: PaloAltoNetworksXDR.Incident.alerts
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the permissions section here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 5e7d4423-7ec7-4dd1-8b99-a3c6a7081e16
+      iscommand: false
+      name: Set Target Process Path for this hash
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 5e7d4423-7ec7-4dd1-8b99-a3c6a7081e16
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 360
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: fileRetrieval.path
+      value:
+        complex:
+          accessor: causality_actor_process_image_path
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.causality_actor_process_image_sha256
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.NonFoundHashes
+          - - left:
+                iscontext: true
+                value:
+                  simple: PaloAltoNetworksXDR.Incident.alerts.endpoint_id
+              operator: isEqualString
+              right:
+                iscontext: true
+                value:
+                  simple: incident.deviceid
+          root: PaloAltoNetworksXDR.Incident.alerts
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Set a value in context under the key you entered. If no value is entered, the script doesn't do anything.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the  permissions section here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: b3a00d09-38eb-4954-8d4f-80c81480a892
+      iscommand: false
+      name: Set Actor Process Path for this hash
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: b3a00d09-38eb-4954-8d4f-80c81480a892
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 530
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a9194954-c6f4-4a5c-8f8b-dfb9ee94b7cc
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: a9194954-c6f4-4a5c-8f8b-dfb9ee94b7cc
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 720
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 735,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
