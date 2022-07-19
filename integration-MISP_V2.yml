@@ -56,7 +56,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.5
+    itemVersion: 2.1.9
     packID: MISP
     packName: MISP
     packPropagationLabels:
