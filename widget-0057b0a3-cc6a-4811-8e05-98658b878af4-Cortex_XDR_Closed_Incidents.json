@@ -20,7 +20,7 @@
 	"fromServerVersion": "6.0.0",
 	"id": "0057b0a3-cc6a-4811-8e05-98658b878af4",
 	"isPredefined": true,
-	"itemVersion": "4.4.0",
+	"itemVersion": "4.8.1",
 	"name": "Cortex XDR Closed Incidents",
 	"packID": "CortexXDR",
 	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
