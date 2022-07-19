@@ -48,7 +48,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.0.14
+    itemVersion: 2.0.16
     packID: GoogleSafeBrowsing
     packName: Google Safe Browsing
     packPropagationLabels:
@@ -114,7 +114,7 @@ script:
     - contextPath: GoogleSafeBrowsing.URL.threatEntryType
       description: The URL threat entry type.
       type: string
-  dockerimage: demisto/python3:3.10.4.29342
+  dockerimage: demisto/python3:3.10.5.31928
   runonce: false
   script: |
     register_module_line('Google Safe Browsing v2', 'start', __line__())
@@ -123,7 +123,6 @@ script:
 
 
     import requests
-    import traceback
     from typing import Dict, Any
 
     # Disable insecure warnings
@@ -378,7 +377,6 @@ script:
 
         # Log exceptions and return errors
         except Exception as e:
-            demisto.error(traceback.format_exc())  # print the traceback
             return_error(f'Failed to execute {demisto.command()} command.\nError:\n{str(e)}')
 
 
