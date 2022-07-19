@@ -83,16 +83,20 @@
 		"parsingrule": null,
 		"playbook": [
 			{
-				"description": "Detonate a webpage or remote file using the WildFire integration. This playbook returns relevant reports to the War Room and file reputations to the context data.\nThe detonation supports the following file types:\nAPK, JAR, DOC, DOCX, RTF, OOXLS, XLSX, PPT, PPTX, XML, PE32, PDF, DMG, PKG, RAR, 7Z, JS.",
-				"name": "Detonate URL - WildFire v2.1"
+				"description": "Detonate one or more files using the Wildfire integration. This playbook returns relevant reports to the War Room and file reputations to the context data.\nThe detonation supports the following file types -\nAPK, JAR, DOC, DOCX, RTF, XLS, XLSX, PPT, PPTX, XML, PE32, PDF, DMG, PKG, RAR, 7Z",
+				"name": "Detonate File From URL - WildFire"
 			},
 			{
 				"description": "Detonate a webpage or a remote file using the WildFire integration. This playbook returns relevant reports to the War Room and file reputations to the context data.\nThe detonation supports the following file types -\nAPK, JAR, DOC, DOCX, RTF, OOXLS, XLSX, PPT, PPTX, XML, PE32, PDF, DMG, PKG, RAR, 7Z",
 				"name": "Detonate URL - WildFire-v2"
 			},
 			{
-				"description": "Detonate one or more files using the Wildfire integration. This playbook returns relevant reports to the War Room and file reputations to the context data.\nThe detonation supports the following file types -\nAPK, JAR, DOC, DOCX, RTF, XLS, XLSX, PPT, PPTX, XML, PE32, PDF, DMG, PKG, RAR, 7Z",
-				"name": "Detonate File From URL - WildFire"
+				"description": "Detonate a webpage or remote file using the WildFire integration. This playbook returns relevant reports to the War Room and file reputations to the context data.\nThe detonation supports the following file types:\nAPK, JAR, DOC, DOCX, RTF, OOXLS, XLSX, PPT, PPTX, XML, PE32, PDF, DMG, PKG, RAR, 7Z, JS.",
+				"name": "Detonate URL - WildFire v2.1"
+			},
+			{
+				"description": "This playbook uploads, detonates, and analyzes files for the Wildfire sandbox.\n",
+				"name": "Wildfire Detonate and Analyze File"
 			},
 			{
 				"description": "Detonate one or more files using the Wildfire integration. This playbook\nreturns relevant reports to the War Room and file reputations to the context data.\nThe detonation supports the following file types -\nAPK, JAR, DOC, DOCX, RTF, XLS, XLSX, PPT, PPTX, OOXML, PE32, PE, PDF, DMG, PKG, RAR, 7Z, JS, ELF, HTA, LNK, VBS, PS1, PERL, PYTHON, SHELL.",
@@ -107,34 +111,34 @@
 		"xsiamreport": null
 	},
 	"created": "2020-06-30T20:31:37Z",
-	"currentVersion": "2.1.2",
+	"currentVersion": "2.1.5",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.30.6",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.1.21",
+			"minVersion": "2.2.9",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.6.60",
+			"minVersion": "1.7.14",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Perform malware dynamic analysis",
-	"downloads": 10071,
+	"downloads": 12316,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -155,7 +159,7 @@
 			"name": "Palo Alto Networks WildFire v2"
 		}
 	],
-	"itemVersion": "2.1.2",
+	"itemVersion": "2.1.5",
 	"keywords": [],
 	"legacy": true,
 	"name": "Palo Alto Networks WildFire",
@@ -181,9 +185,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-05-12T21:22:18Z",
+	"updated": "2022-06-26T22:37:19Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "2912810",
+	"versionInfo": "3263593",
 	"videos": []
 }
