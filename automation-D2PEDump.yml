@@ -1,0 +1,38 @@
+args:
+- default: true
+  description: Path to the PE file to analyze, relative to /tmp
+  name: file
+  required: true
+comment: Execute PE Dump on a file that is under /tmp somewhere. Used internally by
+  StaticAnalyze
+commonfields:
+  id: D2PEDump
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.5
+    packID: D2
+    packName: D2
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+engineinfo: {}
+mainengineinfo: {}
+name: D2PEDump
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  var files = files('/tmp', true, false, args.file);
+  if (files && files.length > 0) {
+      packOutput('pedump ' + files[0].Path);
+  }
+scripttarget: 1
+system: true
+tags:
+- executable
+- agent
+type: javascript
