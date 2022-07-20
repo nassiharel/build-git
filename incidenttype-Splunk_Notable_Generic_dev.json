@@ -1,0 +1,39 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#F8E7A5",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "Splunk Notable Generic_dev",
+	"itemVersion": "",
+	"layout": "7a4f996f-e096-48b8-8f2e-e5981a3c9034",
+	"locked": false,
+	"name": "Splunk Notable Generic_dev",
+	"onChangeRepAlg": 0,
+	"packID": "",
+	"packName": "",
+	"playbookId": "67de7158-5ac6-4052-8f55-276331499ba5",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 2,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
