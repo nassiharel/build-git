@@ -1,0 +1,36 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "f9b218e2-9a0b-4c40-89f6-bc64e516a6ef",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {
+		"Malware": "zan_type"
+	},
+	"locked": false,
+	"logicalVersion": 3,
+	"mapping": null,
+	"name": "zan_class",
+	"nameRaw": "zan_class",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
