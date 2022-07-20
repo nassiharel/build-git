@@ -1,0 +1,1245 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: Checks the domain-squatting flow, with an attached EML file. The EML
+  file should contain some indicators. some of which should be detected as at least
+  suspicious. The email authenticity should get a score of "Fail". Those results together
+  with the domain-squatting, should eventually cause the incident to get a severity
+  of 3.
+id: Phishing v3 - DomainSquatting+EML+MaliciousIndicators - Test
+inputs:
+- description: ""
+  key: EventGeneratorInstanceName
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: genericwebhook1
+name: Phishing v3 - DomainSquatting+EML+MaliciousIndicators - Test
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c1926e37-d32c-425e-8111-82718a9ebaff
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: c1926e37-d32c-425e-8111-82718a9ebaff
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "39"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ba6d18db-7ddd-4644-8596-300d522c3e43
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: ba6d18db-7ddd-4644-8596-300d522c3e43
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 175
+        }
+      }
+  "6":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+    note: false
+    quietmode: 2
+    scriptarguments:
+      id:
+        complex:
+          root: CreatedIncidentID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.investigate
+      id: 10f6b1a4-d4fe-451d-8f9d-723ef0fa75c2
+      iscommand: true
+      name: Investigate the incident
+      script: Builtin|||investigate
+      type: regular
+      version: -1
+    taskid: 10f6b1a4-d4fe-451d-8f9d-723ef0fa75c2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1100
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Indicator
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: sr-test02@demistodev.ormicrosoft.com
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Score
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: "2"
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: DBotScore.Vendor
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: DomainSquatting
+                root: DBotScore
+          operator: isNotEmpty
+      label: OK
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "14"
+      OK:
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cf312439-cd18-4143-8839-5945273212e5
+      iscommand: false
+      name: Did the domain-squatting check work?
+      type: condition
+      version: -1
+    taskid: cf312439-cd18-4143-8839-5945273212e5
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1590,
+          "y": 2270
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "43"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      get_key:
+        simple: Email
+      incident_id:
+        complex:
+          root: CreatedIncidentID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a value from the specified incident's context.
+      id: 1470574d-eb2a-41d9-8368-c5c9f868f5cb
+      iscommand: false
+      name: Get the final Email context
+      script: GetByIncidentId
+      type: regular
+      version: -1
+    taskid: 1470574d-eb2a-41d9-8368-c5c9f868f5cb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1920,
+          "y": 1615
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: |-
+          Domain squatting did not run. This could mean one or more of the following issues:
+          1. The internal domain of demistodev.onmicrosoft.com was not inserted to the Phishing v3 inputs
+          2. Something in the Entity Enrichment or Email Address Enrichment playbooks changed and they're bugged.
+          3. The Phishing - Generic v3 playbook is bugged and doesn't run the domain-squatting check through the email address enrichment flow.
+          4. The attached EML was not parsed correctly by the ParseEmailFiles script, so the emails were not extracted and were not checked for domain-squatting.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: eecc32e3-c17c-427a-850c-7c11d105b82a
+      iscommand: false
+      name: Error about domain-squatting
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: eecc32e3-c17c-427a-850c-7c11d105b82a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1590,
+          "y": 2460
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 53c6e86f-fe74-4401-82ff-4731b6475805
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 53c6e86f-fe74-4401-82ff-4731b6475805
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1000,
+          "y": 2770
+        }
+      }
+  "16":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: reportedemailfrom
+                root: foundIncidents.CustomFields
+          operator: isEqualString
+          right:
+            value:
+              simple: sr-test02@demistodev.ormicrosoft.com
+      label: OK
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "17"
+      OK:
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f3b3820c-899e-4f1c-8253-fe5f0376e79e
+      iscommand: false
+      name: Check Reported Email From
+      type: condition
+      version: -1
+    taskid: f3b3820c-899e-4f1c-8253-fe5f0376e79e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 2270
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: |-
+          The Reported Email From field was not set correctly. This could mean one or more of the following:
+          1. The EML attachment was not added to the incident for some reason.
+          2. The EML attachment was added to the incident but not parsed in the Process Email - Generic v2 playbook.
+          3. The EML attachment was parsed by the ParseEmailFiles script, but the outputs changed from what they used to be.
+          4. The Phishing - Generic v3 playbook changed and doesn't setIncident correctly anymore.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 005b8fb8-080a-49c7-8d03-c11fdb1b93c6
+      iscommand: false
+      name: Error about email from
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 005b8fb8-080a-49c7-8d03-c11fdb1b93c6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 2460
+        }
+      }
+  "19":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Subject
+                root: Email
+          operator: isEqualString
+          right:
+            value:
+              simple: Verify your account ( sr-test01@demistodev.onmicrosoft.com )
+      label: "yes"
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "29"
+      "yes":
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2f43f4e0-8020-4a22-8950-3063f5a99b47
+      iscommand: false
+      name: Check email subject extraction (not yet JSON comparison)
+      type: condition
+      version: -1
+    taskid: 2f43f4e0-8020-4a22-8950-3063f5a99b47
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 2270,
+          "y": 2270
+        }
+      }
+  "20":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: reportedemailto
+                root: foundIncidents.CustomFields
+          operator: isEqualString
+          right:
+            value:
+              simple: sr-test01@demistodev.onmicrosoft.com
+      label: OK
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "21"
+      OK:
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 41fa5275-33c6-4f44-839e-f36722edb852
+      iscommand: false
+      name: Check Reported Email To
+      type: condition
+      version: -1
+    taskid: 41fa5275-33c6-4f44-839e-f36722edb852
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 2270
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: |-
+          The Reported Email To field was not set correctly. This could mean one or more of the following:
+          1. The EML attachment was not added to the incident for some reason.
+          2. The EML attachment was added to the incident but not parsed in the Process Email - Generic v2 playbook.
+          3. The EML attachment was parsed by the ParseEmailFiles script, but the outputs changed from what they used to be.
+          4. The Phishing - Generic v3 playbook changed and doesn't setIncident correctly anymore.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 90b460df-46f0-464c-8445-b520d1e36ead
+      iscommand: false
+      name: Error about email to
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 90b460df-46f0-464c-8445-b520d1e36ead
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 40,
+          "y": 2460
+        }
+      }
+  "22":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: emailauthenticitycheck
+                root: foundIncidents.CustomFields
+          operator: isEqualString
+          right:
+            value:
+              simple: Fail
+      label: OK
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "23"
+      OK:
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f48dfc96-d785-4a35-85d2-b1285f0c2e95
+      iscommand: false
+      name: Check Email Authenticity = Fail
+      type: condition
+      version: -1
+    taskid: f48dfc96-d785-4a35-85d2-b1285f0c2e95
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 2270
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: The email was not authenticated in the Phishing - Generic v3 playbook,
+          or something in the CheckEmailAuthenticity script changed.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 5c3fb9f8-3a23-45a6-8537-36c9ad734c99
+      iscommand: false
+      name: Error about email authenticity
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 5c3fb9f8-3a23-45a6-8537-36c9ad734c99
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 900,
+          "y": 2460
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+      - "16"
+      - "20"
+      - "30"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 963ad410-4947-43ed-88a7-3f1987aabdd0
+      iscommand: false
+      name: Incident Field Checks
+      type: title
+      version: -1
+    taskid: 963ad410-4947-43ed-88a7-3f1987aabdd0
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 2120
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 40f07cb5-85ba-4b56-8551-c18f0c05bf31
+      iscommand: false
+      name: Context Checks
+      type: title
+      version: -1
+    taskid: 40f07cb5-85ba-4b56-8551-c18f0c05bf31
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1590,
+          "y": 2120
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: db00e050-dbe0-4947-838c-87e8ee383f26
+      iscommand: false
+      name: JSON Comparison Checks
+      type: title
+      version: -1
+    taskid: db00e050-dbe0-4947-838c-87e8ee383f26
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2270,
+          "y": 2120
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "36"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1c3831e4-861e-43ed-8b25-5ed776d206c8
+      iscommand: false
+      name: Screenshot Check
+      type: title
+      version: -1
+    taskid: 1c3831e4-861e-43ed-8b25-5ed776d206c8
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1680,
+          "y": 1780
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: |-
+          The Email Subject was not properly extracted by the ParseEmailFiles script in the Process Email - Generic v2 playbook.
+          Make sure the EML is present in the incident, that it was detected and parsed.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 087119a9-76b2-4fa3-8739-90bcf038e650
+      iscommand: false
+      name: Error about mismatch in Email Subject
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 087119a9-76b2-4fa3-8739-90bcf038e650
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2280,
+          "y": 2460
+        }
+      }
+  "30":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: severity
+                root: foundIncidents
+          operator: isEqualString
+          right:
+            value:
+              simple: "3"
+      label: OK
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "31"
+      OK:
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b835330e-6fd8-4515-8820-63b24e61c283
+      iscommand: false
+      name: Check Incident Severity
+      type: condition
+      version: -1
+    taskid: b835330e-6fd8-4515-8820-63b24e61c283
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -440,
+          "y": 2270
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: |-
+          The incident severity should be high, but it isn't. This could indicate one of the following problems:
+          1. The threat intelligence integration used reached its quota.
+          2. The threat intelligence integration used no longer detects the malicious URL as malicious.
+          3. The way we calculate severity for incidents has changed.
+          4. The EML attachment was not parsed and the indicators inside it were not extracted and enriched properly.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: f0715e79-f85e-4058-8272-212a50d2dd41
+      iscommand: false
+      name: Error about incident severity
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: f0715e79-f85e-4058-8272-212a50d2dd41
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -440,
+          "y": 2460
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      id:
+        complex:
+          root: CreatedIncidentID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches Demisto incidents
+      id: 755d3101-a54f-4e5d-8206-dd1fefabca64
+      iscommand: false
+      name: Get final incident fields
+      script: SearchIncidentsV2
+      type: regular
+      version: -1
+    taskid: 755d3101-a54f-4e5d-8206-dd1fefabca64
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1800
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "26"
+      - "25"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      get_key:
+        simple: Account
+      incident_id:
+        complex:
+          root: CreatedIncidentID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a value from the specified incident's context.
+      id: 6c1521a1-28fa-4071-8b4d-723f1b5f02fe
+      iscommand: false
+      name: Get the final Account context
+      script: GetByIncidentId
+      type: regular
+      version: -1
+    taskid: 6c1521a1-28fa-4071-8b4d-723f1b5f02fe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1920,
+          "y": 1930
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6e3832a5-e5f1-45ce-881e-1b19a4991583
+      iscommand: false
+      name: '[Subplaybook] take and compare screenshots'
+      type: title
+      version: -1
+    taskid: 6e3832a5-e5f1-45ce-881e-1b19a4991583
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1680,
+          "y": 1930
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "38"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      complete_task:
+        simple: "true"
+      incident_id:
+        complex:
+          root: CreatedIncidentID
+      interval_between_tries:
+        simple: "15"
+      max_timeout:
+        simple: "1100"
+      task_name:
+        simple: Manually remediate  the incident
+      task_states:
+        simple: Waiting
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Wait and complete tasks by given status. Used for test playbooks.
+      id: bbc6f885-b80a-4aeb-8744-d24afc1ae19b
+      iscommand: false
+      name: Wait and manually remediate
+      script: WaitAndCompleteTask
+      type: regular
+      version: -1
+    taskid: bbc6f885-b80a-4aeb-8744-d24afc1ae19b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1260
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+      - "34"
+      - "27"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      complete_task:
+        simple: "false"
+      incident_id:
+        complex:
+          root: CreatedIncidentID
+      interval_between_tries:
+        simple: "10"
+      max_timeout:
+        simple: "100"
+      task_name:
+        simple: Close investigation
+      task_states:
+        simple: Completed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Wait and complete tasks by given status. Used for test playbooks.
+      id: e8cbe351-334b-4903-8f4c-43ee4335681a
+      iscommand: false
+      name: Wait for incident to close
+      script: WaitAndCompleteTask
+      type: regular
+      version: -1
+    taskid: e8cbe351-334b-4903-8f4c-43ee4335681a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1440
+        }
+      }
+  "39":
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "44"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      attachment_paths:
+        simple: TestData/For_Domain_SQT.eml
+      incidents_path:
+        simple: TestData/Raw_JSON_For_Phishing_DomainSqt.json
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Creates incidents from json files provided, and stores it in the
+        instance context.
+      id: f805ac9e-561d-4535-8664-572faa925293
+      iscommand: true
+      name: Create phishing incident
+      script: '|||create-test-incident-from-file'
+      type: regular
+      version: -1
+    taskid: f805ac9e-561d-4535-8664-572faa925293
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 340
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "42"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      name:
+        simple: Mocked Incident
+      notstatus:
+        simple: Closed
+      retry-count:
+        simple: "0"
+      retry-interval:
+        simple: "0"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Searches Demisto incidents.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: 9161e0f6-d557-488d-825c-f60e1c49c2cc
+      iscommand: false
+      name: Find the incident
+      script: SearchIncidentsV2
+      type: regular
+      version: -1
+    taskid: 9161e0f6-d557-488d-825c-f60e1c49c2cc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 710
+        }
+      }
+  "42":
+    continueonerrortype: ""
+    id: "42"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      key:
+        simple: CreatedIncidentID
+      value:
+        complex:
+          accessor: id
+          root: foundIncidents
+          transformers:
+          - args:
+              descending:
+                value:
+                  simple: "true"
+            operator: sort
+          - args:
+              index:
+                value:
+                  simple: "0"
+            operator: atIndex
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: f9029ffe-2954-4062-8281-b68ab87a376e
+      iscommand: false
+      name: Save the incident ID
+      script: Set
+      type: regular
+      version: -1
+    taskid: f9029ffe-2954-4062-8281-b68ab87a376e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 920
+        }
+      }
+  "43":
+    continueonerrortype: ""
+    id: "43"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "35"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      get_key:
+        simple: DBotScore
+      incident_id:
+        complex:
+          root: CreatedIncidentID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a value from the specified incident's context.
+      id: c34d09a7-cc64-49d9-8e69-fd3bfc14a79f
+      iscommand: false
+      name: Get the DBotScore context
+      script: GetByIncidentId
+      type: regular
+      version: -1
+    taskid: c34d09a7-cc64-49d9-8e69-fd3bfc14a79f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1920,
+          "y": 1765
+        }
+      }
+  "44":
+    continueonerrortype: ""
+    id: "44"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "41"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "60"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: 51649d1e-af36-43ea-8ec9-78f661822219
+      iscommand: false
+      name: Wait for incident to be created
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: 51649d1e-af36-43ea-8ec9-78f661822219
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 520
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "16_15_OK": 0.11,
+      "19_15_yes": 0.11,
+      "20_15_OK": 0.1,
+      "22_15_OK": 0.1,
+      "30_15_OK": 0.1,
+      "9_15_OK": 0.12
+    },
+    "paper": {
+      "dimensions": {
+        "height": 2785,
+        "width": 4340,
+        "x": -1680,
+        "y": 50
+      }
+    }
+  }
