@@ -1,0 +1,286 @@
+{
+	"author": "TruSTAR",
+	"authorImage": "content/packs/TruSTAR/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Search all TruSTAR incident reports for provided indicators and return all correlated indicators from search results. Two indicators are considered “correlated” if they can be found in a common report.",
+						"name": "trustar-related-indicators"
+					},
+					{
+						"description": "Returns the 10 indicators that have recently appeared in the most community reports. This is analogous to the Community Trends section of the dashboard on Station.",
+						"name": "trustar-trending-indicators"
+					},
+					{
+						"description": "Searches for all indicators that contain the given search term.",
+						"name": "trustar-search-indicators"
+					},
+					{
+						"description": "Submit a new incident report, and receive the ID it has been assigned in TruSTAR’s system.",
+						"name": "trustar-submit-report"
+					},
+					{
+						"description": "Update the report with the specified ID. Either the internal TruSTAR report ID or an external tracking ID can be used. Only the fields passed will be updated. All others will be left unchanged.",
+						"name": "trustar-update-report"
+					},
+					{
+						"description": "Finds a report by its internal or external id.",
+						"name": "trustar-report-details"
+					},
+					{
+						"description": "Deletes a report as specified by given id (id can be TruSTAR report id or external id).",
+						"name": "trustar-delete-report"
+					},
+					{
+						"description": "Returns incident reports matching the specified filters. All parameters are optional: if nothing is specified, the latest 25 reports accessible by the user will be returned (matching the view the user would have by logging into Station).",
+						"name": "trustar-get-reports"
+					},
+					{
+						"description": "Returns a paginated list of all reports that contain any of the provided indicator values.",
+						"name": "trustar-correlated-reports"
+					},
+					{
+						"description": "Searches for all reports that contain the given search term.",
+						"name": "trustar-search-reports"
+					},
+					{
+						"description": "Add to allow list a list of indicator values for the user’s company.",
+						"name": "trustar-add-to-whitelist"
+					},
+					{
+						"description": "Delete an indicator from the user’s company allow list.",
+						"name": "trustar-remove-from-whitelist"
+					},
+					{
+						"description": "Returns the list of all enclaves that the user has access to, as well as whether they can read, create, and update reports in that enclave.",
+						"name": "trustar-get-enclaves"
+					},
+					{
+						"description": "Check file reputation on TruSTAR",
+						"name": "file"
+					},
+					{
+						"description": "Check IP Reputation on TruSTAR",
+						"name": "ip"
+					},
+					{
+						"description": "Check URL reputation on TruSTAR",
+						"name": "url"
+					},
+					{
+						"description": "Check Domain reputation on TruStar",
+						"name": "domain"
+					},
+					{
+						"description": "Fetches all phishing submissions that fit the given criteria",
+						"name": "trustar-get-phishing-submissions"
+					},
+					{
+						"description": "Marks a phishing email submission with one of the phishing namespace tags",
+						"name": "trustar-set-triage-status"
+					},
+					{
+						"description": "Get phishing indicators that match the given criteria.",
+						"name": "trustar-get-phishing-indicators"
+					}
+				],
+				"description": "Deprecated. Use the TruSTAR v2 integration instead.",
+				"name": "TruSTAR (Deprecated) (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Searches for all indicators that contain the given search term.",
+						"name": "trustar-search-indicators"
+					},
+					{
+						"description": "Returns the list of all enclaves that the user has access to, as well as whether they can read, create, and update reports in that enclave.",
+						"name": "trustar-get-enclaves"
+					},
+					{
+						"description": "Finds all reports that contain any of the given indicators and returns correlated indicators from those reports.",
+						"name": "trustar-related-indicators"
+					},
+					{
+						"description": "Find indicators that are trending in the community.",
+						"name": "trustar-trending-indicators"
+					},
+					{
+						"description": "Provide metadata associated with a list of indicators, including value, indicatorType, noteCount, sightings, lastSeen, enclaveIds, and tags. The metadata is determined based on the enclaves the user making the request has READ access to.",
+						"name": "trustar-indicators-metadata"
+					},
+					{
+						"description": "Provides structured summaries about indicators, which are derived from intelligence sources on the TruSTAR Marketplace.",
+						"name": "trustar-indicator-summaries"
+					},
+					{
+						"description": "Gets a list of indicators that the user’s company has added to allow list.",
+						"name": "trustar-get-whitelisted-indicators"
+					},
+					{
+						"description": "Returns incident reports matching the specified filters. All parameters are optional: if nothing is specified, the latest 25 reports accessible by the user will be returned (matching the view the user would have by logging into Station).",
+						"name": "trustar-get-reports"
+					},
+					{
+						"description": "Return a list of indicators extracted from a report.",
+						"name": "trustar-get-indicators-for-report"
+					},
+					{
+						"description": "Move a report from one enclave to another.",
+						"name": "trustar-move-report"
+					},
+					{
+						"description": "Copies a report from one enclave to another.",
+						"name": "trustar-copy-report"
+					},
+					{
+						"description": "Submit a new incident report, and receive the ID it has been assigned in TruSTAR’s system.",
+						"name": "trustar-submit-report"
+					},
+					{
+						"description": "Deletes a report as specified by given id (id can be TruSTAR report id or external id).",
+						"name": "trustar-delete-report"
+					},
+					{
+						"description": "Returns a list of all reports that contain any of the provided indicator values.",
+						"name": "trustar-correlated-reports"
+					},
+					{
+						"description": "Finds a report by its ID and returns the report details.",
+						"name": "trustar-report-details"
+					},
+					{
+						"description": "Update the report with the specified ID. Either the internal TruSTAR report ID or an external tracking ID can be used. Only the fields passed will be updated. All others will be left unchanged.",
+						"name": "trustar-update-report"
+					},
+					{
+						"description": "Searches for all reports that contain the given search term.",
+						"name": "trustar-search-reports"
+					},
+					{
+						"description": "Add to allow list a list of indicator values for the user’s company.",
+						"name": "trustar-add-to-whitelist"
+					},
+					{
+						"description": "Delete an indicator from the user’s company allow list.",
+						"name": "trustar-remove-from-whitelist"
+					},
+					{
+						"description": "Fetches all phishing submissions that fit the given criteria",
+						"name": "trustar-get-phishing-submissions"
+					},
+					{
+						"description": "Marks a phishing email submission with one of the phishing namespace tags",
+						"name": "trustar-set-triage-status"
+					},
+					{
+						"description": "Get phishing indicators that match the given criteria.",
+						"name": "trustar-get-phishing-indicators"
+					}
+				],
+				"description": "TruSTAR is an Intelligence Management Platform that helps you operationalize data across tools and teams, helping you prioritize investigations and accelerate incident response.",
+				"name": "TruSTAR v2 (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-08-24T17:52:38Z",
+	"currentVersion": "2.1.6",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "TruSTAR's threat intelligence platform enriches every stage of the security operations workflow from the trusted and relevant data sources.",
+	"downloads": 1726,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "TruSTAR",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/TruSTAR/TruSTAR_image.png",
+			"name": "TruSTAR (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/TruSTAR/TruSTARv2_image.png",
+			"name": "TruSTAR v2"
+		}
+	],
+	"itemVersion": "2.1.6",
+	"keywords": [
+		"TruSTAR"
+	],
+	"legacy": true,
+	"name": "TruSTAR",
+	"packID": "TruSTAR",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@trustar.co",
+		"url": "https://www.trustar.co"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-03-30T21:23:11Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
