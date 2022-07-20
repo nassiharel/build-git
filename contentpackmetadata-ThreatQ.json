@@ -1,0 +1,261 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/ThreatQ/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Search ThreatQ repository by keywords",
+						"name": "tq-search-by-name"
+					},
+					{
+						"description": "Run ip check against ThreatQ ",
+						"name": "ip"
+					},
+					{
+						"description": "Run url check against ThreatQ",
+						"name": "url"
+					},
+					{
+						"description": "Run file check against ThreatQ",
+						"name": "file"
+					}
+				],
+				"description": "Deprecated. Use ThreatQ v2 instead. ThreatQ Integration",
+				"name": "ThreatQ (Deprecated)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Searches for objects by name in the ThreatQ repository.",
+						"name": "threatq-search-by-name"
+					},
+					{
+						"description": "Checks the reputation of an IP address in ThreatQ.",
+						"name": "ip"
+					},
+					{
+						"description": "Checks the reputation of a URL in ThreatQ.",
+						"name": "url"
+					},
+					{
+						"description": "Checks the reputation of a file in ThreatQ.",
+						"name": "file"
+					},
+					{
+						"description": "Checks the reputation of an email in ThreatQ.",
+						"name": "email"
+					},
+					{
+						"description": "Checks the reputation of a domain in ThreatQ.",
+						"name": "domain"
+					},
+					{
+						"description": "Creates a new indicator in ThreatQ.",
+						"name": "threatq-create-indicator"
+					},
+					{
+						"description": "Adds an attribute to an object in ThreatQ.",
+						"name": "threatq-add-attribute"
+					},
+					{
+						"description": "Modifies an attribute for an object in ThreatQ.",
+						"name": "threatq-modify-attribute"
+					},
+					{
+						"description": "Links two objects together in ThreatQ.",
+						"name": "threatq-link-objects"
+					},
+					{
+						"description": "Creates a new adversary in ThreatQ.",
+						"name": "threatq-create-adversary"
+					},
+					{
+						"description": "Creates a new event in ThreatQ.",
+						"name": "threatq-create-event"
+					},
+					{
+						"description": "Retrieves related indicators for an object in ThreatQ.",
+						"name": "threatq-get-related-indicators"
+					},
+					{
+						"description": "Updates an indicator status in ThreatQ.",
+						"name": "threatq-update-status"
+					},
+					{
+						"description": "Retrieves related events of an object in ThreatQ.",
+						"name": "threatq-get-related-events"
+					},
+					{
+						"description": "Retrieve related adversaries from an object in ThreatQ.",
+						"name": "threatq-get-related-adversaries"
+					},
+					{
+						"description": "Uploads a file in ThreatQ.",
+						"name": "threatq-upload-file"
+					},
+					{
+						"description": "Searches for an object by object type and ID. Generic and DBotScore contexts also may be generated.",
+						"name": "threatq-search-by-id"
+					},
+					{
+						"description": "Unlinks two objects in ThreatQ.",
+						"name": "threatq-unlink-objects"
+					},
+					{
+						"description": "Deletes an object in ThreatQ.",
+						"name": "threatq-delete-object"
+					},
+					{
+						"description": "Adds a source to an object in ThreatQ.",
+						"name": "threatq-add-source"
+					},
+					{
+						"description": "Deletes a source from an object in ThreatQ.",
+						"name": "threatq-delete-source"
+					},
+					{
+						"description": "Deletes an attribute from an object in ThreatQ.",
+						"name": "threatq-delete-attribute"
+					},
+					{
+						"description": "Updates an adversary name in ThreatQ.",
+						"name": "threatq-edit-adversary"
+					},
+					{
+						"description": "Updates an indicator in ThreatQ.",
+						"name": "threatq-edit-indicator"
+					},
+					{
+						"description": "Updates an event in ThreatQ.",
+						"name": "threatq-edit-event"
+					},
+					{
+						"description": "Modifies an indicator's score in ThreatQ. The final indicator score is the highest of the manual and generated scores.",
+						"name": "threatq-update-score"
+					},
+					{
+						"description": "Downloads a file from ThreatQ to Demisto.",
+						"name": "threatq-download-file"
+					},
+					{
+						"description": "Retrieves all indicators in ThreatQ.",
+						"name": "threatq-get-all-indicators"
+					},
+					{
+						"description": "Retrieves all events in ThreatQ.",
+						"name": "threatq-get-all-events"
+					},
+					{
+						"description": "Returns all adversaries in ThreatQ.",
+						"name": "threatq-get-all-adversaries"
+					},
+					{
+						"description": "Runs an advanced indicator search.",
+						"name": "threatq-advanced-search"
+					}
+				],
+				"description": "A threat intelligence platform that collects and interprets intelligence data from open sources and manages indicator scoring, types, and attributes.",
+				"name": "ThreatQ v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-22T10:22:48Z",
+	"currentVersion": "1.0.18",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.7",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Platform for collecting and interpreting intelligence data from open sources and managing indicator scores, types, and attributes.",
+	"downloads": 2111,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ThreatQ",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ThreatQ/ThreatQ_Beta_image.png",
+			"name": "ThreatQ (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/ThreatQ/ThreatQv2_image.png",
+			"name": "ThreatQ v2"
+		}
+	],
+	"itemVersion": "1.0.18",
+	"keywords": [],
+	"legacy": true,
+	"name": "ThreatQ",
+	"packID": "ThreatQ",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "The XSOAR integration with ThreatQ allows users of XSOAR to undertake automated actions inside of ThreatQ as part of their defined playbooks. ThreatQ is a threat intelligence platform that collects and interprets intelligence data from open sources and manages indicator scoring, types, and attributes.\r\n##### What does this pack do?\r\nThis pack allows ThreatQ users to automate ThreatQ tasks such as searches, creation of objects, and more increasing their efficiency and saving valuable time.\r\n- Automate creation of objects within ThreatQ.\r\n- Create, modify, or edit attributes within ThreatQ.\r\n- Automate hunts based on data present in ThreatQ.\r\n\r\nFor more information about ThreatQ or this integration, please visit the following links:\r\n\r\n- https://www.threatq.com/\r\n- https://marketplace.threatq.com/details/cortex-xsoar-integration-for-threatq/\r\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-05-22T09:22:48Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2962208",
+	"videos": []
+}
