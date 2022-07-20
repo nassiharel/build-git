@@ -96,13 +96,13 @@ tasks:
       description: Gets a list of indicator objects and the associated indicator outputs
         that match the specified query and filters. The results are returned in a
         structured data file.
-      id: 4e4c824d-e013-460f-8e1c-de9431e1b4f9
+      id: f65708da-4545-4bcb-85d9-46f8138918fb
       iscommand: false
       name: Get Indicator with ssdeep
       script: GetIndicatorsByQuery
       type: regular
       version: -1
-    taskid: 4e4c824d-e013-460f-8e1c-de9431e1b4f9
+    taskid: f65708da-4545-4bcb-85d9-46f8138918fb
     timertriggers: []
     type: regular
     view: |-
@@ -127,6 +127,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Get indicators internal Dbot score
       id: 2dd56bab-8b5d-4507-86af-45a0ced44214
       iscommand: false
       name: DBot Indicator Enrichment - Generic
@@ -180,23 +181,25 @@ tasks:
       '#none#':
       - "4"
     note: false
-    quietmode: 0
+    quietmode: 2
     scriptarguments:
       ssdeep_hash:
-        simple: ${File.SHA256}
+        simple: ${File.SSDeep}
+      ssdeep_hashes_to_compare:
+        simple: ${playbookQuery.CustomFields.ssdeep}
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: This script finds similar files that can be related to each other
         by fuzzy hash (SSDeep).
-      id: 9b97fd3f-b0db-4cc8-8ba4-0ab749ffadc8
+      id: 4eef3f42-3f30-4237-86cf-6c4ffeb79a43
       iscommand: false
       name: check SSDSimilarity
       script: SSDeepSimilarity
       type: regular
       version: -1
-    taskid: 9b97fd3f-b0db-4cc8-8ba4-0ab749ffadc8
+    taskid: 4eef3f42-3f30-4237-86cf-6c4ffeb79a43
     timertriggers: []
     type: regular
     view: |-
