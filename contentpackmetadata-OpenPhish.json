@@ -1,0 +1,144 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Check URL Reputation",
+						"name": "url"
+					},
+					{
+						"description": "Reload OpenPhish database",
+						"name": "openphish-reload"
+					},
+					{
+						"description": "Show OpenPhish database status",
+						"name": "openphish-status"
+					}
+				],
+				"description": "Deprecated. Use the OpenPhish v2 integration instead.",
+				"name": "OpenPhish (Deprecated)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Checks the reputation of a URL.",
+						"name": "url"
+					},
+					{
+						"description": "Reload OpenPhish database",
+						"name": "openphish-reload"
+					},
+					{
+						"description": "Show OpenPhish database status",
+						"name": "openphish-status"
+					}
+				],
+				"description": "OpenPhish uses proprietary Artificial Intelligence algorithms to automatically identify zero-day phishing sites and provide comprehensive, actionable, real-time threat intelligence.",
+				"name": "OpenPhish v2"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-23T18:06:32Z",
+	"currentVersion": "2.0.10",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "OpenPhish uses proprietary Artificial Intelligence algorithms to automatically identify zero-day phishing sites and provide comprehensive, actionable, real-time threat intelligence.",
+	"downloads": 3008,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "OpenPhish",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/OpenPhish/OpenPhish_image.png",
+			"name": "OpenPhish (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/OpenPhish/OpenPhish_v2_image.png",
+			"name": "OpenPhish v2"
+		}
+	],
+	"itemVersion": "2.0.10",
+	"keywords": [],
+	"legacy": true,
+	"name": "OpenPhish",
+	"packID": "OpenPhish",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Use Case"
+	],
+	"toServerVersion": "",
+	"updated": "2022-05-02T09:21:39Z",
+	"useCases": [
+		"Phishing"
+	],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
