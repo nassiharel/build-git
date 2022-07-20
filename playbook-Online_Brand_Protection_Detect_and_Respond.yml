@@ -1,0 +1,1060 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 1.3.1
+    packID: SlashNextPhishingIncidentResponse
+    packName: SlashNext Phishing Incident Response - Annual Subscription  (Direct
+      Subscription)
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Analyzes the domains and URLs in suspicious emails, reported by end users,
+  to determine if the phishing campaign is impersonating your company’s brand. Playbook
+  can then trigger a domain take down email, with forensic evidence, to a target address.
+id: Online Brand Protection Detect and Respond
+inputs:
+- description: Text body of the email received at the abuse inbox setup for brand
+    specific phishing protection.
+  key: email_text
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.labels.Email/text}
+- description: HTML body of the email received at the abuse inbox setup for brand
+    specific phishing protection.
+  key: email_html
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: ${incident.labels.Email/html}
+- description: Email address where brand targetted phish detection is to be reported.
+  key: reporting_email
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: brandprotection.hmrc@slashnext.net
+name: Online Brand Protection Detect and Respond
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b53fc9ba-610c-4bb4-8cc4-c95e3a6edf39
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: b53fc9ba-610c-4bb4-8cc4-c95e3a6edf39
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 25d5d092-aa32-4fba-8964-ffad6ed48f2e
+      iscommand: false
+      name: SlashNext Phishing IR Integraion is Available
+      type: title
+      version: -1
+    taskid: 25d5d092-aa32-4fba-8964-ffad6ed48f2e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 195
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "11"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      brandname:
+        simple: SlashNext Phishing Incident Response
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns 'yes' if integration brand is available. Otherwise returns
+        'no'
+      id: a0984dfa-c7d2-4f9d-803e-a995f2923057
+      iscommand: false
+      name: Is SlashNext Phishing Incident Response integration enabled?
+      script: IsIntegrationAvailable
+      type: condition
+      version: -1
+    taskid: a0984dfa-c7d2-4f9d-803e-a995f2923057
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 340
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4e5ca3f7-cc63-49a0-85af-1b753a6af657
+      iscommand: false
+      name: Extract URLs from the Reported Email
+      type: title
+      version: -1
+    taskid: 4e5ca3f7-cc63-49a0-85af-1b753a6af657
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 515
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      text:
+        simple: ${inputs.email_text}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Extract all indicators according to server indicators configuration
+      id: ac37e499-6503-4a6a-849a-22f338f4eae7
+      iscommand: true
+      name: Extract URLs
+      script: Builtin|||extractIndicators
+      type: regular
+      version: -1
+    taskid: ac37e499-6503-4a6a-849a-22f338f4eae7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 660
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "18"
+      "yes":
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: ${ExtractedIndicators.URL}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check if a given value exists in the context. Will return 'no'
+        for empty empty arrays. To be used mostly with DQ and selectors.
+      id: 893dc524-c69c-4e50-8d31-af8d52586be7
+      iscommand: false
+      name: Are there any URLs found?
+      script: Exists
+      type: condition
+      version: -1
+    taskid: 893dc524-c69c-4e50-8d31-af8d52586be7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 835
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: baa0852f-3add-49fa-89dd-6bedbdc36bad
+      iscommand: false
+      name: SlashNext URL Enrichment
+      type: title
+      version: -1
+    taskid: baa0852f-3add-49fa-89dd-6bedbdc36bad
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1025
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extended_info:
+        simple: "false"
+      timeout:
+        simple: "180"
+      url:
+        complex:
+          accessor: URL}
+          root: ${ExtractedIndicators
+          transformers:
+          - operator: uniq
+          - args:
+              delimiter: {}
+            operator: splitAndTrim
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: SlashNext Phishing Incident Response
+      description: Performs a real-time URL scan with SlashNext cloud-based SEER Engine
+        in a blocking mode. If the specified URL already exists in the cloud database,
+        scan result will be returned immediately. If not, this command will submit
+        a URL scan request and wait for the scan to finish. The scan may take up to
+        60 seconds to finish.
+      id: 2a9a65be-6df6-446e-8872-b021324c65dd
+      iscommand: true
+      name: Request real-time URL scan from SlashNext Cloud
+      script: SlashNext Phishing Incident Response|||slashnext-url-scan-sync
+      type: regular
+      version: -1
+    taskid: 2a9a65be-6df6-446e-8872-b021324c65dd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1165
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      extended_info:
+        simple: "true"
+      scanid:
+        complex:
+          accessor: URL.ScanID}
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: ${SlashNext.URL.ScanID}
+              operator: isNotEqualString
+              right:
+                value:
+                  simple: N/A
+          root: ${SlashNext
+          transformers:
+          - operator: uniq
+          - args:
+              delimiter: {}
+            operator: splitAndTrim
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: SlashNext Phishing Incident Response
+      description: Retrieves the results of a URL scan against a previous scan request.
+        If the scan is finished, results will be returned immediately; otherwise the
+        message "check back later" will be returned.
+      id: 9b9b497d-8610-4cfe-82d5-2190ff321cda
+      iscommand: true
+      name: Get full report on the scanned URL
+      script: SlashNext Phishing Incident Response|||slashnext-scan-report
+      type: regular
+      version: -1
+    taskid: 9b9b497d-8610-4cfe-82d5-2190ff321cda
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1340
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      htmlBody:
+        simple: ${inputs.email_html}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Rasterize
+      description: Converts the body of an email to an image file or a PDF file.
+      id: 25de13e7-c3df-4ebb-85a3-161d1e686700
+      iscommand: true
+      name: Take snapshot of the email
+      script: Rasterize|||rasterize-email
+      type: regular
+      version: -1
+    taskid: 25de13e7-c3df-4ebb-85a3-161d1e686700
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1340
+        }
+      }
+  "10":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: URL.Verdict
+                root: SlashNext
+                transformers:
+                - operator: uniq
+                - args:
+                    delimiter: {}
+                  operator: splitAndTrim
+                - operator: toUpperCase
+          operator: isEqualString
+          right:
+            value:
+              simple: MALICIOUS
+      label: "yes"
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "12"
+      "yes":
+      - "15"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0eb3884f-8388-483d-8389-042bc79dc722
+      iscommand: false
+      name: Is there any URL found to be Malicious?
+      type: condition
+      version: -1
+    taskid: 0eb3884f-8388-483d-8389-042bc79dc722
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1680
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 08653273-80c5-4e79-860c-e7d4b0cb8d5b
+      iscommand: false
+      name: 'Get your SlashNext API key. Contact support@slashnext.com '
+      type: title
+      version: -1
+    taskid: 08653273-80c5-4e79-860c-e7d4b0cb8d5b
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -430,
+          "y": 2210
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeReason:
+        simple: 'URLs within email were found to be Benign '
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Close the current incident
+      id: 35bd8d0f-4340-45b3-81a4-229b01db8e7d
+      iscommand: true
+      name: Close incident (The URL is benign)
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 35bd8d0f-4340-45b3-81a4-229b01db8e7d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 1850
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fcfc3052-eeb2-4342-85a7-1a79be8d565d
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: fcfc3052-eeb2-4342-85a7-1a79be8d565d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 3040
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ForensicFile:
+        complex:
+          accessor: EntryID
+          root: File
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: InfoFile.EntryID
+            operator: append
+      ForensicFileEntry:
+        complex:
+          accessor: EntryID
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: File.Extension
+              operator: isEqualString
+              right:
+                value:
+                  simple: txt
+          root: File
+      ForensicHTML:
+        simple: ${File.EntryID}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Analyzes the forensic data to detect brand impersonation attacks.
+        This script uses the HMRC brand as an example, please modify the attributes
+        associated with your company’s brand.
+      id: 62275ccd-cabc-4884-8ecb-f706bb53c7ed
+      iscommand: false
+      name: Is the Phishing URL targeting specific Brand?
+      script: BrandImpersonationDetection
+      type: regular
+      version: -1
+    taskid: 62275ccd-cabc-4884-8ecb-f706bb53c7ed
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 1850
+        }
+      }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "18"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeReason:
+        simple: URLs within email were found to Generic phishing
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Close the current incident
+      id: e3ee70c2-c52e-4a6e-83d7-3276da026c00
+      iscommand: true
+      name: Close incident (The phishing URL is not targetting specific brand)
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: e3ee70c2-c52e-4a6e-83d7-3276da026c00
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 910,
+          "y": 2195
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryIDs:
+        simple: ${lastCompletedTaskEntries}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Adds provided entries to the incident Evidence Board. In playbook, can be positioned after a task to add the previous task's entries to Evidence Board automatically (with no need to provide arguments)
+      id: 3fa04b74-3a0c-4559-8c2b-d7fc29ec80ba
+      iscommand: false
+      name: Log evidence
+      script: AddEvidence
+      type: regular
+      version: -1
+    taskid: 3fa04b74-3a0c-4559-8c2b-d7fc29ec80ba
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 1510
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0a1c60ce-23a8-4b53-8fe1-8ab0afae86ff
+      iscommand: false
+      name: Close Investigation as Unrelated
+      type: title
+      version: -1
+    taskid: 0a1c60ce-23a8-4b53-8fe1-8ab0afae86ff
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1380,
+          "y": 2370
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    form:
+      description: ""
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Please input email address for requesting domain take-down.
+        options: []
+        optionsarg: []
+        placeholder: domain.registrar@slashnext.net
+        readonly: false
+        required: true
+        tooltip: ""
+        type: shortText
+      sender: Your SOC team
+      title: Brand Targeted Phishing Domain Take-down Request
+      totalanswers: 0
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: "<p style=\"color:black;\">SlashNext Phishing Incident Response just
+          identified a Phishing Url targeting specific Brand. </p> \n<p><br>Url: ${SlashNext.URL.Value}</p>\n\n<p><br><br>Click
+          the link below to investigate and start the domain takedown process.</p>\n<p><br>Evidence
+          Board:</p>\n<p><a href=\"${demistoUrls.evidenceBoard}\">${demistoUrls.evidenceBoard}</a></p>\n\n<p><br>____________________________________________________________</p>\n\n<p><br>${Domain.WHOIS.Registrant}</p>\n<p><br>${Domain.WHOIS.Registrar}</p>\n\n<p><br>____________________________________________________________</p>\n\n<p><br><br>Click
+          below to start the domain take process:</p>"
+      cc: null
+      format: html
+      methods:
+      - email
+      subject:
+        simple: 'Brand Protection: Brand Targeted Phishing Attack Found'
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        simple: ${inputs.reporting_email}
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 033b042d-1d73-4b65-8e11-9e39164a3bb0
+      iscommand: false
+      name: Get email address to request domain take-down
+      type: collection
+      version: -1
+    taskid: 033b042d-1d73-4b65-8e11-9e39164a3bb0
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2540
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8aafab0e-da43-46d3-8000-db3c0c74caaa
+      iscommand: false
+      name: 'Please enable the SlashNext Phishing Incident Response '
+      type: regular
+      version: -1
+    taskid: 8aafab0e-da43-46d3-8000-db3c0c74caaa
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -430,
+          "y": 2355
+        }
+      }
+  "22":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: SlashNext.PhishingBrand
+          operator: isEqualString
+          right:
+            value:
+              simple: HMRC
+      label: "yes"
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "16"
+      "yes":
+      - "25"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check whether the values provided in arguments are equal. If either
+        of the arguments are missing, no is returned.
+      id: 4a519456-e6f9-4072-890b-58471fa1213f
+      iscommand: false
+      name: Forensic Analysis says Yes
+      type: condition
+      version: -1
+    taskid: 4a519456-e6f9-4072-890b-58471fa1213f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2020
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      attachIDs:
+        simple: ${InfoFile.EntryID}
+      htmlBody:
+        simple: |-
+          <p><br>Dear Registrar,</p>
+          <p><br>On behalf of the Our Brand Protection department, we would like to initiate a phishing domain take-down request.</p>
+          <p><br>Phishing Url:</p>
+          <p>${SlashNext.URL.Value}</p>
+          <p><br>This domain is involved in Phishing and Fraudulent activities targeting our customers.</p>
+          <p><br>All the evidence, including a screenshot of the Phishing Email and website, is attached.</p>
+          <p><br>Regards,</p>
+          <p>Simon</p>
+      subject:
+        simple: Domain Take Down Request for "${SlashNext.URL.Value}"
+      to:
+        simple: ${Brand Targeted Phishing Domain Take-down Request.Answers.0}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: EWS Mail Sender
+      description: Sends an email using EWS.
+      id: cda0d936-ed20-4dca-8b9d-bf1d4cdf7452
+      iscommand: true
+      name: Dispatch take-down email
+      script: EWS Mail Sender|||send-mail
+      type: regular
+      version: -1
+    taskid: cda0d936-ed20-4dca-8b9d-bf1d4cdf7452
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2710
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      closeReason:
+        simple: Domain take-down email sent
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Close the current incident
+      id: 9e4c23bf-b1e1-46bb-84df-df100e75e723
+      iscommand: true
+      name: Close incident
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: 9e4c23bf-b1e1-46bb-84df-df100e75e723
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2875
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+      - "26"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      query:
+        complex:
+          accessor: URL.Value
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: SlashNext.URL.Verdict
+              operator: isEqualString
+              right:
+                value:
+                  simple: Malicious
+          root: SlashNext
+          transformers:
+          - operator: uniq
+          - args:
+              delimiter: {}
+            operator: splitAndTrim
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: JsonWhoIs
+      description: Provides data enrichment for domains, URLs, and IP addresses.
+      id: cca4340c-1c8b-4e28-853c-e386ea4394bf
+      iscommand: true
+      name: Get whois information
+      script: JsonWhoIs|||whois
+      type: regular
+      version: -1
+    taskid: cca4340c-1c8b-4e28-853c-e386ea4394bf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 2195
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "19"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      entryIDs:
+        simple: ${lastCompletedTaskEntries}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        Adds provided entries to the incident Evidence Board. In playbook, can be positioned after a task to add the previous task's entries to Evidence Board automatically (with no need to provide arguments)
+      id: 128821f3-f144-4d0c-89eb-5bd6a5c79891
+      iscommand: false
+      name: Log evidence
+      script: AddEvidence
+      type: regular
+      version: -1
+    taskid: 128821f3-f144-4d0c-89eb-5bd6a5c79891
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 2370
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "10_12_#default#": 0.71,
+      "10_15_yes": 0.38,
+      "22_16_#default#": 0.72,
+      "22_25_yes": 0.37,
+      "2_11_no": 0.32,
+      "2_3_yes": 0.39,
+      "5_6_yes": 0.42
+    },
+    "paper": {
+      "dimensions": {
+        "height": 3055,
+        "width": 2190,
+        "x": -430,
+        "y": 50
+      }
+    }
+  }
