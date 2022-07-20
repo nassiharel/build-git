@@ -19,7 +19,7 @@ name: zan_auto
 pswd: ""
 runas: DBotWeakRole
 runonce: false
-script: ""
+script: 'demisto.executeCommand(''setIncident'', {''zan_f1'': "yes"})'
 scripttarget: 0
 subtype: python3
 tags: []
