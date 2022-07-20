@@ -1,0 +1,293 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 2.0.3
+    packID: ReversingLabs_Titanium_Cloud
+    packName: ReversingLabs TitaniumCloud
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  Get threat intelligence data for the submitted URL.
+  Required TitaniumCloud API rights:
+
+  TCA-0403
+  TCA-0402
+id: Analyze URL - ReversingLabs TitaniumCloud
+inputs:
+- description: URL to analyze
+  key: URL
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      root: URL.Data
+name: Analyze URL - ReversingLabs TitaniumCloud
+outputs:
+- contextPath: URL.Data
+  description: The URL
+- contextPath: DBotScore.Score
+  description: The actual score.
+- contextPath: DBotScore.Type
+  description: The indicator type.
+- contextPath: DBotScore.Indicator
+  description: The indicator that was tested.
+- contextPath: DBotScore.Vendor
+  description: The vendor used to calculate the score.
+- contextPath: ReversingLabs.url_report
+  description: Report in JSON
+- contextPath: IP.Address
+  description: IP address
+- contextPath: Domain.Name
+  description: Domain name
+- contextPath: Email.To
+  description: Destination email address
+- contextPath: ReversingLabs.uri_statistics
+  description: Report in JSON
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e06709dd-bfa4-4e24-8671-7892e266463e
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: e06709dd-bfa4-4e24-8671-7892e266463e
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: ReversingLabs TitaniumCloud v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: baef1e7d-fe85-468b-8393-ca3d5aa43d0a
+      iscommand: false
+      name: Is ReversingLabs TitaniumCloud v2 enabled?
+      type: condition
+      version: -1
+    taskid: baef1e7d-fe85-468b-8393-ca3d5aa43d0a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 272c05df-0bad-4770-865d-5e5c6af74838
+      iscommand: false
+      name: done
+      type: title
+      version: -1
+    taskid: 272c05df-0bad-4770-865d-5e5c6af74838
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 20,
+          "y": 1360
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.URL
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "6"
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2fe99680-5e24-4676-86ca-f3b96812f460
+      iscommand: false
+      name: Is there a URL?
+      type: condition
+      version: -1
+    taskid: 2fe99680-5e24-4676-86ca-f3b96812f460
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 560
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      url:
+        simple: ${inputs.URL}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ReversingLabs TitaniumCloud v2
+      description: Return a URL analysis report.
+      id: e0ca636e-c879-4a3e-8b02-12bdb1e1f7a2
+      iscommand: true
+      name: reversinglabs-titaniumcloud-url-report
+      script: ReversingLabs TitaniumCloud v2|||reversinglabs-titaniumcloud-url-report
+      type: regular
+      version: -1
+    taskid: e0ca636e-c879-4a3e-8b02-12bdb1e1f7a2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 300,
+          "y": 980
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      uri:
+        simple: ${inputs.URL}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ReversingLabs TitaniumCloud v2
+      description: Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated
+        with a specific URI.
+      id: 9dae45b3-c460-43f5-8304-196b05b76920
+      iscommand: true
+      name: reversinglabs-titaniumcloud-uri-statistics
+      script: ReversingLabs TitaniumCloud v2|||reversinglabs-titaniumcloud-uri-statistics
+      type: regular
+      version: -1
+    taskid: 9dae45b3-c460-43f5-8304-196b05b76920
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 700,
+          "y": 980
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1375,
+        "width": 1060,
+        "x": 20,
+        "y": 50
+      }
+    }
+  }
