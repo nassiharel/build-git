@@ -1,0 +1,280 @@
+{
+	"author": "SlashNext",
+	"authorImage": "content/packs/SlashNextPhishingIncidentResponse/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Analyzes the forensic data to detect brand impersonation attacks. This script uses the HMRC brand as an example, please modify the attributes associated with your company’s brand.",
+				"name": "BrandImpersonationDetection",
+				"tags": [
+					"phishing"
+				]
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Looks up an IP address indicator in the SlashNext Threat Intelligence database.",
+						"name": "ip"
+					},
+					{
+						"description": "Looks up a Fully Qualified Domain Name (FQDN) indicator in the SlashNext Threat Intelligence database.",
+						"name": "domain"
+					},
+					{
+						"description": "Queries the SlashNext Cloud database and retrieves the reputation of a url.",
+						"name": "url"
+					},
+					{
+						"description": "Queries the SlashNext Cloud database and retrieves the reputation of a host.",
+						"name": "slashnext-host-reputation"
+					},
+					{
+						"description": "Queries the SlashNext Cloud database and retrieves a detailed report for a host and associated URL.",
+						"name": "slashnext-host-report"
+					},
+					{
+						"description": "Queries the SlashNext Cloud database and retrieves a list of all URLs associated with the specified host.",
+						"name": "slashnext-host-urls"
+					},
+					{
+						"description": "Queries the SlashNext Cloud database and retrieves the reputation of a url.",
+						"name": "slashnext-url-reputation"
+					},
+					{
+						"description": "Performs a real-time URL scan with SlashNext cloud-based SEER Engine. If the specified URL already exists in the cloud database, scan results will be returned immediately. If not, this command will submit a URL scan request and return with the message \"check back later\" and include a unique Scan ID. You can check the results of this scan using the \"slashnext-scan-report\" command anytime after 60 seconds using the returned Scan ID.",
+						"name": "slashnext-url-scan"
+					},
+					{
+						"description": "Performs a real-time URL scan with SlashNext cloud-based SEER Engine in a blocking mode. If the specified URL already exists in the cloud database, scan result will be returned immediately. If not, this command will submit a URL scan request and wait for the scan to finish. The scan may take up to 60 seconds to finish.",
+						"name": "slashnext-url-scan-sync"
+					},
+					{
+						"description": "Retrieves the results of a URL scan against a previous scan request. If the scan is finished, results will be returned immediately; otherwise the message \"check back later\" will be returned.",
+						"name": "slashnext-scan-report"
+					},
+					{
+						"description": "Downloads a screenshot of a web page against a previous URL scan request.",
+						"name": "slashnext-download-screenshot"
+					},
+					{
+						"description": "Downloads a web page HTML against a previous URL scan request.",
+						"name": "slashnext-download-html"
+					},
+					{
+						"description": "Downloads the text of a web page against a previous URL scan request.",
+						"name": "slashnext-download-text"
+					},
+					{
+						"description": "Queries the SlashNext cloud database and retrieves the details of API quota.",
+						"name": "slashnext-api-quota"
+					}
+				],
+				"description": "SlashNext Phishing Incident Response integration allows Cortex XSOAR users to fully automate analysis of suspicious URLs. For example, IR teams responsible for abuse inbox management can extract links or domains out of suspicious emails and automatically analyze them with the SlashNext SEER threat detection cloud to get definitive, binary verdicts (malicious or benign) along with IOCs, screen shots, and more. Automating URL analysis can save IR teams hundreds of hours versus manually triaging these emails or checking URLs and domains against less accurate phishing databases and domain reputation services.",
+				"name": "SlashNext Phishing Incident Response (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Analyzes the domains and URLs in suspicious emails, reported by end users, to determine if the phishing campaign is impersonating your company’s brand. Playbook can then trigger a domain take down email, with forensic evidence, to a target address.",
+				"name": "Online Brand Protection Detect and Respond"
+			},
+			{
+				"description": "When combined with ‘SlashNext Abuse Management Protection’, this playbook fully automates the identification and remediation of phishing emails found in Microsoft 365 user inboxes. Using the indicators of compromise, URL, domain, and IP, found in the original email, it searches and remediates other emails containing the same IOCs.",
+				"name": "Abuse Inbox Management Detect \u0026 Respond"
+			},
+			{
+				"description": "Analyzes the URLs, domains, and IPs in suspicious emails, reported by end users, and returns a binary verdict (malicious or benign) and forensic information including screenshot of attack page, threat name and type, threat status, and first/last seen date",
+				"name": "Abuse Inbox Management Protection"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-23T17:40:02Z",
+	"currentVersion": "1.3.1",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		},
+		"EWS": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.11.8",
+			"name": "EWS"
+		},
+		"EWSMailSender": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.1.8",
+			"name": "EWS Mail Sender"
+		},
+		"JsonWhoIs": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.13",
+			"name": "JsonWhoIs"
+		},
+		"rasterize": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.24",
+			"name": "Rasterize"
+		}
+	},
+	"deprecated": false,
+	"description": "This community edition of SlashNext Phishing Incident Response is intended for organization to try the world’s largest, real-time phishing intelligence database for accurate, definitive binary verdicts on suspicious URLs and download phishing forensics including webpage screenshots, HTML and text. \n\nThis edition is for organizations that need a direct annual subscription to SlashNext Phishing Incident Response, the world’s largest, real-time phishing intelligence database for accurate, definitive binary verdicts on suspicious URLs and download phishing forensics including webpage screenshots, HTML and text. \n\nFor more information go to: https://www.slashnext.com/technology-partners/cortex-xsoar/",
+	"downloads": 1590,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "SlashNextPhishingIncidentResponse",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/SlashNextPhishingIncidentResponse/SlashNextPhishingIncidentResponse_image.png",
+			"name": "SlashNext Phishing Incident Response"
+		},
+		{
+			"imagePath": "content/packs/EWS/EWSO365_image.png",
+			"name": "EWS O365"
+		},
+		{
+			"imagePath": "content/packs/EWS/EWSv2_image.png",
+			"name": "EWS v2"
+		},
+		{
+			"imagePath": "content/packs/EWS/EwsExtension_image.png",
+			"name": "O365 - EWS - Extension"
+		},
+		{
+			"imagePath": "content/packs/EWS/EWSExtensionOnlinePowershellv2_image.png",
+			"name": "O365 - EWS - Extension Online Powershell v2"
+		},
+		{
+			"imagePath": "content/packs/EWS/SecurityAndCompliance_image.png",
+			"name": "O365 - Security And Compliance - Content Search"
+		},
+		{
+			"imagePath": "content/packs/rasterize/Rasterize_image.png",
+			"name": "Rasterize"
+		},
+		{
+			"imagePath": "content/packs/EWSMailSender/EWSMailSender_image.png",
+			"name": "EWS Mail Sender"
+		},
+		{
+			"imagePath": "content/packs/JsonWhoIs/JsonWhoIs_image.png",
+			"name": "JsonWhoIs"
+		}
+	],
+	"itemVersion": "1.3.1",
+	"keywords": [
+		"slashnext",
+		"reputation",
+		"enrichment",
+		"scan",
+		"live scan",
+		"binary verdicts",
+		"forensics",
+		"incident response",
+		"threat intelligence",
+		"compromised",
+		"social engineering",
+		"phishing",
+		"scareware",
+		"rogueware",
+		"C2",
+		"command and control"
+	],
+	"legacy": true,
+	"name": "SlashNext Phishing Incident Response - Annual Subscription  (Direct Subscription)",
+	"packID": "SlashNextPhishingIncidentResponse",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "Automate phishing incident response and threat hunting with SlashNext’s on-demand URL analysis and enrichment. SlashNext Incident Response provides a scalable, cloud-based analysis engine purpose-built for analyzing suspicious URLs for phishing and social engineering attacks. Patented SEER™ threat detection engine uses virtual browsers and machine learning to dynamically analyze webpage contents (images, text etc.) and server behavior. Mature machine learning algorithms enable definitive, binary verdicts (not threat scores) with \u003e99.07% precision.\n\n### Benefits\n* **Fully Automate URL Analysis:** Enables full automated analysis of suspected phishing URLs by extracting and scanning URLs or hosts from suspicious emails or logs automatically \n* **Improve Productivity:** Eliminate countless hours of analysis and further research on inconclusive results with suspicious URLs for improved performance of incident response and threat hunting\n* **Rapid Detection:** High-precision phishing URL analysis and enrichment enables rapid detection of genuine threats, with near zero false positives \n* **Remediate Sites and Takedown Threat Sources:** Rich forensic data including screenshots, threat status, URLs, HTML and text downloads enable users to carefully plan a strategy to remediate sites or takedown threat sources\n* **Comprehensive Threat Coverage:** Detect all major types of phishing and social engineering threats with rich forensics data for additional analysis and reporting \n* **Overcome Evasion Tactics:** SlashNext SEER™ technology conducts run-time analysis with virtual browsers to overcome evasion techniques to detect unknown threats, including those hosted on compromised websites and legitimate hosting infrastructure \n\n### SlashNext Advantage\nSlashNext leads the industry with the greatest speed at internet scale, fast and highly scalable cloud-based sync API, developed on top of big data architecture.\n* **Highly Accurate, Zero-hour Detection:** 3x greater accuracy vs. the top security vendors with 99.07% detection rate and 1 in 1M FP rate. SEER™ technology detects zero-hour threats missed by URL inspection and domain reputation technologies by following all re-directs and multi-stage attacks to the final destination for detection on compromised websites and legitimate hosting infrastructure\n* **Smart and Predictive:** Overcome evasive tactics such as URL redirection, CAPTCHA and inspection blocking based on IP, to detect phishing webpages missed by other security solutions\n* **Fast and Highly Scalable:** SlashNext Incident response operates at cloud scale, using millions of virtual browsers to analyze millions of suspicious URLs on demand, with millisecond response time\n* **Comprehensive Coverage:** Total phishing detection for corporate credential theft, social engineering, Scareware and Rogue software webpages \n* **Robust List of API Commands:** Customize playbooks and take advantage of the full capabilities of SlashNext Incident Response technology\n* **Fast and Highly Scalable:** SlashNext Incident response operates at cloud scale, using millions of virtual browsers to analyze millions of suspicious URLs on demand, with millisecond response time\n* **Smart and Predictive:** Overcome evasive tactics such as URL redirection, CAPTCHA and inspection blocking based on IP, to detect phishing webpages missed by other security solutions\n* **Playbooks** for automating abuse inbox management and online brand protection\n\n### SlashNext Platform Architecture\n![Architecture](https://app.box.com/shared/static/xu3e0n5j0w1ppfsydx7p5o2xrco1klsm.png)\n\n### Package Includes\n* URL Intelligence and Forensics\n* Incident Response and Threat Hunting\n* Online Brand Reputation\n\n### Playbooks\n* **Phishing IR Playbook for Abuse Inbox Management:** Fully automates the investigation and response to suspicious emails reported by internal employees and external customers to your organization’s abuse inbox. Accurate binary verdict (not a threat score) eliminates countless hours of analysis and further research on inconclusive results for improved performance of incident response \n* **Online Brand Protection Detect and Respond Playbook:** Fully automates the process of reviewing the emails sent by customers and the public to online brand abuse inboxes. It detects brand impersonators and malicious URLs using deep inspection of website content and packages everything required to request a take-down (IOCs, forensics, and screenshots) into an email sent to the abuse department to simply forward to the domain registrar\n\n### Useful Links\n* [https://www.slashnext.com/technology-partners/cortex-xsoar/](https://www.slashnext.com/technology-partners/cortex-xsoar/)\n* [https://live.paloaltonetworks.com/t5/blogs/cortex-xsoar-amp-slashnext/ba-p/333682](https://live.paloaltonetworks.com/t5/blogs/cortex-xsoar-amp-slashnext/ba-p/333682)\n* [https://www.slashnext.com/wp-content/uploads/2020/01/SlashNext-Phishing-IR-Integration-Guide-Demisto-SOAR.pdf](https://www.slashnext.com/wp-content/uploads/2020/01/SlashNext-Phishing-IR-Integration-Guide-Demisto-SOAR.pdf)\n* [https://www.slashnext.com/wp-content/uploads/2020/07/SlashNext_CORTEX-XSOAR-Integration.pdf](https://www.slashnext.com/wp-content/uploads/2020/07/SlashNext_CORTEX-XSOAR-Integration.pdf)\n",
+	"searchRank": 20,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@slashnext.com",
+		"url": "https://www.slashnext.com"
+	},
+	"tags": [
+		"Forensics",
+		"Use Case",
+		"Featured",
+		"Threat Intelligence",
+		"Email"
+	],
+	"toServerVersion": "",
+	"updated": "2021-12-21T22:31:27Z",
+	"useCases": [
+		"Incident Response",
+		"Email Communication",
+		"Hunting",
+		"Phishing"
+	],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
