@@ -1,0 +1,47 @@
+args:
+- default: true
+  description: Domain or IP indicator value that need to enrich
+  name: indicator_value
+  required: true
+comment: Enhancement script to enrich web trackers information for Domain and IP type
+  of indicators.
+commonfields:
+  id: RiskIQPassiveTotalTrackersScript
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.1.1
+    packID: PassiveTotal
+    packName: PassiveTotal
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+dependson:
+  must:
+  - '|||pt-get-trackers'
+dockerimage: demisto/python3:3.9.7.24076
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: RiskIQPassiveTotalTrackersScript
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  register_module_line('RiskIQPassiveTotalTrackersScript', 'start', __line__())
+
+
+  result = demisto.executeCommand('pt-get-trackers', {'query': demisto.args().get('indicator_value')})
+
+  demisto.results(result)
+
+  register_module_line('RiskIQPassiveTotalTrackersScript', 'end', __line__())
+scripttarget: 0
+subtype: python3
+system: true
+tags:
+- enhancement
+type: python
