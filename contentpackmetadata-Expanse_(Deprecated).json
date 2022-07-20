@@ -1,0 +1,212 @@
+{
+	"author": "Expanse",
+	"authorImage": "content/packs/Expanse/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation",
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Parses incident from Expanse in raw json to readable output",
+				"name": "ExpanseParseRawIncident",
+				"tags": [
+					"Expanse"
+				]
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "",
+				"name": "Expanse Severity",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "ExpanseRawJSONEvent",
+				"type": "shortText"
+			},
+			{
+				"description": "",
+				"name": "Expanse Exposure Type",
+				"type": "shortText"
+			},
+			{
+				"description": "Expanse Behavior rule that incident violates",
+				"name": "Expanse Behavior Rule",
+				"type": "shortText"
+			},
+			{
+				"description": "Business Unit for Incident",
+				"name": "Expanse Business Unit",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Expanse Appearance",
+				"playbook": "ExpanseParseRawIncident",
+				"weeks": 0
+			},
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "Expanse Behavior",
+				"playbook": "Expanse Behavior Severity Update",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Submits an IP address to check.",
+						"name": "ip"
+					},
+					{
+						"description": "Submits a domain to check.",
+						"name": "domain"
+					},
+					{
+						"description": "Returns information about the domain certificate.",
+						"name": "expanse-get-certificate"
+					},
+					{
+						"description": "Returns Risky Flows for the specified IP address. The maximum number of results is 20.",
+						"name": "expanse-get-behavior"
+					},
+					{
+						"description": "Deprecated command by Expanse. Returns exposure information about the ip.",
+						"name": "expanse-get-exposures"
+					},
+					{
+						"description": "Returns all domains which have been seen with the specified certificate.",
+						"name": "expanse-get-domains-for-certificate"
+					}
+				],
+				"description": "Deprecated. Use the Expanse v2 integration instead. The Expanse App for Demisto leverages the Expander API to retrieve network exposures and risky flows to create incidents in Demisto.  This application also allows for IP, Domain, Certificate, Behavior, and Exposure enrichment, retrieving assets and exposures information drawn from Expanse’s unparalleled view of the Internet.",
+				"name": "Expanse (Deprecated) (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "Expanse Appearance Incident"
+			},
+			{
+				"description": "",
+				"name": "Expanse Behavior Incident"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "This playbook updates the severity of an Expanse Behavior incident based on the presence of other active Exposures for the IP address. ",
+				"name": "Expanse Behavior Severity Update"
+			},
+			{
+				"description": "Parses incident from Expanse in raw json to readable output",
+				"name": "Expanse Incident Playbook"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-07-22T10:32:46Z",
+	"currentVersion": "1.2.3",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		}
+	},
+	"deprecated": false,
+	"description": "Deprecated - Use the Expanse v2 integration instead. The Expanse App for Demisto leverages the Expander API to retrieve network exposures and create incidents in Demisto.",
+	"downloads": 1586,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Expanse",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Expanse/Expanse_image.png",
+			"name": "Expanse (Deprecated)"
+		}
+	],
+	"itemVersion": "1.2.3",
+	"keywords": [
+		"Expanse"
+	],
+	"legacy": true,
+	"name": "Expanse (Deprecated)",
+	"packID": "Expanse",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": -40,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "help@expanseinc.com",
+		"url": "https://www.expanse.co/"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-01-10T22:20:10Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
