@@ -1,0 +1,972 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "6.0.0",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "Sixgill Darkfeed",
+	"isCommon": true,
+	"itemVersion": "2.0.10",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "eea21ff0-a49b-11ea-bb0a-85c8fc40a0d2",
+			"id": "eea21ff0-a49b-11ea-bb0a-85c8fc40a0d2",
+			"reflectDimensions": false,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 30,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "sixgill-darkfeed-indicators-by-type",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-06-02T06:40:09.830283562Z",
+				"name": "Sixgill Darkfeed Indicators by Type",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"type"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "indicator_type",
+							"position": 1,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "value",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "score",
+							"position": 4,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "firstSeen",
+							"position": 5,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "lastSeen",
+							"position": 6,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "timestamp",
+							"position": 8,
+							"width": 190
+						},
+						{
+							"isDefault": true,
+							"key": "investigationIDs",
+							"position": 9,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "sourceBrands",
+							"position": 12,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "sourceInstances",
+							"position": 13,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expirationStatus",
+							"position": 14,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expiration",
+							"position": 15,
+							"width": 190
+						}
+					]
+				},
+				"prevName": "Sixgill Darkfeed Indicators by Type",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "sourceBrands:Sixgill_Darkfeed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "column"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "dc9c84c0-a49c-11ea-bb0a-85c8fc40a0d2",
+			"id": "dc9c84c0-a49c-11ea-bb0a-85c8fc40a0d2",
+			"reflectDimensions": false,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "sixgill-darkfeed-collected-iocs",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-06-02T06:46:56.579743988Z",
+				"name": "Sixgill Darkfeed - Collected IOCs",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"calculatedTime(d)",
+						"sourceBrands"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "indicator_type",
+							"position": 1,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "value",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "score",
+							"position": 4,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "firstSeen",
+							"position": 5,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "lastSeen",
+							"position": 6,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "timestamp",
+							"position": 8,
+							"width": 190
+						},
+						{
+							"isDefault": true,
+							"key": "investigationIDs",
+							"position": 9,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "sourceBrands",
+							"position": 12,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "sourceInstances",
+							"position": 13,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expirationStatus",
+							"position": 14,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expiration",
+							"position": 15,
+							"width": 190
+						}
+					]
+				},
+				"prevName": "Sixgill Darkfeed - Collected IOCs",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "sourceBrands:Sixgill_Darkfeed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "line"
+			},
+			"x": 0,
+			"y": 2
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "3a1e6ad0-a4d6-11ea-b9e7-9d0426a8eb20",
+			"id": "3a1e6ad0-a4d6-11ea-b9e7-9d0426a8eb20",
+			"reflectDimensions": false,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "sixgill-darkfeed-subfeed-composition",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-06-02T13:37:31.692328578Z",
+				"name": "Sixgill Darkfeed - Subfeed Composition",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"sixgillfeedname"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "indicator_type",
+							"position": 1,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "value",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "score",
+							"position": 4,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "firstSeen",
+							"position": 5,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "lastSeen",
+							"position": 6,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "timestamp",
+							"position": 8,
+							"width": 190
+						},
+						{
+							"isDefault": true,
+							"key": "investigationIDs",
+							"position": 9,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "sourceBrands",
+							"position": 12,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "sourceInstances",
+							"position": 13,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expirationStatus",
+							"position": 14,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expiration",
+							"position": 15,
+							"width": 190
+						}
+					]
+				},
+				"prevName": "Sixgill Darkfeed - Subfeed Composition",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "sourceBrands:Sixgill_Darkfeed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "pie"
+			},
+			"x": 6,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "564daab0-ab2d-11ea-9f2e-d55a0dbc44c8",
+			"id": "564daab0-ab2d-11ea-9f2e-d55a0dbc44c8",
+			"reflectDimensions": false,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 30,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "sixgill-darkfeed-mitre-attack-tactics",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-06-10T15:16:15.479365269Z",
+				"name": "Sixgill Darkfeed - Mitre ATT\u0026CK Tactics",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"sixgillmitreattcktactic"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "indicator_type",
+							"position": 1,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "value",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "score",
+							"position": 4,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "firstSeen",
+							"position": 5,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "lastSeen",
+							"position": 6,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "timestamp",
+							"position": 8,
+							"width": 190
+						},
+						{
+							"isDefault": true,
+							"key": "investigationIDs",
+							"position": 9,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "sourceBrands",
+							"position": 12,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "sourceInstances",
+							"position": 13,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expirationStatus",
+							"position": 14,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expiration",
+							"position": 15,
+							"width": 190
+						}
+					]
+				},
+				"prevName": "Sixgill Darkfeed - Mitre ATT\u0026CK Tactics",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "sourceBrands:Sixgill_Darkfeed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "pie"
+			},
+			"x": 0,
+			"y": 6
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "c0700350-ae04-11ea-b31e-7da52879f1f8",
+			"id": "c0700350-ae04-11ea-b31e-7da52879f1f8",
+			"reflectDimensions": false,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "sixgill-darkfeed-top-10-threat-actors",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-06-14T06:03:16.831524681Z",
+				"name": "Sixgill Darkfeed - Top 10 Threat Actors",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"sixgillactor"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "indicator_type",
+							"position": 1,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "value",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "score",
+							"position": 4,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "firstSeen",
+							"position": 5,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "lastSeen",
+							"position": 6,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "timestamp",
+							"position": 8,
+							"width": 190
+						},
+						{
+							"isDefault": true,
+							"key": "investigationIDs",
+							"position": 9,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "sourceBrands",
+							"position": 12,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "sourceInstances",
+							"position": 13,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expirationStatus",
+							"position": 14,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expiration",
+							"position": 15,
+							"width": 190
+						}
+					]
+				},
+				"prevName": "Sixgill Darkfeed - Top 10 Threat Actors",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "sourceBrands:Sixgill_Darkfeed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "bar"
+			},
+			"x": 6,
+			"y": 3
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "e08d12c0-ae06-11ea-b31e-7da52879f1f8",
+			"id": "e08d12c0-ae06-11ea-b31e-7da52879f1f8",
+			"reflectDimensions": false,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 30,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "sixgill-mitre-attack-techniques",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-06-14T06:18:25.004781666Z",
+				"name": "Sixgill Mitre ATT\u0026CK Techniques",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"sixgillmitreattcktechnique"
+					],
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "indicator_type",
+							"position": 1,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "value",
+							"position": 2,
+							"width": 300
+						},
+						{
+							"isDefault": true,
+							"key": "score",
+							"position": 4,
+							"width": 120
+						},
+						{
+							"isDefault": true,
+							"key": "firstSeen",
+							"position": 5,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "lastSeen",
+							"position": 6,
+							"width": 275
+						},
+						{
+							"isDefault": true,
+							"key": "timestamp",
+							"position": 8,
+							"width": 190
+						},
+						{
+							"isDefault": true,
+							"key": "investigationIDs",
+							"position": 9,
+							"width": 150
+						},
+						{
+							"isDefault": true,
+							"key": "sourceBrands",
+							"position": 12,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "sourceInstances",
+							"position": 13,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expirationStatus",
+							"position": 14,
+							"width": 175
+						},
+						{
+							"isDefault": true,
+							"key": "expiration",
+							"position": 15,
+							"width": 190
+						}
+					]
+				},
+				"prevName": "Sixgill Mitre ATT\u0026CK Techniques",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "sourceBrands:Sixgill_Darkfeed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "pie"
+			},
+			"x": 6,
+			"y": 6
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "8f091550-ae08-11ea-b31e-7da52879f1f8",
+			"id": "8f091550-ae08-11ea-b31e-7da52879f1f8",
+			"reflectDimensions": false,
+			"w": 6,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 30,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "sixgill-darkfeed-ioc-detection-rate-by-virus-total",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-06-14T06:30:33.416826298Z",
+				"name": "Sixgill Darkfeed IOC detection rate by Virus Total",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"groupBy": [
+						"sixgillvirustotaldetectionrate"
+					],
+					"tableColumns": [
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "indicator_type",
+							"width": 120
+						},
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "value",
+							"width": 300
+						},
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "score",
+							"width": 120
+						},
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "timestamp",
+							"width": 190
+						},
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "sourceBrands",
+							"width": 175
+						},
+						{
+							"displayed": true,
+							"key": "Sixgill Actor",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Sixgill Feed Name",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Sixgill Post Reference",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Sixgill Post Title",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Sixgill Source",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Sixgill Virus Total Detection Rate",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Sixgill Virus Total URL",
+							"width": 200
+						}
+					]
+				},
+				"prevName": "Sixgill Darkfeed IOC detection rate by Virus Total",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "sourceBrands:Sixgill_Darkfeed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "pie"
+			},
+			"x": 0,
+			"y": 4
+		},
+		{
+			"forceRange": false,
+			"h": 3,
+			"i": "6d98fc30-ae0a-11ea-b31e-7da52879f1f8",
+			"id": "6d98fc30-ae0a-11ea-b31e-7da52879f1f8",
+			"reflectDimensions": false,
+			"w": 12,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "indicators",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "",
+				"id": "sixgill-darkfeed-threads-from-the-underground",
+				"isPredefined": false,
+				"itemVersion": "",
+				"modified": "2020-06-14T06:43:54.421176797Z",
+				"name": "Sixgill Darkfeed - Threads from the Underground",
+				"packID": "",
+				"packName": "",
+				"params": {
+					"colors": {
+						"isEnabled": false,
+						"items": {},
+						"type": "above"
+					},
+					"tableColumns": [
+						{
+							"displayed": true,
+							"key": "Sixgill Post Title",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"key": "Sixgill Source",
+							"width": 200
+						},
+						{
+							"displayed": true,
+							"isDefault": true,
+							"key": "value",
+							"width": 300
+						}
+					]
+				},
+				"prevName": "Sixgill Darkfeed - Threads from the Underground",
+				"propagationLabels": [
+					"all"
+				],
+				"query": "sourceBrands:Sixgill_Darkfeed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 1,
+				"widgetType": "table"
+			},
+			"x": 0,
+			"y": 9
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "Sixgill Darkfeed",
+	"owner": "",
+	"packID": "Sixgill-Darkfeed",
+	"packName": "Sixgill Darkfeed - Annual Subscription",
+	"packPropagationLabels": [
+		"all"
+	],
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 30,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"system": true,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
