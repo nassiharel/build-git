@@ -1,0 +1,152 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 11684f15-b9b9-4d20-8187-152a5d6a981d
+inputs: []
+name: zan_test_11
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 04293f79-c372-4612-8f65-3ea28fab957c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 04293f79-c372-4612-8f65-3ea28fab957c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 720,
+          "y": -130
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: I'm going to update zan's custom field"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 3433764b-b04b-463e-89b7-2669cf9a0993
+      iscommand: false
+      name: print
+      script: Print
+      type: regular
+      version: -1
+    taskid: 3433764b-b04b-463e-89b7-2669cf9a0993
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 720,
+          "y": 60
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 76da79e7-8cb8-4edd-8c68-62ac988171dc
+      iscommand: false
+      name: run zan automation
+      script: ed78755c-b02f-44c4-821c-d74614ac48d5
+      type: regular
+      version: -1
+    taskid: 76da79e7-8cb8-4edd-8c68-62ac988171dc
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 720,
+          "y": 260
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c793faf6-a716-4d41-8148-d567310ca9dc
+      iscommand: false
+      name: end
+      type: title
+      version: -1
+    taskid: c793faf6-a716-4d41-8148-d567310ca9dc
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 720,
+          "y": 450
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 645,
+        "width": 380,
+        "x": 720,
+        "y": -130
+      }
+    }
+  }
