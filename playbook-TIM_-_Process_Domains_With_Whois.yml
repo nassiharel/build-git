@@ -68,7 +68,6 @@ outputs:
   description: Domains that could not be processed for any reason are outputted to
     this context path.
   type: string
-quiet: true
 starttaskid: "0"
 system: true
 tasks:
