@@ -1,0 +1,174 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Checks the file reputation.",
+						"name": "file"
+					},
+					{
+						"description": "Checks the URL reputation.",
+						"name": "url"
+					},
+					{
+						"description": "Checks the domain reputation.",
+						"name": "domain"
+					},
+					{
+						"description": "Checks the IP reputation.",
+						"name": "ip"
+					},
+					{
+						"description": "Search known actors based on the given parameters.",
+						"name": "cs-actors"
+					},
+					{
+						"description": "Search known indicators based on the given parameters.",
+						"name": "cs-indicators"
+					},
+					{
+						"description": "Queries CrowdStrike intelligence publications.",
+						"name": "cs-reports"
+					}
+				],
+				"description": "CrowdStrike Threat intelligence service integration helps organizations defend themselves against adversary activity by investigating incidents, and accelerating alert triage and response.",
+				"name": "CrowdStrike Falcon Intel v2"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Check file reputation",
+						"name": "file"
+					},
+					{
+						"description": "Check the given URL reputation",
+						"name": "url"
+					},
+					{
+						"description": "Check the given URL reputation",
+						"name": "domain"
+					},
+					{
+						"description": "Check IP reputation",
+						"name": "ip"
+					},
+					{
+						"description": "Search known actors based on the given parameters. Dates are formatted as YYYY-MM-DD. Max date is taken automatically looking at end-of-day time. Origins, targetCountries, targetIndustries and motivations can all receive multiple values separated by \",\". Offset is 0 based. Sort is field_name.order, field_name.order where order is either asc or desc.",
+						"name": "cs-actors"
+					},
+					{
+						"description": "Search known indicators based on the given parameters",
+						"name": "cs-indicators"
+					},
+					{
+						"description": "The Falcon Intel Reports API allows to query CrowdStrike intelligence publications.",
+						"name": "cs-reports"
+					},
+					{
+						"description": "Retrieve the Falcon Intel Report PDF",
+						"name": "cs-report-pdf"
+					}
+				],
+				"description": "Deprecated. Use CrowdStrike Falcon Intel v2 integration instead.",
+				"name": "CrowdStrike Falcon Intel (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-23T17:37:34Z",
+	"currentVersion": "2.0.16",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Threat intelligence service by CrowdStrike focused on delivering a technical feed to help organizations better defend themselves against adversary activity.",
+	"downloads": 2966,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "CrowdStrikeIntel",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/CrowdStrikeIntel/FalconIntel_image.png",
+			"name": "CrowdStrike Falcon Intel (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/CrowdStrikeIntel/CrowdStrikeFalconIntelv2_image.png",
+			"name": "CrowdStrike Falcon Intel v2"
+		}
+	],
+	"itemVersion": "2.0.16",
+	"keywords": [],
+	"legacy": true,
+	"name": "CrowdStrike Falcon Intel",
+	"packID": "CrowdStrikeIntel",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-04-12T21:30:17Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
