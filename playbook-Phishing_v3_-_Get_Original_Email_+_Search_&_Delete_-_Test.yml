@@ -1,0 +1,1412 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: |-
+  This playbook tests the search & delete and get original email functionality.
+  Prerequisites:
+  - The phishing playbook is configured with the correct inputs to allow getting the original email and searching & deleting emails
+  - A mail sender with sr-test02 is configured. That user will supposedly attack sr-test01.
+  - sr-test01 has a rule which forwards the test email to Testbox(but does not forward the acknowledgement emails it receives from the phishing playbook!)
+  - EWS O365 is configured as the mail listener with Testbox as the user.
+id: Phishing v3 - Get Original Email + Search & Delete - Test
+inputs: []
+name: Phishing v3 - Get Original Email + Search & Delete - Test
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8f12c2e1-8912-4e12-8fcb-5cd5f29d7b58
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 8f12c2e1-8912-4e12-8fcb-5cd5f29d7b58
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "20"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      all:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6036c285-ee74-4013-86eb-25a39cb9d207
+      iscommand: false
+      name: Delete Context
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: 6036c285-ee74-4013-86eb-25a39cb9d207
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 185
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "37"
+    note: false
+    quietmode: 2
+    reputationcalc: 1
+    scriptarguments:
+      id:
+        complex:
+          root: FoundID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.investigate
+      id: 3deab601-8290-4f70-8557-fbd8cdca8e8a
+      iscommand: true
+      name: Investigate the incident
+      script: Builtin|||investigate
+      type: regular
+      version: -1
+    taskid: 3deab601-8290-4f70-8557-fbd8cdca8e8a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 990
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      get_key:
+        simple: Email
+      incident_id:
+        complex:
+          root: FoundID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a value from the specified incident's context.
+      id: 3b87fa3a-5ebf-4dc6-82ed-1ee786927fd0
+      iscommand: false
+      name: Get the final Email context
+      script: GetByIncidentId
+      type: regular
+      version: -1
+    taskid: 3b87fa3a-5ebf-4dc6-82ed-1ee786927fd0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": 1780
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+      - "16"
+      - "29"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b1cf1886-e649-4aa0-8e8c-83b937ef8650
+      iscommand: false
+      name: Incident Field Checks
+      type: title
+      version: -1
+    taskid: b1cf1886-e649-4aa0-8e8c-83b937ef8650
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 1970
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+      - "31"
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: dd178c91-a1ff-4bf4-8cea-fcea3bf3f15d
+      iscommand: false
+      name: Context Checks
+      type: title
+      version: -1
+    taskid: dd178c91-a1ff-4bf4-8cea-fcea3bf3f15d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1000,
+          "y": 1960
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      id:
+        complex:
+          root: FoundID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Searches Demisto incidents
+      id: ada00bc8-60bb-4b08-8906-538aeea53313
+      iscommand: false
+      name: Get final incident fields
+      script: SearchIncidentsV2
+      type: regular
+      version: -1
+    taskid: ada00bc8-60bb-4b08-8906-538aeea53313
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 1790
+        }
+      }
+  "12":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: HTML
+                root: Email
+          operator: containsGeneral
+          right:
+            value:
+              simple: http://157.230.37.22/banks/Scotia/
+      label: "yes"
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "13"
+      "yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8830da17-c86a-4663-8026-9679c214aabb
+      iscommand: false
+      name: Does the retrieved email contain the correct HTML?
+      type: condition
+      version: -1
+    taskid: 8830da17-c86a-4663-8026-9679c214aabb
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": 2120
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: Something with the HTML of the retrieved email is wrong. Most likely,
+          the original email was not retrieved.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 7476a198-89a3-4719-84a1-42ae28c94411
+      iscommand: false
+      name: Error about mismatch in the email HTML
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 7476a198-89a3-4719-84a1-42ae28c94411
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 750,
+          "y": 2330
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: b72d4181-c23e-47c7-8f19-7bd076e5dcd3
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: b72d4181-c23e-47c7-8f19-7bd076e5dcd3
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 460,
+          "y": 2930
+        }
+      }
+  "15":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: emailsubject
+                root: foundIncidents.CustomFields
+          operator: isEqualString
+          right:
+            value:
+              simple: Suspicious activity in your bank account [ACTION REQUIRED]
+      label: "Yes"
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "19"
+      "Yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 61b97317-ac45-4e7f-8328-97ac7a5da690
+      iscommand: false
+      name: Was the subject of the original email set?
+      type: condition
+      version: -1
+    taskid: 61b97317-ac45-4e7f-8328-97ac7a5da690
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 2130
+        }
+      }
+  "16":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: emailfrom
+                root: foundIncidents.CustomFields
+          operator: isNotEqualString
+          right:
+            iscontext: true
+            value:
+              complex:
+                accessor: reporteremailaddress
+                root: foundIncidents.CustomFields
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: reporteremailaddress
+                root: foundIncidents.CustomFields
+          operator: isNotEmpty
+      label: "Yes"
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "28"
+      "Yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bd26a31a-a73c-4a3c-8226-1751a8063af1
+      iscommand: false
+      name: Is the reporter address different than the phishing sender?
+      type: condition
+      version: -1
+    taskid: bd26a31a-a73c-4a3c-8226-1751a8063af1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -580,
+          "y": 2130
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "25"
+      - "39"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: fba4c65b-6454-4509-8dc5-7c047c8bb20c
+      iscommand: false
+      name: Additional Flow Checks
+      type: title
+      version: -1
+    taskid: fba4c65b-6454-4509-8dc5-7c047c8bb20c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2760,
+          "y": 1780
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: The subject of the retrieved email was not set in the Process Email
+          - Generic playbook, or the original email was not retrieved at all.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 5fc784fe-fadb-44f1-8087-51a4765f6e81
+      iscommand: false
+      name: Error - subject is not the subject of the retrieved email
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 5fc784fe-fadb-44f1-8087-51a4765f6e81
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 2330
+        }
+      }
+  "20":
+    continueonerrortype: ""
+    id: "20"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      body:
+        simple: 'We''ve detected suspicious activity in your bank account on 05/12/2021.Please
+          take a moment to review your recent activity and report anything suspicious
+          immediately.Make sure to login and follow the instructions on our official
+          website: www.scotiabank.com<https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2F157.230.37.22%2Fbanks%2FScotia%2F&data=04%7C01%7Csr-test01%40demistodev.onmicrosoft.com%7Ca068915160cb49db31d508d9b9a33929%7Cebac1a1681bf449b8d435732c3c1d999%7C1%7C0%7C637744932980194392%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&sdata=I7reVHNGh7ifFcOWXFdfQWFXmwK3MVxFLEgiMPiG7Jo%3D&reserved=0>.Should
+          you have any questions, please contact us at SUPPORT@SCOTlABANK.COMScotiabank'
+      htmlBody:
+        simple: '<div style="font-family: Calibri, Arial, Helvetica, sans-serif;font-size:
+          12pt;color: rgb(0, 0, 0);"><span style="font-size: 12pt;background-color:
+          rgb(255, 255, 255);">We&#39;ve detected suspicious activity in your bank account
+          on 05/12/2021.</span> <div style="font-size: 12pt;background-color: rgb(255,
+          255, 255);">Please take a moment to review your recent activity and report
+          anything suspicious immediately.</div><div style="font-size: 12pt;background-color:
+          rgb(255, 255, 255);">Make sure to login and follow the instructions on our
+          official website:<span> </span><a href="https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2F157.230.37.22%2Fbanks%2FScotia%2F&amp;data=04%7C01%7Csr-test01%40demistodev.onmicrosoft.com%7Ca068915160cb49db31d508d9b9a33929%7Cebac1a1681bf449b8d435732c3c1d999%7C1%7C0%7C637744932980194392%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=I7reVHNGh7ifFcOWXFdfQWFXmwK3MVxFLEgiMPiG7Jo%3D&amp;reserved=0"
+          target="_blank" style="" rel="nofollow noopener">www.scotiabank.com</a>.</div><div
+          style="font-size: 12pt;background-color: rgb(255, 255, 255);"><br></div><div
+          style="font-size: 12pt;background-color: rgb(255, 255, 255);">Should you
+          have any questions, please contact us at SUPPORT@SCOTlABANK.COM</div><span
+          style="font-size: 12pt;background-color: rgb(255, 255, 255);"><span style="">Scotiabank</span></span><br></div>'
+      subject:
+        simple: Suspicious activity in your bank account [ACTION REQUIRED]
+      to:
+        simple: sr-test01@demistodev.onmicrosoft.com
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sends an email using EWS.
+      id: ca59d838-4f91-481e-8a43-9fea86681a03
+      iscommand: true
+      name: Send email from attacker to victim
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: ca59d838-4f91-481e-8a43-9fea86681a03
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 340
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      seconds:
+        simple: "120"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sleep for X seconds
+      id: 3d91a7e0-00b8-421a-84a4-93259e1cff69
+      iscommand: false
+      name: Wait for email to arrive and be forwarded by rule to Testbox
+      script: Sleep
+      type: regular
+      version: -1
+    taskid: 3d91a7e0-00b8-421a-84a4-93259e1cff69
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 505
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "23"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      name:
+        simple: 'FW: Suspicious activity in your bank account [ACTION REQUIRED]'
+      status:
+        simple: Pending
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Searches Demisto incidents.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: fc0b33f8-85e9-4291-89f4-0a0643a21fc2
+      iscommand: false
+      name: Find the new incident
+      script: SearchIncidentsV2
+      type: regular
+      version: -1
+    taskid: fc0b33f8-85e9-4291-89f4-0a0643a21fc2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 670
+        }
+      }
+  "23":
+    continueonerrortype: ""
+    id: "23"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      key:
+        simple: FoundID
+      value:
+        complex:
+          accessor: id
+          root: foundIncidents
+          transformers:
+          - args:
+              descending:
+                value:
+                  simple: "true"
+            operator: sort
+          - args:
+              index:
+                value:
+                  simple: "0"
+            operator: atIndex
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 78d5bda2-a9b9-4781-864c-40093854b41a
+      iscommand: false
+      name: Save found incident ID
+      script: Set
+      type: regular
+      version: -1
+    taskid: 78d5bda2-a9b9-4781-864c-40093854b41a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 830
+        }
+      }
+  "24":
+    continueonerrortype: ""
+    id: "24"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      all:
+        simple: "no"
+      key:
+        simple: foundIncidents
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Delete field from context.
+
+        This automation runs using the default Limited User role, unless you explicitly change the permissions.
+        For more information, see the section about permissions here:
+        https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
+      id: bcf584ac-de81-40f9-8d91-a29b45f7f76f
+      iscommand: false
+      name: Clear found incident
+      script: DeleteContext
+      type: regular
+      version: -1
+    taskid: bcf584ac-de81-40f9-8d91-a29b45f7f76f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 1590
+        }
+      }
+  "25":
+    continueonerrortype: ""
+    id: "25"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "40"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6c06a55f-ad6b-4037-8fdf-49004df9e922
+      iscommand: false
+      name: Check Search & Delete
+      type: title
+      version: -1
+    taskid: 6c06a55f-ad6b-4037-8fdf-49004df9e922
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 3030,
+          "y": 1920
+        }
+      }
+  "28":
+    continueonerrortype: ""
+    id: "28"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: Either the Reporter Email Address is empty (problem with the mapper),
+          or the Email From doesn't equal the Reporter Email Address (problem with
+          Process Email - Generic subplaybook). In case of the latter, need to see
+          if the original email was retrieved and parsed correctly using ParseEmailFiles.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 87ec422c-b3a4-433f-8b4b-26f59ff3141c
+      iscommand: false
+      name: Error - email from is same as reporter, or reporter is empty
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 87ec422c-b3a4-433f-8b4b-26f59ff3141c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -580,
+          "y": 2320
+        }
+      }
+  "29":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: severity
+                root: foundIncidents
+          operator: isEqualString
+          right:
+            value:
+              simple: "3"
+      label: "yes"
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "30"
+      "yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3c9f4371-4270-40d7-895e-bb620c95020e
+      iscommand: false
+      name: Is the severity of the incident high?
+      type: condition
+      version: -1
+    taskid: 3c9f4371-4270-40d7-895e-bb620c95020e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -1120,
+          "y": 2120
+        }
+      }
+  "30":
+    continueonerrortype: ""
+    id: "30"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: |-
+          The incident severity should be high, but it isn't. This could indicate one of the following problems:
+          1. The threat intelligence integration used reached its quota.
+          2. The threat intelligence integration used no longer detects the malicious URL as malicious.
+          3. The way we calculate severity for incidents has changed.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 51627fb3-e36f-4f0c-8fe8-28db29edc569
+      iscommand: false
+      name: Error - final severity not calculated correctly
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 51627fb3-e36f-4f0c-8fe8-28db29edc569
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -1120,
+          "y": 2320
+        }
+      }
+  "31":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: URL.Data
+          operator: containsGeneral
+          right:
+            value:
+              simple: http://157.230.37.22/banks/Scotia/
+      - - left:
+            iscontext: true
+            value:
+              simple: Domain.Name
+          operator: containsGeneral
+          right:
+            value:
+              simple: www.scotiabank.com
+      label: "yes"
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "33"
+      "yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 06dd9e4e-b1c1-4443-8ced-2c00c4a6c72a
+      iscommand: false
+      name: Were the URL & domain extracted successfully?
+      type: condition
+      version: -1
+    taskid: 06dd9e4e-b1c1-4443-8ced-2c00c4a6c72a
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1220,
+          "y": 2120
+        }
+      }
+  "32":
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      get_key:
+        simple: URL
+      incident_id:
+        complex:
+          root: FoundID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a value from the specified incident's context.
+      id: eceffc77-360b-4dcd-8c45-004b0bea5a55
+      iscommand: false
+      name: Get the URL context
+      script: GetByIncidentId
+      type: regular
+      version: -1
+    taskid: eceffc77-360b-4dcd-8c45-004b0bea5a55
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1230,
+          "y": 1780
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: The URL or the domain were not extracted properly. The legitimate
+          URL and the malicious URL should have been extracted using incident auto-extract
+          settings or field extraction rules (in XSOAR 6.1+). If auto-extract is OK,
+          it could be an issue with the threat intelligence integration.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 3c0fb63b-b7af-43b2-86ef-db08c3ac6608
+      iscommand: false
+      name: The URL or domain were not extracted
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 3c0fb63b-b7af-43b2-86ef-db08c3ac6608
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1220,
+          "y": 2340
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      get_key:
+        simple: File
+      incident_id:
+        complex:
+          root: FoundID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a value from the specified incident's context.
+      id: ada605dd-5ac7-41bc-80e2-aac75c4b2878
+      iscommand: false
+      name: Get the File context
+      script: GetByIncidentId
+      type: regular
+      version: -1
+    taskid: ada605dd-5ac7-41bc-80e2-aac75c4b2878
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1680,
+          "y": 1780
+        }
+      }
+  "35":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - ignorecase: true
+                    left:
+                      iscontext: true
+                      value:
+                        simple: File.Extension
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: eml
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: File.Name
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Suspicious activity in your bank account [ACTION REQUIRED].eml
+                root: File
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "36"
+      "yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0adc384f-65de-4972-85d5-971eed2ba3fd
+      iscommand: false
+      name: Was the original email retrieved as an EML file?
+      type: condition
+      version: -1
+    taskid: 0adc384f-65de-4972-85d5-971eed2ba3fd
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1680,
+          "y": 2120
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      message:
+        simple: |-
+          The original email was not retrieved at all, or was not retrieved as an EML file which is what is expected to happen.
+          Possible reasons:
+          - Something in the Process Email - Generic v2 or Get Original Email - Generic v2 playbooks changed.
+          - Something in the EWS365 integration changed and the retrieved file is no longer retrieved as a file.
+          - The email was deleted from the mailbox where it was received (probably sr-test01) by someone or something else.
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints an error entry with a given message
+      id: 5a270f22-ddc0-4775-8c5a-acc6b14afbe5
+      iscommand: false
+      name: Email not retrieved as EML
+      script: PrintErrorEntry
+      type: regular
+      version: -1
+    taskid: 5a270f22-ddc0-4775-8c5a-acc6b14afbe5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1680,
+          "y": 2340
+        }
+      }
+  "37":
+    continueonerrortype: ""
+    id: "37"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "38"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      complete_task:
+        simple: "true"
+      incident_id:
+        complex:
+          root: FoundID
+      interval_between_tries:
+        simple: "15"
+      max_timeout:
+        simple: "700"
+      task_name:
+        simple: Manually remediate  the incident
+      task_states:
+        simple: Waiting
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Wait and complete tasks by given status. Used for test playbooks.
+      id: 35da3e3b-2b33-4a25-8788-5b21a0dc2321
+      iscommand: false
+      name: Wait and manually remediate
+      script: WaitAndCompleteTask
+      type: regular
+      version: -1
+    taskid: 35da3e3b-2b33-4a25-8788-5b21a0dc2321
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1170
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "24"
+      - "7"
+      - "32"
+      - "34"
+      - "17"
+      - "41"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      complete_task:
+        simple: "false"
+      incident_id:
+        complex:
+          root: FoundID
+      interval_between_tries:
+        simple: "10"
+      max_timeout:
+        simple: "2500"
+      task_name:
+        simple: Close investigation
+      task_states:
+        simple: Completed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Wait and complete tasks by given status. Used for test playbooks.
+      id: 16f07fb0-a40e-4d3f-83e5-4dbd7050d14e
+      iscommand: false
+      name: Wait for incident to close
+      script: WaitAndCompleteTask
+      type: regular
+      version: -1
+    taskid: 16f07fb0-a40e-4d3f-83e5-4dbd7050d14e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1350
+        }
+      }
+  "39":
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    reputationcalc: 1
+    scriptarguments:
+      complete_task:
+        simple: "false"
+      incident_id:
+        complex:
+          root: FoundID
+      interval_between_tries:
+        simple: "10"
+      max_timeout:
+        simple: "1000"
+      task_name:
+        simple: Get URL screenshot
+      task_states:
+        simple: Completed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Wait and complete tasks by given status. Used for test playbooks.
+      id: 5df7606f-dd3c-4491-8887-b540de8d4713
+      iscommand: false
+      name: Check that URL screenshot was taken
+      script: WaitAndCompleteTask
+      type: regular
+      version: -1
+    taskid: 5df7606f-dd3c-4491-8887-b540de8d4713
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2520,
+          "y": 1940
+        }
+      }
+  "40":
+    continueonerrortype: ""
+    id: "40"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "14"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      complete_task:
+        simple: "false"
+      incident_id:
+        complex:
+          root: FoundID
+      interval_between_tries:
+        simple: "10"
+      max_timeout:
+        simple: "1000"
+      task_name:
+        simple: Search action - Soft delete.
+      task_states:
+        simple: Completed
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Wait and complete tasks by given status. Used for test playbooks.
+      id: e385d774-c7b5-4eae-8186-f83506c1c03a
+      iscommand: false
+      name: Check that soft delete was performed
+      script: WaitAndCompleteTask
+      type: regular
+      version: -1
+    taskid: e385d774-c7b5-4eae-8186-f83506c1c03a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3030,
+          "y": 2050
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      get_key:
+        simple: Domain
+      incident_id:
+        complex:
+          root: FoundID
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a value from the specified incident's context.
+      id: 86f0df92-c86d-4e36-88af-d1a718da536b
+      iscommand: false
+      name: Get the Domain context
+      script: GetByIncidentId
+      type: regular
+      version: -1
+    taskid: 86f0df92-c86d-4e36-88af-d1a718da536b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 2090,
+          "y": 1780
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "16_14_Yes": 0.12,
+      "31_33_#default#": 0.59
+    },
+    "paper": {
+      "dimensions": {
+        "height": 2945,
+        "width": 4530,
+        "x": -1120,
+        "y": 50
+      }
+    }
+  }
