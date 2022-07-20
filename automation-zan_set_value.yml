@@ -1,0 +1,27 @@
+commonfields:
+  id: ed78755c-b02f-44c4-821c-d74614ac48d5
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.5.31928
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: zan_set_value
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: demisto.setContext(<zan_f1>, <test11>)
+scripttarget: 0
+subtype: python3
+tags:
+- incidents
+type: python
