@@ -1,0 +1,2720 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.1.2
+    packID: SANS
+    packName: SANS
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: "This playbook investigates a \"Brute Force\" incident by gathering user
+  and IP information, and calculating the incident severity based on the gathered
+  information and information received from the user. It then performs remediation.\nThis
+  is done based on the phases for handling an incident as they are described in the
+  SANS Institute â€˜Incident Handlerâ€™s Handbookâ€™ by Patrick Kral.\n\nhttps://www.sans.org/reading-room/whitepapers/incident/incident-handlers-handbook-33901\n\nThe
+  playbook handles the following use-cases:\n\n* Brute Force IP Detected - A detection
+  of source IPs that are exceeding a high threshold of rejected and/or invalid logins.
+  \n* Brute Force Increase Percentage - A detection of large increase percentages
+  in various brute force statistics over different periods of time.\n* Brute Force
+  Potentially Compromised Accounts - A detection of accounts that have shown high
+  amount of failed logins with one successful login.\n\nUsed Sub-playbooks:\n- IP
+  Enrichment - Generic v2\n- Account Enrichment - Generic v2.1\n- Calculate Severity
+  - Critical Assets v2\n- Isolate Endpoint - Generic\n- Block Indicators - Generic
+  v2\n- SANS - Lessons Learned\n\n***Disclaimer: This playbook does not ensure compliance
+  to SANS regulations."
+id: Brute Force Investigation - Generic - SANS
+inputs:
+- description: Username of the user who is suspected of the activity.
+  key: username
+  playbookInputQuery: null
+  required: true
+  value:
+    complex:
+      accessor: username
+      root: incident
+- description: Source endpoint that triggered the incident.
+  key: src
+  playbookInputQuery: null
+  required: true
+  value:
+    complex:
+      accessor: src
+      root: incident
+- description: Traps endpoint ID, used for endpoint isolation.
+  key: traps_endpoint_id
+  playbookInputQuery: null
+  required: false
+  value:
+    complex:
+      accessor: agentid
+      root: incident
+- description: The threshold for number of logins, from which the investigation and
+    remediation will start automatically without waiting for the user's reply. Default
+    is 10.
+  key: logins_count_threshold
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "10"
+- description: "The threshold for the severity value from which an automatic remediation
+    takes place. \nSpecify the severity number (default is Critical):\n0 - Unknown\n0.5
+    - Informational\n1 - Low\n2 - Medium\n3 - High\n4 - Critical"
+  key: severity_threshold
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "4"
+- description: 'A list of internal IP ranges to check IP addresses against. The list
+    should be provided in CIDR notation, separated by commas. An example of a list
+    of ranges would be: "172.16.0.0/12,10.0.0.0/8,192.168.0.0/16" (without quotes).
+    If a list is not provided, will use default list provided in the IsIPInRanges
+    script (the known IPv4 private address ranges).'
+  key: internal_range
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Critical users, separated by comma.
+  key: critical_users
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Critical endpoints, separated by comma.
+  key: critical_endpoints
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Critical groups, separated by comma.
+  key: critical_groups
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    This input determines whether Palo Alto Networks Panorama or Firewall Custom Block Rules are used.
+    Specify True to use Custom Block Rules.
+  key: CustomBlockRule
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+- description: |-
+    This input determines whether Palo Alto Networks Panorama or Firewall Static Address Groups are used.
+    Specify the Static Address Group name for IP handling.
+  key: AutoCommit
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "No"
+- description: |-
+    This input determines whether Palo Alto Networks Panorama or Firewall External Dynamic Lists are used for blocking IPs.
+    Specify the EDL name for IP handling.
+  key: IPListName
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Demisto Remediation - IP EDL
+- description: |-
+    This input determines whether Palo Alto Networks Panorama or Firewall Dynamic Address Groups are used.
+    Specify the Dynamic Address Group tag name for IP handling.
+  key: DAG
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    This input determines whether Palo Alto Networks Panorama or Firewall Static Address Groups are used.
+    Specify the Static Address Group name for IP handling.
+  key: StaticAddressGroup
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: URL list from the instance context with which to override the remote
+    file.
+  key: URLListName
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Demisto Remediation - URL EDL
+- description: Custom URL Category name.
+  key: CustomURLCategory
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Demisto Remediation - Malicious URLs
+- description: Custom URL category type. Insert "URL List"/ "Category Match".
+  key: type
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Device group for the Custom URL Category (Panorama instances).
+  key: device-group
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The list of categories. Relevant from PAN-OS v9.x.
+  key: categories
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    This input determines whether Palo Alto Networks Panorama or Firewall External Dynamic Lists are used:
+    * The IP address of the web server on which the files are stored.
+    * The web server IP address is configured in the integration instance.
+  key: EDLServerIP
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Use a data collection task to answer lessons learned questions based
+    on SANS. Specify 'True' to automatically send the communication task, and 'False'  to
+    prevent it.
+  key: DataCollection
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: Email address to which to send the questions.
+  key: Email
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: Brute Force Investigation - Generic - SANS
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "61"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e0772674-d7ff-43df-8075-a871655a3f9b
+      iscommand: false
+      name: start_task
+      type: start
+      version: -1
+    taskid: e0772674-d7ff-43df-8075-a871655a3f9b
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": -1185
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    form:
+      description: 'We have identified several failed login attempts with your user
+        ID. Please confirm or deny that you attempted these logins. '
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Were the login attempts made by you?
+        options:
+        - ""
+        - "Yes"
+        - "No"
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: true
+        tooltip: ""
+        type: singleSelect
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "1"
+        label: ""
+        labelarg:
+          simple: If you confirm the multiple failed logins found from your account
+            were made by you, would you like your password to be reset?
+        options:
+        - ""
+        - "Yes"
+        - "No"
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: singleSelect
+      sender: ""
+      title: Failed login attempts
+      totalanswers: 0
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: "Hello,\n\nWe have identified several failed login attempts with your
+          user ID. Please confirm or deny that you attempted these logins. "
+      cc: null
+      format: ""
+      methods:
+      - email
+      replyOptions:
+      - "Yes"
+      - "No"
+      subject:
+        simple: Failed login attempts
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        complex:
+          accessor: Users.mail
+          root: ActiveDirectory
+    nexttasks:
+      '#none#':
+      - "16"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      clonedfrom: 7a39f05d-23c9-412d-8e36-3dd1ba0dd2f2
+      description: Sends the user a direct message in Slack requesting that they confirm
+        the account activity. The message includes predefined reply options. The response
+        can also close a task (might be conditional) in a playbook.
+      id: 74815757-2721-4e81-887d-93f17e71172f
+      iscommand: false
+      name: Ask user to confirm login attempts
+      type: collection
+      version: -1
+    taskid: 74815757-2721-4e81-887d-93f17e71172f
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 180
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Answers.1
+                root: Failed login attempts
+                transformers:
+                - operator: toLowerCase
+          operator: isEqualString
+          right:
+            value:
+              simple: "yes"
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Active Directory Query v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "17"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Answer `yes` if password should be reset. Also checks if Active
+        Directory Query v2 is enabled.
+      id: a6c6ce8d-c7aa-4252-8cb3-51969ab9a40d
+      iscommand: false
+      name: Should the password be reset?
+      type: condition
+      version: -1
+    taskid: a6c6ce8d-c7aa-4252-8cb3-51969ab9a40d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 890
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        complex:
+          root: inputs.username
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      clonedfrom: b061d5be-194d-4413-804b-ea47a7f05317
+      description: Expires the password of an Active Directory user.
+      id: 134b2e1a-1ba3-44e1-8f32-9014dd74e94f
+      iscommand: true
+      name: Active Directory - Expire Password
+      script: '|||ad-expire-password'
+      type: regular
+      version: -1
+    taskid: 134b2e1a-1ba3-44e1-8f32-9014dd74e94f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -420,
+          "y": 1060
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      body:
+        simple: |-
+          Hello,
+
+          Your account password has been reset through a Cortex XSOAR investigation.
+
+          Thank you.
+      subject:
+        simple: Your password has been reset
+      to:
+        complex:
+          accessor: Users.mail
+          root: ActiveDirectory
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      clonedfrom: 5e3d77e5-2172-4f74-87b6-c54e0f70fa62
+      description: Send an email
+      id: c08d6b8b-6ce7-488c-88f5-63c258371cfe
+      iscommand: true
+      name: Notify User about password reset
+      script: '|||send-mail'
+      type: regular
+      version: -1
+    taskid: c08d6b8b-6ce7-488c-88f5-63c258371cfe
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -420,
+          "y": 1250
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "38"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Closes the investigation.
+      id: b19417c3-62f5-49e0-8d6b-a5c87b80f313
+      iscommand: true
+      name: Close Investigation
+      script: Builtin|||closeInvestigation
+      type: regular
+      version: -1
+    taskid: b19417c3-62f5-49e0-8d6b-a5c87b80f313
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 6935
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: low
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Sets incident severity to low.
+      id: ee16a6ce-05cd-47b8-8c92-acaff9ce9de7
+      iscommand: true
+      name: Set incident severity to low
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: ee16a6ce-05cd-47b8-8c92-acaff9ce9de7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 690
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "59"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Username:
+        complex:
+          root: inputs.username
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 74381d29-880c-4adf-8b61-8047ecc709b0
+      iscommand: false
+      name: Account Enrichment - Generic v2.1
+      playbookId: Account Enrichment - Generic v2.1
+      type: playbook
+      version: -1
+    taskid: 74381d29-880c-4adf-8b61-8047ecc709b0
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 150,
+          "y": -520
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 60a2e186-8629-4ce6-83db-1c1197974074
+      iscommand: false
+      name: Enrich Indicators
+      type: title
+      version: -1
+    taskid: 60a2e186-8629-4ce6-83db-1c1197974074
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": -665
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "59"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      IP:
+        complex:
+          accessor: Address
+          root: IP
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: incident.src
+            operator: append
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: incident.dest
+            operator: append
+      InternalRange:
+        complex:
+          root: inputs.InternalRange
+      ResolveIP:
+        simple: "True"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Enrich IP addresses using one or more integrations.
+
+        - Resolve IP addresses to hostnames (DNS)
+        - Provide threat information
+        - Separate internal and external IP addresses
+        - For internal IP addresses, get host information
+      id: e6aba170-90f5-43e8-897a-fe08aacc5914
+      iscommand: false
+      name: IP Enrichment - Generic v2
+      playbookId: IP Enrichment - Generic v2
+      type: playbook
+      version: -1
+    taskid: e6aba170-90f5-43e8-897a-fe08aacc5914
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 620,
+          "y": -520
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "34"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 35bc4f61-5c39-4f25-8268-0bb8d4cff00d
+      iscommand: false
+      name: Manual - Asses the scope of the impact
+      type: regular
+      version: -1
+    taskid: 35bc4f61-5c39-4f25-8268-0bb8d4cff00d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 5095
+        }
+      }
+  "16":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Answers.0
+                root: Failed login attempts
+                transformers:
+                - operator: toLowerCase
+          operator: isEqualString
+          right:
+            value:
+              simple: "yes"
+      label: "yes"
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "51"
+      "yes":
+      - "53"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bdf41c9f-279a-4b88-8321-9598dcc1cab4
+      iscommand: false
+      name: User confirmed the account activity?
+      type: condition
+      version: -1
+    taskid: bdf41c9f-279a-4b88-8321-9598dcc1cab4
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 360
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "69"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        A script to generate investigation summary report in an automated way.
+        Can be used in the post-processing flow as well.
+      id: 16f2fdb2-16dc-4ab7-8a1c-7bbce9cad2da
+      iscommand: false
+      name: Lessons Learned
+      type: title
+      version: -1
+    taskid: 16f2fdb2-16dc-4ab7-8a1c-7bbce9cad2da
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 6030
+        }
+      }
+  "18":
+    continueonerrortype: ""
+    id: "18"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "63"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 53bfefd7-13b2-45a0-8a5e-0507a8cd6db5
+      iscommand: false
+      name: Containment
+      type: title
+      version: -1
+    taskid: 53bfefd7-13b2-45a0-8a5e-0507a8cd6db5
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 1960
+        }
+      }
+  "19":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: Password Expiration Status
+      output:
+        simple: Password is expired.
+    id: "19"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "21"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        complex:
+          root: inputs.username
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      clonedfrom: b061d5be-194d-4413-804b-ea47a7f05317
+      description: Expires the password of an Active Directory user.
+      id: 88be23ac-6010-43bd-809c-82f56d83b20f
+      iscommand: true
+      name: Active Directory - expire password
+      script: '|||ad-expire-password'
+      type: regular
+      version: -1
+    taskid: 88be23ac-6010-43bd-809c-82f56d83b20f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 365,
+          "y": 2840
+        }
+      }
+  "21":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: User Disabled Status
+      output:
+        simple: Used has been disabled.
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "64"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        complex:
+          root: inputs.username
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Disables an Active Directory user account.
+      id: 652af55c-a6c7-4538-8c70-0c3e309f77ca
+      iscommand: true
+      name: Active Directory - disable account
+      script: '|||ad-disable-account'
+      type: regular
+      version: -1
+    taskid: 652af55c-a6c7-4538-8c70-0c3e309f77ca
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 365,
+          "y": 3020
+        }
+      }
+  "22":
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "72"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      EndpointId:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: successful
+              operator: isEqualString
+              right:
+                value:
+                  simple: "yes"
+          root: inputs.traps_endpoint_id
+      Hostname:
+        complex:
+          accessor: Hostname
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: successful
+              operator: isEqualString
+              right:
+                value:
+                  simple: "yes"
+          root: Endpoint
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        This playbook isolates a given endpoint using the following integrations:
+        - Carbon Black Enterprise Response
+        - Palo Alto Networks Traps
+      id: 079d0d8e-2d57-4a3b-8402-ff07c0d85f47
+      iscommand: false
+      name: Isolate Endpoint - Generic
+      playbookId: Isolate Endpoint - Generic
+      type: playbook
+      version: -1
+    taskid: 079d0d8e-2d57-4a3b-8402-ff07c0d85f47
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 370,
+          "y": 2440
+        }
+      }
+  "29":
+    continueonerrortype: ""
+    form:
+      description: Insert a comma-separated list of IOCs found in the manual investigation.
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: MD5
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "1"
+        label: ""
+        labelarg:
+          simple: SHA1
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "2"
+        label: ""
+        labelarg:
+          simple: SHA256
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "3"
+        label: ""
+        labelarg:
+          simple: IP Addresses
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "4"
+        label: ""
+        labelarg:
+          simple: URLs
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "5"
+        label: ""
+        labelarg:
+          simple: Domains
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: IOCs found in investigation
+      totalanswers: 0
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: Insert IOCs found in the manual investigation.
+      cc: null
+      format: ""
+      methods: []
+      subject: null
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to: null
+    nexttasks:
+      '#none#':
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Perform manual investigation for malicious artifacts and affected
+        systems.
+      id: ae347de2-d9b9-4eb9-88af-ae193b01d828
+      iscommand: false
+      name: Perform manual investigation for malicious artifacts
+      type: collection
+      version: -1
+    taskid: ae347de2-d9b9-4eb9-88af-ae193b01d828
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 3630
+        }
+      }
+  "31":
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "66"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e14ad9c1-c5aa-4bb1-8047-85e75b8ac8de
+      iscommand: false
+      name: Eradication
+      type: title
+      version: -1
+    taskid: e14ad9c1-c5aa-4bb1-8047-85e75b8ac8de
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 3820
+        }
+      }
+  "32":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Address
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: IP.Malicious
+                    operator: isExists
+                root: IP
+          operator: isExists
+        - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Data
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: URL.Malicious
+                    operator: isExists
+                root: URL
+          operator: isExists
+        - left:
+            iscontext: true
+            value:
+              simple: IOCs found in investigation.Answers.0
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: IOCs found in investigation.Answers.1
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: IOCs found in investigation.Answers.2
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: IOCs found in investigation.Answers.3
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: IOCs found in investigation.Answers.4
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: IOCs found in investigation.Answers.5
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "32"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "33"
+      "yes":
+      - "71"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 192cbf41-d000-4661-890d-70190ffc7222
+      iscommand: false
+      name: Were IOCs found in the investigation?
+      type: condition
+      version: -1
+    taskid: 192cbf41-d000-4661-890d-70190ffc7222
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 4150
+        }
+      }
+  "33":
+    continueonerrortype: ""
+    id: "33"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "67"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9ae73d2f-e22c-45ee-8644-100bc522c3ca
+      iscommand: false
+      name: Recovery
+      type: title
+      version: -1
+    taskid: 9ae73d2f-e22c-45ee-8644-100bc522c3ca
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 4740
+        }
+      }
+  "34":
+    continueonerrortype: ""
+    id: "34"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "No":
+      - "36"
+      "Yes":
+      - "73"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7e426703-bd6a-4241-87fe-bc10829c175b
+      iscommand: false
+      name: Would you like to perform auto-recovery?
+      type: condition
+      version: -1
+    taskid: 7e426703-bd6a-4241-87fe-bc10829c175b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 5290
+        }
+      }
+  "35":
+    continueonerrortype: ""
+    id: "35"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "36"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      username:
+        complex:
+          root: inputs.username
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Enables a previously disabled Active Directory account.
+      id: 2c5023c5-0834-4e26-8600-f4450be49838
+      iscommand: true
+      name: Active Directory - enable account
+      script: '|||ad-enable-account'
+      type: regular
+      version: -1
+    taskid: 2c5023c5-0834-4e26-8600-f4450be49838
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1230,
+          "y": 5660
+        }
+      }
+  "36":
+    continueonerrortype: ""
+    id: "36"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8ea55c61-861d-425b-89e3-1424bc4640e8
+      iscommand: false
+      name: Manual - unisolate affected systems
+      type: regular
+      version: -1
+    taskid: 8ea55c61-861d-425b-89e3-1424bc4640e8
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 5860
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0ad8584d-38a9-46d1-8dc8-36ebf514ea8c
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 0ad8584d-38a9-46d1-8dc8-36ebf514ea8c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 7120
+        }
+      }
+  "41":
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "43"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9f215dcb-f1e0-4d6a-829e-2e5cee2ee0bb
+      iscommand: false
+      name: Remediation
+      type: title
+      version: -1
+    taskid: 9f215dcb-f1e0-4d6a-829e-2e5cee2ee0bb
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 1635
+        }
+      }
+  "42":
+    continueonerrortype: ""
+    id: "42"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "52"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6a85df27-543c-4fc3-882d-c455546080a6
+      iscommand: false
+      name: Investigation
+      type: title
+      version: -1
+    taskid: 6a85df27-543c-4fc3-882d-c455546080a6
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": -165
+        }
+      }
+  "43":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: severity
+                root: incident
+          operator: greaterThanOrEqual
+          right:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.severity_threshold
+      label: "yes"
+    continueonerrortype: ""
+    id: "43"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "44"
+      "yes":
+      - "18"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 447c8b64-6114-44a6-88eb-8606e9014983
+      iscommand: false
+      name: Auto remediation?
+      type: condition
+      version: -1
+    taskid: 447c8b64-6114-44a6-88eb-8606e9014983
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 1790
+        }
+      }
+  "44":
+    continueonerrortype: ""
+    id: "44"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c969a2b3-794b-49d4-83d7-1ad653e45695
+      iscommand: false
+      name: Manual remediation
+      type: regular
+      version: -1
+    taskid: c969a2b3-794b-49d4-83d7-1ad653e45695
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1200,
+          "y": 1960
+        }
+      }
+  "46":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: successfullogin
+                root: incident
+                transformers:
+                - operator: toLowerCase
+          operator: isEqualString
+          right:
+            value:
+              simple: "yes"
+      label: "yes"
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: successfullogin
+                root: incident
+                transformers:
+                - operator: toLowerCase
+          operator: isEqualString
+          right:
+            value:
+              simple: "no"
+      label: "no"
+    continueonerrortype: ""
+    id: "46"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "57"
+      "no":
+      - "41"
+      "yes":
+      - "60"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 666eabcf-cf52-4081-8cf3-8d62cb16e9a9
+      iscommand: false
+      name: Was there a successful login?
+      type: condition
+      version: -1
+    taskid: 666eabcf-cf52-4081-8cf3-8d62cb16e9a9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 900
+        }
+      }
+  "47":
+    continueonerrortype: ""
+    id: "47"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "46"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        complex:
+          accessor: CriticalAssetsSeverity
+          root: Severities
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set incident severity.
+      id: 8af55a8d-64c9-4ca3-8a7c-61fc6a48991a
+      iscommand: true
+      name: Set incident severity
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 8af55a8d-64c9-4ca3-8a7c-61fc6a48991a
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 710
+        }
+      }
+  "50":
+    continueonerrortype: ""
+    id: "50"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 67d108c6-0cf1-4b77-8bdd-97db28bd1340
+      iscommand: false
+      name: Manual - close investigation in the source product
+      type: regular
+      version: -1
+    taskid: 67d108c6-0cf1-4b77-8bdd-97db28bd1340
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 6750
+        }
+      }
+  "51":
+    continueonerrortype: ""
+    id: "51"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "47"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      Account:
+        complex:
+          root: Account
+          transformers:
+          - operator: uniq
+      CriticalEndpoints:
+        complex:
+          root: inputs.critical_endpoints
+      CriticalGroups:
+        complex:
+          root: inputs.critical_groups
+      CriticalUsers:
+        complex:
+          root: inputs.critical_users
+      Endpoint:
+        complex:
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: Endpoint.IP
+              operator: IsInCidrRanges
+              right:
+                iscontext: true
+                value:
+                  simple: inputs.internal_range
+          root: Endpoint
+          transformers:
+          - operator: uniq
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Determines if a critical assest is associated with the invesigation. The playbook returns a severity level of "Critical" if at least one critical asset is associated with the investigation.
+        Critical assets refer to: users, user groups, endpoints and endpoint groups.
+      id: 31aa999f-3bb9-4a70-8d41-53a25c93eeba
+      iscommand: false
+      name: Calculate Severity - Critical Assets v2
+      playbookId: Calculate Severity - Critical Assets v2
+      type: playbook
+      version: -1
+    taskid: 31aa999f-3bb9-4a70-8d41-53a25c93eeba
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 920,
+          "y": 530
+        }
+      }
+  "52":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: loginattemptcount
+                root: incident
+          operator: lessThanOrEqual
+          right:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.logins_count_threshold
+      label: "yes"
+    continueonerrortype: ""
+    id: "52"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "51"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2a61c44f-8553-44a3-8210-2d55065e5829
+      iscommand: false
+      name: Communicate with user?
+      type: condition
+      version: -1
+    taskid: 2a61c44f-8553-44a3-8210-2d55065e5829
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": -20
+        }
+      }
+  "53":
+    continueonerrortype: ""
+    id: "53"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4acb3776-cc42-4bd1-85e0-00216c810e21
+      iscommand: false
+      name: False Positive
+      type: title
+      version: -1
+    taskid: 4acb3776-cc42-4bd1-85e0-00216c810e21
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 530
+        }
+      }
+  "54":
+    continueonerrortype: ""
+    id: "54"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "41"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      loginbehavior:
+        simple: Success
+      severity:
+        complex:
+          accessor: severity
+          root: incident
+          transformers:
+          - args:
+              by:
+                value:
+                  simple: "1"
+            operator: addition
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Increases the incident severity.
+      id: 3ff1034c-8d81-49af-858a-9bc6f814a705
+      iscommand: true
+      name: Raise incident severity
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 3ff1034c-8d81-49af-858a-9bc6f814a705
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1150,
+          "y": 1460
+        }
+      }
+  "56":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: loginbehavior
+                root: incident
+                transformers:
+                - operator: toLowerCase
+          operator: containsString
+          right:
+            value:
+              simple: succe
+      label: "yes"
+    continueonerrortype: ""
+    id: "56"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "72"
+      "yes":
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0fd8dd83-9924-421f-8235-7381201063a9
+      iscommand: false
+      name: Was there a successful login?
+      type: condition
+      version: -1
+    taskid: 0fd8dd83-9924-421f-8235-7381201063a9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 2270
+        }
+      }
+  "57":
+    continueonerrortype: ""
+    id: "57"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "41"
+      "yes":
+      - "60"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 61179f6d-fece-4cc1-82cb-5a2311a4771d
+      iscommand: false
+      name: Manual - was there a successful login?
+      type: condition
+      version: -1
+    taskid: 61179f6d-fece-4cc1-82cb-5a2311a4771d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1630,
+          "y": 1070
+        }
+      }
+  "58":
+    continueonerrortype: ""
+    id: "58"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "33"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      AutoCommit:
+        complex:
+          root: inputs.AutoCommit
+      CustomBlockRule:
+        complex:
+          root: inputs.CustomBlockRule
+      CustomURLCategory:
+        complex:
+          root: inputs.CustomURLCategory
+      DAG:
+        complex:
+          root: inputs.DAG
+      EDLServerIP:
+        complex:
+          root: inputs.EDLServerIP
+      IP:
+        complex:
+          accessor: Indicator
+          filters:
+          - - ignorecase: true
+              left:
+                iscontext: true
+                value:
+                  simple: DBotScore.Type
+              operator: isEqualString
+              right:
+                value:
+                  simple: ip
+          - - left:
+                iscontext: true
+                value:
+                  simple: DBotScore.Score
+              operator: greaterThanOrEqual
+              right:
+                value:
+                  simple: "3"
+          root: DBotScore
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: IOCs found in investigation.Answers.3
+            operator: append
+          - operator: uniq
+      IPListName:
+        complex:
+          root: inputs.IPListName
+      MD5:
+        complex:
+          accessor: MD5
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: File.Malicious
+              operator: isExists
+          root: File
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: IOCs found in investigation.Answers.0
+            operator: append
+          - operator: uniq
+      SHA256:
+        complex:
+          accessor: SHA256
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: File.Malicious
+              operator: isExists
+          root: File
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: IOCs found in investigation.Answers.2
+            operator: append
+          - operator: uniq
+      StaticAddressGroup:
+        complex:
+          root: inputs.StaticAddressGroup
+      URL:
+        complex:
+          accessor: Indicator
+          filters:
+          - - ignorecase: true
+              left:
+                iscontext: true
+                value:
+                  simple: DBotScore.Type
+              operator: isEqualString
+              right:
+                value:
+                  simple: url
+          - - left:
+                iscontext: true
+                value:
+                  simple: DBotScore.Score
+              operator: greaterThanOrEqual
+              right:
+                value:
+                  simple: "3"
+          root: DBotScore
+          transformers:
+          - args:
+              item:
+                iscontext: true
+                value:
+                  simple: IOCs found in investigation.Answers.4
+            operator: append
+      URLListName:
+        complex:
+          root: inputs.URLListName
+      Username:
+        complex:
+          accessor: Indicator
+          filters:
+          - - ignorecase: true
+              left:
+                iscontext: true
+                value:
+                  simple: DBotScore.Type
+              operator: isEqualString
+              right:
+                value:
+                  simple: username
+          - - left:
+                iscontext: true
+                value:
+                  simple: DBotScore.Score
+              operator: greaterThanOrEqual
+              right:
+                value:
+                  simple: "3"
+          root: DBotScore
+          transformers:
+          - operator: uniq
+      categories:
+        complex:
+          root: inputs.categories
+      device-group:
+        complex:
+          root: inputs.device-group
+      type:
+        complex:
+          root: inputs.type
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0cdb9cb7-05ec-4376-8748-a7179ff2dbea
+      iscommand: false
+      name: Block Indicators - Generic v2
+      playbookId: Block Indicators - Generic v2
+      type: playbook
+      version: -1
+    taskid: 0cdb9cb7-05ec-4376-8748-a7179ff2dbea
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 330,
+          "y": 4570
+        }
+      }
+  "59":
+    continueonerrortype: ""
+    id: "59"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "42"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      accountgroups:
+        complex:
+          accessor: Users.memberOf
+          root: ActiveDirectory
+      emailaddress:
+        complex:
+          accessor: Users.mail
+          root: ActiveDirectory
+      samaccountname:
+        complex:
+          accessor: Users.sAMAccountName
+          root: ActiveDirectory
+      useraccountcontrol:
+        complex:
+          accessor: Users.userAccountControl
+          root: ActiveDirectory
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 48cdf688-1ef8-4558-8c5e-d72a068e9f2b
+      iscommand: true
+      name: Set Incident
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 48cdf688-1ef8-4558-8c5e-d72a068e9f2b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": -350
+        }
+      }
+  "60":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: incident.severity
+          operator: isNotEqualString
+          right:
+            value:
+              simple: "4"
+      label: "yes"
+    continueonerrortype: ""
+    id: "60"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "41"
+      "yes":
+      - "54"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e3815d94-afa6-4c6c-8d32-d1aff297e699
+      iscommand: false
+      name: Can incident severity be raised?
+      type: condition
+      version: -1
+    taskid: e3815d94-afa6-4c6c-8d32-d1aff297e699
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1150,
+          "y": 1260
+        }
+      }
+  "61":
+    continueonerrortype: ""
+    id: "61"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "62"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c176b3e6-9f16-415a-84fe-3582d080afb2
+      iscommand: false
+      name: Identification
+      type: title
+      version: -1
+    taskid: c176b3e6-9f16-415a-84fe-3582d080afb2
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": -1020
+        }
+      }
+  "62":
+    continueonerrortype: ""
+    id: "62"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      isolated:
+        simple: Isolated destination endpoint.
+      sansstage:
+        simple: Identification
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Sets the SANS stage to Identification.
+      id: 4ba51448-709e-43c9-88dc-21b6012b0a72
+      iscommand: true
+      name: Set SANS stage to Identification
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 4ba51448-709e-43c9-88dc-21b6012b0a72
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": -860
+        }
+      }
+  "63":
+    continueonerrortype: ""
+    id: "63"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "56"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      sansstage:
+        simple: Containment
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set SANS stage to Containment
+      id: fcf8e153-90a9-4f5a-879d-355d3df04eb3
+      iscommand: true
+      name: Set SANS stage to Containment
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: fcf8e153-90a9-4f5a-879d-355d3df04eb3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 2100
+        }
+      }
+  "64":
+    continueonerrortype: ""
+    id: "64"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "65"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        A script to generate the investigation summary report in an automated way.
+        The report can be used in the post-processing flow as well.
+      id: 8271bae3-120a-4620-8a69-1b5e5bbeea97
+      iscommand: false
+      name: Generate investigation summary report
+      script: GenerateInvestigationSummaryReport
+      type: regular
+      version: -1
+    taskid: 8271bae3-120a-4620-8a69-1b5e5bbeea97
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 3270
+        }
+      }
+  "65":
+    continueonerrortype: ""
+    id: "65"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "29"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e2fc0319-5d9b-467f-899f-008899c65549
+      iscommand: false
+      name: Manual - system backup
+      type: regular
+      version: -1
+    taskid: e2fc0319-5d9b-467f-899f-008899c65549
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 3450
+        }
+      }
+  "66":
+    continueonerrortype: ""
+    id: "66"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "32"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      sansstage:
+        simple: Eradication
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set SANS stage to Eradication.
+      id: 0a25ea0d-af5d-4c26-8e55-a3d9cb653f16
+      iscommand: true
+      name: Set SANS stage to Eradication
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 0a25ea0d-af5d-4c26-8e55-a3d9cb653f16
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 3970
+        }
+      }
+  "67":
+    continueonerrortype: ""
+    id: "67"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "15"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      sansstage:
+        simple: Recovery
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set SANS stage to Recovery.
+      id: 069d98a1-fbc9-4c05-80a1-e40897784288
+      iscommand: true
+      name: Set SANS stage to Recovery
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 069d98a1-fbc9-4c05-80a1-e40897784288
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 4910
+        }
+      }
+  "68":
+    continueonerrortype: ""
+    id: "68"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "50"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        A script to generate the investigation summary report in an automated way.
+        The report can be used in the post-processing flow as well.
+      id: 526f3b03-df26-479f-8690-51c7c35f272b
+      iscommand: false
+      name: Generate investigation summary report
+      script: GenerateInvestigationSummaryReport
+      type: regular
+      version: -1
+    taskid: 526f3b03-df26-479f-8690-51c7c35f272b
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 6570
+        }
+      }
+  "69":
+    continueonerrortype: ""
+    id: "69"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "70"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      sansstage:
+        simple: Lessons Learned
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Set SANS stage to Lessons Learned.
+      id: 23d6a993-26a0-437c-8e2e-98fd7a98eba3
+      iscommand: true
+      name: Set SANS stage to Lessons Learned
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 23d6a993-26a0-437c-8e2e-98fd7a98eba3
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 6180
+        }
+      }
+  "70":
+    continueonerrortype: ""
+    id: "70"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "68"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      DataCollection:
+        complex:
+          root: inputs.DataCollection
+      Email:
+        complex:
+          root: inputs.Email
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9c5fcc46-a866-4db1-86d5-41ae5e0a3254
+      iscommand: false
+      name: SANS - Lessons Learned
+      playbookId: SANS - Lessons Learned
+      type: playbook
+      version: -1
+    taskid: 9c5fcc46-a866-4db1-86d5-41ae5e0a3254
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -100,
+          "y": 6370
+        }
+      }
+  "71":
+    continueonerrortype: ""
+    id: "71"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "33"
+      "yes":
+      - "58"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f3465b30-8164-4b22-80d8-395892c92a9c
+      iscommand: false
+      name: Block IOCs?
+      type: condition
+      version: -1
+    taskid: f3465b30-8164-4b22-80d8-395892c92a9c
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 330,
+          "y": 4320
+        }
+      }
+  "72":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Active Directory Query v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "72"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "64"
+      "yes":
+      - "19"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether the Active Directory Query v2 integration is enabled.
+      id: fa8d3291-be53-4f18-8636-84b807db1564
+      iscommand: false
+      name: Is Active Directory enabled?
+      type: condition
+      version: -1
+    taskid: fa8d3291-be53-4f18-8636-84b807db1564
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 645,
+          "y": 2630
+        }
+      }
+  "73":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: Active Directory Query v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "73"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "36"
+      "yes":
+      - "35"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks whether the Active Directory Query v2 integration is enabled.
+      id: 9f3767c8-2d9c-4136-8d0a-0f2f49b24670
+      iscommand: false
+      name: Is Active Directory enabled?
+      type: condition
+      version: -1
+    taskid: 9f3767c8-2d9c-4136-8d0a-0f2f49b24670
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1000,
+          "y": 5475
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "16_51_#default#": 0.44,
+      "16_53_yes": 0.47,
+      "32_33_#default#": 0.27,
+      "34_36_No": 0.51,
+      "34_73_Yes": 0.33,
+      "46_41_no": 0.33,
+      "46_60_yes": 0.53,
+      "52_2_yes": 0.59,
+      "56_22_yes": 0.59,
+      "57_41_no": 0.19,
+      "6_17_#default#": 0.1,
+      "71_58_yes": 0.55,
+      "72_19_yes": 0.55,
+      "73_35_yes": 0.76,
+      "73_36_#default#": 0.21
+    },
+    "paper": {
+      "dimensions": {
+        "height": 8370,
+        "width": 2430,
+        "x": -420,
+        "y": -1185
+      }
+    }
+  }
