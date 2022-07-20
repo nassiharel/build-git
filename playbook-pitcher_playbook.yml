@@ -12,7 +12,6 @@ id: 5eae129a-43e5-44e5-8177-70c529c72174
 inputs: []
 name: pitcher playbook
 outputs: []
-quiet: true
 starttaskid: "0"
 tasks:
   "0":
