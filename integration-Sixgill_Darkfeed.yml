@@ -1,0 +1,469 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: Sixgill_Darkfeed
+  version: -1
+configuration:
+- display: Sixgill API client ID
+  name: client_id
+  required: true
+  type: 0
+- display: Sixgill API client secret
+  name: client_secret
+  required: true
+  type: 4
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- additionalinfo: Indicators from this integration instance will be marked with this
+    reputation
+  defaultvalue: feedInstanceReputationNotSet
+  display: Indicator Reputation
+  name: feedReputation
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  required: false
+  type: 18
+- additionalinfo: Reliability of the source providing the intelligence data
+  defaultvalue: B - Usually reliable
+  display: Source Reliability
+  name: feedReliability
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- additionalinfo: The Traffic Light Protocol (TLP) designation to apply to indicators
+    fetched from the feed
+  display: Traffic Light Protocol Color
+  name: tlp_color
+  options:
+  - RED
+  - AMBER
+  - GREEN
+  - WHITE
+  required: false
+  type: 15
+- defaultvalue: indicatorType
+  display: ""
+  name: feedExpirationPolicy
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+  required: false
+  type: 17
+- defaultvalue: "20160"
+  display: ""
+  name: feedExpirationInterval
+  required: false
+  type: 1
+- defaultvalue: "2"
+  display: Feed Fetch Interval
+  name: feedFetchInterval
+  required: false
+  type: 19
+- defaultvalue: "1000"
+  display: The maximum number of indicators to fetch.
+  name: maxIndicators
+  required: false
+  type: 0
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Incremental Feed
+  hidden: true
+  name: feedIncremental
+  required: false
+  type: 8
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- additionalinfo: Supports CSV values.
+  display: Tags
+  name: feedTags
+  required: false
+  type: 0
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.5.0
+    itemVersion: 2.0.10
+    packID: Sixgill-Darkfeed
+    packName: Sixgill Darkfeed - Annual Subscription
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Leverage the power of Sixgill to supercharge Cortex XSOAR with real-time
+  Threat Intelligence indicators. Get IOCs such as domains, URLs, hashes, and IP addresses
+  straight into the XSOAR platform.
+detaileddescription: |-
+  ### Partner Contributed Integration
+  #### Integration Author: Cybersixgill
+  Support and maintenance for this integration are provided by the author. Please use the following contact details:
+  - **Email**: [sales@cybersixgill.com](mailto:sales@cybersixgill.com)
+  ***
+   ## Configure an API account
+  To configure an instance of Sixgill's integration in XSOAR, you need to supply your API key and client Secret. Contact sales@cybersixgill.com to receive these or purchase the integration through XSOAR marketplace.
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/sixgill-darkfeed)
+display: Sixgill DarkFeed Threat Intelligence (Partner Contribution)
+image: data:image/png;base64,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
+name: Sixgill_Darkfeed
+script:
+  commands:
+  - arguments:
+    - default: true
+      defaultValue: "50"
+      description: The maximum number of results to return.
+      name: limit
+    description: Fetching Sixgill DarkFeed indicators
+    execution: true
+    name: sixgill-get-indicators
+  dockerimage: demisto/sixgill:1.0.0.23434
+  feed: true
+  runonce: false
+  script: |
+    register_module_line('Sixgill_Darkfeed', 'start', __line__())
+
+
+
+    ''' IMPORTS '''
+
+    from typing import Dict, List, Set, Any, Callable, Optional
+    from collections import OrderedDict
+    import traceback
+    import requests
+
+    from sixgill.sixgill_request_classes.sixgill_auth_request import SixgillAuthRequest
+    from sixgill.sixgill_feed_client import SixgillFeedClient
+    from sixgill.sixgill_constants import FeedStream
+    from sixgill.sixgill_utils import is_indicator
+
+    # Disable insecure warnings
+    requests.packages.urllib3.disable_warnings()
+
+    ''' GLOBALS/PARAMS '''
+
+    CHANNEL_CODE = '7698e8287dfde53dcd13082be750a85a'
+    MAX_INDICATORS = 1000
+    SUSPICIOUS_FEED_IDS = ["darkfeed_003"]
+    DEMISTO_DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%fZ'
+    VERIFY = not demisto.params().get("insecure", True)
+    SESSION = requests.Session()
+    DESCRIPTION_FIELD_ORDER = OrderedDict([('Description', 'description'),
+                                           ('Created On', 'created'),
+                                           ('Post Title', 'sixgill_posttitle'),
+                                           ('Threat Actor Name', 'sixgill_actor'),
+                                           ('Source', 'sixgill_source'),
+                                           ('Sixgill Feed ID', 'sixgill_feedid'),
+                                           ('Sixgill Feed Name', 'sixgill_feedname'),
+                                           ('Sixgill Post ID', 'sixgill_postid'),
+                                           ('Language', 'lang'),
+                                           ('Indicator ID', 'id'),
+                                           ('External references (e.g. MITRE ATT&CK)', 'external_reference')])
+
+    HASH_MAPPING = {"hashes.md5": "md5", "hashes.\'sha-1\'": "sha1", "hashes.\'sha-256\'": "sha256",
+                    "hashes.\'sha-512\'": "sha512", "hashes.ssdeep": "ssdeep"}
+
+    ''' HELPER FUNCTIONS '''
+
+    stix_regex_parser = re.compile(r"([\w-]+?):(\w.+?) (?:[!><]?=|IN|MATCHES|LIKE) '(.*?)' *[OR|AND|FOLLOWEDBY]?")
+
+
+    class ExternalReferenceSourceTypes:
+        MITRE_ATTACK = 'mitre-attack'
+        VIRUS_TOTAL = 'VirusTotal'
+
+
+    def strip_http(url):
+        return url.split('://')[-1]
+
+
+    def url_to_rfc3986(url):
+        if url.startswith('http://') or url.startswith('https://') or url.startswith('ftp://') or url.startswith('sftp://'):
+            return url
+        else:
+            return f'https://{url}'
+
+
+    def clean_url(value):
+        return value.replace("[.]", ".")
+
+
+    def run_pipeline(value, pipeline, log):
+        for func in pipeline:
+            log.debug(f"run {func.__name__} function on value: {value}")
+            value = func(value)
+            log.debug(f"post {func.__name__} run value: {value}")
+
+        log.debug(f"returned value: {value}")
+        return value
+
+
+    def to_demisto_score(feed_id: str, revoked: bool):
+        if revoked:
+            return 0
+        if feed_id in SUSPICIOUS_FEED_IDS:
+            return 2
+        return 3
+
+
+    def get_description(stix_obj):
+        description_string = ""
+        for name, sixgill_name in DESCRIPTION_FIELD_ORDER.items():
+            description_string += f"{name}: {stix_obj.get(sixgill_name)}\n"
+
+        return description_string
+
+
+    def extract_external_reference_field(stix2obj, source_name, field_to_extract):
+        for reference in stix2obj.get("external_reference", []):
+            if reference.get("source_name") == source_name:
+                return reference.get(field_to_extract, None)
+
+
+    def post_id_to_full_url(post_id):
+        return f'https://portal.cybersixgill.com/#/search?q=_id:{post_id}'
+
+
+    def to_demisto_indicator(value, indicators_name, stix2obj, tags: list = [], tlp_color: Optional[str] = None):
+        indicator = {
+            "value": value,
+            "type": indicators_name,
+            "rawJSON": stix2obj,
+            "fields": {
+                "actor": stix2obj.get("sixgill_actor"),
+                "tags": list((set(stix2obj.get("labels")).union(set(tags)))),
+                "firstseenbysource": stix2obj.get("created"),
+                "description": get_description(stix2obj),
+                "sixgillactor": stix2obj.get("sixgill_actor"),
+                "sixgillfeedname": stix2obj.get("sixgill_feedname"),
+                "sixgillsource": stix2obj.get("sixgill_source"),
+                "sixgilllanguage": stix2obj.get("lang"),
+                "sixgillposttitle": stix2obj.get("sixgill_posttitle"),
+                "sixgillfeedid": stix2obj.get("sixgill_feedid"),
+                "sixgillpostreference": post_id_to_full_url(stix2obj.get("sixgill_postid", "")),
+                "sixgillindicatorid": stix2obj.get("id"),
+                "sixgilldescription": stix2obj.get("description"),
+                "sixgillvirustotaldetectionrate": extract_external_reference_field(stix2obj,
+                                                                                   ExternalReferenceSourceTypes.VIRUS_TOTAL,
+                                                                                   "positive_rate"),
+                "sixgillvirustotalurl": extract_external_reference_field(stix2obj,
+                                                                         ExternalReferenceSourceTypes.VIRUS_TOTAL,
+                                                                         "url"),
+                "sixgillmitreattcktactic": extract_external_reference_field(stix2obj,
+                                                                            ExternalReferenceSourceTypes.MITRE_ATTACK,
+                                                                            "mitre_attack_tactic"),
+                "sixgillmitreattcktechnique": extract_external_reference_field(stix2obj,
+                                                                               ExternalReferenceSourceTypes.MITRE_ATTACK,
+                                                                               "mitre_attack_technique"),
+            },
+            "score": to_demisto_score(stix2obj.get("sixgill_feedid"), stix2obj.get("revoked", False))
+        }
+
+        if stix2obj.get("sixgill_feedname"):
+            indicator['fields']['tags'].append(stix2obj.get("sixgill_feedname"))
+
+        if tlp_color:
+            indicator['fields']['trafficlightprotocol'] = tlp_color
+
+        mitre_id = extract_external_reference_field(stix2obj, ExternalReferenceSourceTypes.MITRE_ATTACK,
+                                                    "mitre_attack_tactic_id")
+        mitre_url = extract_external_reference_field(stix2obj, ExternalReferenceSourceTypes.MITRE_ATTACK,
+                                                     "mitre_attack_tactic_url")
+        if mitre_id and mitre_url:
+            indicator['fields']['feedrelatedindicators'] = [{
+                "type": "MITRE ATT&CK",
+                "value": mitre_id,
+                "description": mitre_url
+            }]
+        return indicator
+
+
+    def get_limit(str_limit, default_limit):
+        try:
+            return int(str_limit)
+        except Exception:
+            return default_limit
+
+
+    def stix2_to_demisto_indicator(stix2obj: Dict[str, Any], log, tags: list = [], tlp_color: Optional[str] = None):
+        indicators = []
+        pattern = stix2obj.get("pattern", "")
+        sixgill_feedid = stix2obj.get("sixgill_feedid", "")
+        hashes: Dict[str, Any] = {"md5": None, "sha1": None, "sha256": None, "sha512": None, "ssdeep": None}
+
+        for match in stix_regex_parser.findall(pattern):
+            try:
+                _, sub_type, value = match
+                demisto_indicator_map = demisto_mapping.get(sixgill_feedid)
+                if demisto_indicator_map:
+                    indicators_name = demisto_indicator_map.get('name')
+                    value = run_pipeline(value, demisto_indicator_map.get('pipeline', []), log)
+                    demisto_indicator = to_demisto_indicator(value, indicators_name, stix2obj, tags, tlp_color)
+
+                    if demisto_indicator.get("type") == FeedIndicatorType.File and \
+                            HASH_MAPPING.get(sub_type.lower()) in hashes.keys():
+                        if HASH_MAPPING.get(sub_type.lower()):
+                            hashes[HASH_MAPPING[sub_type.lower()]] = value
+                    indicators.append(demisto_indicator)
+
+            except Exception as e:
+                log.error(f"failed converting STIX object to Demisto indicator: {e}, STIX object: {stix2obj}")
+                continue
+
+        if len(indicators) > 0 and all(ioc.get("type") == FeedIndicatorType.File for ioc in indicators):
+            temp_indicator = indicators[0].copy()
+
+            if hashes["sha256"] is not None:
+                temp_indicator["value"] = hashes["sha256"]
+
+            temp_indicator["fields"].update({hash_k: hash_v for hash_k, hash_v in hashes.items() if hash_v is not None})
+            indicators = [temp_indicator]
+
+        return indicators
+
+
+    demisto_mapping: Dict[str, Dict[str, Any]] = {
+        'darkfeed_001': {'name': FeedIndicatorType.Domain, 'pipeline': [strip_http, clean_url]},
+        'darkfeed_002': {'name': FeedIndicatorType.File, 'pipeline': []},
+        'darkfeed_003': {'name': FeedIndicatorType.Domain, 'pipeline': [strip_http, clean_url]},
+        'darkfeed_004': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_005': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_006': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_007': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_008': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_009': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_010': {'name': FeedIndicatorType.URL, 'pipeline': [url_to_rfc3986, clean_url]},
+        'darkfeed_011': {'name': FeedIndicatorType.File, 'pipeline': []},
+        'darkfeed_012': {'name': FeedIndicatorType.File, 'pipeline': []},
+        'darkfeed_013': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_014': {'name': FeedIndicatorType.File, 'pipeline': []},
+        'darkfeed_015': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_018': {'name': FeedIndicatorType.File, 'pipeline': []},
+        'darkfeed_019': {'name': FeedIndicatorType.File, 'pipeline': []},
+        'darkfeed_020': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_021': {'name': FeedIndicatorType.File, 'pipeline': []},
+        'darkfeed_022': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_023': {'name': FeedIndicatorType.URL, 'pipeline': [url_to_rfc3986, clean_url]},
+        'darkfeed_024': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_025': {'name': FeedIndicatorType.File, 'pipeline': []},
+        'darkfeed_026': {'name': FeedIndicatorType.URL, 'pipeline': [url_to_rfc3986, clean_url]},
+        'darkfeed_027': {'name': FeedIndicatorType.IP, 'pipeline': []},
+        'darkfeed_028': {'name': FeedIndicatorType.IP, 'pipeline': []},
+    }
+
+
+    ''' COMMANDS + REQUESTS FUNCTIONS '''
+
+
+    def test_module_command(*args):
+        """
+        Performs basic Auth request
+        """
+        response = SESSION.send(request=SixgillAuthRequest(demisto.params()['client_id'],
+                                                           demisto.params()['client_secret'], CHANNEL_CODE).prepare(), verify=VERIFY)
+        if not response.ok:
+            raise Exception("Auth request failed - please verify client_id, and client_secret.")
+        return 'ok', None, 'ok'
+
+
+    def get_indicators_command(client: SixgillFeedClient, args):
+        limit = int(args.get('limit'))
+        indicators = fetch_indicators_command(client, limit, True)
+
+        human_readable = tableToMarkdown('Indicators from Sixgill Dark Feed:', indicators,
+                                         headers=['value', 'type', 'rawJSON', 'score'])
+        return human_readable, {}, indicators
+
+
+    def fetch_indicators_command(client: SixgillFeedClient, limit: int = 0, get_indicators_mode: bool = False,
+                                 tags: list = [], tlp_color: Optional[str] = None):
+        bundle = client.get_bundle()
+        indicators_to_create: List = []
+        indicator_values_set: Set = set()
+
+        for stix_indicator in bundle.get("objects"):
+            if is_indicator(stix_indicator):
+                demisto_indicators = stix2_to_demisto_indicator(stix_indicator, demisto, tags, tlp_color)
+
+                for indicator in demisto_indicators:
+                    if indicator.get("value") not in indicator_values_set:
+                        indicator_values_set.add(indicator.get("value"))
+                        indicators_to_create.append(indicator)
+
+            if get_indicators_mode and len(indicators_to_create) == limit:
+                break
+
+        if not get_indicators_mode:
+            client.commit_indicators()
+
+        return indicators_to_create
+
+
+    ''' COMMANDS MANAGER / SWITCH PANEL '''
+
+
+    def main():
+        max_indicators = get_limit(demisto.params().get('maxIndicators', MAX_INDICATORS), MAX_INDICATORS)
+
+        SESSION.proxies = handle_proxy()
+
+        client = SixgillFeedClient(demisto.params()['client_id'],
+                                   demisto.params()['client_secret'],
+                                   CHANNEL_CODE,
+                                   FeedStream.DARKFEED,
+                                   demisto, max_indicators, SESSION, VERIFY)
+
+        command = demisto.command()
+        demisto.info(f'Command being called is {command}')
+        tags = argToList(demisto.params().get('feedTags', []))
+        tlp_color = demisto.params().get('tlp_color')
+        commands: Dict[str, Callable] = {
+            'test-module': test_module_command,
+            'sixgill-get-indicators': get_indicators_command
+        }
+        try:
+            if demisto.command() == 'fetch-indicators':
+                indicators = fetch_indicators_command(client, tags=tags, tlp_color=tlp_color)
+                for b in batch(indicators, batch_size=2000):
+                    demisto.createIndicators(b)
+            else:
+                readable_output, outputs, raw_response = commands[command](client, demisto.args())
+
+                return_outputs(readable_output, outputs, raw_response)
+        except Exception as e:
+            demisto.error(traceback.format_exc())
+            return_error(f'Error failed to execute {demisto.command()}, error: [{e}]')
+
+
+    if __name__ == '__builtin__' or __name__ == 'builtins':
+        main()
+
+    register_module_line('Sixgill_Darkfeed', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
