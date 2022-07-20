@@ -1,0 +1,100 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "fb4879cd-7ead-41c2-844d-0c3f9b477260",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 2,
+	"mapping": {
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": true,
+			"internalMapping": {
+				"Additional Data": {
+					"complex": {
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "the_path"
+										}
+									},
+									"operator": "notContainsString",
+									"right": {
+										"value": {
+											"simple": "123"
+										}
+									}
+								}
+							]
+						],
+						"root": "the_path",
+						"transformers": [
+							{
+								"operator": "toUpperCase"
+							}
+						]
+					}
+				},
+				"Alert Category": {
+					"complex": {
+						"filters": [
+							[
+								{
+									"left": {
+										"isContext": true,
+										"value": {
+											"simple": "agent_os"
+										}
+									},
+									"operator": "containsGeneral",
+									"right": {
+										"value": {
+											"simple": "ggffdd"
+										}
+									}
+								}
+							]
+						],
+						"root": "agent_os",
+						"transformers": [
+							{
+								"operator": "toLowerCase"
+							}
+						]
+					}
+				},
+				"Alert ID": {
+					"simple": "timestamp"
+				},
+				"afield": {
+					"simple": "another_field"
+				}
+			}
+		}
+	},
+	"name": "sharon",
+	"nameRaw": "sharon",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
