@@ -1,0 +1,40 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#F06292",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "6.0.0",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "XSOAR Dev to Prod",
+	"itemVersion": "1.0.1",
+	"layout": "XSOAR Dev to Prod",
+	"locked": false,
+	"name": "XSOAR Dev to Prod",
+	"onChangeRepAlg": 1,
+	"packID": "XSOAR-SimpleDevToProd",
+	"packName": "XSOAR - Simple Dev to Prod",
+	"packPropagationLabels": [
+		"all"
+	],
+	"playbookId": "JOB - XSOAR - Export Selected Custom Content",
+	"preProcessingScript": "",
+	"propagationLabels": [],
+	"readonly": false,
+	"reputationCalc": 1,
+	"system": true,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
