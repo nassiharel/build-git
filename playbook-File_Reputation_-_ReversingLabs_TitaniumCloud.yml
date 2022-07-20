@@ -1,0 +1,251 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.0.0
+    itemVersion: 2.0.3
+    packID: ReversingLabs_Titanium_Cloud
+    packName: ReversingLabs TitaniumCloud
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: |-
+  Provides file reputation data for a file (malicious, suspicious, known good or unknown).
+  Required TitaniumCloud API rights:
+
+  TCA-0101
+id: File Reputation - ReversingLabs TitaniumCloud
+inputs:
+- description: File hash (sha1, md5 or sha256).
+  key: hash
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: ${File.SHA1}
+name: File Reputation - ReversingLabs TitaniumCloud
+outputs:
+- contextPath: File.MD5
+  description: Bad hash found
+- contextPath: File.SHA1
+  description: Bad hash SHA1
+- contextPath: File.SHA256
+  description: Bad hash SHA256
+- contextPath: DBotScore.Score
+  description: The actual score.
+- contextPath: DBotScore.Type
+  description: The indicator type.
+- contextPath: DBotScore.Indicator
+  description: The indicator that was tested.
+- contextPath: DBotScore.Vendor
+  description: The vendor used to calculate the score.
+- contextPath: ReversingLabs.file_reputation
+  description: Report in JSON.
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0f6aa5cb-b782-478d-8557-f2f0f487fe75
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 0f6aa5cb-b782-478d-8557-f2f0f487fe75
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - ignorecase: true
+          left:
+            iscontext: true
+            value:
+              complex:
+                accessor: brand
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: ReversingLabs TitaniumCloud v2
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 62c91cb8-05a2-40bc-8b77-6c97fd811f35
+      iscommand: false
+      name: Is ReversingLabs TitaniumCloud v2 enabled?
+      type: condition
+      version: -1
+    taskid: 62c91cb8-05a2-40bc-8b77-6c97fd811f35
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d4e5065b-db2f-4779-86e3-c5efd5109259
+      iscommand: false
+      name: done
+      type: title
+      version: -1
+    taskid: d4e5065b-db2f-4779-86e3-c5efd5109259
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 1170
+        }
+      }
+  "4":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: SHA1
+                root: File
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "3"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e26a8458-5941-4fb1-88e6-d493061ed4de
+      iscommand: false
+      name: Is there a file hash to analyze?
+      type: condition
+      version: -1
+    taskid: e26a8458-5941-4fb1-88e6-d493061ed4de
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 560
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      hash:
+        simple: ${inputs.hash}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ReversingLabs TitaniumCloud v2
+      description: Retrieve File Reputation data from TitaniumCloud
+      id: cd2fe13a-31f0-4225-8fcb-7bfd5732e0f2
+      iscommand: true
+      name: reversinglabs-titaniumcloud-file-reputation
+      script: ReversingLabs TitaniumCloud v2|||reversinglabs-titaniumcloud-file-reputation
+      type: regular
+      version: -1
+    taskid: cd2fe13a-31f0-4225-8fcb-7bfd5732e0f2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 885
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1185,
+        "width": 760,
+        "x": 70,
+        "y": 50
+      }
+    }
+  }
