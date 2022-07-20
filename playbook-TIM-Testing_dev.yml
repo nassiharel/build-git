@@ -32,7 +32,6 @@ inputs:
   value: {}
 name: TIM-Testing_dev
 outputs: []
-quiet: true
 starttaskid: "0"
 tasks:
   "0":
@@ -135,13 +134,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.extract.indicators
-      id: 23d4a3fa-8763-4185-88f7-5ea13ceecd29
+      id: 65464897-c025-44e2-8764-c9ee4a2cde65
       iscommand: true
       name: Start testing - Get 5 domain indicators
       script: Builtin|||extractIndicators
       type: regular
       version: -1
-    taskid: 23d4a3fa-8763-4185-88f7-5ea13ceecd29
+    taskid: 65464897-c025-44e2-8764-c9ee4a2cde65
     timertriggers: []
     type: regular
     view: |-
@@ -163,12 +162,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: ec7fd23f-ae1c-4f5f-852d-11733fa889e8
+      id: 9a2150e4-9cd1-4de1-85c7-6d7fd938ff71
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: ec7fd23f-ae1c-4f5f-852d-11733fa889e8
+    taskid: 9a2150e4-9cd1-4de1-85c7-6d7fd938ff71
     timertriggers: []
     type: title
     view: |-
@@ -205,13 +204,13 @@ tasks:
       brand: ""
       description: This playbook uses several sub playbooks to process and tag indicators
         based on the results of the Whois tool.
-      id: 691bed2e-29ef-4e9c-835f-4361ebace363
+      id: 6840209f-96a5-456e-8006-ba4d06a371dd
       iscommand: false
       name: TIM - Process Domains With Whois
       playbookId: TIM - Process Domains With Whois
       type: playbook
       version: -1
-    taskid: 691bed2e-29ef-4e9c-835f-4361ebace363
+    taskid: 6840209f-96a5-456e-8006-ba4d06a371dd
     timertriggers: []
     type: playbook
     view: |-
