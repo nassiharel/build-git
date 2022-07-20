@@ -1,0 +1,429 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.0.6
+    packID: NIST
+    packName: NIST
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: This playbook assists in processing an incident after it occurs and facilitates
+  the lessons learned stage.
+id: NIST - Lessons Learned2
+inputs:
+- description: Use a data collection task to answer lessons learned questions based
+    on NIST. Specify 'True' to automatically send the communication task, and 'False'  to
+    prevent it.
+  key: DataCollection
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: "True"
+- description: Email address to which to send the questions.
+  key: Email
+  playbookInputQuery: null
+  required: false
+  value: {}
+name: NIST - Lessons Learned
+outputs:
+- contextPath: NIST - Lessons Learned.Answers.0
+  description: Answer to communication task.
+  type: shortText
+- contextPath: NIST - Lessons Learned.Answers.1
+  description: Answer to communication task.
+  type: shortText
+- contextPath: NIST - Lessons Learned.Answers.2
+  description: Answer to communication task.
+  type: shortText
+- contextPath: NIST - Lessons Learned.Answers.3
+  description: Answer to communication task.
+  type: shortText
+- contextPath: NIST - Lessons Learned.Answers.4
+  description: Answer to communication task.
+  type: shortText
+- contextPath: NIST - Lessons Learned.Answers.5
+  description: Answer to communication task.
+  type: shortText
+- contextPath: NIST - Lessons Learned.Answers.6
+  description: Answer to communication task.
+  type: shortText
+- contextPath: NIST - Lessons Learned.Answers.7
+  description: Answer to communication task.
+  type: shortText
+- contextPath: NIST - Lessons Learned.Answers.8
+  description: Answer to communication task.
+  type: shortText
+- contextPath: NIST - Lessons Learned.Answers.name
+  description: Provided username or email address
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 5c5af7c5-e4b3-45a5-8fe0-0c1185cff8dc
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 5c5af7c5-e4b3-45a5-8fe0-0c1185cff8dc
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    form:
+      description: "One of the most important parts of incident response is also the
+        most often omitted: learning and improving. Each incident response team should
+        evolve to reflect new threats, improved technology, and lessons learned. \nThis
+        provides a chance to achieve closure with respect to an incident by reviewing
+        what occurred, what was done to intervene, and how well intervention worked.
+        \nQuestions to be answered include:"
+      expired: false
+      questions:
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "0"
+        label: ""
+        labelarg:
+          simple: Exactly what happened, and at what times?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "1"
+        label: ""
+        labelarg:
+          simple: How well did staff and management perform in dealing with the incident?
+            Were the documented procedures followed? Were they adequate?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "2"
+        label: ""
+        labelarg:
+          simple: What information was needed sooner?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "3"
+        label: ""
+        labelarg:
+          simple: Were any steps or actions taken that might have inhibited the recovery?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "4"
+        label: ""
+        labelarg:
+          simple: What would the staff and management do differently the next time
+            a similar incident occurs?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "5"
+        label: ""
+        labelarg:
+          simple: How could information sharing with other organizations have been
+            improved?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "6"
+        label: ""
+        labelarg:
+          simple: What corrective actions can prevent similar incidents in the future?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "7"
+        label: ""
+        labelarg:
+          simple: What precursors or indicators should be watched for in the future
+            to detect similar incidents?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      - defaultrows: []
+        fieldassociated: ""
+        gridcolumns: []
+        id: "8"
+        label: ""
+        labelarg:
+          simple: What additional tools or resources are needed to detect, analyze,
+            and mitigate future incidents?
+        options: []
+        optionsarg: []
+        placeholder: ""
+        readonly: false
+        required: false
+        tooltip: ""
+        type: shortText
+      sender: ""
+      title: NIST - Lessons Learned
+      totalanswers: 0
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body: {}
+      cc: null
+      format: ""
+      methods:
+      - email
+      subject:
+        simple: Please answer the attached survey questions as a part of your post
+          incident activity.
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: false
+        retriescount: 2
+        retriesinterval: 360
+      to:
+        complex:
+          root: inputs.Email
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: eaf8299b-9d89-4d11-8abc-0d3d4ef7fcf8
+      iscommand: false
+      name: Lessons Learned - Data Collection
+      type: collection
+      version: -1
+    taskid: eaf8299b-9d89-4d11-8abc-0d3d4ef7fcf8
+    timertriggers: []
+    type: collection
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 515
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 352639b0-c2b1-4621-8ec4-274325fbea8a
+      iscommand: false
+      name: 3.4.1 - Lessons Learned
+      type: title
+      version: -1
+    taskid: 352639b0-c2b1-4621-8ec4-274325fbea8a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ed01162f-793d-4a26-8119-85e330858f25
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: ed01162f-793d-4a26-8119-85e330858f25
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 690
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.DataCollection
+                transformers:
+                - operator: toLowerCase
+          operator: isEqualString
+          right:
+            value:
+              simple: "true"
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "7"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 45e84869-8920-4130-80da-983a6d782064
+      iscommand: false
+      name: Send data collection task?
+      type: condition
+      version: -1
+    taskid: 45e84869-8920-4130-80da-983a6d782064
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 340
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 74d8b5c2-dd37-438b-824c-cf1f3f4082a0
+      iscommand: false
+      name: Hold a “lessons learned” meeting with all involved parties
+      type: regular
+      version: -1
+    taskid: 74d8b5c2-dd37-438b-824c-cf1f3f4082a0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 515
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 705,
+        "width": 810,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
