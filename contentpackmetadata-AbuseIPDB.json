@@ -1,0 +1,132 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Extracts IP addresses on block lists from AbuseIPDB, and Populates Indicators accordingly.",
+				"name": "AbuseIPDBPopulateIndicators",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Checks the specified IP address against the AbuseIP database.",
+						"name": "ip"
+					},
+					{
+						"description": "Queries a block of IP addresses to check against the database.",
+						"name": "abuseipdb-check-cidr-block"
+					},
+					{
+						"description": "Reports an IP address to AbuseIPDB.",
+						"name": "abuseipdb-report-ip"
+					},
+					{
+						"description": "Returns a list of the most reported IP addresses.",
+						"name": "abuseipdb-get-blacklist"
+					},
+					{
+						"description": "Returns a list of report categories from AbuseIPDB.",
+						"name": "abuseipdb-get-categories"
+					}
+				],
+				"description": "Central repository to report and identify IP addresses that have been associated with malicious activity online. Check the Detailed Information section for more information on how to configure the integration.",
+				"name": "AbuseIPDB"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:43:27Z",
+	"currentVersion": "1.0.13",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Central repository to report and identify IP addresses that have been associated with malicious activity online. Check the Detailed Information section for more information on how to configure the integration.",
+	"downloads": 3963,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "AbuseDB",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/AbuseDB/AbuseIPDB_image.png",
+			"name": "AbuseIPDB"
+		}
+	],
+	"itemVersion": "1.0.13",
+	"keywords": [],
+	"legacy": true,
+	"name": "AbuseIPDB",
+	"packID": "AbuseDB",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-05-01T09:21:28Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
