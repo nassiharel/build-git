@@ -1,0 +1,472 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 1.2.3
+    packID: Expanse
+    packName: Expanse (Deprecated)
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: 'This playbook updates the severity of an Expanse Behavior incident based
+  on the presence of other active Exposures for the IP address. '
+id: Expanse Behavior Severity Update
+inputs:
+- description: Sets incident to this severity if there are any critical exposures
+    on the asset.
+  key: Critical Severity
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: High
+- description: Sets incident to this severity if there are any critical exposures
+    on the asset.
+  key: Warning Severity
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Medium
+- description: Sets incident to this severity if there are any critical exposures
+    on the asset.
+  key: Routine Severity
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: Low
+name: Expanse Behavior Severity Update
+outputs: []
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: start
+      id: 7439bbfa-861b-4911-8911-6400f906a53a
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 7439bbfa-861b-4911-8911-6400f906a53a
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -430
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        complex:
+          accessor: IP.Address
+          root: Expanse
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Expanse
+      description: Submits an IP address to check.
+      id: f5efdc23-8d06-4c13-8ed9-e6bd27ca1904
+      iscommand: true
+      name: Expanse IP Enrichment
+      script: Expanse|||ip
+      type: regular
+      version: -1
+    taskid: f5efdc23-8d06-4c13-8ed9-e6bd27ca1904
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 130
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "4"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      first:
+        complex:
+          accessor: IP.SeverityCounts.CRITICAL
+          root: Expanse
+      second:
+        simple: "0"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Checks if one number(float) as bigger than the other(float)
+        Returns yes: if first > second
+        Returns no: if first <= second
+        Returns exception if one of the inputs is not a number
+      id: 903caf3b-9015-4b10-80bd-de7ba4ed2c8d
+      iscommand: false
+      name: Does the IP address have critical exposures?
+      script: IsGreaterThan
+      type: condition
+      version: -1
+    taskid: 903caf3b-9015-4b10-80bd-de7ba4ed2c8d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 660,
+          "y": 530
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: severity
+      output:
+        simple: High
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: ${inputs.Critical Severity}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 655229e0-3623-471f-8e41-9c686beef9df
+      iscommand: true
+      name: Set Severity based on Critical Exposures
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 655229e0-3623-471f-8e41-9c686beef9df
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1220,
+          "y": 795
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "6"
+      "yes":
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      first:
+        complex:
+          accessor: IP.SeverityCounts.WARNING
+          root: Expanse
+      second:
+        simple: "0"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Checks if one number(float) as bigger than the other(float)
+        Returns yes: if first > second
+        Returns no: if first <= second
+        Returns exception if one of the inputs is not a number
+      id: 3ed52387-4ba2-485e-8475-5a74395ee2af
+      iscommand: false
+      name: Does the IP address have warning exposures?
+      script: IsGreaterThan
+      type: condition
+      version: -1
+    taskid: 3ed52387-4ba2-485e-8475-5a74395ee2af
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 660,
+          "y": 900
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: severity
+      output:
+        simple: High
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: ${inputs.Warning Severity}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 549a70a4-de89-4e2d-89b6-2ec897441a65
+      iscommand: true
+      name: Set Severity based on Warning Exposures
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 549a70a4-de89-4e2d-89b6-2ec897441a65
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 820,
+          "y": 1080
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    fieldMapping:
+    - incidentfield: severity
+      output:
+        simple: High
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: ${inputs.Routine Severity}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.incident
+      id: 85298fd3-5541-4755-8edf-a2c4c2b535ea
+      iscommand: true
+      name: Set Severity based on Routine Exposures
+      script: Builtin|||setIncident
+      type: regular
+      version: -1
+    taskid: 85298fd3-5541-4755-8edf-a2c4c2b535ea
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 1210
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "9"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: IP.SeverityCounts
+          root: Expanse
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This checks whether an IP was returned for the IP enrichment command
+        in Expanse. If not, it means that the requested IP was not included in Expanse's
+        list on "on-prem" IP Ranges.
+      id: 063ebedf-ace3-41d4-8285-9ace74d18db6
+      iscommand: false
+      name: Was an IP address present?
+      script: Exists
+      type: condition
+      version: -1
+    taskid: 063ebedf-ace3-41d4-8285-9ace74d18db6
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 320
+        }
+      }
+  "8":
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Expanse Incident Playbook
+      id: d3bca1aa-070b-4f15-8450-7a953379f9f2
+      iscommand: false
+      name: Expanse Incident Playbook
+      playbookId: ExpanseParseRawIncident
+      type: playbook
+      version: -1
+    taskid: d3bca1aa-070b-4f15-8450-7a953379f9f2
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -260
+        }
+      }
+  "9":
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Done
+      id: 03664dd2-880b-4665-89cf-49c706023306
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 03664dd2-880b-4665-89cf-49c706023306
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 1410
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "9"
+      "yes":
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        complex:
+          accessor: IP.Address
+          root: Expanse
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This checks whether an IP was returned for the IP enrichment command
+        in Expanse. If not, it means that the requested IP was not included in Expanse's
+        list on "on-prem" IP Ranges.
+      id: 281f8884-cfb3-4a42-8533-56a5737001d1
+      iscommand: false
+      name: Is there an IP address?
+      script: Exists
+      type: condition
+      version: -1
+    taskid: 281f8884-cfb3-4a42-8533-56a5737001d1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": -70
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {
+      "10_1_yes": 0.74
+    },
+    "paper": {
+      "dimensions": {
+        "height": 1905,
+        "width": 1410,
+        "x": 190,
+        "y": -430
+      }
+    }
+  }
