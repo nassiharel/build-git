@@ -2219,7 +2219,7 @@ tasks:
       id: 378e4acf-4adc-4eb9-824f-279552248bd9
       iscommand: false
       name: Detect & Manage Phishing Campaigns
-      playbookName: Detect & Manage Phishing Campaigns
+      playbookId: Detect & Manage Phishing Campaigns
       type: playbook
       version: -1
     taskid: 378e4acf-4adc-4eb9-824f-279552248bd9
