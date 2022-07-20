@@ -530,6 +530,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: Detonate file through active integrations that support file detonation
       id: 42a5c469-85e5-4728-8a08-fe736c399dcc
       iscommand: false
       name: Detonate File - Generic
@@ -1476,6 +1477,14 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
+      description: |-
+        Calculate and assign the incident severity based on the highest returned severity level from the following calculations:
+
+        - DBotScores of indicators
+        - Critical assets
+        - Email authenticity
+        - Current incident severity
+        - Microsoft Headers
       id: c9e6be1f-bebb-496c-85c9-1ced34a2f0be
       iscommand: false
       name: Calculate Severity - Generic v2
@@ -1529,8 +1538,8 @@ tasks:
     view: |-
       {
         "position": {
-          "x": -497.5,
-          "y": 85
+          "x": -370,
+          "y": 60
         }
       }
   "87":
@@ -1938,12 +1947,14 @@ tasks:
     task:
       brand: ""
       description: |+
-        This playbook blocks malicious indicators using all enabled integrations, with the following sub-playbooks:
+        This playbook blocks malicious Indicators using all integrations that are enabled, using the following sub-playbooks:
 
         - Block URL - Generic
         - Block Account - Generic
         - Block IP - Generic v2
         - Block File - Generic v2
+        - Block Email - Generic
+        - Block Domain - Generic
 
       id: 25272965-fce7-4905-8bfc-997551f3592f
       iscommand: false
@@ -2217,7 +2228,7 @@ tasks:
       id: 378e4acf-4adc-4eb9-824f-279552248bd9
       iscommand: false
       name: Detect & Manage Phishing Campaigns
-      playbookName: Detect & Manage Phishing Campaigns
+      playbookId: Detect & Manage Phishing Campaigns
       type: playbook
       version: -1
     taskid: 378e4acf-4adc-4eb9-824f-279552248bd9
@@ -2325,15 +2336,15 @@ tasks:
         to \"spam\" if the SCL score is equal to or greater than 5.\n2) Sets the incident
         severity according to the playbook inputs (default is: PCL/BCL - Medium, SCL
         - Low). The severity of the incident is set only when one (or more) of the
-        following occurs:\n  - PCL (Phishing Confidence Level) score between and including
-        4-8: The message content is likely to be phishing.\n  - [BCL](https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/bulk-complaint-level-values?view=o365-worldwide)
-        (Bulk Complaint Level) score between and including 4-7: The message is from
-        a bulk sender that generates a mixed number of complaints. \n    For a score
-        between and including 8-9: The message is from a bulk sender that generates
-        a high number of complaints.\n  - [SCL](https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/spam-confidence-levels?view=o365-worldwide)
-        (Spam Confidence Level) score between and including 5-6: Spam filtering marks
-        the message as spam. \n    For a score of 9: Spam filtering marks the message
-        as high confidence spam. See [anti-spam stamps](https://docs.microsoft.com/en-us/exchange/antispam-and-antimalware/antispam-protection/antispam-stamps?view=exchserver-2019)."
+        following occurs:\n  - PCL (Phishing Confidence Level) For a score between
+        and including 4-8: The message content is likely to be phishing.\n  - [BCL](https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/bulk-complaint-level-values?view=o365-worldwide)
+        (Bulk Complaint Level) For a score between and including 4-7: The message
+        is from a bulk sender that generates a mixed number of complaints. \n    For
+        a score between and including 8-9: The message is from a bulk sender that
+        generates a high number of complaints.\n  - [SCL](https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/spam-confidence-levels?view=o365-worldwide)
+        (Spam Confidence Level) For a score between and including 5-6: Spam filtering
+        marks the message as spam. \n    For a score of 9: Spam filtering marks the
+        message as high confidence spam. See [anti-spam stamps](https://docs.microsoft.com/en-us/exchange/antispam-and-antimalware/antispam-protection/antispam-stamps?view=exchserver-2019)."
       id: f8e7eff4-8e88-478e-8e90-5a2534ddf872
       iscommand: false
       name: Process Microsoft's Anti-Spam Headers
@@ -2376,8 +2387,7 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      description: This playbook detonates URLs using active integrations that support
-        URL detonation.
+      description: Detonate URL through active integrations that support URL detonation.
       id: e5b87f7d-1145-4d07-8e79-094a5d1de4d5
       iscommand: false
       name: Detonate URL - Generic
