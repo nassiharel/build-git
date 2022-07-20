@@ -3,7 +3,8 @@
 	"aliases": null,
 	"associatedToAll": false,
 	"associatedTypes": [
-		"Splunk Notable Generic"
+		"Splunk Notable Generic",
+		"Splunk Notable Generic_dev"
 	],
 	"autoCompleteTags": null,
 	"breachScript": "",
