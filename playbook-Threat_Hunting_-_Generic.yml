@@ -291,7 +291,7 @@ tasks:
       id: faee0e93-b767-4148-8d8f-b1762d1e1039
       iscommand: false
       name: Splunk Indicator Hunting
-      playbookName: Splunk Indicator Hunting
+      playbookId: Splunk Indicator Hunting
       type: playbook
       version: -1
     taskid: faee0e93-b767-4148-8d8f-b1762d1e1039
