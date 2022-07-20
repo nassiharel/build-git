@@ -224,7 +224,7 @@ tasks:
       id: acf75e5f-0da0-483e-82e2-2dbf09a0362c
       iscommand: false
       name: Get File Sample From Path - D2
-      playbookName: Get File Sample From Path - D2
+      playbookId: get_file_sample_from_path_-_d2
       type: playbook
       version: -1
     taskid: acf75e5f-0da0-483e-82e2-2dbf09a0362c
