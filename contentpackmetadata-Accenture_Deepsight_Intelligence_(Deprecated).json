@@ -1,0 +1,125 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Enrich an IP address from Symantec Deepsight Intelligence",
+						"name": "ip"
+					},
+					{
+						"description": "Enrich a domain from Symantec Deepsight intelligence",
+						"name": "domain"
+					},
+					{
+						"description": "Enrich a file from Symantec Deepsight Intelligence",
+						"name": "file"
+					},
+					{
+						"description": "Enrich an URL from Symantec Deepsight Intelligence",
+						"name": "url"
+					},
+					{
+						"description": "Get API Usage status for current license period",
+						"name": "deepsight-get-request-status"
+					}
+				],
+				"description": "Deprecated. Use ACTI Vulnerability Query instead.",
+				"name": "Accenture Deepsight Intelligence (Deprecated)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:47:02Z",
+	"currentVersion": "1.0.5",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "Deprecated. Use Accenture CTI v2 instead.",
+	"downloads": 1266,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Symantec_Deepsight",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Symantec_Deepsight/SymantecDeepsightIntelligence_image.png",
+			"name": "Accenture Deepsight Intelligence (Deprecated)"
+		}
+	],
+	"itemVersion": "1.0.5",
+	"keywords": [],
+	"legacy": true,
+	"name": "Accenture Deepsight Intelligence (Deprecated)",
+	"packID": "Symantec_Deepsight",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": -40,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-03-20T22:24:08Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
