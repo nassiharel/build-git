@@ -1,0 +1,39 @@
+{
+	"autorun": true,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#0176D6",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "zan_type",
+	"itemVersion": "",
+	"layout": "190818e5-bd44-47f0-886c-f633eff8c790",
+	"locked": false,
+	"name": "zan_type",
+	"onChangeRepAlg": 0,
+	"packID": "",
+	"packName": "",
+	"playbookId": "11684f15-b9b9-4d20-8187-152a5d6a981d",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
