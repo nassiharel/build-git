@@ -1,0 +1,205 @@
+{
+	"author": "ReversingLabs",
+	"authorImage": "content/packs/ReversingLabs_Titanium_Cloud/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"playbook"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Retrieve File Reputation data from TitaniumCloud",
+						"name": "reversinglabs-titaniumcloud-file-reputation"
+					},
+					{
+						"description": "Retrieve AV Scanner data from TitaniumCloud.",
+						"name": "reversinglabs-titaniumcloud-av-scanners"
+					},
+					{
+						"description": "Retrieve File Analysis by hash data from TitaniumCloud.",
+						"name": "reversinglabs-titaniumcloud-file-analysis"
+					},
+					{
+						"description": "Retrieve a list of functionally similar hashes to the provided one.",
+						"name": "reversinglabs-titaniumcloud-rha1-functional-similarity"
+					},
+					{
+						"description": "Retrieve the number of hashes functionally similar to the provided one grouped by classification.",
+						"name": "reversinglabs-titaniumcloud-rha1-analytics"
+					},
+					{
+						"description": "Retrieve the number of MALICIOUS, SUSPICIOUS and KNOWN files associated with a specific URI.",
+						"name": "reversinglabs-titaniumcloud-uri-statistics"
+					},
+					{
+						"description": "Retrieve a list of all available file hashes associated with a given URI.",
+						"name": "reversinglabs-titaniumcloud-uri-index"
+					},
+					{
+						"description": "Search for hashes using multi-part search criteria.",
+						"name": "reversinglabs-titaniumcloud-advanced-search"
+					},
+					{
+						"description": "Search provides samples first seen on a particular date, filtered by search criteria.",
+						"name": "reversinglabs-titaniumcloud-expression-search"
+					},
+					{
+						"description": "Download files associated with a SHA1, MD5 or SHA256 hash.",
+						"name": "reversinglabs-titaniumcloud-file-download"
+					},
+					{
+						"description": "Upload a file using a byte stream with a SHA1 hash of the file provided in the request.",
+						"name": "reversinglabs-titaniumcloud-file-upload"
+					},
+					{
+						"description": "Return a URL analysis report.",
+						"name": "reversinglabs-titaniumcloud-url-report"
+					},
+					{
+						"description": "Analyze a given URL.",
+						"name": "reversinglabs-titaniumcloud-analyze-url"
+					},
+					{
+						"description": "Submit an existing sample for dynamic analysis.",
+						"name": "reversinglabs-titaniumcloud-submit-for-dynamic-analysis"
+					},
+					{
+						"description": "Retrieve dynamic analysis results.",
+						"name": "reversinglabs-titaniumcloud-get-dynamic-analysis-results"
+					},
+					{
+						"description": "Retrieve certificate analytics.",
+						"name": "reversinglabs-titaniumcloud-certificate-analytics"
+					}
+				],
+				"description": "ReversingLabs TitaniumCloud provides threat analysis data from various ReversingLabs cloud services.",
+				"name": "ReversingLabs TitaniumCloud v2 (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Retrieve Malware Presence Status from ReversingLabs",
+						"name": "file"
+					}
+				],
+				"description": "Deprecated. Use the ReversingLabs TitaniumCloud v2 integration instead.",
+				"name": "ReversingLabs TitaniumCloud (Deprecated) (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "Provides file reputation data for a file (malicious, suspicious, known good or unknown).\nRequired TitaniumCloud API rights:\n\nTCA-0101",
+				"name": "File Reputation - ReversingLabs TitaniumCloud"
+			},
+			{
+				"description": "Get threat intelligence data for the submitted URL.\nRequired TitaniumCloud API rights:\n\nTCA-0403\nTCA-0402",
+				"name": "Analyze URL - ReversingLabs TitaniumCloud"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2021-01-27T23:05:15Z",
+	"currentVersion": "2.0.3",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "ReversingLabs TitaniumCloud provides file reputation services, threat classification and rich context on over 10 billion files.",
+	"downloads": 1559,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "ReversingLabs_Titanium_Cloud",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/ReversingLabs_Titanium_Cloud/ReversingLabsTitaniumCloud_image.png",
+			"name": "ReversingLabs TitaniumCloud (Deprecated)"
+		},
+		{
+			"imagePath": "content/packs/ReversingLabs_Titanium_Cloud/ReversingLabsTitaniumCloudv2_image.png",
+			"name": "ReversingLabs TitaniumCloud v2"
+		}
+	],
+	"itemVersion": "2.0.3",
+	"keywords": [
+		"Static Analysis",
+		"Dynamic Analysis",
+		"File Analysis"
+	],
+	"legacy": true,
+	"name": "ReversingLabs TitaniumCloud",
+	"packID": "ReversingLabs_Titanium_Cloud",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "## What is the ReversingLabs TitaniumCloud Cortex XSOAR integration pack?\nReversingLabs TitaniumCloud is a threat intelligence solution which increases detection, analysis, and response efficiency by identifying files from queries to an authoritative 10 billion global goodware and malware database. A powerful set of REST API query and feed functions deliver targeted file and malware intelligence for threat identification, analysis, intelligence development, and threat hunting services.\n\nThis pack provides Cortex XSOAR integrations created by ReversingLabs that allow seamless and effective use of TitaniumCloud services through the Cortex XSOAR interface.\n\n#### Currently available integrations:\n- ReversingLabs TitaniumCloud\n    - Enables the use of a wide range of TitaniumCloud services.\n    - The included commands can be used separately in the War Room or as part of a playbook.\n\nThis pack also includes 2 playbooks:\n- **Analyze URL - ReversingLabs TitaniumCloud**: Get threat intelligence data for the submitted URL.\n- **File Reputation - ReversingLabs TitaniumCloud**: Provides file reputation data for a file (malicious, suspicious, known good or unknown).\n\nNote: Support for this pack moved to the partner on April 22nd 2021. Please contact the partner directly via the support link on the right.\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "support@reversinglabs.com",
+		"url": "https://www.reversinglabs.com/products/malware-analysis-platform"
+	},
+	"tags": [
+		"Partner Spotlight",
+		"Security",
+		"Threat Intelligence",
+		"Malware",
+		"Forensics"
+	],
+	"toServerVersion": "",
+	"updated": "2022-03-08T10:33:07Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
