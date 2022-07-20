@@ -8,8 +8,7 @@ contentitemexportablefields:
     itemVersion: ""
     packID: ""
     packName: ""
-    propagationLabels:
-    - all
+    propagationLabels: []
     toServerVersion: ""
 dockerimage: demisto/python3:3.10.5.31928
 enabled: true
@@ -19,7 +18,9 @@ name: zan_set_value
 pswd: ""
 runas: DBotWeakRole
 runonce: false
-script: demisto.setContext(<zan_f1>, <test11>)
+script: |+
+  demisto.executeCommand('setIncident', {'customFields': {'zan_f1': 'foo'}})
+
 scripttarget: 0
 subtype: python3
 tags:
