@@ -14,7 +14,7 @@
 	"defaultRows": null,
 	"definitionId": "",
 	"description": "was a incident a false positive?",
-	"editForm": false,
+	"editForm": true,
 	"fieldCalcScript": "",
 	"fromServerVersion": "",
 	"group": 0,
