@@ -1,0 +1,177 @@
+{
+	"author": "Accenture",
+	"authorImage": "content/packs/iDefense/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Checks the reputation of the given IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Checks the reputation of the given domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Checks the reputation of the given URL.",
+						"name": "url"
+					},
+					{
+						"description": "Get specific indicator reputation",
+						"name": "idefense-get-ioc-by-uuid"
+					}
+				],
+				"description": "ACTI provides intelligence regarding security threats and vulnerabilities.",
+				"name": "Accenture CTI (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Check IP reputation",
+						"name": "ip"
+					},
+					{
+						"description": "Check domain reputation",
+						"name": "domain"
+					},
+					{
+						"description": "Check URL reputation",
+						"name": "url"
+					},
+					{
+						"description": "Get threats from iDefense database. Returns all records of ip/url/domain",
+						"name": "idefense-general"
+					},
+					{
+						"description": "Get specific indicator reputation",
+						"name": "uuid"
+					}
+				],
+				"description": "Deprecated. Use the iDefense v2 integration instead.",
+				"name": "iDefense (Deprecated) (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets the feed indicators.",
+						"name": "idefense-get-indicators"
+					}
+				],
+				"description": "Fetches indicators from a ACTI feed. You can filter returned indicators by indicator type, indicator severity, threat type, confidence, and malware family (each of these are an integration parameter).",
+				"name": "ACTI Feed (Partner Contribution)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-09-23T17:46:38Z",
+	"currentVersion": "3.2.4",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.33",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Accenture Security",
+	"downloads": 2349,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByPartner",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "iDefense",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/iDefense/iDefenseFeed_image.png",
+			"name": "ACTI Feed"
+		},
+		{
+			"imagePath": "content/packs/iDefense/iDefense_v2_image.png",
+			"name": "Accenture CTI"
+		},
+		{
+			"imagePath": "content/packs/iDefense/iDefense_image.png",
+			"name": "iDefense (Deprecated)"
+		}
+	],
+	"itemVersion": "3.2.4",
+	"keywords": [],
+	"legacy": true,
+	"name": "Accenture CTI",
+	"packID": "iDefense",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "This pack will be entering maintenance mode from **February 1st, 2022** and will reach end of life on **August 1st, 2022**\n- Current **Accenture CTI** integration is now available as **ACTI Indicator Query** under **Accenture CTI v2** pack : https://xsoar.pan.dev/marketplace/details/AccentureCTI \n- Current **ACTI Feed** integration is now available as **ACTI Indicator Feed** under **Accenture CTI Feed** pack : https://xsoar.pan.dev/marketplace/details/AccentureCTI_Feed\n# **Accenture CTI** \\*\n\nThis pack is integrated with our IntelGraph Intelligence Portal to provide threat intelligence. \nMoreover this pack has 2 sub-packs named:\n- Accenture CTI\n- ACTI Feed\n\n*_formerly iDefense_\n_____\n\n\u003cp\u003e\u0026nbsp;\u003c/p\u003e\n\n## **What does this pack do?**\n- Provide actionable intelligence and relevant decision support to detect, analyze and mitigate threats before attacks impact the overall business\n- Accenture CTI pack provides intelligence regarding security threats and vulnerabilities.\n- Accenture CTI pack also provides _Intelligence Alert_ \u0026 _Intelligence Report_ enrichment (only if the indicator has associated IA/IR in IntelGraph portal \u0026 user has Document API access permissions).\n- ACTI Feed fetches indicators which can filter returned indicators by indicator type, indicator severity, threat type, confidence, and malware family (each of these are an integration parameter).\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "partner",
+	"supportDetails": {
+		"email": "CTI.AcctManagement@accenture.com",
+		"url": "https://www.accenture.com/us-en/services/security/cyber-defense"
+	},
+	"tags": [
+		"TIM"
+	],
+	"toServerVersion": "",
+	"updated": "2022-04-20T21:21:12Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
