@@ -1,0 +1,262 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Case Management"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"incidentfield",
+		"incidenttype",
+		"playbook",
+		"layoutscontainer"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": [
+			{
+				"description": "What are the areas that need improvement?",
+				"name": "What are the areas that need improvement?",
+				"type": "shortText"
+			},
+			{
+				"description": "How was the incident contained and eradicated?",
+				"name": "How was the incident contained and eradicated?",
+				"type": "shortText"
+			},
+			{
+				"description": "When was the problem first detected and by whom?",
+				"name": "When was the problem first detected and by whom?",
+				"type": "shortText"
+			},
+			{
+				"description": "What was the scope of the incident?",
+				"name": "What was the scope of the incident?",
+				"type": "shortText"
+			},
+			{
+				"description": "Share ideas and information in order to improve team effectiveness in future incidents.",
+				"name": "Suggestions and discussion of how to improve the team",
+				"type": "shortText"
+			},
+			{
+				"description": "What was the work performed during recovery?",
+				"name": "What was the work performed during recovery?",
+				"type": "shortText"
+			},
+			{
+				"description": "SANS stage",
+				"name": "SANS Stage",
+				"type": "shortText"
+			},
+			{
+				"description": "What were the areas where the CIRT teams were effective?",
+				"name": "What were the areas where the CIRT teams were effective?",
+				"type": "shortText"
+			}
+		],
+		"incidenttype": [
+			{
+				"closureScript": "",
+				"days": 0,
+				"hours": 0,
+				"name": "SANS",
+				"playbook": "",
+				"weeks": 0
+			}
+		],
+		"indicatorfield": null,
+		"integration": null,
+		"layoutscontainer": [
+			{
+				"description": "",
+				"name": "SANS Incident"
+			}
+		],
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": [
+			{
+				"description": "This playbook follows the \"Incident Handler's Checklist\" described in the SANS Institute ‘Incident Handler’s Handbook’ by Patrick Kral.\n\nhttps://www.sans.org/reading-room/whitepapers/incident/incident-handlers-handbook-33901\n\n***Disclaimer: This playbook does not ensure compliance to SANS regulations.",
+				"name": "SANS - Incident Handlers Checklist"
+			},
+			{
+				"description": "This playbook contains the phases for handling an incident as they are described in the SANS Institute ‘Incident Handler's Handbook’ by Patrick Kral.\n\nhttps://www.sans.org/reading-room/whitepapers/incident/incident-handlers-handbook-33901\n\n***Disclaimer: This playbook does not ensure compliance to SANS regulations.",
+				"name": "SANS - Incident Handler's Handbook Template"
+			},
+			{
+				"description": "This playbook investigates a \"Brute Force\" incident by gathering user and IP information, and calculating the incident severity based on the gathered information and information received from the user. It then performs remediation.\nThis is done based on the phases for handling an incident as they are described in the SANS Institute â€˜Incident Handlerâ€™s Handbookâ€™ by Patrick Kral.\n\nhttps://www.sans.org/reading-room/whitepapers/incident/incident-handlers-handbook-33901\n\nThe playbook handles the following use-cases:\n\n* Brute Force IP Detected - A detection of source IPs that are exceeding a high threshold of rejected and/or invalid logins. \n* Brute Force Increase Percentage - A detection of large increase percentages in various brute force statistics over different periods of time.\n* Brute Force Potentially Compromised Accounts - A detection of accounts that have shown high amount of failed logins with one successful login.\n\nUsed Sub-playbooks:\n- IP Enrichment - Generic v2\n- Account Enrichment - Generic v2.1\n- Calculate Severity - Critical Assets v2\n- Isolate Endpoint - Generic\n- Block Indicators - Generic v2\n- SANS - Lessons Learned\n\n***Disclaimer: This playbook does not ensure compliance to SANS regulations.",
+				"name": "Brute Force Investigation - Generic - SANS"
+			},
+			{
+				"description": "This playbook assists in post-processing an incident and facilitates the lessons learned stage, as presented by SANS Institute ‘Incident Handler’s Handbook’ by Patrick Kral.\n\nhttps://www.sans.org/reading-room/whitepapers/incident/incident-handlers-handbook-33901\n\n***Disclaimer: This playbook does not ensure compliance to SANS regulations.",
+				"name": "SANS - Lessons Learned"
+			}
+		],
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-11-09T18:42:55Z",
+	"currentVersion": "1.1.2",
+	"definitionId": "",
+	"dependencies": {
+		"Active_Directory_Query": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.4.10",
+			"name": "Active Directory Query"
+		},
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		},
+		"BruteForce": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.2",
+			"name": "Brute Force"
+		},
+		"CommonPlaybooks": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.1.21",
+			"name": "Common Playbooks"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.6.60",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.33",
+			"name": "Common Types"
+		},
+		"Compliance": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.11",
+			"name": "Compliance"
+		},
+		"EWSMailSender": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.8",
+			"name": "EWS Mail Sender"
+		},
+		"Gmail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.16",
+			"name": "Gmail"
+		},
+		"GmailSingleUser": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.2.6",
+			"name": "Gmail Single User"
+		},
+		"MailSenderNew": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.6",
+			"name": "Mail Sender (New)"
+		},
+		"MicrosoftGraphListener": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.0.25",
+			"name": "Microsoft Graph Mail Single User"
+		},
+		"MicrosoftGraphMail": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": false,
+			"minVersion": "1.1.15",
+			"name": "Microsoft Graph Mail"
+		}
+	},
+	"deprecated": false,
+	"description": "This SANS Content Pack helps you streamline incident response according to SANS guidelines as outlined in the SANS Incident Handler’s Handbook.",
+	"downloads": 1636,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "SANS",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Active_Directory_Query/ActiveDirectoryQueryv2_image.png",
+			"name": "Active Directory Query v2"
+		}
+	],
+	"itemVersion": "1.1.2",
+	"keywords": [],
+	"legacy": true,
+	"name": "SANS",
+	"packID": "SANS",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "The SANS Incident Response process for handling a cyber security incident contains the following steps:\n- Preparation.\n- Identification\n- Containment\n- Eradication\n- Recovery\n- Lessons Learned\n\nThis SANS content pack contains several playbooks to help streamline your incident response according to SANS guidelines as outlined in the SANS Incident Handler’s Handbook. \n\n\n##### What does this pack do?\nThe playbooks in this pack contain the phases for handling an incident as they are described in the SANS Institute ‘Incident Handler’s Handbook’ by Patrick Kral.\nhttps://www.sans.org/reading-room/whitepapers/incident/incident-handlers-handbook-33901\n***Disclaimer: This playbooks don’t ensure compliance to SANS regulations.***\nThe “SANS - Incident Handler's Handbook Template” playbook provides a template that helps analysts follow these stages. \nThe “SANS - Incident Handlers Checklist” playbook follows the “Incident Handler’s Checklist” described in the SANS Institute ‘Incident Handler’s Handbook’ by Patrick Kral, and provides the analyst an easy solution for following the correct stages and tasks while handling an incident.\nThe “SANS - Lessons Learned” helps SOC teams process an incident after it occurs and facilitates the lessons learned, organized by SANS stages.\nThe “Brute Force Investigation - Generic - SANS” playbook handles a Brute Force incident based on the stages described above. \nThe playbooks included in this pack helps you save time and automate repetitive tasks associated with Access incidents:\n- Handle the incident based on the stages in SANS Institute ‘Incident Handler’s Handbook’ by Patrick Kral.\n- Set the “SANS Stage” field to the different stages most relevant to the ongoing investigation.\n- Gather and enrich user and IP information.\n- Interact with the suspected user about the activity.\n- Calculate the incident’s severity\n- Remediate the incident by blocking malicious indicators and disabling the account.\n- Generate an investigation summary report.\n- Run the “SANS - Lessons learned” sub-playbook to process the incident after the investigation and remediation is over.\n \n_For more information, visit our  [Cortex XSOAR Developer Docs](https://xsoar.pan.dev/docs/reference/playbooks/sans---incident-handlers-handbook-template)_\n\n![SANS_-_Incident_Handler's_Handbook_Template](https://github.com/demisto/content/raw/167ff7ede241667161f6ce526cbb4665c7eac986/Packs/SANS/doc_files/SANS_-_Incident_Handler's_Handbook_Template.png)\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"Use Case",
+		"Incident Handling"
+	],
+	"toServerVersion": "",
+	"updated": "2021-12-21T22:16:06Z",
+	"useCases": [
+		"SANS"
+	],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
