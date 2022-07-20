@@ -1,0 +1,109 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Data Enrichment \u0026 Threat Intelligence"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Queries an IP address in ipstack.",
+						"name": "ip"
+					}
+				],
+				"description": "One of the leading IP to geolocation \nAPIs and global IP database services.",
+				"name": "ipstack"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2020-06-30T20:28:37Z",
+	"currentVersion": "1.0.7",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.30.6",
+			"name": "Base"
+		}
+	},
+	"deprecated": false,
+	"description": "One of the leading IP to geolocation APIs and global IP database services.",
+	"downloads": 1785,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "Ipstack",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/Ipstack/Ipstack_image.png",
+			"name": "ipstack"
+		}
+	],
+	"itemVersion": "1.0.7",
+	"keywords": [],
+	"legacy": true,
+	"name": "Ipstack",
+	"packID": "Ipstack",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-04-28T21:26:54Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "2909779",
+	"videos": []
+}
