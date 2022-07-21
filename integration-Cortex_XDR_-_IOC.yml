@@ -129,7 +129,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 4.8.1
+    itemVersion: 4.8.3
     packID: CortexXDR
     packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
@@ -215,7 +215,7 @@ script:
       required: true
     description: Disables IOCs in the XDR server.
     name: xdr-iocs-disable
-  dockerimage: demisto/python3:3.10.4.28442
+  dockerimage: demisto/python3:3.10.5.31928
   feed: true
   runonce: false
   script: |
@@ -250,6 +250,18 @@ script:
         2: 'SUSPICIOUS',
         3: 'BAD'
     }
+
+
+    def batch_iocs(generator, batch_size=200):
+        current_batch = []
+        for indicator in generator:
+            current_batch.append(indicator)
+            if len(current_batch) >= batch_size:
+                yield current_batch
+                current_batch = []
+
+        if current_batch:
+            yield current_batch
 
 
     class Client:
@@ -350,7 +362,7 @@ script:
 
     def create_file_sync(file_path, batch_size: int = 200):
         with open(file_path, 'w') as _file:
-            for ioc in map(lambda x: demisto_ioc_to_xdr(x), get_iocs_generator(size=batch_size)):
+            for ioc in map(demisto_ioc_to_xdr, get_iocs_generator(size=batch_size)):
                 if ioc:
                     _file.write(json.dumps(ioc) + '\n')
 
@@ -515,8 +527,11 @@ script:
             iocs = get_indicators(indicators)
         if iocs:
             path = 'tim_insert_jsons/'
-            requests_kwargs: Dict = get_requests_kwargs(_json=list(map(lambda ioc: demisto_ioc_to_xdr(ioc), iocs)))
-            client.http_request(url_suffix=path, requests_kwargs=requests_kwargs)
+            for i, single_batch_iocs in enumerate(batch_iocs(iocs)):
+                demisto.debug(f'push batch: {i}')
+                requests_kwargs: Dict = get_requests_kwargs(_json=list(
+                    map(demisto_ioc_to_xdr, single_batch_iocs)))
+                client.http_request(url_suffix=path, requests_kwargs=requests_kwargs)
         return_outputs('push done.')
 
 
