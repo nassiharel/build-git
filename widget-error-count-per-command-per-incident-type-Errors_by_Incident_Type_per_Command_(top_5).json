@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "error-count-per-command-per-incident-type",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Errors by Incident Type per Command (top 5)",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
