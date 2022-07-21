@@ -1,0 +1,53 @@
+args:
+- name: arg1
+  required: true
+- name: arg2
+comment: |
+  First create new instance of "HelloWorld Feed (Community Contribution)"
+commonfields:
+  id: 40f52bf9-bc24-42fe-8ccf-914336cde3b9
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dependson:
+  must:
+  - HelloWorld Feed|||helloworld-get-indicators
+dockerimage: demisto/python3:3.10.5.31928
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: zan_script_1
+outputs:
+- contextPath: "true"
+  description: truly
+- contextPath: "false"
+  description: falsy
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |
+  indicators = demisto.executeCommand('helloworld-get-indicators', {'limit': 2})
+  return_results(indicators)
+
+  script_res = demisto.executeCommand('zan_script_2', {})
+  return_results(script_res)
+
+
+  input_args = demisto.args()
+  return_results(f"mandatory arg1: {input_args['arg1']}")
+
+  return_results(input_args['arg1'])
+  if input_args.get('arg2', None):
+      return_results(f"optional arg2: {input_args['arg2']}")
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
