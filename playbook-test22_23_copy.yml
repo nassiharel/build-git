@@ -1,0 +1,189 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 52e79660-adf4-4262-8e3a-f7e3bc71ae48
+inputs: []
+name: test22_23_copy
+outputs: []
+sourceplaybookid: 81906b4b-bb11-4397-8a3a-268094e30b9b
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1788968b-9750-49f5-8328-3cb5f15c594f
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 1788968b-9750-49f5-8328-3cb5f15c594f
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 2bcc63b5-88c2-4329-808c-a36968ca609f
+      iscommand: false
+      name: foo script
+      script: c6146778-5598-4168-8d06-896c3c945ad8
+      type: regular
+      version: -1
+    taskid: 2bcc63b5-88c2-4329-808c-a36968ca609f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 980,
+          "y": 350
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      arg1:
+        simple: "23324"
+      arg2:
+        simple: ere
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |
+        First create new instance of "HelloWorld Feed (Community Contribution)"
+      id: 8e40b225-0352-4554-84fa-26a8a1258290
+      iscommand: false
+      name: zan_script1
+      script: 40f52bf9-bc24-42fe-8ccf-914336cde3b9
+      type: regular
+      version: -1
+    taskid: 8e40b225-0352-4554-84fa-26a8a1258290
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 160,
+          "y": 330
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      "no":
+      - "1"
+      "yes":
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      left:
+        simple: "12"
+      right:
+        simple: "34"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Check whether the values provided in arguments are equal. If either
+        of the arguments are missing, no is returned.
+      id: 986f7f5e-5caf-4cc6-88aa-2e75bab05f8b
+      iscommand: false
+      name: arevalue
+      script: AreValuesEqual
+      type: condition
+      version: -1
+    taskid: 986f7f5e-5caf-4cc6-88aa-2e75bab05f8b
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 160
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6784381f-098b-4439-8525-8ee2628a925e
+      iscommand: false
+      name: Untitled Task
+      type: title
+      version: -1
+    taskid: 6784381f-098b-4439-8525-8ee2628a925e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 890
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 905,
+        "width": 1200,
+        "x": 160,
+        "y": 50
+      }
+    }
+  }
