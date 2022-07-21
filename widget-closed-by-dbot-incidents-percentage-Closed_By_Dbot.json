@@ -21,7 +21,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "closed-by-dbot-incidents-percentage",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Closed By Dbot",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
