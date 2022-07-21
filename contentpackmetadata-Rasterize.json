@@ -62,20 +62,20 @@
 		"xsiamreport": null
 	},
 	"created": "2020-06-30T20:27:10Z",
-	"currentVersion": "1.2.0",
+	"currentVersion": "1.2.1",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.6",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		}
 	},
 	"deprecated": false,
 	"description": "Converts URLs, PDF files, and emails to an image file or PDF file.",
-	"downloads": 17237,
+	"downloads": 18321,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -92,7 +92,7 @@
 			"name": "Rasterize"
 		}
 	],
-	"itemVersion": "1.2.0",
+	"itemVersion": "1.2.1",
 	"keywords": [],
 	"legacy": true,
 	"name": "Rasterize",
@@ -118,9 +118,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-07-05T10:57:16Z",
+	"updated": "2022-07-21T11:38:42Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3204921",
+	"versionInfo": "3305407",
 	"videos": []
 }
