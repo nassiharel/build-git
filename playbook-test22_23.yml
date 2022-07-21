@@ -9,7 +9,12 @@ contentitemexportablefields:
     - all
     toServerVersion: ""
 id: 81906b4b-bb11-4397-8a3a-268094e30b9b
-inputs: []
+inputs:
+- description: ""
+  key: sagi
+  playbookInputQuery: null
+  required: false
+  value: {}
 name: test22_23
 outputs: []
 starttaskid: "0"
