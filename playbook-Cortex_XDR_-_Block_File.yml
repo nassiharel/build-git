@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 4.8.1
+    itemVersion: 4.8.3
     packID: CortexXDR
     packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
@@ -77,7 +77,7 @@ tasks:
       id: 1aa731f4-ad09-4978-8271-2160c2ffde04
       iscommand: true
       name: Cortex XDR add a file SHA256 to block list
-      script: '|||xdr-blacklist-files'
+      script: '|||xdr-blocklist-files'
       type: regular
       version: -1
     taskid: 1aa731f4-ad09-4978-8271-2160c2ffde04
