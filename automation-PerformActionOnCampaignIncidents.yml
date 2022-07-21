@@ -19,7 +19,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 3.2.13
+    itemVersion: 3.2.14
     packID: Campaign
     packName: Phishing Campaign
     packPropagationLabels:
