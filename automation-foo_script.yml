@@ -1,0 +1,32 @@
+commonfields:
+  id: c6146778-5598-4168-8d06-896c3c945ad8
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.5.31928
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: foo_script
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: |+
+  incident = demisto.incident()
+  return_results(f"incident data: {incident}")
+
+  version = demisto.demistoVersion()
+  return_results(f"version: {version}")
+
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
