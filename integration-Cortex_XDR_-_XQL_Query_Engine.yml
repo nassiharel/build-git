@@ -32,7 +32,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 4.8.1
+    itemVersion: 4.8.3
     packID: CortexXDR
     packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
