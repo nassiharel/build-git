@@ -168,7 +168,7 @@ inputs:
   required: false
   value:
     simple: Inner file
-name: Phishing - Generic v3_copy_copy
+name: Phishing - Generic v3_Wissam
 outputs: []
 sourceplaybookid: Phishing - Generic v3
 starttaskid: "0"
