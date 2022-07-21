@@ -6,14 +6,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 3.2.13
+    itemVersion: 3.2.14
     packID: Campaign
     packName: Phishing Campaign
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/pandas:1.0.0.23402
+dockerimage: demisto/pandas:1.0.0.31117
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -115,7 +115,6 @@ script: |
           formated_results = format_results(indicators, incident_ids)
           execute_command('setIncident', {'campaignmutualindicators': formated_results})
       except Exception as ex:
-          demisto.error(traceback.format_exc())  # print the traceback
           return_error(f'Failed to execute BaseScript. Error: {str(ex)}')
 
 
