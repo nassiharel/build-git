@@ -22,14 +22,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 3.2.13
+    itemVersion: 3.2.14
     packID: Campaign
     packName: Phishing Campaign
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.9.8.24399
+dockerimage: demisto/python3:3.10.5.31928
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -39,8 +39,6 @@ runas: DBotRole
 runonce: false
 script: |
   register_module_line('SetPhishingCampaignDetails', 'start', __line__())
-  import traceback
-
 
 
   import dateparser
@@ -166,7 +164,6 @@ script: |
           CommandResults(readable_output='Added incident successfully to Campaign.')
 
       except Exception as e:
-          demisto.error(traceback.format_exc())  # print the traceback
           return_error(f'Failed to set campaign details.\nError:\n{str(e)}')
 
 
