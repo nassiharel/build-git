@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "open-tasks-per-user",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Open Tasks Per User",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
