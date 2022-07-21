@@ -11,7 +11,7 @@ contentitemexportablefields:
 id: 81906b4b-bb11-4397-8a3a-268094e30b9b
 inputs:
 - description: ""
-  key: sagi
+  key: ""
   playbookInputQuery: null
   required: false
   value: {}
