@@ -15,14 +15,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 3.2.13
+    itemVersion: 3.2.14
     packID: Campaign
     packName: Phishing Campaign
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.1.27636
+dockerimage: demisto/python3:3.10.5.31928
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -36,7 +36,6 @@ runas: DBotWeakRole
 runonce: false
 script: |
   register_module_line('IsIncidentPartOfCampaign', 'start', __line__())
-  import traceback
   from typing import Iterable, Set
 
 
@@ -121,7 +120,6 @@ script: |
                                 raw_response=readable)
 
       except Exception as ex:  # pylint: disable=broad-except  pragma: no cover
-          demisto.error(traceback.format_exc())  # print the traceback
           return_error(f'Failed to execute. Error: {str(ex)}', error=ex)
 
 
