@@ -6,14 +6,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.0.0
-    itemVersion: 4.8.1
+    itemVersion: 4.8.3
     packID: CortexXDR
     packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.9.7.24076
+dockerimage: demisto/python3:3.10.5.31928
 engineinfo: {}
 mainengineinfo: {}
 name: CortexXDRAdditionalAlertInformationWidget
@@ -23,8 +23,6 @@ runonce: false
 script: |
   register_module_line('CortexXDRAdditionalAlertInformationWidget', 'start', __line__())
 
-
-  import traceback
 
   ''' COMMAND FUNCTION '''
 
@@ -71,7 +69,6 @@ script: |
                                               headers=list(results[0].keys()) if results else None))
           return_results(command_results)
       except Exception as ex:
-          demisto.error(traceback.format_exc())  # print the traceback
           return_error(f'Failed to execute AdditionalAlertInformationWidget. Error: {str(ex)}')
 
 
