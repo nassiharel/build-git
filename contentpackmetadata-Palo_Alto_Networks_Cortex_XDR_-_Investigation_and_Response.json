@@ -920,7 +920,7 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-26T19:57:43Z",
-	"currentVersion": "4.8.1",
+	"currentVersion": "4.8.3",
 	"definitionId": "",
 	"dependencies": {
 		"AWS-IAM": {
@@ -1010,7 +1010,7 @@
 	},
 	"deprecated": false,
 	"description": "Automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.",
-	"downloads": 16234,
+	"downloads": 16452,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1099,7 +1099,7 @@
 			"name": "AWS - Identity and Access Management"
 		}
 	],
-	"itemVersion": "4.8.1",
+	"itemVersion": "4.8.3",
 	"keywords": [
 		"adaptive cyber protection",
 		"apt"
@@ -1127,17 +1127,17 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Use Case",
+		"TIM",
 		"Incident Mirroring",
-		"TIM"
+		"Use Case"
 	],
 	"toServerVersion": "",
-	"updated": "2022-07-18T23:06:19Z",
+	"updated": "2022-07-21T11:42:46Z",
 	"useCases": [
 		"Malware"
 	],
 	"version": -1,
-	"versionInfo": "3287093",
+	"versionInfo": "3305407",
 	"videos": [
 		"https://www.youtube.com/watch?v=ium2969zgn8"
 	]
