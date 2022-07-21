@@ -21,7 +21,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "page-break-widget",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Page Break Widget",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
