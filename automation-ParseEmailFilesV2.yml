@@ -47,14 +47,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.7.14
+    itemVersion: 1.7.15
     packID: CommonScripts
     packName: Common Scripts
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/parse-emails:1.0.0.30171
+dockerimage: demisto/parse-emails:1.0.0.32153
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
