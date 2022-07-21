@@ -23,6 +23,20 @@ configuration:
   - high
   required: false
   type: 15
+- additionalinfo: Reliability of the source providing the intelligence data.
+  defaultvalue: C - Fairly reliable
+  display: Source Reliability
+  name: integrationReliability
+  options:
+  - A+ - 3rd party enrichment
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
 - display: Use system proxy settings
   name: proxy
   required: false
@@ -35,7 +49,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.16
+    itemVersion: 2.0.18
     packID: CrowdStrikeIntel
     packName: CrowdStrike Falcon Intel
     packPropagationLabels:
@@ -849,7 +863,7 @@ script:
     - contextPath: FalconIntel.Report.Tags
       description: The report's tags. For example, intel_feed.
       type: String
-  dockerimage: demisto/python3:3.10.4.27798
+  dockerimage: demisto/python3:3.10.5.31928
   runonce: false
   script: |
     register_module_line('CrowdStrike Falcon Intel v2', 'start', __line__())
@@ -884,8 +898,9 @@ script:
         The integration's client
         """
 
-        def __init__(self, params: Dict[str, str]):
+        def __init__(self, params: Dict[str, str], reliability: Optional[DBotScoreReliability] = None):
             self.cs_client: CrowdStrikeClient = CrowdStrikeClient(params=params)
+            self.reliability = reliability
             self.query_params: Dict[str, str] = {'offset': 'offset', 'limit': 'limit', 'sort': 'sort', 'free_search': 'q'}
             self.date_params: Dict[str, Dict[str, str]] = {
                 'created_date': {'operator': '', 'api_key': 'created_date'},
@@ -935,7 +950,7 @@ script:
 
             return filter_query
 
-        def get_indicator(self, indicator_value: str, indicator_type: str) -> Dict[str, Any]:
+        def get_indicator(self, indicator_value: str) -> Dict[str, Any]:
             # crowdstrike do not allow passing single quotes - so we encode them
             # we are not encoding the entire indicator value, as the other reserved chars (such as + and &) are allowed
             indicator_value = indicator_value.replace("'", "%27")
@@ -943,13 +958,6 @@ script:
                 'indicator': indicator_value,
                 'limit': 1
             }
-            if indicator_type == 'hash':
-                args['type'] = get_indicator_hash_type(indicator_value)
-            elif indicator_type == 'ip':
-                args['type'] = 'ip_address'
-            else:
-                args['type'] = indicator_type
-
             params: Dict[str, Any] = self.build_request_params(args)
             return self.cs_client.http_request(method='GET', url_suffix='intel/combined/indicators/v1', params=params)
 
@@ -1066,6 +1074,25 @@ script:
             return None
 
 
+    def should_filter_resource_by_type(resource, indicator_type, indicator_value):
+        """
+        checks if a resource should be filtered by his type.
+        :param resource: The resource object
+        :param indicator_type: The indicator type
+        :param indicator_value: The indicator value
+        :return: True if the resource should be filtered (don't match the indicator type) or False otherwise.
+        """
+        # indicator type was not filtered using the query due to a bug in the CrowdStrike API.
+        if indicator_type == 'hash':
+            filter_type = get_indicator_hash_type(indicator_value)
+        elif indicator_type == 'ip':
+            filter_type = 'ip_address'
+        else:
+            filter_type = indicator_type
+
+        return resource.get('type') != filter_type
+
+
     def build_indicator(indicator_value: str, indicator_type: str, title: str, client: Client) -> List[CommandResults]:
         """
         Builds an indicator entry
@@ -1075,12 +1102,14 @@ script:
         :param client: The integration's client
         :return: The indicator entry
         """
-        res: Dict[str, Any] = client.get_indicator(indicator_value, indicator_type)
+        res: Dict[str, Any] = client.get_indicator(indicator_value)
         resources: List[Any] = res.get('resources', [])
         results: List[CommandResults] = []
 
         if resources:
             for r in resources:
+                if should_filter_resource_by_type(r, indicator_type, indicator_value):
+                    continue
                 output = get_indicator_outputs(r)
                 score = get_score_from_resource(r)
                 dbot_score = Common.DBotScore(
@@ -1088,7 +1117,8 @@ script:
                     indicator_type=get_dbot_score_type(indicator_type),
                     integration_name='CrowdStrike Falcon Intel v2',
                     malicious_description='High confidence',
-                    score=score
+                    score=score,
+                    reliability=client.reliability
                 )
                 indicator = get_indicator_object(indicator_value, indicator_type, dbot_score)
                 results.append(CommandResults(
@@ -1315,7 +1345,8 @@ script:
                         indicator_type=get_dbot_score_type(indicator_type),
                         integration_name='CrowdStrike Falcon Intel v2',
                         malicious_description='High confidence',
-                        score=score
+                        score=score,
+                        reliability=client.reliability
                     )
                     indicator = get_indicator_object(indicator_value, indicator_type, dbot_score)
                 results.append(CommandResults(
@@ -1402,12 +1433,17 @@ script:
 
     def main():
         params: Dict[str, str] = demisto.params()
+
+        reliability = params.get('integrationReliability', 'C - Fairly reliable')
+        reliability = DBotScoreReliability.get_dbot_score_reliability_from_str(reliability) if \
+            DBotScoreReliability.is_valid_type(reliability) else None
+
         args: Dict[str, str] = demisto.args()
         results: Union[CommandResults, List[CommandResults]]
         try:
             command: str = demisto.command()
             LOG(f'Command being called in CrowdStrike Falcon Intel v2 is: {command}')
-            client: Client = Client(params=params)
+            client: Client = Client(params=params, reliability=reliability)
             if command == 'test-module':
                 result: Union[str, Exception] = run_test_module(client)
                 return_results(result)
@@ -1444,6 +1480,10 @@ script:
     register_module_line('CrowdStrikeApiModule', 'start', __line__(), wrapper=-3)
 
 
+    from datetime import timedelta
+    import dateparser
+
+    TOKEN_LIFE_TIME = timedelta(minutes=28)
 
 
     class CrowdStrikeClient(BaseClient):
@@ -1460,7 +1500,7 @@ script:
             super().__init__(base_url=params.get('server_url', 'https://api.crowdstrike.com/'),
                              verify=not params.get('insecure', False), ok_codes=tuple(),
                              proxy=params.get('proxy', False))  # type: ignore[misc]
-            self._token = self._generate_token()
+            self._token = self._get_token()
             self._headers = {'Authorization': 'bearer ' + self._token}
 
         @staticmethod
@@ -1542,6 +1582,32 @@ script:
                                          json_data=json_data, params=params, data=data, files=files, timeout=timeout,
                                          ok_codes=ok_codes, return_empty_response=return_empty_response, auth=auth,
                                          error_handler=self._error_handler)
+
+        def _get_token(self, force_gen_new_token=False):
+            """
+                Retrieves the token from the server if it's expired and updates the global HEADERS to include it
+
+                :param force_gen_new_token: If set to True will generate a new token regardless of time passed
+
+                :rtype: ``str``
+                :return: Token
+            """
+            now = datetime.now()
+            ctx = get_integration_context()
+            if not ctx or force_gen_new_token:
+                # new token is needed
+                auth_token = self._generate_token()
+            else:
+                time_passed = now - dateparser.parse(ctx.get('generation_time'))
+                if time_passed < TOKEN_LIFE_TIME:
+                    # token hasn't expired
+                    return ctx.get('auth_token')
+                else:
+                    # token expired
+                    auth_token = self._generate_token()
+
+            set_integration_context({'auth_token': auth_token, 'generation_time': now.strftime("%Y-%m-%dT%H:%M:%S")})
+            return auth_token
 
         def _generate_token(self) -> str:
             """Generate an Access token using the user name and password
