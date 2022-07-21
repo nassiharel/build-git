@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "command-count-auto-vs-manual",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Command execution type",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
