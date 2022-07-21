@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "average-runtime-per-automation-top-5",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Average runtime per Automation (top 5)",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
