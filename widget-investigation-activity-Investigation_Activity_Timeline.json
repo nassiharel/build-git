@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "investigation-activity",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Investigation Activity Timeline",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
