@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "average-runtime-by-incident-type-per-playbook-top-5",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Average runtime by Incident Type per Playbook (top 5)",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
