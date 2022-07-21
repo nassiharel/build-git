@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "closed-incidents-by-role",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Closed Incidents by Role",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
