@@ -1,0 +1,33 @@
+commonfields:
+  id: c7cc4c49-0bed-410d-8eb7-e064d83ab14b
+  version: -1
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+dockerimage: demisto/python3:3.10.5.31928
+enabled: true
+engineinfo: {}
+mainengineinfo: {}
+name: zan_script_2
+outputs:
+- contextPath: zan_script_1
+  description: say hello
+  type: string
+- contextPath: zan_script_1.false
+  description: say bye
+  type: string
+pswd: ""
+runas: DBotWeakRole
+runonce: false
+script: return_results("I'm the result of script 2")
+scripttarget: 0
+subtype: python3
+tags: []
+type: python
