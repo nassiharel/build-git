@@ -20,7 +20,7 @@
 	"fromServerVersion": "5.0.0",
 	"id": "active-incidents-by-severity",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Active Incidents - Pie chart",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
