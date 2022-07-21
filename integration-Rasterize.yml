@@ -45,7 +45,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.0
+    itemVersion: 1.2.1
     packID: rasterize
     packName: Rasterize
     packPropagationLabels:
@@ -354,7 +354,7 @@ script:
     - contextPath: InfoFile.Type
       description: The type of the image/pdf file
       type: string
-  dockerimage: demisto/chromium:1.0.0.31156
+  dockerimage: demisto/chromium:1.0.0.32205
   runonce: false
   script: |
     register_module_line('Rasterize', 'start', __line__())
@@ -880,7 +880,7 @@ script:
         w, h = check_width_and_height(w, h)  # Check that the width and height meet the safeguard limit
 
         file_name = f'{file_name}.{"pdf" if r_type == RasterizeType.PDF else "jpeg"}'  # type: ignore
-        with open('htmlBody.html', 'w') as f:
+        with open('htmlBody.html', 'w', encoding='utf-8-sig') as f:
             f.write(f'<html style="background:white";>{html_body}</html>')
         path = f'file://{os.path.realpath(f.name)}'
 
