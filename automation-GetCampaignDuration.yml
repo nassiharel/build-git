@@ -7,14 +7,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 3.2.13
+    itemVersion: 3.2.14
     packID: Campaign
     packName: Phishing Campaign
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.10.1.26972
+dockerimage: demisto/python3:3.10.5.31928
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -77,7 +77,6 @@ script: |
       except FieldNotFound:
           return '<div style="text-align: center;">Duration is not available.</div>'
       except Exception as e:
-          demisto.error(traceback.format_exc())
           return_error(f"Error calculating duration\n{str(e)}")
 
 
