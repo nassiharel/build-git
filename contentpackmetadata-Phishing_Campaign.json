@@ -276,7 +276,7 @@
 		"xsiamreport": null
 	},
 	"created": "2021-03-04T22:49:56Z",
-	"currentVersion": "3.2.13",
+	"currentVersion": "3.2.14",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -290,14 +290,14 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.7.14",
+			"minVersion": "1.7.15",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.2.37",
+			"minVersion": "3.2.40",
 			"name": "Common Types"
 		},
 		"DemistoLocking": {
@@ -311,13 +311,13 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.2.8",
+			"minVersion": "3.2.9",
 			"name": "Phishing"
 		}
 	},
 	"deprecated": false,
 	"description": "This pack can help you find related phishing, spam or other types of email incidents and characterize campaigns.",
-	"downloads": 5377,
+	"downloads": 5401,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -334,7 +334,7 @@
 			"name": "Demisto Lock"
 		}
 	],
-	"itemVersion": "3.2.13",
+	"itemVersion": "3.2.14",
 	"keywords": [],
 	"legacy": true,
 	"name": "Phishing Campaign",
@@ -359,17 +359,17 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Use Case",
+		"Scam",
 		"Spam",
-		"Email",
-		"Scam"
+		"Use Case",
+		"Email"
 	],
 	"toServerVersion": "",
-	"updated": "2022-05-25T09:25:19Z",
+	"updated": "2022-07-21T12:10:23Z",
 	"useCases": [
 		"Phishing"
 	],
 	"version": -1,
-	"versionInfo": "3263593",
+	"versionInfo": "3305407",
 	"videos": []
 }
