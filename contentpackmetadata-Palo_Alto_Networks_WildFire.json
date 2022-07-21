@@ -111,7 +111,7 @@
 		"xsiamreport": null
 	},
 	"created": "2020-06-30T20:31:37Z",
-	"currentVersion": "2.1.5",
+	"currentVersion": "2.1.6",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -125,7 +125,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.2.9",
+			"minVersion": "2.2.10",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
@@ -138,7 +138,7 @@
 	},
 	"deprecated": false,
 	"description": "Perform malware dynamic analysis",
-	"downloads": 12316,
+	"downloads": 12417,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -159,7 +159,7 @@
 			"name": "Palo Alto Networks WildFire v2"
 		}
 	],
-	"itemVersion": "2.1.5",
+	"itemVersion": "2.1.6",
 	"keywords": [],
 	"legacy": true,
 	"name": "Palo Alto Networks WildFire",
@@ -185,9 +185,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-06-26T22:37:19Z",
+	"updated": "2022-07-21T11:47:03Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3263593",
+	"versionInfo": "3305407",
 	"videos": []
 }
