@@ -50,6 +50,9 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     separatecontext: false
@@ -78,6 +81,9 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    nexttasks:
+      '#none#':
+      - "4"
     note: false
     quietmode: 0
     scriptarguments:
@@ -124,20 +130,20 @@ tasks:
       left:
         simple: "12"
       right:
-        simple: "34"
+        simple: "12"
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
       description: Check whether the values provided in arguments are equal. If either
         of the arguments are missing, no is returned.
-      id: 986f7f5e-5caf-4cc6-88aa-2e75bab05f8b
+      id: 5486b27a-dc55-4b51-8be1-32616ba2bf5c
       iscommand: false
       name: arevalue
       script: AreValuesEqual
       type: condition
       version: -1
-    taskid: 986f7f5e-5caf-4cc6-88aa-2e75bab05f8b
+    taskid: 5486b27a-dc55-4b51-8be1-32616ba2bf5c
     timertriggers: []
     type: condition
     view: |-
