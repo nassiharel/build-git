@@ -1873,7 +1873,7 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-27T09:01:37Z",
-	"currentVersion": "1.7.14",
+	"currentVersion": "1.7.15",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -1915,7 +1915,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.2.10",
+			"minVersion": "1.2.11",
 			"name": "Gmail Single User"
 		},
 		"MailSenderNew": {
@@ -1970,7 +1970,7 @@
 	},
 	"deprecated": false,
 	"description": "Frequently used scripts pack.",
-	"downloads": 63942,
+	"downloads": 64758,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -2007,7 +2007,7 @@
 			"name": "SumoLogic"
 		}
 	],
-	"itemVersion": "1.7.14",
+	"itemVersion": "1.7.15",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Scripts",
@@ -2035,9 +2035,9 @@
 		"Filter"
 	],
 	"toServerVersion": "",
-	"updated": "2022-07-13T22:12:25Z",
+	"updated": "2022-07-21T12:06:14Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3263593",
+	"versionInfo": "3305407",
 	"videos": []
 }
