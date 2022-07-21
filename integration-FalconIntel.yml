@@ -41,7 +41,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.0.16
+    itemVersion: 2.0.18
     packID: CrowdStrikeIntel
     packName: CrowdStrike Falcon Intel
     packPropagationLabels:
