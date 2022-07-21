@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "number-of-failed-playbooks",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Failed Playbooks runs",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
