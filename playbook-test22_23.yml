@@ -17,6 +17,7 @@ inputs:
   value: {}
 name: test22_23
 outputs: []
+quiet: true
 starttaskid: "0"
 tasks:
   "0":
