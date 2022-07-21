@@ -55,7 +55,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.1.5
+    itemVersion: 2.1.6
     packID: Palo_Alto_Networks_WildFire
     packName: Palo Alto Networks WildFire
     packPropagationLabels:
@@ -1267,7 +1267,7 @@ script:
     - contextPath: InfoFile.Type
       description: The web artifacts file type.
       type: string
-  dockerimage: demisto/python3:3.10.4.30607
+  dockerimage: demisto/python3:3.10.5.31928
   runonce: false
   script: |
     register_module_line('WildFire-v2', 'start', __line__())
