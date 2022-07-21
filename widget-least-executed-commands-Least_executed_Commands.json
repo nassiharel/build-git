@@ -21,7 +21,7 @@
 	"fromServerVersion": "6.2.0",
 	"id": "least-executed-commands",
 	"isPredefined": true,
-	"itemVersion": "1.2.7",
+	"itemVersion": "1.2.8",
 	"name": "Least executed Commands",
 	"packID": "CommonWidgets",
 	"packName": "Common Widgets",
