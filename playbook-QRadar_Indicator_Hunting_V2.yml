@@ -1,0 +1,3053 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 5.0.0
+    itemVersion: 2.2.4
+    packID: QRadar
+    packName: IBM QRadar
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: 'The Playbook queries QRadar SIEM for indicators such as file hashes,
+  IP addresses, domains, or urls. '
+id: QRadar Indicator Hunting V2
+inputs:
+- description: MD5 hash file or an array of hashes to search.
+  key: MD5
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: MD5 field to search in QRadar. If none are specified, the search will
+    use a payload contains filter.
+  key: QradarMD5Field
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: SHA1 hash file or an array of hashes to search.
+  key: SHA1
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: SHA1 field to search in QRadar. If none are specified, the search will
+    use a payload contains filter.
+  key: QradarSHA1Field
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: SHA256 hash file or an array of hashes to search.
+  key: SHA256
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: SHA256 field to search in QRadar. If none are specified, the search
+    will use a payload contains filter.
+  key: QradarSHA256Field
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |
+    Source or destination IP to search. Can be a single address or an array of addresses.
+  key: IPAddress
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: IP field to search in QRadar. If none are specified, the search will
+    use sourceip or destinationip (combined).
+  key: QradarIPfield
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: sourceip,destinationip
+- description: |
+    Domain or Url can be single or an array of domain/urls to search. By default the LIKE clause is used.
+  key: URLDomain
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: 'URL/Domain field to search in QRadar. If none are specified, the search
+    will use a payload contains filter. '
+  key: QradarURLDomainField
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: |-
+    Time frame as used in AQL
+    Examples can be
+    LAST 7 DAYS
+    START '2019-09-25 15:51' STOP '2019-09-25 17:51'
+    For more examples review IBM's AQL documentation.
+  key: TimeFrame
+  playbookInputQuery: null
+  required: false
+  value:
+    simple: LAST 7 DAYS
+- description: 'A list of internal IP ranges to check IP addresses against. The list
+    should be provided in CIDR notation, separated by commas. An example of a list
+    of ranges would be: "172.16.0.0/12,10.0.0.0/8,192.168.0.0/16" (without quotes).
+    If a list is not provided, will use default list provided in the IsIPInRanges
+    script (the known IPv4 private address ranges).'
+  key: InternalRange
+  playbookInputQuery: null
+  required: false
+  value: {}
+- description: The values of these QRadar fields will be used for the playbook IP
+    addresses outputs.
+  key: InvestigationIPFields
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: sourceip,destinationip
+- description: The values of these QRadar fields will be used for the playbook user
+    name outputs.
+  key: InvestigationUserFields
+  playbookInputQuery: null
+  required: true
+  value:
+    simple: username
+name: QRadar Indicator Hunting V2
+outputs:
+- contextPath: QRadar.DetectedUsers
+  description: Users detected based on the username field in your search.
+  type: string
+- contextPath: QRadar.DetectedInternalIPs
+  description: Internal IP addresses detected based on fields and inputs in your search.
+  type: string
+- contextPath: QRadar.DetectedExternalIPs
+  description: External IP addresses detected based on fields and inputs in your search.
+  type: string
+- contextPath: QRadar.DetectedInternalHosts
+  description: Internal host names detected based on hosts in your assets table. Note
+    that the data accuracy depends on how the Asset mapping is configured in QRadar.
+  type: string
+- contextPath: QRadar.DetectedExternalHosts
+  description: External host names detected based on hosts in your assets table. Note
+    that the data accuracy depends on how the Asset mapping is configured in QRadar.
+  type: string
+starttaskid: "0"
+system: true
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "55"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 60742575-4d10-4e7f-8982-ebcb9c1a8019
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 60742575-4d10-4e7f-8982-ebcb9c1a8019
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 600,
+          "y": -260
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "8"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: cb0b8450-ba2e-46e2-866a-670628878b67
+      iscommand: false
+      name: Hash Search
+      type: title
+      version: -1
+    taskid: cb0b8450-ba2e-46e2-866a-670628878b67
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -200,
+          "y": 200
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 867e36f8-0818-4234-8bad-14a20fa15d52
+      iscommand: false
+      name: IP Search
+      type: title
+      version: -1
+    taskid: 867e36f8-0818-4234-8bad-14a20fa15d52
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1430,
+          "y": 200
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "9"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: de0159f1-152a-41de-8dca-632861723ce6
+      iscommand: false
+      name: Domain/Url Search
+      type: title
+      version: -1
+    taskid: de0159f1-152a-41de-8dca-632861723ce6
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 3040,
+          "y": 200
+        }
+      }
+  "7":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.IPAddress
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "164"
+      "yes":
+      - "50"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there an IP on which to search?
+      id: 8d9639c2-b27a-4112-8e06-e80b762d9fc9
+      iscommand: false
+      name: Is there an IP to search?
+      type: condition
+      version: -1
+    taskid: 8d9639c2-b27a-4112-8e06-e80b762d9fc9
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1430,
+          "y": 320
+        }
+      }
+  "8":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.MD5
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: inputs.SHA1
+          operator: isNotEmpty
+        - left:
+            iscontext: true
+            value:
+              simple: inputs.SHA256
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "8"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "164"
+      "yes":
+      - "26"
+      - "27"
+      - "38"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there a hash on which to search?
+      id: 8336ee87-f03e-48cb-8bdf-82264304bd4d
+      iscommand: false
+      name: Is there a hash to search?
+      type: condition
+      version: -1
+    taskid: 8336ee87-f03e-48cb-8bdf-82264304bd4d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -200,
+          "y": 340
+        }
+      }
+  "9":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.URLDomain
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "9"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "164"
+      "yes":
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there a domain or URL on which to search?
+      id: 429ecc02-63f6-47c7-89bc-9b058a1ce00e
+      iscommand: false
+      name: Is there a domain or url to search?
+      type: condition
+      version: -1
+    taskid: 429ecc02-63f6-47c7-89bc-9b058a1ce00e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 3040,
+          "y": 340
+        }
+      }
+  "11":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.QradarURLDomainField
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "56"
+      "yes":
+      - "57"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there a custom domain or url field?
+      id: e6dbdea3-3ba4-44a1-88fe-3eb27736c1b1
+      iscommand: false
+      name: Is there a custom domain or url field?
+      type: condition
+      version: -1
+    taskid: e6dbdea3-3ba4-44a1-88fe-3eb27736c1b1
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 3040,
+          "y": 910
+        }
+      }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          root: DomainURL
+          transformers:
+          - args:
+              regex:
+                value:
+                  simple: (.*)
+              replaceWith:
+                value:
+                  simple: UTF8(payload) ILIKE  '%$1%'
+            operator: replaceMatch
+          - args:
+              separator:
+                value:
+                  simple: ' OR '
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'DATEFORMAT(devicetime,''dd-MM-yyyy hh:mm''),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid) '
+              suffix:
+                value:
+                  simple: ' '
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 18c3a3b4-bcbd-485b-8073-6fc06cc46d7c
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: 18c3a3b4-bcbd-485b-8073-6fc06cc46d7c
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 3340,
+          "y": 1440
+        }
+      }
+  "21":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.QradarMD5Field
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "21"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "64"
+      "yes":
+      - "65"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there a custom MD5 field?
+      id: e7203955-98bc-4bf7-8bfa-cf02c075fece
+      iscommand: false
+      name: Is there a custom MD5 field?
+      type: condition
+      version: -1
+    taskid: e7203955-98bc-4bf7-8bfa-cf02c075fece
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -2810,
+          "y": 1140
+        }
+      }
+  "22":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.MD5
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "22"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "164"
+      "yes":
+      - "21"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there an MD5 on which to search?
+      id: fd20ee90-ef39-408d-845e-dc23b2d6ef24
+      iscommand: false
+      name: Is there an MD5 to search?
+      type: condition
+      version: -1
+    taskid: fd20ee90-ef39-408d-845e-dc23b2d6ef24
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -1930,
+          "y": 775
+        }
+      }
+  "26":
+    continueonerrortype: ""
+    id: "26"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "22"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c6c5cf92-dc5e-4add-8490-2cbd7219a737
+      iscommand: false
+      name: MD5 Search
+      type: title
+      version: -1
+    taskid: c6c5cf92-dc5e-4add-8490-2cbd7219a737
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1930,
+          "y": 640
+        }
+      }
+  "27":
+    continueonerrortype: ""
+    id: "27"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "29"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3823b5d8-b662-4f7c-8cd4-fed7b5acd865
+      iscommand: false
+      name: SHA1 Search
+      type: title
+      version: -1
+    taskid: 3823b5d8-b662-4f7c-8cd4-fed7b5acd865
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1520,
+          "y": 640
+        }
+      }
+  "29":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.SHA1
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "29"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "164"
+      "yes":
+      - "31"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there a SHA1 hash on which to search?
+      id: 56605f5c-b46b-4cfb-8895-f2c74721a9df
+      iscommand: false
+      name: Is there a SHA1 to search?
+      type: condition
+      version: -1
+    taskid: 56605f5c-b46b-4cfb-8895-f2c74721a9df
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -1520,
+          "y": 775
+        }
+      }
+  "31":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.QradarSHA1Field
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "31"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "62"
+      "yes":
+      - "63"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Was there a custom SHA1 field?
+      id: 6a6569df-3313-46e9-8139-46bcfa9ad7ed
+      iscommand: false
+      name: Was there a custom SHA1 field?
+      type: condition
+      version: -1
+    taskid: 6a6569df-3313-46e9-8139-46bcfa9ad7ed
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -1170,
+          "y": 1120
+        }
+      }
+  "38":
+    continueonerrortype: ""
+    id: "38"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "39"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6e572c51-d37d-4a93-83ee-49e4c6ff46e4
+      iscommand: false
+      name: SHA256 Search
+      type: title
+      version: -1
+    taskid: 6e572c51-d37d-4a93-83ee-49e4c6ff46e4
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -200,
+          "y": 680
+        }
+      }
+  "39":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: inputs.SHA256
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "39"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "164"
+      "yes":
+      - "41"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there a SHA256 hash on which to search?
+      id: b427aa24-1ee8-426e-80ee-e4c24f606db7
+      iscommand: false
+      name: Is there a SHA256 to search?
+      type: condition
+      version: -1
+    taskid: b427aa24-1ee8-426e-80ee-e4c24f606db7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -200,
+          "y": 800
+        }
+      }
+  "41":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.QradarSHA256Field
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "41"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "60"
+      "yes":
+      - "61"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there a custom SHA256 field?
+      id: 95f09fa7-eb99-4528-88a2-2962a71712f0
+      iscommand: false
+      name: Is there a custom SHA256 field?
+      type: condition
+      version: -1
+    taskid: 95f09fa7-eb99-4528-88a2-2962a71712f0
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": -250,
+          "y": 1120
+        }
+      }
+  "50":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                root: inputs.QradarIPfield
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "50"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "59"
+      "yes":
+      - "58"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is there a custom IP field?
+      id: d50bcaac-7d64-403c-81c9-aa87fa709b78
+      iscommand: false
+      name: Is there a custom IP field?
+      type: condition
+      version: -1
+    taskid: d50bcaac-7d64-403c-81c9-aa87fa709b78
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 1430,
+          "y": 910
+        }
+      }
+  "55":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.brand
+                    operator: inList
+                    right:
+                      value:
+                        simple: QRadar,QRadar_v2,QRadar v3
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: modules.state
+                    operator: isEqualString
+                    right:
+                      value:
+                        simple: active
+                root: modules
+          operator: isExists
+      label: "yes"
+    continueonerrortype: ""
+    id: "55"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "164"
+      "yes":
+      - "2"
+      - "5"
+      - "6"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is Qradar enabled?
+      id: 194afa46-a209-42dd-830c-d4952a4327c5
+      iscommand: false
+      name: Is Qradar enabled?
+      type: condition
+      version: -1
+    taskid: 194afa46-a209-42dd-830c-d4952a4327c5
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 600,
+          "y": -90
+        }
+      }
+  "56":
+    continueonerrortype: ""
+    id: "56"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "102"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 629d610b-f061-45c2-8071-747b25d3e86e
+      iscommand: false
+      name: QRadar query without custom fields
+      type: title
+      version: -1
+    taskid: 629d610b-f061-45c2-8071-747b25d3e86e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 3340,
+          "y": 1200
+        }
+      }
+  "57":
+    continueonerrortype: ""
+    id: "57"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "97"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6de28afc-b548-4b96-85cc-44451fd8501f
+      iscommand: false
+      name: QRadar query with custom fields
+      type: title
+      version: -1
+    taskid: 6de28afc-b548-4b96-85cc-44451fd8501f
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 2770,
+          "y": 1200
+        }
+      }
+  "58":
+    continueonerrortype: ""
+    id: "58"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "96"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: ae6e33ca-0ad7-4298-8e1e-e5cac7cfe384
+      iscommand: false
+      name: QRadar query with custom fields
+      type: title
+      version: -1
+    taskid: ae6e33ca-0ad7-4298-8e1e-e5cac7cfe384
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1650,
+          "y": 1200
+        }
+      }
+  "59":
+    continueonerrortype: ""
+    id: "59"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "101"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a5ff9983-ca56-4293-8282-2db0c5b7134c
+      iscommand: false
+      name: QRadar query without custom fields
+      type: title
+      version: -1
+    taskid: a5ff9983-ca56-4293-8282-2db0c5b7134c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 1120,
+          "y": 1200
+        }
+      }
+  "60":
+    continueonerrortype: ""
+    id: "60"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "100"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 335001ea-040d-4c14-8daa-041e247022bf
+      iscommand: false
+      name: QRadar query without custom fields
+      type: title
+      version: -1
+    taskid: 335001ea-040d-4c14-8daa-041e247022bf
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -440,
+          "y": 1320
+        }
+      }
+  "61":
+    continueonerrortype: ""
+    id: "61"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "149"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 38a85764-e47d-47e7-87ff-08ed0e2c9775
+      iscommand: false
+      name: QRadar query with custom fields
+      type: title
+      version: -1
+    taskid: 38a85764-e47d-47e7-87ff-08ed0e2c9775
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -30,
+          "y": 1320
+        }
+      }
+  "62":
+    continueonerrortype: ""
+    id: "62"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "99"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e5c58b9b-a541-4523-86f3-61a2cfbd8258
+      iscommand: false
+      name: QRadar query without custom fields
+      type: title
+      version: -1
+    taskid: e5c58b9b-a541-4523-86f3-61a2cfbd8258
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -1290,
+          "y": 1320
+        }
+      }
+  "63":
+    continueonerrortype: ""
+    id: "63"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "152"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 24a13454-29bf-41d7-8c3c-dcfb68d3404a
+      iscommand: false
+      name: QRadar query with custom fields
+      type: title
+      version: -1
+    taskid: 24a13454-29bf-41d7-8c3c-dcfb68d3404a
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -890,
+          "y": 1320
+        }
+      }
+  "64":
+    continueonerrortype: ""
+    id: "64"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "98"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 73dffeae-64dc-4425-8839-bdd4b261323d
+      iscommand: false
+      name: QRadar query without custom fields
+      type: title
+      version: -1
+    taskid: 73dffeae-64dc-4425-8839-bdd4b261323d
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -3170,
+          "y": 1335
+        }
+      }
+  "65":
+    continueonerrortype: ""
+    id: "65"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "156"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d5b51512-af37-4ca6-85e0-3f43eb609168
+      iscommand: false
+      name: QRadar query with custom fields
+      type: title
+      version: -1
+    taskid: d5b51512-af37-4ca6-85e0-3f43eb609168
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": -2590,
+          "y": 1335
+        }
+      }
+  "96":
+    continueonerrortype: ""
+    id: "96"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          root: inputs.QradarIPfield
+          transformers:
+          - args:
+              join:
+                value:
+                  simple: =
+              list2:
+                iscontext: true
+                value:
+                  simple: inputs.IPAddress
+            operator: ProductJoin
+          - args:
+              separator:
+                value:
+                  simple: ''' OR "'
+            operator: join
+          - args:
+              regex:
+                value:
+                  simple: =
+              replaceWith:
+                value:
+                  simple: '" = '''
+            operator: replaceMatch
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where "'
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'DATEFORMAT(devicetime,''dd-MM-yyyy hh:mm''),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid) '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ''' '
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c1461fb2-0801-41c3-8749-356ecfaa9d52
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: c1461fb2-0801-41c3-8749-356ecfaa9d52
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1650,
+          "y": 1440
+        }
+      }
+  "97":
+    continueonerrortype: ""
+    id: "97"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          root: inputs.QradarURLDomainField
+          transformers:
+          - args:
+              join:
+                value:
+                  simple: ILIKE
+              list2:
+                iscontext: true
+                value:
+                  simple: inputs.URLDomain
+            operator: ProductJoin
+          - args:
+              separator:
+                value:
+                  simple: '%'' OR "'
+            operator: join
+          - args:
+              regex:
+                value:
+                  simple: ILIKE
+              replaceWith:
+                value:
+                  simple: '" ILIKE ''%'
+            operator: replaceMatch
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where "'
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'DATEFORMAT(devicetime,''dd-MM-yyyy hh:mm''),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid) '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: '%'' '
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0684ed2d-08b5-465f-8431-f0546be68f8a
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: 0684ed2d-08b5-465f-8431-f0546be68f8a
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 2770,
+          "y": 1440
+        }
+      }
+  "98":
+    continueonerrortype: ""
+    id: "98"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "159"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: File.MD5
+      value:
+        complex:
+          root: inputs.MD5
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value into the context with the given context key
+      id: 489f7cfa-e9a4-42a4-8bca-968ea32b12be
+      iscommand: false
+      name: Set MD5 to array
+      script: Set
+      type: regular
+      version: -1
+    taskid: 489f7cfa-e9a4-42a4-8bca-968ea32b12be
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -3170,
+          "y": 1470
+        }
+      }
+  "99":
+    continueonerrortype: ""
+    id: "99"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "158"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: File.SHA1
+      value:
+        complex:
+          root: inputs.SHA1
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value into the context with the given context key
+      id: b7319018-fd2c-4bcb-8816-a6ed8a55c51e
+      iscommand: false
+      name: Set SHA1 to array
+      script: Set
+      type: regular
+      version: -1
+    taskid: b7319018-fd2c-4bcb-8816-a6ed8a55c51e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -1290,
+          "y": 1490
+        }
+      }
+  "100":
+    continueonerrortype: ""
+    id: "100"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "151"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: File.SHA256
+      value:
+        complex:
+          root: inputs.SHA256
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value into the context with the given context key
+      id: f86deb33-6fff-4b29-8a0c-ab2c3300a105
+      iscommand: false
+      name: Set SHA256 to array
+      script: Set
+      type: regular
+      version: -1
+    taskid: f86deb33-6fff-4b29-8a0c-ab2c3300a105
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -440,
+          "y": 1490
+        }
+      }
+  "101":
+    continueonerrortype: ""
+    id: "101"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "157"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: IP
+      value:
+        complex:
+          root: inputs.IPAddress
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value into the context with the given context key
+      id: 0bf852b5-219c-4b68-8bda-7d122d465999
+      iscommand: false
+      name: Set IP to array
+      script: Set
+      type: regular
+      version: -1
+    taskid: 0bf852b5-219c-4b68-8bda-7d122d465999
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1120,
+          "y": 1305
+        }
+      }
+  "102":
+    continueonerrortype: ""
+    id: "102"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: DomainURL
+      value:
+        complex:
+          root: inputs.URLDomain
+          transformers:
+          - args:
+              delimiter:
+                value:
+                  simple: ','
+            operator: split
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value into the context with the given context key
+      id: 427ffefe-84c3-4402-82b9-2cb7e1deb802
+      iscommand: false
+      name: Set domain or url to array
+      script: Set
+      type: regular
+      version: -1
+    taskid: 427ffefe-84c3-4402-82b9-2cb7e1deb802
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 3340,
+          "y": 1305
+        }
+      }
+  "120":
+    continueonerrortype: ""
+    id: "120"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "124"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c9dc2f71-ce91-4420-8a59-0fe74f3a9790
+      iscommand: false
+      name: Sort internal and external IP addresses
+      type: title
+      version: -1
+    taskid: c9dc2f71-ce91-4420-8a59-0fe74f3a9790
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 790,
+          "y": 3100
+        }
+      }
+  "123":
+    continueonerrortype: ""
+    id: "123"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "165"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedExternalIPs
+      value:
+        complex:
+          accessor: Address
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: IP.InRange
+              operator: isEqualString
+              right:
+                value:
+                  simple: "no"
+          root: IP
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the specified value exists in context. If the value exists,
+        it will be set in context, otherwise no value will be set it context.
+      id: b8f2ec71-559f-46ca-8a13-9eff306b9c52
+      iscommand: false
+      name: Set detected IP addresses as external
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: b8f2ec71-559f-46ca-8a13-9eff306b9c52
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1000,
+          "y": 3780
+        }
+      }
+  "124":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: QRadar.DetectedIPs
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "124"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "165"
+      "yes":
+      - "142"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 00e1d579-b406-4db4-8af2-27369eee70f3
+      iscommand: false
+      name: Are there detected IP addresses?
+      type: condition
+      version: -1
+    taskid: 00e1d579-b406-4db4-8af2-27369eee70f3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 790,
+          "y": 3230
+        }
+      }
+  "142":
+    continueonerrortype: ""
+    id: "142"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "143"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        simple: ${QRadar.DetectedIPs}
+      ipRanges:
+        simple: ${inputs.InternalRange}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns yes if the IP is in one of the ranges provided, returns
+        no otherwise.
+      id: c11c8eda-919b-409e-805d-bac3d7625b98
+      iscommand: false
+      name: Determine whether the IP address is internal or external
+      script: IsIPInRanges
+      type: regular
+      version: -1
+    taskid: c11c8eda-919b-409e-805d-bac3d7625b98
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1000,
+          "y": 3480
+        }
+      }
+  "143":
+    continueonerrortype: ""
+    id: "143"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "123"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedInternalIPs
+      value:
+        complex:
+          accessor: Address
+          filters:
+          - - left:
+                iscontext: true
+                value:
+                  simple: IP.InRange
+              operator: isEqualString
+              right:
+                value:
+                  simple: "yes"
+          root: IP
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks if the specified value exists in context. If the value exists,
+        it will be set in context, otherwise no value will be set it context.
+      id: c6f7a18d-5499-46a0-8060-acb9a13d9e23
+      iscommand: false
+      name: Set detected IP addresses as internal
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: c6f7a18d-5499-46a0-8060-acb9a13d9e23
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 1000,
+          "y": 3630
+        }
+      }
+  "149":
+    continueonerrortype: ""
+    id: "149"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          root: inputs.QradarSHA256Field
+          transformers:
+          - args:
+              join:
+                value:
+                  simple: =
+              list2:
+                iscontext: true
+                value:
+                  simple: inputs.SHA256
+            operator: ProductJoin
+          - args:
+              separator:
+                value:
+                  simple: ''' OR "'
+            operator: join
+          - args:
+              regex:
+                value:
+                  simple: =
+              replaceWith:
+                value:
+                  simple: '" = '''
+            operator: replaceMatch
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where "'
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'DATEFORMAT(devicetime,''dd-MM-yyyy hh:mm''),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid) '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ''' '
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: bd196beb-4161-4e07-83fa-76ef26cac916
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: bd196beb-4161-4e07-83fa-76ef26cac916
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -30,
+          "y": 1650
+        }
+      }
+  "151":
+    continueonerrortype: ""
+    id: "151"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          accessor: SHA256
+          root: File
+          transformers:
+          - args:
+              regex:
+                value:
+                  simple: (.*)
+              replaceWith:
+                value:
+                  simple: UTF8(payload) ILIKE  '%$1%'
+            operator: replaceMatch
+          - args:
+              separator:
+                value:
+                  simple: ' OR '
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: DATEFORMAT(devicetime,'dd-MM-yyyy hh:mm'),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid),
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' '
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: d2db9183-bbb1-4911-870f-0db9cdd672d8
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: d2db9183-bbb1-4911-870f-0db9cdd672d8
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -440,
+          "y": 1650
+        }
+      }
+  "152":
+    continueonerrortype: ""
+    id: "152"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          root: inputs.QradarSHA1Field
+          transformers:
+          - args:
+              join:
+                value:
+                  simple: =
+              list2:
+                iscontext: true
+                value:
+                  simple: inputs.SHA1
+            operator: ProductJoin
+          - args:
+              separator:
+                value:
+                  simple: ''' OR "'
+            operator: join
+          - args:
+              regex:
+                value:
+                  simple: =
+              replaceWith:
+                value:
+                  simple: '" = '''
+            operator: replaceMatch
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where "'
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'DATEFORMAT(devicetime,''dd-MM-yyyy hh:mm''),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid) '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ''' '
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3fc13679-3e1a-400e-841b-7b32a8ece629
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: 3fc13679-3e1a-400e-841b-7b32a8ece629
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -890,
+          "y": 1650
+        }
+      }
+  "156":
+    continueonerrortype: ""
+    id: "156"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          root: inputs.QradarMD5Field
+          transformers:
+          - args:
+              join:
+                value:
+                  simple: =
+              list2:
+                iscontext: true
+                value:
+                  simple: inputs.MD5
+            operator: ProductJoin
+          - args:
+              separator:
+                value:
+                  simple: ''' OR "'
+            operator: join
+          - args:
+              regex:
+                value:
+                  simple: =
+              replaceWith:
+                value:
+                  simple: '" = '''
+            operator: replaceMatch
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where "'
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'DATEFORMAT(devicetime,''dd-MM-yyyy hh:mm''),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid) '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ''' '
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4242307b-70a2-4c69-8aee-1e63f06b4195
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: 4242307b-70a2-4c69-8aee-1e63f06b4195
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -2590,
+          "y": 1650
+        }
+      }
+  "157":
+    continueonerrortype: ""
+    id: "157"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          root: IP
+          transformers:
+          - args:
+              regex:
+                value:
+                  simple: (.*)
+              replaceWith:
+                value:
+                  simple: UTF8(payload) ILIKE  '%$1%'
+            operator: replaceMatch
+          - args:
+              separator:
+                value:
+                  simple: ' OR '
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: DATEFORMAT(devicetime,'dd-MM-yyyy hh:mm'),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid),
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' '
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 795ff301-9c85-4ea5-8a51-07dc451f8d35
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: 795ff301-9c85-4ea5-8a51-07dc451f8d35
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 1120,
+          "y": 1440
+        }
+      }
+  "158":
+    continueonerrortype: ""
+    id: "158"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          accessor: SHA1
+          root: File
+          transformers:
+          - args:
+              regex:
+                value:
+                  simple: (.*)
+              replaceWith:
+                value:
+                  simple: UTF8(payload) ILIKE  '%$1%'
+            operator: replaceMatch
+          - args:
+              separator:
+                value:
+                  simple: ' OR '
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: DATEFORMAT(devicetime,'dd-MM-yyyy hh:mm'),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid),
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' '
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4c9de8df-a0fe-46a1-870c-b039bbd32526
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: 4c9de8df-a0fe-46a1-870c-b039bbd32526
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -1290,
+          "y": 1650
+        }
+      }
+  "159":
+    continueonerrortype: ""
+    id: "159"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 0
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "164"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      interval:
+        simple: "1"
+      query_expression:
+        complex:
+          accessor: MD5
+          root: File
+          transformers:
+          - args:
+              regex:
+                value:
+                  simple: (.*)
+              replaceWith:
+                value:
+                  simple: UTF8(payload) ILIKE  '%$1%'
+            operator: replaceMatch
+          - args:
+              separator:
+                value:
+                  simple: ' OR '
+            operator: join
+          - args:
+              prefix:
+                value:
+                  simple: ' from events where '
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: ','
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+              suffix: {}
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: DATEFORMAT(devicetime,'dd-MM-yyyy hh:mm'),LOGSOURCENAME(logsourceid),CATEGORYNAME(category),QIDNAME(qid),
+              suffix: {}
+            operator: concat
+          - args:
+              prefix: {}
+              suffix:
+                value:
+                  simple: ' '
+            operator: concat
+          - args:
+              prefix:
+                value:
+                  simple: 'select '
+              suffix:
+                iscontext: true
+                value:
+                  simple: inputs.TimeFrame
+            operator: concat
+      timeout:
+        simple: "600"
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 43bc08f7-955a-45d6-879b-af62e9061114
+      iscommand: false
+      name: QRadarFullSearch
+      playbookId: QRadarFullSearch
+      type: playbook
+      version: -1
+    taskid: 43bc08f7-955a-45d6-879b-af62e9061114
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": -3170,
+          "y": 1650
+        }
+      }
+  "160":
+    continueonerrortype: ""
+    id: "160"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "161"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedIPs
+      value:
+        complex:
+          accessor: =[]}
+          root: ${
+          transformers:
+          - args:
+              key:
+                iscontext: true
+                value:
+                  simple: QRadar.Search.Result.events
+              list:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationIPFields
+            operator: GetValuesOfMultipleFields
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value into the context with the given context key
+      id: b5c837ba-5e3d-4bfe-859a-a65e8999377d
+      iscommand: false
+      name: Set detected source and destination IP addresses
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: b5c837ba-5e3d-4bfe-859a-a65e8999377d
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 790,
+          "y": 2280
+        }
+      }
+  "161":
+    continueonerrortype: ""
+    id: "161"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "162"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedUsers
+      value:
+        complex:
+          accessor: =[]}
+          root: ${
+          transformers:
+          - args:
+              key:
+                iscontext: true
+                value:
+                  simple: QRadar.Search.Result.events
+              list:
+                iscontext: true
+                value:
+                  simple: inputs.InvestigationUserFields
+            operator: GetValuesOfMultipleFields
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value into the context with the given context key
+      id: 952ba242-20e8-4f24-8f95-35b33d35c0e6
+      iscommand: false
+      name: Set detected usernames
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 952ba242-20e8-4f24-8f95-35b33d35c0e6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 790,
+          "y": 2450
+        }
+      }
+  "162":
+    continueonerror: true
+    continueonerrortype: ""
+    id: "162"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "163"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      filter:
+        complex:
+          accessor: DetectedIPs}
+          root: ${QRadar
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: interfaces contains ip_addresses contains value= "
+              suffix:
+                value:
+                  simple: '"'
+            operator: concat
+          - args:
+              separator:
+                value:
+                  simple: ' OR '
+            operator: join
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: List all assets found in the model
+      id: be5ae3b8-84fa-4733-895d-d8f8fb424d39
+      iscommand: true
+      name: Get hostnames from assets
+      script: '|||qradar-get-assets'
+      type: regular
+      version: -1
+    taskid: be5ae3b8-84fa-4733-895d-d8f8fb424d39
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 790,
+          "y": 2650
+        }
+      }
+  "163":
+    continueonerrortype: ""
+    id: "163"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "120"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "true"
+      key:
+        simple: QRadar.DetectedInternalHosts
+      value:
+        complex:
+          accessor: Asset.Name.Value}
+          root: ${QRadar
+          transformers:
+          - operator: uniq
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Sets a value into the context with the given context key
+      id: 1453c864-a986-4422-8f04-4678b69fa4b5
+      iscommand: false
+      name: Set detected hostnames from assets
+      script: SetAndHandleEmpty
+      type: regular
+      version: -1
+    taskid: 1453c864-a986-4422-8f04-4678b69fa4b5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 790,
+          "y": 2860
+        }
+      }
+  "164":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              simple: QRadar.Search.Result
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "164"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "165"
+      "yes":
+      - "166"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Is domain or url detected by QRadar?
+      id: 62f9be0a-4de9-4ead-89b7-4455030ea30d
+      iscommand: false
+      name: Have results been detected?
+      type: condition
+      version: -1
+    taskid: 62f9be0a-4de9-4ead-89b7-4455030ea30d
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 600,
+          "y": 1960
+        }
+      }
+  "165":
+    continueonerrortype: ""
+    id: "165"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 299c8685-8d43-4ef6-8a1c-0cfb2c00e518
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 299c8685-8d43-4ef6-8a1c-0cfb2c00e518
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 470,
+          "y": 4000
+        }
+      }
+  "166":
+    continueonerrortype: ""
+    id: "166"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "160"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: c53ecc0c-38d3-4c8b-8103-ca8dd816672c
+      iscommand: false
+      name: Set detecetd Values
+      type: title
+      version: -1
+    taskid: c53ecc0c-38d3-4c8b-8103-ca8dd816672c
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 790,
+          "y": 2150
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 4325,
+        "width": 6890,
+        "x": -3170,
+        "y": -260
+      }
+    }
+  }
