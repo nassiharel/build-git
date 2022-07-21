@@ -7,14 +7,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 1.2.7
+    itemVersion: 1.2.8
     packID: CommonWidgets
     packName: Common Widgets
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/python3:3.9.8.24399
+dockerimage: demisto/python3:3.10.5.31928
 engineinfo: {}
 mainengineinfo: {}
 name: MyToDoTasksWidget
@@ -85,7 +85,6 @@ script: |
           return_results(cmd_results)
 
       except Exception as e:
-          demisto.error(traceback.format_exc())  # print the traceback
           return_error(f'Failed to execute MyToDoTasksWidget Script. Error: {str(e)}', e)
 
 
