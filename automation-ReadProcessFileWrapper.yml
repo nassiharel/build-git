@@ -9,7 +9,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.2.0
-    itemVersion: 1.5.6
+    itemVersion: 1.5.7
     packID: MalwareInvestigationAndResponse
     packName: Malware Investigation and Response
     packPropagationLabels:
