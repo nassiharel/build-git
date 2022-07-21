@@ -11,9 +11,9 @@
 	"indicatorSamples": null,
 	"instanceIds": null,
 	"itemVersion": "2.3.15",
-	"keyTypeMap": null,
+	"keyTypeMap": {},
 	"locked": false,
-	"logicalVersion": 0,
+	"logicalVersion": 2,
 	"mapping": {
 		"ServiceNow SIR Incident": {
 			"dontMapEventToLabels": false,
@@ -1291,6 +1291,9 @@
 				},
 				"name": {
 					"simple": "short_description"
+				},
+				"service_now_new": {
+					"simple": "state"
 				},
 				"severity": {
 					"complex": {
