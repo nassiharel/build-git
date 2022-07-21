@@ -7,7 +7,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 6.1.0
-    itemVersion: 1.2.7
+    itemVersion: 1.2.8
     packID: CommonWidgets
     packName: Common Widgets
     packPropagationLabels:
