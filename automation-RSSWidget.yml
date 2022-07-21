@@ -27,14 +27,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.2.7
+    itemVersion: 1.2.8
     packID: CommonWidgets
     packName: Common Widgets
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/py3-tools:0.0.1.30715
+dockerimage: demisto/py3-tools:1.0.0.31193
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
@@ -177,7 +177,6 @@ script: |
           entries_data = collect_entries_data_from_response(parsed_feed_data, limit)
           content = create_widget_content(entries_data)
       except Exception as e:
-          demisto.error(traceback.format_exc())
           return_error(str(e))
 
       return_results({
