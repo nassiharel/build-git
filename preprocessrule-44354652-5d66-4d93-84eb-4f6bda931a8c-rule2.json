@@ -1,0 +1,68 @@
+{
+	"action": "drop",
+	"cacheVersn": 0,
+	"definitionId": "",
+	"enabled": true,
+	"existingEventsFilters": [],
+	"fromServerVersion": "",
+	"id": "44354652-5d66-4d93-84eb-4f6bda931a8c",
+	"index": 1,
+	"itemVersion": "",
+	"linkTo": "oldest",
+	"locked": false,
+	"name": "rule2",
+	"newEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "accountid"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"value": {
+						"simple": "wewe"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "days",
+		"fromValue": 30
+	},
+	"propagationLabels": [
+		"all"
+	],
+	"readyExistingEventsFilters": [],
+	"readyNewEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "accountid"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"value": {
+						"simple": "wewe"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"scriptID": "",
+	"scriptName": "",
+	"searchClosed": false,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
