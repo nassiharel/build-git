@@ -21,7 +21,7 @@
 	"hidden": false,
 	"id": "incident_servicenownotify",
 	"isReadOnly": false,
-	"itemVersion": "2.3.15",
+	"itemVersion": "2.3.14",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "ServiceNow Notify",
