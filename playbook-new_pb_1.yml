@@ -30,11 +30,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 834aaf1e-3807-40d9-8030-94003598e77c
+      id: 932b9233-2113-44da-827b-38726cb64f45
       iscommand: false
       name: ""
       version: -1
-    taskid: 834aaf1e-3807-40d9-8030-94003598e77c
+    taskid: 932b9233-2113-44da-827b-38726cb64f45
     timertriggers: []
     type: start
     view: |-
@@ -56,12 +56,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 6f842dea-b42b-410e-8e88-44189918f366
+      id: 47f49112-2feb-4d31-8b23-89807522d06f
       iscommand: false
       name: Untitled Task
       type: regular
       version: -1
-    taskid: 6f842dea-b42b-410e-8e88-44189918f366
+    taskid: 47f49112-2feb-4d31-8b23-89807522d06f
     timertriggers: []
     type: regular
     view: |-
