@@ -1,0 +1,127 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Vulnerability Management"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration",
+		"automation"
+	],
+	"contentItems": {
+		"automation": [
+			{
+				"description": "Checks if the given PAN-OS version number is affected by the given list of vulnerabilties from the pan-advisories-get-advisories command.",
+				"name": "CheckPanosVersionAffected",
+				"tags": []
+			}
+		],
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Vulnerability Management",
+				"commands": [
+					{
+						"description": "Gets all the advisories for the given product.",
+						"name": "pan-advisories-get-advisories"
+					}
+				],
+				"description": "Queries the public repository of PAN-OS CVEs.",
+				"name": "Palo Alto Networks Security Advisories (Beta)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2022-06-22T16:49:01Z",
+	"currentVersion": "1.0.0",
+	"definitionId": "",
+	"dependencies": {
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.8",
+			"name": "Base"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.40",
+			"name": "Common Types"
+		}
+	},
+	"deprecated": false,
+	"description": "Search CVE details from the Palo Alto Security Advisories website.",
+	"downloads": 23,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.5.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "PaloAltoNetworks_SecurityAdvisories",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/PaloAltoNetworks_SecurityAdvisories/PaloAltoNetworksSecurityAdvisories_image.png",
+			"name": "Palo Alto Networks Security Advisories (Beta)"
+		}
+	],
+	"itemVersion": "1.0.0",
+	"keywords": [],
+	"legacy": true,
+	"name": "Palo Alto Networks Security Advisories",
+	"packID": "PaloAltoNetworks_SecurityAdvisories",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"searchRank": 20,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.5.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [
+		"New",
+		"TIM",
+		"Trending"
+	],
+	"toServerVersion": "",
+	"updated": "2022-06-22T16:49:01Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3305407",
+	"videos": []
+}
