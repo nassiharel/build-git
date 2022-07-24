@@ -30,11 +30,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 04293f79-c372-4612-8f65-3ea28fab957c
+      id: 4e32d988-b18e-46cb-8d4b-b3b2b0dd8553
       iscommand: false
       name: ""
       version: -1
-    taskid: 04293f79-c372-4612-8f65-3ea28fab957c
+    taskid: 4e32d988-b18e-46cb-8d4b-b3b2b0dd8553
     timertriggers: []
     type: start
     view: |-
@@ -63,13 +63,13 @@ tasks:
     task:
       brand: ""
       description: Prints text to war room (Markdown supported)
-      id: 3433764b-b04b-463e-89b7-2669cf9a0993
+      id: ab3edfbe-68ef-4e8e-8fa7-efc627d53962
       iscommand: false
       name: print
       script: Print
       type: regular
       version: -1
-    taskid: 3433764b-b04b-463e-89b7-2669cf9a0993
+    taskid: ab3edfbe-68ef-4e8e-8fa7-efc627d53962
     timertriggers: []
     type: regular
     view: |-
@@ -94,13 +94,13 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 76da79e7-8cb8-4edd-8c68-62ac988171dc
+      id: 8814974b-0b66-4f86-8a95-d0b97525644f
       iscommand: false
       name: run zan automation
       script: ed78755c-b02f-44c4-821c-d74614ac48d5
       type: regular
       version: -1
-    taskid: 76da79e7-8cb8-4edd-8c68-62ac988171dc
+    taskid: 8814974b-0b66-4f86-8a95-d0b97525644f
     timertriggers: []
     type: regular
     view: |-
@@ -122,12 +122,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: c793faf6-a716-4d41-8148-d567310ca9dc
+      id: 64439d1a-8b5e-4dc9-8fdc-67a056051b8a
       iscommand: false
       name: end
       type: title
       version: -1
-    taskid: c793faf6-a716-4d41-8148-d567310ca9dc
+    taskid: 64439d1a-8b5e-4dc9-8fdc-67a056051b8a
     timertriggers: []
     type: title
     view: |-
