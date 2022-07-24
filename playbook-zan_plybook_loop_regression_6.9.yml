@@ -29,11 +29,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: c7d4a478-f1a0-4ae8-8a76-34d0f4dc6c36
+      id: cba7ef91-0e4a-4705-8dcd-09d1139e9a24
       iscommand: false
       name: ""
       version: -1
-    taskid: c7d4a478-f1a0-4ae8-8a76-34d0f4dc6c36
+    taskid: cba7ef91-0e4a-4705-8dcd-09d1139e9a24
     timertriggers: []
     type: start
     view: |-
@@ -64,13 +64,13 @@ tasks:
     task:
       brand: ""
       description: Sleep for X seconds
-      id: 286c786e-4c92-4f7c-8482-3c40337f08b1
+      id: 550db97b-8a11-429b-8ef6-deda9af245ac
       iscommand: false
       name: Sleep
       script: Sleep
       type: regular
       version: -1
-    taskid: 286c786e-4c92-4f7c-8482-3c40337f08b1
+    taskid: 550db97b-8a11-429b-8ef6-deda9af245ac
     timertriggers: []
     type: regular
     view: |-
@@ -99,13 +99,13 @@ tasks:
     task:
       brand: ""
       description: Prints text to war room (Markdown supported)
-      id: 3cd69ee4-39a6-4c84-8362-2eab808e29f2
+      id: b7f7b89a-47f4-4bfa-8bde-c016829d5683
       iscommand: false
       name: Print
       script: Print
       type: regular
       version: -1
-    taskid: 3cd69ee4-39a6-4c84-8362-2eab808e29f2
+    taskid: b7f7b89a-47f4-4bfa-8bde-c016829d5683
     timertriggers: []
     type: regular
     view: |-
@@ -131,13 +131,13 @@ tasks:
     task:
       brand: ""
       description: Prints text to war room (Markdown supported)
-      id: 9c6e7a93-9248-43f5-82a2-5ab5b4ee9d0f
+      id: 561b8a2d-c5a4-4b30-865c-cad12321b683
       iscommand: false
       name: Print
       script: Print
       type: regular
       version: -1
-    taskid: 9c6e7a93-9248-43f5-82a2-5ab5b4ee9d0f
+    taskid: 561b8a2d-c5a4-4b30-865c-cad12321b683
     timertriggers: []
     type: regular
     view: |-
