@@ -58,21 +58,19 @@ tasks:
       - "4"
     note: false
     quietmode: 0
-    scriptarguments:
-      value:
-        simple: Start
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      description: Prints text to war room (Markdown supported)
-      id: 15398277-2cef-4af4-8083-1a1f34f85669
+      description: Calculates A1000 final classification based on A1000 classification
+        and A1000 full reports.
+      id: d5ffae87-5c80-41ff-8438-546826b45e89
       iscommand: false
       name: Start
-      script: Print
+      script: A1000FinalClassification
       type: regular
       version: -1
-    taskid: 15398277-2cef-4af4-8083-1a1f34f85669
+    taskid: d5ffae87-5c80-41ff-8438-546826b45e89
     timertriggers: []
     type: regular
     view: |-
