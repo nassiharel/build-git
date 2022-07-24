@@ -1,0 +1,120 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 4507afae-5d3a-4eb6-8cd2-ed4f8bcebdd7
+inputs: []
+name: zan_child
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 91760b5d-7c64-4af9-8d6e-3678f163eb16
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 91760b5d-7c64-4af9-8d6e-3678f163eb16
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: zan
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 18704641-78ae-4081-8635-85c0595556f6
+      iscommand: false
+      name: Untitled Task
+      script: Print
+      type: regular
+      version: -1
+    taskid: 18704641-78ae-4081-8635-85c0595556f6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 320
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 30c05fb0-0aab-4955-8abc-d87e0978ae80
+      iscommand: false
+      name: Untitled Task
+      type: title
+      version: -1
+    taskid: 30c05fb0-0aab-4955-8abc-d87e0978ae80
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 520
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 535,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
