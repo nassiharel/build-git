@@ -40,11 +40,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: c1926e37-d32c-425e-8111-82718a9ebaff
+      id: 3796839b-24ac-48ad-8c24-d243791048a4
       iscommand: false
       name: ""
       version: -1
-    taskid: c1926e37-d32c-425e-8111-82718a9ebaff
+    taskid: 3796839b-24ac-48ad-8c24-d243791048a4
     timertriggers: []
     type: start
     view: |-
@@ -73,13 +73,13 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: ba6d18db-7ddd-4644-8596-300d522c3e43
+      id: 252b4149-1f3e-4513-856b-f3c6643439f6
       iscommand: false
       name: Delete Context
       script: DeleteContext
       type: regular
       version: -1
-    taskid: ba6d18db-7ddd-4644-8596-300d522c3e43
+    taskid: 252b4149-1f3e-4513-856b-f3c6643439f6
     timertriggers: []
     type: regular
     view: |-
@@ -110,13 +110,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.investigate
-      id: 10f6b1a4-d4fe-451d-8f9d-723ef0fa75c2
+      id: 4a360fd4-6803-4bdb-8ecd-f1c0db28067a
       iscommand: true
       name: Investigate the incident
       script: Builtin|||investigate
       type: regular
       version: -1
-    taskid: 10f6b1a4-d4fe-451d-8f9d-723ef0fa75c2
+    taskid: 4a360fd4-6803-4bdb-8ecd-f1c0db28067a
     timertriggers: []
     type: regular
     view: |-
@@ -177,12 +177,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: cf312439-cd18-4143-8839-5945273212e5
+      id: 73b7d40d-78e5-478e-8e60-069fb84d2c7e
       iscommand: false
       name: Did the domain-squatting check work?
       type: condition
       version: -1
-    taskid: cf312439-cd18-4143-8839-5945273212e5
+    taskid: 73b7d40d-78e5-478e-8e60-069fb84d2c7e
     timertriggers: []
     type: condition
     view: |-
@@ -214,13 +214,13 @@ tasks:
     task:
       brand: ""
       description: Gets a value from the specified incident's context.
-      id: 1470574d-eb2a-41d9-8368-c5c9f868f5cb
+      id: 53e37dd8-80e2-413b-8456-8d9216321f6f
       iscommand: false
       name: Get the final Email context
       script: GetByIncidentId
       type: regular
       version: -1
-    taskid: 1470574d-eb2a-41d9-8368-c5c9f868f5cb
+    taskid: 53e37dd8-80e2-413b-8456-8d9216321f6f
     timertriggers: []
     type: regular
     view: |-
@@ -251,13 +251,13 @@ tasks:
     task:
       brand: ""
       description: Prints an error entry with a given message
-      id: eecc32e3-c17c-427a-850c-7c11d105b82a
+      id: fdb72449-8ec2-4f7d-8fdb-addccf1d571e
       iscommand: false
       name: Error about domain-squatting
       script: PrintErrorEntry
       type: regular
       version: -1
-    taskid: eecc32e3-c17c-427a-850c-7c11d105b82a
+    taskid: fdb72449-8ec2-4f7d-8fdb-addccf1d571e
     timertriggers: []
     type: regular
     view: |-
@@ -279,12 +279,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 53c6e86f-fe74-4401-82ff-4731b6475805
+      id: 0c688f7a-d7a2-4b4e-8123-a2c5fc4d474c
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: 53c6e86f-fe74-4401-82ff-4731b6475805
+    taskid: 0c688f7a-d7a2-4b4e-8123-a2c5fc4d474c
     timertriggers: []
     type: title
     view: |-
@@ -324,12 +324,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: f3b3820c-899e-4f1c-8253-fe5f0376e79e
+      id: 6a30cf7c-3431-4d2d-840f-6fa08d2c94c0
       iscommand: false
       name: Check Reported Email From
       type: condition
       version: -1
-    taskid: f3b3820c-899e-4f1c-8253-fe5f0376e79e
+    taskid: 6a30cf7c-3431-4d2d-840f-6fa08d2c94c0
     timertriggers: []
     type: condition
     view: |-
@@ -360,13 +360,13 @@ tasks:
     task:
       brand: ""
       description: Prints an error entry with a given message
-      id: 005b8fb8-080a-49c7-8d03-c11fdb1b93c6
+      id: 4cb8c7a0-564f-46ce-8a55-a3fad47ab493
       iscommand: false
       name: Error about email from
       script: PrintErrorEntry
       type: regular
       version: -1
-    taskid: 005b8fb8-080a-49c7-8d03-c11fdb1b93c6
+    taskid: 4cb8c7a0-564f-46ce-8a55-a3fad47ab493
     timertriggers: []
     type: regular
     view: |-
@@ -406,12 +406,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 2f43f4e0-8020-4a22-8950-3063f5a99b47
+      id: a55ae5d5-b1fd-4f5a-8fa2-def3416563eb
       iscommand: false
       name: Check email subject extraction (not yet JSON comparison)
       type: condition
       version: -1
-    taskid: 2f43f4e0-8020-4a22-8950-3063f5a99b47
+    taskid: a55ae5d5-b1fd-4f5a-8fa2-def3416563eb
     timertriggers: []
     type: condition
     view: |-
@@ -451,12 +451,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 41fa5275-33c6-4f44-839e-f36722edb852
+      id: 2d94ae9b-d4d9-4ed3-817a-9d9f7c97f740
       iscommand: false
       name: Check Reported Email To
       type: condition
       version: -1
-    taskid: 41fa5275-33c6-4f44-839e-f36722edb852
+    taskid: 2d94ae9b-d4d9-4ed3-817a-9d9f7c97f740
     timertriggers: []
     type: condition
     view: |-
@@ -487,13 +487,13 @@ tasks:
     task:
       brand: ""
       description: Prints an error entry with a given message
-      id: 90b460df-46f0-464c-8445-b520d1e36ead
+      id: 0198b76a-715f-45a6-8819-349be826cbbd
       iscommand: false
       name: Error about email to
       script: PrintErrorEntry
       type: regular
       version: -1
-    taskid: 90b460df-46f0-464c-8445-b520d1e36ead
+    taskid: 0198b76a-715f-45a6-8819-349be826cbbd
     timertriggers: []
     type: regular
     view: |-
@@ -533,12 +533,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: f48dfc96-d785-4a35-85d2-b1285f0c2e95
+      id: a867dc6e-6c8f-424f-85aa-0d0ed21a3f63
       iscommand: false
       name: Check Email Authenticity = Fail
       type: condition
       version: -1
-    taskid: f48dfc96-d785-4a35-85d2-b1285f0c2e95
+    taskid: a867dc6e-6c8f-424f-85aa-0d0ed21a3f63
     timertriggers: []
     type: condition
     view: |-
@@ -565,13 +565,13 @@ tasks:
     task:
       brand: ""
       description: Prints an error entry with a given message
-      id: 5c3fb9f8-3a23-45a6-8537-36c9ad734c99
+      id: 36053780-c233-4d4e-8e47-4c5373cfb9cf
       iscommand: false
       name: Error about email authenticity
       script: PrintErrorEntry
       type: regular
       version: -1
-    taskid: 5c3fb9f8-3a23-45a6-8537-36c9ad734c99
+    taskid: 36053780-c233-4d4e-8e47-4c5373cfb9cf
     timertriggers: []
     type: regular
     view: |-
@@ -599,12 +599,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 963ad410-4947-43ed-88a7-3f1987aabdd0
+      id: c34fa214-7aad-4997-8db9-cb841909ba52
       iscommand: false
       name: Incident Field Checks
       type: title
       version: -1
-    taskid: 963ad410-4947-43ed-88a7-3f1987aabdd0
+    taskid: c34fa214-7aad-4997-8db9-cb841909ba52
     timertriggers: []
     type: title
     view: |-
@@ -629,12 +629,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 40f07cb5-85ba-4b56-8551-c18f0c05bf31
+      id: 1109389a-b8a7-492a-88b2-1c2dece8be22
       iscommand: false
       name: Context Checks
       type: title
       version: -1
-    taskid: 40f07cb5-85ba-4b56-8551-c18f0c05bf31
+    taskid: 1109389a-b8a7-492a-88b2-1c2dece8be22
     timertriggers: []
     type: title
     view: |-
@@ -659,12 +659,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: db00e050-dbe0-4947-838c-87e8ee383f26
+      id: a53d9432-6097-4b63-8bab-7cc7f1368ed8
       iscommand: false
       name: JSON Comparison Checks
       type: title
       version: -1
-    taskid: db00e050-dbe0-4947-838c-87e8ee383f26
+    taskid: a53d9432-6097-4b63-8bab-7cc7f1368ed8
     timertriggers: []
     type: title
     view: |-
@@ -689,12 +689,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 1c3831e4-861e-43ed-8b25-5ed776d206c8
+      id: 402f2ccb-8924-4c72-8594-cb701a9f35e2
       iscommand: false
       name: Screenshot Check
       type: title
       version: -1
-    taskid: 1c3831e4-861e-43ed-8b25-5ed776d206c8
+    taskid: 402f2ccb-8924-4c72-8594-cb701a9f35e2
     timertriggers: []
     type: title
     view: |-
@@ -722,13 +722,13 @@ tasks:
     task:
       brand: ""
       description: Prints an error entry with a given message
-      id: 087119a9-76b2-4fa3-8739-90bcf038e650
+      id: 85fc4912-f46d-4284-86a1-462a3f14d396
       iscommand: false
       name: Error about mismatch in Email Subject
       script: PrintErrorEntry
       type: regular
       version: -1
-    taskid: 087119a9-76b2-4fa3-8739-90bcf038e650
+    taskid: 85fc4912-f46d-4284-86a1-462a3f14d396
     timertriggers: []
     type: regular
     view: |-
@@ -768,12 +768,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: b835330e-6fd8-4515-8820-63b24e61c283
+      id: 62e32215-7836-40ec-8625-58f1527ce8e0
       iscommand: false
       name: Check Incident Severity
       type: condition
       version: -1
-    taskid: b835330e-6fd8-4515-8820-63b24e61c283
+    taskid: 62e32215-7836-40ec-8625-58f1527ce8e0
     timertriggers: []
     type: condition
     view: |-
@@ -804,13 +804,13 @@ tasks:
     task:
       brand: ""
       description: Prints an error entry with a given message
-      id: f0715e79-f85e-4058-8272-212a50d2dd41
+      id: 4de521a7-9082-4684-86e5-e4c5be41a18e
       iscommand: false
       name: Error about incident severity
       script: PrintErrorEntry
       type: regular
       version: -1
-    taskid: f0715e79-f85e-4058-8272-212a50d2dd41
+    taskid: 4de521a7-9082-4684-86e5-e4c5be41a18e
     timertriggers: []
     type: regular
     view: |-
@@ -840,13 +840,13 @@ tasks:
     task:
       brand: ""
       description: Searches Demisto incidents
-      id: 755d3101-a54f-4e5d-8206-dd1fefabca64
+      id: 5f512fa8-382c-48e3-8f45-96fbe5833710
       iscommand: false
       name: Get final incident fields
       script: SearchIncidentsV2
       type: regular
       version: -1
-    taskid: 755d3101-a54f-4e5d-8206-dd1fefabca64
+    taskid: 5f512fa8-382c-48e3-8f45-96fbe5833710
     timertriggers: []
     type: regular
     view: |-
@@ -879,13 +879,13 @@ tasks:
     task:
       brand: ""
       description: Gets a value from the specified incident's context.
-      id: 6c1521a1-28fa-4071-8b4d-723f1b5f02fe
+      id: db2107aa-c220-4e0b-8efd-eee7ed6d5ca2
       iscommand: false
       name: Get the final Account context
       script: GetByIncidentId
       type: regular
       version: -1
-    taskid: 6c1521a1-28fa-4071-8b4d-723f1b5f02fe
+    taskid: db2107aa-c220-4e0b-8efd-eee7ed6d5ca2
     timertriggers: []
     type: regular
     view: |-
@@ -907,12 +907,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 6e3832a5-e5f1-45ce-881e-1b19a4991583
+      id: 00be701b-4bdb-4870-8f27-c17224b3f1c7
       iscommand: false
       name: '[Subplaybook] take and compare screenshots'
       type: title
       version: -1
-    taskid: 6e3832a5-e5f1-45ce-881e-1b19a4991583
+    taskid: 00be701b-4bdb-4870-8f27-c17224b3f1c7
     timertriggers: []
     type: title
     view: |-
@@ -952,13 +952,13 @@ tasks:
     task:
       brand: ""
       description: Wait and complete tasks by given status. Used for test playbooks.
-      id: bbc6f885-b80a-4aeb-8744-d24afc1ae19b
+      id: 86af83be-2c32-4a9b-8f64-14edacd04ca1
       iscommand: false
       name: Wait and manually remediate
       script: WaitAndCompleteTask
       type: regular
       version: -1
-    taskid: bbc6f885-b80a-4aeb-8744-d24afc1ae19b
+    taskid: 86af83be-2c32-4a9b-8f64-14edacd04ca1
     timertriggers: []
     type: regular
     view: |-
@@ -1000,13 +1000,13 @@ tasks:
     task:
       brand: ""
       description: Wait and complete tasks by given status. Used for test playbooks.
-      id: e8cbe351-334b-4903-8f4c-43ee4335681a
+      id: 83315b52-5aa5-4084-8bd2-c7b2c7db3700
       iscommand: false
       name: Wait for incident to close
       script: WaitAndCompleteTask
       type: regular
       version: -1
-    taskid: e8cbe351-334b-4903-8f4c-43ee4335681a
+    taskid: 83315b52-5aa5-4084-8bd2-c7b2c7db3700
     timertriggers: []
     type: regular
     view: |-
@@ -1038,13 +1038,13 @@ tasks:
       brand: ""
       description: Creates incidents from json files provided, and stores it in the
         instance context.
-      id: f805ac9e-561d-4535-8664-572faa925293
+      id: c671ca2f-6c1a-458b-8bd4-d196e1b33483
       iscommand: true
       name: Create phishing incident
       script: '|||create-test-incident-from-file'
       type: regular
       version: -1
-    taskid: f805ac9e-561d-4535-8664-572faa925293
+    taskid: c671ca2f-6c1a-458b-8bd4-d196e1b33483
     timertriggers: []
     type: regular
     view: |-
@@ -1084,13 +1084,13 @@ tasks:
         This automation runs using the default Limited User role, unless you explicitly change the permissions.
         For more information, see the section about permissions here:
         https://docs.paloaltonetworks.com/cortex/cortex-xsoar/6-2/cortex-xsoar-admin/playbooks/automations.html
-      id: 9161e0f6-d557-488d-825c-f60e1c49c2cc
+      id: b5d08680-8802-4d58-8acd-09b605c1c012
       iscommand: false
       name: Find the incident
       script: SearchIncidentsV2
       type: regular
       version: -1
-    taskid: 9161e0f6-d557-488d-825c-f60e1c49c2cc
+    taskid: b5d08680-8802-4d58-8acd-09b605c1c012
     timertriggers: []
     type: regular
     view: |-
@@ -1134,13 +1134,13 @@ tasks:
     task:
       brand: ""
       description: Set a value in context under the key you entered.
-      id: f9029ffe-2954-4062-8281-b68ab87a376e
+      id: 332129bf-1068-4e21-8201-67ce1022cab4
       iscommand: false
       name: Save the incident ID
       script: Set
       type: regular
       version: -1
-    taskid: f9029ffe-2954-4062-8281-b68ab87a376e
+    taskid: 332129bf-1068-4e21-8201-67ce1022cab4
     timertriggers: []
     type: regular
     view: |-
@@ -1172,13 +1172,13 @@ tasks:
     task:
       brand: ""
       description: Gets a value from the specified incident's context.
-      id: c34d09a7-cc64-49d9-8e69-fd3bfc14a79f
+      id: 5b775e97-c7b0-4f76-829d-be97b66f1cf4
       iscommand: false
       name: Get the DBotScore context
       script: GetByIncidentId
       type: regular
       version: -1
-    taskid: c34d09a7-cc64-49d9-8e69-fd3bfc14a79f
+    taskid: 5b775e97-c7b0-4f76-829d-be97b66f1cf4
     timertriggers: []
     type: regular
     view: |-
@@ -1207,13 +1207,13 @@ tasks:
     task:
       brand: ""
       description: Sleep for X seconds
-      id: 51649d1e-af36-43ea-8ec9-78f661822219
+      id: 658bb472-f89f-4bc2-87e4-6beaa0c3db31
       iscommand: false
       name: Wait for incident to be created
       script: Sleep
       type: regular
       version: -1
-    taskid: 51649d1e-af36-43ea-8ec9-78f661822219
+    taskid: 658bb472-f89f-4bc2-87e4-6beaa0c3db31
     timertriggers: []
     type: regular
     view: |-
