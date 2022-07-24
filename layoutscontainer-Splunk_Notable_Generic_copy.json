@@ -666,7 +666,9 @@
 	"name": "Splunk Notable Generic_copy",
 	"packID": "",
 	"packName": "Splunk",
-	"propagationLabels": [],
+	"propagationLabels": [
+		"all"
+	],
 	"quickView": null,
 	"quickViewV2": null,
 	"system": false,
