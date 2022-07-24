@@ -63,11 +63,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 11508213-8fce-4682-8536-65ed426d2664
+      id: 8de12c58-b2ef-43c9-8fd9-dae997918315
       iscommand: false
       name: ""
       version: -1
-    taskid: 11508213-8fce-4682-8536-65ed426d2664
+    taskid: 8de12c58-b2ef-43c9-8fd9-dae997918315
     timertriggers: []
     type: start
     view: |-
@@ -94,12 +94,12 @@ tasks:
     task:
       brand: ""
       description: Starts a timer to track how long it takes to resolve the alert.
-      id: 77e2b71f-78fb-467e-8e87-416fd03967d7
+      id: d5d385a2-c25d-4acd-8d1b-eff9df9d1ddb
       iscommand: false
       name: Start Remediation Timer
       type: title
       version: -1
-    taskid: 77e2b71f-78fb-467e-8e87-416fd03967d7
+    taskid: d5d385a2-c25d-4acd-8d1b-eff9df9d1ddb
     timertriggers:
     - action: start
       fieldname: remediationsla
@@ -129,12 +129,12 @@ tasks:
     task:
       brand: ""
       description: Searches the related files for malicious behavior.
-      id: 64d02f6f-5a06-40f8-8552-c98b4b959286
+      id: a74c7e1b-715f-4c38-8f0e-926c7f14720c
       iscommand: false
       name: Review Evidence for Malicious Behavior
       type: condition
       version: -1
-    taskid: 64d02f6f-5a06-40f8-8552-c98b4b959286
+    taskid: a74c7e1b-715f-4c38-8f0e-926c7f14720c
     timertriggers: []
     type: condition
     view: |-
@@ -161,12 +161,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 617588ed-c8d8-4b5a-87ed-ed84204058fc
+      id: 97ddd348-279d-4abe-8489-d8843f25e404
       iscommand: false
       name: Malicious Behavior Determined
       type: title
       version: -1
-    taskid: 617588ed-c8d8-4b5a-87ed-ed84204058fc
+    taskid: 97ddd348-279d-4abe-8489-d8843f25e404
     timertriggers: []
     type: title
     view: |-
@@ -191,12 +191,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 7187278b-d996-465a-8c9a-3ad518285299
+      id: 04d5aecf-d656-4ad8-8a15-453c3e424cf3
       iscommand: false
       name: Benign Behavior Determined
       type: title
       version: -1
-    taskid: 7187278b-d996-465a-8c9a-3ad518285299
+    taskid: 04d5aecf-d656-4ad8-8a15-453c3e424cf3
     timertriggers: []
     type: title
     view: |-
@@ -224,13 +224,13 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: f37b26ac-38c5-40c6-800d-4cfc9692c1a8
+      id: 4bf78342-20b5-4bac-8b5b-57de4f93d7d5
       iscommand: true
       name: Resolve Code42 Alert
       script: Code42|||code42-alert-resolve
       type: regular
       version: -1
-    taskid: f37b26ac-38c5-40c6-800d-4cfc9692c1a8
+    taskid: 4bf78342-20b5-4bac-8b5b-57de4f93d7d5
     timertriggers: []
     type: regular
     view: |-
@@ -255,12 +255,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 16012eb4-0937-44b0-833b-560ec34de44d
+      id: 511d45e2-641c-4dde-8200-ede505876e1a
       iscommand: false
       name: Stop Remediation Timer
       type: title
       version: -1
-    taskid: 16012eb4-0937-44b0-833b-560ec34de44d
+    taskid: 511d45e2-641c-4dde-8200-ede505876e1a
     timertriggers:
     - action: stop
       fieldname: remediationsla
@@ -284,12 +284,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 51669a43-475a-44d1-81fe-20207c26598e
+      id: 5aca6274-c0c8-4c34-8e74-228586e16d8c
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: 51669a43-475a-44d1-81fe-20207c26598e
+    taskid: 5aca6274-c0c8-4c34-8e74-228586e16d8c
     timertriggers: []
     type: title
     view: |-
@@ -322,13 +322,13 @@ tasks:
     skipunavailable: true
     task:
       brand: CrowdstrikeFalcon
-      id: d03df5b6-28c0-4df7-85ae-aa6b74d2b5dd
+      id: 4b8eb466-db3c-4814-83b6-6b81c5137680
       iscommand: true
       name: Locate CrowdStrike Host
       script: CrowdstrikeFalcon|||cs-falcon-search-device
       type: regular
       version: -1
-    taskid: d03df5b6-28c0-4df7-85ae-aa6b74d2b5dd
+    taskid: 4b8eb466-db3c-4814-83b6-6b81c5137680
     timertriggers: []
     type: regular
     view: |-
@@ -382,12 +382,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 434d094a-f26e-4e94-81df-fa5227beacf7
+      id: d3cbf349-b186-4b8a-8946-5686d0322c79
       iscommand: false
       name: Is Jira Enabled?
       type: condition
       version: -1
-    taskid: 434d094a-f26e-4e94-81df-fa5227beacf7
+    taskid: d3cbf349-b186-4b8a-8946-5686d0322c79
     timertriggers: []
     type: condition
     view: |-
@@ -419,13 +419,13 @@ tasks:
     skipunavailable: true
     task:
       brand: jira-v2
-      id: e109fde4-4b66-4e1f-8734-fadd49886a5e
+      id: 063b8e29-a5de-4214-8524-8029b1ec91c7
       iscommand: true
       name: Create Jira Incident Ticket
       script: jira-v2|||jira-create-issue
       type: regular
       version: -1
-    taskid: e109fde4-4b66-4e1f-8734-fadd49886a5e
+    taskid: 063b8e29-a5de-4214-8524-8029b1ec91c7
     timertriggers: []
     type: regular
     view: |-
@@ -483,12 +483,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: f04b92f6-4e78-460e-8aab-6445d3c500c9
+      id: 61a9bea1-708d-43d2-800d-27fb0a083a43
       iscommand: false
       name: Can host be contained?
       type: condition
       version: -1
-    taskid: f04b92f6-4e78-460e-8aab-6445d3c500c9
+    taskid: 61a9bea1-708d-43d2-800d-27fb0a083a43
     timertriggers: []
     type: condition
     view: |-
@@ -523,12 +523,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 278d6243-3d8c-4d31-8491-b6168ebffb99
+      id: b9b809a4-0dad-450b-8fc0-e4357cff7005
       iscommand: false
       name: Does Manager Email Exist?
       type: condition
       version: -1
-    taskid: 278d6243-3d8c-4d31-8491-b6168ebffb99
+    taskid: b9b809a4-0dad-450b-8fc0-e4357cff7005
     timertriggers: []
     type: condition
     view: |-
@@ -561,13 +561,13 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: eccca7ff-aaa7-4864-8345-fc65108a2230
+      id: f67f1dfe-8e43-49dc-831f-dbad311d3016
       iscommand: false
       name: Active Directory - Get User Manager Details
       playbookId: Active Directory - Get User Manager Details
       type: playbook
       version: -1
-    taskid: eccca7ff-aaa7-4864-8345-fc65108a2230
+    taskid: f67f1dfe-8e43-49dc-831f-dbad311d3016
     timertriggers: []
     type: playbook
     view: |-
@@ -592,13 +592,13 @@ tasks:
     skipunavailable: false
     task:
       brand: Builtin
-      id: 5db26724-aad0-4316-82f2-c2a6635d5200
+      id: 73a998c8-be81-403d-8906-bb247cad2eb8
       iscommand: true
       name: Close Incident
       script: Builtin|||closeInvestigation
       type: regular
       version: -1
-    taskid: 5db26724-aad0-4316-82f2-c2a6635d5200
+    taskid: 73a998c8-be81-403d-8906-bb247cad2eb8
     timertriggers: []
     type: regular
     view: |-
@@ -625,12 +625,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: ab9f4c32-a0e4-41e9-8228-22724cecae76
+      id: 7f9e30a4-6375-40e5-8daa-34d1558ac39d
       iscommand: false
       name: Confirm Network Contain
       type: condition
       version: -1
-    taskid: ab9f4c32-a0e4-41e9-8228-22724cecae76
+    taskid: 7f9e30a4-6375-40e5-8daa-34d1558ac39d
     timertriggers: []
     type: condition
     view: |-
@@ -675,13 +675,13 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 136c085e-aa37-4bc5-807c-5b7ff981c140
+      id: 46d586fa-ebe3-472a-805e-c98601c61069
       iscommand: true
       name: Send email to manager
       script: '|||send-mail'
       type: regular
       version: -1
-    taskid: 136c085e-aa37-4bc5-807c-5b7ff981c140
+    taskid: 46d586fa-ebe3-472a-805e-c98601c61069
     timertriggers: []
     type: regular
     view: |-
@@ -706,12 +706,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 877d11e9-c080-4db3-87ec-76bab3b69cd8
+      id: bea51f0b-bf97-429a-88f3-158a1af0a89c
       iscommand: false
       name: Confirm Remediation Is Complete
       type: regular
       version: -1
-    taskid: 877d11e9-c080-4db3-87ec-76bab3b69cd8
+    taskid: bea51f0b-bf97-429a-88f3-158a1af0a89c
     timertriggers: []
     type: regular
     view: |-
@@ -759,12 +759,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 4f1b2a83-bf99-4f7b-8ac1-58fff1dd8e73
+      id: 1dde4653-f914-43b4-8bd1-ea195e49971e
       iscommand: false
       name: Determine if network contain should be bypassed based on host count
       type: condition
       version: -1
-    taskid: 4f1b2a83-bf99-4f7b-8ac1-58fff1dd8e73
+    taskid: 1dde4653-f914-43b4-8bd1-ea195e49971e
     timertriggers: []
     type: condition
     view: |-
@@ -793,13 +793,13 @@ tasks:
     skipunavailable: true
     task:
       brand: ""
-      id: d515a4bf-42b6-4aa4-89ea-33125635ca98
+      id: cbc3ad40-bcd8-4ff8-8ca5-b9450927a0b4
       iscommand: true
       name: CrowdStrike Network Contain
       script: '|||cs-falcon-contain-host'
       type: regular
       version: -1
-    taskid: d515a4bf-42b6-4aa4-89ea-33125635ca98
+    taskid: cbc3ad40-bcd8-4ff8-8ca5-b9450927a0b4
     timertriggers: []
     type: regular
     view: |-
@@ -898,12 +898,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 44c4cdc8-8740-456e-8559-3e3c35286d83
+      id: 0d034b30-0692-47a5-8fe7-26f41af999b7
       iscommand: false
       name: Is email integration enabled?
       type: condition
       version: -1
-    taskid: 44c4cdc8-8740-456e-8559-3e3c35286d83
+    taskid: 0d034b30-0692-47a5-8fe7-26f41af999b7
     timertriggers: []
     type: condition
     view: |-
@@ -968,13 +968,13 @@ tasks:
       brand: ""
       description: This playbook downloads a file via Code42 by either MD5 or SHA256
         hash.
-      id: 136e95ff-4954-4036-89c4-503b5298c61f
+      id: d103f4a8-c810-4d61-8fc8-35f4c707c337
       iscommand: false
       name: Code42 File Download
       playbookId: Code42 File Download
       type: playbook
       version: -1
-    taskid: 136e95ff-4954-4036-89c4-503b5298c61f
+    taskid: d103f4a8-c810-4d61-8fc8-35f4c707c337
     timertriggers: []
     type: playbook
     view: |-
