@@ -13,7 +13,7 @@
 	"itemVersion": "2.3.15",
 	"keyTypeMap": {},
 	"locked": false,
-	"logicalVersion": 2,
+	"logicalVersion": 3,
 	"mapping": {
 		"ServiceNow SIR Incident": {
 			"dontMapEventToLabels": false,
@@ -1340,6 +1340,9 @@
 		"dbot_classification_incident_type_all": {
 			"dontMapEventToLabels": false,
 			"internalMapping": {
+				"Actions On Campaign Incidents": {
+					"simple": "zan the change"
+				},
 				"severity": {
 					"complex": {
 						"filters": [],
