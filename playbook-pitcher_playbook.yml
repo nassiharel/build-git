@@ -29,11 +29,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: cfefa974-4a19-4270-8cdf-10b6a504c927
+      id: 1f3c0371-31f0-4c4d-8127-75d6994a0ba7
       iscommand: false
       name: ""
       version: -1
-    taskid: cfefa974-4a19-4270-8cdf-10b6a504c927
+    taskid: 1f3c0371-31f0-4c4d-8127-75d6994a0ba7
     timertriggers: []
     type: start
     view: |-
@@ -62,13 +62,13 @@ tasks:
     task:
       brand: Sharon's Incident Pitcher
       description: return string in language b
-      id: 691e2590-2c0b-4121-87ae-bd6372ed44bd
+      id: f367cbc8-3d07-4947-8071-659a95aee31d
       iscommand: true
       name: language-b-me
       script: Sharon's Incident Pitcher|||language-b-me
       type: regular
       version: -1
-    taskid: 691e2590-2c0b-4121-87ae-bd6372ed44bd
+    taskid: f367cbc8-3d07-4947-8071-659a95aee31d
     timertriggers: []
     type: regular
     view: |-
@@ -96,13 +96,13 @@ tasks:
     task:
       brand: Rasterize
       description: Converts the contents of a URL to an image file or a PDF file.
-      id: 848555e5-4a8a-46ef-8102-f6d0475e9601
+      id: 6be67c06-8d93-48b7-8f4b-c5989117a63b
       iscommand: true
       name: rasterize
       script: Rasterize|||rasterize
       type: regular
       version: -1
-    taskid: 848555e5-4a8a-46ef-8102-f6d0475e9601
+    taskid: 6be67c06-8d93-48b7-8f4b-c5989117a63b
     timertriggers: []
     type: regular
     view: |-
