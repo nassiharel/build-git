@@ -49,11 +49,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 7b363ddb-27ab-4502-83be-71c9f703009e
+      id: 592c655f-71fa-4f58-804e-3235e6f0e277
       iscommand: false
       name: ""
       version: -1
-    taskid: 7b363ddb-27ab-4502-83be-71c9f703009e
+    taskid: 592c655f-71fa-4f58-804e-3235e6f0e277
     timertriggers: []
     type: start
     view: |-
@@ -98,12 +98,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: a11e7b9e-fd23-440e-8145-34c3f812bb7e
+      id: eb35848e-b665-4ad7-84e0-aaa475b1169e
       iscommand: false
       name: Start testing?
       type: condition
       version: -1
-    taskid: a11e7b9e-fd23-440e-8145-34c3f812bb7e
+    taskid: eb35848e-b665-4ad7-84e0-aaa475b1169e
     timertriggers: []
     type: condition
     view: |-
@@ -134,13 +134,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.extract.indicators
-      id: 65464897-c025-44e2-8764-c9ee4a2cde65
+      id: 5b7bdaf5-7e4a-4f10-8aa4-99c515a2fedf
       iscommand: true
       name: Start testing - Get 5 domain indicators
       script: Builtin|||extractIndicators
       type: regular
       version: -1
-    taskid: 65464897-c025-44e2-8764-c9ee4a2cde65
+    taskid: 5b7bdaf5-7e4a-4f10-8aa4-99c515a2fedf
     timertriggers: []
     type: regular
     view: |-
@@ -162,12 +162,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 9a2150e4-9cd1-4de1-85c7-6d7fd938ff71
+      id: a8541ccb-1b60-498b-8ad8-4126a15ce8e5
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: 9a2150e4-9cd1-4de1-85c7-6d7fd938ff71
+    taskid: a8541ccb-1b60-498b-8ad8-4126a15ce8e5
     timertriggers: []
     type: title
     view: |-
@@ -204,13 +204,13 @@ tasks:
       brand: ""
       description: This playbook uses several sub playbooks to process and tag indicators
         based on the results of the Whois tool.
-      id: 6840209f-96a5-456e-8006-ba4d06a371dd
+      id: 912f5959-2129-4790-89b0-f1ab3546d03d
       iscommand: false
       name: TIM - Process Domains With Whois
       playbookId: TIM - Process Domains With Whois
       type: playbook
       version: -1
-    taskid: 6840209f-96a5-456e-8006-ba4d06a371dd
+    taskid: 912f5959-2129-4790-89b0-f1ab3546d03d
     timertriggers: []
     type: playbook
     view: |-
