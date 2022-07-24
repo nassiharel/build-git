@@ -30,11 +30,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 29587c73-4b53-4771-8218-ec90c6244b7d
+      id: 5ad3cf74-431e-4ca9-89c3-849a8482536e
       iscommand: false
       name: ""
       version: -1
-    taskid: 29587c73-4b53-4771-8218-ec90c6244b7d
+    taskid: 5ad3cf74-431e-4ca9-89c3-849a8482536e
     timertriggers: []
     type: start
     view: |-
@@ -59,13 +59,13 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 795ac89a-56ed-4e00-8d83-2721a931747b
+      id: e0040d96-b189-41d1-8e43-c525fa05a286
       iscommand: false
       name: foo script
       script: c6146778-5598-4168-8d06-896c3c945ad8
       type: regular
       version: -1
-    taskid: 795ac89a-56ed-4e00-8d83-2721a931747b
+    taskid: e0040d96-b189-41d1-8e43-c525fa05a286
     timertriggers: []
     type: regular
     view: |-
@@ -97,13 +97,13 @@ tasks:
       brand: ""
       description: |
         First create new instance of "HelloWorld Feed (Community Contribution)"
-      id: 95093531-dc0d-42b7-8063-edbe32d2c4e0
+      id: d3e2ef1f-e053-4aee-8e5d-8f985817a3a2
       iscommand: false
       name: zan_script1
       script: 40f52bf9-bc24-42fe-8ccf-914336cde3b9
       type: regular
       version: -1
-    taskid: 95093531-dc0d-42b7-8063-edbe32d2c4e0
+    taskid: d3e2ef1f-e053-4aee-8e5d-8f985817a3a2
     timertriggers: []
     type: regular
     view: |-
@@ -137,13 +137,13 @@ tasks:
       brand: ""
       description: Check whether the values provided in arguments are equal. If either
         of the arguments are missing, no is returned.
-      id: 93c32ce5-818b-4029-8aee-2bcb97ec4bf1
+      id: c332cc30-81ba-4405-839f-b4d517b40c3a
       iscommand: false
       name: arevalue
       script: AreValuesEqual
       type: condition
       version: -1
-    taskid: 93c32ce5-818b-4029-8aee-2bcb97ec4bf1
+    taskid: c332cc30-81ba-4405-839f-b4d517b40c3a
     timertriggers: []
     type: condition
     view: |-
@@ -165,12 +165,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: f767df05-46ee-4281-8cb4-96a918607e84
+      id: 3bc70c08-8314-425b-8e19-dbb4d6a568c1
       iscommand: false
       name: Untitled Task
       type: title
       version: -1
-    taskid: f767df05-46ee-4281-8cb4-96a918607e84
+    taskid: 3bc70c08-8314-425b-8e19-dbb4d6a568c1
     timertriggers: []
     type: title
     view: |-
