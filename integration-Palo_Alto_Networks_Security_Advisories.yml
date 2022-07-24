@@ -1,0 +1,388 @@
+beta: true
+category: Vulnerability Management
+commonfields:
+  id: Palo Alto Networks Security Advisories
+  version: -1
+configuration:
+- defaultvalue: https://security.paloaltonetworks.com/api/v1
+  display: Default URL for PAN-OS advisories website
+  name: url
+  required: false
+  type: 0
+- additionalinfo: The Palo Alto Networks product name to fetch indicators for, such
+    as "PAN-OS"
+  defaultvalue: PAN-OS
+  display: Fetch indicator product name
+  name: fetch_product_name
+  required: false
+  type: 0
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- additionalinfo: Indicators from this integration instance will be marked with this
+    reputation
+  display: Indicator Reputation
+  name: feedReputation
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  required: false
+  type: 18
+- additionalinfo: Reliability of the source providing the intelligence data
+  display: Source Reliability
+  name: feedReliability
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- display: ""
+  name: feedExpirationPolicy
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+  required: false
+  type: 17
+- display: ""
+  name: feedExpirationInterval
+  required: false
+  type: 1
+- display: Feed Fetch Interval
+  name: feedFetchInterval
+  required: false
+  type: 19
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+- additionalinfo: Supports CSV values.
+  display: Tags
+  name: feedTags
+  required: false
+  type: 0
+- additionalinfo: The Traffic Light Protocol (TLP) designation to apply to indicators
+    fetched from the feed
+  display: Traffic Light Protocol Color
+  name: tlp_color
+  options:
+  - RED
+  - AMBER
+  - GREEN
+  - WHITE
+  required: false
+  type: 15
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: 6.5.0
+    itemVersion: 1.0.0
+    packID: PaloAltoNetworks_SecurityAdvisories
+    packName: Palo Alto Networks Security Advisories
+    packPropagationLabels:
+    - all
+    propagationLabels: []
+    toServerVersion: ""
+description: Queries the public repository of PAN-OS CVEs.
+detaileddescription: |-
+  Note: This is a beta Integration, which lets you implement and test pre-release software. Since the integration is beta, it might contain bugs. Updates to the integration during the beta phase might include non-backward compatible features. We appreciate your feedback on the quality and usability of the integration to help us identify issues, fix them, and continually improve.
+
+
+  ---
+  [View Integration Documentation](https://xsoar.pan.dev/docs/reference/integrations/palo-alto-networks-security-advisories)
+display: Palo Alto Networks Security Advisories (Beta)
+image: data:image/png;base64,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
+name: Palo Alto Networks Security Advisories
+script:
+  commands:
+  - arguments:
+    - default: true
+      defaultValue: PAN-OS
+      description: Product name to search for advisories; valid values for this item
+        can be found in the sidebar at https://security.paloaltonetworks.com/
+      name: product
+    - defaultValue: -date
+      description: Sort returned advisories by this value, can be date, cvss, etc.
+        Leading hyphpen (-) indicates reverse search.
+      name: sort
+    - auto: PREDEFINED
+      description: Filter advisories to this severity level only.
+      name: severity
+      predefined:
+      - HIGH
+      - CRITICAL
+      - MEDIUM
+      - LOW
+      - NONE
+    - description: Text search query - supports same search syntax as the GUI filter
+        field
+      name: q
+    description: Gets all the advisories for the given product.
+    name: pan-advisories-get-advisories
+    outputs:
+    - contextPath: PANSecurityAdvisory.Advisory.data_type
+      description: The type of advisory this is
+      type: String
+    - contextPath: PANSecurityAdvisory.Advisory.data_format
+      description: The format of the advisory, such as MITRE
+      type: String
+    - contextPath: PANSecurityAdvisory.Advisory.cve_id
+      description: The ID of the CVE described by this advisory
+      type: String
+    - contextPath: PANSecurityAdvisory.Advisory.cve_date_public
+      description: The date this CVE was released
+      type: String
+    - contextPath: PANSecurityAdvisory.Advisory.cve_title
+      description: The name of this CVE
+      type: String
+    - contextPath: PANSecurityAdvisory.Advisory.description
+      description: Human readable description of Advisory
+      type: String
+    - contextPath: PANSecurityAdvisory.Advisory.cvss_score
+      description: The CVSS Score
+      type: String
+    - contextPath: PANSecurityAdvisory.Advisory.cvss_severity
+      description: The CVSS Severity
+      type: String
+    - contextPath: PANSecurityAdvisory.Advisory.cvss_vector_string
+      description: The CVSS Vector string
+      type: String
+    - contextPath: PANSecurityAdvisory.Advisory.affected_version_list
+      description: List of affected versions strings
+      type: String
+  dockerimage: demisto/python3:3.10.4.30607
+  feed: true
+  runonce: false
+  script: |
+    register_module_line('Palo Alto Networks Security Advisories', 'start', __line__())
+
+
+
+    from typing import List, Dict
+    from dataclasses import dataclass
+    import enum
+
+    OUTPUT_PREFIX = "PANSecurityAdvisory."
+
+
+    class Client(BaseClient):
+        """The client that conects to the advisories API"""
+        PRODUCTS_ENDPOINT = "/products"
+        ADVISORIES_ENDPOINT = "/advisories"
+
+        def __init__(self, base_url, api_timeout=60, verify=True, proxy=False,
+                     ok_codes=tuple(), headers=None):
+            super().__init__(base_url, verify=verify, proxy=proxy, ok_codes=ok_codes, headers=headers)
+            self.api_timeout = api_timeout
+
+        def get_products(self):
+            """
+            Gets the list of Supported Products by the Advisories API
+            """
+            return self._http_request(
+                method='GET',
+                url_suffix=Client.PRODUCTS_ENDPOINT,
+                timeout=self.api_timeout
+            )
+
+        def get_advisories(self, product: str, params: dict):
+            """
+            Gets the list of advisories
+            :product: Required Product name to list advisories for
+            :params: Optional list of GET parameters to include in the request.
+            """
+            params = params or {}
+            return self._http_request(
+                method='GET',
+                url_suffix=f"{Client.PRODUCTS_ENDPOINT}/{product}{Client.ADVISORIES_ENDPOINT}",
+                timeout=self.api_timeout,
+                params=params
+            )
+
+
+    def dataclass_to_command_results(result: Any, raw_response: Union[List, Dict]) -> CommandResults:
+        """Takes a list, or a single, dataclass instance and converts it to a CommandResult instance."""
+        if not result:
+            command_result = CommandResults(
+                readable_output="No results.",
+            )
+            return command_result
+
+        outputs: Union[List[Dict], Dict, Any]
+        if isinstance(result, list):
+            outputs = [vars(x) for x in result]
+            summary_list = [vars(x) for x in result]
+            title = result[0]._title
+            output_prefix = result[0]._output_prefix
+        else:
+            outputs = vars(result)
+            summary_list = [vars(result)]
+            title = result._title
+            output_prefix = result._output_prefix
+
+        extra_args = {}
+        if hasattr(result, "_outputs_key_field"):
+            extra_args["outputs_key_field"] = getattr(result, "_outputs_key_field")
+
+        readable_output = tableToMarkdown(title, summary_list)
+        command_result = CommandResults(
+            outputs_prefix=output_prefix,
+            outputs=outputs,
+            readable_output=readable_output,
+            raw_response=raw_response,
+            **extra_args
+        )
+        return command_result
+
+
+    @dataclass
+    class Advisory:
+        """
+        :param data_type: The type of advisory this is
+        :param data_format: The format of the advisory, such as MITRE
+        :param cve_id: The ID of the CVE described by this advisory
+        :param cve_date_public: The date this CVE was released
+        :param cve_title: The name of this CVE
+        :param affects_product_name: The name of the product this affects, such as PAN-OS
+        :param description: Human readable description of Advisory
+        :param affected_version_list: List of affected versions strings
+        """
+        data_type: str
+        data_format: str
+        cve_id: str
+        cve_date_public: str
+        cve_title: str
+        description: str
+        cvss_score: int
+        cvss_severity: str
+        cvss_vector_string: str
+        affected_version_list: list
+
+        _output_prefix = OUTPUT_PREFIX + "Advisory"
+        _title = "Palo Alto Networks Security Advisories"
+
+
+    class SeverityEnum(enum.Enum):
+        HIGH = "HIGH"
+        CRITICAL = "CRITICAL"
+        MEDIUM = "MEDIUM"
+        LOW = "LOW"
+        NONE = "NONE"
+
+
+    def flatten_advisory_dict(advisory_dict: dict) -> Advisory:
+        """Given a dictionary advisory, return an `Advisory` object"""
+
+        return Advisory(
+            data_type=advisory_dict.get("data_type", ""),
+            data_format=advisory_dict.get("data_format", ""),
+            cve_id=advisory_dict.get("CVE_data_meta", {}).get("ID", ""),
+            cve_title=advisory_dict.get("CVE_data_meta", {}).get("TITLE", ""),
+            cve_date_public=advisory_dict.get("CVE_data_meta", {}).get("DATE_PUBLIC", ""),
+            description=advisory_dict.get("description", {}).get("description_data", [])[0].get("value", ""),
+            cvss_score=advisory_dict.get("impact", {}).get("cvss", {}).get("baseScore", ""),
+            cvss_severity=advisory_dict.get("impact", {}).get("cvss", {}).get("baseSeverity", ""),
+            cvss_vector_string=advisory_dict.get("impact", {}).get("cvss", {}).get("vectorString", ""),
+            affected_version_list=advisory_dict.get("x_affectedList", ""),
+        )
+
+
+    def test_module(client: Client):
+        """Test the connectivity to the advisory API by checking for products"""
+        request_result = client.get_products()
+        if request_result.get("success"):
+            return "ok"
+
+
+    def get_advisories(client: Client, product: str, sort: str = "-date", severity: SeverityEnum = None, q: str = "") \
+            -> CommandResults:
+        """
+        Gets all the advisories for the given product.
+        :param client: HTTP Client !no-auto-argument
+        :param product: Product name to search for advisories
+        :param sort: Sort returned advisories by this value, can be date, cvss, etc. Leading hyphpen (-) indicates reverse search.
+        :param severity: Filter advisories to this severity level only.
+        :param q: Text search query
+        """
+        params_dict = {
+            "severity": severity,
+            "sort": sort,
+            "product": product
+        }
+        if q:
+            params_dict["q"] = f"\"{q}\""
+
+        advisory_data = client.get_advisories(product, params_dict).get("data", {})
+
+        advisory_object_list: List[Advisory] = []
+        advisory_dict: dict
+        for advisory_dict in advisory_data:
+            advisory_object_list.append(flatten_advisory_dict(advisory_dict))
+
+        return dataclass_to_command_results(advisory_object_list, raw_response=advisory_data)
+
+
+    def advisory_to_indicator(advisory_dict: dict):
+        """Convert the advisory dictionary into an indicator dictionary"""
+        return {
+            "value": advisory_dict.get("CVE_data_meta", {}).get("ID", ""),
+            "type": FeedIndicatorType.CVE,
+            "rawJSON": advisory_dict,
+            "fields": {
+                "cvss": advisory_dict.get("impact", {}).get("cvss", {}).get("baseScore", ""),
+                "cvedescription": advisory_dict.get("description", {}).get("description_data", [])[0].get("value", ""),
+                "cvssvector": advisory_dict.get("impact", {}).get("cvss", {}).get("vectorString", ""),
+                "sourceoriginalseverity": advisory_dict.get("impact", {}).get("cvss", {}).get("baseSeverity", ""),
+                "published": advisory_dict.get("CVE_data_meta", {}).get("DATE_PUBLIC", ""),
+            }
+        }
+
+
+    def fetch_indicators(client: Client, fetch_product_name="PAN-OS"):
+        """
+        Fetch Advisories as CVE indicators.
+        :param client: Client instance
+        :param fetch_product_name: The name of the product to fetch indicators for.
+        """
+        advisory_data = client.get_advisories(fetch_product_name, {}).get("data", {})
+        indicator_objects = []
+        for advisory_dict in advisory_data:
+            indicator_objects.append(advisory_to_indicator(advisory_dict))
+
+        return indicator_objects
+
+
+    def main():
+        """Main entrypoint for script"""
+        client = Client(
+            base_url=demisto.params().get("url")
+        )
+        command_name = demisto.command()
+        if command_name == "test-module":
+            return_results(test_module(client))
+        elif command_name == "pan-advisories-get-advisories":
+            return_results(get_advisories(client, **demisto.args()))
+        elif command_name == "fetch-indicators":
+            for b in batch(fetch_indicators(client, demisto.params().get("fetch_product_name"))):
+                demisto.createIndicators(b)
+
+
+    if __name__ in ('__main__', '__builtin__', 'builtins'):
+        main()
+
+    register_module_line('Palo Alto Networks Security Advisories', 'end', __line__())
+  subtype: python3
+  type: python
+system: true
