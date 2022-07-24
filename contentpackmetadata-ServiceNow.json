@@ -622,48 +622,48 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-07T16:56:45Z",
-	"currentVersion": "2.3.14",
+	"currentVersion": "2.3.15",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.7",
+			"minVersion": "1.31.8",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.2.8",
+			"minVersion": "2.2.10",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.7.12",
+			"minVersion": "1.7.14",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.2.37",
+			"minVersion": "3.2.40",
 			"name": "Common Types"
 		},
 		"Phishing": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.2.8",
+			"minVersion": "3.2.9",
 			"name": "Phishing"
 		}
 	},
 	"deprecated": false,
 	"description": "Use The ServiceNow IT Service Management (ITSM) solution to modernize the way you manage and deliver services to your users.",
-	"downloads": 16441,
+	"downloads": 17036,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -692,7 +692,7 @@
 			"name": "ServiceNow v2"
 		}
 	],
-	"itemVersion": "2.3.14",
+	"itemVersion": "2.3.15",
 	"keywords": [],
 	"legacy": true,
 	"name": "ServiceNow",
@@ -720,9 +720,9 @@
 		"Incident Mirroring"
 	],
 	"toServerVersion": "",
-	"updated": "2022-07-11T22:32:44Z",
+	"updated": "2022-07-12T22:22:54Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3243583",
+	"versionInfo": "3305407",
 	"videos": []
 }
