@@ -79,11 +79,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 08854949-08a5-4873-8f01-b3935c78675f
+      id: 2d22fa6f-c2b2-4590-8db3-4beed2956322
       iscommand: false
       name: ""
       version: -1
-    taskid: 08854949-08a5-4873-8f01-b3935c78675f
+    taskid: 2d22fa6f-c2b2-4590-8db3-4beed2956322
     timertriggers: []
     type: start
     view: |-
@@ -124,12 +124,12 @@ tasks:
     task:
       brand: ""
       description: Checks whether the Enrich playbook input is set to True.
-      id: a04c8331-e7c5-4107-8605-b6ee82d4639d
+      id: 9071f347-c5aa-4a7c-89a4-50823a88c223
       iscommand: false
       name: Should indicators be extracted and enriched?
       type: condition
       version: -1
-    taskid: a04c8331-e7c5-4107-8605-b6ee82d4639d
+    taskid: 9071f347-c5aa-4a7c-89a4-50823a88c223
     timertriggers: []
     type: condition
     view: |-
@@ -155,12 +155,12 @@ tasks:
     task:
       brand: ""
       description: Assigns a random analyst to this incident.
-      id: c74d18c6-9939-4701-828f-149cddba2b8d
+      id: d51d5612-c26a-410b-8ffa-1ab5104654bd
       iscommand: false
       name: Start Remediation SLA Timer
       type: title
       version: -1
-    taskid: c74d18c6-9939-4701-828f-149cddba2b8d
+    taskid: d51d5612-c26a-410b-8ffa-1ab5104654bd
     timertriggers:
     - action: start
       fieldname: remediationsla
@@ -187,12 +187,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: aca20665-33d5-4e20-866b-0b8f73cd90fc
+      id: 8787c3d0-f1f5-4210-816e-0ee330a58629
       iscommand: false
       name: Enrich Data
       type: title
       version: -1
-    taskid: aca20665-33d5-4e20-866b-0b8f73cd90fc
+    taskid: 8787c3d0-f1f5-4210-816e-0ee330a58629
     timertriggers: []
     type: title
     view: |-
@@ -253,12 +253,12 @@ tasks:
     task:
       brand: ""
       description: Manually review and investigate this incident.
-      id: e3efbacf-f8e3-4291-8ab7-459037ce9a64
+      id: 22f0e17c-e7e5-40b8-8e31-77e93bea37be
       iscommand: false
       name: Manually review the incident
       type: collection
       version: -1
-    taskid: e3efbacf-f8e3-4291-8ab7-459037ce9a64
+    taskid: 22f0e17c-e7e5-40b8-8e31-77e93bea37be
     timertriggers: []
     type: collection
     view: |-
@@ -290,13 +290,13 @@ tasks:
     task:
       brand: Builtin
       description: Closes the current incident.
-      id: 4b1a5788-3cef-4857-8023-dcd01dfa8793
+      id: 112141a3-f407-41ca-88cb-5ddb105daf27
       iscommand: true
       name: Close investigation
       script: Builtin|||closeInvestigation
       type: regular
       version: -1
-    taskid: 4b1a5788-3cef-4857-8023-dcd01dfa8793
+    taskid: 112141a3-f407-41ca-88cb-5ddb105daf27
     timertriggers: []
     type: regular
     view: |-
@@ -328,13 +328,13 @@ tasks:
       brand: Builtin
       description: Extracts all indicators from the incident and enriches the indicators
         by using the reputation command defined for each indicator type.
-      id: 354e53b0-0132-44d6-895e-0f6e0a248cd9
+      id: 367f2972-4aa0-42c1-8f37-3a137b0951d2
       iscommand: true
       name: Extract indicators from incident
       script: Builtin|||extractIndicators
       type: regular
       version: -1
-    taskid: 354e53b0-0132-44d6-895e-0f6e0a248cd9
+    taskid: 367f2972-4aa0-42c1-8f37-3a137b0951d2
     timertriggers: []
     type: regular
     view: |-
@@ -359,13 +359,13 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: e6df7983-dd60-487d-8fce-70f7f5766175
+      id: 497f7dde-bd62-4921-8ab5-eeed225a674b
       iscommand: false
       name: Entity Enrichment - Generic v2
       playbookId: Entity Enrichment - Generic v2
       type: playbook
       version: -1
-    taskid: e6df7983-dd60-487d-8fce-70f7f5766175
+    taskid: 497f7dde-bd62-4921-8ab5-eeed225a674b
     timertriggers: []
     type: playbook
     view: |-
@@ -387,12 +387,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: de6f9320-320d-4bd6-820f-b612a7a0c2c7
+      id: f966d558-4f9a-4ba1-8652-93268124a952
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: de6f9320-320d-4bd6-820f-b612a7a0c2c7
+    taskid: f966d558-4f9a-4ba1-8652-93268124a952
     timertriggers: []
     type: title
     view: |-
@@ -457,13 +457,13 @@ tasks:
     task:
       brand: ""
       description: Sends an email using EWS.
-      id: fd2276ce-b8ca-43f2-8d91-1ad091484e27
+      id: db11e066-485c-474a-81b4-f18421b47459
       iscommand: true
       name: Send investigation report to SOC
       script: '|||send-mail'
       type: regular
       version: -1
-    taskid: fd2276ce-b8ca-43f2-8d91-1ad091484e27
+    taskid: db11e066-485c-474a-81b4-f18421b47459
     timertriggers: []
     type: regular
     view: |-
@@ -490,12 +490,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 1b3aae31-8d82-401d-87cf-d0148d0b278b
+      id: c05a70f2-faf0-494d-8e2d-d587d2dcb8de
       iscommand: false
       name: Was this a true positive?
       type: condition
       version: -1
-    taskid: 1b3aae31-8d82-401d-87cf-d0148d0b278b
+    taskid: c05a70f2-faf0-494d-8e2d-d587d2dcb8de
     timertriggers: []
     type: condition
     view: |-
@@ -528,13 +528,13 @@ tasks:
       description: |-
         A script to generate the investigation summary report automatically
         can be used in the post-processing flow as well.
-      id: ff1b9850-ef10-4d42-80e3-39b72d8d01f8
+      id: e5500f60-cc5a-42cc-8618-8aee8f11e6c2
       iscommand: false
       name: Generate Investigation Summary Report
       script: GenerateInvestigationSummaryReport
       type: regular
       version: -1
-    taskid: ff1b9850-ef10-4d42-80e3-39b72d8d01f8
+    taskid: e5500f60-cc5a-42cc-8618-8aee8f11e6c2
     timertriggers: []
     type: regular
     view: |-
@@ -572,12 +572,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: b419c44d-1762-4553-8493-f9d7606af7bc
+      id: 08d071c8-815d-48f5-8c40-42d43330e8b7
       iscommand: false
       name: Use Calculate Severity?
       type: condition
       version: -1
-    taskid: b419c44d-1762-4553-8493-f9d7606af7bc
+    taskid: 08d071c8-815d-48f5-8c40-42d43330e8b7
     timertriggers: []
     type: condition
     view: |-
@@ -612,12 +612,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 670d8449-b528-465d-8b3f-6e22cda63229
+      id: 2149eabc-b15b-411a-8fdf-234997761363
       iscommand: false
       name: Was the SOC email address provided?
       type: condition
       version: -1
-    taskid: 670d8449-b528-465d-8b3f-6e22cda63229
+    taskid: 2149eabc-b15b-411a-8fdf-234997761363
     timertriggers: []
     type: condition
     view: |-
@@ -652,12 +652,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 355b3075-9035-4285-82b0-c4d63679b10c
+      id: a9f50bfc-31bb-4e5e-8b31-5a9a74c3eede
       iscommand: false
       name: Was the SIEM admin email address provided?
       type: condition
       version: -1
-    taskid: 355b3075-9035-4285-82b0-c4d63679b10c
+    taskid: a9f50bfc-31bb-4e5e-8b31-5a9a74c3eede
     timertriggers: []
     type: condition
     view: |-
@@ -689,13 +689,13 @@ tasks:
     task:
       brand: ""
       description: Assigns a random analyst to this incident.
-      id: 0c7b3033-c209-4a87-8ef5-63fbd907f68d
+      id: 47fa4a9f-79b2-4569-8cfd-2b73ec7fa9a3
       iscommand: false
       name: Assign an analyst to the incident
       script: AssignAnalystToIncident
       type: regular
       version: -1
-    taskid: 0c7b3033-c209-4a87-8ef5-63fbd907f68d
+    taskid: 47fa4a9f-79b2-4569-8cfd-2b73ec7fa9a3
     timertriggers: []
     type: regular
     view: |-
@@ -720,12 +720,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 381f98db-b60a-4514-89d8-959cd9189cb3
+      id: 2a3661f0-83fb-4c42-8aa9-1625c8556325
       iscommand: false
-      name: Post Incident Activity
+      name: XSOAR Exclude Indicators
       type: title
       version: -1
-    taskid: 381f98db-b60a-4514-89d8-959cd9189cb3
+    taskid: 2a3661f0-83fb-4c42-8aa9-1625c8556325
     timertriggers: []
     type: title
     view: |-
@@ -805,12 +805,12 @@ tasks:
       brand: ""
       description: Provide data to adjust the rule in order to avoid similar false
         positives in the future.
-      id: 4dfa75fe-917f-4eed-894a-3f2dfda362fc
+      id: 57849641-0dbc-49c6-86c5-bd275dad39a7
       iscommand: false
       name: Provide data for rule adjustment
       type: collection
       version: -1
-    taskid: 4dfa75fe-917f-4eed-894a-3f2dfda362fc
+    taskid: 57849641-0dbc-49c6-86c5-bd275dad39a7
     timertriggers: []
     type: collection
     view: |-
@@ -891,13 +891,13 @@ tasks:
     task:
       brand: ""
       description: Sends an email using EWS.
-      id: ed40e798-d16a-4f53-80ce-efd3b06cb023
+      id: 4a252f98-d4ad-41c3-8bea-6d379680d8f0
       iscommand: true
       name: Send email to SIEM admin
       script: '|||send-mail'
       type: regular
       version: -1
-    taskid: ed40e798-d16a-4f53-80ce-efd3b06cb023
+    taskid: 4a252f98-d4ad-41c3-8bea-6d379680d8f0
     timertriggers: []
     type: regular
     view: |-
@@ -922,12 +922,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 226309cb-824c-486f-8b8a-f977f03bba67
+      id: c773c6d9-0487-4821-8772-8dbfd644f286
       iscommand: false
       name: Investigation
       type: title
       version: -1
-    taskid: 226309cb-824c-486f-8b8a-f977f03bba67
+    taskid: c773c6d9-0487-4821-8772-8dbfd644f286
     timertriggers: []
     type: title
     view: |-
@@ -956,13 +956,13 @@ tasks:
     task:
       brand: Builtin
       description: Sets the incident status as false positive.
-      id: d8d79caa-94a4-4f02-8bda-d306a1357b34
+      id: 25e91d66-31ce-46ad-8254-3524f407f405
       iscommand: true
       name: Set as false positive
       script: Builtin|||setIncident
       type: regular
       version: -1
-    taskid: d8d79caa-94a4-4f02-8bda-d306a1357b34
+    taskid: 25e91d66-31ce-46ad-8254-3524f407f405
     timertriggers: []
     type: regular
     view: |-
@@ -988,12 +988,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 88147dfd-8093-46f6-8a63-5ef810b03328
+      id: 3014d720-969c-4bc8-8040-c6e92b66849a
       iscommand: false
       name: SIEM Admin
       type: title
       version: -1
-    taskid: 88147dfd-8093-46f6-8a63-5ef810b03328
+    taskid: 3014d720-969c-4bc8-8040-c6e92b66849a
     timertriggers: []
     type: title
     view: |-
@@ -1019,12 +1019,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: e02854a2-f41b-444b-8953-067035e160ca
+      id: f50dc0e1-aaac-44f4-8b79-a3ed79a7cbd0
       iscommand: false
       name: SOC Summary
       type: title
       version: -1
-    taskid: e02854a2-f41b-444b-8953-067035e160ca
+    taskid: f50dc0e1-aaac-44f4-8b79-a3ed79a7cbd0
     timertriggers: []
     type: title
     view: |-
@@ -1049,13 +1049,13 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: b6008b80-dc3e-4381-8c5f-5ead8aa3debe
+      id: d9539b01-5a5a-4bff-892f-19bbcfe898fd
       iscommand: false
       name: Calculate Severity - Standard
       playbookId: Calculate Severity - Standard
       type: playbook
       version: -1
-    taskid: b6008b80-dc3e-4381-8c5f-5ead8aa3debe
+    taskid: d9539b01-5a5a-4bff-892f-19bbcfe898fd
     timertriggers: []
     type: playbook
     view: |-
