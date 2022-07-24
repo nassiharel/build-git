@@ -301,7 +301,7 @@
 	"locked": false,
 	"modulePage": false,
 	"name": "zan_new_dash",
-	"owner": "",
+	"owner": "zcohen",
 	"packID": "",
 	"packName": "",
 	"period": {
@@ -312,7 +312,9 @@
 		"fromValue": 7,
 		"toValue": null
 	},
-	"propagationLabels": [],
+	"propagationLabels": [
+		"all"
+	],
 	"system": false,
 	"toDate": "0001-01-01T00:00:00Z",
 	"toServerVersion": "",
