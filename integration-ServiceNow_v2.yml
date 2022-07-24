@@ -97,14 +97,8 @@ configuration:
   type: 0
 - additionalinfo: Choose the tag to add to an entry to mirror it as a file in ServiceNow.
   defaultvalue: ForServiceNow
-  display: File Entry Tag To ServiceNow
+  display: File Entry Tag
   name: file_tag
-  required: false
-  type: 0
-- additionalinfo: Choose the tag to add to an entry to mirror it as a file from ServiceNow.
-  defaultvalue: FromServiceNow
-  display: File Entry Tag From ServiceNow
-  name: file_tag_from_service_now
   required: false
   type: 0
 - additionalinfo: According to the timestamp in this field, records will be queried
@@ -168,7 +162,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 2.3.15
+    itemVersion: 2.3.14
     packID: ServiceNow
     packName: ServiceNow
     packPropagationLabels:
@@ -1652,7 +1646,7 @@ script:
     - contextPath: ServiceNow.Generic.Response
       description: Generic response to servicenow api
       type: string
-  dockerimage: demisto/python3:3.10.5.31928
+  dockerimage: demisto/python3:3.10.4.30607
   isfetch: true
   ismappable: true
   isremotesyncin: true
@@ -3684,8 +3678,7 @@ script:
             'mirror_direction': MIRROR_DIRECTION.get(params.get('mirror_direction')),
             'mirror_tags': [
                 params.get('comment_tag'),
-                params.get('file_tag'),  # file tag to service now
-                params.get('file_tag_from_service_now'),
+                params.get('file_tag'),
                 params.get('work_notes_tag')
             ],
             'mirror_instance': demisto.integrationInstance()
@@ -3957,7 +3950,6 @@ script:
         if file_entries:
             for file in file_entries:
                 if '_mirrored_from_xsoar' not in file.get('File'):
-                    file['Tags'] = [params.get('file_tag_from_service_now')]
                     entries.append(file)
 
         sys_param_limit = args.get('limit', client.sys_param_limit)
@@ -4407,16 +4399,6 @@ script:
         mirror_limit = params.get('mirror_limit', '100') or '100'
         look_back = arg_to_number(params.get('look_back')) or 0
         add_custom_fields(params)
-
-        file_tag_from_service_now, file_tag_to_service_now = (
-            params.get('file_tag_from_service_now'), params.get('file_tag')
-        )
-
-        if file_tag_from_service_now == file_tag_to_service_now:
-            raise Exception(
-                f'File Entry Tag To ServiceNow and File Entry Tag '
-                f'From ServiceNow cannot be the same name [{file_tag_from_service_now}].'
-            )
 
         raise_exception = False
         try:
