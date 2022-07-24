@@ -41,7 +41,8 @@ contentitemexportablefields:
     itemVersion: ""
     packID: ""
     packName: ""
-    propagationLabels: []
+    propagationLabels:
+    - all
     toServerVersion: ""
 description: This is an integration that generates semi-random incidents based on
   give configuration
