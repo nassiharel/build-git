@@ -629,9 +629,6 @@
 				"query": "type:integration",
 				"sequenceNumber": 29457222,
 				"shouldCommit": false,
-				"sortValues": [
-					"598774"
-				],
 				"toServerVersion": "",
 				"vcShouldIgnore": false,
 				"vcShouldKeepItemLegacyProdMachine": false,
@@ -640,6 +637,316 @@
 			},
 			"x": 8,
 			"y": 3
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "29d10c70-082d-11ed-b0cf-5194701782f2",
+			"id": "29d10c70-082d-11ed-b0cf-5194701782f2",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "metrics",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"description": "Average runtime by Instance per Command (top 5)",
+				"fromServerVersion": "6.2.0",
+				"id": "runtime-per-command-per-instance",
+				"isPredefined": true,
+				"itemVersion": "1.2.7",
+				"modified": "2022-07-18T12:30:34.513914458Z",
+				"name": "Average runtime by Instance per Command (top 5)",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"command",
+						"instance"
+					],
+					"keys": [
+						"avg|duration"
+					],
+					"limitType": "top",
+					"referenceLine": {
+						"type": "avg"
+					},
+					"showGraphValues": false,
+					"showOthers": false,
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "count",
+							"position": 0
+						},
+						{
+							"isDefault": true,
+							"key": "data",
+							"position": 1
+						},
+						{
+							"isDefault": true,
+							"key": "floatData",
+							"position": 2
+						},
+						{
+							"isDefault": true,
+							"key": "groups",
+							"position": 3
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 4
+						},
+						{
+							"isDefault": true,
+							"key": "color",
+							"position": 5
+						}
+					],
+					"valuesFormat": "minutes",
+					"xAxisLabel": "Command name",
+					"yAxisLabel": "Runtime"
+				},
+				"prevName": "Average runtime by Instance per Command (top 5)",
+				"propagationLabels": [],
+				"query": "type:integration",
+				"shouldCommit": false,
+				"size": 5,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 6,
+				"widgetType": "column"
+			},
+			"x": 2,
+			"y": 6
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "34daf9f0-082d-11ed-b0cf-5194701782f2",
+			"id": "34daf9f0-082d-11ed-b0cf-5194701782f2",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "metrics",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"description": "Average runtime per Automation (top 5)",
+				"fromServerVersion": "6.2.0",
+				"id": "average-runtime-per-automation-top-5",
+				"isPredefined": true,
+				"itemVersion": "1.2.7",
+				"modified": "2022-07-18T12:30:34.512916017Z",
+				"name": "Average runtime per Automation (top 5)",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"name"
+					],
+					"keys": [
+						"avg|duration"
+					],
+					"referenceLine": {
+						"type": "avg"
+					},
+					"showOthers": false,
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "count",
+							"position": 0
+						},
+						{
+							"isDefault": true,
+							"key": "data",
+							"position": 1
+						},
+						{
+							"isDefault": true,
+							"key": "floatData",
+							"position": 2
+						},
+						{
+							"isDefault": true,
+							"key": "groups",
+							"position": 3
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 4
+						},
+						{
+							"isDefault": true,
+							"key": "pivot",
+							"position": 5
+						},
+						{
+							"isDefault": true,
+							"key": "color",
+							"position": 6
+						}
+					],
+					"valuesFormat": "minutes",
+					"xAxisLabel": "",
+					"yAxisLabel": ""
+				},
+				"prevName": "Average runtime per Automation (top 5)",
+				"propagationLabels": [],
+				"query": "type:automation",
+				"shouldCommit": false,
+				"size": 5,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 6,
+				"widgetType": "column"
+			},
+			"x": 4,
+			"y": 6
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "3749fe20-082d-11ed-b0cf-5194701782f2",
+			"id": "3749fe20-082d-11ed-b0cf-5194701782f2",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "metrics",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"description": "Average runtime per Playbook (top 5)",
+				"fromServerVersion": "6.2.0",
+				"id": "runtime-per-playbook",
+				"isPredefined": true,
+				"itemVersion": "1.2.7",
+				"modified": "2022-07-18T12:30:34.512977022Z",
+				"name": "Average runtime per Playbook (top 5)",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"name"
+					],
+					"keys": [
+						"avg|duration"
+					],
+					"limitType": "top",
+					"referenceLine": {
+						"type": "avg"
+					},
+					"showGraphValues": true,
+					"showOthers": false,
+					"tableColumns": [
+						{
+							"isDefault": true,
+							"key": "count",
+							"position": 0
+						},
+						{
+							"isDefault": true,
+							"key": "data",
+							"position": 1
+						},
+						{
+							"isDefault": true,
+							"key": "floatData",
+							"position": 2
+						},
+						{
+							"isDefault": true,
+							"key": "groups",
+							"position": 3
+						},
+						{
+							"isDefault": true,
+							"key": "name",
+							"position": 4
+						},
+						{
+							"isDefault": true,
+							"key": "color",
+							"position": 5
+						}
+					],
+					"valuesFormat": "days",
+					"xAxisLabel": "",
+					"yAxisLabel": ""
+				},
+				"prevName": "Average runtime per Playbook (top 5)",
+				"propagationLabels": [],
+				"query": "type:playbook",
+				"shouldCommit": false,
+				"size": 5,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 6,
+				"widgetType": "column"
+			},
+			"x": 6,
+			"y": 6
 		}
 	],
 	"locked": false,
