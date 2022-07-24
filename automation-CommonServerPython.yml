@@ -7,11 +7,10 @@ contentitemexportablefields:
     definitionid: ""
     fromServerVersion: 5.0.0
     itemVersion: 1.31.8
-    packID: Base
+    packID: ""
     packName: Base
-    packPropagationLabels:
+    propagationLabels:
     - all
-    propagationLabels: []
     toServerVersion: ""
 dockerimage: demisto/python:2.7.18.27799
 engineinfo: {}
