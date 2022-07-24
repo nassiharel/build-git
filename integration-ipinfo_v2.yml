@@ -41,7 +41,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.1.3
+    itemVersion: 2.1.2
     packID: ipinfo
     packName: Ipinfo
     packPropagationLabels:
