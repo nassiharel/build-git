@@ -136,11 +136,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: ccd00127-175c-4a93-8edb-14e71f7d47ea
+      id: 417d0d64-40ab-4391-8645-d25a88a5745b
       iscommand: false
       name: ""
       version: -1
-    taskid: ccd00127-175c-4a93-8edb-14e71f7d47ea
+    taskid: 417d0d64-40ab-4391-8645-d25a88a5745b
     timertriggers: []
     type: start
     view: |-
@@ -180,13 +180,13 @@ tasks:
         the identified entry ID to context for later use. Commonly used in automated
         playbooks that handle phishing reports sent to a special phishing mailbox
         set up by the security team.
-      id: 64fb00a1-ae02-41d5-8dc0-7659d01f90cc
+      id: cd9b9904-9404-4e03-8471-7cbdfc42a7f5
       iscommand: false
       name: Is there an email file attached?
       script: IdentifyAttachedEmail
       type: condition
       version: -1
-    taskid: 64fb00a1-ae02-41d5-8dc0-7659d01f90cc
+    taskid: cd9b9904-9404-4e03-8471-7cbdfc42a7f5
     timertriggers: []
     type: condition
     view: |-
@@ -221,13 +221,13 @@ tasks:
       brand: ""
       description: Saves the email data extracted by the configured email listener
         integration to the context. Also extracts indicators from the email message.
-      id: 523c57ff-ad78-4aa1-8d24-6ee2518d84ef
+      id: f191cb0f-c30e-4b13-85d5-7e9cc0d0eca9
       iscommand: false
       name: Save email details
       script: Set
       type: regular
       version: -1
-    taskid: 523c57ff-ad78-4aa1-8d24-6ee2518d84ef
+    taskid: f191cb0f-c30e-4b13-85d5-7e9cc0d0eca9
     timertriggers: []
     type: regular
     view: |-
@@ -262,13 +262,13 @@ tasks:
       description: Parses an email from an EML or MSG file and populates all relevant
         context data to investigate the email. Also extracts indicators from the email
         messages.
-      id: aad80f9a-e552-43ae-88fc-81ab3ef53c11
+      id: 0dec180b-1aa7-4be0-8da6-06450541afd3
       iscommand: false
       name: Extract and save email details
       script: ParseEmailFiles
       type: regular
       version: -1
-    taskid: aad80f9a-e552-43ae-88fc-81ab3ef53c11
+    taskid: 0dec180b-1aa7-4be0-8da6-06450541afd3
     timertriggers: []
     type: regular
     view: |-
@@ -290,12 +290,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: dd0d5106-965e-4a81-8e67-79392ea47d7f
+      id: dd73fff8-139c-4b37-8026-9de22c4ac192
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: dd0d5106-965e-4a81-8e67-79392ea47d7f
+    taskid: dd73fff8-139c-4b37-8026-9de22c4ac192
     timertriggers: []
     type: title
     view: |-
@@ -476,13 +476,13 @@ tasks:
     task:
       brand: Builtin
       description: Updates Demisto incident fields using data from the email object.
-      id: 553f9128-f60b-488d-8650-ad9648501964
+      id: e403fb06-d4ba-4b62-8683-20dbbed1a308
       iscommand: true
       name: Set incident with the email object data
       script: Builtin|||setIncident
       type: regular
       version: -1
-    taskid: 553f9128-f60b-488d-8650-ad9648501964
+    taskid: e403fb06-d4ba-4b62-8683-20dbbed1a308
     timertriggers: []
     type: regular
     view: |-
@@ -521,12 +521,12 @@ tasks:
       brand: ""
       description: Checks whether the email headers were extracted from the original
         email that was either attached or retrieved using available email integrations.
-      id: c5bbf8a9-443c-4f8c-8956-536f0db06c6f
+      id: 86804da5-5fcc-42da-8099-90538746c394
       iscommand: false
       name: Were email headers extracted successfully?
       type: condition
       version: -1
-    taskid: c5bbf8a9-443c-4f8c-8956-536f0db06c6f
+    taskid: 86804da5-5fcc-42da-8099-90538746c394
     timertriggers: []
     type: condition
     view: |-
@@ -567,13 +567,13 @@ tasks:
       brand: ""
       description: Fills the "Email Headers" grid field in the incident layout with
         the email attachment's headers.
-      id: 7d54a7f8-9ca8-41d2-85f1-7ac15a293e3f
+      id: 3decded8-0b15-458a-8cc1-0785571acdd7
       iscommand: false
       name: Display email headers in layout
       script: SetGridField
       type: regular
       version: -1
-    taskid: 7d54a7f8-9ca8-41d2-85f1-7ac15a293e3f
+    taskid: 3decded8-0b15-458a-8cc1-0785571acdd7
     timertriggers: []
     type: regular
     view: |-
@@ -599,12 +599,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 392db71e-012e-4790-8e1e-b17400e369aa
+      id: bf76e921-e959-4044-8ee3-16c4195eae43
       iscommand: false
       name: incident Layout Display
       type: title
       version: -1
-    taskid: 392db71e-012e-4790-8e1e-b17400e369aa
+    taskid: bf76e921-e959-4044-8ee3-16c4195eae43
     timertriggers: []
     type: title
     view: |-
@@ -642,12 +642,12 @@ tasks:
     task:
       brand: ""
       description: Checks whether the incident contains any kind of file.
-      id: c4dc2d49-779c-4523-8eaa-137336db2ea4
+      id: f200d91b-b8d9-4925-8b8e-28d384f630fe
       iscommand: false
       name: Are there any files in the incident?
       type: condition
       version: -1
-    taskid: c4dc2d49-779c-4523-8eaa-137336db2ea4
+    taskid: f200d91b-b8d9-4925-8b8e-28d384f630fe
     timertriggers: []
     type: condition
     view: |-
@@ -681,13 +681,13 @@ tasks:
       description: Saves the files that were initially involved with the incident
         in a separate context key so that they are available separate from email attachment
         files.
-      id: 2fad5bba-f024-46cc-8522-1b2cff26af2a
+      id: d1670683-6b8c-40d5-8f54-7b7bf10ab60e
       iscommand: false
       name: Save incident files separately from email attachments
       script: SetAndHandleEmpty
       type: regular
       version: -1
-    taskid: 2fad5bba-f024-46cc-8522-1b2cff26af2a
+    taskid: d1670683-6b8c-40d5-8f54-7b7bf10ab60e
     timertriggers: []
     type: regular
     view: |-
@@ -717,12 +717,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 2da109d4-c6b6-48f8-8fe2-72c9128e2cbd
+      id: c998f106-6cc9-4ee9-84e3-2c6e63d9345f
       iscommand: false
       name: Attachment Info
       type: title
       version: -1
-    taskid: 2da109d4-c6b6-48f8-8fe2-72c9128e2cbd
+    taskid: c998f106-6cc9-4ee9-84e3-2c6e63d9345f
     timertriggers: []
     type: title
     view: |-
@@ -772,13 +772,13 @@ tasks:
     task:
       brand: ""
       description: Saves the extensions of the email attachments.
-      id: 0dc2d34b-6f8d-4eae-85ba-243d137ca699
+      id: 01281079-ca92-4cd7-8f3e-9c6045682791
       iscommand: false
       name: Save attachment extensions
       script: SetAndHandleEmpty
       type: regular
       version: -1
-    taskid: 0dc2d34b-6f8d-4eae-85ba-243d137ca699
+    taskid: 01281079-ca92-4cd7-8f3e-9c6045682791
     timertriggers: []
     type: regular
     view: |-
@@ -823,13 +823,13 @@ tasks:
     task:
       brand: ""
       description: Saves the number of email attachments.
-      id: 379627c5-3eef-4732-82fb-d813d944dca2
+      id: fea54e2c-e7ee-49f4-8c8e-35c31a9f6c3c
       iscommand: false
       name: Save number of attachments
       script: SetAndHandleEmpty
       type: regular
       version: -1
-    taskid: 379627c5-3eef-4732-82fb-d813d944dca2
+    taskid: fea54e2c-e7ee-49f4-8c8e-35c31a9f6c3c
     timertriggers: []
     type: regular
     view: |-
@@ -879,13 +879,13 @@ tasks:
     task:
       brand: ""
       description: Saves the MD5 hashes of the email attachments.
-      id: 1cb924b2-7869-4e11-8397-a6631ecaffab
+      id: fb983968-3fef-4c6b-8e1d-b85073183080
       iscommand: false
       name: Save attachment MD5 hashes
       script: SetAndHandleEmpty
       type: regular
       version: -1
-    taskid: 1cb924b2-7869-4e11-8397-a6631ecaffab
+    taskid: fb983968-3fef-4c6b-8e1d-b85073183080
     timertriggers: []
     type: regular
     view: |-
@@ -935,13 +935,13 @@ tasks:
     task:
       brand: ""
       description: Saves the sizes in bytes of the email attachments.
-      id: c8b63a5f-604d-43c0-8e76-150e8af17d2f
+      id: 11be60be-8059-4068-8ece-8ee341a13d4c
       iscommand: false
       name: Save attachment sizes
       script: SetAndHandleEmpty
       type: regular
       version: -1
-    taskid: c8b63a5f-604d-43c0-8e76-150e8af17d2f
+    taskid: 11be60be-8059-4068-8ece-8ee341a13d4c
     timertriggers: []
     type: regular
     view: |-
@@ -991,13 +991,13 @@ tasks:
     task:
       brand: ""
       description: Saves the names of the email attachments.
-      id: 21bd6c50-ff4d-4fb0-805c-2ed39cf30e98
+      id: ace87f0a-b07a-41b3-88b5-75573e9c836c
       iscommand: false
       name: Save attachment names
       script: SetAndHandleEmpty
       type: regular
       version: -1
-    taskid: 21bd6c50-ff4d-4fb0-805c-2ed39cf30e98
+    taskid: ace87f0a-b07a-41b3-88b5-75573e9c836c
     timertriggers: []
     type: regular
     view: |-
@@ -1047,13 +1047,13 @@ tasks:
     task:
       brand: ""
       description: Saves the names of the email attachments.
-      id: 68afd2e1-4539-4aff-8aaf-a4ca1811b88d
+      id: 06549ce4-2af3-4ee4-8ab5-3e00ea6fe852
       iscommand: false
       name: Save attachment types
       script: SetAndHandleEmpty
       type: regular
       version: -1
-    taskid: 68afd2e1-4539-4aff-8aaf-a4ca1811b88d
+    taskid: 06549ce4-2af3-4ee4-8ab5-3e00ea6fe852
     timertriggers: []
     type: regular
     view: |-
