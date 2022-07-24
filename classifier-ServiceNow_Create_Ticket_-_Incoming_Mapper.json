@@ -10,10 +10,10 @@
 	"incidentSamples": null,
 	"indicatorSamples": null,
 	"instanceIds": null,
-	"itemVersion": "2.3.15",
+	"itemVersion": "2.3.14",
 	"keyTypeMap": null,
 	"locked": false,
-	"logicalVersion": 0,
+	"logicalVersion": 1,
 	"mapping": {
 		"ServiceNow Ticket": {
 			"dontMapEventToLabels": false,
