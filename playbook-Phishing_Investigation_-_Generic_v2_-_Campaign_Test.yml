@@ -37,11 +37,11 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: ed2babf7-f76c-4cce-834e-ee0dc0064ad1
+      id: d10aec77-2709-4564-819a-aa557fa4ac39
       iscommand: false
       name: ""
       version: -1
-    taskid: ed2babf7-f76c-4cce-834e-ee0dc0064ad1
+    taskid: d10aec77-2709-4564-819a-aa557fa4ac39
     timertriggers: []
     type: start
     view: |-
@@ -78,13 +78,13 @@ tasks:
     task:
       brand: ""
       description: Delete field from context
-      id: 9d42a13b-2c76-4fd5-8de7-c9ef2733fe0c
+      id: 2f9f519e-7fb2-42a9-8d78-4ad19edc5d52
       iscommand: false
       name: Delete context
       script: DeleteContext
       type: regular
       version: -1
-    taskid: 9d42a13b-2c76-4fd5-8de7-c9ef2733fe0c
+    taskid: 2f9f519e-7fb2-42a9-8d78-4ad19edc5d52
     timertriggers: []
     type: regular
     view: |-
@@ -142,13 +142,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: 3a2bfa31-335b-4451-88ea-80097743948e
+      id: a7b8d9d1-49c7-48dc-89fb-70b7ccb5f6a0
       iscommand: true
       name: Create new low similarity incident victim 6
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: 3a2bfa31-335b-4451-88ea-80097743948e
+    taskid: a7b8d9d1-49c7-48dc-89fb-70b7ccb5f6a0
     timertriggers: []
     type: regular
     view: |-
@@ -177,13 +177,13 @@ tasks:
     task:
       brand: Builtin
       description: Sleep for X seconds
-      id: 373be617-aeb6-4d9e-8331-29d14917bd7a
+      id: f064397d-bff1-428d-8858-431728ddccae
       iscommand: false
       name: Sleep to let incidents settle down
       script: Sleep
       type: regular
       version: -1
-    taskid: 373be617-aeb6-4d9e-8331-29d14917bd7a
+    taskid: f064397d-bff1-428d-8858-431728ddccae
     timertriggers: []
     type: regular
     view: |-
@@ -218,13 +218,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.set.playbook
-      id: 1e4d59a3-eed5-4ac1-89a4-147a12858a67
+      id: cc948d12-fd22-4029-82fd-7ec05b3841c6
       iscommand: true
       name: Change to phishing playbook
       script: Builtin|||setPlaybook
       type: regular
       version: -1
-    taskid: 1e4d59a3-eed5-4ac1-89a4-147a12858a67
+    taskid: cc948d12-fd22-4029-82fd-7ec05b3841c6
     timertriggers: []
     type: regular
     view: |-
@@ -282,13 +282,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: 8093d724-ad8a-4573-8fa6-c9510eb334eb
+      id: 1814ab1c-95a0-408b-8bce-0bba1f6f5ea7
       iscommand: true
       name: Create new low similarity incident victim 1
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: 8093d724-ad8a-4573-8fa6-c9510eb334eb
+    taskid: 1814ab1c-95a0-408b-8bce-0bba1f6f5ea7
     timertriggers: []
     type: regular
     view: |-
@@ -346,13 +346,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: 109c36b2-24db-4982-8c7a-1e5a4e3946d1
+      id: dbad9c74-1eb7-4d7a-8772-538b68461041
       iscommand: true
       name: Create new incident victim 7
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: 109c36b2-24db-4982-8c7a-1e5a4e3946d1
+    taskid: dbad9c74-1eb7-4d7a-8772-538b68461041
     timertriggers: []
     type: regular
     view: |-
@@ -410,13 +410,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: 9ba33445-aac0-4e63-8bcb-3edf023c5710
+      id: 0d4dc783-3900-4fd5-8b07-04b8dfe0cb36
       iscommand: true
       name: Create new incident victim 5
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: 9ba33445-aac0-4e63-8bcb-3edf023c5710
+    taskid: 0d4dc783-3900-4fd5-8b07-04b8dfe0cb36
     timertriggers: []
     type: regular
     view: |-
@@ -474,13 +474,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: d2cd8aeb-e383-4f45-8923-3a29f3f6f0c6
+      id: f4dda8de-a5fc-4f20-853e-d810f9e8d139
       iscommand: true
       name: Create new incident victim 4 (different sender)
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: d2cd8aeb-e383-4f45-8923-3a29f3f6f0c6
+    taskid: f4dda8de-a5fc-4f20-853e-d810f9e8d139
     timertriggers: []
     type: regular
     view: |-
@@ -538,13 +538,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: fd64b080-460a-4d8d-8a89-75dcc08b3b11
+      id: a83da553-fffa-43b3-8517-84eb35cd264e
       iscommand: true
       name: Create new incident victim 3 (different sender)
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: fd64b080-460a-4d8d-8a89-75dcc08b3b11
+    taskid: a83da553-fffa-43b3-8517-84eb35cd264e
     timertriggers: []
     type: regular
     view: |-
@@ -602,13 +602,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: c8853cdf-1d74-419a-84ab-03284cb99224
+      id: 58461da8-a047-4b44-8385-024a69743375
       iscommand: true
       name: Create new incident victim 1
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: c8853cdf-1d74-419a-84ab-03284cb99224
+    taskid: 58461da8-a047-4b44-8385-024a69743375
     timertriggers: []
     type: regular
     view: |-
@@ -666,13 +666,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: 25806b31-962e-4630-8d13-07af44a03061
+      id: 89221398-88f0-4ddf-8071-48666550ad57
       iscommand: true
       name: Create new incident victim 1
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: 25806b31-962e-4630-8d13-07af44a03061
+    taskid: 89221398-88f0-4ddf-8071-48666550ad57
     timertriggers: []
     type: regular
     view: |-
@@ -701,13 +701,13 @@ tasks:
     task:
       brand: ""
       description: Sleep for X seconds
-      id: 8891f3c5-1a99-40f0-8f24-202c27f79592
+      id: 497b5227-062c-4a5c-8f23-56e3f185c572
       iscommand: false
       name: Sleep 30 sec
       script: Sleep
       type: regular
       version: -1
-    taskid: 8891f3c5-1a99-40f0-8f24-202c27f79592
+    taskid: 497b5227-062c-4a5c-8f23-56e3f185c572
     timertriggers: []
     type: regular
     view: |-
@@ -742,13 +742,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.set.playbook
-      id: 98359f11-b935-4033-8515-3a4bb0cd7d91
+      id: 20b01e36-b4c5-402a-8bc3-82fdc6093796
       iscommand: true
       name: Change to phishing playbook
       script: Builtin|||setPlaybook
       type: regular
       version: -1
-    taskid: 98359f11-b935-4033-8515-3a4bb0cd7d91
+    taskid: 20b01e36-b4c5-402a-8bc3-82fdc6093796
     timertriggers: []
     type: regular
     view: |-
@@ -780,13 +780,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.investigate
-      id: f4a7e820-23fd-4b1b-8c47-2c6112fde884
+      id: ec45d617-ced9-4d9a-84d1-82890e92f385
       iscommand: true
       name: Investigate the incidents
       script: Builtin|||investigate
       type: regular
       version: -1
-    taskid: f4a7e820-23fd-4b1b-8c47-2c6112fde884
+    taskid: ec45d617-ced9-4d9a-84d1-82890e92f385
     timertriggers: []
     type: regular
     view: |-
@@ -842,13 +842,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: dc8dfac7-dc2b-4926-82fe-bef4bd9888e8
+      id: 8cbf9137-14bb-4e56-89e2-f00af817f081
       iscommand: true
       name: Create new incident victim 9
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: dc8dfac7-dc2b-4926-82fe-bef4bd9888e8
+    taskid: 8cbf9137-14bb-4e56-89e2-f00af817f081
     timertriggers: []
     type: regular
     view: |-
@@ -905,13 +905,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.create.inc
-      id: d3857d2a-117e-4d29-875e-529520893645
+      id: 8f326a48-c705-4a73-8cda-053e2790afcc
       iscommand: true
       name: Create new incident victim 10
       script: Builtin|||createNewIncident
       type: regular
       version: -1
-    taskid: d3857d2a-117e-4d29-875e-529520893645
+    taskid: 8f326a48-c705-4a73-8cda-053e2790afcc
     timertriggers: []
     type: regular
     view: |-
@@ -943,13 +943,13 @@ tasks:
     task:
       brand: ""
       description: Delete field from context
-      id: 16846df5-0fc6-4733-88ab-8c5f591895b7
+      id: 54c38d1e-44bd-4b9c-887b-fea654098078
       iscommand: false
       name: Delete previously created IDs
       script: DeleteContext
       type: regular
       version: -1
-    taskid: 16846df5-0fc6-4733-88ab-8c5f591895b7
+    taskid: 54c38d1e-44bd-4b9c-887b-fea654098078
     timertriggers: []
     type: regular
     view: |-
@@ -981,13 +981,13 @@ tasks:
     task:
       brand: ""
       description: Sleep for X seconds
-      id: 948b62b8-1b22-453e-852b-1144607d8349
+      id: be580130-096d-49cd-8d9b-eb53825d5093
       iscommand: false
       name: Wait for a 5 minutes
       script: Sleep
       type: regular
       version: -1
-    taskid: 948b62b8-1b22-453e-852b-1144607d8349
+    taskid: be580130-096d-49cd-8d9b-eb53825d5093
     timertriggers: []
     type: regular
     view: |-
@@ -1026,13 +1026,13 @@ tasks:
     task:
       brand: ""
       description: Searches Demisto incidents
-      id: e64a6fe6-1499-4d32-8f3b-bab24243ced7
+      id: aa4b1fa5-b242-43ae-892a-2b04987e96c9
       iscommand: false
       name: Search for a campaign incident
       script: SearchIncidentsV2
       type: regular
       version: -1
-    taskid: e64a6fe6-1499-4d32-8f3b-bab24243ced7
+    taskid: aa4b1fa5-b242-43ae-892a-2b04987e96c9
     timertriggers: []
     type: regular
     view: |-
@@ -1069,12 +1069,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 77f8d8ed-86a3-4ae1-8341-9e81bfa29d4e
+      id: 90c60578-7825-413f-8843-b9bbfd68bbdd
       iscommand: false
       name: Was a campaign incident created?
       type: condition
       version: -1
-    taskid: 77f8d8ed-86a3-4ae1-8341-9e81bfa29d4e
+    taskid: 90c60578-7825-413f-8843-b9bbfd68bbdd
     timertriggers: []
     type: condition
     view: |-
@@ -1096,12 +1096,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: d750eb41-9049-40d8-8de3-cad36460c2e6
+      id: 9afbbff7-3095-4b97-8235-3040b839881e
       iscommand: false
       name: Done
       type: title
       version: -1
-    taskid: d750eb41-9049-40d8-8de3-cad36460c2e6
+    taskid: 9afbbff7-3095-4b97-8235-3040b839881e
     timertriggers: []
     type: title
     view: |-
@@ -1130,13 +1130,13 @@ tasks:
     task:
       brand: ""
       description: Prints an error entry with a given message
-      id: 21f70e52-d638-4f1e-8959-42b21d620df5
+      id: d46d46a6-27a0-4f69-8d57-a751b4d47801
       iscommand: false
       name: Error - a campaign was not created
       script: PrintErrorEntry
       type: regular
       version: -1
-    taskid: 21f70e52-d638-4f1e-8959-42b21d620df5
+    taskid: d46d46a6-27a0-4f69-8d57-a751b4d47801
     timertriggers: []
     type: regular
     view: |-
@@ -1178,13 +1178,13 @@ tasks:
     task:
       brand: ""
       description: Gets a value from the specified incident's context.
-      id: 895de2c7-fb60-42b6-8c78-4eb981c00f39
+      id: bf2008ea-71d2-4da9-8dd0-163cd390dcbe
       iscommand: false
       name: Get campaign context
       script: GetByIncidentId
       type: regular
       version: -1
-    taskid: 895de2c7-fb60-42b6-8c78-4eb981c00f39
+    taskid: bf2008ea-71d2-4da9-8dd0-163cd390dcbe
     timertriggers: []
     type: regular
     view: |-
@@ -1223,12 +1223,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 1ccee827-3c8a-4c64-889d-a52333579bd9
+      id: 23d93ed6-802f-460b-8ff4-1bc83483f6e7
       iscommand: false
       name: Does the campaign context contain incident data?
       type: condition
       version: -1
-    taskid: 1ccee827-3c8a-4c64-889d-a52333579bd9
+    taskid: 23d93ed6-802f-460b-8ff4-1bc83483f6e7
     timertriggers: []
     type: condition
     view: |-
@@ -1256,13 +1256,13 @@ tasks:
     task:
       brand: ""
       description: Prints an error entry with a given message
-      id: b65f56f0-7dbf-43cb-8287-b2e3e43774d7
+      id: 2406239b-20f5-46a1-8faf-bdeda22f283f
       iscommand: false
       name: Campaign lacks data
       script: PrintErrorEntry
       type: regular
       version: -1
-    taskid: b65f56f0-7dbf-43cb-8287-b2e3e43774d7
+    taskid: 2406239b-20f5-46a1-8faf-bdeda22f283f
     timertriggers: []
     type: regular
     view: |-
@@ -1294,13 +1294,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.investigate
-      id: 02d39535-942a-4ab5-810f-435a65f2c504
+      id: ed57b4b3-c880-4beb-87ba-147293c3c1fa
       iscommand: true
       name: Investigate the incidents
       script: Builtin|||investigate
       type: regular
       version: -1
-    taskid: 02d39535-942a-4ab5-810f-435a65f2c504
+    taskid: ed57b4b3-c880-4beb-87ba-147293c3c1fa
     timertriggers: []
     type: regular
     view: |-
@@ -1329,13 +1329,13 @@ tasks:
     task:
       brand: Builtin
       description: Sleep for X seconds
-      id: c28f6e24-1e26-4020-8243-1aae338038cf
+      id: 8debccad-d235-4785-8820-471482c22272
       iscommand: false
       name: Sleep to let incidents settle down
       script: Sleep
       type: regular
       version: -1
-    taskid: c28f6e24-1e26-4020-8243-1aae338038cf
+    taskid: 8debccad-d235-4785-8820-471482c22272
     timertriggers: []
     type: regular
     view: |-
