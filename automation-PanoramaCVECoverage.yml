@@ -21,7 +21,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.14.10
+    itemVersion: 1.14.12
     packID: PAN-OS
     packName: PAN-OS
     packPropagationLabels:
