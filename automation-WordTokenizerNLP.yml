@@ -115,7 +115,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.31.8
+    itemVersion: 1.31.9
     packID: Base
     packName: Base
     packPropagationLabels:
