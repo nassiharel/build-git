@@ -13,8 +13,16 @@
 	"itemVersion": "",
 	"keyTypeMap": {},
 	"locked": false,
-	"logicalVersion": 2,
+	"logicalVersion": 3,
 	"mapping": {
+		"Brute Force": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"zan_f2": {
+					"simple": "date"
+				}
+			}
+		},
 		"Phishing": {
 			"dontMapEventToLabels": false,
 			"internalMapping": {
