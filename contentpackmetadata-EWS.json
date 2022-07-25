@@ -465,28 +465,28 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-26T10:37:09Z",
-	"currentVersion": "1.12.1",
+	"currentVersion": "1.12.2",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.8",
+			"minVersion": "1.31.9",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.2.9",
+			"minVersion": "2.2.10",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.7.14",
+			"minVersion": "1.7.16",
 			"name": "Common Scripts"
 		},
 		"Phishing": {
@@ -499,7 +499,7 @@
 	},
 	"deprecated": false,
 	"description": "Exchange Web Services and Office 365 (mail)",
-	"downloads": 19603,
+	"downloads": 19857,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -532,7 +532,7 @@
 			"name": "O365 - Security And Compliance - Content Search"
 		}
 	],
-	"itemVersion": "1.12.1",
+	"itemVersion": "1.12.2",
 	"keywords": [],
 	"legacy": true,
 	"name": "EWS",
@@ -558,9 +558,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-07-17T22:51:55Z",
+	"updated": "2022-07-25T09:58:41Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3281367",
+	"versionInfo": "3326856",
 	"videos": []
 }
