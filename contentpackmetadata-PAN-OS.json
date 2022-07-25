@@ -498,7 +498,7 @@
 						"name": "pan-os-get-predefined-threats-list"
 					},
 					{
-						"description": "Commits a configuration to the Palo Alto firewall or Panorama, but does not validate if the commit was successful. Committing to Panorama does not push the configuration to the firewalls. To push the configuration, run the panorama-push-to-device-group command.",
+						"description": "Commits a configuration to the Palo Alto firewall or Panorama, validates if a commit was successful if using polling=\"true\" otherwise does not validate if the commit was successful. Committing to Panorama does not push the configuration to the firewalls. To push the configuration, run the panorama-push-to-device-group command.",
 						"name": "pan-os-commit"
 					},
 					{
@@ -1133,14 +1133,14 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-27T15:13:05Z",
-	"currentVersion": "1.14.10",
+	"currentVersion": "1.14.12",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.8",
+			"minVersion": "1.31.9",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
@@ -1154,13 +1154,13 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.7.14",
+			"minVersion": "1.7.16",
 			"name": "Common Scripts"
 		}
 	},
 	"deprecated": false,
 	"description": "Manage Palo Alto Networks Firewall and Panorama. For more information see Panorama documentation.",
-	"downloads": 16904,
+	"downloads": 17381,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1177,7 +1177,7 @@
 			"name": "Palo Alto Networks PAN-OS"
 		}
 	],
-	"itemVersion": "1.14.10",
+	"itemVersion": "1.14.12",
 	"keywords": [],
 	"legacy": true,
 	"name": "PAN-OS",
@@ -1203,9 +1203,9 @@
 	},
 	"tags": [],
 	"toServerVersion": "",
-	"updated": "2022-07-19T10:04:14Z",
+	"updated": "2022-07-25T10:05:44Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3290676",
+	"versionInfo": "3326856",
 	"videos": []
 }
