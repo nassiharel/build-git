@@ -1,0 +1,527 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: f7468e32-3d55-4023-82d9-c3aa935f1244
+inputs: []
+name: zan_test15_playbook_A_copy_copy
+outputs: []
+sourceplaybookid: c6223235-783a-4d89-89e7-927a4c06698d
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 7d71d59b-21d5-44d2-8b30-669be263c0d1
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 7d71d59b-21d5-44d2-8b30-669be263c0d1
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        simple: 1.1.1.1
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ipinfo_v2
+      description: Check IP reputation (when information is available, returns a JSON
+        with details). Uses all configured Threat Intelligence feeds.
+      id: 17638201-da77-4076-844a-700e36d78a98
+      iscommand: true
+      name: IpInfo - get data about an IP address
+      script: ipinfo_v2|||ip
+      type: regular
+      version: -1
+    taskid: 17638201-da77-4076-844a-700e36d78a98
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 195
+        }
+      }
+  "3":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: ASOwner
+                root: IPinfo.IP
+          operator: isEqualString
+          right:
+            value:
+              simple: Google LLC
+      label: "yes"
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 0b62044c-3457-4a98-84c1-c3faedbc00a7
+      iscommand: false
+      name: Check if server is google
+      type: condition
+      version: -1
+    taskid: 0b62044c-3457-4a98-84c1-c3faedbc00a7
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 370
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: For ip 8.8.8. the server is google
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 99e801cf-1443-4614-8eec-260f64d13ae2
+      iscommand: false
+      name: The server is google
+      script: Print
+      type: regular
+      version: -1
+    taskid: 99e801cf-1443-4614-8eec-260f64d13ae2
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 545
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: For ip 8.8.8. the server isn't  google
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 30d49a8c-3958-478d-8bf7-f41dfed0e3e7
+      iscommand: false
+      name: The server is not google
+      script: Print
+      type: regular
+      version: -1
+    taskid: 30d49a8c-3958-478d-8bf7-f41dfed0e3e7
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 480,
+          "y": 545
+        }
+      }
+  "6":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                filters:
+                - - left:
+                      iscontext: true
+                      value:
+                        simple: incident.owner
+                    operator: containsString
+                    right:
+                      value:
+                        simple: cohen
+                root: incident.owner
+                transformers:
+                - operator: toUpperCase
+          operator: isEqualString
+          right:
+            value:
+              simple: ZCOHEN
+      label: "yes"
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "13"
+      "yes":
+      - "7"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: f6128a5d-a343-4d65-89f0-f820ef1f77a3
+      iscommand: false
+      name: Check if incident owner is zcohen
+      type: condition
+      version: -1
+    taskid: f6128a5d-a343-4d65-89f0-f820ef1f77a3
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 265,
+          "y": 720
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "10"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      outputformat:
+        simple: ${incident.owner}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Pretty-print the contents of the playbook context
+      id: 4a40444a-6dbf-4874-863e-94332c9b4983
+      iscommand: false
+      name: print the incident owner
+      script: PrintContext
+      type: regular
+      version: -1
+    taskid: 4a40444a-6dbf-4874-863e-94332c9b4983
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 895
+        }
+      }
+  "10":
+    continueonerrortype: ""
+    id: "10"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "12"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      severity:
+        simple: High
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Optionally increases the incident severity to the new value if
+        it is greater than the existing severity.
+      id: b558411e-e0ae-459f-88d1-1622fddc07ae
+      iscommand: false
+      name: Increase incident severity to "High"
+      script: IncreaseIncidentSeverity
+      type: regular
+      version: -1
+    taskid: b558411e-e0ae-459f-88d1-1622fddc07ae
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 1070
+        }
+      }
+  "11":
+    continueonerrortype: ""
+    formDisplay:
+      bodybackgroundcolor: ""
+      bodyfontcolor: ""
+      headerbackgroundcolor: ""
+      headerfontcolor: ""
+      isexternalrtl: false
+      sender: ""
+      submitbuttonbackgroundcolor: ""
+      submitbuttonfontcolor: ""
+      submittext: ""
+    id: "11"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    message:
+      bcc: null
+      body:
+        simple: 'Hi Mister.please answered if you know zan cohen:'
+      cc: {}
+      format: ""
+      methods:
+      - email
+      replyOptions:
+      - "Yes"
+      - "No"
+      subject:
+        simple: A question regarding incident owner
+      timings:
+        completeafterreplies: 1
+        completeaftersla: false
+        completeafterv2: true
+        retriescount: 2
+        retriesinterval: 5
+      to:
+        simple: zcohen@paloaltonetworks.com,zancohen2@gmail.com
+    nexttasks:
+      "No":
+      - "15"
+      "Yes":
+      - "14"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: e88d95df-8936-415d-8cbc-4510f06e033e
+      iscommand: false
+      name: Send email to recipment and check if he knows zan(wait for user respone)
+      type: condition
+      version: -1
+    taskid: e88d95df-8936-415d-8cbc-4510f06e033e
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 1420
+        }
+      }
+  "12":
+    continueonerrortype: ""
+    id: "12"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8e5dd30c-bfaf-42b7-8c24-7fb1ac2923c3
+      iscommand: false
+      name: zan_test15_playbook_B
+      playbookId: 5a73ee2a-cbaa-4e42-80b5-f24e0a418fb6
+      type: playbook
+      version: -1
+    taskid: 8e5dd30c-bfaf-42b7-8c24-7fb1ac2923c3
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 377.5,
+          "y": 1245
+        }
+      }
+  "13":
+    continueonerrortype: ""
+    id: "13"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1b04252c-03c2-46c7-8211-7b608e124411
+      iscommand: false
+      name: end
+      type: title
+      version: -1
+    taskid: 1b04252c-03c2-46c7-8211-7b608e124411
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 390,
+          "y": 1900
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: yes i know zan
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: adbd03bd-825d-4b93-8596-ae2fde92bbd0
+      iscommand: false
+      name: Print:"Yes i know zan"
+      script: Print
+      type: regular
+      version: -1
+    taskid: adbd03bd-825d-4b93-8596-ae2fde92bbd0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 592.5,
+          "y": 1595
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: I don't know zan
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 6aa0603e-b275-4125-8af5-7926f0ece716
+      iscommand: false
+      name: Print:"I don't  know zan"
+      script: Print
+      type: regular
+      version: -1
+    taskid: 6aa0603e-b275-4125-8af5-7926f0ece716
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 1595
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 1915,
+        "width": 922.5,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
