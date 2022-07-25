@@ -10,7 +10,7 @@ contentitemexportablefields:
     toServerVersion: ""
 id: adefd36b-e567-4280-817c-ea6c4257fc60
 inputs: []
-name: zan_test15_playbook_A_copy_1
+name: zan_test15_playbook_A_itay
 outputs: []
 sourceplaybookid: c6223235-783a-4d89-89e7-927a4c06698d
 starttaskid: "0"
