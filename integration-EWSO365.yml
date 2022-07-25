@@ -115,7 +115,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.12.1
+    itemVersion: 1.12.2
     packID: EWS
     packName: EWS
     packPropagationLabels:
@@ -941,7 +941,7 @@ script:
       name: replyTo
     description: Sends an email.
     name: send-mail
-  dockerimage: demisto/py3ews:1.0.0.29461
+  dockerimage: demisto/py3ews:1.0.0.32273
   isfetch: true
   runonce: false
   script: |
