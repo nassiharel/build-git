@@ -1,0 +1,247 @@
+{
+	"author": "Cortex XSOAR",
+	"authorImage": "content/packs/Base/Author_image.png",
+	"beta": false,
+	"cacheVersn": 0,
+	"categories": [
+		"Analytics \u0026 SIEM"
+	],
+	"certification": "certified",
+	"contentItemTypes": [
+		"integration"
+	],
+	"contentItems": {
+		"automation": null,
+		"classifier": null,
+		"correlationrule": null,
+		"dashboard": null,
+		"genericfield": null,
+		"generictype": null,
+		"incidentfield": null,
+		"incidenttype": null,
+		"indicatorfield": null,
+		"integration": [
+			{
+				"category": "Analytics \u0026 SIEM",
+				"commands": [
+					{
+						"description": "Returns the results of a previous Splunk search. You can use this command in conjunction with the splunk-job-create command.",
+						"name": "splunk-results"
+					},
+					{
+						"description": "Searches Splunk for events.",
+						"name": "splunk-search"
+					},
+					{
+						"description": "Creates a new event in Splunk.",
+						"name": "splunk-submit-event"
+					},
+					{
+						"description": "Prints all Splunk index names.",
+						"name": "splunk-get-indexes"
+					},
+					{
+						"description": "Updates existing notable events in Splunk ES.",
+						"name": "splunk-notable-event-edit"
+					},
+					{
+						"description": "Creates a new search job in Splunk.",
+						"name": "splunk-job-create"
+					},
+					{
+						"description": "Parses the raw part of the event.",
+						"name": "splunk-parse-raw"
+					},
+					{
+						"description": "Sends events to an HTTP Event Collector using the Splunk platform JSON event protocol.",
+						"name": "splunk-submit-event-hec"
+					},
+					{
+						"description": "Returns the status of a job.",
+						"name": "splunk-job-status"
+					},
+					{
+						"description": "Creates a new KV store table.",
+						"name": "splunk-kv-store-collection-create"
+					},
+					{
+						"description": "Configures the KV store fields.",
+						"name": "splunk-kv-store-collection-config"
+					},
+					{
+						"description": "Adds objects to a KV store utilizing the batch-save API.",
+						"name": "splunk-kv-store-collection-add-entries"
+					},
+					{
+						"description": "Lists all collections for the specified application.",
+						"name": "splunk-kv-store-collections-list"
+					},
+					{
+						"description": "Lists all data within a specific KV store collection or collections.",
+						"name": "splunk-kv-store-collection-data-list"
+					},
+					{
+						"description": "Deletes all data within the specified KV store collection or collections.",
+						"name": "splunk-kv-store-collection-data-delete"
+					},
+					{
+						"description": "Deletes the specified KV stores.",
+						"name": "splunk-kv-store-collection-delete"
+					},
+					{
+						"description": "Searches for specific objects in a store. The search can be a basic key-value pair or a full query.",
+						"name": "splunk-kv-store-collection-search-entry"
+					},
+					{
+						"description": "Deletes the specified object in store. The search can be a basic key-value pair or a full query.",
+						"name": "splunk-kv-store-collection-delete-entry"
+					},
+					{
+						"description": "Query Splunk to retrieve a list of sample alerts by alert type. Used for mapping fetched incidents through the Get Schema option.",
+						"name": "get-mapping-fields"
+					},
+					{
+						"description": "Gets data from a notable event. This method does not update the current incident, and should be used for debugging purposes.",
+						"name": "get-remote-data"
+					},
+					{
+						"description": "Gets the list of notable events that were modified since the last update. This command should be used for debugging purposes, and is available from Cortex XSOAR version 6.1.",
+						"name": "get-modified-remote-data"
+					},
+					{
+						"description": "Resets the enrichment mechanism of fetched notables.",
+						"name": "splunk-reset-enriching-fetch-mechanism"
+					}
+				],
+				"description": "Runs queries on Splunk servers.",
+				"name": "SplunkPy Prerelease (Beta)"
+			}
+		],
+		"layoutscontainer": null,
+		"list": null,
+		"modelingrule": null,
+		"parsingrule": null,
+		"playbook": null,
+		"report": null,
+		"reputation": null,
+		"widget": null,
+		"wizard": null,
+		"xsiamdashboard": null,
+		"xsiamreport": null
+	},
+	"created": "2021-07-20T12:14:49Z",
+	"currentVersion": "1.0.11",
+	"definitionId": "",
+	"dependencies": {
+		"AccessInvestigation": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.2.2",
+			"name": "Access Investigation"
+		},
+		"Asset": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.4",
+			"name": "Asset"
+		},
+		"Base": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.31.9",
+			"name": "Base"
+		},
+		"CommonScripts": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.7.16",
+			"name": "Common Scripts"
+		},
+		"CommonTypes": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "3.2.40",
+			"name": "Common Types"
+		},
+		"Identity": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.0.0",
+			"name": "Identity"
+		},
+		"Malware": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "1.4.1",
+			"name": "Malware Core"
+		},
+		"SplunkPy": {
+			"author": "Cortex XSOAR",
+			"certification": "certified",
+			"mandatory": true,
+			"minVersion": "2.4.4",
+			"name": "Splunk"
+		}
+	},
+	"deprecated": false,
+	"description": "Run queries on Splunk servers - pre release version.",
+	"downloads": 1248,
+	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
+	"fromServerVersion": "5.0.0",
+	"general": [
+		"generalFieldCertified",
+		"generalFieldByCortexXSOAR",
+		"generalFieldFree",
+		"generalFieldSupportIncluded"
+	],
+	"id": "SplunkPyPreRelease",
+	"installMessage": "",
+	"integrations": [
+		{
+			"imagePath": "content/packs/SplunkPyPreRelease/SplunkPyPreRelease_image.png",
+			"name": "SplunkPy Prerelease (Beta)"
+		},
+		{
+			"imagePath": "content/packs/SplunkPy/SplunkPy_image.png",
+			"name": "SplunkPy"
+		}
+	],
+	"itemVersion": "1.0.11",
+	"keywords": [],
+	"legacy": true,
+	"name": "Splunk Prerelease",
+	"packID": "SplunkPyPreRelease",
+	"packName": "",
+	"premium": false,
+	"previewOnly": false,
+	"price": 0,
+	"propagationLabels": [
+		"all"
+	],
+	"rawKeywords": null,
+	"rawTags": null,
+	"rawUseCases": null,
+	"readme": "When a query or alert triggers a notable event (incident) in Splunk, the notable is stored in an index (table). An XSOAR analyst can fetch the notable event and its context data all from within the XSOAR console. \n\n## What does this pack do?\n\nThis pack is a pre-release version of the SplunkPy pack.\nIt is meant to release updates for customers to test, before those updates become a part of the official integration.\nCurrently (July 2021), please only use this integration to fetch incidents.\n\nUsing the SplunkPy integration, you can fetch the Splunk notable events. The notable events contain details such as:\n- The name of the alert that was triggered.\n- The objects that make up the alert, such as the IP address, hashes, user names, etc.\n\nBesides fetching notable events, the SplunkPy integration enables you to run drill down searches to retrieve additional data from other tables in Splunk such as:\n- Data about the users (department, role, geographical location)\n- Data about the assets (hostname, IP address, geographical location, department, etc.)\n\nIn addition, the integration enables mirroring from Splunk to XSOAR, from XSOAR to Splunk, and from/to XSOAR and Splunk.\n\n",
+	"searchRank": 10,
+	"serverMaxVersion": "",
+	"serverMinVersion": "5.0.0",
+	"support": "xsoar",
+	"supportDetails": {
+		"email": "",
+		"url": "https://www.paloaltonetworks.com/cortex"
+	},
+	"tags": [],
+	"toServerVersion": "",
+	"updated": "2022-05-02T09:20:35Z",
+	"useCases": [],
+	"version": -1,
+	"versionInfo": "3323751",
+	"videos": []
+}
