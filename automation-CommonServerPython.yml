@@ -6,9 +6,11 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.31.8
-    packID: ""
+    itemVersion: 1.31.9
+    packID: Base
     packName: Base
+    packPropagationLabels:
+    - all
     propagationLabels:
     - all
     toServerVersion: ""
@@ -11221,6 +11223,7 @@ script: |
   register_module_line('CustomScriptIntegration', 'start', __line__())
 scripttarget: 0
 subtype: python2
+system: true
 tags:
 - infra
 - server
