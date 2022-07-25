@@ -1,0 +1,27 @@
+{
+	"allRead": true,
+	"allReadWrite": true,
+	"cacheVersn": 0,
+	"data": "zcohen,yaltman",
+	"definitionId": "",
+	"description": "",
+	"fromServerVersion": "",
+	"id": "users",
+	"itemVersion": "",
+	"locked": false,
+	"name": "users",
+	"nameLocked": false,
+	"packID": "",
+	"packName": "",
+	"previousAllRead": true,
+	"previousAllReadWrite": true,
+	"propagationLabels": [
+		"all"
+	],
+	"system": false,
+	"tags": null,
+	"toServerVersion": "",
+	"truncated": false,
+	"type": "plain_text",
+	"version": -1
+}
