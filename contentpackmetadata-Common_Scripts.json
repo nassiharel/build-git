@@ -1873,7 +1873,7 @@
 		"xsiamreport": null
 	},
 	"created": "2020-07-27T09:01:37Z",
-	"currentVersion": "1.7.15",
+	"currentVersion": "1.7.16",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
@@ -1950,7 +1950,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.0.5",
+			"minVersion": "1.0.6",
 			"name": "Remote Access"
 		},
 		"Shodan": {
@@ -1970,7 +1970,7 @@
 	},
 	"deprecated": false,
 	"description": "Frequently used scripts pack.",
-	"downloads": 64758,
+	"downloads": 65301,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -2007,7 +2007,7 @@
 			"name": "SumoLogic"
 		}
 	],
-	"itemVersion": "1.7.15",
+	"itemVersion": "1.7.16",
 	"keywords": [],
 	"legacy": true,
 	"name": "Common Scripts",
@@ -2031,13 +2031,13 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
-		"Transformer",
-		"Filter"
+		"Filter",
+		"Transformer"
 	],
 	"toServerVersion": "",
-	"updated": "2022-07-21T12:06:14Z",
+	"updated": "2022-07-24T17:03:58Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3305407",
+	"versionInfo": "3323751",
 	"videos": []
 }
