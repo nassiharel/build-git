@@ -39,6 +39,7 @@
 	"runScriptAfterUpdate": false,
 	"script": "emailFieldTriggered",
 	"selectValues": [
+		"",
 		"No",
 		"yes"
 	],
