@@ -211,10 +211,12 @@ tasks:
                       value:
                         simple: cohen
                 root: incident.owner
+                transformers:
+                - operator: toUpperCase
           operator: isEqualString
           right:
             value:
-              simple: zcohen
+              simple: ZCOHEN
       label: "yes"
     continueonerrortype: ""
     id: "6"
@@ -232,12 +234,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: adaccfd3-6fb7-430d-88ef-e4af802538c7
+      id: f6128a5d-a343-4d65-89f0-f820ef1f77a3
       iscommand: false
       name: Check if incident owner is zcohen
       type: condition
       version: -1
-    taskid: adaccfd3-6fb7-430d-88ef-e4af802538c7
+    taskid: f6128a5d-a343-4d65-89f0-f820ef1f77a3
     timertriggers: []
     type: condition
     view: |-
@@ -278,7 +280,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 50,
+          "x": 377.5,
           "y": 895
         }
       }
@@ -302,19 +304,19 @@ tasks:
       brand: ""
       description: Optionally increases the incident severity to the new value if
         it is greater than the existing severity.
-      id: d6da45f3-299b-4a4f-8ba4-4472f5b59a12
+      id: b558411e-e0ae-459f-88d1-1622fddc07ae
       iscommand: false
       name: Increase incident severity to "High"
       script: IncreaseIncidentSeverity
       type: regular
       version: -1
-    taskid: d6da45f3-299b-4a4f-8ba4-4472f5b59a12
+    taskid: b558411e-e0ae-459f-88d1-1622fddc07ae
     timertriggers: []
     type: regular
     view: |-
       {
         "position": {
-          "x": 50,
+          "x": 377.5,
           "y": 1070
         }
       }
@@ -354,25 +356,30 @@ tasks:
         retriescount: 2
         retriesinterval: 5
       to:
-        simple: zcohen@paloaltonetworks.com
+        simple: zcohen@paloaltonetworks.com,zancohen2@gmail.com
+    nexttasks:
+      "No":
+      - "15"
+      "Yes":
+      - "14"
     note: false
     quietmode: 0
     separatecontext: false
     skipunavailable: false
     task:
       brand: ""
-      id: e3821789-0c56-4de8-8783-71f28c651066
+      id: ""
       iscommand: false
       name: Send email to recipment and check if he knows zan(wait for user respone)
       type: condition
       version: -1
-    taskid: e3821789-0c56-4de8-8783-71f28c651066
+    taskid: e88d95df-8936-415d-8cbc-4510f06e033e
     timertriggers: []
     type: condition
     view: |-
       {
         "position": {
-          "x": 50,
+          "x": 377.5,
           "y": 1420
         }
       }
@@ -403,7 +410,7 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 50,
+          "x": 377.5,
           "y": 1245
         }
       }
@@ -430,8 +437,78 @@ tasks:
     view: |-
       {
         "position": {
-          "x": 50,
-          "y": 1580
+          "x": 390,
+          "y": 1900
+        }
+      }
+  "14":
+    continueonerrortype: ""
+    id: "14"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: yes i know zan
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: adbd03bd-825d-4b93-8596-ae2fde92bbd0
+      iscommand: false
+      name: Print:"Yes i know zan"
+      script: Print
+      type: regular
+      version: -1
+    taskid: adbd03bd-825d-4b93-8596-ae2fde92bbd0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 592.5,
+          "y": 1595
+        }
+      }
+  "15":
+    continueonerrortype: ""
+    id: "15"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "13"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: I don't know zan
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Prints text to war room (Markdown supported)
+      id: 6aa0603e-b275-4125-8af5-7926f0ece716
+      iscommand: false
+      name: Print:"I don't  know zan"
+      script: Print
+      type: regular
+      version: -1
+    taskid: 6aa0603e-b275-4125-8af5-7926f0ece716
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 162.5,
+          "y": 1595
         }
       }
 version: -1
@@ -440,8 +517,8 @@ view: |-
     "linkLabelsPosition": {},
     "paper": {
       "dimensions": {
-        "height": 1595,
-        "width": 810,
+        "height": 1915,
+        "width": 922.5,
         "x": 50,
         "y": 50
       }
