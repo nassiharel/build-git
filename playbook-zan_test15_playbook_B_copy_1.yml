@@ -1,0 +1,160 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 6e8a07ac-26c6-4846-8d21-291f5e4d72b0
+inputs: []
+name: zan_test15_playbook_B_copy_1
+outputs: []
+sourceplaybookid: 5a73ee2a-cbaa-4e42-80b5-f24e0a418fb6
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 353184b2-1693-4955-8ba7-d825a6e619db
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 353184b2-1693-4955-8ba7-d825a6e619db
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": -50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a56d5128-1774-4963-8a00-c30ffa0a1a30
+      iscommand: false
+      name: update the value of "zan_f1"  custom field to "foo"
+      script: ed78755c-b02f-44c4-821c-d74614ac48d5
+      type: regular
+      version: -1
+    taskid: a56d5128-1774-4963-8a00-c30ffa0a1a30
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 90
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    defaultassigneecomplex:
+      simple: zcohen
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    sla:
+      days: 0
+      hours: 0
+      minutes: 5
+      weeks: 0
+    slareminder:
+      days: 0
+      hours: 0
+      minutes: 3
+      weeks: 0
+    task:
+      brand: ""
+      description: zan's SLA configuration
+      id: 915afc47-e8e7-4675-813d-050ebabb1b55
+      iscommand: false
+      name: 'set task SLA+non-default value '
+      type: regular
+      version: -1
+    taskid: 915afc47-e8e7-4675-813d-050ebabb1b55
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 300
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 8730e386-8a78-4d8b-8956-5f1d61a1eb0e
+      iscommand: false
+      name: End
+      type: title
+      version: -1
+    taskid: 8730e386-8a78-4d8b-8956-5f1d61a1eb0e
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 70,
+          "y": 450
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 565,
+        "width": 380,
+        "x": 70,
+        "y": -50
+      }
+    }
+  }
