@@ -33,7 +33,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 1.31.8
+    itemVersion: 1.31.9
     packID: Base
     packName: Base
     packPropagationLabels:
@@ -41,7 +41,7 @@ contentitemexportablefields:
     propagationLabels: []
     toServerVersion: ""
 deprecated: true
-dockerimage: demisto/sane-pdf-reports:1.0.0.32002
+dockerimage: demisto/sane-pdf-reports:1.0.0.32268
 enabled: true
 engineinfo: {}
 mainengineinfo: {}
