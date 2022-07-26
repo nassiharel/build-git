@@ -1,0 +1,55 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "GenerateInvestigationSummaryReport",
+	"color": "#FBBA3B",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {
+			"detectionurl": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"urlRep"
+				],
+				"isExtractingAllIndicatorTypes": false
+			},
+			"filehash": {
+				"extractAsIsIndicatorTypeId": "",
+				"extractIndicatorTypesIDs": [
+					"unifiedFileRep"
+				],
+				"isExtractingAllIndicatorTypes": false
+			}
+		},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "",
+	"hours": 2,
+	"hoursR": 1,
+	"id": "sharon2",
+	"itemVersion": "",
+	"layout": "",
+	"locked": false,
+	"name": "sharon2",
+	"onChangeRepAlg": 0,
+	"packID": "",
+	"packName": "",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 0,
+	"sla": 2,
+	"slaReminder": 1,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
