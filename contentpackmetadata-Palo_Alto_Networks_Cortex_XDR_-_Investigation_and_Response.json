@@ -962,7 +962,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.7.14",
+			"minVersion": "1.7.15",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
@@ -990,7 +990,7 @@
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": false,
-			"minVersion": "1.5.6",
+			"minVersion": "1.5.7",
 			"name": "Malware Investigation and Response"
 		},
 		"PANWComprehensiveInvestigation": {
@@ -1010,7 +1010,7 @@
 	},
 	"deprecated": false,
 	"description": "Automates Cortex XDR incident response, and includes custom Cortex XDR incident views and layouts to aid analyst investigations.",
-	"downloads": 16452,
+	"downloads": 16682,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -1127,17 +1127,17 @@
 		"url": "https://www.paloaltonetworks.com/cortex"
 	},
 	"tags": [
+		"Use Case",
 		"TIM",
-		"Incident Mirroring",
-		"Use Case"
+		"Incident Mirroring"
 	],
 	"toServerVersion": "",
-	"updated": "2022-07-21T11:42:46Z",
+	"updated": "2022-07-21T11:43:58Z",
 	"useCases": [
 		"Malware"
 	],
 	"version": -1,
-	"versionInfo": "3305407",
+	"versionInfo": "3323751",
 	"videos": [
 		"https://www.youtube.com/watch?v=ium2969zgn8"
 	]
