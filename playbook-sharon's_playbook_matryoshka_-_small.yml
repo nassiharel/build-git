@@ -1,0 +1,187 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 1b7e5040-cc74-4fcc-8f1b-b144ab78177c
+inputs:
+- description: ""
+  key: indicator value
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: sharon's playbook matryoshka - small
+outputs:
+- contextPath: list_name
+  type: string
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 4aba43f3-f827-41b3-8211-3606685afb11
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 4aba43f3-f827-41b3-8211-3606685afb11
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      incidentId:
+        simple: ${incident.id}
+      value:
+        simple: ${inputs.indicator value}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Associate an indicator to a given incident, you can find the indicator
+        to connect either by it's value or it's id
+      id: 49f3acc6-4e9a-447a-8f13-01ad3c25f2b6
+      iscommand: true
+      name: associateIndicatorToIncident
+      script: Builtin|||associateIndicatorToIncident
+      type: regular
+      version: -1
+    taskid: 49f3acc6-4e9a-447a-8f13-01ad3c25f2b6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      append:
+        simple: "false"
+      key:
+        simple: list_name
+      stringify:
+        simple: "true"
+      value:
+        complex:
+          accessor: id}
+          root: ${incident
+          transformers:
+          - args:
+              prefix:
+                value:
+                  simple: incident-
+              suffix: {}
+            operator: concat
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Set a value in context under the key you entered.
+      id: 912548fb-bb2e-4962-80cb-53b91420fdb9
+      iscommand: false
+      name: Set list name
+      script: Set
+      type: regular
+      version: -1
+    taskid: 912548fb-bb2e-4962-80cb-53b91420fdb9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 420
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: small
+      listName:
+        simple: ${list_name}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Create new list
+      id: 2e382015-5c2c-4bd9-8699-4f647a3d019c
+      iscommand: true
+      name: createList
+      script: Builtin|||createList
+      type: regular
+      version: -1
+    taskid: 2e382015-5c2c-4bd9-8699-4f647a3d019c
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 620
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 665,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
