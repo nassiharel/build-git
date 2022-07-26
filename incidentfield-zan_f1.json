@@ -1,8 +1,10 @@
 {
 	"aliasTo": "",
 	"aliases": null,
-	"associatedToAll": true,
-	"associatedTypes": [],
+	"associatedToAll": false,
+	"associatedTypes": [
+		"Job"
+	],
 	"autoCompleteTags": null,
 	"breachScript": "",
 	"cacheVersn": 0,
