@@ -1,0 +1,38 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "GenerateInvestigationSummaryReport",
+	"color": "#B7B7B7",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {},
+		"mode": "All"
+	},
+	"fromServerVersion": "",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "type for pre-processing rule",
+	"itemVersion": "",
+	"layout": "",
+	"locked": false,
+	"name": "type for pre-processing rule",
+	"onChangeRepAlg": 2,
+	"packID": "",
+	"packName": "",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 2,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
