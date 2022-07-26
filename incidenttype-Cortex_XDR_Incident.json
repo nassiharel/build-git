@@ -1,7 +1,7 @@
 {
 	"autorun": true,
 	"cacheVersn": 0,
-	"closureScript": "GenerateInvestigationSummaryReport",
+	"closureScript": "",
 	"color": "#6200EA",
 	"days": 0,
 	"daysR": 0,
@@ -13,17 +13,17 @@
 		"fieldCliNameToExtractSettings": {},
 		"mode": "All"
 	},
-	"fromServerVersion": "",
+	"fromServerVersion": "6.0.0",
 	"hours": 0,
 	"hoursR": 0,
 	"id": "Cortex XDR Incident",
-	"itemVersion": "",
+	"itemVersion": "4.8.3",
 	"layout": "Cortex XDR Incident",
 	"locked": false,
 	"name": "Cortex XDR Incident",
 	"onChangeRepAlg": 1,
 	"packID": "CortexXDR",
-	"packName": "",
+	"packName": "Palo Alto Networks Cortex XDR - Investigation and Response",
 	"packPropagationLabels": [
 		"all"
 	],
