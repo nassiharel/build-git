@@ -1,0 +1,175 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: 29eee818-6c5d-4466-8b15-db565cd6fd67
+inputs:
+- description: ""
+  key: endpoint_name
+  playbookInputQuery: null
+  required: true
+  value: {}
+name: sharon's playbook matryoshka - medium
+outputs:
+- contextPath: list_name
+  type: string
+- contextPath: Endpoint.IPAddress
+  description: The endpoint IP address.
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a76e06e0-ece3-4c8d-83c6-5ee5236a41ed
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: a76e06e0-ece3-4c8d-83c6-5ee5236a41ed
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 40
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    loop:
+      exitCondition: ""
+      iscommand: false
+      max: 100
+      wait: 1
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicator value:
+        simple: ${Endpoint.IPAddress}
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3a8c5651-40a6-41c0-8f6b-21dd7da6f60b
+      iscommand: false
+      name: sharon's playbook matryoshka - small
+      playbookId: 1b7e5040-cc74-4fcc-8f1b-b144ab78177c
+      type: playbook
+      version: -1
+    taskid: 3a8c5651-40a6-41c0-8f6b-21dd7da6f60b
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 420
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      listData:
+        simple: medium
+      listName:
+        simple: ${list_name}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: Add data to a list
+      id: f2236b22-877a-4e6d-8292-fe955546e5f0
+      iscommand: true
+      name: addToList
+      script: Builtin|||addToList
+      type: regular
+      version: -1
+    taskid: f2236b22-877a-4e6d-8292-fe955546e5f0
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 620
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      hostname:
+        simple: ${inputs.endpoint_name}
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Cortex XDR - IR
+      description: Returns information about an endpoint.
+      id: e368f43e-15fc-42c9-8a49-0ea6e615cff5
+      iscommand: true
+      name: endpoint
+      script: Cortex XDR - IR|||endpoint
+      type: regular
+      version: -1
+    taskid: e368f43e-15fc-42c9-8a49-0ea6e615cff5
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 220
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 675,
+        "width": 380,
+        "x": 450,
+        "y": 40
+      }
+    }
+  }
