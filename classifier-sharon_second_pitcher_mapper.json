@@ -1,0 +1,78 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "abd21286-9541-460c-869b-32965d250096",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": {
+		"dbot_classification_incident_type_all": {
+			"dontMapEventToLabels": false,
+			"internalMapping": {
+				"Destination IP": {
+					"complex": {
+						"accessor": "[0]",
+						"filters": [],
+						"root": "destination_ips",
+						"transformers": []
+					}
+				},
+				"Detection URL": {
+					"simple": "url"
+				},
+				"Device Name": {
+					"simple": "hostname"
+				},
+				"Device Username": {
+					"simple": "username"
+				},
+				"File Hash": {
+					"simple": "hash"
+				},
+				"OS": {
+					"complex": {
+						"filters": [],
+						"root": "agent_os",
+						"transformers": []
+					}
+				},
+				"afield": {
+					"simple": "lastone-str"
+				},
+				"details": {
+					"complex": {
+						"filters": [],
+						"root": "details",
+						"transformers": []
+					}
+				},
+				"occurred": {
+					"simple": "date3"
+				}
+			}
+		}
+	},
+	"name": "sharon second pitcher mapper",
+	"nameRaw": "sharon second pitcher mapper",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {},
+	"type": "mapping-incoming",
+	"unclassifiedCases": null,
+	"version": -1
+}
