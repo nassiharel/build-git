@@ -1,0 +1,37 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": false,
+	"fromServerVersion": "",
+	"id": "a1e8b135-cbad-434d-81d2-39482038d7ac",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {
+		"static_type 1": "sharon1",
+		"static_type 2": "sharon2"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "sharon second pitcher classifier",
+	"nameRaw": "sharon second pitcher classifier",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "incident_type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
