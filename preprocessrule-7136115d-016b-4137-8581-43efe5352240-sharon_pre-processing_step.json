@@ -1,0 +1,138 @@
+{
+	"action": "linkAndClose",
+	"cacheVersn": 0,
+	"definitionId": "",
+	"enabled": true,
+	"existingEventsFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "name"
+					}
+				},
+				"operator": "containsString",
+				"right": {
+					"value": {
+						"simple": "Random Generated"
+					}
+				},
+				"type": "shortText"
+			}
+		],
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "fieldfprpreprocessingrule"
+					}
+				},
+				"operator": "isEqualNumber",
+				"right": {
+					"value": {
+						"simple": "2309"
+					}
+				},
+				"type": "number"
+			}
+		]
+	],
+	"fromServerVersion": "",
+	"id": "7136115d-016b-4137-8581-43efe5352240",
+	"index": 3,
+	"itemVersion": "",
+	"linkTo": "oldest",
+	"locked": false,
+	"name": "sharon pre-processing step",
+	"newEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "name"
+					}
+				},
+				"operator": "containsString",
+				"right": {
+					"value": {
+						"simple": "stillnotlastone"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "days",
+		"fromValue": 30
+	},
+	"propagationLabels": [
+		"all"
+	],
+	"readyExistingEventsFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "name"
+					}
+				},
+				"operator": "containsString",
+				"right": {
+					"value": {
+						"simple": "Random Generated"
+					}
+				},
+				"type": "shortText"
+			}
+		],
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "fieldfprpreprocessingrule"
+					}
+				},
+				"operator": "isEqualNumber",
+				"right": {
+					"value": {
+						"simple": "2309"
+					}
+				},
+				"type": "number"
+			}
+		]
+	],
+	"readyNewEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "name"
+					}
+				},
+				"operator": "containsString",
+				"right": {
+					"value": {
+						"simple": "stillnotlastone"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"scriptID": "",
+	"scriptName": "",
+	"searchClosed": false,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
