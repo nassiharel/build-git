@@ -13,7 +13,7 @@
 	"itemVersion": "",
 	"keyTypeMap": {},
 	"locked": false,
-	"logicalVersion": 1,
+	"logicalVersion": 2,
 	"mapping": {
 		"Pitcher": {
 			"dontMapEventToLabels": false,
@@ -22,7 +22,7 @@
 					"simple": "rand_string1"
 				},
 				"Alert Name": {
-					"simple": " rand_string2"
+					"simple": "rand_string2"
 				},
 				"Destination IP": {
 					"complex": {
