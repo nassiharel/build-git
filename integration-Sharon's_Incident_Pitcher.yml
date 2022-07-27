@@ -130,11 +130,13 @@ script:
         if string_keys:
             keys = string_keys.split(',')
             for key in keys:
+                key = key.strip()
                 incident_json[key] = generate_random_string()
 
         if int_keys:
             keys = int_keys.split(',')
             for key in keys:
+                key = key.strip()
                 incident_json[key] = random.randint(0, 10000)
 
         incident = {
