@@ -1,0 +1,104 @@
+{
+	"action": "linkAndClose",
+	"cacheVersn": 0,
+	"definitionId": "",
+	"enabled": true,
+	"existingEventsFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "id"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"value": {
+						"simple": "7152232"
+					}
+				},
+				"type": "string"
+			}
+		]
+	],
+	"fromServerVersion": "",
+	"id": "ab3db0fe-564c-4998-8a40-191c209cdb62",
+	"index": 5,
+	"itemVersion": "",
+	"linkTo": "oldest",
+	"locked": false,
+	"name": "sharon pre-processing step - testing again",
+	"newEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "name"
+					}
+				},
+				"operator": "containsString",
+				"right": {
+					"value": {
+						"simple": "stillnotlastone"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "days",
+		"fromValue": 30
+	},
+	"propagationLabels": [
+		"all"
+	],
+	"readyExistingEventsFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "id"
+					}
+				},
+				"operator": "isEqualString",
+				"right": {
+					"value": {
+						"simple": "7152232"
+					}
+				},
+				"type": "string"
+			}
+		]
+	],
+	"readyNewEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "name"
+					}
+				},
+				"operator": "containsString",
+				"right": {
+					"value": {
+						"simple": "stillnotlastone"
+					}
+				},
+				"type": "shortText"
+			}
+		]
+	],
+	"scriptID": "",
+	"scriptName": "",
+	"searchClosed": false,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
