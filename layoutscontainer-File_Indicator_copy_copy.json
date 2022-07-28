@@ -593,6 +593,29 @@
 					}
 				],
 				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "dtjmtxefej",
+				"name": "something 2",
+				"sections": [
+					{
+						"displayType": "CARD",
+						"h": 2,
+						"i": "dtjmtxefej-19e4d7b0-0e4a-11ed-9c8f-2763ef9cc013",
+						"items": [],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Custom Details",
+						"static": false,
+						"type": "customDetails",
+						"w": 1,
+						"x": 0,
+						"y": 0
+					}
+				],
+				"type": "custom"
 			}
 		]
 	},
