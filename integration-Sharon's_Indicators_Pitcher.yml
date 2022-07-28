@@ -120,7 +120,9 @@ script:
   dockerimage: demisto/python3:3.10.5.31928
   feed: true
   runonce: false
-  script: |
+  script: |-
+    register_module_line('Pitcher Feed', 'start', __line__())
+
     ''' IMPORTS '''
     import email
     import json
@@ -174,8 +176,10 @@ script:
             }
         }
 
-    def fetch_indicators_mock(number_of_indicators: int, domain:str, url_prefix:str):
+    def fetch_indicators_mock(number_of_indicators: int, domain:str, url_prefix:str, tags):
         indicators = []
+
+        demisto.debug(f'I think I need to create {number_of_indicators} indicators')
 
         while len(indicators) < number_of_indicators:
             new_indicators = [
@@ -187,26 +191,51 @@ script:
             ]
             indicators.extend(new_indicators)
 
+
+
         for indicator in indicators:
             indicator["raw_JSON"]["source"] = "indicators pitcher"
 
-            tags = demisto.params().get("tags", None)
             if tags:
                 indicator["raw_JSON"]["tags"] = tags
 
+        demisto.debug(f'Ive created {len(indicators)} indicators. About to return from mock')
+
         return indicators
 
-    if demisto.command() == 'fetch-indicators':
-        number_of_indicators = int(demisto.params().get('number_of_indicators'))
-        email_domain = demisto.params().get("email_domain")
-        url_prefix = demisto.params().get("url_prefix")
-        indicators = fetch_indicators_mock(number_of_indicators, email_domain, url_prefix)
+    def main():
+        params = demisto.params()
+        command = demisto.command()
+        args = demisto.args()
 
-        demisto.createIndicators(indicators)
+        # INTEGRATION DEVELOPER TIP
+        # You can use functions such as ``demisto.debug()``, ``demisto.info()``,
+        # etc. to print information in the XSOAR server log. You can set the log
+        # level on the server configuration
+        # See: https://xsoar.pan.dev/docs/integrations/code-conventions#logging
+        demisto.debug(f'Command being called is {command}')
 
-        # important (!) this is an ack to let the server know that we finished the fetch
-        demisto.results("done")
-        sys.exit(0)
+        try:
+            if demisto.command() == 'fetch-indicators':
+                number_of_indicators = int(params.get(number_of_indicators))
+                email_domain = params.get("email_domain")
+                url_prefix = params.get("url_prefix")
+                tags = params.get("tags", None)
+                indicators = fetch_indicators_mock(number_of_indicators, email_domain, url_prefix, tags)
+
+                demisto.createIndicators(indicators)
+            else:
+                raise NotImplementedError(f'Command {command} is not implemented.')
+
+        # Log exceptions and return errors
+        except Exception as e:
+            demisto.error(traceback.format_exc())  # Print the traceback
+            return_error(f'Failed to execute {command} command.\nError:\n{str(e)}')
+
+    if __name__ in ['__main__', 'builtin', 'builtins']:
+        main()
+
+    register_module_line('Pitcher Feed', 'end', __line__())
   subtype: python3
   type: python
 sourcemoduleid: HelloWorld Feed
