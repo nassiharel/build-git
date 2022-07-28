@@ -26,7 +26,6 @@
 						"items": null,
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Verdict",
 						"readOnly": true,
@@ -77,7 +76,6 @@
 						"items": null,
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Related Incidents",
 						"readOnly": true,
@@ -85,7 +83,7 @@
 						"type": "relatedIncidents",
 						"w": 2,
 						"x": 0,
-						"y": 6
+						"y": 3
 					},
 					{
 						"displayType": "ROW",
@@ -116,61 +114,10 @@
 							},
 							{
 								"endCol": 2,
-								"fieldId": "md5",
-								"height": 22,
-								"id": "edc102d0-987f-11eb-a24d-4941fb0e06df",
-								"index": 1,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"dropEffect": "move",
-								"endCol": 2,
-								"fieldId": "sha1",
-								"height": 22,
-								"id": "ea561270-987f-11eb-a24d-4941fb0e06df",
-								"index": 2,
-								"listId": "main-e2c8c970-a09d-11e9-8956-390f602b039a",
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"dropEffect": "move",
-								"endCol": 2,
-								"fieldId": "sha512",
-								"height": 22,
-								"id": "e832e450-987f-11eb-a24d-4941fb0e06df",
-								"index": 3,
-								"listId": "main-e2c8c970-a09d-11e9-8956-390f602b039a",
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "imphash",
-								"height": 22,
-								"id": "f5d752d0-987f-11eb-a24d-4941fb0e06df",
-								"index": 4,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"dropEffect": "move",
-								"endCol": 2,
-								"fieldId": "ssdeep",
-								"height": 22,
-								"id": "fa12b290-987f-11eb-a24d-4941fb0e06df",
-								"index": 5,
-								"listId": "main-e2c8c970-a09d-11e9-8956-390f602b039a",
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
 								"fieldId": "size",
 								"height": 22,
 								"id": "fd18edb0-987f-11eb-a24d-4941fb0e06df",
-								"index": 6,
+								"index": 1,
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -179,7 +126,7 @@
 								"fieldId": "filetype",
 								"height": 22,
 								"id": "03dec8e0-9880-11eb-a24d-4941fb0e06df",
-								"index": 7,
+								"index": 2,
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -188,7 +135,7 @@
 								"fieldId": "fileextension",
 								"height": 22,
 								"id": "0582dbf0-9880-11eb-a24d-4941fb0e06df",
-								"index": 8,
+								"index": 3,
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -197,7 +144,7 @@
 								"fieldId": "associatedfilenames",
 								"height": 22,
 								"id": "0a626af0-9880-11eb-a24d-4941fb0e06df",
-								"index": 9,
+								"index": 4,
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -206,7 +153,7 @@
 								"fieldId": "path",
 								"height": 22,
 								"id": "1021d2a0-9880-11eb-a24d-4941fb0e06df",
-								"index": 10,
+								"index": 5,
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -216,7 +163,7 @@
 								"fieldId": "quarantined",
 								"height": 22,
 								"id": "19887060-9880-11eb-a24d-4941fb0e06df",
-								"index": 11,
+								"index": 6,
 								"listId": "main-e2c8c970-a09d-11e9-8956-390f602b039a",
 								"sectionItemType": "field",
 								"startCol": 0
@@ -226,7 +173,7 @@
 								"fieldId": "signed",
 								"height": 22,
 								"id": "153b5d60-9880-11eb-a24d-4941fb0e06df",
-								"index": 12,
+								"index": 7,
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -236,7 +183,7 @@
 								"fieldId": "signaturecopyright",
 								"height": 22,
 								"id": "e0beab40-9880-11eb-a24d-4941fb0e06df",
-								"index": 13,
+								"index": 8,
 								"listId": "main-e2c8c970-a09d-11e9-8956-390f602b039a",
 								"sectionItemType": "field",
 								"startCol": 0
@@ -247,7 +194,7 @@
 								"fieldId": "signaturedescription",
 								"height": 22,
 								"id": "22250760-9880-11eb-a24d-4941fb0e06df",
-								"index": 14,
+								"index": 9,
 								"listId": "main-e2c8c970-a09d-11e9-8956-390f602b039a",
 								"sectionItemType": "field",
 								"startCol": 0
@@ -258,7 +205,7 @@
 								"fieldId": "downloadurl",
 								"height": 22,
 								"id": "1d1e4150-9880-11eb-a24d-4941fb0e06df",
-								"index": 15,
+								"index": 10,
 								"listId": "main-e2c8c970-a09d-11e9-8956-390f602b039a",
 								"sectionItemType": "field",
 								"startCol": 0
@@ -268,7 +215,7 @@
 								"fieldId": "modified",
 								"height": 22,
 								"id": "2caa06a0-a2b6-11eb-b6c7-1f96e76b92a7",
-								"index": 16,
+								"index": 11,
 								"sectionItemType": "field",
 								"startCol": 0
 							},
@@ -277,14 +224,13 @@
 								"fieldId": "firstseen",
 								"height": 22,
 								"id": "2fae6d00-a2b6-11eb-b6c7-1f96e76b92a7",
-								"index": 17,
+								"index": 12,
 								"sectionItemType": "field",
 								"startCol": 0
 							}
 						],
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "File Details",
 						"static": false,
@@ -299,7 +245,6 @@
 						"items": null,
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Reputation Status",
 						"static": false,
@@ -315,7 +260,6 @@
 						"items": null,
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Expiration Status",
 						"static": false,
@@ -330,14 +274,13 @@
 						"items": null,
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Timeline",
 						"static": false,
 						"type": "indicatorTimeline",
 						"w": 1,
 						"x": 2,
-						"y": 6
+						"y": 1
 					},
 					{
 						"h": 3,
@@ -345,84 +288,13 @@
 						"items": null,
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Comments",
 						"static": false,
 						"type": "comments",
 						"w": 1,
 						"x": 2,
-						"y": 9
-					},
-					{
-						"displayType": "CARD",
-						"h": 2,
-						"hideItemTitleOnlyOne": false,
-						"hideName": false,
-						"i": "main-0e19dbd0-4e74-11ea-8bf6-67db400d7da5",
-						"items": [
-							{
-								"endCol": 2,
-								"fieldId": "tags",
-								"height": 53,
-								"id": "1cf1e850-4e74-11ea-8bf6-67db400d7da5",
-								"index": 0,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"args": {
-									"field": {
-										"simple": "tags"
-									}
-								},
-								"endCol": 1,
-								"fieldId": "",
-								"height": 53,
-								"id": "78925e60-a751-11eb-8813-85174f038837",
-								"index": 1,
-								"name": "Add tags",
-								"scriptId": "Builtin|||appendIndicatorField",
-								"sectionItemType": "button",
-								"startCol": 0
-							},
-							{
-								"endCol": 2,
-								"fieldId": "trafficlightprotocol",
-								"height": 53,
-								"id": "b36304a0-b6dd-11ea-842d-c3903a6d3bd1",
-								"index": 2,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"args": {
-									"field": {
-										"simple": "tags"
-									}
-								},
-								"dropEffect": "move",
-								"endCol": 2,
-								"fieldId": "",
-								"height": 53,
-								"id": "7a35ae20-a751-11eb-8813-85174f038837",
-								"index": 2,
-								"listId": "main-0e19dbd0-4e74-11ea-8bf6-67db400d7da5",
-								"name": "Remove tags",
-								"scriptId": "Builtin|||removeIndicatorField",
-								"sectionItemType": "button",
-								"startCol": 1
-							}
-						],
-						"maxW": 3,
-						"minH": 1,
-						"minW": 1,
-						"moved": false,
-						"name": "Tags and TLP",
-						"static": false,
-						"w": 1,
-						"x": 2,
-						"y": 1
+						"y": 4
 					},
 					{
 						"displayType": "ROW",
@@ -457,89 +329,12 @@
 						],
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Actions",
 						"static": false,
 						"w": 1,
 						"x": 2,
 						"y": 0
-					},
-					{
-						"displayType": "ROW",
-						"h": 3,
-						"hideName": false,
-						"i": "main-c5fe2a00-871a-11eb-a029-7dc36024189f",
-						"items": [
-							{
-								"endCol": 4,
-								"fieldId": "communitynotes",
-								"height": 106,
-								"id": "da2bb070-983f-11eb-a24d-4941fb0e06df",
-								"index": 0,
-								"sectionItemType": "field",
-								"startCol": 0
-							},
-							{
-								"endCol": 4,
-								"fieldId": "publications",
-								"height": 106,
-								"id": "dd873780-983f-11eb-a24d-4941fb0e06df",
-								"index": 1,
-								"sectionItemType": "field",
-								"startCol": 0
-							}
-						],
-						"maxW": 3,
-						"minH": 1,
-						"minW": 1,
-						"moved": false,
-						"name": "Publications",
-						"static": false,
-						"w": 2,
-						"x": 0,
-						"y": 9
-					},
-					{
-						"h": 3,
-						"i": "main-2e126740-96e4-11eb-a8d1-098e2c945225",
-						"items": [],
-						"maxW": 3,
-						"minH": 1,
-						"minW": 1,
-						"moved": false,
-						"name": "Relationships",
-						"static": false,
-						"type": "relationshipsTable",
-						"w": 2,
-						"x": 0,
-						"y": 3
-					},
-					{
-						"displayType": "ROW",
-						"h": 3,
-						"hideName": false,
-						"i": "main-05b333f0-a2b6-11eb-b6c7-1f96e76b92a7",
-						"items": [
-							{
-								"endCol": 2,
-								"fieldId": "behavior",
-								"height": 106,
-								"id": "c86cf8c0-9881-11eb-a24d-4941fb0e06df",
-								"index": 0,
-								"sectionItemType": "field",
-								"startCol": 0
-							}
-						],
-						"maxW": 3,
-						"minH": 1,
-						"minW": 1,
-						"moved": false,
-						"name": "Behavior",
-						"static": false,
-						"w": 1,
-						"x": 2,
-						"y": 3
 					}
 				],
 				"type": "custom"
@@ -556,7 +351,6 @@
 						"items": [],
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Extended Details",
 						"static": false,
@@ -572,13 +366,72 @@
 						"items": [],
 						"maxW": 3,
 						"minH": 1,
-						"minW": 1,
 						"moved": false,
 						"name": "Custom Details",
 						"static": false,
 						"type": "customDetails",
 						"w": 1,
 						"x": 2,
+						"y": 0
+					}
+				],
+				"type": "custom"
+			},
+			{
+				"hidden": false,
+				"id": "fjh7qdtoln",
+				"name": "Sharon Tab",
+				"sections": [
+					{
+						"displayType": "ROW",
+						"h": 2,
+						"hideName": false,
+						"i": "fjh7qdtoln-bf5ec780-0e47-11ed-9438-e32c69c19593",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "associatedfilenames",
+								"height": 22,
+								"id": "c0d9a7b0-0e47-11ed-9438-e32c69c19593",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "fileextension",
+								"height": 22,
+								"id": "c186b090-0e47-11ed-9438-e32c69c19593",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "filetype",
+								"height": 22,
+								"id": "c2579520-0e47-11ed-9438-e32c69c19593",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "signaturefileversion",
+								"height": 22,
+								"id": "c33041e0-0e47-11ed-9438-e32c69c19593",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "Sharon section",
+						"static": false,
+						"w": 1,
+						"x": 0,
 						"y": 0
 					}
 				],
