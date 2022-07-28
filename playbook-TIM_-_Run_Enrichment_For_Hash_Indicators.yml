@@ -63,7 +63,6 @@ inputs:
   value: {}
 name: TIM - Run Enrichment For Hash Indicators
 outputs: []
-quiet: true
 starttaskid: "0"
 system: true
 tasks:
@@ -112,7 +111,7 @@ tasks:
                       iscontext: true
                       value:
                         simple: playbookQuery.indicator_type
-                    operator: isEqualString
+                    operator: containsString
                     right:
                       value:
                         simple: File
@@ -126,6 +125,8 @@ tasks:
                         simple: "3"
                 root: playbookQuery
           operator: isNotEmpty
+          right:
+            value: {}
       label: "yes"
     continueonerrortype: ""
     id: "19"
@@ -143,12 +144,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 72070957-6a4e-42f2-8def-d0f99ad9e0e8
+      id: 8051b090-64ab-4779-896d-ed6865c80c16
       iscommand: false
       name: Are there bad results?
       type: condition
       version: -1
-    taskid: 72070957-6a4e-42f2-8def-d0f99ad9e0e8
+    taskid: 8051b090-64ab-4779-896d-ed6865c80c16
     timertriggers: []
     type: condition
     view: |-
@@ -248,7 +249,7 @@ tasks:
                 iscontext: true
                 value:
                   simple: playbookQuery.indicator_type
-              operator: isEqualString
+              operator: containsString
               right:
                 value:
                   simple: File
@@ -268,13 +269,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.enrich.indicators
-      id: f5bdc8c1-b288-4eb9-8c97-f4bc6ce8fe4a
+      id: b696cb9d-36b7-413f-898f-4fa8fd0ddfc4
       iscommand: true
       name: Enrich bad indicators
       script: Builtin|||enrichIndicators
       type: regular
       version: -1
-    taskid: f5bdc8c1-b288-4eb9-8c97-f4bc6ce8fe4a
+    taskid: b696cb9d-36b7-413f-898f-4fa8fd0ddfc4
     timertriggers: []
     type: regular
     view: |-
@@ -340,7 +341,7 @@ tasks:
                       iscontext: true
                       value:
                         simple: playbookQuery.indicator_type
-                    operator: isEqualString
+                    operator: containsString
                     right:
                       value:
                         simple: File
@@ -354,6 +355,8 @@ tasks:
                         simple: "1"
                 root: playbookQuery
           operator: isNotEmpty
+          right:
+            value: {}
       label: "yes"
     continueonerrortype: ""
     id: "132"
@@ -371,12 +374,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 3cf3faca-bf9a-4f00-8f24-a1f4a500bf3b
+      id: 6bf8479a-58e3-42cf-814a-55823cb1055b
       iscommand: false
       name: Are there good results?
       type: condition
       version: -1
-    taskid: 3cf3faca-bf9a-4f00-8f24-a1f4a500bf3b
+    taskid: 6bf8479a-58e3-42cf-814a-55823cb1055b
     timertriggers: []
     type: condition
     view: |-
@@ -406,7 +409,7 @@ tasks:
                 iscontext: true
                 value:
                   simple: playbookQuery.indicator_type
-              operator: isEqualString
+              operator: containsString
               right:
                 value:
                   simple: File
@@ -426,13 +429,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.enrich.indicators
-      id: 37080c9a-0889-441b-8f03-8a90cd9c1d55
+      id: 92325e66-3fcc-41c9-8b41-15ac27f36245
       iscommand: true
       name: Enrich good indicators
       script: Builtin|||enrichIndicators
       type: regular
       version: -1
-    taskid: 37080c9a-0889-441b-8f03-8a90cd9c1d55
+    taskid: 92325e66-3fcc-41c9-8b41-15ac27f36245
     timertriggers: []
     type: regular
     view: |-
@@ -455,7 +458,7 @@ tasks:
                       iscontext: true
                       value:
                         simple: playbookQuery.indicator_type
-                    operator: isEqualString
+                    operator: containsString
                     right:
                       value:
                         simple: File
@@ -469,6 +472,8 @@ tasks:
                         simple: "2"
                 root: playbookQuery
           operator: isNotEmpty
+          right:
+            value: {}
       label: "yes"
     continueonerrortype: ""
     id: "134"
@@ -486,12 +491,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: d2b3acb0-b4d1-4564-83a6-13146872f723
+      id: 67e47a33-f7d5-4807-80f4-a86de7d2ef51
       iscommand: false
       name: Are there suspicious results?
       type: condition
       version: -1
-    taskid: d2b3acb0-b4d1-4564-83a6-13146872f723
+    taskid: 67e47a33-f7d5-4807-80f4-a86de7d2ef51
     timertriggers: []
     type: condition
     view: |-
@@ -564,7 +569,7 @@ tasks:
                 iscontext: true
                 value:
                   simple: playbookQuery.indicator_type
-              operator: isEqualString
+              operator: containsString
               right:
                 value:
                   simple: File
@@ -584,13 +589,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.enrich.indicators
-      id: 4c36aa1a-bda6-4573-820c-af88b6087094
+      id: 9585271e-6925-4b7f-8eb9-1e3bf3ea7925
       iscommand: true
       name: Enrich suspicious indicators
       script: Builtin|||enrichIndicators
       type: regular
       version: -1
-    taskid: 4c36aa1a-bda6-4573-820c-af88b6087094
+    taskid: 9585271e-6925-4b7f-8eb9-1e3bf3ea7925
     timertriggers: []
     type: regular
     view: |-
@@ -613,7 +618,7 @@ tasks:
                       iscontext: true
                       value:
                         simple: playbookQuery.indicator_type
-                    operator: isEqualString
+                    operator: containsString
                     right:
                       value:
                         simple: File
@@ -644,12 +649,12 @@ tasks:
     skipunavailable: false
     task:
       brand: ""
-      id: 2cf5e3e7-ec79-4096-8c19-a26d5dc7c89f
+      id: d6882f31-4d05-4479-85a6-b27508230514
       iscommand: false
       name: Are there unknown results?
       type: condition
       version: -1
-    taskid: 2cf5e3e7-ec79-4096-8c19-a26d5dc7c89f
+    taskid: d6882f31-4d05-4479-85a6-b27508230514
     timertriggers: []
     type: condition
     view: |-
@@ -722,7 +727,7 @@ tasks:
                 iscontext: true
                 value:
                   simple: playbookQuery.indicator_type
-              operator: isEqualString
+              operator: containsString
               right:
                 value:
                   simple: File
@@ -742,13 +747,13 @@ tasks:
     task:
       brand: Builtin
       description: commands.local.cmd.enrich.indicators
-      id: b4711801-92b8-491f-881c-403b33daafc1
+      id: ffb7d06e-00d7-46ec-8de0-42e5fdcb95ae
       iscommand: true
       name: Enrich unknown indicators
       script: Builtin|||enrichIndicators
       type: regular
       version: -1
-    taskid: b4711801-92b8-491f-881c-403b33daafc1
+    taskid: ffb7d06e-00d7-46ec-8de0-42e5fdcb95ae
     timertriggers: []
     type: regular
     view: |-
