@@ -1,0 +1,40 @@
+{
+	"cacheVersn": 0,
+	"contextPath": "",
+	"contextValue": "",
+	"defaultMapping": null,
+	"definitionId": "",
+	"details": "File-JustMD5",
+	"disabled": false,
+	"enhancementScriptNames": [
+		"FileReputation"
+	],
+	"excludedBrands": [
+		"HelloWorld Feed"
+	],
+	"expiration": 60,
+	"file": false,
+	"fileHashesPriority": null,
+	"formatScript": "",
+	"fromServerVersion": "",
+	"id": "a2cbae9f-4ffc-47c4-8fbc-98398d38767e",
+	"itemVersion": "",
+	"layout": "unifiedFileRep1",
+	"legacyNames": null,
+	"locked": false,
+	"manualMapping": {},
+	"mergeContext": false,
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"regex": "\\b[a-fA-F\\d]{32}\\b",
+	"reputationCommand": "file",
+	"reputationScriptName": "",
+	"shouldShareComments": false,
+	"system": false,
+	"toServerVersion": "",
+	"updateAfter": 0,
+	"version": -1
+}
