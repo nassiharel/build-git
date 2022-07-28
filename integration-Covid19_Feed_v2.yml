@@ -115,6 +115,7 @@ script:
     ''' IMPORTS '''
     import json
     import uuid
+    import hashlib
 
 
     tags = demisto.params()["tags"]
