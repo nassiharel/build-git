@@ -1,0 +1,188 @@
+category: Data Enrichment & Threat Intelligence
+commonfields:
+  id: Covid19 Feed v2
+  version: -1
+configuration:
+- defaultvalue: https://example.net
+  display: Server URL (e.g. https://example.net)
+  name: url
+  required: true
+  type: 0
+- display: Username
+  name: credentials
+  required: true
+  type: 9
+- display: Trust any certificate (not secure)
+  name: insecure
+  required: false
+  type: 8
+- display: Use system proxy settings
+  name: proxy
+  required: false
+  type: 8
+- defaultvalue: "true"
+  display: Fetch indicators
+  name: feed
+  required: false
+  type: 8
+- additionalinfo: Indicators from this integration instance will be marked with this
+    reputation
+  display: Indicator Reputation
+  name: feedReputation
+  options:
+  - None
+  - Good
+  - Suspicious
+  - Bad
+  required: false
+  type: 18
+- additionalinfo: Reliability of the source providing the intelligence data
+  defaultvalue: F - Reliability cannot be judged
+  display: Source Reliability
+  name: feedReliability
+  options:
+  - A - Completely reliable
+  - B - Usually reliable
+  - C - Fairly reliable
+  - D - Not usually reliable
+  - E - Unreliable
+  - F - Reliability cannot be judged
+  required: true
+  type: 15
+- defaultvalue: indicatorType
+  display: ""
+  name: feedExpirationPolicy
+  options:
+  - never
+  - interval
+  - indicatorType
+  - suddenDeath
+  required: false
+  type: 17
+- defaultvalue: "20160"
+  display: ""
+  name: feedExpirationInterval
+  required: false
+  type: 1
+- defaultvalue: "1"
+  display: Feed Fetch Interval
+  name: feedFetchInterval
+  required: false
+  type: 19
+- defaultvalue: "false"
+  display: Is Feed Incremental
+  name: feedIncremental
+  required: false
+  type: 8
+- additionalinfo: When selected, the exclusion list is ignored for indicators from
+    this feed. This means that if an indicator from this feed is on the exclusion
+    list, the indicator might still be added to the system.
+  display: Bypass exclusion list
+  name: feedBypassExclusionList
+  required: false
+  type: 8
+- display: ""
+  name: key
+  required: false
+  type: 4
+- display: ""
+  name: tags
+  required: false
+  type: 0
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: This is the Hello World integration for getting started.
+detaileddescription: |
+  ## Hello World
+  - This text is markdown
+  - Here you should explain how to configure the instance in Demisto
+display: Covid19 Feed v2
+image: data:image/jpeg;base64,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
+name: Covid19 Feed v2
+script:
+  dockerimage: demisto/python3:3.7.4.2245
+  feed: true
+  runonce: false
+  script: |
+    ''' IMPORTS '''
+    import json
+    import uuid
+
+
+    tags = demisto.params()["tags"]
+    def fetch_indicators_mock():
+        indicators = []
+        username = uuid.uuid4()
+        indicators.append({
+            "value": str(username) + '@paloatltonetworks.com',
+            "rawJSON": {
+                "type": "EMAIL",
+                "source": "covid19v3"
+                }
+            })
+        indicators.append({
+            "value": 'www.nba.com',
+            "score": 1,
+            "rawJSON": {
+                "type": "URL",
+                "source": "covid19v3"
+                }
+            })
+        for i in range(100):
+            ip = str(randint(0, 254))+'.'+str(randint(0, 254))+'.'+str(randint(0, 254))+'.'+str(randint(0, 254))
+            url = 'www.google'+str(randint(0, 10000))+'.com'
+            md5_value = hashlib.md5(uuid.uuid4().hex.encode('UTF-8')).hexdigest()
+            sha_value = hashlib.sha256(uuid.uuid4().hex.encode('UTF-8')).hexdigest()
+            if i%3 == 0:
+                indicators.append({
+                    "value": sha_value,
+                    "rawJSON": {
+                        "type": "SHA256",
+                        "tags": tags,
+                        "source": "covid19v3"
+                    }
+                }
+                )
+            elif i%3 == 1:
+                indicators.append({
+                    "value": md5_value,
+                    "rawJSON": {
+                        "myHTML": "<script>alert()</script><h2>daud</h2>",
+                        "type": "MD5",
+                        "source": "covid19v3"
+                    }
+                }
+                )
+            elif i%3 == 2:
+                indicators.append({
+                    "value": ip,
+                    "rawJSON": {
+                        "some_string_field": str(username) + str(username),
+                        "some_int_field": 980,
+                        "type": "special-IP",
+                        "source": "covid19v3"
+                    }
+                }
+                )
+
+        return indicators
+
+    if demisto.command() == 'fetch-indicators':
+        indicators = fetch_indicators_mock()
+
+        demisto.createIndicators(indicators)
+
+        # important (!) this is an ack to let the server know that we finished the fetch
+        demisto.results("done")
+        sys.exit(0)
+  subtype: python3
+  type: python
+sourcemoduleid: Covid19 Feed
