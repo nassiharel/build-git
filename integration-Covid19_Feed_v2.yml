@@ -139,7 +139,7 @@ script:
                 "source": "covid19v3"
                 }
             })
-        for i in range(100):
+        for i in range(10):
             ip = str(randint(0, 254))+'.'+str(randint(0, 254))+'.'+str(randint(0, 254))+'.'+str(randint(0, 254))
             url = 'www.google'+str(randint(0, 10000))+'.com'
             md5_value = hashlib.md5(uuid.uuid4().hex.encode('UTF-8')).hexdigest()
