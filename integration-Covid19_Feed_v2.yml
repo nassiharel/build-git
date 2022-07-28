@@ -126,6 +126,7 @@ script:
             "value": str(username) + '@paloatltonetworks.com',
             "rawJSON": {
                 "type": "EMAIL",
+                "score": randint(0,3),
                 "source": "covid19v3"
                 }
             })
@@ -134,6 +135,7 @@ script:
             "score": 1,
             "rawJSON": {
                 "type": "URL",
+                "score": randint(0,3),
                 "source": "covid19v3"
                 }
             })
@@ -147,6 +149,7 @@ script:
                     "value": sha_value,
                     "rawJSON": {
                         "type": "SHA256",
+                        "score": randint(0,3),
                         "tags": tags,
                         "source": "covid19v3"
                     }
@@ -157,6 +160,7 @@ script:
                     "value": md5_value,
                     "rawJSON": {
                         "myHTML": "<script>alert()</script><h2>daud</h2>",
+                        "score": randint(0,3),
                         "type": "MD5",
                         "source": "covid19v3"
                     }
@@ -167,6 +171,7 @@ script:
                     "value": ip,
                     "rawJSON": {
                         "some_string_field": str(username) + str(username),
+                        "score": randint(0,3),
                         "some_int_field": 980,
                         "type": "special-IP",
                         "source": "covid19v3"
