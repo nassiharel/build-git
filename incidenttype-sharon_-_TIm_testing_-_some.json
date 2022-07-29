@@ -1,0 +1,49 @@
+{
+	"autorun": false,
+	"cacheVersn": 0,
+	"closureScript": "",
+	"color": "#C33591",
+	"days": 0,
+	"daysR": 0,
+	"default": false,
+	"definitionId": "",
+	"detached": false,
+	"disabled": false,
+	"extractSettings": {
+		"fieldCliNameToExtractSettings": {
+			"filehash": {
+				"extractAsIsIndicatorTypeId": "a2cbae9f-4ffc-47c4-8fbc-98398d38767e",
+				"extractIndicatorTypesIDs": [],
+				"isExtractingAllIndicatorTypes": false
+			},
+			"sourceip": {
+				"extractAsIsIndicatorTypeId": "ipRep",
+				"extractIndicatorTypesIDs": [],
+				"isExtractingAllIndicatorTypes": false
+			}
+		},
+		"mode": "Specific"
+	},
+	"fromServerVersion": "",
+	"hours": 0,
+	"hoursR": 0,
+	"id": "sharon - TIm testing - some",
+	"itemVersion": "",
+	"layout": "",
+	"locked": false,
+	"name": "sharon - TIm testing - some",
+	"onChangeRepAlg": 0,
+	"packID": "",
+	"packName": "",
+	"preProcessingScript": "",
+	"propagationLabels": [
+		"all"
+	],
+	"readonly": false,
+	"reputationCalc": 0,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1,
+	"weeks": 0,
+	"weeksR": 0
+}
