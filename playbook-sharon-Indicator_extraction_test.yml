@@ -1,0 +1,99 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: dfd825ea-378e-4433-8e2f-c60b6c0bf389
+inputs: []
+name: sharon-Indicator extraction test
+outputs: []
+quiet: true
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 063a9ff9-7403-425f-88cc-a96068e8b3ce
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 063a9ff9-7403-425f-88cc-a96068e8b3ce
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    reputationcalc: 2
+    scriptarguments:
+      file:
+        simple: csv_file.csv
+      hashes:
+        simple: "0"
+      ips:
+        simple: "1"
+      parseAll:
+        simple: "yes"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: This script will parse a CSV file and place the unique IPs, Domains
+        and Hashes into the context.
+      id: 050d95dc-c5ef-4b96-8785-dbd612c947dd
+      iscommand: false
+      name: ParseCSV
+      script: ParseCSV
+      type: regular
+      version: -1
+    taskid: 050d95dc-c5ef-4b96-8785-dbd612c947dd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 230
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 275,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
