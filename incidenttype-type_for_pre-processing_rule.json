@@ -1,7 +1,7 @@
 {
 	"autorun": false,
 	"cacheVersn": 0,
-	"closureScript": "GenerateInvestigationSummaryReport",
+	"closureScript": "",
 	"color": "#B7B7B7",
 	"days": 0,
 	"daysR": 0,
