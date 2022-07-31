@@ -19,7 +19,7 @@ name: sharon_to_be_excluded
 pswd: ""
 runas: DBotWeakRole
 runonce: false
-script: ""
+script: something there
 scripttarget: 0
 subtype: python3
 tags: []
