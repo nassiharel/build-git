@@ -13,7 +13,7 @@
 	"itemVersion": "2.4.4",
 	"keyTypeMap": {},
 	"locked": false,
-	"logicalVersion": 1,
+	"logicalVersion": 2,
 	"mapping": {
 		"Phishing Alerts": {
 			"dontMapEventToLabels": false,
@@ -178,12 +178,7 @@
 					"simple": "mirror_instance"
 				},
 				"yuval_test_field": {
-					"complex": {
-						"accessor": "id",
-						"filters": [],
-						"root": "incident",
-						"transformers": []
-					}
+					"simple": "priority"
 				}
 			}
 		}
