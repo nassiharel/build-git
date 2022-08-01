@@ -72,10 +72,10 @@ commonfields:
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
-    fromServerVersion: 5.0.0
-    itemVersion: 1.7.16
+    fromServerVersion: ""
+    itemVersion: ""
     packID: ""
-    packName: Common Scripts
+    packName: ""
     propagationLabels:
     - all
     toServerVersion: ""
@@ -239,9 +239,12 @@ script: |
               outputs=outputs,
               raw_response=raw_response
           )
+
+          demisto.log(str(readable_output))
           return_results(results)
-      except DemistoException as error:
+      except Exception as error:
           return_error(str(error), error)
+
 
 
   if __name__ in ('__main__', '__builtin__', 'builtins'):  # pragma: no cover
@@ -249,7 +252,6 @@ script: |
 
   register_module_line('SearchIncidentsV2', 'end', __line__())
 scripttarget: 0
-sourcescripid: SearchIncidentsV2
 subtype: python3
 tags:
 - Utility
