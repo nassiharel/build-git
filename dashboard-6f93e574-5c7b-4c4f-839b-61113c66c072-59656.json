@@ -1,0 +1,146 @@
+{
+	"cacheVersn": 0,
+	"definitionId": "",
+	"fromDate": "0001-01-01T00:00:00Z",
+	"fromDateLicense": "0001-01-01T00:00:00Z",
+	"fromServerVersion": "",
+	"hidePivot": false,
+	"hideSearch": false,
+	"id": "6f93e574-5c7b-4c4f-839b-61113c66c072",
+	"isCommon": true,
+	"itemVersion": "",
+	"layout": [
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "58d34630-118f-11ed-9d9d-ffbc700569b7",
+			"id": "58d34630-118f-11ed-9d9d-ffbc700569b7",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "incidents-assigned-by-user",
+				"isPredefined": true,
+				"itemVersion": "1.2.8",
+				"modified": "2022-07-21T22:21:43.664745859Z",
+				"name": "Active Incidents Assigned by User",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"owner"
+					]
+				},
+				"prevName": "Active Incidents Assigned by User",
+				"propagationLabels": [],
+				"query": "-category:job and -status:archived and -status:closed",
+				"shouldCommit": false,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 7,
+				"widgetType": "bar"
+			},
+			"x": 0,
+			"y": 0
+		},
+		{
+			"forceRange": false,
+			"h": 2,
+			"i": "67484b20-118f-11ed-9d9d-ffbc700569b7",
+			"id": "67484b20-118f-11ed-9d9d-ffbc700569b7",
+			"reflectDimensions": true,
+			"w": 2,
+			"widget": {
+				"Cache": null,
+				"cacheVersn": 0,
+				"category": "",
+				"commitMessage": "",
+				"dataType": "incidents",
+				"dateRange": {
+					"fromDate": "0001-01-01T00:00:00Z",
+					"fromDateLicense": "0001-01-01T00:00:00Z",
+					"period": {
+						"by": "",
+						"byFrom": "days",
+						"byTo": "",
+						"field": "",
+						"fromValue": 7,
+						"toValue": null
+					},
+					"toDate": "0001-01-01T00:00:00Z"
+				},
+				"definitionId": "",
+				"fromServerVersion": "5.0.0",
+				"id": "top-active-playbooks",
+				"isPredefined": true,
+				"itemVersion": "1.2.8",
+				"modified": "2022-07-21T22:21:43.663488534Z",
+				"name": "Top Active Playbooks",
+				"packID": "CommonWidgets",
+				"packName": "Common Widgets",
+				"packPropagationLabels": [
+					"all"
+				],
+				"params": {
+					"groupBy": [
+						"playbookId"
+					]
+				},
+				"prevName": "Top Active Playbooks",
+				"propagationLabels": [],
+				"query": "status:active -category:job",
+				"shouldCommit": false,
+				"size": 5,
+				"toServerVersion": "",
+				"vcShouldIgnore": false,
+				"vcShouldKeepItemLegacyProdMachine": false,
+				"version": 7,
+				"widgetType": "column"
+			},
+			"x": 2,
+			"y": 0
+		}
+	],
+	"locked": false,
+	"modulePage": false,
+	"name": "59656",
+	"owner": "",
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "",
+		"byFrom": "days",
+		"byTo": "",
+		"field": "",
+		"fromValue": 7,
+		"toValue": null
+	},
+	"propagationLabels": [],
+	"system": false,
+	"toDate": "0001-01-01T00:00:00Z",
+	"toServerVersion": "",
+	"version": -1
+}
