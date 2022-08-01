@@ -1,0 +1,93 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: d6453f29-9246-4a06-8bad-21ebe00b6178
+inputs: []
+name: sharon - for debugging tests
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 9ec067a6-1724-47d6-8e58-f0d63d557530
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 9ec067a6-1724-47d6-8e58-f0d63d557530
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      lat:
+        simple: "32.08043031762425"
+      lng:
+        simple: "34.789836337978656"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Returns a map entry with a marker on the given coordinates (lat,lng),
+        or address (requires a configured GoogleMaps instance).
+      id: 7a7935bc-3c18-4f67-8278-74f9a8a2f6cd
+      iscommand: false
+      name: ShowOnMap
+      script: ShowOnMap
+      type: regular
+      version: -1
+    taskid: 7a7935bc-3c18-4f67-8278-74f9a8a2f6cd
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 50,
+          "y": 230
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 275,
+        "width": 380,
+        "x": 50,
+        "y": 50
+      }
+    }
+  }
