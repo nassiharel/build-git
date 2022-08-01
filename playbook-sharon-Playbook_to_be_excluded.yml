@@ -1,0 +1,135 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: The description is here! say hello
+id: 0ce17fc0-48c0-4495-8b8b-2dafa08cbcaa
+inputs: []
+name: sharon-Playbook to be excluded
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3cffb88c-1e56-4dd6-8383-1c685d8284e2
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 3cffb88c-1e56-4dd6-8383-1c685d8284e2
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 470,
+          "y": 0
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: "This function generates a password and allows various parameters
+        to customize the properties of the password depending on the use case (e.g.
+        password complexity requirements).  The default behavior is to generate a
+        password of  *random length* including all four character classes (upper,
+        lower, digits, symbols) with at least five and at most ten characters per
+        class. \n\nThe min_* values all default to 0. This means that if the command
+        is executed in this way:\n!GeneratePassword max_lcase=10\nIt is possible that
+        a password of length zero could be generated. It is therefore recommended
+        to always include a min_* parameter that matches. \n\nThe debug parameter
+        will print certain properties of the command into the WarRoom for easy diagnostics."
+      id: c5664394-46a4-4202-82fb-49a611ea4baf
+      iscommand: false
+      name: GeneratePassword
+      script: GeneratePassword
+      type: regular
+      version: -1
+    taskid: c5664394-46a4-4202-82fb-49a611ea4baf
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 470,
+          "y": 230
+        }
+      }
+  "2":
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      value:
+        simple: "123"
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: |-
+        Pretty-print data using Python's pprint library.  This is useful for seeing the structure of incident and context data.  Here's how to use it:
+
+        !PrettyPrint value=${incident}
+      id: 90fd44af-62a2-433c-880e-6a64081892f6
+      iscommand: false
+      name: PrettyPrint
+      script: PrettyPrint
+      type: regular
+      version: -1
+    taskid: 90fd44af-62a2-433c-880e-6a64081892f6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 470,
+          "y": 410
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 505,
+        "width": 380,
+        "x": 470,
+        "y": 0
+      }
+    }
+  }
