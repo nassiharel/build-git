@@ -666,6 +666,9 @@ tasks:
     ignoreworker: false
     isautoswitchedtoquietmode: false
     isoversize: false
+    nexttasks:
+      '#none#':
+      - "17"
     note: false
     quietmode: 0
     separatecontext: false
@@ -687,6 +690,34 @@ tasks:
           "y": 1710
         }
       }
+  "17":
+    continueonerrortype: ""
+    id: "17"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3cd126d8-5244-4ccb-80d0-d7d17edbb1f9
+      iscommand: false
+      name: cxzcxc-trt
+      script: 76ba7adf-2287-4309-823a-cc6418a41337
+      type: regular
+      version: -1
+    taskid: 3cd126d8-5244-4ccb-80d0-d7d17edbb1f9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 800,
+          "y": 1910
+        }
+      }
 version: -1
 view: |-
   {
@@ -698,7 +729,7 @@ view: |-
     },
     "paper": {
       "dimensions": {
-        "height": 1725,
+        "height": 1955,
         "width": 1642.5,
         "x": 377.5,
         "y": 50
