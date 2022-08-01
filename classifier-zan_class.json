@@ -12,10 +12,10 @@
 	"instanceIds": null,
 	"itemVersion": "",
 	"keyTypeMap": {
-		"Malware": "zan_type"
+		"Malware": "Phishing"
 	},
 	"locked": false,
-	"logicalVersion": 3,
+	"logicalVersion": 4,
 	"mapping": null,
 	"name": "zan_class",
 	"nameRaw": "zan_class",
