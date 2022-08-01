@@ -17,10 +17,10 @@ commonfields:
 contentitemexportablefields:
   contentitemfields:
     definitionid: ""
-    fromServerVersion: 5.0.0
-    itemVersion: 1.7.16
+    fromServerVersion: ""
+    itemVersion: ""
     packID: ""
-    packName: Common Scripts
+    packName: ""
     propagationLabels:
     - all
     toServerVersion: ""
@@ -41,7 +41,6 @@ runonce: false
 script: |
   return executeCommand("generateSummaryReport", {name: args.name, type: args.type, incidentId: args.incidentId})
 scripttarget: 0
-sourcescripid: GenerateInvestigationSummaryReport
 tags:
 - post-processing
 type: javascript
