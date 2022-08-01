@@ -293,7 +293,7 @@ tasks:
     isoversize: false
     nexttasks:
       '#none#':
-      - "12"
+      - "16"
     note: false
     quietmode: 0
     scriptarguments:
@@ -512,6 +512,37 @@ tasks:
           "y": 1595
         }
       }
+  "16":
+    continueonerrortype: ""
+    id: "16"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "11"
+    note: false
+    quietmode: 0
+    separatecontext: true
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3d966ce4-4703-4444-8a11-e37855f15b89
+      iscommand: false
+      name: zan_test15_playbook_B_itay
+      playbookId: 6e8a07ac-26c6-4846-8d21-291f5e4d72b0
+      type: playbook
+      version: -1
+    taskid: 3d966ce4-4703-4444-8a11-e37855f15b89
+    timertriggers: []
+    type: playbook
+    view: |-
+      {
+        "position": {
+          "x": 807.5,
+          "y": 1245
+        }
+      }
 version: -1
 view: |-
   {
@@ -519,7 +550,7 @@ view: |-
     "paper": {
       "dimensions": {
         "height": 1915,
-        "width": 922.5,
+        "width": 1137.5,
         "x": 50,
         "y": 50
       }
