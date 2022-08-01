@@ -1,0 +1,88 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: say hello
+id: 9fa79761-04b1-4b7d-8064-cbd74363a78e
+inputs: []
+name: sharon - playbook to be excluded 3
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 3852ef5f-b342-4511-80e7-0c7463b91e9c
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: 3852ef5f-b342-4511-80e7-0c7463b91e9c
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: AutoFocus V2
+      description: Gets export list indicators from AutoFocus.
+      id: c612403e-9254-4fcb-841a-faee24d05552
+      iscommand: true
+      name: autofocus-get-export-list-indicators
+      script: AutoFocus V2|||autofocus-get-export-list-indicators
+      type: regular
+      version: -1
+    taskid: c612403e-9254-4fcb-841a-faee24d05552
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 275,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
