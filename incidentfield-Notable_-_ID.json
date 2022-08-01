@@ -5,7 +5,8 @@
 	"associatedTypes": [
 		"Splunk Generic",
 		"Splunk Notable Generic",
-		"Splunk Notable Generic_dev"
+		"Splunk Notable Generic_dev",
+		"Splunk Notable Generic Yuval"
 	],
 	"autoCompleteTags": null,
 	"breachScript": "",
