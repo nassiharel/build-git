@@ -172,7 +172,7 @@ script:
         return {
             "value": indicator_value,
             "raw_JSON": {
-                "type": "URL"
+                "type": "EMAIL"
             }
         }
 
@@ -200,6 +200,7 @@ script:
                 indicator["raw_JSON"]["tags"] = tags
 
         demisto.debug(f'Ive created {len(indicators)} indicators. About to return from mock')
+        demisto.debug(json.dumps(indicators))
 
         return indicators
 
@@ -217,7 +218,7 @@ script:
 
         try:
             if demisto.command() == 'fetch-indicators':
-                number_of_indicators = int(params.get(number_of_indicators))
+                number_of_indicators = int(params.get('number_of_indicators'))
                 email_domain = params.get("email_domain")
                 url_prefix = params.get("url_prefix")
                 tags = params.get("tags", None)
