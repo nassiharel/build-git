@@ -19,7 +19,7 @@
 		"URL": "urlRep"
 	},
 	"locked": false,
-	"logicalVersion": 0,
+	"logicalVersion": 1,
 	"mapping": null,
 	"name": "Pitcher indicators classifier 2",
 	"nameRaw": "Pitcher indicators classifier 2",
@@ -32,7 +32,7 @@
 	"system": false,
 	"toServerVersion": "",
 	"transformer": {
-		"simple": "raw_JSON.type"
+		"simple": "type"
 	},
 	"type": "classification",
 	"unclassifiedCases": null,
