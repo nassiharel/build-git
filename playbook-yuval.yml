@@ -1,0 +1,317 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+id: ebb5bc04-a0d1-4c16-84bb-b03e7caa1c4d
+inputs: []
+name: yuval
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "2"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: eebdc7cf-b7fe-4c4a-8e11-54a6f2e26484
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: eebdc7cf-b7fe-4c4a-8e11-54a6f2e26484
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 410,
+          "y": 100
+        }
+      }
+  "1":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: Address
+                root: IP
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "4"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: commands.local.cmd.find.indicators
+      id: 4ddfaa45-bbbb-4ff9-8457-05f2fce14441
+      iscommand: false
+      name: Check IP
+      type: condition
+      version: -1
+    taskid: 4ddfaa45-bbbb-4ff9-8457-05f2fce14441
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 190,
+          "y": 250
+        }
+      }
+  "2":
+    conditions:
+    - condition:
+      - - left:
+            iscontext: true
+            value:
+              complex:
+                accessor: value
+                root: File.Hashes
+          operator: isNotEmpty
+      label: "yes"
+    continueonerrortype: ""
+    id: "2"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#default#':
+      - "5"
+      "yes":
+      - "3"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 1e20d800-acbb-42b5-8caf-12dd10a46f8f
+      iscommand: false
+      name: Is there a hash?
+      type: condition
+      version: -1
+    taskid: 1e20d800-acbb-42b5-8caf-12dd10a46f8f
+    timertriggers: []
+    type: condition
+    view: |-
+      {
+        "position": {
+          "x": 620,
+          "y": 250
+        }
+      }
+  "3":
+    continueonerrortype: ""
+    id: "3"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "7"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      file:
+        complex:
+          accessor: value
+          root: File.Hashes
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Checks the reputation of a file in AutoFocus.
+      id: 32a9da2f-88fd-4851-8075-d58f8355e18e
+      iscommand: true
+      name: Enrich File Info
+      script: '|||file'
+      type: regular
+      version: -1
+    taskid: 32a9da2f-88fd-4851-8075-d58f8355e18e
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 870,
+          "y": 420
+        }
+      }
+  "4":
+    continueonerrortype: ""
+    id: "4"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "6"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      ip:
+        complex:
+          accessor: Address
+          root: IP
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Provides data enrichment for ips.
+      id: 426cbe66-4c85-479e-8fcf-d7b13d1a59b9
+      iscommand: true
+      name: Enrich IP info
+      script: '|||ip'
+      type: regular
+      version: -1
+    taskid: 426cbe66-4c85-479e-8fcf-d7b13d1a59b9
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 420
+        }
+      }
+  "5":
+    continueonerrortype: ""
+    id: "5"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: 6b71935f-4ac9-4401-8afe-25c25a066dbb
+      iscommand: false
+      name: Done
+      type: title
+      version: -1
+    taskid: 6b71935f-4ac9-4401-8afe-25c25a066dbb
+    timertriggers: []
+    type: title
+    view: |-
+      {
+        "position": {
+          "x": 420,
+          "y": 900
+        }
+      }
+  "6":
+    continueonerrortype: ""
+    id: "6"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        simple: ${IP.Address}
+      tags:
+        simple: Hamuzim
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.indicators
+      id: a24825ce-1405-4c95-8884-8691f69317cb
+      iscommand: true
+      name: Untitled Task
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: a24825ce-1405-4c95-8884-8691f69317cb
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": -10,
+          "y": 650
+        }
+      }
+  "7":
+    continueonerrortype: ""
+    id: "7"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "5"
+    note: false
+    quietmode: 0
+    scriptarguments:
+      indicatorsValues:
+        complex:
+          accessor: value
+          root: File.Hashes
+      tags:
+        simple: Hamuzim File
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: Builtin
+      description: commands.local.cmd.set.indicators
+      id: 0ca9a4c1-a932-442d-853b-d237ee92b9b6
+      iscommand: true
+      name: Set Tag to File indicators
+      script: Builtin|||setIndicators
+      type: regular
+      version: -1
+    taskid: 0ca9a4c1-a932-442d-853b-d237ee92b9b6
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 880,
+          "y": 600
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 865,
+        "width": 1270,
+        "x": -10,
+        "y": 100
+      }
+    }
+  }
