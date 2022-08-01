@@ -13,7 +13,7 @@
 	"itemVersion": "",
 	"keyTypeMap": {},
 	"locked": false,
-	"logicalVersion": 3,
+	"logicalVersion": 4,
 	"mapping": {
 		"Brute Force": {
 			"dontMapEventToLabels": false,
@@ -34,6 +34,9 @@
 		"dbot_classification_incident_type_all": {
 			"dontMapEventToLabels": false,
 			"internalMapping": {
+				"Users": {
+					"simple": "zan_user.[0]"
+				},
 				"zan_f1": {
 					"simple": "Single_field"
 				}
