@@ -1,0 +1,90 @@
+contentitemexportablefields:
+  contentitemfields:
+    definitionid: ""
+    fromServerVersion: ""
+    itemVersion: ""
+    packID: ""
+    packName: ""
+    propagationLabels:
+    - all
+    toServerVersion: ""
+description: This is the description
+id: 74b97fb0-78fb-4194-8804-1b42d18e4f23
+inputs: []
+name: sharon - playbook to be excluded 2
+outputs: []
+starttaskid: "0"
+tasks:
+  "0":
+    continueonerrortype: ""
+    id: "0"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    nexttasks:
+      '#none#':
+      - "1"
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      id: a9cdeb33-fc4c-466e-835d-0e774423ad5a
+      iscommand: false
+      name: ""
+      version: -1
+    taskid: a9cdeb33-fc4c-466e-835d-0e774423ad5a
+    timertriggers: []
+    type: start
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 50
+        }
+      }
+  "1":
+    continueonerrortype: ""
+    id: "1"
+    ignoreworker: false
+    isautoswitchedtoquietmode: false
+    isoversize: false
+    note: false
+    quietmode: 0
+    separatecontext: false
+    skipunavailable: false
+    task:
+      brand: ""
+      description: Gets a list of indicator objects and the associated indicator outputs
+        that match the specified query and filters. The results are returned in a
+        structured data file.
+      id: 585e6d72-6d34-4277-849b-10549d3e8a1f
+      iscommand: false
+      name: GetIndicatorsByQuery_setContext_dev
+      script: 7a3e6d71-2c39-4a1a-8098-8c031f55e320
+      type: regular
+      version: -1
+    taskid: 585e6d72-6d34-4277-849b-10549d3e8a1f
+    timertriggers: []
+    type: regular
+    view: |-
+      {
+        "position": {
+          "x": 450,
+          "y": 230
+        }
+      }
+version: -1
+view: |-
+  {
+    "linkLabelsPosition": {},
+    "paper": {
+      "dimensions": {
+        "height": 275,
+        "width": 380,
+        "x": 450,
+        "y": 50
+      }
+    }
+  }
