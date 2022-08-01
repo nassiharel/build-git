@@ -134,7 +134,7 @@ script:
         indicator_value = hashlib.md5(uuid.uuid4().hex.encode('UTF-8')).hexdigest()
         return {
             "value": indicator_value,
-            "raw_JSON": {
+            "rawJSON": {
                 "type": "MD5"
             }
         }
@@ -143,7 +143,7 @@ script:
         indicator_value = hashlib.sha256(uuid.uuid4().hex.encode('UTF-8')).hexdigest()
         return {
             "value": indicator_value,
-            "raw_JSON": {
+            "rawJSON": {
                 "type": "SHA256"
             }
         }
@@ -152,7 +152,7 @@ script:
         indicator_value = f'{str(randint(0, 254))}.{str(randint(0, 254))}.{str(randint(0, 254))}.{str(randint(0, 254))}'
         return {
             "value": indicator_value,
-            "raw_JSON": {
+            "rawJSON": {
                 "type": "IP"
             }
         }
@@ -161,7 +161,7 @@ script:
         indicator_value = f'www.{url_prefix}{str(randint(0, 10000))}.com'
         return {
             "value": indicator_value,
-            "raw_JSON": {
+            "rawJSON": {
                 "type": "URL"
             }
         }
@@ -171,7 +171,7 @@ script:
         indicator_value = f'{username}@{domain}.com'
         return {
             "value": indicator_value,
-            "raw_JSON": {
+            "rawJSON": {
                 "type": "EMAIL"
             }
         }
@@ -194,10 +194,10 @@ script:
 
 
         for indicator in indicators:
-            indicator["raw_JSON"]["source"] = "indicators pitcher"
+            indicator["rawJSON"]["source"] = "indicators pitcher"
 
             if tags:
-                indicator["raw_JSON"]["tags"] = tags
+                indicator["rawJSON"]["tags"] = tags
 
         demisto.debug(f'Ive created {len(indicators)} indicators. About to return from mock')
         demisto.debug(json.dumps(indicators))
