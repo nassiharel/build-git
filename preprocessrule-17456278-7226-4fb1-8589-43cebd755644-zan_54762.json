@@ -1,0 +1,68 @@
+{
+	"action": "close",
+	"cacheVersn": 0,
+	"definitionId": "",
+	"enabled": true,
+	"existingEventsFilters": [],
+	"fromServerVersion": "",
+	"id": "17456278-7226-4fb1-8589-43cebd755644",
+	"index": 4,
+	"itemVersion": "",
+	"linkTo": "oldest",
+	"locked": false,
+	"name": "zan_54762",
+	"newEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "users"
+					}
+				},
+				"operator": "inList",
+				"right": {
+					"value": {
+						"simple": "users"
+					}
+				},
+				"type": "multiSelect"
+			}
+		]
+	],
+	"packID": "",
+	"packName": "",
+	"period": {
+		"by": "days",
+		"fromValue": 30
+	},
+	"propagationLabels": [
+		"all"
+	],
+	"readyExistingEventsFilters": [],
+	"readyNewEventFilters": [
+		[
+			{
+				"left": {
+					"isContext": true,
+					"value": {
+						"simple": "users"
+					}
+				},
+				"operator": "inList",
+				"right": {
+					"value": {
+						"simple": "${lists.users}"
+					}
+				},
+				"type": "multiSelect"
+			}
+		]
+	],
+	"scriptID": "",
+	"scriptName": "",
+	"searchClosed": false,
+	"system": false,
+	"toServerVersion": "",
+	"version": -1
+}
