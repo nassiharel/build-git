@@ -11,9 +11,9 @@
 	"indicatorSamples": null,
 	"instanceIds": null,
 	"itemVersion": "2.4.4",
-	"keyTypeMap": null,
+	"keyTypeMap": {},
 	"locked": false,
-	"logicalVersion": 0,
+	"logicalVersion": 2,
 	"mapping": {
 		"Splunk Notable Generic": {
 			"dontMapEventToLabels": false,
@@ -29,6 +29,9 @@
 						]
 					}
 				},
+				"severity": {
+					"simple": "notableurgency"
+				},
 				"urgency": {
 					"simple": "notableurgency"
 				}
@@ -37,6 +40,9 @@
 		"dbot_classification_incident_type_all": {
 			"dontMapEventToLabels": false,
 			"internalMapping": {
+				"severity": {
+					"simple": "severity"
+				},
 				"status": {
 					"complex": {
 						"filters": [],
