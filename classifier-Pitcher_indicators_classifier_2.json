@@ -1,0 +1,40 @@
+{
+	"brands": null,
+	"cacheVersn": 0,
+	"defaultIncidentType": "",
+	"definitionId": "",
+	"description": "",
+	"feed": true,
+	"fromServerVersion": "",
+	"id": "e002715c-675d-4fb2-86a1-a95d825c9a8f",
+	"incidentSamples": null,
+	"indicatorSamples": null,
+	"instanceIds": null,
+	"itemVersion": "",
+	"keyTypeMap": {
+		"EMAIL": "emailRep",
+		"IP": "ipRep",
+		"MD5": "a2cbae9f-4ffc-47c4-8fbc-98398d38767e",
+		"SHA256": "a028bbb1-a25a-4324-80b7-7dc0c250481c",
+		"URL": "urlRep"
+	},
+	"locked": false,
+	"logicalVersion": 0,
+	"mapping": null,
+	"name": "Pitcher indicators classifier 2",
+	"nameRaw": "Pitcher indicators classifier 2",
+	"packID": "",
+	"packName": "",
+	"propagationLabels": [
+		"all"
+	],
+	"sourceClassifierId": "",
+	"system": false,
+	"toServerVersion": "",
+	"transformer": {
+		"simple": "raw_JSON.type"
+	},
+	"type": "classification",
+	"unclassifiedCases": null,
+	"version": -1
+}
