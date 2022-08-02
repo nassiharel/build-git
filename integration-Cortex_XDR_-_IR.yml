@@ -127,7 +127,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 4.8.3
+    itemVersion: 4.8.7
     packID: CortexXDR
     packName: Palo Alto Networks Cortex XDR - Investigation and Response
     packPropagationLabels:
@@ -775,8 +775,8 @@ script:
       predefined:
       - "true"
       - "false"
-    description: Isolates the specified endpoint. This command will be deprecated
-      soon, use `xdr-endpoint-isolate` instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-endpoint-isolate` instead.
     execution: true
     name: xdr-isolate-endpoint
     outputs:
@@ -831,8 +831,8 @@ script:
       predefined:
       - "true"
       - "false"
-    description: Reverses the isolation of an endpoint. This command will be deprecated
-      soon, use `xdr-endpoint-unisolate` instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-endpoint-unisolate` instead.
     execution: true
     name: xdr-unisolate-endpoint
     outputs:
@@ -1560,8 +1560,8 @@ script:
         hash.
       name: file_hash
       required: true
-    description: Quarantines a file on selected endpoints. This command will be deprecated
-      soon, use `xdr-file-quarantine` instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-file-quarantine` instead.
     name: xdr-quarantine-files
   - arguments:
     - description: String the represents the endpoint ID.
@@ -1610,8 +1610,8 @@ script:
         endpoint ID, the request will run restore on all endpoints which relate to
         the quarantined file you defined.
       name: endpoint_id
-    description: Restores a quarantined file on requested endpoints. This command
-      will be deprecated soon, use `xdr-file-restore` instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-file-restore` instead.
     name: xdr-restore-file
   - arguments:
     - description: Allows linking the response action to the incident that triggered
@@ -1740,8 +1740,8 @@ script:
       predefined:
       - "true"
       - "false"
-    description: Runs a scan on a selected endpoint. This command will be deprecated
-      soon, use `xdr-endpoint-scan-execute` instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-endpoint-scan-execute` instead.
     execution: true
     name: xdr-endpoint-scan
     outputs:
@@ -2114,8 +2114,8 @@ script:
         list is related to the first endpoint and so on.
       isArray: true
       name: generic_file_path
-    description: Retrieves files from selected endpoints. This command will be deprecated
-      soon, use `xdr-file-retrieve` instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-file-retrieve` instead.
     name: xdr-retrieve-files
     outputs:
     - contextPath: PaloAltoNetworksXDR.RetrievedFiles.action_id
@@ -2271,8 +2271,9 @@ script:
     - defaultValue: "600"
       description: The timeout in seconds for this execution.
       name: timeout
-    description: Initiates a new endpoint script execution action using a script from
-      the script library.
+    description: This command will soon be deprecated; prefer xdr-script-run instead.
+      Initiates a new endpoint script execution action using a script from the script
+      library.
     name: xdr-run-script
     outputs:
     - contextPath: PaloAltoNetworksXDR.ScriptRun.action_id
@@ -2281,6 +2282,78 @@ script:
     - contextPath: PaloAltoNetworksXDR.ScriptRun.endpoints_count
       description: Number of endpoints the action was initiated on.
       type: Number
+  - arguments:
+    - description: Allows linking the response action to the incident that triggered
+        it.
+      name: incident_id
+    - description: A comma-separated list of endpoint IDs. Can be retrieved by running
+        the xdr-get-endpoints command.
+      name: endpoint_ids
+      required: true
+    - description: Unique identifier of the script. Can be retrieved by running the
+        xdr-get-scripts command.
+      name: script_uid
+      required: true
+    - description: Dictionary containing the parameter name as key and its value for
+        this execution as the value. For example, {"param1":"param1_value","param2":"param2_value"}
+      name: parameters
+    - defaultValue: "600"
+      description: The timeout in seconds for this execution.
+      name: timeout
+    - defaultValue: "10"
+      description: Interval in seconds between each poll.
+      name: polling_interval_in_seconds
+    - defaultValue: "600"
+      description: Polling timeout in seconds.
+      name: polling_timeout_in_seconds
+    - deprecated: true
+      description: action ID for polling.
+      name: action_id
+    - deprecated: true
+      description: whether to hide the polling result (automatically filled by polling).
+      name: hide_polling_output
+    description: Initiates a new endpoint script execution action using a script from
+      the script library and returns the results.
+    name: xdr-script-run
+    outputs:
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.action_id
+      description: ID of the action initiated.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.retrieved_files
+      description: Number of successfully retrieved files.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.endpoint_ip_address
+      description: Endpoint IP address.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.endpoint_name
+      description: Number of successfully retrieved files.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.failed_files
+      description: Number of files failed to retrieve.
+      type: Number
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.endpoint_status
+      description: Endpoint status.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.domain
+      description: Domain to which the endpoint belongs.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.endpoint_id
+      description: Endpoint ID.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.execution_status
+      description: Execution status of this endpoint.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.return_value
+      description: Value returned by the script in case the type is not a dictionary.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.standard_output
+      description: The STDOUT and the STDERR logged by the script during the execution.
+      type: String
+    - contextPath: PaloAltoNetworksXDR.ScriptResult.results.retention_date
+      description: Timestamp in which the retrieved files will be deleted from the
+        server.
+      type: Date
+    polling: true
   - arguments:
     - description: Allows linking the response action to the incident that triggered
         it.
@@ -2324,9 +2397,8 @@ script:
         print("7")).
       name: snippet_code
       required: true
-    description: Initiates a new endpoint script execution action using the provided
-      snippet code. This command will be deprecated soon, use `xdr-snippet-code-script-execute`
-      instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-snippet-code-script-execute` instead.
     name: xdr-run-snippet-code-script
     outputs:
     - contextPath: PaloAltoNetworksXDR.ScriptRun.action_id
@@ -2519,8 +2591,8 @@ script:
     - defaultValue: "600"
       description: The timeout in seconds for this execution.
       name: timeout
-    description: Initiates a new endpoint script execution of shell commands. This
-      command will be deprecated soon, use `xdr-script-commands-execute` instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-script-commands-execute` instead.
     name: xdr-run-script-execute-commands
     outputs:
     - contextPath: PaloAltoNetworksXDR.ScriptRun.action_id
@@ -2582,9 +2654,8 @@ script:
     - defaultValue: "600"
       description: The timeout in seconds for this execution.
       name: timeout
-    description: Initiates a new endpoint script execution to delete the specified
-      file. This command will be deprecated soon, use `xdr-file-delete-script-execute`
-      instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-file-delete-script-execute` instead.
     name: xdr-run-script-delete-file
     outputs:
     - contextPath: PaloAltoNetworksXDR.ScriptRun.action_id
@@ -2645,8 +2716,8 @@ script:
     - defaultValue: "600"
       description: The timeout in seconds for this execution.
       name: timeout
-    description: Initiates a new endpoint script execution to check if file exists.
-      This command will be deprecated soon, use `xdr-file-exist-script-execute` instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-file-exist-script-execute` instead.
     name: xdr-run-script-file-exists
     outputs:
     - contextPath: PaloAltoNetworksXDR.ScriptRun.action_id
@@ -2707,8 +2778,8 @@ script:
     - defaultValue: "600"
       description: The timeout in seconds for this execution.
       name: timeout
-    description: Initiates a new endpoint script execution kill process. This command
-      will be deprecated soon, use `xdr-kill-process-script-execute` instead.
+    deprecated: true
+    description: Deprecated. Use `xdr-kill-process-script-execute` instead.
     name: xdr-run-script-kill-process
     outputs:
     - contextPath: PaloAltoNetworksXDR.ScriptRun.action_id
@@ -6184,7 +6255,45 @@ script:
         )
 
 
-    def run_script_command(client: CoreClient, args: Dict) -> CommandResults:
+    @polling_function(
+        name=demisto.command(),
+        interval=arg_to_number(demisto.args().get('polling_interval_in_seconds', 10)),
+        timeout=arg_to_number(demisto.args().get('polling_timeout', 600)),
+        requires_polling_arg=False  # means it will always be default to poll, poll=true
+    )
+    def script_run_polling_command(args: dict, client: CoreClient) -> PollResult:
+
+        if action_id := args.get('action_id'):
+            response = client.get_script_execution_status(action_id)
+            general_status = response.get('reply', {}).get('general_status') or ''
+
+            return PollResult(
+                response=get_script_execution_results_command(
+                    client, {'action_id': action_id, 'integration_context_brand': 'PaloAltoNetworksXDR'}
+                ),
+                continue_to_poll=general_status.upper() in ('PENDING', 'IN_PROGRESS')
+            )
+
+        else:
+            endpoint_ids = argToList(args.get('endpoint_ids'))
+            response = get_run_script_execution_response(client, args)
+            reply = response.get('reply')
+            action_id = reply.get('action_id')
+
+            args['action_id'] = action_id
+
+            return PollResult(
+                response=None,  # since polling defaults to true, no need to deliver response here
+                continue_to_poll=True,  # if an error is raised from the api, an exception will be raised
+                partial_result=CommandResults(
+                    readable_output=f'Waiting for the script to finish running '
+                                    f'on the following endpoints: {endpoint_ids}...'
+                ),
+                args_for_next_run=args
+            )
+
+
+    def get_run_script_execution_response(client: CoreClient, args: Dict):
         script_uid = args.get('script_uid')
         endpoint_ids = argToList(args.get('endpoint_ids'))
         timeout = arg_to_number(args.get('timeout', 600)) or 600
@@ -6196,7 +6305,11 @@ script:
                 raise ValueError(f'The parameters argument is not in a valid JSON structure:\n{e}')
         else:
             parameters = {}
-        response = client.run_script(script_uid, endpoint_ids, parameters, timeout, incident_id=incident_id)
+        return client.run_script(script_uid, endpoint_ids, parameters, timeout, incident_id=incident_id)
+
+
+    def run_script_command(client: CoreClient, args: Dict) -> CommandResults:
+        response = get_run_script_execution_response(client, args)
         reply = response.get('reply')
         return CommandResults(
             readable_output=tableToMarkdown('Run Script', reply),
@@ -6572,7 +6685,8 @@ script:
         'resolved_false_positive': 'False Positive',
         'resolved_true_positive': 'Resolved',
         'resolved_security_testing': 'Other',
-        'resolved_other': 'Other'
+        'resolved_other': 'Other',
+        'resolved_auto': 'Resolved'
     }
 
     XSOAR_RESOLVED_STATUS_TO_XDR = {
@@ -7869,6 +7983,9 @@ script:
 
             elif command == 'get-modified-remote-data':
                 return_results(get_modified_remote_data_command(client, demisto.args()))
+
+            elif command == 'xdr-script-run':  # used with polling = true always
+                return_results(script_run_polling_command(args, client))
 
             elif command == 'xdr-run-script':
                 return_results(run_script_command(client, args))
