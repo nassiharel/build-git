@@ -433,6 +433,67 @@
 						"w": 1,
 						"x": 0,
 						"y": 0
+					},
+					{
+						"displayType": "ROW",
+						"h": 3,
+						"hideName": false,
+						"i": "fjh7qdtoln-229c73a0-1222-11ed-9df9-99a47404d7cd",
+						"items": [
+							{
+								"endCol": 2,
+								"fieldId": "communitynotes",
+								"height": 106,
+								"id": "2fc01960-1222-11ed-9df9-99a47404d7cd",
+								"index": 0,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "detectionengines",
+								"height": 22,
+								"id": "323a4120-1222-11ed-9df9-99a47404d7cd",
+								"index": 1,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "positivedetections",
+								"height": 22,
+								"id": "33298320-1222-11ed-9df9-99a47404d7cd",
+								"index": 2,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "orgunit",
+								"height": 22,
+								"id": "36c7df90-1222-11ed-9df9-99a47404d7cd",
+								"index": 3,
+								"sectionItemType": "field",
+								"startCol": 0
+							},
+							{
+								"endCol": 2,
+								"fieldId": "domainname",
+								"height": 22,
+								"id": "3af7a690-1222-11ed-9df9-99a47404d7cd",
+								"index": 4,
+								"sectionItemType": "field",
+								"startCol": 0
+							}
+						],
+						"maxW": 3,
+						"minH": 1,
+						"moved": false,
+						"name": "mapper",
+						"static": false,
+						"w": 1,
+						"x": 0,
+						"y": 2
 					}
 				],
 				"type": "custom"
