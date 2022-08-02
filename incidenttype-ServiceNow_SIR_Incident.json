@@ -17,7 +17,7 @@
 	"hours": 0,
 	"hoursR": 0,
 	"id": "ServiceNow SIR Incident",
-	"itemVersion": "2.3.15",
+	"itemVersion": "2.3.16",
 	"layout": "ServiceNow SIR Incident",
 	"locked": false,
 	"name": "ServiceNow SIR Incident",
