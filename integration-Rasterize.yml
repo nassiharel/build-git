@@ -45,7 +45,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.2.1
+    itemVersion: 1.2.2
     packID: rasterize
     packName: Rasterize
     packPropagationLabels:
@@ -879,7 +879,7 @@ script:
 
         w, h = check_width_and_height(w, h)  # Check that the width and height meet the safeguard limit
 
-        file_name = f'{file_name}.{"pdf" if r_type == RasterizeType.PDF else "jpeg"}'  # type: ignore
+        file_name = f'{file_name}.{"pdf" if r_type == RasterizeType.PDF else "png"}'  # type: ignore
         with open('htmlBody.html', 'w', encoding='utf-8-sig') as f:
             f.write(f'<html style="background:white";>{html_body}</html>')
         path = f'file://{os.path.realpath(f.name)}'
