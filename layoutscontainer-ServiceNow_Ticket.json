@@ -749,7 +749,7 @@
 	"id": "ServiceNow Ticket",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "2.3.15",
+	"itemVersion": "2.3.16",
 	"locked": false,
 	"mobile": null,
 	"name": "ServiceNow Ticket",
