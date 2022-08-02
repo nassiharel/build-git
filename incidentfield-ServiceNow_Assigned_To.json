@@ -21,7 +21,7 @@
 	"hidden": false,
 	"id": "incident_servicenowassignedto",
 	"isReadOnly": false,
-	"itemVersion": "2.3.15",
+	"itemVersion": "2.3.16",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "ServiceNow Assigned To",
