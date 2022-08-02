@@ -306,7 +306,7 @@
 	"id": "Cortex XDR Device Control Violations",
 	"indicatorsDetails": null,
 	"indicatorsQuickView": null,
-	"itemVersion": "4.8.3",
+	"itemVersion": "4.8.7",
 	"locked": false,
 	"mobile": null,
 	"name": "Cortex XDR Device Control Violations",
