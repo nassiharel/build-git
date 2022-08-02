@@ -21,7 +21,7 @@
 	"hidden": false,
 	"id": "incident_xdrstarred",
 	"isReadOnly": false,
-	"itemVersion": "4.8.3",
+	"itemVersion": "4.8.7",
 	"locked": false,
 	"mergeStrategy": "",
 	"name": "XDR Starred",
