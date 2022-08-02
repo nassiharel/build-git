@@ -48,76 +48,16 @@
 				"category": "Data Enrichment \u0026 Threat Intelligence",
 				"commands": [
 					{
-						"description": "Checks the file reputation of the specified hash.",
-						"name": "file"
+						"description": "Gets the matches from a given retrohunt job's id or the latest by default.",
+						"name": "vt-retrohunt-get-indicators"
 					},
 					{
-						"description": "Checks the reputation of an IP address.",
-						"name": "ip"
-					},
-					{
-						"description": "Checks the reputation of a URL.",
-						"name": "url"
-					},
-					{
-						"description": "Checks the reputation of a domain.",
-						"name": "domain"
-					},
-					{
-						"description": "Submits a file for scanning. Use the vt-analysis-get command to get the scan results.",
-						"name": "file-scan"
-					},
-					{
-						"description": "Rescans an already submitted file. This avoids having to upload the file again. Use the vt-analysis-get command to get the scan results.",
-						"name": "file-rescan"
-					},
-					{
-						"description": "Scans a specified URL. Use the vt-analysis-get command to get the scan results.",
-						"name": "url-scan"
-					},
-					{
-						"description": "Adds comments to files and URLs.",
-						"name": "vt-comments-add"
-					},
-					{
-						"description": "Premium API. Get a special URL for files larger than 32 MB.",
-						"name": "vt-file-scan-upload-url"
-					},
-					{
-						"description": "Delete a comment.",
-						"name": "vt-comments-delete"
-					},
-					{
-						"description": "Retrieves comments for a given resource.",
-						"name": "vt-comments-get"
-					},
-					{
-						"description": "Retrieves a comment by comment ID.",
-						"name": "vt-comments-get-by-id"
-					},
-					{
-						"description": "Search for an indicator in Virus Total.",
-						"name": "vt-search"
-					},
-					{
-						"description": "Retrieves a behavioral relationship of the given file hash.",
-						"name": "vt-file-sandbox-report"
-					},
-					{
-						"description": "Returns passive DNS records by indicator.",
-						"name": "vt-passive-dns-data"
-					},
-					{
-						"description": "Retrieves resolutions of the given IP.",
-						"name": "vt-analysis-get"
-					},
-					{
-						"description": "Result of the last Sigma analysis in markdown format.",
-						"name": "vt-file-sigma-analysis"
+						"description": "This command will reset your fetch history.",
+						"name": "vt-retrohunt-reset-fetch-indicators"
 					}
 				],
-				"description": "Analyzes suspicious hashes, URLs, domains, and IP addresses.",
-				"name": "VirusTotal (API v3) (Partner Contribution)"
+				"description": "Use this feed integration to fetch VirusTotal Retrohunt matches.",
+				"name": "VirusTotal Retrohunt Feed (Partner Contribution)"
 			},
 			{
 				"category": "Data Enrichment \u0026 Threat Intelligence",
@@ -214,21 +154,6 @@
 				"category": "Data Enrichment \u0026 Threat Intelligence",
 				"commands": [
 					{
-						"description": "Gets the indicators from VirusTotal Livehunt.",
-						"name": "vt-livehunt-get-indicators"
-					},
-					{
-						"description": "This command will reset your fetch history.",
-						"name": "vt-reset-fetch-indicators"
-					}
-				],
-				"description": "Use this feed integration to fetch VirusTotal Livehunt notifications as indicators.",
-				"name": "VirusTotal Livehunt Feed (Partner Contribution)"
-			},
-			{
-				"category": "Data Enrichment \u0026 Threat Intelligence",
-				"commands": [
-					{
 						"description": "Checks the file reputation of the specified hash.",
 						"name": "file"
 					},
@@ -276,16 +201,91 @@
 				"category": "Data Enrichment \u0026 Threat Intelligence",
 				"commands": [
 					{
-						"description": "Gets the matches from a given retrohunt job's id or the latest by default.",
-						"name": "vt-retrohunt-get-indicators"
+						"description": "Checks the file reputation of the specified hash.",
+						"name": "file"
+					},
+					{
+						"description": "Checks the reputation of an IP address.",
+						"name": "ip"
+					},
+					{
+						"description": "Checks the reputation of a URL.",
+						"name": "url"
+					},
+					{
+						"description": "Checks the reputation of a domain.",
+						"name": "domain"
+					},
+					{
+						"description": "Submits a file for scanning. Use the vt-analysis-get command to get the scan results.",
+						"name": "file-scan"
+					},
+					{
+						"description": "Rescans an already submitted file. This avoids having to upload the file again. Use the vt-analysis-get command to get the scan results.",
+						"name": "file-rescan"
+					},
+					{
+						"description": "Scans a specified URL. Use the vt-analysis-get command to get the scan results.",
+						"name": "url-scan"
+					},
+					{
+						"description": "Adds comments to files and URLs.",
+						"name": "vt-comments-add"
+					},
+					{
+						"description": "Premium API. Get a special URL for files larger than 32 MB.",
+						"name": "vt-file-scan-upload-url"
+					},
+					{
+						"description": "Delete a comment.",
+						"name": "vt-comments-delete"
+					},
+					{
+						"description": "Retrieves comments for a given resource.",
+						"name": "vt-comments-get"
+					},
+					{
+						"description": "Retrieves a comment by comment ID.",
+						"name": "vt-comments-get-by-id"
+					},
+					{
+						"description": "Search for an indicator in Virus Total.",
+						"name": "vt-search"
+					},
+					{
+						"description": "Retrieves a behavioral relationship of the given file hash.",
+						"name": "vt-file-sandbox-report"
+					},
+					{
+						"description": "Returns passive DNS records by indicator.",
+						"name": "vt-passive-dns-data"
+					},
+					{
+						"description": "Retrieves resolutions of the given IP.",
+						"name": "vt-analysis-get"
+					},
+					{
+						"description": "Result of the last Sigma analysis in markdown format.",
+						"name": "vt-file-sigma-analysis"
+					}
+				],
+				"description": "Analyzes suspicious hashes, URLs, domains, and IP addresses.",
+				"name": "VirusTotal (API v3) (Partner Contribution)"
+			},
+			{
+				"category": "Data Enrichment \u0026 Threat Intelligence",
+				"commands": [
+					{
+						"description": "Gets the indicators from VirusTotal Livehunt.",
+						"name": "vt-livehunt-get-indicators"
 					},
 					{
 						"description": "This command will reset your fetch history.",
-						"name": "vt-retrohunt-reset-fetch-indicators"
+						"name": "vt-reset-fetch-indicators"
 					}
 				],
-				"description": "Use this feed integration to fetch VirusTotal Retrohunt matches.",
-				"name": "VirusTotal Retrohunt Feed (Partner Contribution)"
+				"description": "Use this feed integration to fetch VirusTotal Livehunt notifications as indicators.",
+				"name": "VirusTotal Livehunt Feed (Partner Contribution)"
 			}
 		],
 		"layoutscontainer": null,
@@ -293,14 +293,6 @@
 		"modelingrule": null,
 		"parsingrule": null,
 		"playbook": [
-			{
-				"description": "Detonate a file through VirusTotal (API v3)",
-				"name": "Detonate File - VirusTotal (API v3)"
-			},
-			{
-				"description": "Detonate URL through VirusTotal (API v3) integration.",
-				"name": "Detonate URL - VirusTotal (API v3)"
-			},
 			{
 				"description": "Get file information using the Virus Total API integration.",
 				"name": "File Enrichment - Virus Total (API v3)"
@@ -312,6 +304,14 @@
 			{
 				"description": "Creates a zip from given hashes exists in VirusTotal",
 				"name": "Create Zip from VirusTotal"
+			},
+			{
+				"description": "Detonate a file through VirusTotal (API v3)",
+				"name": "Detonate File - VirusTotal (API v3)"
+			},
+			{
+				"description": "Detonate URL through VirusTotal (API v3) integration.",
+				"name": "Detonate URL - VirusTotal (API v3)"
 			}
 		],
 		"report": null,
@@ -326,41 +326,41 @@
 		"xsiamreport": null
 	},
 	"created": "2020-09-23T17:48:33Z",
-	"currentVersion": "2.4.4",
+	"currentVersion": "2.4.5",
 	"definitionId": "",
 	"dependencies": {
 		"Base": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.31.8",
+			"minVersion": "1.31.13",
 			"name": "Base"
 		},
 		"CommonPlaybooks": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "2.2.9",
+			"minVersion": "2.2.10",
 			"name": "Common Playbooks"
 		},
 		"CommonScripts": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "1.7.14",
+			"minVersion": "1.7.16",
 			"name": "Common Scripts"
 		},
 		"CommonTypes": {
 			"author": "Cortex XSOAR",
 			"certification": "certified",
 			"mandatory": true,
-			"minVersion": "3.2.37",
+			"minVersion": "3.2.40",
 			"name": "Common Types"
 		}
 	},
 	"deprecated": false,
 	"description": "Analyze suspicious hashes, URLs, domains and IP addresses",
-	"downloads": 14663,
+	"downloads": 15377,
 	"eulaLink": "https://github.com/demisto/content/blob/master/LICENSE",
 	"fromServerVersion": "5.0.0",
 	"general": [
@@ -393,7 +393,7 @@
 			"name": "VirusTotal Retrohunt Feed"
 		}
 	],
-	"itemVersion": "2.4.4",
+	"itemVersion": "2.4.5",
 	"keywords": [],
 	"legacy": true,
 	"name": "VirusTotal",
@@ -423,9 +423,9 @@
 		"Featured"
 	],
 	"toServerVersion": "",
-	"updated": "2022-07-13T22:18:32Z",
+	"updated": "2022-07-29T10:56:24Z",
 	"useCases": [],
 	"version": -1,
-	"versionInfo": "3263593",
+	"versionInfo": "3357908",
 	"videos": []
 }
