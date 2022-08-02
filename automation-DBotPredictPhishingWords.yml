@@ -89,14 +89,14 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.0.0
-    itemVersion: 1.31.10
+    itemVersion: 1.31.14
     packID: Base
     packName: Base
     packPropagationLabels:
     - all
     propagationLabels: []
     toServerVersion: ""
-dockerimage: demisto/ml:1.0.0.30541
+dockerimage: demisto/ml:1.0.0.32340
 engineinfo: {}
 mainengineinfo: {}
 name: DBotPredictPhishingWords
