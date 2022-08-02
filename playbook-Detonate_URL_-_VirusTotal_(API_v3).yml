@@ -2,7 +2,7 @@ contentitemexportablefields:
   contentitemfields:
     definitionid: ""
     fromServerVersion: 5.5.0
-    itemVersion: 2.4.4
+    itemVersion: 2.4.5
     packID: VirusTotal
     packName: VirusTotal
     packPropagationLabels:
@@ -256,7 +256,7 @@ tasks:
       Timeout:
         simple: "10"
       dt:
-        simple: VirusTotal.Analysis.data.attributes(val.status != 'completed')
+        simple: VirusTotal.Analysis.data(val.attributes.status != 'completed').id
     separatecontext: true
     skipunavailable: false
     task:
