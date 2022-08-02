@@ -8,7 +8,7 @@
 	"hideSearch": false,
 	"id": "VirusTotal API Execution Metrics",
 	"isCommon": true,
-	"itemVersion": "2.4.4",
+	"itemVersion": "2.4.5",
 	"layout": [
 		{
 			"forceRange": false,
