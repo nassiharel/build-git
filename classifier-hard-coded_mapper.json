@@ -13,14 +13,11 @@
 	"itemVersion": "",
 	"keyTypeMap": {},
 	"locked": false,
-	"logicalVersion": 3,
+	"logicalVersion": 4,
 	"mapping": {
 		"dbot_classification_incident_type_all": {
 			"dontMapEventToLabels": true,
 			"internalMapping": {
-				"Community Notes": {
-					"simple": "some_field3"
-				},
 				"Detection Engines": {
 					"simple": "some_field5"
 				},
@@ -35,6 +32,9 @@
 				},
 				"Tags": {
 					"simple": "some_field2"
+				},
+				"Targets": {
+					"simple": "some_field3"
 				}
 			}
 		}
